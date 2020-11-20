@@ -24,7 +24,7 @@ Review our introductory lessons to start learning about NEAR. Once you are ready
 
 {% page-ref page="tutorials/1.-connecting-to-a-near-node-using-datahub.md" %}
 
-### 💡2. Create your first NEAR account using the NEAR Javascript API
+### 💡2. Create your first NEAR account
 
 {% page-ref page="tutorials/2.-creating-your-first-near-account-using-the-sdk.md" %}
 
