@@ -114,7 +114,7 @@
   * [🗺 NEAR Pathway](network-documentation/near/near-pathway.md)
   * [💡 Tutorials](network-documentation/near/tutorials/README.md)
     * [1. Connect to a NEAR node using DataHub](network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub.md)
-    * [2. Create your first NEAR account with the NEAR SDK](network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk.md)
+    * [2. Create your first NEAR account with the NEAR Javascript API](network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk.md)
     * [3. Query the NEAR blockchain](network-documentation/near/tutorials/3.-querying-the-near-blockchain.md)
     * [4. Submit your first transactions](network-documentation/near/tutorials/4.-submitting-your-first-transactions.md)
     * [5. Write and deploy your first NEAR smart contract](network-documentation/near/tutorials/5.-writing-and-deploying-your-first-near-smart-contract.md)
