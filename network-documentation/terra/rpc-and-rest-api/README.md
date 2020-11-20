@@ -10,8 +10,6 @@ Terra exposes both the Tendermint RPC and the Terra LCD which are both necessary
 
 Learn about the APIs available via Terra [**DataHub**](https://datahub.figment.io/sign_up?service=terra) ****below.
 
-{% page-ref page="tendermint-rpc-1.md" %}
-
 {% page-ref page="terra-lcd.md" %}
 
 

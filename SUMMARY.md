@@ -155,9 +155,7 @@
 
 ## 🔗 Terms & Conditions
 
----
-
-* [Terms of Use](terms-of-use.md)
-* [Privacy Policy](privacy-policy.md)
-* [Contributor Terms](contributor-terms.md)
+* [Terms of Use](terms-and-conditions/terms-of-use.md)
+* [Privacy Policy](terms-and-conditions/privacy-policy.md)
+* [Contributor Terms](terms-and-conditions/contributor-terms.md)
 
