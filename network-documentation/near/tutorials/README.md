@@ -16,7 +16,7 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="1.-connecting-to-a-near-node-using-datahub.md" %}
 
-## Create your first NEAR account using the SDK 
+## Create your first NEAR account using the NEAR Javascript API 
 
 {% page-ref page="2.-creating-your-first-near-account-using-the-sdk.md" %}
 
