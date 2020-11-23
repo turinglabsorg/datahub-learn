@@ -10,7 +10,7 @@ Learn Pathways are short curriculums that help developers understand which netwo
 
 ## ![](../.gitbook/assets/tnear_icon_1.png) NEAR Pathway 
 
-NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands. Learn what makes it unique and build your first project to earn **$100 in NEAR** equivalent! 
+NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands. Learn what makes it unique and build your first project to earn **$10 in NEAR** equivalent! 
 
 **Get started with the NEAR Pathway by visiting the page below.** 
 
