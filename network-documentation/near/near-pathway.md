@@ -8,9 +8,13 @@ description: Learn what makes NEAR unique and build your first NEAR smart contra
 
 NEAR Protocol is a decentralized platform where developers can host serverless applications and smart contracts which have easy access to open finance networks and benefit from an ecosystem of open web components. Learn what makes it unique and build your first project to earn **$10 in NEAR equivalent**! 
 
-## Get started by reviewing the five introductory tutorials 
+## 🏁 Get started by signing up for DataHub
 
-Review our introductory lessons to start learning about NEAR. Once you are ready, get started by setting up an account on DataHub to put your skills to the test and follow-along the tutorials to start building on NEAR. 
+Once you are ready, get started by [**setting up an account on DataHub** ](https://datahub.figment.io/sign_up?service=near)to put your skills to the test and follow-along the tutorials to start building on NEAR. Make sure to click on "Start" on the first tutorial before  starting to code! Verify each tutorial as you complete them and make sure to click on "Submit to earn" when you are done with each step. 
+
+{% hint style="info" %}
+Do not start coding before hitting "Start" on the first tutorial in your DataHub dashboard
+{% endhint %}
 
 \*\*\*\*[**Learn more about DataHub**](https://learn.figment.io/guides/datahub-products)**.** 
 
