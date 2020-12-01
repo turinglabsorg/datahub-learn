@@ -333,5 +333,97 @@ List of currently supporter transaction types in cosmos-worker are \(listed by m
 }
 ```
 
+### Example Response
+
+```javascript
+[
+    {
+        "id": "135e76d6-c26f-4472-a6a0-49f8b4d87421",
+        "hash": "E6F6916FD7F50BC9BCB7CDBB33DDB22176103E8BBA02441A5CA74517A41DD003",
+        "block_hash": "369FDA008FDABB37A34078502EAEB1250DD497854896C947A25677D64469D081",
+        "height": 797187,
+        "chain_id": "columbus-4",
+        "time": "2020-12-01T20:14:25.852279Z",
+        "transaction_fee": [
+            {
+                "text": "206943",
+                "currency": "ukrw",
+                "numeric": 206943
+            }
+        ],
+        "gas_wanted": 116227,
+        "gas_used": 81146,
+        "version": "0.0.1",
+        "events": [
+            {
+                "id": "0",
+                "kind": "aggregateexchangeratevote",
+                "sub": [
+                    {
+                        "type": [
+                            "aggregateexchangerateprevote"
+                        ],
+                        "module": "oracle",
+                        "node": {
+                            "feeder": [
+                                {
+                                    "id": "terra1qt7kqljer7fxzudqdyhx87l7wreeef53s9uxqw"
+                                }
+                            ],
+                            "validator": [
+                                {
+                                    "id": "terravaloper1qt7kqljer7fxzudqdyhx87l7wreeef53s2smsa"
+                                }
+                            ]
+                        },
+                        "additional": {
+                            "exchangeRates": [
+                                "428.395216522890552458ukrw",
+                                "1102.267345679666643166umnt",
+                                "0.270833380822064165usdr",
+                                "0.387227045713562639uusd"
+                            ],
+                            "salt": [
+                                "a5b1"
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "1",
+                "kind": "aggregateexchangerateprevote",
+                "sub": [
+                    {
+                        "type": [
+                            "aggregateexchangerateprevote"
+                        ],
+                        "module": "oracle",
+                        "node": {
+                            "feeder": [
+                                {
+                                    "id": "terra1qt7kqljer7fxzudqdyhx87l7wreeef53s9uxqw"
+                                }
+                            ],
+                            "validator": [
+                                {
+                                    "id": "terravaloper1qt7kqljer7fxzudqdyhx87l7wreeef53s2smsa"
+                                }
+                            ]
+                        },
+                        "additional": {
+                            "hash": [
+                                "7a4d9fd06c87e9e26688dc77f2f42d64172e2e6f"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ],
+        "has_errors": false
+    }
+]
+```
+
 If you need help with this API or simply want to share with other builders, you can [**join our community today**](https://discord.gg/fszyM7K)!
 
