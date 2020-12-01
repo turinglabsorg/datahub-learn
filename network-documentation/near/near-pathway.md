@@ -44,8 +44,6 @@ Do not start coding before hitting "Start" on the first tutorial in your DataHub
 
 {% page-ref page="tutorials/5.-writing-and-deploying-your-first-near-smart-contract.md" %}
 
-### ![](../../.gitbook/assets/vhhp1wl4_400x400-1-.jpg) [Get Started! ](https://datahub.figment.io/sign_up?service=near) 
-
 ## ![](../../.gitbook/assets/tnear_icon_1.png)Extra NEAR Pathway Challenges
 
 NEAR is providing Bonus Activity Rewards for additional activities following the completion of the NEAR Pathway tutorials. Complete any of these challenges and earn more NEAR tokens! 
