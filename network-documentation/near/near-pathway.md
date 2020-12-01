@@ -10,11 +10,13 @@ NEAR Protocol is a decentralized platform where developers can host serverless a
 
 ## 🏁 Get started by signing up for DataHub
 
-Once you are ready, get started by [**setting up an account on DataHub** ](https://datahub.figment.io/sign_up?service=near)to put your skills to the test and follow-along the tutorials to start building on NEAR. Make sure to click on "Start" on the first tutorial before  starting to code! Verify each tutorial as you complete them and make sure to click on "Submit to earn" when you are done with each step. 
+Once you are ready, get started by [**setting up an account on DataHub** ](https://datahub.figment.io/sign_up?service=near)to put your skills to the test and follow-along the tutorials to start building on NEAR. Make sure to click on "Start" on the first tutorial before starting to code! 
 
-{% hint style="info" %}
-Do not start coding before hitting "Start" on the first tutorial in your DataHub dashboard
-{% endhint %}
+![](../../.gitbook/assets/screenshot-2020-12-01-1-at-9.40.07-am.png)
+
+Verify each tutorial as you complete them and make sure to click on "Submit to earn" when you are done with the five tutorials to access the completion form. 
+
+![](../../.gitbook/assets/screenshot-2020-12-01-2-at-9.41.19-am.png)
 
 \*\*\*\*[**Learn more about DataHub**](https://learn.figment.io/guides/datahub-products)**.** 
 
