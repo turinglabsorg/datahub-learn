@@ -24,7 +24,7 @@ Verify each tutorial as you complete them and make sure to click on "Submit to e
 
 ## ![](../../.gitbook/assets/tnear_icon_1.png) NEAR Pathway Tutorials
 
-### ![](../../.gitbook/assets/vhhp1wl4_400x400-1-.jpg) [Get Started! ](https://datahub.figment.io/sign_up?service=near)
+### ![](../../.gitbook/assets/vhhp1wl4_400x400-1-.jpg) [Get started by signing up to DataHub! ](https://datahub.figment.io/sign_up?service=near)
 
 ### 💡1. Connect to a NEAR node using DataHub 
 
