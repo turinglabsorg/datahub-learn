@@ -22,6 +22,18 @@ Transaction Search allows users to filter and query by account, transaction type
 Network identifier to search in. In this case, `cosmos`
 {% endapi-method-parameter %}
 
+{% api-method-parameter name="has\_errors" type="boolean" required=false %}
+Indicates if transaction includes any errors
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="raw\_log" type="array" required=false %}
+RawLog transaction's log bytes. Format `uint8`
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="with\_raw\_log" type="boolean" required=false %}
+Include base64 raw log from search response. Defaults to `false`
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="account" type="array" required=false %}
 The account identifier to look for. This searches for all account IDs which exist in transaction, including senders, recipients, validators, feeders, etc. 
 {% endapi-method-parameter %}
@@ -311,6 +323,15 @@ List of currently supporter transaction types in cosmos-worker are \(listed by m
 | **slashing** | `unjail` |
 | **staking** | `begin_unbonding`, `edit_validator`, `create_validator` , `delegate`, `begin_redelegate` |
 | **internal** | `error` |
+
+### Example Request
+
+```javascript
+{
+    "network": "cosmos",
+    "limit": 1
+}
+```
 
 ### Example Response
 
