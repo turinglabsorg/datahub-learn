@@ -10,7 +10,7 @@ description: Breaking down the DataHub Product Suite
 
 With DataHub, developers now have access to Web 3 protocols through our [**enterprise-grade infrastructure**](https://learn.datahub.figment.io/guides/datahub-infrastructure). We make sure they can focus on what they do best: develop amazing products.
 
-We provide reliable access to the RPC and REST APIs of our supported protocols for both the latest mainnets and testnets so our users can test and implement their product safely. 
+We provide reliable access to the RPC and REST APIs of our supported protocols for both the latest mainnets and testnets so our users can test and implement their products safely. 
 
 We are also launching Enriched APIs to complement the available RPC and REST APIs to view and manipulate Web 3 data in new advanced ways so you can build the next Web 3's killer apps! 
 
