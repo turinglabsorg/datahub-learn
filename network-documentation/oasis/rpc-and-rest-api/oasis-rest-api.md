@@ -918,7 +918,15 @@ Broadcast a transaction.
 
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
-| **tx\_raw** | string \* required | Raw transaction data as string. |
+| **tx\_raw** | string \* required | Base64 encoded string of a cbor marshalled [transaction.SignedTransaction](https://pkg.go.dev/github.com/oasisprotocol/oasis-core/go/consensus/api/transaction#SignedTransaction)|
+
+**Example POST Body**
+```json
+{
+ "tx_raw": "omlzaWduYXR1cmWiaXNpZ25hdHVyZVhA7B57K6i0/rqq02oMySmV5AsuUAiYf4N+H8K2OVN2Ubi7dHiuWEQSyq5S/43DzD63sqHF0nVpYKs3zqfaqdKDB2pwdWJsaWNfa2V5WCCth1d3RkFcjAMJgKhPg1SDE8txkHh60uKVe/z28yzJ1HN1bnRydXN0ZWRfcmF3X3ZhbHVlWGakY2ZlZaJjZ2FzGQPoZmFtb3VudEBkYm9keaJmYW1vdW50RQEqBfIAZ2FjY291bnRVAJTs8incWAoRxDVInbaXHIcZaYbnZW5vbmNlAGZtZXRob2Rxc3Rha2luZy5BZGRFc2Nyb3c=",
+}
+```
+
 
 **Example JSON output**
 
