@@ -4,7 +4,7 @@ description: Learn how to use the Transaction Search API on Cosmos
 
 # Transaction Search
 
-Test out our Transaction Search API today with [**DataHub**](https://datahub.figment.io/sign_up?service=cosmos)! 
+Test out our Transaction Search API today with [**DataHub**](https://datahub.figment.io/sign_up?service=cosmos)!
 
 {% api-method method="post" host="https://cosmos--search.datahub.figment.io/transactions\_search" path=" " %}
 {% api-method-summary %}
@@ -12,7 +12,7 @@ transactions\_search
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Transaction Search allows users to filter and query by account, transaction type, and date range. Users can also search by memo field and logs. 
+Transaction Search allows users to filter and query by account, transaction type, and date range. Users can also search by memo field and logs.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -22,20 +22,8 @@ Transaction Search allows users to filter and query by account, transaction type
 Network identifier to search in. In this case, `cosmos`
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="has\_errors" type="boolean" required=false %}
-Indicates if transaction includes any errors
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="raw\_log" type="array" required=false %}
-RawLog transaction's log bytes. Format `uint8`
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="with\_raw\_log" type="boolean" required=false %}
-Include base64 raw log from search response. Defaults to `false`
-{% endapi-method-parameter %}
-
 {% api-method-parameter name="account" type="array" required=false %}
-The account identifier to look for. This searches for all account IDs which exist in transaction, including senders, recipients, validators, feeders, etc. 
+The account identifier to look for. This searches for all account IDs which exist in transaction, including senders, recipients, validators, feeders, etc.
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="after\_height" type="integer" required=false %}
@@ -43,7 +31,7 @@ Gets all transactions bigger than given height. Has to be bigger than BeforeHeig
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="after\_time" type="string" required=false %}
-The time of transaction \(if not given by chain API, the same as block\) 
+The time of transaction \(if not given by chain API, the same as block\)
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="before\_height" type="integer" required=false %}
@@ -51,7 +39,7 @@ Gets all transactions lower than given height. Has to be lesser than AfterHeight
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="before\_time" type="string" required=false %}
-The time of transaction \(if not given by the chain API, the same as block\) 
+The time of transaction \(if not given by the chain API, the same as block\)
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="block\_hash" type="string" required=false %}
@@ -59,7 +47,7 @@ The hash of block to get transaction from
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="chain\_ids" type="array" required=false %}
-ChainID to search in. In this case, `gaia-13007`
+ChainID to search in. In this case, `cosmoshub-3`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="epoch" type="string" required=false %}
@@ -101,6 +89,11 @@ The list of types of transactions \(see below for full list of parameters\)
 {% api-method-parameter name="with\_raw" type="boolean" required=false %}
 Include base64 raw request in search response
 {% endapi-method-parameter %}
+
+{% api-method-parameter name="with\_raw\_log" type="boolean" required=false %}
+Include base64 raw log from search response. Defaults to `false`
+{% endapi-method-parameter %}
+
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
 
@@ -255,6 +248,9 @@ Success response
   "raw": [
     0
   ],
+  "raw_log": [
+    0
+  ],
   "time": "2020-10-15T20:38:09.017Z",
   "transaction_fee": [
     {
@@ -265,19 +261,20 @@ Success response
     }
   ],
   "updated_at": "2020-10-15T20:38:09.017Z",
-  "version": "string"
+  "version": "string",
+  "has_errors": false,
 }
 ```
 {% endapi-method-response-example %}
 
 {% api-method-response-example httpCode=400 %}
 {% api-method-response-example-description %}
-Bad parameters sent 
+Bad parameters sent
 {% endapi-method-response-example-description %}
 
 ```javascript
 {
-  "error": "Something bad happened"
+  "error": "Bad parameters sent"
 }
 ```
 {% endapi-method-response-example %}
@@ -289,7 +286,7 @@ Not acceptable content type
 
 ```javascript
 {
-  "error": "Something bad happened"
+  "error": "Not acceptable content type"
 }
 ```
 {% endapi-method-response-example %}
@@ -302,7 +299,7 @@ Internal/Other server error while processing request
 ```javascript
 {
   "error": "Something bad happened"
-
+}
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
@@ -348,6 +345,7 @@ List of currently supporter transaction types in cosmos-worker are \(listed by m
         "gas_used": 93105,
         "memo": "P2P Dashboard",
         "version": "0.0.1",
+        "has_errors": false,
         "events": [
             {
                 "id": "0",
