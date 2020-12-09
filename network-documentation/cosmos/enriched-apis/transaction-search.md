@@ -93,7 +93,6 @@ Include base64 raw request in search response
 {% api-method-parameter name="with\_raw\_log" type="boolean" required=false %}
 Include base64 raw log from search response. Defaults to `false`
 {% endapi-method-parameter %}
-
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
 

@@ -1166,7 +1166,7 @@ Get all unbonding delegations from a validator
 ]
 ```
 
-### `GET​/staking​/pool`
+### `GET/staking/pool`
 
 **Description**
 
