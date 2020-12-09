@@ -12,7 +12,7 @@ A REST interface for state queries, transaction generation and broadcasting.
 
 ## **Transactions**
 
-**Search, encode, or broadcast transactions.**`{}`
+**Search, encode, or broadcast transactions.**
 
 ### `GET/txs/{hash}`
 
