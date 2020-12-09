@@ -298,7 +298,7 @@ Internal/Other server error while processing request
 
 ```javascript
 {
-  "error": "Something bad happened"
+  "error": "Something bad happened" 
 }
 ```
 {% endapi-method-response-example %}
@@ -306,13 +306,13 @@ Internal/Other server error while processing request
 {% endapi-method-spec %}
 {% endapi-method %}
 
-### **Transaction Types**
+## **Transaction Types**
 
 List of currently supporter transaction types in cosmos-worker are \(listed by modules\):
 
 | **Module** | Type |
 | :--- | :--- |
-| **bank** | `multisend` , `send`  |
+| **bank** | `multisend` , `send` |
 | **crisis** | `verify_invariant` |
 | **distribution** | `withdraw_validator_commission`, `set_withdraw_address`, `withdraw_delegator_reward`, `fund_community_pool` |
 | **evidence** | `submit_evidence` |
@@ -321,7 +321,7 @@ List of currently supporter transaction types in cosmos-worker are \(listed by m
 | **staking** | `begin_unbonding`, `edit_validator`, `create_validator` , `delegate`, `begin_redelegate` |
 | **internal** | `error` |
 
-### Example Request
+## Example Request
 
 ```javascript
 {
@@ -330,7 +330,7 @@ List of currently supporter transaction types in cosmos-worker are \(listed by m
 }
 ```
 
-### Example Response
+## Example Response
 
 ```javascript
 [
