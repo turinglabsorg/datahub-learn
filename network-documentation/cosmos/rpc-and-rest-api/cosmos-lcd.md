@@ -12,7 +12,7 @@ A REST interface for state queries, transaction generation and broadcasting.
 
 ## **Transactions**
 
-**Search, encode, or broadcast transactions.**
+**Search, encode, or broadcast transactions.**`{}`
 
 ### `GET/txs/{hash}`
 
@@ -690,7 +690,7 @@ Send coins from one account to another
 
 **Stake module APIs**
 
-### `GET​/staking​/delegators​/{delegatorAddr}​/delegations`
+### `GET/staking/delegators/{delegatorAddr}​/delegations`
 
 **Description**
 
@@ -715,7 +715,7 @@ Get all delegations from a delegator
 ]
 ```
 
-### `POST​/staking​/delegators​/{delegatorAddr}​/delegations`
+### `POST/staking/delegators/{delegatorAddr}​/delgations`
 
 **Description**
 
@@ -756,7 +756,7 @@ Submit delegation
 }
 ```
 
-### `GET​/staking​/delegators​/{delegatorAddr}​/delegations​/{validatorAddr}`
+### `GET/staking/delegators/{delegatorAddr}​/delegations/{validatorAddr}`
 
 **Description**
 
@@ -780,7 +780,7 @@ Query the current delegation between a delegator and a validator
 }
 ```
 
-### `GET​/staking​/delegators​/{delegatorAddr}​/unbonding_delegations`
+### `GET/staking/delegators/{delegatorAddr}/unbonding_delegations`
 
 **Description**
 
@@ -807,7 +807,7 @@ Get all unbonding delegations
 ]
 ```
 
-### `POST​/staking​/delegators​/{delegatorAddr}​/unbonding_delegations`
+### `POST/staking/delegators/{delegatorAddr}/unbonding_delegations`
 
 **Description**
 
@@ -845,7 +845,7 @@ Submit an unbonding delegation
 }
 ```
 
-### `GET​/staking​/delegators​/{delegatorAddr}​/unbonding_delegations​/{validatorAddr}`
+### `GET/staking/delegators/{delegatorAddr}/unbonding_delegations/ {validatorAddr}`
 
 **Description**
 
@@ -875,7 +875,7 @@ Query all unbonding delegations between a delegator and a validator
 }
 ```
 
-### `GET​/staking​/redelegations`
+### `GET/staking/redelegations`
 
 **Description**
 
@@ -904,7 +904,7 @@ Get all redelegations \(filter by query params\) __
 ]
 ```
 
-### `POST​/staking​/delegators​/{delegatorAddr}​/redelegations`
+### `POST/staking/delegators/{delegatorAddr}​/redelegations`
 
 **Description**
 
@@ -943,7 +943,7 @@ Submit a redelegation
 }
 ```
 
-### `GET​/staking​/delegators​/{delegatorAddr}​/validators`
+### `GET/staking/delegators/{delegatorAddr}​/validators`
 
 **Description**
 
@@ -986,7 +986,7 @@ Query all validators that a delegator is bonded to
 ]
 ```
 
-### `GET​/staking​/delegators​/{delegatorAddr}​/validators​/{validatorAddr}`
+### `GET/staking/delegators/{delegatorAddr}/validators/{validatorAddr}`
 
 **Description**
 
@@ -1028,7 +1028,7 @@ Query a validator that a delegator is bonded to
 }
 ```
 
-### `GET​/staking​/validators`
+### `GET/staking/validators`
 
 **Description**
 
@@ -1073,7 +1073,7 @@ Get all validator candidates. By default it returns only the bonded validators
 ]
 ```
 
-### `GET​/staking​/validators​/{validatorAddr}`
+### `GET/staking/validators/{validatorAddr}`
 
 **Description**
 
@@ -1114,7 +1114,7 @@ Query the information from a single validator
 }
 ```
 
-### `GET​/staking​/validators​/{validatorAddr}​/delegations`
+### `GET/staking/validators/{validatorAddr}​/delegations`
 
 **Description**
 
@@ -1139,7 +1139,7 @@ Get all delegations from a validator
 ]
 ```
 
-### `GET​/staking​/validators​/{validatorAddr}​/unbonding_delegations`
+### `GET/staking/validators{validatorAddr}/unbonding_delegations`
 
 **Description**
 
@@ -1189,7 +1189,7 @@ no parameters
 }
 ```
 
-### `GET​/staking​/parameters`
+### `GET/staking/parameters`
 
 **Description**
 
@@ -1217,7 +1217,7 @@ no parameters
 
 **Governance module APIs**
 
-### `POST​/gov​/proposals`
+### `POST/gov/proposals`
 
 **Description**
 
@@ -1262,7 +1262,7 @@ Submit a proposal
 }
 ```
 
-### `GET​/gov​/proposals`
+### `GET/gov/proposals`
 
 **Description**
 
@@ -1304,7 +1304,7 @@ Query proposals
 ]
 ```
 
-`POST​/gov​/proposals​/param_change`
+### `POST/gov/proposals/param_change`
 
 **Description**
 
@@ -1356,7 +1356,7 @@ Generate a parameter change proposal transaction
 }
 ```
 
-### `GET​/gov​/proposals​/{proposalId}`
+### `GET/gov/proposals/{proposalId}`
 
 **Description**
 
@@ -1394,7 +1394,7 @@ Query a proposal
 }
 ```
 
-### `GET​/gov​/proposals​/{proposalId}​/proposer`
+### `GET/gov/proposals/{proposalId}/proposer`
 
 **Description**
 
@@ -1415,7 +1415,7 @@ Query a proposer
 }
 ```
 
-### `GET​/gov​/proposals​/{proposalId}​/deposits`
+### `GET/gov/proposals/{proposalId}/deposits`
 
 **Description**
 
@@ -1444,7 +1444,7 @@ Query deposits
 ]
 ```
 
-### `POST​/gov​/proposals​/{proposalId}​/deposits`
+### `POST/gov/proposals/{proposalId}/deposits`
 
 **Description**
 
@@ -1487,7 +1487,7 @@ Deposit tokens to a proposal
 }
 ```
 
-### `GET​/gov​/proposals​/{proposalId}​/deposits​/{depositor}`
+### `GET/gov/proposals/{proposalId}​/deposits/{depositor}`
 
 **Description**
 
@@ -1515,7 +1515,7 @@ Query deposit
 }
 ```
 
-### `GET​/gov​/proposals​/{proposalId}​/votes`
+### `GET/gov/proposals/{proposalId}/votes`
 
 **Description**
 
@@ -1539,7 +1539,7 @@ Query voters
 ]
 ```
 
-### `POST​/gov​/proposals​/{proposalId}​/votes`
+### `POST/gov/proposals/{proposalId}/votes`
 
 **Description**
 
@@ -1577,7 +1577,7 @@ Vote a proposal
 }
 ```
 
-### `GET​/gov​/proposals​/{proposalId}​/votes​/{voter}`
+### `GET/gov/proposals/{proposalId}/votes/{voter}`
 
 **Description**
 
@@ -1600,7 +1600,7 @@ Query vote
 }
 ```
 
-### `GET​/gov​/proposals​/{proposalId}​/tally`
+### `GET/gov/proposals/{proposalId}/tally`
 
 **Description**
 
@@ -1623,7 +1623,7 @@ Get a proposal's tally result at the current time
 }
 ```
 
-### `GET​/gov​/parameters​/deposit`
+### `GET/gov/parameters/deposit`
 
 **Description**
 
@@ -1647,7 +1647,7 @@ no parameters
 }
 ```
 
-### `GET​/gov​/parameters​/tallying`
+### `GET/gov/parameters/tallying`
 
 **Description**
 
@@ -1667,7 +1667,7 @@ no parameters
 }
 ```
 
-### `GET​/gov​/parameters​/voting`
+### `GET/gov/parameters/voting`
 
 **Description**
 
@@ -1689,7 +1689,7 @@ no parameters
 
 **Slashing module APIs**
 
-### `GET​/slashing​/signing_infos`
+### `GET/slashing/signing_infos`
 
 **Description**
 
@@ -1715,7 +1715,7 @@ Get sign info of all given validators
 ]
 ```
 
-### `POST​/slashing​/validators​/{validatorAddr}​/unjail`
+### `POST/slashing/validators/{validatorAddr}/unjail`
 
 **Description**
 
@@ -1759,7 +1759,7 @@ Unjail a jailed validator
 }
 ```
 
-### `GET​/slashing​/parameters`
+### `GET/slashing/parameters`
 
 **Description**
 
@@ -1787,7 +1787,7 @@ no parameters
 
 **Fee distribution module APIs**
 
-### `GET​/distribution​/delegators​/{delegatorAddr}​/rewards`
+### `GET/distribution/delegators/{delegatorAddr}/rewards`
 
 **Description**
 
@@ -1823,7 +1823,7 @@ Get the total rewards balance from all delegations
 }
 ```
 
-### `POST​/distribution​/delegators​/{delegatorAddr}​/rewards`
+### `POST/distribution/delegators/{delegatorAddr}/rewards`
 
 **Description**
 
@@ -1859,7 +1859,7 @@ Withdraw all the delegator's delegation rewards
 }
 ```
 
-### `GET​/distribution​/delegators​/{delegatorAddr}​/rewards​/{validatorAddr}`
+### `GET/distribution/delegators/{delegatorAddr}/rewards/{validatorAddr}`
 
 **Description**
 
@@ -1883,7 +1883,7 @@ Query a delegation reward
 ]
 ```
 
-### `POST​/distribution​/delegators​/{delegatorAddr}​/rewards​/{validatorAddr}`
+### `POST/distribution/delegators/{delegatorAddr}​/rewards/{validatorAddr}`
 
 **Description**
 
@@ -1920,7 +1920,7 @@ Withdraw a delegation reward
 }
 ```
 
-### `GET​/distribution​/delegators​/{delegatorAddr}​/withdraw_address`
+### `GET/distribution/delegators/{delegatorAddr}/withdraw_address`
 
 **Description**
 
@@ -1939,7 +1939,7 @@ Get the rewards withdrawal address
 cosmos1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27
 ```
 
-### `POST​/distribution​/delegators​/{delegatorAddr}​/withdraw_address`
+### `POST/distribution/delegators/{delegatorAddr}/withdraw_address`
 
 **Description**
 
@@ -1976,7 +1976,7 @@ Replace the rewards withdrawal address
 }
 ```
 
-### `GET​/distribution​/validators​/{validatorAddr}`
+### `GET/distribution/validators/{validatorAddr}`
 
 **Description**
 
@@ -2008,7 +2008,7 @@ Validator distribution information
 }
 ```
 
-### `GET​/distribution​/validators​/{validatorAddr}​/outstanding_rewards`
+### `GET/distribution/validators/{validatorAddr}/outstanding_rewards`
 
 **Description**
 
@@ -2031,7 +2031,7 @@ Fee distribution outstanding rewards of a single validator __
 ]
 ```
 
-### `GET​/distribution​/validators​/{validatorAddr}​/rewards`
+### `GET/distribution/validators/{validatorAddr}/rewards`
 
 **Description**
 
@@ -2054,7 +2054,7 @@ Commission and self-delegation rewards of a single validator
 ]
 ```
 
-### `POST​/distribution​/validators​/{validatorAddr}​/rewards`
+### `POST/distribution/validators/{validatorAddr}/rewards`
 
 **Description**
 
@@ -2090,7 +2090,7 @@ Withdraw the validator's rewards
 }
 ```
 
-### `GET​/distribution​/community_pool`
+### `GET/distribution/community_pool`
 
 **Description**
 
@@ -2111,7 +2111,7 @@ no parameters
 ]
 ```
 
-### `GET​/distribution​/parameters`
+### `GET/distribution/parameters`
 
 **Description**
 
@@ -2135,7 +2135,7 @@ no parameters
 
 **Supply module APIs**
 
-### `GET​/supply​/total`
+### `GET/supply/total`
 
 **Description**
 
@@ -2158,7 +2158,7 @@ no parameters
 }
 ```
 
-### `GET​/supply​/total​/{denomination}`
+### `GET/supply/total/{denomination}`
 
 **Description**
 
@@ -2180,7 +2180,7 @@ string
 
 **Minting module APIs**
 
-### `GET​/minting​/parameters`
+### `GET/minting/parameters`
 
 **Description**
 
@@ -2203,7 +2203,7 @@ no parameters
 }
 ```
 
-### `GET​/minting​/inflation`
+### `GET/minting/inflation`
 
 **Description**
 
@@ -2219,7 +2219,7 @@ no parameters
 string
 ```
 
-### `GET​/minting​/annual-provisions`
+### `GET/minting/annual-provisions`
 
 **Description**
 
