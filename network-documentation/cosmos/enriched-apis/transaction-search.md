@@ -22,14 +22,6 @@ Transaction Search allows users to filter and query by account, transaction type
 Network identifier to search in. In this case, `cosmos`
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="has\_errors" type="boolean" required=false %}
-Indicates if transaction includes any errors
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="raw\_log" type="array" required=false %}
-RawLog transaction's log bytes. Format `uint8`
-{% endapi-method-parameter %}
-
 {% api-method-parameter name="with\_raw\_log" type="boolean" required=false %}
 Include base64 raw log from search response. Defaults to `false`
 {% endapi-method-parameter %}
