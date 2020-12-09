@@ -4,7 +4,7 @@ description: Learn how to use the Transaction Search API on Cosmos
 
 # Transaction Search
 
-Test out our Transaction Search API today with [**DataHub**](https://datahub.figment.io/sign_up?service=cosmos)! 
+Test out our Transaction Search API today with [**DataHub**](https://datahub.figment.io/sign_up?service=cosmos)!
 
 {% api-method method="post" host="https://cosmos--search.datahub.figment.io/transactions\_search" path=" " %}
 {% api-method-summary %}
@@ -12,7 +12,7 @@ transactions\_search
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Transaction Search allows users to filter and query by account, transaction type, and date range. Users can also search by memo field and logs. 
+Transaction Search allows users to filter and query by account, transaction type, and date range. Users can also search by memo field and logs.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -27,7 +27,7 @@ Include base64 raw log from search response. Defaults to `false`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="account" type="array" required=false %}
-The account identifier to look for. This searches for all account IDs which exist in transaction, including senders, recipients, validators, feeders, etc. 
+The account identifier to look for. This searches for all account IDs which exist in transaction, including senders, recipients, validators, feeders, etc.
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="after\_height" type="integer" required=false %}
@@ -35,7 +35,7 @@ Gets all transactions bigger than given height. Has to be bigger than BeforeHeig
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="after\_time" type="string" required=false %}
-The time of transaction \(if not given by chain API, the same as block\) 
+The time of transaction \(if not given by chain API, the same as block\)
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="before\_height" type="integer" required=false %}
@@ -43,7 +43,7 @@ Gets all transactions lower than given height. Has to be lesser than AfterHeight
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="before\_time" type="string" required=false %}
-The time of transaction \(if not given by the chain API, the same as block\) 
+The time of transaction \(if not given by the chain API, the same as block\)
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="block\_hash" type="string" required=false %}
@@ -264,7 +264,7 @@ Success response
 
 {% api-method-response-example httpCode=400 %}
 {% api-method-response-example-description %}
-Bad parameters sent 
+Bad parameters sent
 {% endapi-method-response-example-description %}
 
 ```javascript
@@ -294,20 +294,19 @@ Internal/Other server error while processing request
 ```javascript
 {
   "error": "Something bad happened"
-
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
 
-### **Transaction Types**
+## **Transaction Types**
 
 List of currently supporter transaction types in cosmos-worker are \(listed by modules\):
 
 | **Module** | Type |
 | :--- | :--- |
-| **bank** | `multisend` , `send`  |
+| **bank** | `multisend` , `send` |
 | **crisis** | `verify_invariant` |
 | **distribution** | `withdraw_validator_commission`, `set_withdraw_address`, `withdraw_delegator_reward`, `fund_community_pool` |
 | **evidence** | `submit_evidence` |
@@ -316,7 +315,7 @@ List of currently supporter transaction types in cosmos-worker are \(listed by m
 | **staking** | `begin_unbonding`, `edit_validator`, `create_validator` , `delegate`, `begin_redelegate` |
 | **internal** | `error` |
 
-### Example Request
+## Example Request
 
 ```javascript
 {
@@ -325,7 +324,7 @@ List of currently supporter transaction types in cosmos-worker are \(listed by m
 }
 ```
 
-### Example Response
+## Example Response
 
 ```javascript
 [
