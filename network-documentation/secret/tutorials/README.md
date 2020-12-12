@@ -23,7 +23,10 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 ## Query the Secret Network 
 
 {% page-ref page="3.-querying-the-secret-blockchain.md" %}
+## Submit your first transaction
+
+{% page-ref page="4.-submit-your-first-transaction" %}
 
 ## Write & deploy your first Secret Network contract
 
-{% page-ref page="4.-writing-and-deploying-your-first-secret-contract.md" %}
+{% page-ref page="5.-writing-and-deploying-your-first-secret-contract.md" %}
