@@ -48,6 +48,12 @@ The Oasis Network is the first privacy-enabled blockchain platform for open fina
 
 {% page-ref page="oasis/" %}
 
+## ![](../.gitbook/assets/logo1.png) Secret
+
+Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps.
+
+{% page-ref page="secret/" %}
+
 ## ![](../.gitbook/assets/rsz_terra-logo%20%281%29.jpg) Terra 
 
 Terra is a blockchain protocol that supports stable programmable payments and open financial infrastructure development. One part of Terra’s value contributions, payments, in essence, replaces the complicated payments value chain, including credit card networks, banks, and payment gateways with a single blockchain layer. 
