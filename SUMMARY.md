@@ -126,6 +126,7 @@
   * [🎮 RPC & REST API](network-documentation/oasis/rpc-and-rest-api/README.md)
     * [Oasis REST API](network-documentation/oasis/rpc-and-rest-api/oasis-rest-api.md)
 * [🤫 Secret](network-documentation/secret/README.md)
+  * [✏ Secret 101](network-documentation/secret/secret-101.md)
   * [🎮 RPC & REST API](network-documentation/secret/rpc-and-rest-api/README.md)
     * [Tendermint RPC](network-documentation/secret/rpc-and-rest-api/tendermint-rpc.md)
     * [Secret REST API](network-documentation/secret/rpc-and-rest-api/secret-rest-api.md)
