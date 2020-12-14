@@ -18,6 +18,8 @@ Be sure to check out the [**official Secret documentation**](https://build.scrt.
 
 🚀 Let's start building the decentralized web 🚀
 
+{% page-ref page="secret-101.md" %}
+
 {% page-ref page="rpc-and-rest-api/" %}
 
 
