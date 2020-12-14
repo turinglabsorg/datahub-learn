@@ -20,7 +20,7 @@ https://datahub.figment.io/users/confirm?token=$NumbersAndLetters
 
 **Step 2:** You are then able to click on the “documentation” button to get more info regarding the integration.
 
-![](../.gitbook/assets/cel2.png)
+![](../.gitbook/assets/dhaa.png)
 
 ## **3. Accessing a Network**
 
