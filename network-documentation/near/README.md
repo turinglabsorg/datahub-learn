@@ -2,7 +2,7 @@
 description: Learn how to interact with NEAR using DataHub
 ---
 
-# 🌈NEAR
+# 🌈 NEAR
 
 ## Welcome to the NEAR documentation!
 
