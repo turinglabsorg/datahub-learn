@@ -152,7 +152,7 @@ Broadcast a signed transaction
 | :--- | :--- | :--- |
 | **txBroadcast** | object | The transaction must be signed **** StdTx. The supported broadcast modes include `"block"`\(return after tx commit\), `"sync"`\(return afer CheckTx\) and `"async"`\(return right away\). |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -184,6 +184,39 @@ Broadcast a signed transaction
 }
 ```
 
+**Example** __**JSON Output**
+
+```javascript
+{
+  "check_tx": {
+    "code": 0,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "deliver_tx": {
+    "code": 5,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+  "height": 0
+}
+```
+
 ### `POST/txs/encode`
 
 **Description** 
@@ -196,7 +229,7 @@ Encode a transaction to the Amino wire format
 | :--- | :--- | :--- |
 | **tx** | object | The transaction to encode |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -227,6 +260,14 @@ Encode a transaction to the Amino wire format
 }
 ```
 
+**Example** __**JSON Output**
+
+```javascript
+{
+  "tx": "The base64-encoded Amino-serialized bytes for the tx"
+}
+```
+
 ### `POST/txs/estimate_fee`
 
 **Description** 
@@ -239,7 +280,7 @@ Estimate fees and gas of a transaction
 | :--- | :--- | :--- |
 | **estimate\_req** | body \* required | The transaction and gas parameters to compute fee |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -274,6 +315,20 @@ Estimate fees and gas of a transaction
       "amount": "50.000"
     }
   ]
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "fees": [
+    {
+      "denom": "uluna",
+      "amount": "50"
+    }
+  ],
+  "gas": "10000"
 }
 ```
 
@@ -729,7 +784,7 @@ Generate multisig signatures for transactions generated offline
 | **address** | string \* required | Account address |
 | **multisig\_req** | body \* required | Multisign request information; pubkey is an optional parameter in case multisig account is never used before |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -765,6 +820,44 @@ Generate multisig signatures for transactions generated offline
     "pubkeys": [
       "terrapub1addwnpepq2l6pwj8h9fwxdjuge7lazu0sszpkck0nlhjag6q9drffrd93atywdt8ksu"
     ]
+  }
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "MultiSignedTx": {
+    "msg": [
+      "string"
+    ],
+    "fee": {
+      "gas": "string",
+      "amount": [
+        {
+          "denom": "uluna",
+          "amount": "50"
+        }
+      ]
+    },
+    "memo": "string",
+    "signature": {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  },
+  "MultiSig": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    }
   }
 }
 ```
@@ -809,7 +902,7 @@ Send coins from one account to another
 | **address** | string \* required | Account address in bech32 format |
 | **account** | object \* required | The sender and transaction information |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -835,6 +928,35 @@ Send coins from one account to another
       "amount": "50"
     }
   ]
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
 }
 ```
 
@@ -878,8 +1000,9 @@ Submit delegation
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
 | **delegation** | object | The password of the account to remove from the KMS **** |
+| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -905,6 +1028,39 @@ Submit delegation
     "denom": "uluna",
     "amount": "50"
   }
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "check_tx": {
+    "code": 0,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "deliver_tx": {
+    "code": 5,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+  "height": 0
 }
 ```
 
@@ -974,30 +1130,71 @@ Submit an unbonding delegation
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
 | **delegatorAddr** | string \* required | Bech 32 AccAddress of Delegator |
+| **delegation** | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "check_tx": {
+    "code": 0,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "deliver_tx": {
+    "code": 5,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+  "height": 0
+}
+```
 
 **Example** __**JSON Output**
 
 ```javascript
 {
-  "base_req": {
-    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
-    "memo": "Sent via Terra Station 🚀",
-    "chain_id": "columbus-3",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
-      {
-        "denom": "uluna",
-        "amount": "50"
-      }
-    ],
-    "simulate": false
+  "check_tx": {
+    "code": 0,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
   },
-  "delegator_address": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
-  "validator_address": "terravaloper1wg2mlrxdmnnkkykgqg4znky86nyrtc45q7a85l",
-  "amount": "100"
+  "deliver_tx": {
+    "code": 5,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+  "height": 0
 }
 ```
 
@@ -1416,7 +1613,7 @@ Submit a proposal
 | :--- | :--- | :--- |
 | **post\_proposal\_body** | object \* required | Valid value of `"proposal_type"` can be `"text"`, `"parameter_change"`, `"software_upgrade"` |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -1446,6 +1643,35 @@ Submit a proposal
       "amount": "50"
     }
   ]
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
 }
 ```
 
@@ -1503,7 +1729,7 @@ Generate a parameter change proposal transaction
 | :--- | :--- | :--- |
 | **post\_proposal\_body** | object \* required | The parameter change proposal body that contains all parameter changes |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -1543,6 +1769,35 @@ Generate a parameter change proposal transaction
 }
 ```
 
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
 ### `POST/gov/proposals/community_pool_spend`
 
 **Description** 
@@ -1555,7 +1810,7 @@ Grant community pool coins to contributor
 | :--- | :--- | :--- |
 | **post\_proposal\_body** | body \* required | The community pool spend proposal body that contains receipient and reward info |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -1594,6 +1849,35 @@ Grant community pool coins to contributor
 }
 ```
 
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
 ### `POST/gov/proposals/tax_rate_update`
 
 **Description** 
@@ -1606,7 +1890,7 @@ Tax rate update proposal
 | :--- | :--- | :--- |
 | **post\_proposal\_body** | body \* required | The tax rate update body that contains new tax rate info |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -1639,6 +1923,35 @@ Tax rate update proposal
 }
 ```
 
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
 ### `POST/gov/proposals/reward_weight_update`
 
 **Description** 
@@ -1651,7 +1964,7 @@ Reward weight update proposal
 | :--- | :--- | :--- |
 | **post\_proposal\_body** | body \* required | The reward weight update body that contains new reward weight info |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -1681,6 +1994,35 @@ Reward weight update proposal
     }
   ],
   "reward_weight": "0.12"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
 }
 ```
 
@@ -1783,9 +2125,9 @@ Deposit tokens to a proposal
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
 | **proposalId** | string \* required | Proposal ID |
-| **post\_deposit\_body** | object \* required |  |
+| **post\_deposit\_body** | object \* required | Body |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -1812,6 +2154,39 @@ Deposit tokens to a proposal
       "amount": "50"
     }
   ]
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "check_tx": {
+    "code": 0,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "deliver_tx": {
+    "code": 5,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+  "height": 0
 }
 ```
 
@@ -1880,7 +2255,7 @@ Vote a proposal
 | **proposalId** | string \* required | Proposal ID |
 | **post\_vote\_body** | object \* required | Valid value of `"option"` field can be `"yes"`, `"no"`, `"no_with_veto"` and `"abstain"` |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -1902,6 +2277,39 @@ Vote a proposal
   },
   "voter": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
   "option": "yes"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "check_tx": {
+    "code": 0,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "deliver_tx": {
+    "code": 5,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+  "height": 0
 }
 ```
 
@@ -2082,9 +2490,9 @@ Unjail a jailed validator
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
 | **validatorAddr** | string \* required | Bech32 validator address |
-| **UnjailBody** | object \* required |  |
+| **UnjailBody** | object \* required | Body |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -2112,6 +2520,39 @@ Unjail a jailed validator
       "sequence": "0"
     }
   }
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "check_tx": {
+    "code": 0,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "deliver_tx": {
+    "code": 5,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+  "height": 0
 }
 ```
 
@@ -2189,8 +2630,9 @@ Withdraw all the delegator's delegation rewards
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
 | **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
+| **Withdraw request body** | object | Body |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -2210,6 +2652,40 @@ Withdraw all the delegator's delegation rewards
     ],
     "simulate": false
   }
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "check_tx": {
+    "code": 0,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "deliver_tx": {
+    "code": 5,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+  "height": 0
+}
 ```
 
 ### `GET/distribution/delegators/{delegatorAddr}/rewards/{validatorAddr}`
@@ -2253,6 +2729,30 @@ Withdraw a delegation reward
 | :--- | :--- | :--- |
 | **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
 | **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
+| **Withdraw request body** | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  }
+}
+```
 
 **Example** __**JSON Output**
 
@@ -2307,8 +2807,9 @@ Replace the rewards withdrawal address
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
 | **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
+| **Withdraw request body** | object | Body |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -2329,6 +2830,39 @@ Replace the rewards withdrawal address
     "simulate": false
   },
   "withdraw_address": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "check_tx": {
+    "code": 0,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "deliver_tx": {
+    "code": 5,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+  "height": 0
 }
 ```
 
@@ -2421,8 +2955,9 @@ Withdraw the validator's rewards
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
 | **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
+| **Withdraw request body** | object | Body |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -2442,6 +2977,39 @@ Withdraw the validator's rewards
     ],
     "simulate": false
   }
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "check_tx": {
+    "code": 0,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "deliver_tx": {
+    "code": 5,
+    "data": "data",
+    "log": "log",
+    "gas_used": 5000,
+    "gas_wanted": 10000,
+    "info": "info",
+    "tags": [
+      "",
+      ""
+    ]
+  },
+  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+  "height": 0
 }
 ```
 
@@ -2545,11 +3113,9 @@ Swap coin with another coin ****
 
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
-| **Swap coin request body** | body |  |
+| **Swap coin request body** | object | Body |
 
-Swap coin request body \(body\)
-
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -2573,7 +3139,37 @@ Swap coin request body \(body\)
     "denom": "uluna",
     "amount": "50"
   },
-  "ask_denom": "uluna"
+  "ask_denom": "uluna",
+  "receiver": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
 }
 ```
 
@@ -2650,8 +3246,9 @@ Generate oracle exchange rate vote message containing exchange rate and salt for
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
 | **denom** | string \* required | The coin denomination to vote |
+| **Vote request body** | object | Body |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -2674,6 +3271,35 @@ Generate oracle exchange rate vote message containing exchange rate and salt for
   "exchange_rate": "1000.0",
   "salt": "abcd",
   "validator": "terravaloper1wg2mlrxdmnnkkykgqg4znky86nyrtc45q7a85l"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
 }
 ```
 
