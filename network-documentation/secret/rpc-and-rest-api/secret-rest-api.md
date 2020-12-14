@@ -2165,6 +2165,1940 @@ no parameters
 }
 ```
 
+## **IBC** <a id="supply"></a>
+
+**IBC module APIs** 
+
+### `GET/ibc/clients/{client-id}/consensus-state`
+
+**Description**
+
+Query client consensus-state
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **client-id** | string \* required | Client ID |
+| **prove** | boolean | Proof of result |
+
+**Example JSON Output**
+
+```javascript
+{
+  "consensus_state": {
+    "chain_id": "string",
+    "height": 0,
+    "root": {
+      "type": "string",
+      "value": {
+        "hash": "string"
+      }
+    },
+    "next_validator_set": {
+      "validators": [
+        {
+          "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+          "pub_key": {
+            "type": "string",
+            "value": "string"
+          },
+          "voting_power": "1000",
+          "proposer_priority": "1000"
+        }
+      ],
+      "proposer": {
+        "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+        "pub_key": {
+          "type": "string",
+          "value": "string"
+        },
+        "voting_power": "1000",
+        "proposer_priority": "1000"
+      }
+    }
+  },
+  "proof": {
+    "proof": {
+      "ops": [
+        {
+          "type": "string",
+          "key": "string",
+          "data": "string"
+        }
+      ]
+    }
+  },
+  "proof_path": {
+    "key_path": [
+      {
+        "name": "string",
+        "enc": 0
+      }
+    ]
+  },
+  "proof_height": 0
+}
+```
+
+### `GET/ibc/clients/{client-id}/client-state`
+
+**Description**
+
+Query client state
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **client-id** | string \* required | Client ID |
+| **prove** | boolean | Proof of result |
+
+**Example JSON Output**
+
+```javascript
+{
+  "client_state": {
+    "id": "string",
+    "frozen": true
+  },
+  "proof": {
+    "proof": {
+      "ops": [
+        {
+          "type": "string",
+          "key": "string",
+          "data": "string"
+        }
+      ]
+    }
+  },
+  "proof_path": {
+    "key_path": [
+      {
+        "name": "string",
+        "enc": 0
+      }
+    ]
+  },
+  "proof_height": 0
+}
+```
+
+### `GET/ibc/clients/{client-id}/roots/{height}`
+
+**Description**
+
+Query client root
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **client-id** | string \* required | Client ID |
+| **height** | number \* required | Root height |
+| **prove** | boolean | Proof of result |
+
+**Example JSON Output**
+
+```javascript
+{
+  "root": {
+    "type": "string",
+    "value": {
+      "hash": "string"
+    }
+  },
+  "proof": {
+    "proof": {
+      "ops": [
+        {
+          "type": "string",
+          "key": "string",
+          "data": "string"
+        }
+      ]
+    }
+  },
+  "proof_path": {
+    "key_path": [
+      {
+        "name": "string",
+        "enc": 0
+      }
+    ]
+  },
+  "proof_height": 0
+}
+```
+
+### `GET/ibc/header`
+
+**Description**
+
+Query header
+
+**Parameters**
+
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "type": "string",
+  "value": {
+    "SignedHeader": {
+      "header": {
+        "chain_id": "secret-1",
+        "height": 1,
+        "time": "2017-12-30T05:53:09.287+01:00",
+        "num_txs": 0,
+        "last_block_id": {
+          "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+          "parts": {
+            "total": 0,
+            "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04"
+          }
+        },
+        "total_txs": 35,
+        "last_commit_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+        "data_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+        "validators_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+        "next_validators_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+        "consensus_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+        "app_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+        "last_results_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+        "evidence_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+        "proposer_address": "secret1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27",
+        "version": {
+          "block": 10,
+          "app": 0
+        }
+      },
+      "commit": {
+        "block_id": {
+          "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+          "parts": {
+            "total": 0,
+            "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04"
+          }
+        },
+        "precommits": [
+          {
+            "validator_address": "string",
+            "validator_index": "0",
+            "height": "0",
+            "round": "0",
+            "timestamp": "2017-12-30T05:53:09.287+01:00",
+            "type": 2,
+            "block_id": {
+              "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+              "parts": {
+                "total": 0,
+                "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04"
+              }
+            },
+            "signature": "7uTC74QlknqYWEwg7Vn6M8Om7FuZ0EO4bjvuj6rwH1mTUJrRuMMZvAAqT9VjNgP0RA/TDp6u/92AqrZfXJSpBQ=="
+          }
+        ]
+      }
+    },
+    "validator_set": {
+      "validators": [
+        {
+          "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+          "pub_key": {
+            "type": "string",
+            "value": "string"
+          },
+          "voting_power": "1000",
+          "proposer_priority": "1000"
+        }
+      ],
+      "proposer": {
+        "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+        "pub_key": {
+          "type": "string",
+          "value": "string"
+        },
+        "voting_power": "1000",
+        "proposer_priority": "1000"
+      }
+    },
+    "next_validator_set": {
+      "validators": [
+        {
+          "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+          "pub_key": {
+            "type": "string",
+            "value": "string"
+          },
+          "voting_power": "1000",
+          "proposer_priority": "1000"
+        }
+      ],
+      "proposer": {
+        "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+        "pub_key": {
+          "type": "string",
+          "value": "string"
+        },
+        "voting_power": "1000",
+        "proposer_priority": "1000"
+      }
+    }
+  }
+}
+```
+
+### `GET/ibc/node-state`
+
+**Description**
+
+Query node consensus-state
+
+**Parameters**
+
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "chain_id": "string",
+  "height": 0,
+  "root": {
+    "type": "string",
+    "value": {
+      "hash": "string"
+    }
+  },
+  "next_validator_set": {
+    "validators": [
+      {
+        "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+        "pub_key": {
+          "type": "string",
+          "value": "string"
+        },
+        "voting_power": "1000",
+        "proposer_priority": "1000"
+      }
+    ],
+    "proposer": {
+      "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+      "pub_key": {
+        "type": "string",
+        "value": "string"
+      },
+      "voting_power": "1000",
+      "proposer_priority": "1000"
+    }
+  }
+}
+```
+
+### `GET/ibc/path`
+
+**Description**
+
+Query IBC path
+
+**Parameters**
+
+No parameters
+
+**Example JSON Output**
+
+```javascript
+string
+```
+
+### `POST/ibc/clients`
+
+**Description**
+
+Create client
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **Create client request body** | object \* required | Body |
+
+**Request Example**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "client_id": "string",
+  "consensus_state": {
+    "type": "string",
+    "value": {
+      "chain_id": "string",
+      "height": 0,
+      "root": {
+        "type": "string",
+        "value": {
+          "hash": "string"
+        }
+      },
+      "next_validator_set": {
+        "validators": [
+          {
+            "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+            "pub_key": {
+              "type": "string",
+              "value": "string"
+            },
+            "voting_power": "1000",
+            "proposer_priority": "1000"
+          }
+        ],
+        "proposer": {
+          "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+          "pub_key": {
+            "type": "string",
+            "value": "string"
+          },
+          "voting_power": "1000",
+          "proposer_priority": "1000"
+        }
+      }
+    }
+  }
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `POST/ibc/clients/{client-id}/update`
+
+**Description**
+
+Update client
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **client-id** | string \* required | Client ID |
+| **Update client request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "header": {
+    "type": "string",
+    "value": {
+      "SignedHeader": {
+        "header": {
+          "chain_id": "secret-1",
+          "height": 1,
+          "time": "2017-12-30T05:53:09.287+01:00",
+          "num_txs": 0,
+          "last_block_id": {
+            "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+            "parts": {
+              "total": 0,
+              "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04"
+            }
+          },
+          "total_txs": 35,
+          "last_commit_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+          "data_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+          "validators_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+          "next_validators_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+          "consensus_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+          "app_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+          "last_results_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+          "evidence_hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+          "proposer_address": "secret1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27",
+          "version": {
+            "block": 10,
+            "app": 0
+          }
+        },
+        "commit": {
+          "block_id": {
+            "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+            "parts": {
+              "total": 0,
+              "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04"
+            }
+          },
+          "precommits": [
+            {
+              "validator_address": "string",
+              "validator_index": "0",
+              "height": "0",
+              "round": "0",
+              "timestamp": "2017-12-30T05:53:09.287+01:00",
+              "type": 2,
+              "block_id": {
+                "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
+                "parts": {
+                  "total": 0,
+                  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04"
+                }
+              },
+              "signature": "7uTC74QlknqYWEwg7Vn6M8Om7FuZ0EO4bjvuj6rwH1mTUJrRuMMZvAAqT9VjNgP0RA/TDp6u/92AqrZfXJSpBQ=="
+            }
+          ]
+        }
+      },
+      "validator_set": {
+        "validators": [
+          {
+            "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+            "pub_key": {
+              "type": "string",
+              "value": "string"
+            },
+            "voting_power": "1000",
+            "proposer_priority": "1000"
+          }
+        ],
+        "proposer": {
+          "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+          "pub_key": {
+            "type": "string",
+            "value": "string"
+          },
+          "voting_power": "1000",
+          "proposer_priority": "1000"
+        }
+      },
+      "next_validator_set": {
+        "validators": [
+          {
+            "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+            "pub_key": {
+              "type": "string",
+              "value": "string"
+            },
+            "voting_power": "1000",
+            "proposer_priority": "1000"
+          }
+        ],
+        "proposer": {
+          "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+          "pub_key": {
+            "type": "string",
+            "value": "string"
+          },
+          "voting_power": "1000",
+          "proposer_priority": "1000"
+        }
+      }
+    }
+  }
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `POST/ibc/clients/{client-id}/misbehavior`
+
+**Description**
+
+Submit misbehaviour
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **client-id** | string \* required | Client ID |
+| **Submit misbehaviour request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "evidence": {
+    "type": "string",
+    "value": {
+      "DuplicateVoteEvidence": "string",
+      "chain_id": "string",
+      "val_power": 0,
+      "total_power": 0
+    }
+  }
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `GET/ibc/connections`
+
+**Description**
+
+Query all connections
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **page** | integer | Page number |
+| **limit** | integer | Maximum number of items per page |
+
+**Example JSON Output**
+
+```javascript
+[
+  {
+    "id": "connectionidone",
+    "state": "OPEN",
+    "client_id": "clientidone",
+    "counterparty": {
+      "client_id": "string",
+      "connection_id": "string",
+      "prefix": {
+        "key_prefix": "string"
+      }
+    },
+    "versions": [
+      "1.0.0"
+    ]
+  }
+]
+```
+
+### `GET/ibc/cconnections/{connection-id}`
+
+**Description**
+
+Query connection
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **connection-id** | string \* required | Connection ID |
+| **prove** | boolean | Proof of result |
+
+**Example JSON Output**
+
+```javascript
+{
+  "connection": {
+    "id": "connectionidone",
+    "state": "OPEN",
+    "client_id": "clientidone",
+    "counterparty": {
+      "client_id": "string",
+      "connection_id": "string",
+      "prefix": {
+        "key_prefix": "string"
+      }
+    },
+    "versions": [
+      "1.0.0"
+    ]
+  },
+  "proof": {
+    "proof": {
+      "ops": [
+        {
+          "type": "string",
+          "key": "string",
+          "data": "string"
+        }
+      ]
+    }
+  },
+  "proof_path": {
+    "key_path": [
+      {
+        "name": "string",
+        "enc": 0
+      }
+    ]
+  },
+  "proof_height": 0
+}
+```
+
+### `GET/ibc/clients/{client-id}/connections`
+
+**Description**
+
+Query connections of a client
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **client-id** | string \* required | Client ID |
+| **prove** | boolean | Proof of result |
+
+**Example JSON Output**
+
+```javascript
+{
+  "connection_paths": [
+    "string"
+  ],
+  "proof": {
+    "proof": {
+      "ops": [
+        {
+          "type": "string",
+          "key": "string",
+          "data": "string"
+        }
+      ]
+    }
+  },
+  "proof_path": {
+    "key_path": [
+      {
+        "name": "string",
+        "enc": 0
+      }
+    ]
+  },
+  "proof_height": 0
+}
+```
+
+### `POST/ibc/connections/open-init`
+
+**Description**
+
+Connection open-init
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **Connection open-init request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "connection_id": "string",
+  "client_id": "string",
+  "counterparty_client_id": "string",
+  "counterparty_connection_id": "string",
+  "counterparty_prefix": {
+    "type": "string",
+    "value": {
+      "key_prefix": "string"
+    }
+  }
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `POST/ibc/connections/open-try`
+
+**Description**
+
+Connection open-try
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **Connection open-try request body** | object \* required | Body |
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "connection_id": "string",
+  "client_id": "string",
+  "counterparty_client_id": "string",
+  "counterparty_connection_id": "string",
+  "counterparty_prefix": {
+    "type": "string",
+    "value": {
+      "key_prefix": "string"
+    }
+  },
+  "counterparty_versions": [
+    "string"
+  ],
+  "proof_init": {
+    "type": "string",
+    "value": {
+      "proof": {
+        "ops": [
+          {
+            "type": "string",
+            "key": "string",
+            "data": "string"
+          }
+        ]
+      }
+    }
+  },
+  "proof_consensus": {
+    "type": "string",
+    "value": {
+      "proof": {
+        "ops": [
+          {
+            "type": "string",
+            "key": "string",
+            "data": "string"
+          }
+        ]
+      }
+    }
+  },
+  "proof_height": 0,
+  "consensus_height": 0
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `POST/ibc/connections/{connection-id}/open-ack`
+
+**Description**
+
+Connection open-ack
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **connection-id** | string \* required | Connection ID |
+| **Connection open-ack request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "proof_try": {
+    "type": "string",
+    "value": {
+      "proof": {
+        "ops": [
+          {
+            "type": "string",
+            "key": "string",
+            "data": "string"
+          }
+        ]
+      }
+    }
+  },
+  "proof_consensus": {
+    "type": "string",
+    "value": {
+      "proof": {
+        "ops": [
+          {
+            "type": "string",
+            "key": "string",
+            "data": "string"
+          }
+        ]
+      }
+    }
+  },
+  "proof_height": 0,
+  "consensus_height": 0,
+  "version": "string"
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `POST/ibc/connections/{connection-id}/open-confirm`
+
+**Description**
+
+Query client consensus-state
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **client-id** | string \* required | Client ID |
+| **prove** | boolean | Proof of result |
+
+**Example JSON Output**
+
+```javascript
+{
+  "consensus_state": {
+    "chain_id": "string",
+    "height": 0,
+    "root": {
+      "type": "string",
+      "value": {
+        "hash": "string"
+      }
+    },
+    "next_validator_set": {
+      "validators": [
+        {
+          "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+          "pub_key": {
+            "type": "string",
+            "value": "string"
+          },
+          "voting_power": "1000",
+          "proposer_priority": "1000"
+        }
+      ],
+      "proposer": {
+        "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+        "pub_key": {
+          "type": "string",
+          "value": "string"
+        },
+        "voting_power": "1000",
+        "proposer_priority": "1000"
+      }
+    }
+  },
+  "proof": {
+    "proof": {
+      "ops": [
+        {
+          "type": "string",
+          "key": "string",
+          "data": "string"
+        }
+      ]
+    }
+  },
+  "proof_path": {
+    "key_path": [
+      {
+        "name": "string",
+        "enc": 0
+      }
+    ]
+  },
+  "proof_height": 0
+}
+```
+
+### `GET/ibc/ports/{port-id}/channels/{channel-id}`
+
+**Description**
+
+Query channel
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **port-id** | string \* required | Port ID |
+| **channel-id** | string \* required | Channel ID |
+| **prove** | boolean | Proof of result |
+
+**Example JSON Output**
+
+```javascript
+{
+  "channel": {
+    "state": "string",
+    "ordering": "string",
+    "connection_hops": [
+      "string"
+    ],
+    "version": "string"
+  },
+  "proof": {
+    "proof": {
+      "ops": [
+        {
+          "type": "string",
+          "key": "string",
+          "data": "string"
+        }
+      ]
+    }
+  },
+  "proof_path": {
+    "key_path": [
+      {
+        "name": "string",
+        "enc": 0
+      }
+    ]
+  },
+  "proof_height": 0
+}
+```
+
+### `POST/ibc/channels/open-init`
+
+**Description**
+
+Channel open-init
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **Channel open-init request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "port_id": "string",
+  "channel_id": "string",
+  "version": "string",
+  "channel_order": "string",
+  "connection_hops": [
+    "string"
+  ],
+  "counterparty_port_id": "string",
+  "counterparty_channel_id": "string"
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `POST/ibc/channels/open-try`
+
+**Description**
+
+Channel open-try
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **Channel open-try request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "port_id": "string",
+  "channel_id": "string",
+  "version": "string",
+  "channel_order": "string",
+  "connection_hops": [
+    "string"
+  ],
+  "counterparty_port_id": "string",
+  "counterparty_channel_id": "string",
+  "counterparty_version": "string",
+  "proof_init": {
+    "type": "string",
+    "value": {
+      "proof": {
+        "ops": [
+          {
+            "type": "string",
+            "key": "string",
+            "data": "string"
+          }
+        ]
+      }
+    }
+  },
+  "proof_height": 0
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `POST/ibc/ports/{port-id}/channels/{channel-id}/open-ack`
+
+**Description**
+
+Channel open-ack
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **port-id** | string \* required | Port ID |
+| **channel-id** | string \* required | Channel ID |
+| **Channel open-ack request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "counterparty_version": "string",
+  "proof_try": {
+    "type": "string",
+    "value": {
+      "proof": {
+        "ops": [
+          {
+            "type": "string",
+            "key": "string",
+            "data": "string"
+          }
+        ]
+      }
+    }
+  },
+  "proof_height": 0
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "consensus_state": {
+    "chain_id": "string",
+    "height": 0,
+    "root": {
+      "type": "string",
+      "value": {
+        "hash": "string"
+      }
+    },
+    "next_validator_set": {
+      "validators": [
+        {
+          "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+          "pub_key": {
+            "type": "string",
+            "value": "string"
+          },
+          "voting_power": "1000",
+          "proposer_priority": "1000"
+        }
+      ],
+      "proposer": {
+        "address": "secretvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+        "pub_key": {
+          "type": "string",
+          "value": "string"
+        },
+        "voting_power": "1000",
+        "proposer_priority": "1000"
+      }
+    }
+  },
+  "proof": {
+    "proof": {
+      "ops": [
+        {
+          "type": "string",
+          "key": "string",
+          "data": "string"
+        }
+      ]
+    }
+  },
+  "proof_path": {
+    "key_path": [
+      {
+        "name": "string",
+        "enc": 0
+      }
+    ]
+  },
+  "proof_height": 0
+}
+```
+
+### `POST/ibc/ports/{port-id}/channels/{channel-id}/open-confirm`
+
+**Description**
+
+Channel open-confirm
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **port-id** | string \* required | Port ID |
+| **channel-id** | string \* required | Channel ID |
+| **Channel open-confirm request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "proof_ack": {
+    "type": "string",
+    "value": {
+      "proof": {
+        "ops": [
+          {
+            "type": "string",
+            "key": "string",
+            "data": "string"
+          }
+        ]
+      }
+    }
+  },
+  "proof_height": 0
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `POST/ibc/ports/{port-id}/channels/{channel-id}/open-confirm`
+
+**Description**
+
+Channel close-init
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **port-id** | string \* required | Port ID |
+| **channel-id** | string \* required | Channel ID |
+| **Channel close-init request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  }
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `POST/ibc/ports/{port-id}/channels/{channel-id}/close-confirm`
+
+**Description**
+
+Channel close-confirm
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **port-id** | string \* required | Port ID |
+| **channel-id** | string \* required | Channel ID |
+| **Channel close-confirm request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "proof_init": {
+    "type": "string",
+    "value": {
+      "proof": {
+        "ops": [
+          {
+            "type": "string",
+            "key": "string",
+            "data": "string"
+          }
+        ]
+      }
+    }
+  },
+  "proof_height": 0
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `GET/ibc/ports/{port-id}/channels/{channel-id}/next-sequence-recv`
+
+**Description**
+
+Query next sequence receive
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **port-id** | string \* required | Port ID |
+| **channel-id** | string \* required | Channel ID |
+
+**Example JSON Output**
+
+```javascript
+OK
+```
+
+### `POST/ibc/ports/{port-id}/channels/{channel-id}/transfer`
+
+**Description**
+
+Transfer token
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **port-id** | string \* required | Port ID |
+| **channel-id** | string \* required | Channel ID |
+| **Transfer token request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "amount": [
+    {
+      "denom": "stake",
+      "amount": "50"
+    }
+  ],
+  "receiver": "string",
+  "source": true
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
+### `POST/ibc/packets/receive`
+
+**Description**
+
+Receive packet
+
+**Parameters**
+
+| **Parameter** | Type | Description |
+| :--- | :--- | :--- |
+| **Receive packet request body** | object \* required | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "secret1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
+    "memo": "Sent via Enigma",
+    "chain_id": "secret-1",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "packet": {
+    "type": "string",
+    "value": {
+      "sequence": 0,
+      "timeout": 0,
+      "source_port": "string",
+      "source_channel": "string",
+      "destination_port": "string",
+      "destination_channel": "string",
+      "data": "string"
+    }
+  },
+  "proofs": [
+    {
+      "proof": {
+        "ops": [
+          {
+            "type": "string",
+            "key": "string",
+            "data": "string"
+          }
+        ]
+      }
+    }
+  ],
+  "height": 0
+}
+```
+
+**Example JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signatures": [
+    {
+      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+      "pub_key": {
+        "type": "tendermint/PubKeySecp256k1",
+        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+      },
+      "account_number": "0",
+      "sequence": "0"
+    }
+  ]
+}
+```
+
 ## **Supply** <a id="supply"></a>
 
 **Supply module APIs**
