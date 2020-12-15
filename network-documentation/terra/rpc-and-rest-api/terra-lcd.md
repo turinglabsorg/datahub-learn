@@ -4468,3 +4468,303 @@ No parameters
 }
 ```
 
+## Authorization 
+
+Authorization  modules APIs
+
+### `GET/msgauth/granters/{granterAddress}/grantees/{granteeAddress}/grants`
+
+**Description** 
+
+Get stored information with store key 
+
+**Parameters**
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **granterAddress** | string \* required | Granter address you want to lookup |
+| **granteeAddress** | string \* required | Grantee address you want to lookup |
+
+**Example** __**JSON Output**
+
+```javascript
+[
+  {
+    "GenericGrantInfo": {
+      "authorization": {
+        "type": "msgauth/GenericAuthorization",
+        "value": {
+          "msg_type": "send"
+        }
+      },
+      "expiration": "2021-06-24T09:33:20.012999Z"
+    },
+    "SendGrantInfo": {
+      "authorization": {
+        "type": "msgauth/SendAuthorization",
+        "value": {
+          "spend_limit": [
+            {
+              "denom": "uluna",
+              "amount": "50"
+            }
+          ]
+        }
+      },
+      "expiration": "2021-06-24T09:33:20.012999Z"
+    }
+  }
+]
+```
+
+### `POST/msgauth/granters/{granterAddress}/grantees/{granteeAddress}/grants/{msgType}`
+
+**Description** 
+
+Grant message execute permission to grantee address
+
+**Parameters**
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **granterAddress** | string \* required | Granter address you want to lookup |
+| **granteeAddress** | string \* required | Grantee address you want to lookup |
+| **msgType** | string \* required | Message type you want to execute |
+| **Grant request body** | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "period": "3600000000000",
+  "limit": [
+    {
+      "denom": "uluna",
+      "amount": "50"
+    }
+  ]
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
+### `GET/msgauth/granters/{granterAddress}/grantees/{granteeAddress}/grants/{msgType}`
+
+**Description** 
+
+Get grant about a specific msg type between the granter and the grantee 
+
+**Parameters**
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **granterAddress** | string \* required | Granter address you want to lookup |
+| **granteeAddress** | string \* required | Grantee address you want to lookup |
+| **msgType** | string \* required | Message type you want to lookup |
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "GenericGrantInfo": {
+    "authorization": {
+      "type": "msgauth/GenericAuthorization",
+      "value": {
+        "msg_type": "send"
+      }
+    },
+    "expiration": "2021-06-24T09:33:20.012999Z"
+  },
+  "SendGrantInfo": {
+    "authorization": {
+      "type": "msgauth/SendAuthorization",
+      "value": {
+        "spend_limit": [
+          {
+            "denom": "uluna",
+            "amount": "50"
+          }
+        ]
+      }
+    },
+    "expiration": "2021-06-24T09:33:20.012999Z"
+  }
+}
+```
+
+### `POST/msgauth/granters/{granterAddress}/grantees/{granteeAddress}/grants/{msgType}/revoke`
+
+**Description** 
+
+Revoke grant from grantee address 
+
+**Parameters**
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **granterAddress** | string \* required | Granter address you want to lookup |
+| **granteeAddress** | string \* required | Grantee address you want to lookup |
+| **msgType** | string \* required |  |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  }
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
+### **`POST/msgauth/execute`**
+
+**Description** 
+
+Execute messages from grantee address
+
+**Parameters**
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **Revoke request body** | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "msgs": [
+    "string"
+  ]
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
