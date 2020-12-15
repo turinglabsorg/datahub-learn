@@ -3387,8 +3387,9 @@ Generate oracle exchange rate prevote message containing hash of a vote
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
 | **denom** | string \* required | The coin denomination to prevote |
+| **Vote request body** | object | Body |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -3412,6 +3413,35 @@ Generate oracle exchange rate prevote message containing hash of a vote
   "salt": "abcd",
   "hash": "061bf1e27dfff121f40c826e593c8a28ec299a02",
   "validator": "terravaloper1wg2mlrxdmnnkkykgqg4znky86nyrtc45q7a85l"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
 }
 ```
 
@@ -3560,8 +3590,9 @@ Generate oracle feeder right delegation message
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
 | **validator** | string \* required | Feeder right delegator |
+| **Feeder right delegation request body** | object | Body |
 
-**Example** __**JSON Output**
+**Example Request**
 
 ```javascript
 {
@@ -3582,6 +3613,35 @@ Generate oracle feeder right delegation message
     "simulate": false
   },
   "feeder": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
 }
 ```
 
@@ -3619,6 +3679,189 @@ Get the number of vote periods missed in this oracle slash window
 
 ```javascript
 100
+```
+
+### **`POST/oracle/voters/`**`{validator}/aggregate_prevote`
+
+**Description** 
+
+Generate oracle aggregate exchange rate prevote message containing a hash
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator** | string \* required | Oracle operator |
+| **Aggregate prevote request body**  | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "exchange_rates": "1000.0ukrw,1.2uusd,0.99usdr",
+  "salt": "abcd",
+  "hash": "061bf1e27dfff121f40c826e593c8a28ec299a02"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
+### `GET/oracle/voters/{validator}/aggregate_prevote`
+
+**Description** 
+
+Get the currently outstanding aggregate exchange rate oracle prevote of a validator 
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator** | string \* required | Oracle operator |
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "hash": "061bf1e27dfff121f40c826e593c8a28ec299a02",
+  "voter": "terravaloper1wg2mlrxdmnnkkykgqg4znky86nyrtc45q7a85l",
+  "submit_block": "1"
+}
+```
+
+### **`POST/oracle/voters/`**`{validator}/aggregate_vote`
+
+**Description** 
+
+Generate oracle aggregate exchange rate vote message containing exchange rates to prove the aggregate prevote
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator** | string \* required | Oracle operator |
+| **Aggregate vote request body**  | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "exchange_rates": "1000.0ukrw,1.2uusd,0.99usdr",
+  "salt": "abcd"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
+### `GET/oracle/voters/{validator}/aggregate_vote`
+
+**Description** 
+
+Get the currently outstanding aggregate exchange rate oracle vote of a validator 
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator** | string \* required | Oracle operator |
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "exchange_rates": [
+    {
+      "denom": "ukrw",
+      "amount": "50.000"
+    }
+  ],
+  "voter": "terravaloper1wg2mlrxdmnnkkykgqg4znky86nyrtc45q7a85l"
+}
 ```
 
 ### `GET/oracle/parameters`
@@ -3772,6 +4015,456 @@ no parameters
   "window_probation": "12",
   "oracle_share": "0.1",
   "budget_share": "0.9"
+}
+```
+
+## Wasm 
+
+**Wasm modules APIs**
+
+### **`POST/wasm/codes`**
+
+**Description** 
+
+Generate wasm store code message
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **Store code request body**  | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "wasm_bytes": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
+### `POST/wasm/codes/{codeID}`
+
+**Description** 
+
+Instantiate wasm contract message 
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **codeID** | number \* required | code ID you want to instantiate |
+| Instantiate contract request body | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "init_coins": [
+    {
+      "denom": "uluna",
+      "amount": "50"
+    }
+  ],
+  "init_msg": "{}"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
+### `GET/wasm/codes/{codeID}`
+
+**Description** 
+
+Get code info of the code ID 
+
+**Parameters**
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **codeID** | number \* required | code ID you want to instantiate |
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "code_hash": "string",
+  "creator": "string"
+}
+```
+
+### `POST/wasm/contracts/{contractAddress}`
+
+**Description** 
+
+Execute wasm contract message
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **contractAddress** | string \* required | contract address you want to execute |
+| **Execute contract request body**  | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "coins": [
+    {
+      "denom": "uluna",
+      "amount": "50"
+    }
+  ],
+  "exec_msg": "{}"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
+### `GET/wasm/contracts/{contractAddress}`
+
+**Description** 
+
+Get contract info of the contract Address 
+
+**Parameters**
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **contractAddress** | string \* required | contract address you want to execute |
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "code_id": "string",
+  "address": "string",
+  "creator": "string",
+  "init_msg": "string"
+}
+```
+
+### `POST/wasm/contracts/{contractAddress}/migrate`
+
+**Description** 
+
+Migrate wasm contract to new code base
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **contractAddress** | string \* required | contract address you want to migrate |
+| **Migrate contract request body**  | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "new_code_id": 10,
+  "migrate_msg": "{}"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
+### `POST/wasm/contracts/{contractAddress}/owner`
+
+**Description** 
+
+Update wasm contract owner to new address
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **contractAddress** | string \* required | contract address you want to update |
+| **Update contract request body**  | object | Body |
+
+**Example Request**
+
+```javascript
+{
+  "base_req": {
+    "from": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv",
+    "memo": "Sent via Terra Station 🚀",
+    "chain_id": "columbus-3",
+    "account_number": "0",
+    "sequence": "1",
+    "gas": "200000",
+    "gas_adjustment": "1.2",
+    "fees": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ],
+    "simulate": false
+  },
+  "new_owner": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv"
+}
+```
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "uluna",
+        "amount": "50"
+      }
+    ]
+  },
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
+  }
+}
+```
+
+### `GET/wasm/contracts/{contractAddress}/store`
+
+**Description** 
+
+Retrieve the size of the seigniorage pool 
+
+**Parameters**
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **contractAddress** | string \* required | contract address you want to lookup |
+| **query\_msg** | string \* required | Get stored information with query msg |
+
+**Example** __**JSON Output**
+
+```javascript
+string
+```
+
+### `GET/wasm/contracts/{contractAddress}/store/raw`
+
+**Description** 
+
+Get stored information with store key 
+
+**Parameters**
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **contractAddress** | string \* required | contract address you want to lookup |
+| **key** | string \* required | Raw key you want to query |
+| **Subkey** | string | Raw subkey attached to the key |
+
+**Example** __**JSON Output**
+
+```javascript
+string
+```
+
+### `GET/wasm/parameters`
+
+**Description** 
+
+Get wasm module parameters 
+
+**Parameters**
+
+No parameters
+
+**Example** __**JSON Output**
+
+```javascript
+{
+  "max_contract_size": "1000000",
+  "max_contract_gas": "1000000",
+  "max_contract_msg_size": "1000000",
+  "gas_multiplier": "100"
 }
 ```
 
