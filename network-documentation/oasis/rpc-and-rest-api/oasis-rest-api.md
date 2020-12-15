@@ -20,6 +20,12 @@ Check the endpoint's health.
 
 No parameters. 
 
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/health
+```
+
 **Example JSON output**
 
 ```javascript
@@ -35,6 +41,12 @@ Check the status of the application and the chain.
 **Parameters**
 
 No parameters.
+
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/status
+```
 
 **Example JSON output**
 
@@ -68,6 +80,12 @@ Return block information by height.
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
 | **height** | integer  | Block height. Default: 0 = last block |
+
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/block?height=300
+```
 
 **Example JSON output**
 
@@ -111,6 +129,12 @@ Get the last X block times.
 | :--- | :--- | :--- |
 | **limit** | integer \* required | limit of blocks queried |
 
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/block_times/5
+```
+
 **Example JSON output**
 
 ```javascript
@@ -137,6 +161,12 @@ Get a summary of block data over a defined period of time.
 | :--- | :--- | :--- |
 | **interval** | string \* required | Time interval: `hour` or  `day` |
 | **period** | string \* required | Summary period \(i.e. 24 hours\)  |
+
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/blocks_summary?interval=hour&period=8%20hours
+```
 
 **Example JSON output**
 
@@ -247,6 +277,12 @@ Get a list of transactions at a given height.
 | :--- | :--- | :--- |
 | **height** | integer | Block height. Default: 0 = last |
 
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/transactions?height=3000
+```
+
 **Example JSON output**
 
 ```javascript
@@ -323,6 +359,12 @@ Get staking data at a given height.
 | :--- | :--- | :--- |
 | **height** | integer | Block height. Default: 0 = last |
 
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/staking?height=3000
+```
+
 **Example JSON output**
 
 ```javascript
@@ -345,6 +387,12 @@ Get a list of delegations at a given height.
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
 | **height** | integer | Block height. Default: 0 = last |
+
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/delegations?height=3000
+```
 
 **Example JSON output**
 
@@ -403,6 +451,12 @@ Get a list of delegations for an address at a given height.
 | **address** | string \* required | Address of the account.  |
 | **height** | integer | Block height. Default: 0 = last |
 
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/delegations/oasis1qresj0vhmwawll6fe2vw2nlapkp6nj6etcx7a32h?height=3000
+```
+
 **Example JSON output**
 
 ```javascript
@@ -428,6 +482,12 @@ Get a list of unbonding delegations at a given height.
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
 | **height** | integer | Block height. Default: 0 = last |
+
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/debonding_delegations?height=3000
+```
 
 **Example JSON output**
 
@@ -523,6 +583,12 @@ Get a list of unbonding delegations for an address at a given height.
 | **address** | string \* required | Address of the account |
 | **height** | integer | Block height. Default: 0 = last |
 
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/debonding_delegations/oasis1qzmwdlxy7cltmwt99u9pwqt3g0rdwgsqyvcqymmt?height=3000
+```
+
 **Example JSON output**
 
 ```javascript
@@ -555,6 +621,12 @@ Get the details for an account at a given height.
 | **address** | string \* required | Address of the account |
 | **height** | integer | Block height. Default: 0 = last |
 
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/account/oasis1qzmwdlxy7cltmwt99u9pwqt3g0rdwgsqyvcqymmt?height=3000
+```
+
 **Example JSON output**
 
 ```javascript
@@ -579,6 +651,12 @@ Get the list of validators at a given height.
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
 | **height** | integer | Block height. Default: 0 = last |
+
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/validators?height=294601
+```
 
 **Example JSON output**
 
@@ -642,6 +720,12 @@ Get the list of validators for all blocks higher than the provided height.
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
 | **height** | integer \* required | Block height. Default:0 = last |
+
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/validators/for_min_height/3000
+```
 
 **Example JSON output**
 
@@ -737,6 +821,12 @@ Get validator details from its account address.
 | **address** | string \* required | The validator's address |
 | **sequences\_limit** | integer | Number of sequences to include |
 
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/validator/oasis1qqf6wmc0ax3mykd028ltgtqr49h3qffcm50gwag3?sequences_limit=1
+```
+
 **Example JSON output**
 
 ```javascript
@@ -760,7 +850,22 @@ Get validator details from its account address.
  "uptime": 0.9973922302704755,
  "logo_url": "",
  "entity_name": "",
- "last_sequences": null
+ "last_sequences": [
+    {
+        "id": 72078735,
+        "height": 295025,
+        "time": "2020-10-21T19:02:26Z",
+        "entity_uid": "D8oCKJab4LtOMQJR0YQZXx+fMw6QHyTiv3YCfN8tM18=",
+        "address": "oasis1qqf6wmc0ax3mykd028ltgtqr49h3qffcm50gwag3",
+        "proposed": true,
+        "voting_power": 2149106241687197,
+        "total_shares": 34131370081831164,
+        "active_escrow_balance": 34386248318908044,
+        "commission": 15000,
+        "rewards": 0,
+        "precommit_validated": true
+    }
+ ]
 }
 ```
 
@@ -777,6 +882,12 @@ Get a summary of all active validators during a given time period.
 | **interval** | string \* required | Time interval: `hour` or  `day` |
 | **period** | string \* required | Summary period \(i.e. 24 hours\)  |
 | **address** | string | Address of validator  |
+
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/validators_summary?address=oasis1qqf6wmc0ax3mykd028ltgtqr49h3qffcm50gwag3&interval=hour&period=2%20hours
+```
 
 **Example JSON output**
 
@@ -859,6 +970,12 @@ Get all system events for a given account.
 | **after** | integer | Returns events from blocks after the provided provided height |
 | **kind** | string | Type of system event  |
 
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/system_events/oasis1qqf6wmc0ax3mykd028ltgtqr49h3qffcm50gwag3&after=300
+```
+
 **Example JSON output**
 
 ```javascript
@@ -918,7 +1035,20 @@ Broadcast a transaction.
 
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
-| **tx\_raw** | string \* required | Raw transaction data as string. |
+| **tx\_raw** | string \* required | Base64 encoded string of a cbor marshalled [transaction.SignedTransaction](https://pkg.go.dev/github.com/oasisprotocol/oasis-core/go/consensus/api/transaction#SignedTransaction)|
+
+**Example Request**
+
+```javascript
+oasis--testnet.datahub.figment.io/transactions
+```
+
+**Example POST Body**
+```json
+{
+ "tx_raw": "omlzaWduYXR1cmWiaXNpZ25hdHVyZVhA7B57K6i0/rqq02oMySmV5AsuUAiYf4N+H8K2OVN2Ubi7dHiuWEQSyq5S/43DzD63sqHF0nVpYKs3zqfaqdKDB2pwdWJsaWNfa2V5WCCth1d3RkFcjAMJgKhPg1SDE8txkHh60uKVe/z28yzJ1HN1bnRydXN0ZWRfcmF3X3ZhbHVlWGakY2ZlZaJjZ2FzGQPoZmFtb3VudEBkYm9keaJmYW1vdW50RQEqBfIAZ2FjY291bnRVAJTs8incWAoRxDVInbaXHIcZaYbnZW5vbmNlAGZtZXRob2Rxc3Rha2luZy5BZGRFc2Nyb3c=",
+}
+```
 
 **Example JSON output**
 
