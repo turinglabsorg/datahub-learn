@@ -422,7 +422,9 @@ Once that's building correctly, try running the unit tests:
 ```
 yarn test:unit:rs
 ```
-You'll see that there are now 11 tests running, and they should all pass.
+You'll see that there are now 11 unit tests running, and they should all pass.
+
+(After running the unit tests Yarn will try to run documentation tests -- but there aren't any here. That's why you'll see some output about `running 0 tests`.  You can ignore that part.)
 ```
 (output)
 ```
