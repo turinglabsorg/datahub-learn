@@ -207,14 +207,15 @@ Every type of NFT needs to define some metadata, to describe the individual inte
 Add the following lines of Rust code right beneath the comment that says `// Begin implementation`:
 ```
 // Begin implementation
-#[derive(BorshDeserialize, BorshSerialize)]
+use near_sdk::serde::Serialize;
+#[derive(Serialize, BorshDeserialize, BorshSerialize)]
 pub struct Flarn {
-    pub dna: u64
+    pub dna: u64,
 }
 ```
 This `Flarn` structure defines a minimal metadata for each CryptoFlarn: a single `dna` record that can be initialized with a unique random value. This is a very simple example, but consider that all of the variations we can see between individual CryptoKitties are derived from a similar block of random data, also called `dna`!
 
-(The `#[derive]` attribute gives our Flarn the `BorschSerialize` trait, which lets the contract convert Flarns to a raw bytestream for storage and retrieval in Near.  Notice we didn't have to implement anything there, we just asked the compiler to figure it out for us.  [Derived traits] are a handy feature of Rust!) 
+(The `#[derive]` attribute gives our Flarn the `BorschSerialize` trait, which lets the contract convert Flarns to a raw bytestream for storage and retrieval in Near.  Notice we didn't have to implement anything there, we just asked the compiler to figure it out for us.  [Derived traits] are a handy feature of Rust!  We're also using a related trait, `Serialize`, which lets the contract send Flarns over the network.) 
 
 Next, we will update the definition of `NonFungibleTokenBasic` with one extra line of Rust. We'll add an `UnorderedMap` called `token_to_flarn` which will hold all the Flarn records in our smart contract.  
 ```
@@ -490,6 +491,7 @@ The complete code for this tutorial can be found on Github.
 -- A React app to interact with the tokens?
 -- Tokenomics: managing the gas and storage costs of NFTs, and exchanging NFTs for NEAR?
 
+[rustup.rs]:https://rustup.rs/
 [Non-Fungible Tokens]:https://en.wikipedia.org/wiki/Non-fungible_token
 [Cryptokitties]:https://www.cryptokitties.co/
 [SuperRare]:https://superrare.co/
