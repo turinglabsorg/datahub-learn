@@ -477,7 +477,7 @@ Now that we've added some code, let's try building and testing again, and see if
 yarn build:rs
 ```
 
-If you have made any errors, the compiler should give you a detailed explanation.  Since you've copied and pasted everything from this tutorial, it's probably just typos.  But if you can't fix it with the compiler's help, replace the entire lib.rs file with [this version], which contains all the changes we've made so far. 
+If you have made any errors, the compiler should give you a detailed explanation.  Since you've copied and pasted everything from this tutorial, it's probably just typos.  But if you can't fix it with the compiler's help, replace the entire lib.rs file with [this version](https://github.com/figment-networks/tutorials/tree/main/near/6_NFT/contracts/rust/src/lib.rs), which contains all the changes we've made so far. 
 
 Once that's building correctly, try running the unit tests:
 
@@ -569,7 +569,7 @@ The actual number you see will be different from this, if the random number gene
 
 You now have deployed an NFT smart contract on the Near testnet, and have minted one CryptoFlarn NFT.  From here you could use the CLI or the Near Javascript SDK to transfer ownership of that token, or to make more tokens.  NFT marketplaces are already under development on Near; when they support NEP-4, you'll be able to trade these tokens there.  If your next NFT project needs more complex metadata, you've seen how that can be added.
 
-The complete code for this tutorial can be found on Github.
+The complete code for this tutorial can be found on [Github](https://github.com/figment-networks/tutorials/tree/main/near/6_NFT).
 
 ## Next Steps
 
