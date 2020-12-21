@@ -22,9 +22,9 @@ Near.org developers already recommend we use Rust for any smart contracts of a f
 ### Prerequisites:
 
 If you've been following the NEAR track, you should have already taken care of these prerequisites.  For this tutorial you must:
-* install node.js and npm [(see Tutorial 1)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
-* create an accout in the NEAR testnet [(see Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
-* install the NEAR CLI [(also in Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
+* Install node.js and npm [(see Tutorial 1)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
+* Create an accout in the NEAR testnet [(see Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
+* Install the NEAR CLI [(also in Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
 
 ## Installing The Toolchain
 
@@ -158,9 +158,9 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 Next comes a block labeled `pub trait NEP4`. This defines the API that we'll be able to use to interact with the smart contract.  A Trait in Rust is similar to an interface in Java or C++: it defines an API, but doesn't implement it.  The API here is the API for NFTs defined in the NEP-4 standard.  These 6 API methods allow a client to 
 
-* look up a token's owner, 
-* transfer a token between owners, 
-* assign or revoke token-transfer rights to another user
+* Look up a token's owner, 
+* Transfer a token between owners, 
+* Assign or revoke token-transfer rights to another user
 
 ```
 /// This trait provides the baseline of functions as described at:
