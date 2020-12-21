@@ -76,7 +76,7 @@ Rust includes an extensive ecosystem of support libraries (called [Crates]), and
 
 Edit the file `contracts/rust/Cargo.toml`, and replace the entire contents with this:
 
-```
+```toml
 [package]
 name = "nep4-rs"
 version = "0.1.0"
@@ -163,7 +163,7 @@ The Rust smart contract that we will modify is at `contracts/rust/src/lib.rs`.  
 
 The first section is some boilerplate that imports useful features and configures the Rust compiler. 
 
-```
+```rust
 #![deny(warnings)]
 
 use borsh::{BorshDeserialize, BorshSerialize};
@@ -183,7 +183,7 @@ Next comes a block labeled `pub trait NEP4`. This defines the API that we'll be 
 * Transfer a token between owners, 
 * Assign or revoke token-transfer rights to another user
 
-```
+```rust
 /// This trait provides the baseline of functions as described at:
 /// https://github.com/nearprotocol/NEPs/blob/nep-4/specs/Standards/Tokens/NonFungibleToken.md
 pub trait NEP4 {
@@ -225,7 +225,7 @@ pub type AccountIdHash = Vec<u8>;
 After the `trait` definition is the declaration of the contract's main data structure, `NonFungibleTokenBasic`.  Each of the methods in the NEP-4 trait will be implemented for that structure. It uses two `UnorderedMap`s to manage the ownership of our NFTs: `token_to_account` remembers the owner of each token, and `account_gives_access` remembers who has been granted transfer access by whom.  
 `near_sdk::collections::UnorderedMap` is a custom hashmap implementation from the NEAR SDK, that's cheaper and more efficient to run on the chain than the standard hashmap provided by Rust, but is otherwise the same. `near_sdk::collections::UnorderedSet` is a similar structure, but simpler: it's just a set of keys, with no duplicates allowed.
 
-```
+```rust
 // Begin implementation
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize)]
@@ -244,7 +244,7 @@ Every type of NFT needs to define some metadata, to describe the individual inte
 
 Add the following lines of Rust code right beneath the comment that says `// Begin implementation`:
 
-```
+```rust
 // Begin implementation
 use near_sdk::serde::Serialize;
 #[derive(Serialize, BorshDeserialize, BorshSerialize)]
@@ -259,7 +259,7 @@ This `Flarn` structure defines a minimal metadata for each CryptoFlarn: a single
 
 Next, we will update the definition of `NonFungibleTokenBasic` with one extra line of Rust. We'll add an `UnorderedMap` called `token_to_flarn` which will hold all the Flarn records in our smart contract.  
 
-```
+```rust
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize)]
 pub struct NonFungibleTokenBasic {
@@ -272,7 +272,7 @@ pub struct NonFungibleTokenBasic {
 
 Finally, add one line of Rust to the initializer for `NonFungibleTokenBasic`, so our flarns will be initialized when the smart contract is deployed to the blockchain :
 
-```
+```rust
 #[near_bindgen]
 impl NonFungibleTokenBasic {
     #[init]
@@ -301,7 +301,7 @@ impl NonFungibleTokenBasic {
 * Only one or two lines near the end of each method actually modify our data. Most of this code deals with access control.
 * The imported global `env` contains the ID of the Near user calling the contract, plus various other useful tidbits.
 
-```
+```rust
 #[near_bindgen]
 impl NEP4 for NonFungibleTokenBasic {
     fn grant_access(&mut self, escrow_account_id: AccountId) {
@@ -392,7 +392,7 @@ Let's modify `mint_token()` to mint our flarns.  We'll import the random number 
 
 Replace the entire block underneath `/// Methods not in the strict scope of the NFT spec` with this code:
 
-```
+```rust
 /// Methods not in the strict scope of the NFT spec (NEP4)
 #[near_bindgen]
 impl NonFungibleTokenBasic {
@@ -444,7 +444,7 @@ In Rust, unit tests usually live in the same file as the code being tested, wrap
 
 Scroll to the bottom of `lib.rs`.  The very last line in the file has just one closing bracket.  Replace that entire line (including the final  bracket) with this block of code (including the final bracket):
 
-```
+```rust
     #[test]
     fn token_to_meta() {
         // Make an instance of the contract, and set up a test context
