@@ -15,7 +15,7 @@ NEP-4 is a very simple standard that does the bare minimum required to support o
 
 ### About Rust:
 
-In the previous tutorial, the smart contract was written in AssemblyScript, which was then compiled to WASM to run in the blockchain.  However, NEAR smart contracts can also be written in [Rust], a C-like language for server applications that has become popular for its built-in safety checks that help avoid bugs.  Rust also features a robust testing infrastructure, copious on-line documentation, and a compiler that tries its best to help you fix any errors it finds.  
+In the previous tutorial, the smart contract was written in AssemblyScript, which was then compiled to WebAssembly (WASM) to run in the blockchain.  However, NEAR smart contracts can also be written in [Rust], a C-like language for server applications that has become popular for its built-in safety checks that help avoid bugs.  Rust also features a robust testing infrastructure, copious on-line documentation, and a compiler that tries its best to help you fix any errors it finds.  
 
 Near.org developers already recommend we use Rust for any smart contracts of a financial nature, and their reference implementation of NEP-4 NFTs is already written in Rust.  So we will start with that reference implementation, and add some useful features. 
 
@@ -42,7 +42,15 @@ This will also download and install `rustc`, the Rust compiler, and `cargo`, the
 
 (If you're using Windows, download and run the executable Rust installer from [rustup.rs].  The rest of this tutorial is written for a Unix environment, but the steps are essentially the same under Windows.)
 
-Next we need to tell Rust to compile WASM output for the Near VM.  Run this command to add WASM to the Rust toolchain:
+Next we need to tell Rust to compile WebAssembly output (WASM) for the Near VM.  If your `rust` toolchain is missing the WASM components, the compiler will report an error similar to this one:
+
+```
+error[E0463]: can't find crate for `core`
+  |
+  = note: the `wasm32-unknown-unknown` target may not be installed
+```
+
+Run this command to add the WASM target to the Rust toolchain:
 
 ```
 rustup target add wasm32-unknown-unknown
