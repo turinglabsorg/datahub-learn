@@ -60,7 +60,7 @@ If that all worked, you're ready to develop smart contracts in Rust.
 
 ### Cloning the Near NFT repo
 
-In this tutorial we'll modify Near's NFT example code from the Near repository on Github. On Unix, run these commands to clone that repo and install its requirements:
+In this tutorial we'll modify Near's NFT example code from the Near repository on Github. On Unix, run these commands in the `bash` shell to clone that repo and install its requirements:
 
 ```
 git clone https://github.com/near-examples/NFT
@@ -126,7 +126,7 @@ If there are no errors in the file, you should see this result in JSON format:
 ```
 
 Cargo is a powerful and important companion to Rust, and the `cargo` command has many options.  But this repo comes with pre-made build targets that will let us use `yarn` as our build tool, and `yarn` will use `cargo` under the hood. So that was the last time we'll run `cargo` directly. 
-Instead, let's use `yarn` to make sure the contract in this repo is working before we modify it.  To build the example, enter this command at your shell.
+Instead, let's use `yarn` to make sure the contract in this repo is working before we modify it.  To build the example, enter this command in the shell:
 
 ```
 yarn build:rs
