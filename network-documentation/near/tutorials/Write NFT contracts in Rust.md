@@ -2,21 +2,25 @@
 
 
 ## Introduction
+
 [Non-Fungible Tokens] are unique records of ownership on the blockchain.  Usually an NFT is tied to something interesting and rare, such as an artwork, a concert ticket, a collectable cat, a domain name, or a real physical object.  NFTs can be bought, sold, given away, and can even be minted or destroyed, depending on the rules of the contract.  [Cryptokitties] and [SuperRare] are two popular examples of Etherium-based NFTs. We can implement NFTs just as easily in NEAR.
 
 In this tutorial we will issue a new species of NFT: the CryptoFlarn, a single-celled organism with unique DNA.  Our smart contract will allow Flarns to be created, collected and traded on the Near blockchain.
 
 ### About NFT standards:
+
 There are many standards for NFTs!  However the most widely supported by far is the [ERC721] standard, which defines how NFTs can be traded. This standard works well, but like all the ERC standards it is defined only for the Etherium blockchain.  ERC721 may be portable to NEAR once [NEAR EVM] emulation is available, but for now the developers of NEAR have provided us a NFT reference implementation that uses a different NFT standard: [NEP-4], which is defined in a language-independent way that is more compatible with Near.  
 
 NEP-4 is a very simple standard that does the bare minimum required to support ownership and transfer of NFTs, but it includes the possibility of delegating authority to other users or to other smart contracts.  This is a powerful feature, because it means that future enhancements might be added by cross-contract calls with another, smarter contract, instead of having to upgrade the contract we write today.  Other NFT projects on NEAR are already beginning to support NEP-4, so it's a good near-term choice.
 
 ### About Rust:
+
 In the previous tutorial, the smart contract was written in AssemblyScript, which was then compiled to WASM to run in the blockchain.  However, NEAR smart contracts can also be written in [Rust], a C-like language for server applications that has become popular for its built-in safety checks that help avoid bugs.  Rust also features a robust testing infrastructure, copious on-line documentation, and a compiler that tries its best to help you fix any errors it finds.  
 
 Near.org developers already recommend we use Rust for any smart contracts of a financial nature, and their reference implementation of NEP-4 NFTs is already written in Rust.  So we will start with that reference implementation, and add some useful features. 
 
 ### Prerequisites:
+
 If you've been following the NEAR track, you should have already taken care of these prerequisites.  For this tutorial you must:
 * install node.js and npm [(see Tutorial 1)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
 * create an accout in the NEAR testnet [(see Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
@@ -25,7 +29,9 @@ If you've been following the NEAR track, you should have already taken care of t
 ## Installing The Toolchain
 
 Before we can start working on the Rust contract, we need to install a few more tools.
+
 ### rustup
+
 [rustup.rs] provides Rust installers for Unix and Windows platforms.  If you're using Unix, run the following command to install `rustup`, the Rust meta-installer:
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -39,6 +45,7 @@ Next we need to tell Rust to compile WASM output for the Near VM.  Run this comm
 rustup target add wasm32-unknown-unknown
 ```
 ### yarn
+
 If you haven't already, we we need to install the `yarn` package manager.  The example code we're working with uses `yarn` as its build tool.  Run this  command to install `yarn`:
 ```
 npm i -g yarn
@@ -46,6 +53,7 @@ npm i -g yarn
 If that all worked, you're ready to develop smart contracts in Rust.
 
 ### Cloning the Near NFT repo
+
 In this tutorial we'll modify Near's NFT example code from the Near repository on Github. On Unix, run these commands to clone that repo and install its requirements:
 ```
 git clone https://github.com/near-examples/NFT
@@ -55,6 +63,7 @@ yarn install
 This repo contains NFT examples in both AssemblyScript and Rust, plus support files and documentation.  All the files we need for our smart contract live in the subdirectory `contracts/rust`
 
 ### Add Rust packages with Cargo
+
 Rust includes an extensive ecosystem of support libraries (called [Crates]), and a package manager called Cargo to help you use them.  To create our NFT Flarns, we're going to add a few crates to this repo's Cargo manifest.  
 
 Edit the file `contracts/rust/Cargo.toml`, and replace the entire contents with this:
@@ -91,6 +100,7 @@ overflow-checks = true
 We've only made one change to the original file: in the `[dependencies]` section we've added the `rand`, `rand_chacha` and `rand_seeder` crates.  Together they'll provide a random number generator that we will use to generate the unique DNA of our Flarns.
 
 ### Test the compiler
+
 Every time the rust compiler runs it checks `Cargo.toml` for recent changes.  If it finds any, Cargo will automatically download those crates, build them, and cache them for future use.  
 
 Lets run `cargo` manually now, to be sure we didn't make any typos in the manifest.  Type the following at the command line:
@@ -125,9 +135,11 @@ test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 If you see `test result: ok`, all is well.
 
 ## Getting to know a Rust Contract
+
 The Rust smart contract that we will modify is at `contracts/rust/src/lib.rs`.  Open that file in your editor.  We'll visit all the sections, and make a few important additions.
 
 ### Preamble
+
 The first section is some boilerplate that imports useful features and configures the Rust compiler. 
 
 ```
@@ -143,6 +155,7 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 ```
 
 ### The NEP-4 Interface
+
 Next comes a block labeled `pub trait NEP4`. This defines the API that we'll be able to use to interact with the smart contract.  A Trait in Rust is similar to an interface in Java or C++: it defines an API, but doesn't implement it.  The API here is the API for NFTs defined in the NEP-4 standard.  These 6 API methods allow a client to 
 
 * look up a token's owner, 
@@ -186,6 +199,7 @@ pub type TokenId = u64;
 pub type AccountIdHash = Vec<u8>;
 ```
 ### Blockchain storage
+
 After the `trait` definition is the declaration of the contract's main data structure, `NonFungibleTokenBasic`.  Each of the methods in the NEP-4 trait will be implemented for that structure. It uses two `UnorderedMap`s to manage the ownership of our NFTs: `token_to_account` remembers the owner of each token, and `account_gives_access` remembers who has been granted transfer access by whom.  
 `near_sdk::collections::UnorderedMap` is a custom hashmap implementation from the NEAR SDK, that's cheaper and more efficient to run on the chain than the standard hashmap provided by Rust, but is otherwise the same. `near_sdk::collections::UnorderedSet` is a similar structure, but simpler: it's just a set of keys, with no duplicates allowed.
 ```
@@ -246,6 +260,7 @@ impl NonFungibleTokenBasic {
 }
 ```
 ### Browse the rest
+
  After the initializer for `NonFungibleTokenBasic` comes the implementaiton of the six API methods that make up the NEP4 trait. That's a big block of code. It won't all make sense if you're new to Rust, but parts of it may resemble other programming languages you know.  
  
  Fortunately, we won't need to change anything in this section.  If you do browse through it, you might notice:
@@ -339,6 +354,7 @@ impl NEP4 for NonFungibleTokenBasic {
 }
 ```
 ### Make NFTs Mintable
+
 After those NEP4 methods, there's a few more methods added to `NonFungibleTokenBasic` which aren't part of the NEP4 standard.  For instance, because NEP4 doesn't say anything about how NFTs are created, this example contains a `mint_token()` method that can create them on demand.  `mint_token()` takes two arguments: a token ID and an owner ID.  
 
 Let's modify `mint_token()` to mint our flarns.  We'll import the random number generator that we added to the manifest earlier, and use it to initialize each new flarn's DNA with a random 64-bit value.
@@ -390,6 +406,7 @@ We've changed two things here:
 That's the end of the smart contract. The rest of the code in this file is unit tests.
 
 ### Add a test
+
   In Rust, unit tests usually live in the same file as the code being tested, wrapped in a `mod tests` block, and decorated with `#[test]` attributes that show the compiler where to find each test.  It's a good practice to write at least one test for every new feature we add.  Let's add a test for our new `token_to_meta()` method.
   
   Scroll to the bottom of `lib.rs`.  The very last line in the file has just one closing bracket.  Replace that entire line (including the final  bracket) with this block of code (including the final bracket):
@@ -429,6 +446,7 @@ You'll see that there are now 11 unit tests running, and they should all pass.
 (output)
 ```
 ## Deploying and using the contract
+
 We can use the NEAR CLI to deploy this contract, and to test that it's working.  Run this command to deploy the contract you just built:
 ```
 near dev-deploy out/nep4_rs.wasm 
@@ -450,6 +468,7 @@ It's important to mention here that the Near CLI can create a test user and depl
 Make a note of the account ID and the contract ID now. We'll use them in the next few steps.  The first line of output (`Starting deployment ...`) gives the account ID, and the last line (`Done deploying ...`) gives the contract ID.  If they're the same, that's fine.
 
 ### Initialize the contract
+
 Our NFT smart contract is now deployed in Near!  Let's use the CLI to test this interface. 
 First, we we need to call the `new()` method of 'NonFungibleTokenBasic', to initialize the contract's storage.  If we call any other method before that, we'll get an error.  The 'new' method takes one argument, the accountID of the contract owner.  We can use the test account ID created in the previous step.  
 
@@ -465,6 +484,7 @@ To see the transaction in the transaction explorer, please open this url in your
 https://explorer.testnet.near.org/transactions/9PZZFWJUco7f33vJEjTbcjzsGhiigtYiSSyNh5FmJdNb
 ```
 ## Mint an NFT!
+
 Now we'll make a call to `mint_token()`.  We'll need a block of JSON containing the two arguments to that method: an ID for the token, which can be any integer, and an account ID of the token's first owner.  We'll use the same test account ID as before, and give `1234` as a token ID.  
 
 Run this at your command line, again substituting `ACCOUNT-ID` and `CONTRACT-ID`:
@@ -490,6 +510,7 @@ You now have deployed an NFT smart contract on the Near testnet, and have minted
 The complete code for this tutorial can be found on Github.
 
 ## Next Steps
+
 -- A React app to interact with the tokens?
 -- Tokenomics: managing the gas and storage costs of NFTs, and exchanging NFTs for NEAR?
 
