@@ -513,7 +513,7 @@ Done deploying to dev-1607722059840-7354752
 
 The provided link will give you complete details about the deployment in the Near Explorer.
 
-[ screenshot ](screenshot.png)
+[ screenshot ](https://github.com/figment-networks/datahub-learn/tree/master/.gitbook/assets/screenshot-near-rust-tut.png)
 
 It's important to mention here that the Near CLI can create a test user and deploy a test contract in one step.  Both users and contracts will have IDs that look something like `dev-nnnnnnnnn-nnnnn`, where the `n`s are replaced by digits.  If you've never run the NEAR CLI before, the ID of the test contract may be the same as the ID of the test user!  This can be slightly confusing, but just remember that these are two IDs. They may look the same, but one refers to a user and the other to a smart contract.
 
