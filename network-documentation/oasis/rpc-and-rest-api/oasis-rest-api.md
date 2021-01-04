@@ -6,19 +6,19 @@ description: Learn how to interact with the Figment's Oasis REST API
 
 ## Source Documentation
 
-You can review the full documentation on [**Figment's Github here**](https://github.com/figment-networks/oasishub-indexer#available-endpoints). 
+You can review the full documentation on [**Figment's Github here**](https://github.com/figment-networks/oasishub-indexer#available-endpoints).
 
 ## Methods
 
 ### `GET/health`
 
- **Description** 
+**Description**
 
-Check the endpoint's health. 
+Check the endpoint's health.
 
 **Parameters**
 
-No parameters. 
+No parameters.
 
 **Example Request**
 
@@ -34,9 +34,9 @@ ok
 
 ### `GET/status`
 
- **Description** 
+**Description**
 
-Check the status of the application and the chain. 
+Check the status of the application and the chain.
 
 **Parameters**
 
@@ -71,15 +71,15 @@ oasis--testnet.datahub.figment.io/status
 
 ### `GET/block`
 
- **Description** 
+**Description**
 
-Return block information by height. 
+Return block information by height.
 
 **Parameters**
 
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
-| **height** | integer  | Block height. Default: 0 = last block |
+| **height** | integer | Block height. Default: 0 = last block |
 
 **Example Request**
 
@@ -119,9 +119,9 @@ oasis--testnet.datahub.figment.io/block?height=300
 
 ### `GET/block_times/:limit`
 
- **Description** 
+**Description**
 
-Get the last X block times. 
+Get the last X block times.
 
 **Parameters**
 
@@ -151,16 +151,16 @@ oasis--testnet.datahub.figment.io/block_times/5
 
 ### `GET/blocks_summary`
 
- **Description** 
+**Description**
 
-Get a summary of block data over a defined period of time. 
+Get a summary of block data over a defined period of time.
 
 **Parameters**
 
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
 | **interval** | string \* required | Time interval: `hour` or  `day` |
-| **period** | string \* required | Summary period \(i.e. 24 hours\)  |
+| **period** | string \* required | Summary period \(i.e. 24 hours\) |
 
 **Example Request**
 
@@ -267,9 +267,9 @@ oasis--testnet.datahub.figment.io/blocks_summary?interval=hour&period=8%20hours
 
 ### `GET/transactions`
 
- **Description** 
+**Description**
 
-Get a list of transactions at a given height. 
+Get a list of transactions at a given height.
 
 **Parameters**
 
@@ -349,9 +349,9 @@ oasis--testnet.datahub.figment.io/transactions?height=3000
 
 ### `GET/staking`
 
- **Description** 
+**Description**
 
-Get staking data at a given height. 
+Get staking data at a given height.
 
 **Parameters**
 
@@ -378,9 +378,9 @@ oasis--testnet.datahub.figment.io/staking?height=3000
 
 ### `GET/delegations`
 
- **Description** 
+**Description**
 
-Get a list of delegations at a given height. 
+Get a list of delegations at a given height.
 
 **Parameters**
 
@@ -440,15 +440,15 @@ oasis--testnet.datahub.figment.io/delegations?height=3000
 
 ### `GET/delegations/:address`
 
- **Description** 
+**Description**
 
-Get a list of delegations for an address at a given height. 
+Get a list of delegations for an address at a given height.
 
 **Parameters**
 
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
-| **address** | string \* required | Address of the account.  |
+| **address** | string \* required | Address of the account. |
 | **height** | integer | Block height. Default: 0 = last |
 
 **Example Request**
@@ -473,9 +473,9 @@ oasis--testnet.datahub.figment.io/delegations/oasis1qresj0vhmwawll6fe2vw2nlapkp6
 
 ### `GET/debonding_delegations`
 
- **Description** 
+**Description**
 
-Get a list of unbonding delegations at a given height. 
+Get a list of unbonding delegations at a given height.
 
 **Parameters**
 
@@ -572,9 +572,9 @@ oasis--testnet.datahub.figment.io/debonding_delegations?height=3000
 
 ### `GET/debonding_delegations/:address`
 
- **Description** 
+**Description**
 
-Get a list of unbonding delegations for an address at a given height. 
+Get a list of unbonding delegations for an address at a given height.
 
 **Parameters**
 
@@ -610,9 +610,9 @@ oasis--testnet.datahub.figment.io/debonding_delegations/oasis1qzmwdlxy7cltmwt99u
 
 ### `GET/account/:address`
 
- **Description** 
+**Description**
 
-Get the details for an account at a given height. 
+Get the details for an account at a given height.
 
 **Parameters**
 
@@ -642,9 +642,9 @@ oasis--testnet.datahub.figment.io/account/oasis1qzmwdlxy7cltmwt99u9pwqt3g0rdwgsq
 
 ### `GET/validators`
 
- **Description** 
+**Description**
 
-Get the list of validators at a given height. 
+Get the list of validators at a given height.
 
 **Parameters**
 
@@ -711,9 +711,9 @@ oasis--testnet.datahub.figment.io/validators?height=294601
 
 ### `GET/validators/for_min_height/:height`
 
- **Description** 
+**Description**
 
-Get the list of validators for all blocks higher than the provided height. 
+Get the list of validators for all blocks higher than the provided height.
 
 **Parameters**
 
@@ -810,9 +810,9 @@ oasis--testnet.datahub.figment.io/validators/for_min_height/3000
 
 ### `GET/validator/:address`
 
- **Description** 
+**Description**
 
-Get validator details from its account address. 
+Get validator details from its account address.
 
 **Parameters**
 
@@ -871,17 +871,17 @@ oasis--testnet.datahub.figment.io/validator/oasis1qqf6wmc0ax3mykd028ltgtqr49h3qf
 
 ### `GET/validators_summary`
 
- **Description** 
+**Description**
 
-Get a summary of all active validators during a given time period. 
+Get a summary of all active validators during a given time period.
 
 **Parameters**
 
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
 | **interval** | string \* required | Time interval: `hour` or  `day` |
-| **period** | string \* required | Summary period \(i.e. 24 hours\)  |
-| **address** | string | Address of validator  |
+| **period** | string \* required | Summary period \(i.e. 24 hours\) |
+| **address** | string | Address of validator |
 
 **Example Request**
 
@@ -958,9 +958,9 @@ oasis--testnet.datahub.figment.io/validators_summary?address=oasis1qqf6wmc0ax3my
 
 ### `GET/system_events/:address`
 
- **Description** 
+**Description**
 
-Get all system events for a given account. 
+Get all system events for a given account.
 
 **Parameters**
 
@@ -968,7 +968,7 @@ Get all system events for a given account.
 | :--- | :--- | :--- |
 | **address** | string \* required | Address of the account |
 | **after** | integer | Returns events from blocks after the provided provided height |
-| **kind** | string | Type of system event  |
+| **kind** | string | Type of system event |
 
 **Example Request**
 
@@ -1027,15 +1027,15 @@ oasis--testnet.datahub.figment.io/system_events/oasis1qqf6wmc0ax3mykd028ltgtqr49
 
 ### `POST/transactions`
 
- **Description** 
+**Description**
 
-Broadcast a transaction.  
+Broadcast a transaction.
 
 **Parameters**
 
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
-| **tx\_raw** | string \* required | Base64 encoded string of a cbor marshalled [transaction.SignedTransaction](https://pkg.go.dev/github.com/oasisprotocol/oasis-core/go/consensus/api/transaction#SignedTransaction)|
+| **tx\_raw** | string \* required | Base64 encoded string of a cbor marshalled [transaction.SignedTransaction](https://pkg.go.dev/github.com/oasisprotocol/oasis-core/go/consensus/api/transaction#SignedTransaction) |
 
 **Example Request**
 
@@ -1044,7 +1044,8 @@ oasis--testnet.datahub.figment.io/transactions
 ```
 
 **Example POST Body**
-```json
+
+```javascript
 {
  "tx_raw": "omlzaWduYXR1cmWiaXNpZ25hdHVyZVhA7B57K6i0/rqq02oMySmV5AsuUAiYf4N+H8K2OVN2Ubi7dHiuWEQSyq5S/43DzD63sqHF0nVpYKs3zqfaqdKDB2pwdWJsaWNfa2V5WCCth1d3RkFcjAMJgKhPg1SDE8txkHh60uKVe/z28yzJ1HN1bnRydXN0ZWRfcmF3X3ZhbHVlWGakY2ZlZaJjZ2FzGQPoZmFtb3VudEBkYm9keaJmYW1vdW50RQEqBfIAZ2FjY291bnRVAJTs8incWAoRxDVInbaXHIcZaYbnZW5vbmNlAGZtZXRob2Rxc3Rha2luZy5BZGRFc2Nyb3c=",
 }

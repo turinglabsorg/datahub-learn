@@ -10,5 +10,7 @@ Secret exposes both the Tendermint RPC and the Secret REST API which are both ne
 
 Learn about the APIs available via Secret [**DataHub**](https://datahub.figment.io/sign_up?service=secret) below.
 
+{% page-ref page="tendermint-rpc.md" %}
 
+{% page-ref page="secret-rest-api.md" %}
 
