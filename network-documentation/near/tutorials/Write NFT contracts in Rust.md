@@ -3,27 +3,27 @@
 
 ## Introduction
 
-[Non-Fungible Tokens] are unique records of ownership on the blockchain.  Usually an NFT is tied to something interesting and rare, such as an artwork, a concert ticket, a collectable cat, a domain name, or a real physical object.  NFTs can be bought, sold, given away, and can even be minted or destroyed, depending on the rules of the contract.  [Cryptokitties] and [SuperRare] are two popular examples of Etherium-based NFTs. We can implement NFTs just as easily in NEAR.
+[Non-Fungible Tokens] are unique records of ownership on the blockchain.  Usually an NFT is tied to something interesting and rare, such as an artwork, a concert ticket, a collectable cat, a domain name, or a real physical object.  NFTs can be bought, sold, given away, and can even be minted or destroyed, depending on the rules of the contract.  [Cryptokitties] and [SuperRare] are two popular examples of Ethereum-based NFTs. We can implement NFTs just as easily on NEAR.
 
-In this tutorial we will issue a new species of NFT: the CryptoFlarn, a single-celled organism with unique DNA.  Our smart contract will allow Flarns to be created, collected and traded on the Near blockchain.
+In this tutorial we will issue a new species of NFT: the CryptoFlarn, a single-celled organism with unique DNA.  Our smart contract will allow Flarns to be created, collected and traded on the NEAR blockchain.
 
 ### About NFT standards:
 
-There are many standards for NFTs!  However the most widely supported by far is the [ERC721] standard, which defines how NFTs can be traded. This standard works well, but like all the ERC standards it is defined only for the Etherium blockchain.  ERC721 may be portable to NEAR once [NEAR EVM] emulation is available, but for now the developers of NEAR have provided us a NFT reference implementation that uses a different NFT standard: [NEP-4], which is defined in a language-independent way that is more compatible with Near.  
+There are many standards for NFTs!  However the most widely supported by far is the [ERC721] standard, which defines how NFTs can be created and transfered among other things. This standard works well, but like all the ERC standards it is defined only for the Ethereum blockchain.  ERC721 may be portable to NEAR once [NEAR EVM] emulation is available, but for now, the NEAR team has created an NFT reference implementation that uses a different NFT standard: [NEP-4], which is defined in a language-independent way that is more compatible with NEAR.  
 
-NEP-4 is a very simple standard that does the bare minimum required to support ownership and transfer of NFTs, but it includes the possibility of delegating authority to other users or to other smart contracts.  This is a powerful feature, because it means that future enhancements might be added by cross-contract calls with another, smarter contract, instead of having to upgrade the contract we write today.  Other NFT projects on NEAR are already beginning to support NEP-4, so it's a good near-term choice.
+NEP-4 is a very simple standard that does the bare minimum required to support ownership and transfer of NFTs, but it includes the possibility of delegating authority to other users or to other smart contracts.  This is a powerful feature, because it means that future enhancements might be added by cross-contract calls with another, smarter contract, instead of having to upgrade the contract we write today.  Other NFT projects on NEAR are already beginning to support NEP-4, so it's a good short-term choice.
 
 ### About Rust:
 
-In the previous tutorial, the smart contract was written in AssemblyScript, which was then compiled to WebAssembly (WASM) to run in the blockchain.  However, NEAR smart contracts can also be written in [Rust], a C-like language for server applications that has become popular for its built-in safety checks that help avoid bugs.  Rust also features a robust testing infrastructure, copious on-line documentation, and a compiler that tries its best to help you fix any errors it finds.  
+In the NEAR Pathway, the smart contract was written in AssemblyScript, which was then compiled to WebAssembly (WASM) to run in the blockchain.  However, NEAR smart contracts can also be written in [Rust], a C-like language for server applications that has become popular for its built-in safety checks that help avoid bugs.  Rust also features a robust testing infrastructure, copious on-line documentation, and a compiler that tries its best to help you fix any errors it finds.  
 
-Near.org developers already recommend we use Rust for any smart contracts of a financial nature, and their reference implementation of NEP-4 NFTs is already written in Rust.  So we will start with that reference implementation, and add some useful features. 
+The NEAR team recommends using Rust for any smart contracts of a financial nature, and their reference implementation of NEP-4 NFTs is written in Rust.  So we will start with that reference implementation, and add some useful features. 
 
 ### Prerequisites:
 
-If you've been following the NEAR track, you should have already taken care of these prerequisites.  For this tutorial you must:
+If you have completed the NEAR Pathway, you should have already taken care of these prerequisites.  For this tutorial you must:
 * Install node.js and npm [(see Tutorial 1)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
-* Create an accout in the NEAR testnet [(see Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
+* Create an accout on the NEAR testnet [(see Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
 * Install the NEAR CLI [(also in Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
 
 ## Installing The Toolchain
@@ -42,7 +42,7 @@ This will also download and install `rustc`, the Rust compiler, and `cargo`, the
 
 (If you're using Windows, download and run the executable Rust installer from [rustup.rs].  The rest of this tutorial is written for a Unix environment, but the steps are essentially the same under Windows.)
 
-Next we need to tell Rust to compile WebAssembly output (WASM) for the Near VM.  If your `rust` toolchain is missing the WASM components, the compiler will report an error similar to this one:
+Next we need to tell Rust to compile WebAssembly output (WASM) for the NEAR VM.  If your `rust` toolchain is missing the WASM components, the compiler will report an error similar to this one:
 
 ```
 error[E0463]: can't find crate for `core`
@@ -58,7 +58,7 @@ rustup target add wasm32-unknown-unknown
 
 ### yarn
 
-If you haven't already, we we need to install the `yarn` package manager.  The example code we're working with uses `yarn` as its build tool.  Run this  command to install `yarn`:
+If you haven't already, we need to install the `yarn` package manager.  The example code we're working with uses `yarn` as its build tool.  Run this  command to install `yarn`:
 
 ```
 npm i -g yarn
@@ -66,9 +66,9 @@ npm i -g yarn
 
 If that all worked, you're ready to develop smart contracts in Rust.
 
-### Cloning the Near NFT repo
+### Cloning the NEAR NFT repo
 
-In this tutorial we'll modify Near's NFT example code from the Near repository on Github. On Unix, run these commands in the `bash` shell to clone that repo and install its requirements:
+In this tutorial we'll modify NEAR's NFT example code from the NEAR repository on Github. On Unix, run these commands in the `bash` shell to clone that repo and install its requirements:
 
 ```
 git clone https://github.com/near-examples/NFT
@@ -88,7 +88,7 @@ Edit the file `contracts/rust/Cargo.toml`, and replace the entire contents with 
 [package]
 name = "nep4-rs"
 version = "0.1.0"
-authors = ["Near Inc <hello@near.org>"]
+authors = ["NEAR Inc <hello@near.org>"]
 edition = "2018"
 
 [lib]
@@ -263,7 +263,7 @@ pub struct Flarn {
 
 This `Flarn` structure defines a minimal metadata for each CryptoFlarn: a single `dna` record that can be initialized with a unique random value. This is a very simple example, but consider that all of the variations we can see between individual CryptoKitties are derived from a similar block of random data, also called `dna`!
 
-(The `#[derive]` attribute gives our Flarn the `BorschSerialize` trait, which lets the contract convert Flarns to a raw bytestream for storage and retrieval in Near.  Notice we didn't have to implement anything there, we just asked the compiler to figure it out for us.  [Derived traits] are a handy feature of Rust!  We're also using a related trait, `Serialize`, which lets the contract send Flarns over the network.) 
+(The `#[derive]` attribute gives our Flarn the `BorschSerialize` trait, which lets the contract convert Flarns to a raw bytestream for storage and retrieval on NEAR.  Notice we didn't have to implement anything there, we just asked the compiler to figure it out for us.  [Derived traits] are a handy feature of Rust!  We're also using a related trait, `Serialize`, which lets the contract send Flarns over the network.) 
 
 Next, we will update the definition of `NonFungibleTokenBasic` with one extra line of Rust. We'll add an `UnorderedMap` called `token_to_flarn` which will hold all the Flarn records in our smart contract.  
 
@@ -307,7 +307,7 @@ impl NonFungibleTokenBasic {
 * Rust has an unusual `Some`/`None` construct for handling exceptions.
 * Mutable variables are declared with the `mut` keyword; variables without `mut` are immutable by default.
 * Only one or two lines near the end of each method actually modify our data. Most of this code deals with access control.
-* The imported global `env` contains the ID of the Near user calling the contract, plus various other useful tidbits.
+* The imported global `env` contains the ID of the NEAR user calling the contract, plus various other useful tidbits.
 
 ```rust
 #[near_bindgen]
@@ -511,17 +511,17 @@ https://explorer.testnet.near.org/transactions/DanbgVsY3VCsQMh2zQvAGKuYWe1WFBuws
 Done deploying to dev-1607722059840-7354752
 ```
 
-The provided link will give you complete details about the deployment in the Near Explorer.
+The provided link will give you complete details about the deployment in the NEAR Explorer.
 
 [ screenshot ](https://github.com/figment-networks/datahub-learn/tree/master/.gitbook/assets/screenshot-near-rust-tut.png)
 
-It's important to mention here that the Near CLI can create a test user and deploy a test contract in one step.  Both users and contracts will have IDs that look something like `dev-nnnnnnnnn-nnnnn`, where the `n`s are replaced by digits.  If you've never run the NEAR CLI before, the ID of the test contract may be the same as the ID of the test user!  This can be slightly confusing, but just remember that these are two IDs. They may look the same, but one refers to a user and the other to a smart contract.
+It's important to mention here that the NEAR CLI can create a test user and deploy a test contract in one step.  Both users and contracts will have IDs that look something like `dev-nnnnnnnnn-nnnnn`, where the `n`s are replaced by digits.  If you've never run the NEAR CLI before, the ID of the test contract may be the same as the ID of the test user!  This can be slightly confusing, but just remember that these are two IDs. They may look the same, but one refers to a user and the other to a smart contract.
 
 Make a note of the account ID and the contract ID now. We'll use them in the next few steps.  The first line of output (`Starting deployment ...`) gives the account ID, and the last line (`Done deploying ...`) gives the contract ID.  If they're the same, that's fine.
 
 ### Initialize the contract
 
-Our NFT smart contract is now deployed in Near!  Let's use the CLI to test this interface. 
+Our NFT smart contract is now deployed on NEAR!  Let's use the CLI to test this interface. 
 First, we we need to call the `new()` method of 'NonFungibleTokenBasic', to initialize the contract's storage.  If we call any other method before that, we'll get an error.  The 'new' method takes one argument, the accountID of the contract owner.  We can use the test account ID created in the previous step.  
 
 To call a contract method from the CLI, run this command, replacing `ACCOUNT-ID` and `CONTRACT-ID` with the two IDs you got from the previous step (which may be identical):
@@ -530,7 +530,7 @@ To call a contract method from the CLI, run this command, replacing `ACCOUNT-ID`
 near call --accountId ACCOUNT-ID CONTRACT-ID new '{"owner_id": "ACCOUNT-ID"}'
 ```
 
-The output should return a Transaction ID and a link to the Near Explorer:
+The output should return a Transaction ID and a link to the NEAR Explorer:
 
 ```
 Scheduling a call: dev-1607722059840-7354752.new({"owner_id": "dev-1607722059840-7354752"})
@@ -563,11 +563,11 @@ The output is similar, but the last line contains the return value in JSON:
 { dna: 9932525801968679000 }
 ```
 
-The actual number you see will be different from this, if the random number generator is good at generating random numbers.  But here is our NFT metadata, stored in the Near blockchain.
+The actual number you see will be different from this, if the random number generator is good at generating random numbers.  But here is our NFT metadata, stored in the NEAR blockchain.
 
 ## Conclusion
 
-You now have deployed an NFT smart contract on the Near testnet, and have minted one CryptoFlarn NFT.  From here you could use the CLI or the Near Javascript SDK to transfer ownership of that token, or to make more tokens.  NFT marketplaces are already under development on Near; when they support NEP-4, you'll be able to trade these tokens there.  If your next NFT project needs more complex metadata, you've seen how that can be added.
+You now have deployed an NFT smart contract on the NEAR testnet, and have minted one CryptoFlarn NFT.  From here you could use the CLI or the NEAR Javascript SDK to transfer ownership of that token, or to make more tokens.  NFT marketplaces are already under development on NEAR; when they support NEP-4, you'll be able to trade these tokens there.  If your next NFT project needs more complex metadata, you've seen how that can be added.
 
 The complete code for this tutorial can be found on [Github](https://github.com/figment-networks/tutorials/tree/main/near/6_NFT).
 
