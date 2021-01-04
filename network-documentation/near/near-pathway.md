@@ -54,7 +54,7 @@ Simply fill [**this form**](https://forms.gle/6JoCD6wmqoq33Brp7) and include dir
   
 Bonus Activity Rewards will be given out at the discretion of the reviewer. Please provide any context you would like us to consider to maximize your Bonus Activity Reward. 
 
-### ![](../../.gitbook/assets/download-6-.png) Twitter \(`10` NEAR each\)
+### ![](../../.gitbook/assets/download-6-.png) Twitter \(5 NEAR each\)
 
 1. Post a lesson learned about the NEAR platform, tools, community, etc.
 2. Post a screenshot of what you just built with NEAR
@@ -64,7 +64,7 @@ Bonus Activity Rewards will be given out at the discretion of the reviewer. Plea
 
 Make sure to refer to Figment Learn in your tweet! 
 
-### ![](../../.gitbook/assets/download-7-.png) Medium \(`50` NEAR each, `1500-2000` words each\)
+### ![](../../.gitbook/assets/download-7-.png) Medium \(25 NEAR each, `1500-2000` words each\)
 
 1. Recount your NEAR learning experience
 2. Share your ideas for improving the NEAR developer experience
