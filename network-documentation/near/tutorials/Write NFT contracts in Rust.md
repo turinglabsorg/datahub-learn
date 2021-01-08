@@ -515,19 +515,20 @@ The provided link will give you complete details about the deployment in the NEA
 
 [ screenshot ](https://github.com/figment-networks/datahub-learn/tree/master/.gitbook/assets/screenshot-near-rust-tut.png)
 
-It's important to mention here that the NEAR CLI can create a test user and deploy a test contract in one step.  Both users and contracts will have IDs that look something like `dev-nnnnnnnnn-nnnnn`, where the `n`s are replaced by digits.  If you've never run the NEAR CLI before, the ID of the test contract may be the same as the ID of the test user!  This can be slightly confusing, but just remember that these are two IDs. They may look the same, but one refers to a user and the other to a smart contract.
-
-Make a note of the account ID and the contract ID now. We'll use them in the next few steps.  The first line of output (`Starting deployment ...`) gives the account ID, and the last line (`Done deploying ...`) gives the contract ID.  If they're the same, that's fine.
+In this step, the CLI created a new user account on the testnet and deployed the contract in that account.  Make a note of that new Account ID, which looks something like `dev-nnnnnnnnn-nnnnn`, where the `n`s are replaced by digits.
 
 ### Initialize the contract
 
 Our NFT smart contract is now deployed on NEAR!  Let's use the CLI to test this interface. 
-First, we we need to call the `new()` method of 'NonFungibleTokenBasic', to initialize the contract's storage.  If we call any other method before that, we'll get an error.  The 'new' method takes one argument, the accountID of the contract owner.  We can use the test account ID created in the previous step.  
 
-To call a contract method from the CLI, run this command, replacing `ACCOUNT-ID` and `CONTRACT-ID` with the two IDs you got from the previous step (which may be identical):
+### contract arguments
+First, we we need to call our contract's `new()` method, to initialize the blockchain data store.  If we call any other method before that, we'll get an error.  The 'new' method takes one argument, `owner_id`, the accountID of the user who will be allowed to mint new Flarns from this contract.
+
+### CLI arguments
+To call that `new()` method from the CLI, run this command, replacing `CALLER-ID`, `RECEIVER-ID` and `OWNER-ID`  with the test account ID you got from the previous step.  (Here, `CALLER-ID` is the account the CLI will use to make the call, `RECEIVER-ID` is the account where the contract is deployed, and `OWNER-ID` is the account that the contract will authorize to mint Flarns. For this test, we'll use the same account in all three roles.)
 
 ```
-near call --accountId ACCOUNT-ID CONTRACT-ID new '{"owner_id": "ACCOUNT-ID"}'
+near call --accountId CALLER-ID RECEIVER-ID new '{"owner_id": "OWNER-ID"}'
 ```
 
 The output should return a Transaction ID and a link to the NEAR Explorer:
@@ -543,10 +544,10 @@ https://explorer.testnet.near.org/transactions/9PZZFWJUco7f33vJEjTbcjzsGhiigtYiS
 
 Now we'll make a call to `mint_token()`.  We'll need a block of JSON containing the two arguments to that method: an ID for the token, which can be any integer, and an account ID of the token's first owner.  We'll use the same test account ID as before, and give `1234` as a token ID.  
 
-Run this at your command line, again substituting `ACCOUNT-ID` and `CONTRACT-ID`:
+Run this at your command line, again substituting `CALLER-ID` and `RECEIVER-ID`:
 
 ```
-near call --accountId ACCOUNT-ID CONTRACT-ID mint_token '{ "token_id":1234, "owner_id": "ACCOUNT-ID"}'
+near call --accountId CALLER-ID RECEIVER-ID mint_token '{ "token_id":1234, "owner_id": "CALLER-ID"}'
 ```
 
 The output will look pretty similar to the output of the `new()` method.  Neither of those methods return any data.  But the new transaction ID and the explorer link should confirm for us that the token was minted.
@@ -554,7 +555,7 @@ The output will look pretty similar to the output of the `new()` method.  Neithe
 Still, we can be even more sure.  Let's fetch the metadata for our newly minted token and have a look at it.  Run this command, again replacing `ACCOUNT-ID` and `CONTRACT-ID`:
 
 ```
-near call --accountId ACCOUNT-ID CONTRACT-ID get_token_meta '{"token_id":1234}'
+near view --accountId ACCOUNT-ID CONTRACT-ID get_token_meta '{"token_id":1234}'
 ```
 
 The output is similar, but the last line contains the return value in JSON:
