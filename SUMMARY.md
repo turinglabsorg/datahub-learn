@@ -120,6 +120,7 @@
     * [5. Write and deploy your first NEAR smart contract](network-documentation/near/tutorials/5.-writing-and-deploying-your-first-near-smart-contract.md)
     * [Cross-contract calls](network-documentation/near/tutorials/cross-contract-calls.md)
     * [Simple AssemblyScript App](network-documentation/near/tutorials/simple-webassembly-script.md)
+    * [Write NFT contracts in Rust](network-documentation/near/tutorials/write-nft-contracts-in-rust.md)
   * [💼 NEAR Wallet](network-documentation/near/near-wallet.md)
 * [🏝 Oasis](network-documentation/oasis/README.md)
   * [✏ Oasis 101](network-documentation/oasis/oasis-101.md)
