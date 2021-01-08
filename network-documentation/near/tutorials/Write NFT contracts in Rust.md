@@ -22,8 +22,8 @@ The NEAR team recommends using Rust for any smart contracts of a financial natur
 ### Prerequisites:
 
 If you have completed the NEAR Pathway, you should have already taken care of these prerequisites.  For this tutorial you must:
-* Install node.js and npm [(see Tutorial 1)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
-* Create an accout on the NEAR testnet [(see Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
+* Install node.js and npm, and set up your DataHub environment [(see Tutorial 1)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
+* Create an account on the NEAR testnet [(see Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
 * Install the NEAR CLI [(also in Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
 
 ## Installing The Toolchain
@@ -495,7 +495,7 @@ You'll see that there are now 11 unit tests running, and they should all pass.
 
 ## Deploying and using the contract
 
-We can use the NEAR CLI to deploy this contract, and to test that it's working.  Run this command to deploy the contract you just built:
+We can use the NEAR CLI to deploy this contract, and to test that it's working.  If you configured your environment in Tutorials 1 and 2, the CLI will connect to DataHub's high-availability testnet.  If you don't have DataHub access you can still run the CLI with its defaults, though the default testnet node may be slower to respond.  Run this command to deploy the contract you just built:
 
 ```
 near dev-deploy out/nep4_rs.wasm 
@@ -504,7 +504,7 @@ near dev-deploy out/nep4_rs.wasm
 The output will show details of the deployment transaction, and the ID of the test NEAR account that the CLI auto-generated for you.  It should look something like this:
 
 ```
-Starting deployment. Account id: dev-1607722059840-7354752, node: https://rpc.testnet.near.org, helper: https://helper.testnet.near.org, file: out/nep4_rs.wasm
+Starting deployment. Account id: dev-1607722059840-7354752, node: https://near-testnet--rpc.datahub.figment.io/apikey/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, helper: https://helper.testnet.near.org, file: out/nep4_rs.wasm
 Transaction Id DanbgVsY3VCsQMh2zQvAGKuYWe1WFBuwsJo2oMti5QkC
 To see the transaction in the transaction explorer, please open this url in your browser
 https://explorer.testnet.near.org/transactions/DanbgVsY3VCsQMh2zQvAGKuYWe1WFBuwsJo2oMti5QkC
@@ -572,10 +572,6 @@ You now have deployed an NFT smart contract on the NEAR testnet, and have minted
 
 The complete code for this tutorial can be found on [Github](https://github.com/figment-networks/tutorials/tree/main/near/6_NFT).
 
-## Next Steps
-
--- A React app to interact with the tokens?
--- Tokenomics: managing the gas and storage costs of NFTs, and exchanging NFTs for NEAR?
 
 [rustup.rs]:https://rustup.rs/
 [Non-Fungible Tokens]:https://en.wikipedia.org/wiki/Non-fungible_token
