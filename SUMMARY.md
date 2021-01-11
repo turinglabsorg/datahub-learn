@@ -131,6 +131,7 @@
   * [🎮 RPC & REST API](network-documentation/secret/rpc-and-rest-api/README.md)
     * [Tendermint RPC](network-documentation/secret/rpc-and-rest-api/tendermint-rpc.md)
     * [Secret REST API](network-documentation/secret/rpc-and-rest-api/secret-rest-api.md)
+  * [🗺 Secret Pathway](network-documentation/secret/secret-pathway.md)
   * [💡 Tutorials](network-documentation/secret/tutorials/README.md)
     * [1. Connect to a Secret node with DataHub](network-documentation/secret/tutorials/1.-connecting-to-a-secret-node-using-datahub.md)
     * [2. Create your first Secret account](network-documentation/secret/tutorials/2.-setting-up-your-wallet.md)
