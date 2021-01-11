@@ -1,6 +1,14 @@
-# Write NFT contracts in Rust
+---
+description: Learn how to create and interact with NFTs on NEAR
+---
 
-## Introduction
+# Write an NFT contract & mint your NFT
+
+## About the Author
+
+This tutorial was created by [Mykle Hansen](https://github.com/myklemykle), a contributor to the [Plantary](https://github.com/myklemykle/plantary) project which allows users to grow and harvest plant NFTs on NEAR. 
+
+## Introduction 
 
 [Non-Fungible Tokens](https://en.wikipedia.org/wiki/Non-fungible_token) are unique records of ownership on the blockchain. Usually an NFT is tied to something interesting and rare, such as an artwork, a concert ticket, a collectable cat, a domain name, or a real physical object. NFTs can be bought, sold, given away, and can even be minted or destroyed, depending on the rules of the contract. [Cryptokitties](https://www.cryptokitties.co/) and [SuperRare](https://superrare.co/) are two popular examples of Ethereum-based NFTs. We can implement NFTs just as easily on NEAR.
 
