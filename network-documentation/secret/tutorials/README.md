@@ -12,7 +12,7 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
-## Connect to a Secret node using DataHub
+## Connect to a Secret node with DataHub
 
 {% page-ref page="1.-connecting-to-a-secret-node-using-datahub.md" %}
 
