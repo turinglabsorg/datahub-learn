@@ -40,6 +40,14 @@ NEAR is a decentralized application platform that is secure enough to manage hig
 
 **Get Started with** [**NEAR DataHub today!** ](https://figment.io/datahub/near/)\*\*\*\*
 
+## \*\*\*\*![](../.gitbook/assets/logo1.png) **Secret Tutorials** 
+
+Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network.
+
+{% page-ref page="../network-documentation/secret/tutorials/" %}
+
+**Get Started with** [**Secret DataHub today!** ](https://datahub.figment.io/sign_up?service=secret)\*\*\*\*
+
 ## ![](../.gitbook/assets/rsz_terra-logo.jpg) Terra Tutorials 
 
 Terra is a price-stable cryptocurrency that will power the next-generation payment network. 
