@@ -40,7 +40,7 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="simple-webassembly-script.md" %}
 
-## Write an NFT contract and mint your NFT
+## Write an NFT contract & mint your NFT
 
 {% page-ref page="write-nft-contracts-in-rust.md" %}
 
