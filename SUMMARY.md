@@ -131,6 +131,7 @@
   * [🎮 RPC & REST API](network-documentation/secret/rpc-and-rest-api/README.md)
     * [Tendermint RPC](network-documentation/secret/rpc-and-rest-api/tendermint-rpc.md)
     * [Secret REST API](network-documentation/secret/rpc-and-rest-api/secret-rest-api.md)
+  * [💡 Tutorials](network-documentation/secret/tutorials.md)
 * [🌍 Terra](network-documentation/terra/README.md)
   * [✏ Terra 101](network-documentation/terra/terra-101.md)
   * [🎮 RPC & REST API](network-documentation/terra/rpc-and-rest-api/README.md)
