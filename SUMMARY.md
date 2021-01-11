@@ -134,7 +134,7 @@
   * [💡 Tutorials](network-documentation/secret/tutorials/README.md)
     * [1. Connect to a Secret node with DataHub](network-documentation/secret/tutorials/1.-connecting-to-a-secret-node-using-datahub.md)
     * [2. Create your first Secret account](network-documentation/secret/tutorials/2.-setting-up-your-wallet.md)
-    * [3. Querying the Secret blockchain](network-documentation/secret/tutorials/3.-querying-the-secret-blockchain.md)
+    * [3. Query the Secret blockchain](network-documentation/secret/tutorials/3.-querying-the-secret-blockchain.md)
     * [4. Submit your first transaction](network-documentation/secret/tutorials/4.-submit-your-first-transaction.md)
     * [5. Writing and deploying your first Secret contract](network-documentation/secret/tutorials/5.-writing-and-deploying-your-first-secret-contract.md)
 * [🌍 Terra](network-documentation/terra/README.md)
