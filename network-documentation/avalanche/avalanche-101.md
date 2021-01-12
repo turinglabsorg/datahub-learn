@@ -41,7 +41,7 @@ In order to prevent spam, transactions on the Avalanche network require the paym
 
 When you issue a transaction through Avalanche’s API, the transaction fee is automatically deducted from one of the addresses you control.
 
-Different types of transactions require payment of a different transaction fee. This table shows the transaction fee schedule:Copied to clipboard
+Different types of transactions require payment of a different transaction fee. This table shows the transaction fee schedule:
 
 ```text
 +----------+-------------------+------------------------+
