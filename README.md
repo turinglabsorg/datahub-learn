@@ -22,6 +22,10 @@ Learn Pathways are short curriculums that help developers understand which netwo
 
 {% page-ref page="network-documentation/near/near-pathway.md" %}
 
+**Ongoing Pathway - Secret:** 
+
+{% page-ref page="network-documentation/secret/secret-pathway.md" %}
+
 **See other active and upcoming Pathways:** 
 
 {% page-ref page="figment-learn/pathways.md" %}
