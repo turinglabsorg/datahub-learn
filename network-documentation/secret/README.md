@@ -22,5 +22,7 @@ Be sure to check out the [**official Secret documentation**](https://build.scrt.
 
 {% page-ref page="rpc-and-rest-api/" %}
 
+{% page-ref page="secret-pathway.md" %}
 
+{% page-ref page="tutorials/" %}
 
