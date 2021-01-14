@@ -160,6 +160,8 @@
     * [Token Contracts](network-documentation/tezos/tutorials/token-contracts.md)
     * [Oracle Contracts](network-documentation/tezos/tutorials/oracle-contracts.md)
     * [Creating NFTs](network-documentation/tezos/tutorials/creating-nfts.md)
+* [Extra Guides](network-documentation/extra-guides/README.md)
+  * [Docker Setup for Windows](network-documentation/extra-guides/docker-setup-for-windows.md)
 
 ## 🤔 Other
 
