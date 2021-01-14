@@ -162,6 +162,7 @@
     * [Creating NFTs](network-documentation/tezos/tutorials/creating-nfts.md)
 * [📚 Extra Guides](network-documentation/extra-guides/README.md)
   * [Docker Setup for Windows](network-documentation/extra-guides/docker-setup-for-windows.md)
+  * [5XX Retry Logic Best Practices](network-documentation/extra-guides/5xx-retry-logic-best-practices.md)
 
 ## 🤔 Other
 
