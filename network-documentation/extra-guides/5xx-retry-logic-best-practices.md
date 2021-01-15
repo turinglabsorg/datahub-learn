@@ -8,7 +8,8 @@ description: Review best practices to deal with 5XX errors
 
 Since DataHub is a proxy that passes through errors from full node software, our users will need to adopt defensive strategies for interacting with the API.  
   
-We should make it easy for our users to do the right thing and provide examples of pseudo-code or Ruby to copy/paste like:
+We are making it easy for our users to do the right thing and providing examples of pseudo-code to copy/paste.  
+For Example:
 
 ```ruby
 tries = 3
@@ -20,7 +21,7 @@ rescue
 end
 ```
 
-## **Best Practices to Add Retries to API Calls in NodeJS**
+## **1. Best Practices to Add Retries to API Calls in NodeJS**
 
 ### **The basics of a retry**
 
@@ -200,6 +201,8 @@ function retryGet(url, retries = 3, backoff = 300) {
 }
 ```
 
+Source & for more details - [Check Here](https://hackernoon.com/how-to-improve-your-backend-by-adding-retries-to-your-api-calls-83r3udx)
+
 ## **NodeJS - Re-Calling function on error callback pseudo code**
 
 ```ruby
@@ -244,7 +247,7 @@ If there happens to be lots and lots of clients all doing rapid retries, then as
 
 The back-off scheme is also more appropriate if you're waiting for the service to come back online after it's been down a little while.
 
-**Here is an asynchronous loop for retrying for specific number of time:**
+**Also, Here is an asynchronous loop for retrying a specific number of times:**
 
 ```ruby
 function asyncLoop(i, range, callback) {
