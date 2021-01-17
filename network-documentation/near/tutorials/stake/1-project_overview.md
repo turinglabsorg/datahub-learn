@@ -54,6 +54,7 @@ The STAKE token business model leverages the following from NEAR:
 - The contract has concept of contract ownership.
 - The contract supports an operator role that is managed by the contract owner.
 - The contract supports distributing contract rewards and earnings through the staking mechanism.
+- The contract supports adding liquidity for unstaking and withdrawals
     
 ### What you will learn from the STAKE Token project from a technical perspective
 The STAKE token project is fairly complex and showcases the following
