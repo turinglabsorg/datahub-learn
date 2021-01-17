@@ -3,8 +3,8 @@
 I invite you to join me In this tutorial series and learn how to design, build, and monetize smart contracts on the NEAR 
 platform. Learning is fun, applying what you learn to build is more fun, and making money from what you have built is rewarding. 
 I believe in the philosophy of the "proof is in the pudding". In this tutorial series we will be building a real world
-smart contract called the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) token. The project is open
-source and the community is invited and welcomed to participate. The goals for this tutorial series are:
+smart contract called the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) token. 
+The goals for this tutorial series are:
 1. share with you my approach to architect, design, and code smart contracts in Rust
 2. take you step by step through designing, coding, and testing on the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) 
    token project.
@@ -41,14 +41,15 @@ The STAKE token business model leverages the following from NEAR:
    - NEAR provides out of the box the ability to collect a portion of transaction fees and distributes them to the contracts
      that were run as part of the transaction
    - the STAKE token contract distributes a share of its contract rewards through staking
-   - the STAKE token contract is also able to collect earnings from external contracts and distribute the funds through staking
+   - the STAKE token contract is also able to collect earnings from external contracts and distribute the funds through 
+     the staking mechanism
     
 ## STAKE Token Contract High Level Overview
 ![](../../../../.gitbook/assets/oysterpack-near-stake-token-overview.png)
 - Users must register with the contract in order to use it. When registering, users are required to pay an upfront account
   storage fee to cover storage staking costs. On NEAR long term storage is not free. The account storage fee is escrowed
   and will be refunded back to the user when the account unregisters.
-- The contract is linked to a single staking pool contract.
+- The contract is linked to a single staking pool contract, i.e., STAKE token contract is deployed per staking pool contract.
 - The contract will implement the new fungible token standard defined by [NEP-141](https://github.com/near/NEPs/issues/141)
 - The contract has concept of contract ownership.
 - The contract supports an operator role that is managed by the contract owner.
