@@ -5,12 +5,12 @@ platform. Learning is fun, applying what you learn to build is more fun, and mak
 I believe in the philosophy of the "proof is in the pudding". In this tutorial series we will be building a real world
 smart contract called the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) token. 
 The goals for this tutorial series are:
-1. share with you my approach to architect, design, and code smart contracts in Rust
-2. take you step by step through designing, coding, and testing on the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) 
+1. showcase the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) token project on how to monetize NEAR smart contracts
+2. share with you my approach to architect, design, and code smart contracts in Rust
+3. take you step by step through designing, coding, and testing on the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) 
    token project.
-3. share with you design patterns and best practices I have learned while working on the STAKE token project
-4. show you how to monetize your smart contracts using the STAKE token
-5. to make this a collaborative experience with the community
+4. share with you design patterns and best practices I have learned while working on the STAKE token project
+5. make this a collaborative experience with the community
 
 Regarding the last point, I welcome community participation on the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token)
 open source project.
