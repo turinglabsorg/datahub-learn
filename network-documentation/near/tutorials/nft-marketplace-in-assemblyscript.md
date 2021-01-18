@@ -2,11 +2,11 @@
 
 ## Introduction
 
-NFTs are digital items that are unique and have provable ownerships on the blockchain. One of the biggest NFTs right now is the Digital Artwork. Projects in Ethereum such as [SuperRare](https://superrare.co) leverage the power of blockchain to create digital artwork that has digital scarcity and true ownership, thus creating a whole new market for artists and collectors in the digital space.
+NFTs are digital items that are unique and have provable ownerships on the blockchain. One of the most popular use case for NFTs right now is digital art. Projects on Ethereum such as [SuperRare](https://superrare.co) leverage the power of blockchain to create digital art that has digital scarcity and true ownership, thus creating a whole new market for artists and collectors in the digital space.
 
-In NEAR, one NFT Marketplace that is already available to use is [Paras: Digital Art Card](https://paras.id) where the artwork minting fees are much cheaper than the one on the ethereum, enabling artists to create more artworks without costing them lots of money.
+Built on NEAR, [Paras: Digital Art Card](https://paras.id) is an NFT Marketplace that is already available to use. It offers much cheaper NFT minting fees than the what is possible on Ethereum, enabling artists to create without being limited by high on-chain fees. 
 
-In this tutorial we will be creating a simple NFT Marketplace similar to [Paras](https://paras.id) and [SuperRare](https://superrare.co) where artists can mint their artworks and sell them directly to collectors. We will be using [NEP-4](https://github.com/near/NEPs/pull/4) NFT standard which is based on [ERC721](https://eips.ethereum.org/EIPS/eip-721).
+In this tutorial we will be creating a simple NFT Marketplace similar to [Paras](https://paras.id) and [SuperRare](https://superrare.co) where artists can mint their digital art and sell them directly to collectors. We will be using [NEP-4](https://github.com/near/NEPs/pull/4) NFT standard which is based on [ERC721](https://eips.ethereum.org/EIPS/eip-721).
 
 ### Prerequisites:
 
@@ -14,7 +14,8 @@ This tutorial requires:
 
 - Install Node.js and NPM [(see Tutorial 1)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
 - Install the NEAR CLI [(see Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
-- Complete the first NEAR smart contract tutorial [(see Tutorial 5)](https://github.com/figment-networks/datahub-learn/blob/138770526e63fc79c32a60d61650479886cfad06/network-documentation/near/tutorials/5.-writing-and-deploying-your-first-near-smart-contract.md)
+- Complete the first NEAR smart contract tutorial [(see Tutorial 5)](https://learn.figment.io/network-documentation/near/tutorials/5.-writing-and-deploying-your-first-near-smart-contract)
+- Complete the intro to NFTs on NEAR [(see Tutorial)](https://learn.figment.io/network-documentation/near/tutorials/write-nft-contracts-in-rust)
 
 ## Installing Yarn
 
@@ -24,7 +25,7 @@ If you haven't already, we need to install the `yarn` package manager. The examp
 npm i -g yarn
 ```
 
-If that all worked, you're ready to develop smart contracts in Rust.
+If that worked, you're ready to develop smart contracts in AssemblyScript and Rust.
 
 ### Cloning the NEAR NFT repo
 
@@ -36,7 +37,7 @@ cd NFT
 yarn install
 ```
 
-This repo contains NFT examples in both AssemblyScript and Rust, plus support files and documentation. We'll be ignoring Rust and jump straight into AssemblyScript. All the files we need for our smart contract live in the subdirectory `contracts/assemblyscript`
+This repo contains NFT examples in both AssemblyScript and Rust, plus support files and documentation. For the purpose of this tutorial, we'll be building in AssemblyScript instead of Rust. All the files we need for our smart contract live in the subdirectory `contracts/assemblyscript`
 
 ### Run and Test
 
@@ -59,7 +60,7 @@ If you see something like that then we're good to go.
 
 ## Getting to know the NEP-4 Contract
 
-Our marketplace will be based on the NEP-4 Contract. NEP stands for NEAR Enhancement Proposal, which contains various common interfaces and APIs that are used by smart contract developers on top of the NEAR Protocol. NEP-4 is the standard used in NEAR blockchain for non-fungible token (NFT) asset, this standard allows the interoperability between many NFT contracts on the NEAR blockchain like ownership and transfer. The first thing we need to do is to understand the base contract and expand it into marketplace. The smart contract that we will modify is at `contracts/assemblyscript/NEP-4-basic/main.ts`. Open the file and we'll run through the code together.
+Our marketplace will be based on the NEP-4 Contract. NEP stands for NEAR Enhancement Proposal, which contains various common interfaces and APIs that are used by smart contract developers on top of the NEAR Protocol. NEP-4 is the standard used in NEAR blockchain for non-fungible token (NFT) asset, this standard allows the interoperability between many NFT contracts on the NEAR blockchain like ownership and transfer. The first thing we need to do is to understand the base contract and expand it into a marketplace. The smart contract that we will modify is at `contracts/assemblyscript/NEP-4-basic/main.ts`. Open the file and we'll run through the code together.
 
 ### Data Types & Storage
 
@@ -150,7 +151,7 @@ export function transfer(new_owner_id: string, token_id: TokenId): void {
 
 ### View Methods
 
-View methods are the get functionality. It does not cost any gas fee to call but they cannot mutate the blockchain state.
+View methods have GET functionalities. It does not cost any gas fee to call but they cannot mutate the blockchain state.
 
 ```typescript
 /****************/
@@ -182,7 +183,7 @@ export function get_token_owner(token_id: TokenId): string {
 
 ### Minting
 
-Now here's the main function that allow users to mint the NFT. The NFT itself is just a simple ID with owner. The metadata such as image, video or audio is usually stored off-chain on [IPFS], [Sia] or even a centralized file storage such as [AWS S3]. Unlike Ethereum, storing data on NEAR is pretty cheap; you can actually store the whole metadata on chain but it will not be covered in this tutorial, you can try it yourself!
+Now here's the main function that allows users to mint the NFT. The NFT itself is just a simple ID with owner. The metadata such as an image, video or audio is usually stored off-chain on [IPFS], [Sia] or even a centralized file storage such as [AWS S3]. Unlike Ethereum, storing data on NEAR is pretty cheap; you can actually store the whole metadata on chain but it will not be covered in this tutorial, you can try it yourself!
 
 [Paras](https://paras.id) is not storing any metadata on-chain, instead they use an IPFS Hash as the Token ID. There are many designs that you can experiment with when building your NFTs.
 
@@ -213,11 +214,11 @@ export function mint_to(owner_id: AccountId): u64 {
 
 ## Marketplace
 
-We are done with the basic NFT contract; users can mint their NFTs. We're going to focus on the next step, creating the marketplace where the NFT Owner can put up the price and other users that are interested in it can buy it with NEAR coin. We'll be adding unit tests after each function/feature that we build to make sure it works as expected before we deploy it on the blockchain.
+We are done with the basic NFT contract; users can now mint their NFTs. In the next step, we will be creating the marketplace where the NFT owner can list NFTs, indicate their price, and make them purchasable by any user on NEAR. We'll be adding unit tests after each function/feature that we build to make sure it works as expected before we deploy it to NEAR.
 
 ### Unit test
 
-Unit tests can be found in the **tests** folder. `As-pect` was used for unit tests in AssemblyScript. You can use `VMContext` to mock some stuff on the NEAR runtime for testing functionality like contract caller, attached deposit, etc.
+Unit tests can be found in the **tests** folder. `As-pect` was used for unit tests in AssemblyScript. You can use `VMContext` to mock various items on the NEAR runtime for testing functionality like contract caller, attached deposit, etc.
 
 You can run the tests using:
 
@@ -225,11 +226,11 @@ You can run the tests using:
 yarn test:unit:as
 ```
 
-We will be adding more features one by one to the basic NFT contract from NEP-4 and create unit test for every function that we create.
+We will be adding more features one by one to our basic NFT contract and run unit tests for every function that we create.
 
 ### Data Types & Storage
 
-We need to create a new `PersistentUnorderedMap` that stores the price for all the tokens listed by their owner. We use `u128` as the data types for `Price` because NEAR coin is also in `u128`. We use `PersistentUnorderedMap` because we want to create a `key-value` storage that can also be retrieved as a list.
+We need to create a new `PersistentUnorderedMap` that stores the price for all the tokens listed by their owner. We use `u128` as the data types for `Price` because the NEAR token is also in `u128`. We use `PersistentUnorderedMap` as we want to create a `key-value` storage that can also be retrieved as a list.
 
 First, let's import `u128` and `PersistentUnorderedMap` from the `near-sdk-as`. Update the following line at the top of `main.ts`:
 
@@ -237,7 +238,7 @@ First, let's import `u128` and `PersistentUnorderedMap` from the `near-sdk-as`. 
 import { PersistentMap, storage, context, u128, PersistentUnorderedMap } from 'near-sdk-as'
 ```
 
-Then we can use the imported `PersistentUnorderedMap` to be used as the data structure for our market. Write the following codes at the Data Types & Storage Section after the import section in `main.ts`:
+Then we can use the imported `PersistentUnorderedMap` to be used as the data structure for our market. Write the following code in the Data Types & Storage section after the import section in `main.ts`:
 
 ```typescript
 type Price = u128
@@ -247,7 +248,7 @@ const market = new PersistentUnorderedMap<TokenId, Price>('m')
 
 ### Add Token to Market
 
-We create a private function called `internal_add_to_market` as the main function to add token and its price to the marketplace. The public function `add_to_market` is basically the wrapper for the `internal_add_to_market` that can be called by users to list their token to the market with validation.
+Next, we create a private function called `internal_add_to_market` as the main function to add tokens and their price to the marketplace. The public function `add_to_market` is basically the wrapper for the `internal_add_to_market` that can be called by users to list their token to the market with validation.
 
 ```typescript
 export function add_to_market(token_id: TokenId, price: Price): boolean {
@@ -268,7 +269,7 @@ function internal_add_to_market(token_id: TokenId, price: Price): void {
 }
 ```
 
-Like I mentioned earlier, we'll be adding test after adding new feature for the smart contract. You can add this code at the end of the current unit test. The comment itself is already self-explanatory.
+Like mentioned earlier, we'll be adding unit tests after adding each new feature to the smart contract. You can add this code at the end of the current unit test. The comment itself is already self-explanatory.
 
 ```typescript
 describe('add_to_market', () => {
@@ -297,7 +298,7 @@ describe('add_to_market', () => {
 })
 ```
 
-After creating the market we need to have function fetch the price. We create simple get function `get_market_price` that takes `token_id` and return its price.
+After creating the marketplace, we need to have a function to fetch the token prices. We create a simple get function `get_market_price` that takes `token_id` and return its price.
 
 ```typescript
 export function get_market_price(token_id: TokenId): Price {
@@ -305,7 +306,7 @@ export function get_market_price(token_id: TokenId): Price {
 }
 ```
 
-Again, we need to test whether our function works as expected.
+Again, we need to test our function to make sure it works as expected.
 
 ```typescript
 describe('get_market_price', () => {
@@ -324,7 +325,7 @@ describe('get_market_price', () => {
 
 ### Remove Token from Market
 
-Removing token from market is pretty much like the previous one. We have private `internal_remove_from_market` that delete the token listing from market and public `remove_from_market` that validate the token ownership and whether the token is in the market or not.
+Removing a token from the market is pretty similar to our previous step. We have a private function `internal_remove_from_market` that delete the token listing from the marketplace and a public function `remove_from_market` that validates the token ownership and whether the token is listed on the marketplace or not.
 
 ```typescript
 export function remove_from_market(token_id: TokenId): boolean {
@@ -347,7 +348,7 @@ function internal_remove_from_market(token_id: TokenId): void {
 }
 ```
 
-Here's the test case that we create for market delete functionality.
+Here's the test case that we create for the market delete functionality.
 
 ```typescript
 describe('remove_from_market', () => {
@@ -377,15 +378,15 @@ describe('remove_from_market', () => {
 
 ### Buy Functionality
 
-This is the main function for the marketplace where users can buy the listed NFTs on the marketplace. Buyer can attach some NEAR as the payment and the contract will automatically send the payment to the seller and update the token ownership to the buyer. We also create a simple transaction fee or commission for smart contract developer, in this example we take 5% cut for every sales made via the smart contract.
+This is the main function for the marketplace where users can buy the listed NFTs on the marketplace. Buyers pay with NEAR tokens and the contract will automatically send the payment to the seller and update the token ownership to the buyer. We also create a simple transaction fee or commission for the smart contract developer, in this example we take a 5% cut from every sales made via the smart contract.
 
-First, let's setup a constant for our commission. You can write this constant on top of `main.ts` on Data Types & Storage section.
+First, let's setup a constant for our commission. You can write this constant on top of `main.ts` in the Data Types & Storage section.
 
 ```typescript
 const COMMISSION = 5
 ```
 
-Let start coding the buy function. To retrieve the amount of payment in the smart contract, we can use `context.attachedDeposit`. After that we need to validate the deposit amount and the current NFT price.
+Let start coding the buy function. To retrieve the payment amount in the smart contract, we can use `context.attachedDeposit`. After that, we need to validate the deposit amount and the current NFT price.
 
 ```typescript
 export function buy(token_id: TokenId): TokenId {
@@ -399,15 +400,15 @@ export function buy(token_id: TokenId): TokenId {
 }
 ```
 
-We can transfer the payment to the account by using `ContractPromiseBatch`. We will be using promise batch `ContractPromiseBatch.create(accountId).transfer(amount)`. The first promise `.create` is to create the receiver account and followed by `.transfer` to transfer the payment amount to the receiver account.
+We can transfer the payment to the account by using `ContractPromiseBatch`. We will be using promise batch `ContractPromiseBatch.create(accountId).transfer(amount)`. The first promise `.create`, is to create the receiver account, followed by `.transfer` to transfer the payment to the receiver account.
 
-First, we need to import the `ContractPromiseBatch` by updating the top of `main.ts`:
+First, we need to import the `ContractPromiseBatch` by updating the top section of `main.ts`:
 
 ```typescript
 import { PersistentMap, storage, context, u128, PersistentUnorderedMap, ContractPromiseBatch } from 'near-sdk-as'
 ```
 
-We also need to update our buy function to automatically transfer the deposited amount to the receiver and smart contract (transaction fee). 
+We also need to update our buy function to automatically transfer the deposited amount to the receiver and to the smart contract (transaction fee). 
 
 ```typescript
 export function buy(token_id: TokenId): TokenId {
@@ -434,7 +435,7 @@ export function buy(token_id: TokenId): TokenId {
 }
 ```
 
-After the payments have been made, we need to remove the token from market and update the ownership of the token to the buyer.
+After the payments have been made, we need to remove the token from the marketplace and update the ownership of the token to the buyer.
 
 ```typescript
 
@@ -470,7 +471,7 @@ export function buy(token_id: TokenId): TokenId {
 }
 ```
 
-As you can see, we call the private `internal_remove_from_market` function to remove the token from market without any validation.
+As you can see, we call the private `internal_remove_from_market` function to remove the token from the marketplace without any validation.
 
 We can now test our `buy` function using the unit test below by updating our `main.unit.spec.ts`:
 
@@ -496,9 +497,9 @@ describe('buy', () => {
 
 ### Get all the token from marketplace
 
-First we need to create struct `TokenDetail` and add decorator `nearBindgen` for serialize/deserialize the struct in the NEAR runtime, think of it as the required syntax for every struct to run on NEAR protocol. 
+First we need to create the struct `TokenDetail` and add the decorator `nearBindgen` to serialize/deserialize the struct in the NEAR runtime. Think of it as the required syntax for every struct to run on the NEAR protocol. 
 
-The function will return list of `TokenDetail` via view function `get_market`. We use `.entries` from `PersistentUnorderedMap` that takes start and end index from our list, we can use this for pagination later when building the frontend application.
+The function will return a list of `TokenDetail` via view function `get_market`. We use `.entries` from `PersistentUnorderedMap` that takes the first and last index from our list. We can use this for pagination later when building the frontend application.
 
 ```typescript
 @nearBindgen
@@ -573,11 +574,11 @@ yarn build:as
 
 If you have made any errors, the compiler should give you a detailed explanation. Since you've copied and pasted everything from this tutorial, it's probably just typos. 
 
-You can also see the complete code for this tutorial on branch [feat/marketplace](https://github.com/hdriqi/NFT/tree/feat/marketplace).
+You can also see the complete code for this tutorial on the following branch: [feat/marketplace](https://github.com/hdriqi/NFT/tree/feat/marketplace).
 
 ## Deploying and using the contract
 
-We can use the NEAR CLI to deploy this contract, and to test that it's working. Run this command to deploy the contract you just built:
+We can use the NEAR CLI to deploy this contract and to test that it's working. Run this command to deploy the contract you just built:
 
 ```
 near dev-deploy out/main.wasm
@@ -593,15 +594,15 @@ https://explorer.testnet.near.org/transactions/HiGAnagXLY7TaCzmLRBCSzgDPWjSFifaL
 Done deploying to dev-1610108148519-8579413
 ```
 
-Unlike Ethereum, you need to deploy contract into certain account, using `dev-deploy` will create a test account and deploy the contract into that account at once. The test account looks something like `dev-xxxxxxxxxxx-xxxxx`.
+Unlike Ethereum, you need to deploy the contract into a certain account. Using `dev-deploy` will create a test account and deploy the contract into that account at once. The test account looks something like `dev-xxxxxxxxxxx-xxxxx`.
 
-From the command above we learn that we create an account with ID `dev-1610108148519-8579413` in which we just deployed the smart contract in it. So the smart contract ID is basically the account ID which is `dev-1610108148519-8579413`. You'll have different ID, so remember to replace these contract ID with yours when following the command below. 
+From the command above we learn that we create an account with ID `dev-1610108148519-8579413` in which we just deployed the smart contract in it. So the smart contract ID is basically the account ID which is `dev-1610108148519-8579413`. You'll have a different ID, so remember to replace this contract ID with yours when following the command below. 
 
-## Interact with Testnet Blockchain
+## Interact with the NEAR Testnet
 
-We can use NEAR CLI to interact with the blockchain, there are 2 main commands to `call` and `view`. Call is used to mutate blockchain state and view is only to get data from blockchain. 
+We can use the NEAR CLI to interact with NEAR. There are 2 main commands to `call` and `view`. `call` is used to mutate the state of the blockchain and `view` is used to get data from blockchain. 
 
-First, we need to authenticate few accounts into the NEAR CLI. Go to `https://wallet.testnet.near.org/` and create 2 accounts, you can name it anything you want but in this tutorial we'll refer them as `artist` and `collector`. After that, go back to our terminal and use this command:
+First, we need to authenticate a few accounts into the NEAR CLI. Go to `https://wallet.testnet.near.org/` and create 2 accounts, you can name them anything you want but in this tutorial we'll refer them as `artist` and `collector`. After that, go back to your terminal and use this command:
 
 ```bash
 near login
@@ -609,17 +610,17 @@ near login
 
 It will open your default browser and choose one of the account that you've just created to authenticate it on our terminal. Do it twice so that your 2 new accounts are authenticated on the NEAR CLI. If your browser doesn't automatically open, you can just follow the instruction when using `near login`.
 
-To check whether those accounts already authenticated on our computer, we can use this command:
+To check whether those accounts are already authenticated on your computer, you can use this command:
 
 ```bash
 ls ~/.near-credentials/default/
 ```
 
-If you saw at least 2 files with `[account_id].json` similar to the one that you've created on the browser, then we're good to go. Without further ado, let's try try some function that we already created with these new accounts.
+If you saw at least 2 files with `[account_id].json` similar to the one that you've created on the browser, then you're good to go. Without further ado, let's try try some functions that we already created with these new accounts.
 
-### Mint NFT!
+### Mint an NFT!
 
-We need to use call method to mint new NFT because it will mutate the blockchain state. We will use the function `mint_to` to create mint new NFT and assign its ownership to somebody. You can use the command below:
+We need to use the `call` method to mint a new NFT because it will mutate the blockchain state. We will use the function `mint_to` to mint a new NFT and assign its ownership to somebody. You can use the command below:
 
 ```bash
 near call --accountId [ARTIST_ID] dev-1610108148519-8579413 mint_to '{"owner_id": "[ARTIST_ID]"}'
@@ -647,11 +648,11 @@ near view --accountId [ARTIST-ID] dev-1610108148519-8579413 get_market_price '{"
 
 It should returns the price that we've just set previously using `add_to_market` which is 1 N.
 
-### Buy the NFT
+### Buy an NFT
 
-This time, we'll be using another account beside the artist and let's call it the collector `COLLECTOR_ID`. Collector can buy the listed NFT by calling the function `buy` that require `[TOKEN_ID]` as its parameter. This time we add `--amount` to buy the NFT, it is usually called attachedDeposit and we attach 1 N as it is the listed price needed to buy the NFT.
+This time, we'll be using another account beside 'artist' which we called the collector `COLLECTOR_ID`. 'collector' can buy the listed NFT by calling the function `buy` that requires `[TOKEN_ID]` as its parameter. This time we add `--amount` to buy the NFT, which is usually called attachedDeposit and we attach 1 NEAR as it is the listed price needed to buy the NFT.
 
-Before we buy the NFT, let's just take a note at the current balance of the artist and collector using NEAR CLI command below:
+Before we buy the NFT, let's just take a note at the current balance of the artist and collector accounts using NEAR CLI command below:
 
 ```bash
 near state [ACCOUNT_ID]
@@ -688,6 +689,8 @@ We can call `near state [ACCOUNT_ID]` to check if the payment is already receive
 
 ## Conclusion
 
-Alright, so we have deployed the modified NFT smart contract with Marketplace functionality on the testnet. You can do more experiment by calling other function like `delete_from_market` and so on. You can also connect this contract with javascript sdk `near-api-js` and create the frontend side for your marketplace.
+Congratulations! We have deployed the modified NFT smart contract in AssemblyScript with the Marketplace functionality on the NEAR Testnet. You can now keep experimenting by calling other functions like `delete_from_market` and others. You can also connect this contract with the javascript sdk `near-api-js` and create the frontend application for your marketplace.
 
-Please remember that this code is not intended for production, there are still few other things to consider if you wanted to deploy it on mainnet like disable the transfer method if the token is listed on market and so on.
+Please remember that this code is not intended for production. There are still few other things to consider if you wanted to deploy it on Mainnet like disabling the transfer method if the token is listed on the market, among other things. 
+
+The complete code can be found on Github. 
