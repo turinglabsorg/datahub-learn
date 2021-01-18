@@ -2,11 +2,11 @@
 
 ## Introduction
 
-NFTs are digital items that are unique and have provable ownerships on the blockchain. One of the biggest NFT right now is the Digital Artwork. Projects in Ethereum such as [SuperRare](https://superrare.co) leverage the power of blockchain to create digital artwork that has digital scarcity and true ownership, thus creating a whole new market for artists and collectors in the digital space. 
+NFTs are digital items that are unique and have provable ownerships on the blockchain. One of the biggest NFTs right now is the Digital Artwork. Projects in Ethereum such as [SuperRare](https://superrare.co) leverage the power of blockchain to create digital artwork that has digital scarcity and true ownership, thus creating a whole new market for artists and collectors in the digital space.
 
 In NEAR, one NFT Marketplace that is already available to use is [Paras: Digital Art Card](https://paras.id) where the artwork minting fees are much cheaper than the one on the ethereum, enabling artists to create more artworks without costing them lots of money.
 
-In this tutorial we will be creating simple NFT Marketplace similar with [Paras](https://paras.id) and [SuperRare](https://superrare.co) where Artists can mint their artworks and sell it directly to the Collectors. We will be using [NEP4](https://github.com/near/NEPs/pull/4) NFT standard which is based on [ERC721](https://eips.ethereum.org/EIPS/eip-721).
+In this tutorial we will be creating a simple NFT Marketplace similar to [Paras](https://paras.id) and [SuperRare](https://superrare.co) where artists can mint their artworks and sell them directly to collectors. We will be using [NEP4](https://github.com/near/NEPs/pull/4) NFT standard which is based on [ERC721](https://eips.ethereum.org/EIPS/eip-721).
 
 ### Prerequisites:
 
@@ -14,7 +14,7 @@ This tutorial requires:
 
 - Install Node.js and NPM [(see Tutorial 1)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
 - Install the NEAR CLI [(see Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
-- Completed the first NEAR smart contract tutorial [(see Tutorial 5)](https://github.com/figment-networks/datahub-learn/blob/138770526e63fc79c32a60d61650479886cfad06/network-documentation/near/tutorials/5.-writing-and-deploying-your-first-near-smart-contract.md)
+- Complete the first NEAR smart contract tutorial [(see Tutorial 5)](https://github.com/figment-networks/datahub-learn/blob/138770526e63fc79c32a60d61650479886cfad06/network-documentation/near/tutorials/5.-writing-and-deploying-your-first-near-smart-contract.md)
 
 ## Installing Yarn
 
@@ -63,7 +63,7 @@ Our marketplace will be based on the NEP4 Contract, the first thing we need to d
 
 ### Data Types & Storage
 
-There are many built-in data storage that can be used on NEAR. `PersistentMap` is the one that we're going to use, it is pretty much a `key-value` storage.
+There are many built-in data storages that can be used on NEAR. 
 
 ```typescript
 /**************************/
@@ -92,7 +92,7 @@ const TOTAL_SUPPLY = 'c'
 
 ### Change Methods
 
-These change methods are the one that mutate the blockchain state. The code itself is self-explanatory and pretty similar with `ERC721` standard. One thing to note is the `grant_access` function which allows other account including smart contract to have access to your account (usually used to transfer token on your behalf).
+These change methods are the ones that mutate the blockchain state. The code itself is self-explanatory and pretty similar to the `ERC721` standard. One thing to note is the `grant_access` function which allows other accounts including smart contracts to have access to your account (usually used to transfer tokens on your behalf).
 
 ```typescript
 /******************/
@@ -150,7 +150,7 @@ export function transfer(new_owner_id: string, token_id: TokenId): void {
 
 ### View Methods
 
-View methods are the get functionality. It does not cost any gas fee to call but it cannot mutate the blockchain state.
+View methods are the get functionality. It does not cost any gas fee to call but they cannot mutate the blockchain state.
 
 ```typescript
 /****************/
@@ -182,9 +182,9 @@ export function get_token_owner(token_id: TokenId): string {
 
 ### Minting
 
-Now here's the main function that allow users to mint the NFT. NFT itself is just a simple ID with owner. The metadata such as image, video or audio usually stored off-chain on [IPFS], [Sia] or even centralized file storage such as [AWS S3]. Unlike Ethereum, storing data on NEAR is pretty cheap, you can actually store the whole metadata on chain but it will not be covered in this tutorial, you can try it yourself!
+Now here's the main function that allow users to mint the NFT. The NFT itself is just a simple ID with owner. The metadata such as image, video or audio is usually stored off-chain on [IPFS], [Sia] or even a centralized file storage such as [AWS S3]. Unlike Ethereum, storing data on NEAR is pretty cheap; you can actually store the whole metadata on chain but it will not be covered in this tutorial, you can try it yourself!
 
-We at [Paras] are not storing any metadata on-chain, instead we use IPFS Hash as the Token ID. There are many design that you can experiment when building your NFTs.
+[Paras](https://paras.id) is not storing any metadata on-chain, instead they use an IPFS Hash as the Token ID. There are many designs that you can experiment with when building your NFTs.
 
 ```typescript
 export function mint_to(owner_id: AccountId): u64 {
@@ -213,13 +213,13 @@ export function mint_to(owner_id: AccountId): u64 {
 
 ## Marketplace
 
-We are done with the basic NFTs contract, users can mint their NFTs. We're going for the next step, creating the marketplace where NFT Owner can put up the price and other users that are interested in it can buy it with NEAR coin. We'll be adding unit tests after each function/feature that we're building to make sure it is work as expected before we deploy it on the blockchain.
+We are done with the basic NFT contract; users can mint their NFTs. We're going to focus on the next step, creating the marketplace where the NFT Owner can put up the price and other users that are interested in it can buy it with NEAR coin. We'll be adding unit tests after each function/feature that we build to make sure it works as expected before we deploy it on the blockchain.
 
 ### Unit test
 
-Unit tests can be found on **tests** folder. `As-pect` was used for unit tests in AssemblyScript. You can use `VMContext` to mock some stuff on NEAR runtime for testing purpose like contract caller, attached deposit, etc.
+Unit tests can be found in the **tests** folder. `As-pect` was used for unit tests in AssemblyScript. You can use `VMContext` to mock some stuff on the NEAR runtime for testing functionality like contract caller, attached deposit, etc.
 
-You can try to test it using:
+You can run the tests using:
 
 ```
 yarn test:unit:as
@@ -229,7 +229,7 @@ We will be adding more features one by one to the basic NFT contract from NEP-4 
 
 ### Data Types & Storage
 
-We need to create a new `PersistentUnorderedMap` that store the price for all the token listed by their owner. We use `u128` as the data types for `Price` because NEAR coin is also in `u128`. You can write it on top of the contract. We use `PersistentUnorderedMap` because we wanted to create a `key-value` storage that can also be retrived as a list.
+We need to create a new `PersistentUnorderedMap` that stores the price for all the tokens listed by their owner. We use `u128` as the data types for `Price` because NEAR coin is also in `u128`. You can write it on top of the contract. We use `PersistentUnorderedMap` because we want to create a `key-value` storage that can also be retrieved as a list.
 
 ```typescript
 type Price = u128
