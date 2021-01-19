@@ -676,6 +676,8 @@ We can add our newly minted NFT to the marketplace to see if there are collector
 near call --accountId [ARTIST_ID] dev-1610108148519-8579413 add_to_market '{"token_id": "[TOKEN_ID]", "price": "1000000000000000000000000"}'
 ```
 
+This call function should return true if everything goes well.
+
 We can validate if our NFT is listed on the marketplace as expected using the view function `get_market_price` that takes `token_id` as the parameter.
 
 ```bash
