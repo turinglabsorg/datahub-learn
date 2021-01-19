@@ -164,6 +164,7 @@
   * [Docker Setup for Windows](network-documentation/extra-guides/docker-setup-for-windows.md)
   * [5XX Retry Logic Best Practices](network-documentation/extra-guides/5xx-retry-logic-best-practices/README.md)
     * [5XX Retry Logic Best Practices - Python](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-python.md)
+    * [5XX Retry Logic Best Practices - Ruby](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-ruby.md)
 
 ## 🤔 Other
 
