@@ -16,7 +16,7 @@ Here's a collection of extra guides to support your learning experience. Let's m
 
 ## **5XX Retry Logic Best Practices**
 
-{% page-ref page="5xx-retry-logic-best-practices.md" %}
+{% page-ref page="5xx-retry-logic-best-practices/" %}
 
 
 
