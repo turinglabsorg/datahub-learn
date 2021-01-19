@@ -8,7 +8,9 @@ description: Review best practices to deal with 5XX errors
 
 Since DataHub is a proxy that passes through errors from full node software, our users will need to adopt defensive strategies for interacting with the API.  
   
-We are making it easy for our users to do the right thing and providing examples of pseudo-code to copy/paste.  
+We are making it easy for our users to do the right thing and providing examples of pseudo-code to copy/paste.
+
+  
 For Example:
 
 ```ruby
