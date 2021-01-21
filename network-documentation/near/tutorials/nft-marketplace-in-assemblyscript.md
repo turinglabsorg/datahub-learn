@@ -216,9 +216,9 @@ export function mint_to(owner_id: AccountId): u64 {
 
 We are done with the basic NFT contract; users can now mint their NFTs. In the next step, we will be creating the marketplace where the NFT owner can list NFTs, indicate their price, and make them purchasable by any user on NEAR. We'll be adding unit tests after each function/feature that we build to make sure it works as expected before we deploy it to NEAR.
 
-### Unit test
+### Unit Tests
 
-Unit tests can be found in the **tests** folder. `As-pect` was used for unit tests in AssemblyScript. You can use `VMContext` to mock various items on the NEAR runtime for testing functionality like contract caller, attached deposit, etc.
+Unit tests can be found in the **tests** folder. Package `as-pect` was used for unit tests in AssemblyScript. You can use `VMContext` to mock various items on the NEAR runtime for testing functionality like contract caller, attached deposit, etc.
 
 You can run the tests using:
 
@@ -244,7 +244,7 @@ import {
 } from 'near-sdk-as'
 ```
 
-Then we can use the imported `PersistentUnorderedMap` to be used as the data structure for our market. Write the following code in the `DATA TYPES AND STORAGE` section after the import section in `main.ts`:
+Then we can use the imported `PersistentUnorderedMap` as the data structure for our market. Write the following code in the `DATA TYPES AND STORAGE` section after the import section in `main.ts`:
 
 ```typescript
 type Price = u128
@@ -277,7 +277,7 @@ function internal_add_to_market(token_id: TokenId, price: Price): void {
 }
 ```
 
-Like I mentioned earlier, we'll be adding a test after adding a new feature for the smart contract. First let's update the import statement at the top of the file.
+Like I mentioned earlier, we'll be adding a test after adding a new feature for the smart contract. First let's update the import statement at the top of the file (`__tests__/main.unit.spec.ts`).
 
 ```typescript
 import { u128, VMContext } from 'near-sdk-as'
@@ -410,7 +410,7 @@ First, let's setup a constant for our commission. You can write this constant at
 const COMMISSION = 5
 ```
 
-Let start coding the buy function. To retrieve the amount of payment in the smart contract, we can use `context.attachedDeposit`. After that we need to validate the deposit amount and the current NFT price. Add the following to `NON-SPEC METHODS`:
+Let's start coding the buy function. To retrieve the amount of payment in the smart contract, we can use `context.attachedDeposit`. After that we need to validate the deposit amount and the current NFT price. Add the following to `NON-SPEC METHODS`:
 
 ```typescript
 export function buy(token_id: TokenId): TokenId {
@@ -531,7 +531,7 @@ describe('buy', () => {
 })
 ```
 
-### Get all the tokens from the marketplace
+### Fetch Marketplace Tokens
 
 First we need to create the struct `TokenDetail` and add the decorator `nearBindgen` to serialize/deserialize the struct in the NEAR runtime (think of it as the required syntax for every struct to run on the NEAR protocol).
 
@@ -585,7 +585,7 @@ describe('get_market', () => {
 })
 ```
 
-### Build the contract
+### Build the Contract
 
 Before we build the contract, let's test the newly added code and see if everything goes well.
 
@@ -612,7 +612,7 @@ If you see any errors, the compiler should give you a detailed explanation. Sinc
 
 You can also see the complete code for this tutorial on the following branch: [feat/marketplace](https://github.com/hdriqi/NFT/tree/feat/marketplace).
 
-## Deploying and using the contract
+## Deploying and Using the Contract
 
 We can use the NEAR CLI to deploy this contract and to test that it's working. Run this command to deploy the contract you just built:
 
@@ -632,7 +632,7 @@ Done deploying to dev-1610108148519-8579413
 
 Unlike Ethereum, you need to deploy a contract into a certain account. Using `dev-deploy` will create a test account and deploy the contract into that account at once. The test account looks something like `dev-xxxxxxxxxxx-xxxxx`.
 
-From the command above we learn that we created an account with the ID `dev-1610108148519-8579413` into which we just deployed the smart contract. So the smart contract ID is basically the account ID which is `dev-1610108148519-8579413`. You'll have a different ID, so remember to replace these contract IDs with yours when following the commands below.
+From the command above we learn that we created an account with the ID `dev-1610108148519-8579413` into which we just deployed the smart contract. The smart contract ID is basically the account ID which is `dev-1610108148519-8579413`. You'll have a different ID, so remember to replace these contract IDs with yours when following the commands below.
 
 ## Interact with the NEAR Testnet
 
@@ -673,7 +673,7 @@ Make sure to change `[ARTIST-ID]` to one of the accounts that you created earlie
 We can add our newly minted NFT to the marketplace to see if there are collectors that are interested in adding it into their collections. We can use the function `add_to_market` to do this which takes `token_id` and `price` as parameters. The price must be in yoctoNEAR (10^24), in this case we sell our NFT for 1 N -> 1000000000000000000000000 yoctoNEAR. Make sure to change the parameters `[TOKEN_ID]` into any NFT ID that you own/mint.
 
 ```bash
-near call --accountId [ARTIST_ID] dev-1610108148519-8579413 add_to_market '{"token_id": "[TOKEN_ID]", "price": "1000000000000000000000000"}'
+near call --accountId [ARTIST_ID] [DEV_ID] add_to_market '{"token_id": "[TOKEN_ID]", "price": "1000000000000000000000000"}'
 ```
 
 This call function should return true if everything goes well.
@@ -681,7 +681,7 @@ This call function should return true if everything goes well.
 We can validate if our NFT is listed on the marketplace as expected using the view function `get_market_price` that takes `token_id` as the parameter.
 
 ```bash
-near view --accountId [ARTIST-ID] dev-1610108148519-8579413 get_market_price '{"token_id": "[TOKEN_ID]"}'
+near view --accountId [ARTIST-ID] [DEV_ID] get_market_price '{"token_id": "[TOKEN_ID]"}'
 ```
 
 It should return the price that we've just set previously using `add_to_market` which is 1 N.
@@ -698,7 +698,7 @@ near state [ACCOUNT_ID]
 
 You can replace the `[ACCOUNT_ID]` with `[ARTIST_ID]` or `[COLLECTOR_ID]` and it will return something like this:
 
-```
+```json
 {
   amount: '88126613751512027823390000',
   locked: '0',
