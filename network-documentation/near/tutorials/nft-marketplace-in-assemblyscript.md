@@ -21,7 +21,7 @@ This tutorial requires:
 
 If you haven't already, we need to install the `yarn` package manager. The example code we're working with uses `yarn` as its build tool. Run this command to install `yarn`:
 
-```
+```bash
 npm i -g yarn
 ```
 
@@ -31,7 +31,7 @@ If that worked, you're ready to develop smart contracts in AssemblyScript and Ru
 
 In this tutorial we'll use the forked NEAR's NFT example code on Github. On Unix, run these commands in the `bash` shell to clone that repo and install its requirements:
 
-```
+```bash
 git clone https://github.com/hdriqi/NFT
 cd NFT
 yarn install
@@ -43,13 +43,13 @@ This repo contains NFT examples in both AssemblyScript and Rust, plus support fi
 
 We can also run all of the included unit tests with this command:
 
-```
+```bash
 yarn test:unit:as
 ```
 
 The unit test output is messy, but at the end you should see a summary of results.
 
-```
+```bash
 [Result]: ✔ PASS
 [Files]: 1 total
 [Groups]: 8 count, 8 pass
@@ -222,7 +222,7 @@ Unit tests can be found in the **tests** folder. Package `as-pect` was used for 
 
 You can run the tests using:
 
-```
+```bash
 yarn test:unit:as
 ```
 
@@ -256,7 +256,7 @@ const market = new PersistentUnorderedMap<TokenId, Price>('m')
 
 Next, we create a private function called `internal_add_to_market` as the main function to add tokens and their price to the marketplace. The public function `add_to_market` is basically the wrapper for the `internal_add_to_market` that can be called by users to list their token to the market with validation.
 
-Add the following in the section `NON-SPEC METHODS` at the bottom of the file:
+Add the following in the section `NON-SPEC METHODS` at the bottom of the file `main.ts`:
 
 ```typescript
 export function add_to_market(token_id: TokenId, price: Price): boolean {
@@ -283,7 +283,7 @@ Like I mentioned earlier, we'll be adding a test after adding a new feature for 
 import { u128, VMContext } from 'near-sdk-as'
 ```
 
-You can add the following code at the end of the current unit test. The comment itself is already self-explanatory.
+You can add the following code at the end of the current unit test file `__tests__/main.unit.spec.ts`. The comment itself is already self-explanatory.
 
 ```typescript
 describe('add_to_market', () => {
@@ -320,7 +320,7 @@ export function get_market_price(token_id: TokenId): Price {
 }
 ```
 
-Again, we need to test our function to make sure it works as expected.
+Again, we need to create unit test our function to make sure it works as expected.
 
 ```typescript
 describe('get_market_price', () => {
@@ -331,15 +331,36 @@ describe('get_market_price', () => {
 		// set price to be 1 NEAR
 		const price = u128.from('1000000000000000000000000')
 		nonSpec.add_to_market(tokenId, price)
-		// get the first 5 NFTs listed on the market
-		expect(nonSpec.get_market_price(tokenId)).toHaveLength(1)
+		// get the market price of tokenId
+		expect(nonSpec.get_market_price(tokenId)).toBe(price)
 	})
 })
 ```
 
+Now let's run the tests using:
+
+```bash
+yarn test:unit:as
+```
+
+It should return something like this:
+
+```bash
+...
+[Describe]: add_to_market
+
+ [Success]: ✔ should add nft to market and return true
+ [Success]: ✔ should throw error if called by non owner
+
+[Describe]: get_market_price
+
+ Success]: ✔ return market price for a token
+...
+```
+
 ### Remove Token from Market
 
-The code for removing a token from the market is pretty similar to adding one. We create a private `internal_remove_from_market` that deletes the token listing from the market and a public `remove_from_market` that validates the token ownership and whether the token is in the market or not:
+The code for removing a token from the market is pretty similar to adding one. We create a private `internal_remove_from_market` that deletes the token listing from the market and a public `remove_from_market` that validates the token ownership and whether the token is in the market or not. Let's update our `main.ts` and add the following code at the end of the file.
 
 ```typescript
 export function remove_from_market(token_id: TokenId): boolean {
@@ -372,7 +393,7 @@ We check if the token exists in the market before attempting to remove it. If th
 export const ERROR_TOKEN_NOT_IN_MARKET = 'Token is not available in market.'
 ```
 
-Here's the test case that we create for `remove_from_market`:
+Here's the test case that we create for `remove_from_market`, you can put it at the end of the test file `__tests__/main.unit.spec.ts`:
 
 ```typescript
 describe('remove_from_market', () => {
@@ -400,6 +421,23 @@ describe('remove_from_market', () => {
 })
 ```
 
+Now let's run the tests using:
+
+```bash
+yarn test:unit:as
+```
+
+It should return something like this:
+
+```bash
+...
+[Describe]: remove_from_market
+
+ [Success]: ✔ should remove nft from market and return true
+ [Success]: ✔ should throw error for nft available in market
+...
+```
+
 ### Buy Functionality
 
 This is the main function for the marketplace where users can buy the listed NFTs on the marketplace. Buyers can attach some NEAR as payment and the contract will automatically send the payment to the seller and update the token ownership to the buyer. We'll also create a simple transaction fee or commission for the smart contract developer, in this example we'll take a 5% cut for every sales made via the smart contract.
@@ -410,7 +448,7 @@ First, let's setup a constant for our commission. You can write this constant at
 const COMMISSION = 5
 ```
 
-Let's start coding the buy function. To retrieve the amount of payment in the smart contract, we can use `context.attachedDeposit`. After that we need to validate the deposit amount and the current NFT price. Add the following to `NON-SPEC METHODS`:
+Let's start coding the buy function. To retrieve the amount of payment in the smart contract, we can use `context.attachedDeposit`. After that we need to validate the deposit amount and the current NFT price. Add the following to `NON-SPEC METHODS` in `main.ts`:
 
 ```typescript
 export function buy(token_id: TokenId): TokenId {
@@ -424,7 +462,7 @@ export function buy(token_id: TokenId): TokenId {
 }
 ```
 
-If the deposit amount and the current NFT price are not equal, we return the error `ERROR_DEPOSIT_NOT_MATCH`. Let's add this to `ERROR MESSAGES`:
+If the deposit amount and the current NFT price are not equal, we return the error `ERROR_DEPOSIT_NOT_MATCH`. Let's add this to `ERROR MESSAGES` section at the top of `main.ts`:
 
 ```typescript
 export const ERROR_DEPOSIT_NOT_MATCH = 'Deposit does not match the market price'
@@ -445,7 +483,7 @@ import {
 } from 'near-sdk-as'
 ```
 
-We also need to update our buy function to automatically transfer the deposited amount to the receiver and to the smart contract (transaction fee).
+We also need to update our buy function to automatically transfer the deposited amount to the receiver and to the smart contract (transaction fee). Update the buy function in `main.ts` with the following code:
 
 ```typescript
 export function buy(token_id: TokenId): TokenId {
@@ -472,7 +510,7 @@ export function buy(token_id: TokenId): TokenId {
 }
 ```
 
-After the payments have been made, we need to remove the token from the marketplace and update the ownership of the token to the buyer.
+After the payments have been made, we need to remove the token from the marketplace and update the ownership of the token to the buyer. Let's update our buy function again in `main.ts` with the code below:
 
 ```typescript
 export function buy(token_id: TokenId): TokenId {
@@ -509,7 +547,7 @@ export function buy(token_id: TokenId): TokenId {
 
 As you can see, we call the private `internal_remove_from_market` function to remove the token from the marketplace without any validation.
 
-We can now test our `buy` function using the unit test below by updating our `main.unit.spec.ts`:
+We can now test our `buy` function using the unit test below by updating at the end of our `main.unit.spec.ts`:
 
 ```typescript
 describe('buy', () => {
@@ -531,11 +569,29 @@ describe('buy', () => {
 })
 ```
 
+Now let's run the tests using:
+
+```bash
+yarn test:unit:as
+```
+
+It should return something like this:
+
+```bash
+...
+[Describe]: buy
+
+ [Success]: ✔ transfer token and remove it from market
+...
+```
+
 ### Fetch Marketplace Tokens
 
 First we need to create the struct `TokenDetail` and add the decorator `nearBindgen` to serialize/deserialize the struct in the NEAR runtime (think of it as the required syntax for every struct to run on the NEAR protocol).
 
 We will create function `get_market` that will return a list of `TokenDetail` that contains the `tokenId` and its `price`. For the implementation, we use `.entries` from `PersistentUnorderedMap` that takes the start and end indexes from our list (we can use this for pagination later when building the frontend application).
+
+Add the following code at the end of `main.ts`:
 
 ```typescript
 @nearBindgen
@@ -561,7 +617,7 @@ export function get_market(start: i32, end: i32): TokenDetail[] {
 }
 ```
 
-Let's write the test and see if it works as expected. We will mint 3 new NFTs and add all of them to the market then expect to see 3 listed NFTs.
+Let's write the test and see if it works as expected. We will mint 3 new NFTs and add all of them to the market then expect to see 3 listed NFTs. Open our `main.unit.spec.ts` file and add the following code at the end of the file.
 
 ```typescript
 describe('get_market', () => {
@@ -585,11 +641,27 @@ describe('get_market', () => {
 })
 ```
 
+Now let's run the tests using:
+
+```bash
+yarn test:unit:as
+```
+
+It should return something like this:
+
+```bash
+...
+[Describe]: get_market
+
+ [Success]: ✔ return market price for a token
+...
+```
+
 ### Build the Contract
 
 Before we build the contract, let's test the newly added code and see if everything goes well.
 
-```
+```bash
 yarn test:unit:as
 ```
 
@@ -604,25 +676,25 @@ If it returns something like this then we're good to go. If not, make sure you d
 
 To build our contract into WebAssembly, we simply use the command below:
 
-```
+```bash
 yarn build:as
 ```
 
 If you see any errors, the compiler should give you a detailed explanation. Since you've copied and pasted everything from this tutorial, it's probably just typos.
 
-You can also see the complete code for this tutorial on the following branch: [feat/marketplace](https://github.com/hdriqi/NFT/tree/feat/marketplace).
+You can also see the complete code for this tutorial on the following repo: [feat/marketplace](https://github.com/figment-networks/tutorials).
 
 ## Deploying and Using the Contract
 
 We can use the NEAR CLI to deploy this contract and to test that it's working. Run this command to deploy the contract you just built:
 
-```
+```bash
 near dev-deploy out/main.wasm
 ```
 
 The output will show details of the deployment transaction, and the ID of the test NEAR account that the CLI auto-generated for you. It should look something like this:
 
-```
+```bash
 Starting deployment. Account id: dev-1610108148519-8579413, node: https://rpc.testnet.near.org, helper: https://helper.testnet.near.org, file: out/main.wasm
 Transaction Id HiGAnagXLY7TaCzmLRBCSzgDPWjSFifaLTQsfARmj1Qy
 To see the transaction in the transaction explorer, please open this url in your browser
@@ -644,15 +716,33 @@ First, we need to authenticate a few accounts into the NEAR CLI. Go to `https://
 near login
 ```
 
-It will open your default browser. Choose one of the accounts that you've just created to authenticate in our terminal. Do this twice so that your 2 new accounts are authenticated on the NEAR CLI. If your browser doesn't automatically open, you can just follow the instructions when using `near login`.
+It will return something like this and open your default browser. If your browser doesn't automatically open, you can just follow the instructions.
 
-To check whether those accounts are authenticated on our computer, we can use this command:
+```bash
+Please authorize NEAR CLI on at least one of your accounts.
+
+If your browser doesnt automatically open, please visit this URL                                                                   https://wallet.testnet.near.org/login/?title=NEAR+CLI&public_key=ed25519%3AAZCY2SeK6FQe6DFWfNjgxnAfF9TprTirwdduiksLEgBa&success_url=http%3A%2F%2F127.0.0.1%3A5000                                                                                                       Please authorize at least one account at the URL above.
+```
+
+Choose one of the accounts that you've just created to authenticate in our terminal. 
+
+![image](https://user-images.githubusercontent.com/9144402/105279194-a5a4bd80-5bd9-11eb-991f-ddd6928eb255.png)
+
+Click allow and follow the confirmation page by entering your account id. Just type in your selected account id (in this example we need to type `paras.testnet`)
+
+![image](https://user-images.githubusercontent.com/9144402/105279309-dc7ad380-5bd9-11eb-8266-3ce21d043e7e.png)
+
+If everything goes well, you will redirect to this page.
+
+![image](https://user-images.githubusercontent.com/9144402/105279415-11872600-5bda-11eb-8dad-7e219fc2bea5.png)
+
+Do this twice so that your 2 new accounts are authenticated on the NEAR CLI. We can check whether those accounts are authenticated on our computer with this command:
 
 ```bash
 ls ~/.near-credentials/default/
 ```
 
-If you see at least 2 files with `[account_id].json` similar to the one that you created in the browser, then we're good to go. Without further ado, let's try some functions that we created previously with these new accounts.
+If you see at least 2 files with `[account_id].json`, then we're good to go. Without further ado, let's try some functions that we created previously with these new accounts.
 
 ### Mint an NFT!
 
@@ -700,14 +790,14 @@ You can replace the `[ACCOUNT_ID]` with `[ARTIST_ID]` or `[COLLECTOR_ID]` and it
 
 ```json
 {
-  amount: '88126613751512027823390000',
-  locked: '0',
-  code_hash: '11111111111111111111111111111111',
-  storage_usage: 2844,
-  storage_paid_at: 0,
-  block_height: 32018936,
-  block_hash: 'Ffc1kw56xpCV1fPJVHNEtfbDbfPF4wkhQNbvbUbXpH5M',
-  formattedAmount: '88.12661375151202782339'
+	"amount": "88126613751512027823390000",
+	"locked": "0",
+	"code_hash": "11111111111111111111111111111111",
+	"storage_usage": 2844,
+	"storage_paid_at": 0,
+	"block_height": 32018936,
+	"block_hash": "Ffc1kw56xpCV1fPJVHNEtfbDbfPF4wkhQNbvbUbXpH5M",
+	"formattedAmount": "88.12661375151202782339"
 }
 ```
 
