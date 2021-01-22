@@ -16,6 +16,8 @@ Last but not least, if you are looking for guidelines or simply some inspiration
 
 Be sure to check out the [**official Secret documentation**](https://build.scrt.network/) ****and if you need tokens to build on testnet, you can check out the [**link here**](https://faucet.secrettestnet.io/). 
 
+We also invite you to join the Secret community on their [Discord](http://chat.scrt.network) channel and on the [Secret Forum](http://forum.scrt.network) to go deeper into Secret development.  
+
 🚀 Let's start building the decentralized web 🚀
 
 {% page-ref page="secret-101.md" %}
