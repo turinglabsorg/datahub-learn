@@ -45,11 +45,11 @@ wasn't built in a day. At a minimum, NEP-141 will be dependent on 2 future stand
 1. account registration
 2. contract metadata
 
-In addition, standards need to be defined to support token burning and minting. That falls outside the scope of this discussion.
-The overall standard design strategy is to use a divide and conquer approach. Instead of designing a single huge standard
-that covers all use cases and edge cases, the strategy is to divide the standard into multiple smaller and focused APIs. 
-The approach is also based on separation of concerns. This will enable token functionality and tooling to be rolled out 
-incrementally in phases.
+Additional standards and extension willalso need to be defined to support token burning and minting, which is outside the 
+scope of this discussion. The overall standard design strategy is to use a divide and conquer approach. Instead of 
+designing a single huge standard that covers all use cases and edge cases, the strategy is to divide the standard into 
+multiple smaller and focused APIs. The approach is also based on separation of concerns. This will enable token 
+functionality and tooling to be rolled out incrementally in phases.
 
 It probably is more obvious why standardizing contract metadata is needed:
 - Standard metadata makes it simpler and smoother for wallet and application integration
