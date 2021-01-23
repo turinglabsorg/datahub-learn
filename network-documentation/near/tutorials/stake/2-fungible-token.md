@@ -1,13 +1,14 @@
 # Show Me the Money: The New and Improved Fungible Token Standard (NEP-141) Has Arrived
 
 ## _"Money makes the world go round."_
-The simplest way to explain fungible tokens is money. If you know money then you already know fungible tokens. NEAR is an
-example of a fungible token, i.e., a crypto**currency**. How does money make the world go round? The answer is all around
-you. Money drives almost everything. Money motivates people to excel. Money provides incentive and drives people to excel. 
-Money is needed to live and prosper. Most people (at least here in the USA) take money for granted. However, if you take 
-a step back, you will realize the importance of money and that it truly makes the world go round. When money is flowing
-the markets and economy are healthy. Do you recall what happened to the global economy when money stop flowing and the capital
-markets froze during the **2008** financial crisis and meltdown?
+The simplest way to explain fungible tokens is money. If you know money then you already know fungible tokens, and thus
+the crucial role that fungible tokens play as money. NEAR tokens are an example of fungible tokens, i.e., a crypto**currency**. 
+How does money make the world go round? The answer and proof is all around you. Money drives almost everything. 
+Money motivates people to excel. Money provides incentive and drives people to excel. Money is needed to live and prosper. 
+Most people (at least here in the USA) take money for granted. However, if you take a step back, you will realize the 
+importance of money and that it truly makes the world go round. When money is flowing the markets and economy are healthy. 
+Do you recall what happened to the global economy when money stop flowing and the capital markets froze during the 
+**2008** financial crisis and meltdown?
 
 ... and in **2009** Bitcoin entered the scene and changed the world. Bitcoin is the first successful proof of concept for 
 decentralized money, i.e., cryptocurrency. It was a technological breakthrough for money. Bitcoin has proven to be a fantastic 
