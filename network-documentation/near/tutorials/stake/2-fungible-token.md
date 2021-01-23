@@ -168,7 +168,7 @@ Transfer tokens to a contract with a callback to handle refunds and resolve the 
 - transfers positive `amount` of tokens from the function call's predecessor account (sender) to `receiver_id`account. 
   Then calls `ft_on_transfer` method on `receiver_id` contract and attaches a callback to resolve this transfer.
 - `ft_on_transfer` method  must return the amount of tokens unused by the receiver contract. The unused tokens must be 
-  refunded back to the sender account by the resolve transfer callback.
+  refunded back to the sender account by the `ft_resolve_transfer` callback.
 
 FT token contract must pass all the remaining unused gas to `ft_on_transfer`
 
