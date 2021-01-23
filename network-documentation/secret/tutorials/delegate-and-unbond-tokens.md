@@ -6,15 +6,15 @@ description: Learn how to delegate and unbond tokens on Secret Network
 
 ## About the Author
 
-This tutorial was created by [Minato Fund](https://github.com/minatofund), an active group to participate in merging blockchain projects as testnet validator node runner and operator. 
+This tutorial was created by [Minato Fund](https://github.com/minatofund), an active group helping merge blockchain projects operating as a validator. 
 
 ## Introduction 
 
-If you have SCRT tokens but do not want to run your own node, delegation is a great option. In this tutorial, we will delegate SCRT tokens to a validator, and unbond the delegation using SecretJS and a [DataHub](https://datahub.figment.io/sign_up?service=secret) node.
+If you are interested in staking SCRT tokens but do not want to run your own node, delegation is a great option. In this tutorial, we will delegate SCRT tokens to a validator, and unbond the delegation using SecretJS and a [DataHub](https://datahub.figment.io/sign_up?service=secret) node.
 
 ### About Delegation:
 
-Delegation involves giving some of your staking power to a specific validator on Secret Network, who will then give you a share of their fees and rewards. As a delegator, you essentially get the same returns as a node operator minus their commissions. If there is an on-chain governance vote, a delegator's vote will be the same as their validator's, unless the delegator changes their own vote manually. Since at present there can only be 50 active nodes on the network, delegators play a crucial role in decentralization.
+Delegation involves giving some of your staking power to a specific validator on the Secret Network, who will then give you a share of their fees and rewards. As a delegator, you essentially get the same returns as a node operator minus their commissions. If there is an on-chain governance vote, a delegator's vote will be the same as their validator's, unless the delegator changes their own vote manually. Since there can currently only be 50 active nodes on the network, delegators play a crucial role in decentralization.
 
 ### Prerequisites:
 
@@ -26,7 +26,7 @@ If you have completed the Secret Pathway, you should have already taken care of 
 
 ## Delegate to a Validator
 
-First, you need to decide which validator you would like to delegate. You can go to this URL https://explorer.secrettestnet.io/validators/ to check the active validators. Once you decided, you can start to build the delegation transaction by creating a new file `delegate.js` and add the code below:
+First, you need to decide which validator you would like to delegate to. You can go to this URL https://explorer.secrettestnet.io/validators/ to check the active validators. Once you have selected one, you can start to build the delegation transaction by creating a new file `delegate.js` and adding the code below:
 
 ```JavaScript
 const {
@@ -67,7 +67,7 @@ main().catch((err) => {
 
 ### Define TX message
 
-In the `delegate.js` file under the comment `// 1. Define TX message` add the following code snippet below:
+In the `delegate.js` file under the comment `// 1. Define TX message` add the following code snippet:
 
 ```JavaScript
   const sendMsg = {
@@ -87,7 +87,7 @@ In the `delegate.js` file under the comment `// 1. Define TX message` add the fo
 
 ### Define fees
 
-Under the comment `// 2. Define fees` add the following code snippet below:
+Under the comment `// 2. Define fees` add the following code snippet:
 
 ```JavaScript
   const fee = {
@@ -103,7 +103,7 @@ Under the comment `// 2. Define fees` add the following code snippet below:
 
 ### Sign transaction
 
-Under the comment `// 3. Sign transaction` add the following code snippet below:
+Under the comment `// 3. Sign transaction` add the following code snippet:
 
 ```JavaScript
   const chainId = await client.getChainId()
@@ -123,7 +123,7 @@ Under the comment `// 3. Sign transaction` add the following code snippet below:
 
 ### Broadcast transaction
 
-Under the comment `// 4. Broadcast transaction` add the following code snippet below:
+Under the comment `// 4. Broadcast transaction` add the following code snippet:
 
 ```javascript
   const { transactionHash } = await client.postTx(signedTx)
@@ -132,7 +132,7 @@ Under the comment `// 4. Broadcast transaction` add the following code snippet b
 
 ### Query transaction
 
-Under the comment `// 5. Query transaction` add the following code snippet below:
+Under the comment `// 5. Query transaction` add the following code snippet:
 
 ```javascript
   const query = { id: transactionHash };
@@ -169,7 +169,7 @@ Copy the transaction's `hash` from the output and replace `<TRANSACTION HASH>` i
 
 ## Unbond Tokens
 
-> **WARNING**: There currently is in place a 21 days unbonding rule, during which no rewards are handed out.
+> **WARNING**: There currently is a 21 days unbonding period, during which no rewards are handed out and your tokens are locked.
 
 If for any reason the validator misbehaves, or you just want to unbond a certain amount of tokens, make a copy of `delegate.js` and rename is as `unbond.js`. Then, change the code under the comment `// 1. Define TX message` as following code snippet below:
 
@@ -220,6 +220,6 @@ The unbonding will be automatically completed when the unbonding period has pass
 
 ## Conclusion
 
-Nice, now you learn how to delegate and unbond your tokens by crafting advanced transactions from scratch with SecretJS and DataHub. With this knowledge, you are able to make complex transactions and interactions on Secret Network. More message types can be found in the [Cosmos SDK](https://docs.cosmos.network/master/modules/).
+Congratulations! You now know how to delegate and unbond your tokens by crafting advanced transactions from scratch with SecretJS and DataHub. You will be able to make complex transactions and interactions on the Secret Network. More message types can be found in the [Cosmos SDK](https://docs.cosmos.network/master/modules/).
 
 The complete code can be found on [**Github**](https://github.com/figment-networks/tutorials/blob/main/secret/6_delegations)**.**
