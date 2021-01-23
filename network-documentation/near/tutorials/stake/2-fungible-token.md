@@ -2,13 +2,17 @@
 
 ## _"Money makes the world go round."_
 The simplest way to explain fungible tokens is money. If you know money then you already know fungible tokens. NEAR is an
-example of a fungible token, i.e., a crypto**CURRENCY**. How does money make the world go round? The answer is simple ... 
-because money enables the ease of flow of capital and trade. Flowing capital and trade results in a healthy economy that 
-results in wealth creation and prosperity. The opposite happens when capital flow is hampered. Money drives almost everything. 
+example of a fungible token, i.e., a crypto**currency**. How does money make the world go round? The answer is all around
+you. Money drives almost everything. Money motivates people to excel. Money provides incentive and drives people to excel. 
+Money is needed to live and prosper. Most people (at least here in the USA) take money for granted. However, if you take 
+a step back, you will realize the importance of money and that it truly makes the world go round. When money is flowing
+the markets and economy are healthy. Do you recall what happened to the global economy when money stop flowing and the capital
+markets froze during the **2008** financial crisis and meltdown?
 
-Cryptocurrency is the latest technological breakthrough for money. Bitcoin was the first successful proof of concept for 
-cryptocurrency. Bitcoin is a fantastic store of value, but it simply cannot scale to meet the demands of today's global 
-economy - or local economy for that matter. 
+... and in **2009** Bitcoin entered the scene and changed the world. Bitcoin is the first successful proof of concept for 
+decentralized money, i.e., cryptocurrency. It was a technological breakthrough for money. Bitcoin has proven to be a fantastic 
+secure store of value that puts people in full control of their money (assuming you own secure possession of the private keys). 
+However, it simply cannot scale to meet the demands of today's global economy - or local economy for that matter. 
 
 This is where NEAR can step in and bridge the gap. NEAR shines in terms of speed, scalability, and cost. NEAR's first
 attempt to bootstrap the ecosystem with an FT (**F**ungible **T**oken) standard was [NEP-21](https://nomicon.io/Standards/Tokens/FungibleToken.html).
@@ -18,8 +22,8 @@ token standard. However, after living in the wild for a while, ERC-20 problems w
 - [Critical problems of ERC20 token standard](https://medium.com/@dexaran820/erc20-token-standard-critical-problems-3c10fd48657b)
 
 The bottom line always comes down to "show me the money". The key to NEAR's success will be its ability to attract 
-capital flows into NEAR through tokens. We need to come together as a community to design and build the best token solution 
-and experience on NEAR.
+capital flows into NEAR through tokens. We need to come together as a community to design and build the best money token
+solution and experience on NEAR.
 
 > Hindsight is 20/20
 
@@ -27,28 +31,29 @@ Long story short, NEAR can do much better than ERC-20 / NEP-21. The NEAR communi
 next generation token standards that are needed to make the dream a reality. The first result of that collective effort 
 has produced [Fungible Token Core Standard NEP-141](https://github.com/near/NEPs/discussions/146). Yours truly has been 
 actively involved in the process, and in this tutorial lesson I will do a deep dive into [NEP-141]((https://github.com/near/NEPs/discussions/146))
-and walk you through the new and improved **Fungible Token Core API**. The online discussion had been lengthy, and my 
+and walk you through the new and improved **Fungible Token Core API**. The online discussion is quite lengthy, and my 
 goal here is to sum it all up for you here.
 - **NOTE**: as of this writing, NEP-141 official documentation has not yet been published. I will be sharing with you my 
-  knowledge and understanding of NEP-141 based on the discussions and meetings I have personally been involved in. I invite
-  you to join in on the discussion.
+  knowledge and understanding of NEP-141 based on the discussions and meetings I have personally been involved in. 
 
 # Fungible Token Core Standard (NEP-141)
-NEP-141 defines the "core" standard API that centers around token transfer. It is not the full and final FT solution. 
-It is the core, but at a minimum, NEP-141 will be dependent on 2 future standards to be developed:
+> It takes money to make money
+
+NEP-141 defines the "core" standard API that focuses on token transfer. It is not the full and final FT solution, but Rome
+wasn't built in a day. At a minimum, NEP-141 will be dependent on 2 future standards to be developed:
 1. account registration
 2. contract metadata
 
 In addition, standards need to be defined to support token burning and minting. That falls outside the scope of this discussion.
-The overall standard design strategy was to use a divide and conquer approach. Instead of designing a single huge standard
-that covers all use cases and edge cases, the strategy is to divide the standard into multiple smaller and separate APIs 
-applying separation of concerns design principles. This will enable token functionality and tooling to be rolled out using a
-phased approach.
+The overall standard design strategy is to use a divide and conquer approach. Instead of designing a single huge standard
+that covers all use cases and edge cases, the strategy is to divide the standard into multiple smaller and focused APIs. 
+The approach is also based on separation of concerns. This will enable token functionality and tooling to be rolled out 
+incrementally in phases.
 
-It probably is obvious why standardizing contract metadata is needed:
-- makes it simpler and smoother for wallet and application integration
-- used for presentation
-- used to discover supported extensions and interfaces
+It probably is more obvious why standardizing contract metadata is needed:
+- Standard metadata makes it simpler and smoother for wallet and application integration
+- Standard metadata is used for presentation and build UI
+- Standard metadata can be used to discover supported extensions and interfaces on contracts
   
 What is less obvious and what I will dive a little deeper into is how account registration fits into the picture ...
 
@@ -56,7 +61,7 @@ What is less obvious and what I will dive a little deeper into is how account re
 This is a trick question. The key issue that account registration addresses is not specific to FT contracts. Account
 registration is needed to address who will pay for [storage staking](https://docs.near.org/docs/concepts/storage#how-much-does-it-cost). 
 This is an issue that needs to be addressed by any multi-user contract that allocates storage for the user on the blockchain.
-Storage staking costs are the most expensive costs to consider for the contract. If storage costs are not managed properly,
+Storage staking costs are the most expensive costs to consider for the contract on NEAR. If storage costs are not managed properly,
 then they can [break the bank](https://docs.near.org/docs/concepts/storage#the-million-cheap-data-additions-attack) for 
 the contract.
 
@@ -72,7 +77,8 @@ contracts in general, should be designed to pass on storage costs to its user ac
   
 ## Fungible Token Core Standard - The Big Picture
 ![](../../../../.gitbook/assets/oysterpack-near-stake-token-nep-41.png)
-... a picture says a thousand words ... FT core functionality provides:
+
+... a picture says a thousand words ... NEP-141 core elevator pitch is:
 - simple transfers
 - reactive transfer calls to contract recipient with support for refunds
 - account token balance queries
@@ -81,8 +87,12 @@ contracts in general, should be designed to pass on storage costs to its user ac
 ### NOTES
 - the API functions are specified using the lowest common denominator with the goal of being programming language 
 neutral (as much as possible)
-- string type is used as the de facto platform neutral type - but we will be leveraging Rust's type system in the smart
-contract implementation
+- string type is used as the de facto platform neutral type - but we will be leveraging Rust's type system when building 
+  the smart contract implementation
+  - when interacting with the token contract, all amounts and balances MUST be unsigned integers. Internally all values are 
+    stored as a denomination based on the token's base unit used for decimal precision. For example, in NEAR the base unit
+    is yoctoNEAR which translates to a decimal precision of 24 digits, i.e., 1 NEAR = 10^24 yoctoNEAR. Thus, when 1 NEAR 
+    is transferred, the transfer amount is specified as 1_000_000_000_000_000_000_000_000 (`_` added to make it easier to read)
 - all FT API functions are namespaced using a prefix naming convention (`ft_`). On NEAR, smart contracts are deployed
 as [WASM](https://webassembly.org/) binaries. At the WASM low level, all functions are effectively in the global namespace 
 and function names must be unique (function overloading is not permitted). Using function prefix names is a trade-off. 
@@ -90,6 +100,12 @@ It enables global functions to be namespaced using a naming convention to avoid 
 contract may want to implement both FT and NFT token transfer interfaces. 
 - `#[payable]` implies that the function supports NEAR to be attached to the function call. I will explain why this is 
 needed below
+- API functions are tagged as either **_change methods_** or **_view methods_**. 
+  This is from the [NEAR JSON RPC API](https://docs.near.org/docs/roles/developer/contracts/api) perspective.
+  - cross contract calls always require gas regardless whether the function call being invoked is a **_view method_** 
+    or **_change method_**
+  
+Next, we will walk through each function.
   
 ## Fungible Token API
 This API is implemented by the FT contract. It provides the core fungible token functionality. Key aspects to call out are:
@@ -102,16 +118,16 @@ through the wallet confirmation. This prevents some attacks like fishing through
 
 #### Token transfers support optional memo
 > Similarly to bank transfer and payment orders, the memo argument enables to reference the transfer to another event 
-(on-chain or off-chain). It is a schema less, so user can use it to reference an external document, invoice, order ID, 
+(on-chain or off-chain). It is schema less, so user can use it to reference an external document, invoice, order ID, 
 ticket ID, or other on-chain transaction. With memo you can set a transfer reason, often required for compliance.
 This is also useful and very convenient for implementing FATA (Financial Action Task Force) 
 [guidelines](http://www.fatf-gafi.org/media/fatf/documents/recommendations/RBA-VA-VASPs.pdf) (section 7(b)). 
 Especially a requirement for VASPs (Virtual Asset Service Providers) to collect and transfer customer information during 
 transactions. VASP is any entity which provides to a user token custody, management, exchange or investment services.
-With ERC-20 (and NEP-21) it is not possible to do it in atomic way. With memo field, we can provide such reference in 
+With ERC-20 and NEP-21 it is not possible to do it in atomic way. With memo field, we can provide such reference in 
 the same transaction and atomically bind it to the money transfer.
 
-### Functions
+### Function
 ```javascript
 #[payable]
 function ft_transfer(receiver_id: string, amount: string, memo: string|null)
@@ -126,11 +142,12 @@ Enables simple transfer between accounts.
   - the purpose to require 1 yoctoNEAR is to address security concerns explained above
   - attached yoctoNEAR will be credited to the sender account. Most FT contracts will likely deposit the NEAR into the 
     account's storage escrow. However, the NEAR can be deposited using a different approach as long as the NEAR can be 
-    made available to be withdrawn from the contract. Even though it's only 1 yoctoNEAR, it's still not **zero** yoctoNEAR.
+    later made available to be withdrawn from the contract. Even though it's only 1 yoctoNEAR, it's still not **zero** 
+    yoctoNEAR.
 
 Arguments:
 - `receiver_id` - the receiver NEAR account ID
-- `amount` - the amount of tokens to transfer. Amount must be a positive number in decimal string representation.
+- `amount` - the amount of tokens to transfer as an unsigned integer in the token's base unit in string representation
 - `memo` - an optional string field in a free form to associate a memo with this transfer.
 
 Failures:
@@ -139,6 +156,7 @@ Failures:
 - if transfer `amount` is zero
 - if the sender account has insufficient funds to fulfill the transfer request
 
+### Function
 ```javascript
 #[payable]
 function ft_transfer_call(receiver_id: string, amount: string, msg: string, memo: string|null):  Promise
@@ -166,7 +184,7 @@ Malicious or invalid behavior by the receiver contract:
 
 Arguments:
 - `receiver_id` - the receiver contract NEAR account ID. This contract must implement `ft_on_transfer` function interface 
-- `amount` - the amount of tokens to transfer. Must be a positive number in decimal string representation.
+- `amount` - the amount of tokens to transfer as an unsigned integer in the token's base unit in string representation
 - `msg` - a string message that will be passed to `ft_on_transfer` contract call.
 - `memo` - an optional string field in a free form to associate a memo with this transfer.
 
@@ -178,6 +196,7 @@ Failures:
 - if transfer `amount` is zero
 - if the sender account has insufficient funds to fulfill the transfer request
 
+### Function
 ```javascript
 function ft_total_supply(): string
 ```
@@ -185,6 +204,7 @@ _view method_
 
 Returns the total supply of the token in a decimal string representation.
 
+### Function
 ```javascript
 function ft_balance_of(account_id: string): string
 ```
@@ -199,6 +219,7 @@ Arguments:
 ## Transfer Receiver API
 Receiver contracts intended for `ft_transfer_call` flow must implement this interface.
 
+### Function
 ```javascript
 function ft_on_transferl(sender_id: string, amount: string, msg: string):  Promise<string>
 ```
@@ -216,7 +237,8 @@ The method must return the amount of tokens that are not used/accepted by this c
 
 Arguments:
 - `sender_id` - the NEAR account ID that initiated the transfer on the FT contract via `ft_transfer_call`
-- `amount` - the amount of tokens that were transferred to this account.
+- `amount` - the amount of tokens that were transferred to this account as an unsigned integer in the token's base unit 
+             in string representation
 - `msg` - a string message that was passed with this transfer call.
 
 Returns the amount of tokens that are used/accepted by this contract from the transferred amount.
@@ -254,6 +276,7 @@ The transfer resolver callback interface is designed to be private on the FT con
 should only be allowed to be invoked by the FT contract itself. If the `ft_resolve_transfer_call` function is called 
 by any other account, then the function call should panic and fail.
 
+### Function
 ```javascript
 #[private]
 function ft_resolve_transfer_call(sender_id: string, receiver_id: string, amount: string): string
@@ -269,7 +292,8 @@ receiver's account back to the `sender_id` account.
 Arguments:
 - `sender_id` - the NEAR account ID that initiated the `ft_transfer_call`.
 - `receiver_id` - the NEAR account ID of the receiver contract.
-- `amount` - the amount of tokens that were transferred from the sender account to the receiver account.
+- `amount` - the amount of tokens that were transferred from the sender account to the receiver account as an unsigned 
+  integer in the token's base unit in string representation
 
 Promise result data dependency (`unused_amount`):
 - the amount of tokens that were unused by receiver's contract.
