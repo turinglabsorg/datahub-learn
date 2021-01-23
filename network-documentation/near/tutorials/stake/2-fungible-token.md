@@ -7,7 +7,7 @@ How does money make the world go round? The answer and proof is all around you. 
 Money motivates people to excel. Money provides incentive and drives people to excel. Money is needed to live and prosper. 
 Most people (at least here in the USA) take money for granted. However, if you take a step back, you will realize the 
 importance of money and that it truly makes the world go round. When money is flowing the markets and economy are healthy. 
-Do you recall what happened to the global economy when money stop flowing and the capital markets froze during the 
+Do you recall what happened to the global economy when money stopped flowing and the capital markets locked down during the 
 **2008** financial crisis and meltdown?
 
 ... and in **2009** Bitcoin entered the scene and changed the world. Bitcoin is the first successful proof of concept for 
