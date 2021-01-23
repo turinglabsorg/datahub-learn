@@ -4,10 +4,11 @@
 The simplest way to explain fungible tokens is money. If you know money then you already know fungible tokens. NEAR is an
 example of a fungible token, i.e., a crypto**CURRENCY**. How does money make the world go round? The answer is simple ... 
 because money enables the ease of flow of capital and trade. Flowing capital and trade results in a healthy economy that 
-results in wealth creation and prosperity. The opposite happens when capital flow is hampered. Cryptocurrency is the latest 
-technological breakthrough for money. Bitcoin was the first successful proof of concept for cryptocurrency. Bitcoin 
-is a fantastic store of value, but it simply cannot scale to meet the demands of today's global economy - or local economy 
-for that matter. 
+results in wealth creation and prosperity. The opposite happens when capital flow is hampered. Money drives almost everything. 
+
+Cryptocurrency is the latest technological breakthrough for money. Bitcoin was the first successful proof of concept for 
+cryptocurrency. Bitcoin is a fantastic store of value, but it simply cannot scale to meet the demands of today's global 
+economy - or local economy for that matter. 
 
 This is where NEAR can step in and bridge the gap. NEAR shines in terms of speed, scalability, and cost. NEAR's first
 attempt to bootstrap the ecosystem with an FT (**F**ungible **T**oken) standard was [NEP-21](https://nomicon.io/Standards/Tokens/FungibleToken.html).
@@ -16,9 +17,9 @@ token standard. However, after living in the wild for a while, ERC-20 problems w
 - [What's Wrong With ERC-20 Token](https://ihodl.com/analytics/2018-10-04/whats-wrong-erc-20-token/)
 - [Critical problems of ERC20 token standard](https://medium.com/@dexaran820/erc20-token-standard-critical-problems-3c10fd48657b)
 
-The bottom line always comes down to money. The key to NEAR's success will be its ability to attract capital flows into
-NEAR through tokens. We need to come together as a community to design and build the best token solution and experience 
-on NEAR.
+The bottom line always comes down to "show me the money". The key to NEAR's success will be its ability to attract 
+capital flows into NEAR through tokens. We need to come together as a community to design and build the best token solution 
+and experience on NEAR.
 
 > Hindsight is 20/20
 
@@ -26,7 +27,8 @@ Long story short, NEAR can do much better than ERC-20 / NEP-21. The NEAR communi
 next generation token standards that are needed to make the dream a reality. The first result of that collective effort 
 has produced [Fungible Token Core Standard NEP-141](https://github.com/near/NEPs/discussions/146). Yours truly has been 
 actively involved in the process, and in this tutorial lesson I will do a deep dive into [NEP-141]((https://github.com/near/NEPs/discussions/146))
-and walk you through the new API. The discussion had been lengthy, and my goal here is to sum it all up for you here.
+and walk you through the new and improved **Fungible Token Core API**. The online discussion had been lengthy, and my 
+goal here is to sum it all up for you here.
 - **NOTE**: as of this writing, NEP-141 official documentation has not yet been published. I will be sharing with you my 
   knowledge and understanding of NEP-141 based on the discussions and meetings I have personally been involved in. I invite
   you to join in on the discussion.
@@ -40,7 +42,7 @@ It is the core, but at a minimum, NEP-141 will be dependent on 2 future standard
 In addition, standards need to be defined to support token burning and minting. That falls outside the scope of this discussion.
 The overall standard design strategy was to use a divide and conquer approach. Instead of designing a single huge standard
 that covers all use cases and edge cases, the strategy is to divide the standard into multiple smaller and separate APIs 
-following a separation of concerns philosophy. This will enable token functionality and tooling to be rolled out using a
+applying separation of concerns design principles. This will enable token functionality and tooling to be rolled out using a
 phased approach.
 
 It probably is obvious why standardizing contract metadata is needed:
@@ -68,7 +70,7 @@ contracts in general, should be designed to pass on storage costs to its user ac
 **NOTE**: account registration has other benefits, but we can save that for the 
 [account registration standard discussion](https://github.com/near/NEPs/discussions/145)
   
-## What Does the FT Core Standard Support?
+## Fungible Token Core Standard - The Big Picture
 ![](../../../../.gitbook/assets/oysterpack-near-stake-token-nep-41.png)
 ... a picture says a thousand words ... FT core functionality provides:
 - simple transfers
@@ -121,7 +123,7 @@ Enables simple transfer between accounts.
   - the predecessor account is the token sender
 - both accounts must be registered with the contract for transfer to succeed.
 - sender account is required to attach exactly 1 yoctoNEAR to the function call
-  - the purpose to require 1 yoctoNEAR is to address the following security concern explained above
+  - the purpose to require 1 yoctoNEAR is to address security concerns explained above
   - attached yoctoNEAR will be credited to the sender account. Most FT contracts will likely deposit the NEAR into the 
     account's storage escrow. However, the NEAR can be deposited using a different approach as long as the NEAR can be 
     made available to be withdrawn from the contract. Even though it's only 1 yoctoNEAR, it's still not **zero** yoctoNEAR.
@@ -133,7 +135,7 @@ Arguments:
 
 Failures:
 - if the attached deposit does not equal 1 yoctoNEAR
-- if either sender or receiver accounts are not registered
+- if either sender or receiver account is not registered
 - if transfer `amount` is zero
 - if the sender account has insufficient funds to fulfill the transfer request
 
@@ -141,7 +143,149 @@ Failures:
 #[payable]
 function ft_transfer_call(receiver_id: string, amount: string, msg: string, memo: string|null):  Promise
 ```
+_change_method_
 
-## Upcoming ...
-As a reference implementation, I will show you how I implemented NEP-41 for the [STAKE token](https://github.com/oysterpack/oysterpack-near-stake-token).
+Transfer tokens to a contract with a callback to handle refunds and resolve the transfer.
+- transfers positive `amount` of tokens from the function call's predecessor account (sender) to `receiver_id`account. 
+  Then calls `ft_on_transfer` method on `receiver_id` contract and attaches a callback to resolve this transfer.
+- `ft_on_transfer` method  must return the amount of tokens unused by the receiver contract. The unused tokens must be 
+  refunded back to the sender account by the resolve transfer callback.
+
+FT token contract must pass all the remaining unused gas to `ft_on_transfer`
+
+Malicious or invalid behavior by the receiver contract:
+- If the receiver contract promise fails or returns invalid value, then the full transfer amount must be refunded.
+- If the receiver contract overspent the tokens, and the `receiver_id` balance is lower than the required refund amount, 
+  then the remaining balance must be refunded.
+
+- Both accounts must be registered with the contract for transfer to succeed.
+- Sender must attach exactly 1 yoctoNEAR to address security concerns explained above
+  - attached yoctoNEAR will be credited to the sender account. Most FT contracts will likely deposit the NEAR into the
+    account's storage escrow. However, the NEAR can be deposited using a different approach as long as the NEAR can be
+    made available to be withdrawn from the contract. Even though it's only 1 yoctoNEAR, it's still not **zero** yoctoNEAR.
+
+Arguments:
+- `receiver_id` - the receiver contract NEAR account ID. This contract must implement `ft_on_transfer` function interface 
+- `amount` - the amount of tokens to transfer. Must be a positive number in decimal string representation.
+- `msg` - a string message that will be passed to `ft_on_transfer` contract call.
+- `memo` - an optional string field in a free form to associate a memo with this transfer.
+
+Returns a promise to resolve transfer call which will return the unused amount that was refunded.
+
+Failures:
+- if the attached deposit is not exactly 1 yoctoNEAR
+- if either sender or receiver accounts is not registered
+- if transfer `amount` is zero
+- if the sender account has insufficient funds to fulfill the transfer request
+
+```javascript
+function ft_total_supply(): string
+```
+_view method_
+
+Returns the total supply of the token in a decimal string representation.
+
+```javascript
+function ft_balance_of(account_id: string): string
+```
+_view method_
+
+Returns the balance for the given account in a decimal string representation.
+If the account doesn't exist, then returns "0".
+
+Arguments:
+- `account_id` - the NEAR account ID to retrieve the balance for
+
+## Transfer Receiver API
+Receiver contracts intended for `ft_transfer_call` flow must implement this interface.
+
+```javascript
+function ft_on_transferl(sender_id: string, amount: string, msg: string):  Promise<string>
+```
+_change method_
+
+Called by FT contract as part of `ft_transfer_call` chain initiated by the `sender_id`. 
+The specified `amount` of tokens were already transferred to this contract account and ready to be used.
+
+The method must return the amount of tokens that are not used/accepted by this contract from the transferred amount, e.g.:
+- The transferred amount was `500`, the contract completely takes it and must return `0`.
+- The transferred amount was `500`, but this transfer call only needs `450` for the action passed in the `msg` field, 
+  then the method must return `50`.
+- The transferred amount was `500`, but the action in `msg` field has expired and the transfer must be cancelled. 
+  The method must return `500` or panic.
+
+Arguments:
+- `sender_id` - the NEAR account ID that initiated the transfer on the FT contract via `ft_transfer_call`
+- `amount` - the amount of tokens that were transferred to this account.
+- `msg` - a string message that was passed with this transfer call.
+
+Returns the amount of tokens that are used/accepted by this contract from the transferred amount.
+
+#### What purpose does `msg` serve?
+When you call `ft_transfer_call` towards a receiver contract you are effectively attaching a deposit of a fungible token 
+and making a function call on this contract. It's similar to making a function call on a contract and attaching native 
+NEAR, except you attach this particular fungible token.
+
+If we follow this logic, then for a function call you specify the following:
+- predecessor_id
+- receiver_id
+- method_name
+- arguments
+- deposit
+- prepaid_gas 
+  
+Now for a fungible token function call using `ft_transfer_call`, you have the following:
+- predecessor_id - since actual predecessor is token contract, the sender account ID is given using sender_id.
+- receiver_id - the receiver contract
+- **method_name** - there is no way to specify a method name using `ft_transfer_call` API, so it's predefined to `ft_on_transfer`. 
+  But the receiving contract needs to know why transfer was received and which method has to be executed. 
+  It's possible that there is only one action that needs to handle receiving tokens, so method_name can be implied. 
+  But also possible that there are more than one action available, e.g. swap or account_deposit for uniswap contract. 
+  If there are more than one action, then we need to use msg field to specify which action to take.
+- **arguments** - if the receiving contract needs any information or data beyond transfer amount, then msg is useful to include them.
+- deposit - this comes from transfer amount
+- prepaid_gas - all the remaining gas is forwarded to the receiver's call.
+
+In summary, the 2 main use cases for `msg` are the **method_name** and **arguments** that are needed to process the 
+transfer on the receiving side.
+
+## Transfer Resolver Callback API
+The transfer resolver callback interface is designed to be private on the FT contract. This means that the `ft_resolve_transfer_call`
+should only be allowed to be invoked by the FT contract itself. If the `ft_resolve_transfer_call` function is called 
+by any other account, then the function call should panic and fail.
+
+```javascript
+#[private]
+function ft_resolve_transfer_call(sender_id: string, receiver_id: string, amount: string): string
+```
+_change method_
+
+Callback to resolve transfer. It is called after the receiver contract handles the transfer call and returns 
+unused token amount which should be refunded back to the sender
+
+This method must get `unused_amount` from the receiver's promise result and refund the `unused_amount` from the 
+receiver's account back to the `sender_id` account.
+
+Arguments:
+- `sender_id` - the NEAR account ID that initiated the `ft_transfer_call`.
+- `receiver_id` - the NEAR account ID of the receiver contract.
+- `amount` - the amount of tokens that were transferred from the sender account to the receiver account.
+
+Promise result data dependency (`unused_amount`):
+- the amount of tokens that were unused by receiver's contract.
+- Received from `on_ft_transfer` on receiver contract
+- `unused_amount` must be `U128` in range from `0` to `amount`. All other invalid values are considered to be equal 
+  to be the total transfer amount.
+
+Returns amount that was refunded back to the sender.
+
+## It's a wrap, folks ...
+Money makes the world go round because it is the root source of all the functionality in the world. In reality, money is
+one of the crucial elements in human life. Getting money/tokens right on NEAR is crucial for adoption and success. NEP-141
+is a step in the right direction, but the NEAR community has a lot more work ahead. I invite you to join the NEAR community
+and join this journey that can help make the world better and wealthier.
+
+## What's Next ...
+Stay on the lookout for my next tutorial where I will show you how I implemented NEP-41 for the 
+[STAKE token](https://github.com/oysterpack/oysterpack-near-stake-token) contract written in Rust.
   
