@@ -146,12 +146,12 @@ Enables simple transfer between accounts.
     later made available to be withdrawn from the contract. Even though it's only 1 yoctoNEAR, it's still not **zero** 
     yoctoNEAR.
 
-Arguments:
+**Arguments:**
 - `receiver_id` - the receiver NEAR account ID
 - `amount` - the amount of tokens to transfer as an unsigned integer in the token's base unit in string representation
 - `memo` - an optional string field in a free form to associate a memo with this transfer.
 
-Failures:
+**Failures:**
 - if the attached deposit does not equal 1 yoctoNEAR
 - if either sender or receiver account is not registered
 - if transfer `amount` is zero
@@ -182,15 +182,15 @@ How to handle malicious or invalid behavior by the receiver contract:
 - If the receiver contract overspent the tokens, and the `receiver_id` balance is lower than the required refund amount, 
   then the remaining balance must be refunded.
 
-Arguments:
+Returns a promise to resolve transfer call which will return the unused amount that was refunded.
+
+**Arguments:**
 - `receiver_id` - the receiver contract NEAR account ID. This contract must implement `ft_on_transfer` function interface 
 - `amount` - the amount of tokens to transfer as an unsigned integer in the token's base unit in string representation
 - `msg` - a string message that will be passed to `ft_on_transfer` contract call.
 - `memo` - an optional string field in a free form to associate a memo with this transfer.
 
-Returns a promise to resolve transfer call which will return the unused amount that was refunded.
-
-Failures:
+**Failures:**
 - if the attached deposit is not exactly 1 yoctoNEAR
 - if either sender or receiver accounts is not registered
 - if transfer `amount` is zero
@@ -213,7 +213,7 @@ _view method_
 Returns the balance for the given account in a decimal string representation.
 If the account doesn't exist, then returns "0".
 
-Arguments:
+**Arguments:**
 - `account_id` - the NEAR account ID to retrieve the balance for
 
 ## Transfer Receiver API
@@ -235,7 +235,7 @@ The method must return the amount of tokens that are not used/accepted by this c
 - The transferred amount was `500`, but the action in `msg` field has expired and the transfer must be cancelled. 
   The method must return `500` or panic.
 
-Arguments:
+**Arguments:**
 - `sender_id` - the NEAR account ID that initiated the transfer on the FT contract via `ft_transfer_call`
 - `amount` - the amount of tokens that were transferred to this account as an unsigned integer in the token's base unit 
              in string representation
@@ -289,7 +289,7 @@ unused token amount which should be refunded back to the sender
 This method must get `unused_amount` from the receiver's promise result and refund the `unused_amount` from the 
 receiver's account back to the `sender_id` account.
 
-Arguments:
+**Arguments:**
 - `sender_id` - the NEAR account ID that initiated the `ft_transfer_call`.
 - `receiver_id` - the NEAR account ID of the receiver contract.
 - `amount` - the amount of tokens that were transferred from the sender account to the receiver account as an unsigned 
