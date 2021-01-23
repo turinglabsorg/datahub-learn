@@ -172,7 +172,7 @@ Transfer tokens to a contract with a callback to handle refunds and resolve the 
 
 FT token contract must pass all the remaining unused gas to `ft_on_transfer`
 
-Malicious or invalid behavior by the receiver contract:
+How to handle malicious or invalid behavior by the receiver contract:
 - If the receiver contract promise fails or returns invalid value, then the full transfer amount must be refunded.
 - If the receiver contract overspent the tokens, and the `receiver_id` balance is lower than the required refund amount, 
   then the remaining balance must be refunded.
