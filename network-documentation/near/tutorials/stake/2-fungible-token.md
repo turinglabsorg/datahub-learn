@@ -169,6 +169,11 @@ Transfer tokens to a contract with a callback to handle refunds and resolve the 
   Then calls `ft_on_transfer` method on `receiver_id` contract and attaches a callback to resolve this transfer.
 - `ft_on_transfer` method  must return the amount of tokens unused by the receiver contract. The unused tokens must be 
   refunded back to the sender account by the `ft_resolve_transfer` callback.
+- Both accounts must be registered with the contract for transfer to succeed.
+- Sender must attach exactly 1 yoctoNEAR to address security concerns explained above
+  - attached yoctoNEAR will be credited to the sender account. Most FT contracts will likely deposit the NEAR into the
+    account's storage escrow. However, the NEAR can be deposited using a different approach as long as the NEAR can be
+    made available to be withdrawn from the contract. Even though it's only 1 yoctoNEAR, it's still not **zero** yoctoNEAR.
 
 FT token contract must pass all the remaining unused gas to `ft_on_transfer`
 
@@ -176,12 +181,6 @@ How to handle malicious or invalid behavior by the receiver contract:
 - If the receiver contract promise fails or returns invalid value, then the full transfer amount must be refunded.
 - If the receiver contract overspent the tokens, and the `receiver_id` balance is lower than the required refund amount, 
   then the remaining balance must be refunded.
-
-- Both accounts must be registered with the contract for transfer to succeed.
-- Sender must attach exactly 1 yoctoNEAR to address security concerns explained above
-  - attached yoctoNEAR will be credited to the sender account. Most FT contracts will likely deposit the NEAR into the
-    account's storage escrow. However, the NEAR can be deposited using a different approach as long as the NEAR can be
-    made available to be withdrawn from the contract. Even though it's only 1 yoctoNEAR, it's still not **zero** yoctoNEAR.
 
 Arguments:
 - `receiver_id` - the receiver contract NEAR account ID. This contract must implement `ft_on_transfer` function interface 
