@@ -67,7 +67,7 @@ main().catch((err) => {
 
 ### Define TX message
 
-In the `delegate.js` file under the comment `// 1. Define TX message` add the following code snippet:
+Now, you need to define the TX message that allows you to specify delegator address, validator address and the amount of token you want to delegate. In the `delegate.js` file under the comment `// 1. Define TX message` add the following code snippet:
 
 ```JavaScript
   const sendMsg = {
@@ -87,7 +87,7 @@ In the `delegate.js` file under the comment `// 1. Define TX message` add the fo
 
 ### Define fees
 
-Under the comment `// 2. Define fees` add the following code snippet:
+Then, you have to define the fee and gas for this transaction. Under the comment `// 2. Define fees` add the following code snippet:
 
 ```JavaScript
   const fee = {
@@ -103,7 +103,7 @@ Under the comment `// 2. Define fees` add the following code snippet:
 
 ### Sign transaction
 
-Under the comment `// 3. Sign transaction` add the following code snippet:
+In order to authorize the transaction, and prove it is valid, you need to sign transaction with details you defined above. Under the comment `// 3. Sign transaction` add the following code snippet:
 
 ```JavaScript
   const chainId = await client.getChainId()
@@ -123,7 +123,7 @@ Under the comment `// 3. Sign transaction` add the following code snippet:
 
 ### Broadcast transaction
 
-Under the comment `// 4. Broadcast transaction` add the following code snippet:
+Now, you can broadcast your transaction, let others know and process it as well. Under the comment `// 4. Broadcast transaction` add the following code snippet:
 
 ```javascript
   const { transactionHash } = await client.postTx(signedTx)
@@ -132,7 +132,7 @@ Under the comment `// 4. Broadcast transaction` add the following code snippet:
 
 ### Query transaction
 
-Under the comment `// 5. Query transaction` add the following code snippet:
+After your transaction is accepted and processed, you can query the information about your transaction on the Secret Network. Under the comment `// 5. Query transaction` add the following code snippet:
 
 ```javascript
   const query = { id: transactionHash };
