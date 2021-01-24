@@ -128,6 +128,8 @@ transactions. VASP is any entity which provides to a user token custody, managem
 With ERC-20 and NEP-21 it is not possible to do it in atomic way. With memo field, we can provide such reference in 
 the same transaction and atomically bind it to the money transfer.
 
+---
+
 ### Function
 ```javascript
 #[payable]
@@ -156,6 +158,8 @@ Enables simple transfer between accounts.
 - if either sender or receiver account is not registered
 - if transfer `amount` is zero
 - if the sender account has insufficient funds to fulfill the transfer request
+
+---
 
 ### Function
 ```javascript
@@ -195,6 +199,8 @@ Returns a promise to resolve transfer call which will return the unused amount t
 - if either sender or receiver accounts is not registered
 - if transfer `amount` is zero
 - if the sender account has insufficient funds to fulfill the transfer request
+
+---
 
 ### Function
 ```javascript
