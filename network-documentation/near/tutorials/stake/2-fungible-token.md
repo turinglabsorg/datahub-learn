@@ -210,6 +210,8 @@ _view method_
 
 Returns the total supply of the token in a decimal string representation.
 
+---
+
 ### Function
 ```javascript
 function ft_balance_of(account_id: string): string
