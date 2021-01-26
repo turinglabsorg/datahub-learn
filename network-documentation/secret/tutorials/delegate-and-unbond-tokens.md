@@ -67,7 +67,7 @@ main().catch((err) => {
 
 ### Define TX message
 
-Now, you need to define the TX message that allows you to specify delegator address, validator address and the amount of token you want to delegate. In the `delegate.js` file under the comment `// 1. Define TX message` add the following code snippet:
+Now, you need to define the TX message that allows you to specify the delegator address, validator address and the amount of tokens you want to delegate. In the `delegate.js` file under the comment `// 1. Define TX message` add the following code snippet:
 
 ```JavaScript
   const sendMsg = {
@@ -103,7 +103,7 @@ Then, you have to define the fee and gas for this transaction. Under the comment
 
 ### Sign transaction
 
-In order to authorize the transaction, and prove it is valid, you need to sign transaction with details you defined above. Under the comment `// 3. Sign transaction` add the following code snippet:
+In order to authorize the transaction, and prove it is valid, you need to sign the transaction with the details you defined above. Under the comment `// 3. Sign transaction` add the following code snippet:
 
 ```JavaScript
   const chainId = await client.getChainId()
