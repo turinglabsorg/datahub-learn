@@ -1,44 +1,51 @@
 # Show Me the Money: The New and Improved Fungible Token Standard (NEP-141) Has Arrived
 
-## _"Money makes the world go round."_
-The simplest way to explain fungible tokens is money. If you know money then you already know fungible tokens, and thus
-the crucial role that fungible tokens play as money. NEAR tokens are an example of fungible tokens, i.e., a crypto**currency**. 
-How does money make the world go round? The answer and proof is all around you. Money drives almost everything. 
-Money motivates people to excel. Money provides incentive and drives people to excel. Money is needed to live and prosper. 
-Most people (at least here in the USA) take money for granted. However, if you take a step back, you will realize the 
-importance of money and that it truly makes the world go round. When money is flowing the markets and economy are healthy. 
-Do you recall what happened to the global economy when money stopped flowing and the capital markets locked down during the 
-**2008** financial crisis and meltdown?
-
-... and in **2009** Bitcoin entered the scene and changed the world. Bitcoin is the first successful proof of concept for 
+Ever since Bitcoin entered the scene, it has been changing the world. Bitcoin is the first successful proof of concept for 
 decentralized money, i.e., cryptocurrency. It was a technological breakthrough for money. Bitcoin has proven to be a fantastic 
 secure store of value that puts people in full control of their money (assuming you own secure possession of the private keys). 
-However, it simply cannot scale to meet the demands of today's global economy - or local economy for that matter. 
+However, it simply cannot scale to meet the demands of today's global economy - or local economy for that matter. This is
+where NEAR can step in and bridge the gap. NEAR shines in terms of speed, scalability, and cost. 
 
-This is where NEAR can step in and bridge the gap. NEAR shines in terms of speed, scalability, and cost. NEAR's first
-attempt to bootstrap the ecosystem with an FT (**F**ungible **T**oken) standard was [NEP-21](https://nomicon.io/Standards/Tokens/FungibleToken.html).
+## Motivation Behind NEP-141
+
+NEAR's first attempt to bootstrap the ecosystem with an FT (**F**ungible **T**oken) standard was [NEP-21](https://nomicon.io/Standards/Tokens/FungibleToken.html).
 NEP-21 was designed as a port of Ethereum's first attempt [ERC-20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) 
 token standard. However, after living in the wild for a while, ERC-20 problems were exposed:
 - [What's Wrong With ERC-20 Token](https://ihodl.com/analytics/2018-10-04/whats-wrong-erc-20-token/)
 - [Critical problems of ERC20 token standard](https://medium.com/@dexaran820/erc20-token-standard-critical-problems-3c10fd48657b)
 
-The bottom line always comes down to "show me the money". The key to NEAR's success will be its ability to attract 
-capital flows into NEAR through tokens. We need to come together as a community to design and build the best money token
-solution and experience on NEAR.
-
-> Hindsight is 20/20
-
-Long story short, NEAR can do much better than ERC-20 / NEP-21. The NEAR community has been coming together to design the 
-next generation token standards that are needed to make the dream a reality. The first result of that collective effort 
-has produced [Fungible Token Core Standard NEP-141](https://github.com/near/NEPs/discussions/146). Yours truly has been 
+Key to NEAR's success will be its ability to attract capital flows into NEAR through tokens. Starting from a clean 
+state, NEAR has the opportunity to learn from ERC-20 mistakes and build a superior FT solution that provides a better
+developer and user experience that aligns with NEAR's platform and vision. The NEAR community has been coming together to 
+design the next generation token standards that are needed to make the dream a reality. The first result of that collective 
+effort has produced [Fungible Token Core Standard NEP-141](https://github.com/near/NEPs/discussions/146). Yours truly has been 
 actively involved in the process, and in this tutorial lesson I will do a deep dive into [NEP-141]((https://github.com/near/NEPs/discussions/146))
 and walk you through the new and improved **Fungible Token Core API**. The online discussion is quite lengthy, and my 
 goal here is to sum it all up for you here.
 - **NOTE**: as of this writing, NEP-141 official documentation has not yet been published. I will be sharing with you my 
   knowledge and understanding of NEP-141 based on the discussions and meetings I have personally been involved in. 
+  
+## NEP-141 Advantages: Less is More
+Overall, NEP-141 is superior (vs NEP-21) because it is
+- simpler for users
+- simpler for developers
+- much more efficient and cheaper
+
+Transfers are executed with a single function call. There are two transfer mechanisms to choose from. There is a 
+**simple transfer**function targeting user receiver accounts. The simple transfer functionality mirrors NEP-21 simple 
+transfer. The only difference is that NEP-141 introduces support for attaching a memo to the transfer, which will be 
+discussed later on.
+
+Second, there is a **transfer call** function targeting contract receiver accounts. This is where NEP-141 shines over NEP-21.
+The **transfer call** mechanism is superior to NEP-21's (allowance + transfer_from) mechanism because it eliminates allowances.  
+This results in removing UX flaws and optimizes contract storage usage. Because of storage staking costs on NEAR, 
+NEP-21 required the sender to attach enough deposit to cover storage allocated to track allowances. To further complicate 
+matters, storage staking costs differ between contracts based on contract implementation. In addition, this adds overhead 
+and costs to each transfer workflow while providing no value. NEP-141 simplifies and optimizes the UX and workflows to transfer
+tokens to contracts. Furthermore, removing all this complexity, makes it simpler for developers to implement and integrate. 
+The overall mental model is easier to grasp and understand.
 
 # Fungible Token Core Standard (NEP-141)
-> It takes money to make money
 
 NEP-141 defines the "core" standard API that focuses on token transfer. It is not the full and final FT solution, but Rome
 wasn't built in a day. At a minimum, NEP-141 will be dependent on 2 future standards to be developed:
@@ -314,8 +321,8 @@ Returns amount that was refunded back to the sender.
 ## It's a wrap, folks ...
 Money makes the world go round because it is the root source of all the functionality in the world. In reality, money is
 one of the crucial elements in human life. Getting money/tokens right on NEAR is crucial for adoption and success. NEP-141
-is a step in the right direction, but the NEAR community has a lot more work ahead. I invite you to join the NEAR community
-and join this journey that can help make the world better and wealthier.
+is a step in the right direction, but the NEAR community has a lot more work ahead. I invite you to join the Figment and 
+NEAR communities and embark on our common mission to take back the Internet together.
 
 ## What's Next ...
 Stay on the lookout for my next tutorial where I will show you how I implemented NEP-41 for the 
