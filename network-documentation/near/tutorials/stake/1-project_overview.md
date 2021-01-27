@@ -16,8 +16,6 @@ Regarding the last point, I welcome community participation on the [STAKE](https
 open source project.
 
 ## NEAR Technology + Economics = Game Changer
-> It's the economy, stupid ...
-
 When I first discovered NEAR, what caught my attention was NEAR's economic model. It is well thought out and designed to
 provide economic incentive and value. Coupling that with NEAR's sharded scalability, speed, and low predictable 
 operational cost provides a platform that can deliver real world business and economic value. NEAR has the potential and 
@@ -50,7 +48,7 @@ The STAKE token business model leverages the following from NEAR:
   storage fee to cover storage staking costs. On NEAR long term storage is not free. The account storage fee is escrowed
   and will be refunded back to the user when the account unregisters.
 - The contract is linked to a single staking pool contract, i.e., STAKE token contract is deployed per staking pool contract.
-- The contract will implement the new fungible token standard defined by [NEP-141](https://github.com/near/NEPs/issues/141)
+- The contract will implement the new fungible token standard defined by [NEP-141](https://github.com/near/NEPs/discussions/146)
 - The contract has concept of contract ownership.
 - The contract supports an operator role that is managed by the contract owner.
 - The contract supports distributing contract rewards and earnings through the staking mechanism.
@@ -79,4 +77,12 @@ Decentralized network platforms, such as NEAR, provide tremendous economic oppor
 Amazon's market capitalization is currently valued at 1.56 trillion USD and 2021 revenue estimates are in the 411 - 488 
 billion USD range. That is just scratching the service. How much do you think the global economy is worth? Decentralized
 and scalable global cloud platforms such as NEAR provides opportunity for all to participate in the global economy.
-I hope I have inspired you to come along on this journey.
+
+## It's a wrap, folks ...
+NEAR is a super fast smart contract platform with super low transaction fees that is user and developer friendly for building
+real world applications for the Open Web. I am excited about NEAR, and I hope I have inspired you to learn with me on this 
+thrilling journey.
+
+## What's Next ...
+If you are wondering what is NEP-41, then you are in luck. In the next tutorial, we'll do a deep dive into the new and
+improved Fungible Token Core Standard NEP-141. 
