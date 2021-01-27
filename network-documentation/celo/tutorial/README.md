@@ -12,6 +12,21 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 #### [Join our community today ](https://discord.gg/fszyM7K)if you want to interact with other builders and become a part of this growing ecosystem! 
 
+## 1. Connecting to Celo node with DataHub
+{% page-ref page="1.connect.md" %}
+
+## 2. Creating your first Celo account
+{% page-ref page="2.account.md" %}
+
+## 3. Query the Celo Network
+{% page-ref page="3.query.md" %}
+
+## 4. Submitting transactions
+{% page-ref page="4.transactions.md" %}
+
+## 5. Deploying and interacting with custom smart contract
+{% page-ref page="5.smart-contract.md" %}
+
 ## Hello Celo 
 
 {% page-ref page="hello-celo.md" %}
