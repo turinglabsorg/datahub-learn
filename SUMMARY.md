@@ -121,8 +121,6 @@
     * [Cross-contract calls](network-documentation/near/tutorials/cross-contract-calls.md)
     * [Simple AssemblyScript App](network-documentation/near/tutorials/simple-webassembly-script.md)
     * [Write an NFT contract & mint your NFT](network-documentation/near/tutorials/write-nft-contracts-in-rust.md)
-    * Demo
-      * [Test](network-documentation/near/tutorials/demo/1.md)
   * [💼 NEAR Wallet](network-documentation/near/near-wallet.md)
 * [🏝 Oasis](network-documentation/oasis/README.md)
   * [✏ Oasis 101](network-documentation/oasis/oasis-101.md)
