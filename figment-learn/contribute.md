@@ -73,7 +73,7 @@ For tutorials covering extensive amount of code \(like smart contract developmen
 
 Support code contribution process is very similar to the one outlines above and includes the following steps:
 
-1. Clone the [Datahub Lean Tutorials](https://github.com/figment-networks/tutorials) repository or pull the most recent changes.
+1. Clone the [Datahub Learn Tutorials](https://github.com/figment-networks/tutorials) repository or pull the most recent changes.
 2. Create new directory under the network you're contributing to. Example: `near/nft_token`.
 3. Add all necessary code samples, config files, etc
 4. Commit your changes and submit a new pull request to the source repository.
