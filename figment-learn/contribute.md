@@ -69,6 +69,19 @@ Finally, when you're ready to submit your contribution for review, head over to 
 
 Once your pull request is approved and merged by our team it will be automatically published on Learn!
 
+#### Providing Tutorial Code Samples
+
+For tutorials covering extensive amount of code \(like smart contract development\) we encourage contributors to include all necessary code samples into our [Datahub Learn Tutorials](https://github.com/figment-networks/tutorials) repository. 
+
+Support code contribution process is very similar to the one outlines above and includes the following steps:
+
+1. Clone the [Datahub Lean Tutorials](https://github.com/figment-networks/tutorials) repository or pull the most recent changes.
+2. Create new directory under the network you're contributing to. Example: `near/nft_token`.
+3. Add all necessary code samples, config files, etc
+4. Commit your changes and submit a new pull request to the source repository.
+
+Once again, our team will review and merge the changes in once the tutorial documentation and examples are complete and all feedback is addressed.
+
 ## 📝 Apply Now
 
 If you would like to contribute to the Web 3 Knowledge Base and earn tokens in the process, you can [**apply now via this form**](https://forms.gle/v5ksLNBG24cxm1Bs6)! 
