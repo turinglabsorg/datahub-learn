@@ -121,6 +121,8 @@
     * [Cross-contract calls](network-documentation/near/tutorials/cross-contract-calls.md)
     * [Simple AssemblyScript App](network-documentation/near/tutorials/simple-webassembly-script.md)
     * [Write an NFT contract & mint your NFT](network-documentation/near/tutorials/write-nft-contracts-in-rust.md)
+    * [Show Me the Money: Learn How to Monetize NEAR Smart Contracts](network-documentation/near/tutorials/stake/1-project_overview.md)
+      * [The New and Improved Fungible Token Standard (NEP-141) Has Arrived](network-documentation/near/tutorials/stake/2-fungible-token.md)
   * [💼 NEAR Wallet](network-documentation/near/near-wallet.md)
 * [🏝 Oasis](network-documentation/oasis/README.md)
   * [✏ Oasis 101](network-documentation/oasis/oasis-101.md)

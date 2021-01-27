@@ -8,18 +8,18 @@ where NEAR can step in and bridge the gap. NEAR shines in terms of speed, scalab
 
 ## Motivation Behind NEP-141
 
-NEAR's first attempt to bootstrap the ecosystem with an FT (**F**ungible **T**oken) standard was [NEP-21](https://nomicon.io/Standards/Tokens/FungibleToken.html).
-NEP-21 was designed as a port of Ethereum's first attempt [ERC-20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) 
-token standard. However, after living in the wild for a while, ERC-20 problems were exposed:
-- [What's Wrong With ERC-20 Token](https://ihodl.com/analytics/2018-10-04/whats-wrong-erc-20-token/)
-- [Critical problems of ERC20 token standard](https://medium.com/@dexaran820/erc20-token-standard-critical-problems-3c10fd48657b)
+NEAR's first attempt to bootstrap the ecosystem with an FT (**F**ungible **T**oken) standard was [NEP-21][1].
+NEP-21 was designed as a port of Ethereum's first attempt [ERC-20][2] token standard. However, after living in the wild 
+for a while, ERC-20 problems were exposed:
+- [What's Wrong With ERC-20 Token][3]
+- [Critical problems of ERC20 token standard][4]
 
 Key to NEAR's success will be its ability to attract capital flows into NEAR through tokens. Starting from a clean 
 state, NEAR has the opportunity to learn from ERC-20 mistakes and build a superior FT solution that provides a better
 developer and user experience that aligns with NEAR's platform and vision. The NEAR community has been coming together to 
 design the next generation token standards that are needed to make the dream a reality. The first result of that collective 
-effort has produced [Fungible Token Core Standard NEP-141](https://github.com/near/NEPs/discussions/146). Yours truly has been 
-actively involved in the process, and in this tutorial lesson I will do a deep dive into [NEP-141]((https://github.com/near/NEPs/discussions/146))
+effort has produced [Fungible Token Core Standard NEP-141][5]. Yours truly has been 
+actively involved in the process, and in this tutorial lesson I will do a deep dive into [NEP-141][5]
 and walk you through the new and improved **Fungible Token Core API**. The online discussion is quite lengthy, and my 
 goal here is to sum it all up for you here.
 - **NOTE**: as of this writing, NEP-141 official documentation has not yet been published. I will be sharing with you my 
@@ -67,10 +67,10 @@ What is less obvious and what I will dive a little deeper into is how account re
 
 ### What does account registration have to do with fungible tokens?
 This is a trick question. The key issue that account registration addresses is not specific to FT contracts. Account
-registration is needed to address who will pay for [storage staking](https://docs.near.org/docs/concepts/storage#how-much-does-it-cost). 
+registration is needed to address who will pay for [storage staking][6]. 
 This is an issue that needs to be addressed by any multi-user contract that allocates storage for the user on the blockchain.
 Storage staking costs are the most expensive costs to consider for the contract on NEAR. If storage costs are not managed properly,
-then they can [break the bank](https://docs.near.org/docs/concepts/storage#the-million-cheap-data-additions-attack) for 
+then they can [break the bank][7] for 
 the contract.
 
 On NEAR, the contract is responsible to pay for its long term persistent storage. Thus, FT contracts, and multi-user 
@@ -81,10 +81,10 @@ contracts in general, should be designed to pass on storage costs to its user ac
 > There's no free lunch ... everyone must pay for their own way
 
 **NOTE**: account registration has other benefits, but we can save that for the 
-[account registration standard discussion](https://github.com/near/NEPs/discussions/145)
+[account registration standard discussion][8]
   
 ## Fungible Token Core Standard - The Big Picture
-![](../../../../.gitbook/assets/oysterpack-near-stake-token-nep-41.png)
+![][9]
 
 ... a picture says a thousand words ... NEP-141 core elevator pitch is:
 - simple transfers
@@ -102,14 +102,14 @@ neutral (as much as possible)
     is yoctoNEAR which translates to a decimal precision of 24 digits, i.e., 1 NEAR = 10^24 yoctoNEAR. Thus, when 1 NEAR 
     is transferred, the transfer amount is specified as 1_000_000_000_000_000_000_000_000 (`_` added to make it easier to read)
 - all FT API functions are namespaced using a prefix naming convention (`ft_`). On NEAR, smart contracts are deployed
-as [WASM](https://webassembly.org/) binaries. At the WASM low level, all functions are effectively in the global namespace 
+as [WASM][10] binaries. At the WASM low level, all functions are effectively in the global namespace 
 and function names must be unique (function overloading is not permitted). Using function prefix names is a trade-off. 
 It enables global functions to be namespaced using a naming convention to avoid function name collisions. For example, a
 contract may want to implement both FT and NFT token transfer interfaces. 
 - `#[payable]` implies that the function supports NEAR to be attached to the function call. I will explain why this is 
 needed below
 - API functions are tagged as either **_change methods_** or **_view methods_**. 
-  This is from the [NEAR JSON RPC API](https://docs.near.org/docs/roles/developer/contracts/api) perspective.
+  This is from the [NEAR JSON RPC API][11] perspective.
   - cross contract calls always require gas regardless whether the function call being invoked is a **_view method_** 
     or **_change method_**
   
@@ -129,7 +129,7 @@ through the wallet confirmation. This prevents some attacks like fishing through
 (on-chain or off-chain). It is schema less, so user can use it to reference an external document, invoice, order ID, 
 ticket ID, or other on-chain transaction. With memo you can set a transfer reason, often required for compliance.
 This is also useful and very convenient for implementing FATA (Financial Action Task Force) 
-[guidelines](http://www.fatf-gafi.org/media/fatf/documents/recommendations/RBA-VA-VASPs.pdf) (section 7(b)). 
+[guidelines][12] (section 7(b)). 
 Especially a requirement for VASPs (Virtual Asset Service Providers) to collect and transfer customer information during 
 transactions. VASP is any entity which provides to a user token custody, management, exchange or investment services.
 With ERC-20 and NEP-21 it is not possible to do it in atomic way. With memo field, we can provide such reference in 
@@ -326,5 +326,18 @@ NEAR communities and embark on our common mission to take back the Internet toge
 
 ## What's Next ...
 Stay on the lookout for my next tutorial where I will show you how I implemented NEP-41 for the 
-[STAKE token](https://github.com/oysterpack/oysterpack-near-stake-token) contract written in Rust.
+[STAKE token][13] contract written in Rust.
   
+[1]: https://nomicon.io/Standards/Tokens/FungibleToken.html
+[2]: https://ethereum.org/en/developers/docs/standards/tokens/erc-20/
+[3]: https://ihodl.com/analytics/2018-10-04/whats-wrong-erc-20-token/
+[4]: https://medium.com/@dexaran820/erc20-token-standard-critical-problems-3c10fd48657b
+[5]: https://github.com/near/NEPs/discussions/146
+[6]: https://docs.near.org/docs/concepts/storage#how-much-does-it-cost
+[7]: https://docs.near.org/docs/concepts/storage#the-million-cheap-data-additions-attack
+[8]: https://github.com/near/NEPs/discussions/145
+[9]: ../../../../.gitbook/assets/oysterpack-near-stake-token-nep-41.png
+[10]: https://webassembly.org/
+[11]: https://docs.near.org/docs/roles/developer/contracts/api
+[12]: http://www.fatf-gafi.org/media/fatf/documents/recommendations/RBA-VA-VASPs.pdf
+[13]: https://github.com/oysterpack/oysterpack-near-stake-token
