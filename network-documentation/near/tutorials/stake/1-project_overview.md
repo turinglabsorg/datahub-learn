@@ -3,14 +3,14 @@
 I invite you to join me In this tutorial series and learn how to design, build, and monetize smart contracts on the NEAR 
 platform. Learning is fun, applying what you learn to build is more fun, and making money from what you have built is rewarding. 
 I believe in the philosophy of the "proof is in the pudding". In this tutorial series we will be building a real world
-smart contract called the [STAKE][1] token. 
-The goals for this tutorial series are:
-1. showcase the [STAKE][1] token project on how to monetize NEAR smart contracts
-2. share with you my approach to architect, design, and code smart contracts in Rust
-3. take you step by step through designing, coding, and testing on the [STAKE][1] 
+smart contract called the [STAKE][1] token. The goals for this tutorial series are:
+
+1. Showcase the [STAKE][1] token project on how to monetize NEAR smart contracts
+2. Share with you my approach to architect, design, and code smart contracts in Rust
+3. Take you step by step through designing, coding, and testing on the [STAKE][1] 
    token project.
-4. share with you design patterns and best practices I have learned while working on the STAKE token project
-5. make this a collaborative experience with the community
+4. Share with you design patterns and best practices I have learned while working on the STAKE token project
+5. Make this a collaborative experience with the community
 
 Regarding the last point, I welcome community participation on the [STAKE][1]
 open source project.
@@ -29,48 +29,49 @@ to earning staking rewards, the staked NEAR earns contract rewards from transact
 staked NEAR into a tradeable asset that is backed by revenue streams.
 
 The STAKE token business model leverages the following from NEAR:
-1. [staking pool delegation][2]
-   - anyone holding NEAR tokens can earn staking rewards by [delegating][3]
-     their tokens to staking pools
-2. [staking pool][4] core contract
-   - the STAKE token contract integrates with [staking pool][4]
-     contracts for staking NEAR
-3. contract rewards
+
+1. [Staking pool delegation][2]
+   - Anyone holding NEAR tokens can earn staking rewards by [delegating][3] their tokens to staking pools
+2. [Staking pool][4] core contract
+   - STAKE token contract integrates with [staking pool][4] contracts for staking NEAR
+3. Contract rewards
    - NEAR provides out of the box the ability to collect a portion of transaction fees and distributes them to the contracts
      that were run as part of the transaction
-   - the STAKE token contract distributes a share of its contract rewards through staking
-   - the STAKE token contract is also able to collect earnings from external contracts and distribute the funds through 
+   - STAKE token contract distributes a share of its contract rewards through staking
+   - STAKE token contract is also able to collect earnings from external contracts and distribute the funds through 
      the staking mechanism
     
 ## STAKE Token Contract High Level Overview
 ![][6]
+
 - Users must register with the contract in order to use it. When registering, users are required to pay an upfront account
   storage fee to cover storage staking costs. On NEAR long term storage is not free. The account storage fee is escrowed
   and will be refunded back to the user when the account unregisters.
-- The contract is linked to a single staking pool contract, i.e., STAKE token contract is deployed per staking pool contract.
-- The contract will implement the new fungible token standard defined by [NEP-141][5]
-- The contract has concept of contract ownership.
-- The contract supports an operator role that is managed by the contract owner.
-- The contract supports distributing contract rewards and earnings through the staking mechanism.
-- The contract supports adding liquidity for unstaking and withdrawals
+- Contract is linked to a single staking pool contract, i.e., STAKE token contract is deployed per staking pool contract.
+- Contract will implement the new fungible token standard defined by [NEP-141][5]
+- Contract has concept of contract ownership.
+- Contract supports an operator role that is managed by the contract owner.
+- Contract supports distributing contract rewards and earnings through the staking mechanism.
+- Contract supports adding liquidity for unstaking and withdrawals
     
 ### What you will learn from the STAKE Token project from a technical perspective
 The STAKE token project is fairly complex and showcases the following
+
 1. Applying interface driven design and domain modeling 
-   - leveraging Rust strong type system and compiler 
+   - Leveraging Rust strong type system and compiler 
 2. Cross-contract workflows
-   - high level and low level approaches
-   - making use of batch transactions
-   - gas considerations
+   - High level and low level approaches
+   - Making use of batch transactions
+   - Gas considerations
 3. State management
-   - storage staking considerations
+   - Storage staking considerations
 4. Financial computation considerations
-   - protecting against overflows
+   - Protecting against overflows
 5. New fungible token standard - [NEP-141][5]
 6. Unit testing
 7. Simulation testing
 8. Contract deployment
-9. ... and the learning never ends
+9. ... And the learning never ends
 
 ## The World Is Your Oyster
 Decentralized network platforms, such as NEAR, provide tremendous economic opportunity. To put it into perspective, 
