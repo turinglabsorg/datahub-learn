@@ -67,7 +67,7 @@ Contribution instructions:
 
 Finally, when you're ready to submit your contribution for review, head over to [Pull Requests](https://github.com/figment-networks/datahub-learn/pulls) section and create a new pull request from your branch. Our team will start the review process and suggest edits in the same pull request.
 
-Once your pull request is approved and merged by our team it will be automatically published on Datahub Learn website!
+Once your pull request is approved and merged by our team it will be automatically published on Learn!
 
 ## 📝 Apply Now
 
