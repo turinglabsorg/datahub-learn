@@ -43,8 +43,6 @@ At a high level we are looking for two categories of tutorials
 
 ### What is the contribution review process?
 
-Contribution instructions:
-
 1. First, make sure you have a Github account. Visit Github.com to create a new account if you don't have one yet, it's free.
 2. Clone the [Datahub Learn](https://github.com/figment-networks/datahub-learn) documentation repository: It's important that you have the most recent version of documentation before you start your contribution. If you have already cloned it, make sure to pull down the latest changes.
 3. Create a new git branch in your local repository, you can name it however you want, though we prefer if you pick a name relevant to your contribution. \(Example: `near-nft-tutorial`\).
@@ -67,7 +65,7 @@ Contribution instructions:
 
 Finally, when you're ready to submit your contribution for review, head over to [Pull Requests](https://github.com/figment-networks/datahub-learn/pulls) section and create a new pull request from your branch. Our team will start the review process and suggest edits in the same pull request.
 
-Once your pull request is approved and merged by our team it will be automatically published on Learn!
+Once your pull request is approved and merged by our team, it will be automatically published on Learn!
 
 #### Providing Tutorial Code Samples
 
@@ -80,7 +78,7 @@ Support code contribution process is very similar to the one outlines above and 
 3. Add all necessary code samples, config files, etc
 4. Commit your changes and submit a new pull request to the source repository.
 
-Once again, our team will review and merge the changes in once the tutorial documentation and examples are complete and all feedback is addressed.
+Once again, our team will review and merge the changes once the tutorial documentation and examples are complete and all feedback is addressed.
 
 ## 📝 Apply Now
 
