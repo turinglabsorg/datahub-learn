@@ -2,9 +2,9 @@
 
 ## Introduction
 
-NFTs are digital items that are unique and have provable ownerships on the blockchain. One of the most popular use case for NFTs right now is digital art. Projects on Ethereum such as [SuperRare](https://superrare.co) leverage the power of blockchain to create digital art that has digital scarcity and true ownership, thus creating a whole new market for artists and collectors in the digital space.
+NFTs are digital items that are unique and have provable ownerships on the blockchain. One of the most popular use cases for NFTs right now is digital art. Projects on Ethereum such as [SuperRare](https://superrare.co) leverage the power of blockchain to create digital art that has digital scarcity and true ownership, thus creating a whole new market for artists and collectors in the digital space.
 
-Built on NEAR, [Paras: Digital Art Card](https://paras.id) is an NFT Marketplace that is already available to use. It offers much cheaper NFT minting fees than the what is possible on Ethereum, enabling artists to create without being limited by high on-chain fees.
+Built on NEAR, [Paras: Digital Art Card](https://paras.id) is an NFT Marketplace that is already available to use. It offers much cheaper NFT minting fees than what is possible on Ethereum, enabling artists to create without being limited by high on-chain fees.
 
 In this tutorial we will be creating a simple NFT Marketplace similar to [Paras](https://paras.id) and [SuperRare](https://superrare.co) where artists can mint their digital art and sell them directly to collectors. We will be using [NEP-4](https://github.com/near/NEPs/pull/4) NFT standard which is based on [ERC721](https://eips.ethereum.org/EIPS/eip-721).
 
@@ -320,7 +320,7 @@ export function get_market_price(token_id: TokenId): Price {
 }
 ```
 
-Again, we need to create unit test our function to make sure it works as expected.
+Again, we need to create a unit test for our function to make sure it works as expected.
 
 ```typescript
 describe('get_market_price', () => {
@@ -387,7 +387,7 @@ function internal_remove_from_market(token_id: TokenId): void {
 }
 ```
 
-We check if the token exists in the market before attempting to remove it. If the token doesn't exist, we return the error `ERROR_TOKEN_NOT_IN_MARKET`. Let's add this new error type to the section `ERROR MESSAGES` on top of `main.ts`:
+We check if the token exists in the market before attempting to remove it. If the token doesn't exist, we return the error `ERROR_TOKEN_NOT_IN_MARKET`. Let's add this new error type to the section `ERROR MESSAGES` at the top of `main.ts`:
 
 ```typescript
 export const ERROR_TOKEN_NOT_IN_MARKET = 'Token is not available in market.'
@@ -440,7 +440,7 @@ It should return something like this:
 
 ### Buy Functionality
 
-This is the main function for the marketplace where users can buy the listed NFTs on the marketplace. Buyers can attach some NEAR as payment and the contract will automatically send the payment to the seller and update the token ownership to the buyer. We'll also create a simple transaction fee or commission for the smart contract developer, in this example we'll take a 5% cut for every sales made via the smart contract.
+This is the main function for the marketplace where users can buy the listed NFTs on the marketplace. Buyers can attach some NEAR as payment and the contract will automatically send the payment to the seller and update the token ownership to the buyer. We'll also create a simple transaction fee or commission for the smart contract developer, in this example we'll take a 5% cut for every sale made via the smart contract.
 
 First, let's setup a constant for our commission. You can write this constant at the top of `main.ts` in the `DATA TYPES AND STORAGE` section.
 
@@ -547,7 +547,7 @@ export function buy(token_id: TokenId): TokenId {
 
 As you can see, we call the private `internal_remove_from_market` function to remove the token from the marketplace without any validation.
 
-We can now test our `buy` function using the unit test below by updating at the end of our `main.unit.spec.ts`:
+We can now test our `buy` function using the unit test below by updating the end of our `main.unit.spec.ts`:
 
 ```typescript
 describe('buy', () => {
@@ -589,7 +589,7 @@ It should return something like this:
 
 First we need to create the struct `TokenDetail` and add the decorator `nearBindgen` to serialize/deserialize the struct in the NEAR runtime (think of it as the required syntax for every struct to run on the NEAR protocol).
 
-We will create function `get_market` that will return a list of `TokenDetail` that contains the `tokenId` and its `price`. For the implementation, we use `.entries` from `PersistentUnorderedMap` that takes the start and end indexes from our list (we can use this for pagination later when building the frontend application).
+We will create the  function `get_market` that will return a list of `TokenDetail` that contains the `tokenId` and its `price`. For the implementation, we use `.entries` from `PersistentUnorderedMap` that takes the start and end indexes from our list (we can use this for pagination later when building the frontend application).
 
 Add the following code at the end of `main.ts`:
 
@@ -682,7 +682,7 @@ yarn build:as
 
 If you see any errors, the compiler should give you a detailed explanation. Since you've copied and pasted everything from this tutorial, it's probably just typos.
 
-You can also see the complete code for this tutorial on the following repo: [feat/marketplace](https://github.com/figment-networks/tutorials).
+The complete code for this tutorial can be found on [Github](https://github.com/figment-networks/tutorials/near/7_NFT_marketplace).
 
 ## Deploying and Using the Contract
 
@@ -821,4 +821,4 @@ Congratulations! We have deployed the modified NFT smart contract in AssemblyScr
 
 Please remember that this code is not intended for production: there are still a few other things to consider if you wanted to deploy this to mainnet such as disabling the transfer method if the token is listed on the market and so on.
 
-The complete code can be found on [Github](https://github.com/figment-networks/tutorials).
+The complete code can be found on [Github](https://github.com/figment-networks/tutorials/near/7_NFT_marketplace/).
