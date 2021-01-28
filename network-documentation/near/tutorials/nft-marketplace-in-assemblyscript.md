@@ -183,7 +183,7 @@ export function get_token_owner(token_id: TokenId): string {
 
 ### Minting
 
-Now here's the main function that allows users to mint the NFT. The NFT itself is just a simple ID with owner. The metadata such as an image, video or audio is usually stored off-chain on [IPFS], [Sia] or even a centralized file storage such as [AWS S3]. Unlike Ethereum, storing data on NEAR is pretty cheap; you can actually store the whole metadata on chain but it will not be covered in this tutorial, you can try it yourself!
+Now here's the main function that allows users to mint the NFT. The NFT itself is just a simple ID with owner. The metadata such as an image, video or audio is usually stored off-chain on [IPFS](https://ipfs.io/), [Sia](https://siasky.net/) or even a centralized file storage such as [AWS S3](https://aws.amazon.com/s3). Unlike in Ethereum blockchain, storing data on NEAR is pretty cheap; you can actually store the whole metadata on chain but it will not be covered in this tutorial, you can try it yourself!
 
 [Paras](https://paras.id) is not storing any metadata on-chain, instead they use an IPFS Hash as the Token ID. There are many designs that you can experiment with when building your NFTs.
 
@@ -448,6 +448,12 @@ First, let's setup a constant for our commission. You can write this constant at
 const COMMISSION = 5
 ```
 
+If the deposit amount and the current NFT price are not equal, we return the error `ERROR_DEPOSIT_NOT_MATCH`. Let's add this to `ERROR MESSAGES` section at the top of `main.ts`:
+
+```typescript
+export const ERROR_DEPOSIT_NOT_MATCH = 'Deposit does not match the market price'
+```
+
 Let's start coding the buy function. To retrieve the amount of payment in the smart contract, we can use `context.attachedDeposit`. After that we need to validate the deposit amount and the current NFT price. Add the following to `NON-SPEC METHODS` in `main.ts`:
 
 ```typescript
@@ -459,14 +465,14 @@ export function buy(token_id: TokenId): TokenId {
 
 	// check if the amount deposited match with the price
 	assert(amount == price, ERROR_DEPOSIT_NOT_MATCH)
+
+	// 1. Calculate commission & transfer payment
+
+	// 2. Remove from market & update token ownership
 }
 ```
 
-If the deposit amount and the current NFT price are not equal, we return the error `ERROR_DEPOSIT_NOT_MATCH`. Let's add this to `ERROR MESSAGES` section at the top of `main.ts`:
-
-```typescript
-export const ERROR_DEPOSIT_NOT_MATCH = 'Deposit does not match the market price'
-```
+#### Calculate commission & transfer payment
 
 We can transfer the payment to the account by using `ContractPromiseBatch`. We will be using promise batch `ContractPromiseBatch.create(accountId).transfer(amount)`. The first promise `.create`, is to create the receiver account, followed by `.transfer` to transfer the payment to the receiver account.
 
@@ -483,66 +489,35 @@ import {
 } from 'near-sdk-as'
 ```
 
-We also need to update our buy function to automatically transfer the deposited amount to the receiver and to the smart contract (transaction fee). Update the buy function in `main.ts` with the following code:
+We also need to update our buy function to automatically transfer the deposited amount to the receiver and to the smart contract (transaction fee). Update the buy function in the `main.ts` file under the comment `// 1. Calculate commission & transfer payment` add the following code snippet below:
 
 ```typescript
-export function buy(token_id: TokenId): TokenId {
-	const caller = context.predecessor
+// calculate commission for the smart contract
+const owner = tokenToOwner.getSome(token_id)
+const forOwner: u128 = u128.div(
+	u128.mul(amount, u128.from(100 - COMMISSION)),
+	u128.from(100)
+)
+const contract = context.contractName
+const forContract: u128 = u128.sub(amount, forOwner)
 
-	const amount = context.attachedDeposit
-	const price = market.getSome(token_id)
-
-	// check if the amount deposited match with the price
-	assert(amount == price, ERROR_DEPOSIT_NOT_MATCH)
-
-	// calculate commission for the smart contract
-	const owner = tokenToOwner.getSome(token_id)
-	const forOwner: u128 = u128.div(
-		u128.mul(amount, u128.from(100 - COMMISSION)),
-		u128.from(100)
-	)
-	const contract = context.contractName
-	const forContract: u128 = u128.sub(amount, forOwner)
-
-	// tranfer the deposit to token owner and smart contract
-	ContractPromiseBatch.create(owner).transfer(forOwner)
-	ContractPromiseBatch.create(contract).transfer(forContract)
-}
+// tranfer the deposit to token owner and smart contract
+ContractPromiseBatch.create(owner).transfer(forOwner)
+ContractPromiseBatch.create(contract).transfer(forContract)
 ```
 
-After the payments have been made, we need to remove the token from the marketplace and update the ownership of the token to the buyer. Let's update our buy function again in `main.ts` with the code below:
+#### Remove from market & update token ownership
+
+After the payments have been made, we need to remove the token from the marketplace and update the ownership of the token to the buyer. We return the `token_id` at the end of the function. Add this snippet below the `// 2. Remove from market & update token ownership` comment in `main.ts` file:
 
 ```typescript
-export function buy(token_id: TokenId): TokenId {
-	const caller = context.predecessor
+// remove the token from the market
+internal_remove_from_market(token_id)
 
-	const amount = context.attachedDeposit
-	const price = market.getSome(token_id)
+// update the token owner
+tokenToOwner.set(token_id, caller)
 
-	// check if the amount deposited match with the price
-	assert(amount == price, ERROR_DEPOSIT_NOT_MATCH)
-
-	// calculate commission for the smart contract
-	const owner = tokenToOwner.getSome(token_id)
-	const forOwner: u128 = u128.div(
-		u128.mul(amount, u128.from(100 - COMMISSION)),
-		u128.from(100)
-	)
-	const contract = context.contractName
-	const forContract: u128 = u128.sub(amount, forOwner)
-
-	// tranfer the deposit to token owner and smart contract
-	ContractPromiseBatch.create(owner).transfer(forOwner)
-	ContractPromiseBatch.create(contract).transfer(forContract)
-
-	// remove the token from the market
-	internal_remove_from_market(token_id)
-
-	// update the token owner
-	tokenToOwner.set(token_id, caller)
-
-	return token_id
-}
+return token_id
 ```
 
 As you can see, we call the private `internal_remove_from_market` function to remove the token from the marketplace without any validation.
@@ -589,7 +564,7 @@ It should return something like this:
 
 First we need to create the struct `TokenDetail` and add the decorator `nearBindgen` to serialize/deserialize the struct in the NEAR runtime (think of it as the required syntax for every struct to run on the NEAR protocol).
 
-We will create the  function `get_market` that will return a list of `TokenDetail` that contains the `tokenId` and its `price`. For the implementation, we use `.entries` from `PersistentUnorderedMap` that takes the start and end indexes from our list (we can use this for pagination later when building the frontend application).
+We will create the function `get_market` that will return a list of `TokenDetail` that contains the `tokenId` and its `price`. For the implementation, we use `.entries` from `PersistentUnorderedMap` that takes the start and end indexes from our list (we can use this for pagination later when building the frontend application).
 
 Add the following code at the end of `main.ts`:
 
@@ -702,7 +677,7 @@ https://explorer.testnet.near.org/transactions/HiGAnagXLY7TaCzmLRBCSzgDPWjSFifaL
 Done deploying to dev-1610108148519-8579413
 ```
 
-Unlike Ethereum, you need to deploy a contract into a certain account. Using `dev-deploy` will create a test account and deploy the contract into that account at once. The test account looks something like `dev-xxxxxxxxxxx-xxxxx`.
+In NEAR, you need to deploy a contract into a certain account. Using `dev-deploy` will create a test account and deploy the contract into that account at once. The test account looks something like `dev-xxxxxxxxxxx-xxxxx`. It's very different if you're coming from Ethereum, where every deployment will create new address and storage for the smart contract.
 
 From the command above we learn that we created an account with the ID `dev-1610108148519-8579413` into which we just deployed the smart contract. The smart contract ID is basically the account ID which is `dev-1610108148519-8579413`. You'll have a different ID, so remember to replace these contract IDs with yours when following the commands below.
 
@@ -724,7 +699,7 @@ Please authorize NEAR CLI on at least one of your accounts.
 If your browser doesnt automatically open, please visit this URL                                                                   https://wallet.testnet.near.org/login/?title=NEAR+CLI&public_key=ed25519%3AAZCY2SeK6FQe6DFWfNjgxnAfF9TprTirwdduiksLEgBa&success_url=http%3A%2F%2F127.0.0.1%3A5000                                                                                                       Please authorize at least one account at the URL above.
 ```
 
-Choose one of the accounts that you've just created to authenticate in our terminal. 
+Choose one of the accounts that you've just created to authenticate in our terminal.
 
 ![image](https://user-images.githubusercontent.com/9144402/105279194-a5a4bd80-5bd9-11eb-991f-ddd6928eb255.png)
 
