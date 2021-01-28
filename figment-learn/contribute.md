@@ -41,44 +41,9 @@ At a high level we are looking for two categories of tutorials
 * **Connecting Web 2 & Web 3:** For Web3 to be adopted widely, we'll need to bridge its technology with platforms and languages that are popular in Web2 development today. Tutorials inspire developers to build DApps in their favorite languages and architect their DApps the way they are used to.  
 * **Project-specific walkthroughs:** We need to leverage the open-nature of Web3 development to collaborate and iterate on existing projects to quickly increase their UX and performance. Tutorials providing a guide to build necessary infrastructures such as wallets, payment apps, and exchanges are welcomed. 
 
-### What is the contribution review process?
+#### Are you interested in contributing and writing tutorials? 
 
-1. First, make sure you have a Github account. Visit Github.com to create a new account if you don't have one yet, it's free.
-2. Clone the [Datahub Learn](https://github.com/figment-networks/datahub-learn) documentation repository: It's important that you have the most recent version of documentation before you start your contribution. If you have already cloned it, make sure to pull down the latest changes.
-3. Create a new git branch in your local repository, you can name it however you want, though we prefer if you pick a name relevant to your contribution. \(Example: `near-nft-tutorial`\).
-4. Create a new file\(s\) under the tutorials section of the network documentation you're contributing to. Example: `network-documentation/near/tutorials/my-new-tutorial.md`
-5. Once you have completed the documentation make sure you have added a new entry in the `SUMMARY.md` file. See example below:
-
-```text
-* [🌈 NEAR](network-documentation/near/README.md)
-  * [✏ NEAR 101](network-documentation/near/near-101.md)
-  * [🎮 RPC & REST API](network-documentation/near/rpc-and-rest-api/README.md)
-    * [NEAR RPC](network-documentation/near/rpc-and-rest-api/near-rpc.md)
-  * [🗺 NEAR Pathway](network-documentation/near/near-pathway.md)
-  * [💡 Tutorials](network-documentation/near/tutorials/README.md)
-    * [1. Connect to a NEAR node using DataHub](network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub.md)
-    * [2. Create your first NEAR account](network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk.md)
-    * [3. Query the NEAR blockchain](network-documentation/near/tutorials/3.-querying-the-near-blockchain.md)
-    * .....
-    * ---> YOUR NEW TUTORIAL/GUIDE ENTRY GOES HERE <---
-```
-
-Finally, when you're ready to submit your contribution for review, head over to [Pull Requests](https://github.com/figment-networks/datahub-learn/pulls) section and create a new pull request from your branch. Our team will start the review process and suggest edits in the same pull request.
-
-Once your pull request is approved and merged by our team, it will be automatically published on Learn!
-
-#### Providing Tutorial Code Samples
-
-For tutorials covering extensive amount of code \(like smart contract development\) we encourage contributors to include all necessary code samples into our [Datahub Learn Tutorials](https://github.com/figment-networks/tutorials) repository. 
-
-Support code contribution process is very similar to the one outlines above and includes the following steps:
-
-1. Clone the [Datahub Learn Tutorials](https://github.com/figment-networks/tutorials) repository or pull the most recent changes.
-2. Create new directory under the network you're contributing to. Example: `near/nft_token`.
-3. Add all necessary code samples, config files, etc
-4. Commit your changes and submit a new pull request to the source repository.
-
-Once again, our team will review and merge the changes once the tutorial documentation and examples are complete and all feedback is addressed.
+Then please check our Learn Tutorial Guidelines for more details - [**HERE**](https://docs.google.com/document/d/13LWLrWzZ34M0ldWGeDANcWxw9nEWk3AX3VwXRBIOs1M/edit?usp=sharing)\*\*\*\*
 
 ## 📝 Apply Now
 
