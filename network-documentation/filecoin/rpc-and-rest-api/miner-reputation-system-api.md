@@ -38,7 +38,7 @@ The epoch number
 
 {% endapi-method-response-example-description %}
 
-```text
+```javascript
 [
   {
     "address": "f01002",
@@ -110,7 +110,7 @@ The epoch number
 
 {% endapi-method-response-example-description %}
 
-```text
+```javascript
 {
   "address": "f01000",
   "sector_size": 34359738368,
@@ -162,7 +162,7 @@ The event kind. One of the following values: `storage_capacity_change`, `new_dea
 
 {% endapi-method-response-example-description %}
 
-```text
+```javascript
 [
   {
     "height": 0,
@@ -207,7 +207,7 @@ The epoch number
 
 {% endapi-method-response-example-description %}
 
-```text
+```javascript
 [
   {
     "address": "f01002",
@@ -273,7 +273,7 @@ The epoch number
 
 {% endapi-method-response-example-description %}
 
-```text
+```javascript
 [
   {
     "cid": "bafy2bzaceaoo4msi45t3pbhfov3guu5l34ektpjhuftyddy2rvhf2o5ajijle",
@@ -346,7 +346,7 @@ The address of an account \(ID or public key\)
 
 {% endapi-method-response-example-description %}
 
-```text
+```javascript
 {
   "id": "f0100",
   "public_key": "f3vfs6f7tagrcpnwv65wq3leznbajqyg77bmijrpvoyjv3zjyi3urq25vigfbs3ob6ug5xdihajumtgsxnz2pa",
@@ -391,7 +391,7 @@ The epoch number
 
 {% endapi-method-response-example-description %}
 
-```text
+```javascript
 [
   {
     "cid": "bafy2bzaceb5sbhzn6i7bltslktujctr2rcd5f2nby6ernapn6ml74xmv3fnga",
@@ -436,7 +436,7 @@ The event kind. One of the following values: `storage_capacity_change`, `new_dea
 
 {% endapi-method-response-example-description %}
 
-```text
+```javascript
 [
   {
     "height": 0,
@@ -535,7 +535,7 @@ Returns the status of the synchronization process.
 
 {% endapi-method-response-example-description %}
 
-```
+```javascript
 {
   "current_epoch": 340610,
   "last_synced_epoch": 340600
