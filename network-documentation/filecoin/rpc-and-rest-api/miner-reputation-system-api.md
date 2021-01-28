@@ -481,3 +481,78 @@ The event kind. One of the following values: `storage_capacity_change`, `new_dea
 {% endapi-method-spec %}
 {% endapi-method %}
 
+{% api-method method="get" host="" path="/health" %}
+{% api-method-summary %}
+Get health
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Checks if the service is working properly.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=500 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="get" host="" path="/status" %}
+{% api-method-summary %}
+Get status
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Returns the status of the synchronization process.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+  "current_epoch": 340610,
+  "last_synced_epoch": 340600
+}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=500 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
