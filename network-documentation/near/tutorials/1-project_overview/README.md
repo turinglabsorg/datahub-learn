@@ -1,3 +1,7 @@
+---
+description: 'Learn how to design, build, and monetize smart contracts on the NEAR platform'
+---
+
 # Show Me the Money: Learn How to Monetize NEAR Smart Contracts
 
 I invite you to join me In this tutorial series and learn how to design, build, and monetize smart contracts on the NEAR platform. Learning is fun, applying what you learn to build is more fun, and making money from what you have built is rewarding. I believe in the philosophy of the "proof is in the pudding". In this tutorial series, we will be building a real-world smart contract called the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) token. The goals for this tutorial series are:
@@ -38,6 +42,8 @@ The STAKE token business model leverages the following from NEAR:
      the staking mechanism
 
 ## STAKE Token Contract High-Level Overview
+
+![](../../../../.gitbook/assets/oysterpack-near-stake-token-nep-41.png)
 
 * Users must register with the contract in order to use it. When registering, users are required to pay an upfront account
 
