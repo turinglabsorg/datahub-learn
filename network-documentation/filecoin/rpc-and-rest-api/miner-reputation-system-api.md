@@ -4,6 +4,16 @@ description: Learn how to interact with Figment's Miner Reputation System API
 
 # Miner Reputation System API
 
+## Overview
+
+The Miner Reputation System API provides users with all of the necessary information for assessing the reputation of storage miners on the Filecoin network.
+
+By tracking storage capacity, sector faults, deals, and slashes of every storage miner, the API calculates a reputation score, which can be used by network participants to compare and choose a reliable miner.
+
+Additionally, the API allows users to look up account details \(such as balance\) or retrieve a list of transactions for an account. It also keeps a history of miner-related events, such as storage capacity changes, sector faults, and deal slashes.
+
+Check out the API documentation below. 
+
 {% api-method method="get" host="" path="/miners" %}
 {% api-method-summary %}
 Get miners
@@ -28,7 +38,7 @@ The epoch number
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 [
   {
     "address": "f01002",
@@ -100,7 +110,7 @@ The epoch number
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
   "address": "f01000",
   "sector_size": 34359738368,
@@ -152,7 +162,7 @@ The event kind
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 [
   {
     "height": 0,
@@ -197,7 +207,7 @@ The epoch number
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 [
   {
     "address": "f01002",
@@ -263,7 +273,7 @@ The epoch number
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 [
   {
     "cid": "bafy2bzaceaoo4msi45t3pbhfov3guu5l34ektpjhuftyddy2rvhf2o5ajijle",
@@ -336,7 +346,7 @@ The address of an account \(ID or public key\)
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
   "id": "f0100",
   "public_key": "f3vfs6f7tagrcpnwv65wq3leznbajqyg77bmijrpvoyjv3zjyi3urq25vigfbs3ob6ug5xdihajumtgsxnz2pa",
@@ -381,7 +391,7 @@ The epoch number
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 [
   {
     "cid": "bafy2bzaceb5sbhzn6i7bltslktujctr2rcd5f2nby6ernapn6ml74xmv3fnga",
@@ -426,7 +436,7 @@ The event kind
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 [
   {
     "height": 0,
