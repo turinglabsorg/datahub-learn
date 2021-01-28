@@ -1,6 +1,6 @@
 # Show Me the Money: Learn How to Monetize NEAR Smart Contracts
 
-I invite you to join me In this tutorial series and learn how to design, build, and monetize smart contracts on the NEAR platform. Learning is fun, applying what you learn to build is more fun, and making money from what you have built is rewarding. I believe in the philosophy of the "proof is in the pudding". In this tutorial series we will be building a real world smart contract called the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) token. The goals for this tutorial series are:
+I invite you to join me In this tutorial series and learn how to design, build, and monetize smart contracts on the NEAR platform. Learning is fun, applying what you learn to build is more fun, and making money from what you have built is rewarding. I believe in the philosophy of the "proof is in the pudding". In this tutorial series, we will be building a real-world smart contract called the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) token. The goals for this tutorial series are:
 
 1. Showcase the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) token project on how to monetize NEAR smart contracts
 2. Share with you my approach to architect, design, and code smart contracts in Rust
@@ -11,15 +11,15 @@ I invite you to join me In this tutorial series and learn how to design, build, 
 4. Share with you design patterns and best practices I have learned while working on the STAKE token project
 5. Make this a collaborative experience with the community
 
-Regarding the last point, I welcome community participation on the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) open source project.
+Regarding the last point, I welcome community participation in the [STAKE](https://github.com/oysterpack/oysterpack-near-stake-token) open source project.
 
 ## NEAR Technology + Economics = Game Changer
 
-When I first discovered NEAR, what caught my attention was NEAR's economic model. It is well thought out and designed to provide economic incentive and value. Coupling that with NEAR's sharded scalability, speed, and low predictable operational cost provides a platform that can deliver real world business and economic value. NEAR has the potential and all the key ingredients to become the first true economical decentralized cloud platform - to compete with centralized cloud platforms owned by a few big tech companies ...
+When I first discovered NEAR, what caught my attention was NEAR's economic model. It is well thought out and designed to provide economic incentive and value. Coupling that with NEAR's sharded scalability, speed, and low predictable operational cost provides a platform that can deliver real-world business and economic value. NEAR has the potential and all the key ingredients to becoming the first true economical decentralized cloud platform - to compete with centralized cloud platforms owned by a few big tech companies ...
 
 ## You can have your STAKE and trade it too
 
-The STAKE token contract enables you to delegate your NEAR to stake, and in return you are issued STAKE tokens. This enables you to trade your STAKE tokens while your NEAR is locked for staking and earning staking rewards. In addition, to earning staking rewards, the staked NEAR earns contract rewards from transaction fees. The STAKE token transforms your staked NEAR into a tradeable asset that is backed by revenue streams.
+The STAKE token contract enables you to delegate your NEAR to stake, and in return, you are issued STAKE tokens. This enables you to trade your STAKE tokens while your NEAR is locked for staking and earning staking rewards. In addition, to earning staking rewards, the staked NEAR earns contract rewards from transaction fees. The STAKE token transforms your staked NEAR into a tradeable asset that is backed by revenue streams.
 
 The STAKE token business model leverages the following from NEAR:
 
@@ -37,9 +37,7 @@ The STAKE token business model leverages the following from NEAR:
 
      the staking mechanism
 
-## STAKE Token Contract High Level Overview
-
-!\[\]\[6\]
+## STAKE Token Contract High-Level Overview
 
 * Users must register with the contract in order to use it. When registering, users are required to pay an upfront account
 
@@ -58,10 +56,10 @@ The STAKE token business model leverages the following from NEAR:
 
 The STAKE token project is fairly complex and showcases the following
 
-1. Applying interface driven design and domain modeling 
+1. Applying interface-driven design and domain modeling 
    * Leveraging Rust strong type system and compiler 
 2. Cross-contract workflows
-   * High level and low level approaches
+   * High level and low-level approaches
    * Making use of batch transactions
    * Gas considerations
 3. State management
@@ -76,15 +74,13 @@ The STAKE token project is fairly complex and showcases the following
 
 ## The World Is Your Oyster
 
-Decentralized network platforms, such as NEAR, provide tremendous economic opportunity. To put it into perspective, Amazon's market capitalization is currently valued at 1.56 trillion USD and 2021 revenue estimates are in the 411 - 488 billion USD range. That is just scratching the service. How much do you think the global economy is worth? Decentralized and scalable global cloud platforms such as NEAR provides opportunity for all to participate in the global economy.
+Decentralized network platforms, such as NEAR, provide tremendous economic opportunity. To put it into perspective, Amazon's market capitalization is currently valued at 1.56 trillion USD and 2021 revenue estimates are in the 411 - 488 billion USD range. That is just scratching the service. How much do you think the global economy is worth? Decentralized and scalable global cloud platforms such as NEAR provides an opportunity for all to participate in the global economy.
 
 ## It's a wrap, folks ...
 
-NEAR is a super fast smart contract platform with super low transaction fees that is user and developer friendly for building real world applications for the Open Web. I am excited about NEAR, and I hope I have inspired you to learn with me on this thrilling journey.
+NEAR is a super-fast smart contract platform with super low transaction fees that is user and developer-friendly for building real-world applications for the Open Web. I am excited about NEAR, and I hope I have inspired you to learn with me on this thrilling journey.
 
 ## What's Next ...
 
 If you are wondering what is NEP-41, then you are in luck. In the next tutorial, we'll do a deep dive into the new and improved Fungible Token Core Standard NEP-141.
-
-\[6\]: ../../../../.gitbook/assets/oysterpack-near-stake-token-overview.png
 

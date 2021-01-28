@@ -1,3 +1,7 @@
+---
+description: Complete guide to NEAR's new fungible token standard
+---
+
 # The New and Improved Fungible Token Standard \(NEP-141\) Has Arrived
 
 ## Show Me the Money: The New and Improved Fungible Token Standard \(NEP-141\) Has Arrived
