@@ -75,12 +75,10 @@ Now, you need to define the TX message that allows you to specify the delegator 
     value: {
       delegator_address: accAddress,
       validator_address: valAddress,
-      amount: [
-        {
+      amount: {
           denom: 'uscrt',
           amount: '1000000',
-        },
-      ],
+      },
     },
   };
 ```
@@ -180,12 +178,10 @@ If for any reason the validator misbehaves, or you just want to unbond a certain
     value: {
       delegator_address: accAddress,
       validator_address: valAddress,
-      amount: [
-        {
+      amount: {
           denom: 'uscrt',
           amount: '1000000',
-        },
-      ],
+      },
     },
   };
 ```
