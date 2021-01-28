@@ -14,23 +14,23 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 ## Connect to a NEAR node using DataHub
 
-{% page-ref page="1.-connecting-to-a-near-node-using-datahub.md" %}
+{% page-ref page="intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub.md" %}
 
 ## Create your first NEAR account using the NEAR Javascript API 
 
-{% page-ref page="2.-creating-your-first-near-account-using-the-sdk.md" %}
+{% page-ref page="intro-pathway-write-and-deploy-your-first-near-smart-contract/2.-creating-your-first-near-account-using-the-sdk.md" %}
 
 ## Query the NEAR blockchain 
 
-{% page-ref page="3.-querying-the-near-blockchain.md" %}
+{% page-ref page="intro-pathway-write-and-deploy-your-first-near-smart-contract/3.-querying-the-near-blockchain.md" %}
 
 ## Submit your first transactions
 
-{% page-ref page="4.-submitting-your-first-transactions.md" %}
+{% page-ref page="intro-pathway-write-and-deploy-your-first-near-smart-contract/4.-submitting-your-first-transactions.md" %}
 
 ## Write & deploy your first NEAR smart contract
 
-{% page-ref page="5.-writing-and-deploying-your-first-near-smart-contract.md" %}
+{% page-ref page="intro-pathway-write-and-deploy-your-first-near-smart-contract/5.-writing-and-deploying-your-first-near-smart-contract.md" %}
 
 ## Cross-contract calls 
 
