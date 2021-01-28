@@ -332,7 +332,5 @@ Money makes the world go round because it is the root source of all the function
 
 ### What's Next ...
 
-Stay on the lookout for my next tutorial where I will show you how I implemented NEP-41 for the \[STAKE token\]\[13\] contract written in Rust.
-
-\[13\]: [https://github.com/oysterpack/oysterpack-near-stake-token](https://github.com/oysterpack/oysterpack-near-stake-token)
+Stay on the lookout for my next tutorial where I will show you how I implemented NEP-41 for the [STAKE token](https://github.com/oysterpack/oysterpack-near-stake-token) contract written in Rust.
 
