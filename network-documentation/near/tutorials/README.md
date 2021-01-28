@@ -32,6 +32,10 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="intro-pathway-write-and-deploy-your-first-near-smart-contract/5.-writing-and-deploying-your-first-near-smart-contract.md" %}
 
+## The new & improved Fungible Token Standard \(NEP-141\)
+
+{% page-ref page="1-project\_overview/2-fungible-token.md" %}
+
 ## Cross-contract calls 
 
 {% page-ref page="cross-contract-calls.md" %}
