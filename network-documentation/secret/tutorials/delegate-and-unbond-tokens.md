@@ -97,7 +97,7 @@ Then, you have to define the fee and gas for this transaction. Under the comment
         denom: 'uscrt',
       },
     ],
-    gas: '100000',
+    gas: '200000',
   };
 ```
 
