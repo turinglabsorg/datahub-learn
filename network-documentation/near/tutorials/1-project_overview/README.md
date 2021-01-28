@@ -32,25 +32,15 @@ The STAKE token business model leverages the following from NEAR:
 2. [Staking pool](https://github.com/near/core-contracts/tree/master/staking-pool) core contract
    * STAKE token contract integrates with [staking pool](https://github.com/near/core-contracts/tree/master/staking-pool) contracts for staking NEAR
 3. Contract rewards
-   * NEAR provides out of the box the ability to collect a portion of transaction fees and distributes them to the contracts
-
-     that were run as part of the transaction
-
+   * NEAR provides out of the box the ability to collect a portion of transaction fees and distributes them to the contracts that were run as part of the transaction
    * STAKE token contract distributes a share of its contract rewards through staking
-   * STAKE token contract is also able to collect earnings from external contracts and distribute the funds through 
-
-     the staking mechanism
+   * STAKE token contract is also able to collect earnings from external contracts and distribute the funds through the staking mechanism
 
 ## STAKE Token Contract High-Level Overview
 
 ![](../../../../.gitbook/assets/oysterpack-near-stake-token-nep-41.png)
 
-* Users must register with the contract in order to use it. When registering, users are required to pay an upfront account
-
-  storage fee to cover storage staking costs. On NEAR long term storage is not free. The account storage fee is escrowed
-
-  and will be refunded back to the user when the account unregisters.
-
+* Users must register with the contract in order to use it. When registering, users are required to pay an upfront account storage fee to cover storage staking costs. On NEAR long term storage is not free. The account storage fee is escrowed and will be refunded back to the user when the account unregisters.
 * Contract is linked to a single staking pool contract, i.e., STAKE token contract is deployed per staking pool contract.
 * Contract will implement the new fungible token standard defined by [NEP-141](https://github.com/near/NEPs/discussions/146)
 * Contract has concept of contract ownership.
