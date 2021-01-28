@@ -151,7 +151,7 @@ The epoch number
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="kind" type="string" required=false %}
-The event kind
+The event kind. One of the following values: `storage_capacity_change`, `new_deal`, `slashed_deal`, `sector_fault`, `sector_recovery`
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
 {% endapi-method-request %}
@@ -425,7 +425,7 @@ The epoch number
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="kind" type="string" required=false %}
-The event kind
+The event kind. One of the following values: `storage_capacity_change`, `new_deal`, `slashed_deal`, `sector_fault`, `sector_recovery`
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
 {% endapi-method-request %}
