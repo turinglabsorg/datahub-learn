@@ -47,7 +47,5 @@ Then please check our Learn Tutorial Guidelines for more details - [**HERE**](ht
 
 If you would like to contribute to the Web 3 Knowledge Base and earn tokens in the process, you can [**apply now via this form**](https://forms.gle/v5ksLNBG24cxm1Bs6)! 
 
-\_\_
-
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other contributors and become a part of this growing ecosystem! 
 
