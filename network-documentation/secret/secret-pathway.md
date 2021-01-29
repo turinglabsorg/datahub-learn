@@ -64,7 +64,7 @@ Bonus Activity Rewards will be given out at the discretion of the reviewer. Plea
 
 Make sure to refer to Figment Learn in your tweet! 
 
-### ![](../../.gitbook/assets/download-7-.png) Medium \($25 in SCRT each, `1500-2000` words each\)
+### ![](../../.gitbook/assets/download-7-.png) Medium \($20 in SCRT each, `1500-2000` words each\)
 
 1. Recount your Secret learning experience
 2. Share your ideas for improving the Secret developer experience
