@@ -58,7 +58,7 @@
     * [Web3.shh](network-documentation/celo/rpc-and-rest-api/web3.shh.md)
     * [Web3.utils](network-documentation/celo/rpc-and-rest-api/web3.utils.md)
   * [💡 Tutorials](network-documentation/celo/tutorial/README.md)
-    * [Hello Celo](network-documentation/celo/tutorial/hello-celo.md)
+    * [Send CELO & cUSD](network-documentation/celo/tutorial/hello-celo.md)
     * [Deploy and Interact with Contracts \(Remotely\)](network-documentation/celo/tutorial/hello-contracts.md)
     * [Hello Mobile DApp](network-documentation/celo/tutorial/hello-mobile-dapp.md)
 * [🌌 Cosmos](network-documentation/cosmos/README.md)

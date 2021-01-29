@@ -1,10 +1,10 @@
 ---
 description: >-
-  In this guide we are going to learn how to connect to the Celo test network
-  and tranfer tokens using ContractKit.
+  Learn how to connect to the Celo test network and transfer tokens using
+  ContractKit.
 ---
 
-# Hello Celo
+# Send CELO & cUSD
 
 [**The original tutorial can be found in the Celo documentation here**](https://docs.celo.org/developer-guide/start/hellocelo). 
 
