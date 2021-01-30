@@ -58,6 +58,6 @@ For more information see:
  
 
 
-[1] https://github.com/oysterpack/oysterpack-near-stake-token
-[2] https://github.com/near/core-contracts/tree/master/staking-pool
-[3] 2-fungible-token.md
+[1]: https://github.com/oysterpack/oysterpack-near-stake-token
+[2]: https://github.com/near/core-contracts/tree/master/staking-pool
+[3]: 2-fungible-token.md
