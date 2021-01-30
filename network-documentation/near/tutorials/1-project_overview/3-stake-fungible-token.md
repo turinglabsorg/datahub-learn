@@ -1,9 +1,8 @@
+---
+description: STAKE Fungible Token NEP-141 Rust Implementation
+---
+
 # You Can Have Your STAKE and Trade It Too
-
----
-_description: STAKE Fungible Token NEP-141 Rust Implementation_
-
----
 
 ## Show Me the Money: You Can Have Your STAKE and Trade It Too
 Plain old vanilla staking is a great way to earn more NEAR, but their are some trade-offs to be aware of. One of the main 
