@@ -62,7 +62,18 @@ the value of the staked NEAR that is locked up by the staking pool contract. The
 beyond letting you use staked NEAR as fungible tokens. However, we'll save that for future tutorials. For now, we'll
 stay focused on how the STAKE token implements [NEP-141][3].
 
+## Why Rust for Smart Contracts
+Rust's website sums it up in 3 words: performance, reliability, and productivity. For me it's a no-brainer. Over the past
+20+ years, I have used many programming languages, and [Rust][5] is the clear winner for me. For five years running, Rust has 
+also been voted by developers as the[most loved language][4] on stackoverflow for good reason. It is becoming the preferred 
+language of choice for the crypto space because it is a perfect fit to build highly performant, reliable, and secure 
+blockchain software. On NEAR, for any serious or more complex smart contracts, especially within the DeFi space, I 
+strongly encourage and recommend Rust to you. 
+
 ## Show Me the Design
+Call me old school, but I like to do some design work before actually writing code (besides POC code). Back in the day, there was much more emphasis on design and putting more thought in upfront before 
+actually diving coding. Times have changed, and  
+
 
 ## Show Me the Code
 
@@ -71,9 +82,13 @@ stay focused on how the STAKE token implements [NEP-141][3].
 ## Show Me the Demo
 
 ## It's a wrap folks...
+That was longer than expected, but time flies by when you are having fun. STAKE makes staking better ... you can send
+your friends some STAKE tokens.
 
 ## What's Next ...
 
 [1]: https://github.com/oysterpack/oysterpack-near-stake-token
 [2]: https://github.com/near/core-contracts/tree/master/staking-pool
 [3]: 2-fungible-token.md
+[4]: https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved
+[5]: https://www.rust-lang.org/
