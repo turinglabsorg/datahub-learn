@@ -70,10 +70,51 @@ language of choice for the crypto space because it is a perfect fit to build hig
 blockchain software. On NEAR, for any serious or more complex smart contracts, especially within the DeFi space, I 
 strongly encourage and recommend Rust to you. 
 
-## Show Me the Design
-Call me old school, but I like to do some design work before actually writing code (besides POC code). Back in the day, there was much more emphasis on design and putting more thought in upfront before 
-actually diving coding. Times have changed, and  
+For developing NEAR smart contracts, you will need to learn to use the [NEAR RUST SDK][7]. I personally link to the latest
+and greatest version which is tagged on github because:
+- it provides a few features that are not yet released via crates.io to reduce boilerplate
+  - `#[private]` macro for callbacks
+  - `PanicOnDefault` used to derive `Default` implementation that panics. This is a helpful macro in case the contract is 
+     required to be initialized with either `#[init]` or `#[init_once]`.
+  - better unit testing support
+- for simulation testing support
 
+**Cargo.toml**
+```toml
+[dependencies]
+near-sdk = { git = "https://github.com/near/near-sdk-rs",  tag = "2.4.0" }
+
+[dev-dependencies]
+near-sdk-sim = { git = "https://github.com/near/near-sdk-rs",  tag = "2.4.0" }
+```
+
+## Show Me the Design
+To keep the code clean we will first design the interfaces separate from the implementation. The contract API will be defined
+explicitly via an interface. In Rust, interfaces are called [traits][6]. The design approach will be to leverage Rust strongly
+typed system to model the domain. The [NEP-141][3] standard defined the API using the lowest common denominator to keep the
+API programming language neutral as musch as possible. In doing so, we lost type safety. For example, numeric amounts were
+specified as `string` types. In Rust, we will instead be working with a typed domain model that makes the code clear and precise.
+
+![](../../../../.gitbook/assets/oysterpack-near-stake-token-FT-NEP-141.png)
+ 
+**StakeTokeContract** represents the contract implementation that implements the **FungibaleToken** and **ResolveTransferCall**
+traits. It depends on the **TransferReceiver** interface for cross-contract calls. 
+
+**FungibleToken** trait
+- specifies the core fungible token API
+- instead of using native String types, I use specific domain type wrappers for `TokenAmount`, `Memo`, and `TransferCallMessage`
+  - this leaves absolutely zero ambiguity in the code and enables the domain model to be encoded into the type system. You
+    may think this is overkill for something so simple, but my advice is to never take shortcuts. If you are going to do
+    something, then do it right in the first place. In addition, the beauty of Rust's zero cost abstractions, is that we 
+    can leverage the type system for zero runtime costs (if done right).
+    
+**ResolveTransferCall** trait
+- specifies the private callback interface used as part of the transfer call workflow
+- private means that even though the function is exposed on the contract, only the contract itself is allowed to call the
+  function. If any other account tries to call the private function, then it should fail.
+  
+**TransferReceiver** trait
+- represents the contract API required by the transfer receiver contract  
 
 ## Show Me the Code
 
@@ -92,3 +133,5 @@ your friends some STAKE tokens.
 [3]: 2-fungible-token.md
 [4]: https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved
 [5]: https://www.rust-lang.org/
+[6]: https://doc.rust-lang.org/book/ch10-02-traits.html
+[7]: https://crates.io/crates/near-sdk
