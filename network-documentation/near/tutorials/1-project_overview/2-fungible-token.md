@@ -227,7 +227,7 @@ Receiver contracts intended for `ft_transfer_call` flow must implement this inte
 #### Function
 
 ```javascript
-function ft_on_transferl(sender_id: string, amount: string, msg: string):  Promise<string>
+function ft_on_transfer(sender_id: string, amount: string, msg: string):  Promise<string>
 ```
 
 _change method_

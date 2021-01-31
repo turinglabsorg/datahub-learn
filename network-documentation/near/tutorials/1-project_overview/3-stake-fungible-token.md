@@ -224,6 +224,11 @@ fn ft_transfer_call(
     ))
 }
 ```
+
+Transfer call is a little more interesting because it involves cross contract calls:
+
+![](../../../../.gitbook/assets/oysterpack-near-stake-token-transfer-call.png)
+
 - transfer call workflow will first transfer the tokens - it simply delegates to `ft_transfer()`
 - then it invokes the receiver contract and registers a callback to itself to finalize the transfer
 - the code uses what's called the high level cross contract pattern provided by NEAR Rust SDK. It works as follows:
@@ -262,11 +267,17 @@ function call that is required by the NEAR protocol:
 - how much NEAR to attach to the function call
 - how prepaid gas to supply to the function call
 
-> #### Side topic ... 
+> #### Side Topic ... 
 > Something to be aware of is the the high level cross contract approach works for simple cross contract calls - as in this
 > case. However, sometimes you may need to reach down to use the lower level cross contract approach because you need more
 > robust error handling, or your use case requires batched transactions, etc. We'll explore this topic in future tutorials.
 
+- [Promise][11] is provided by NEAR's Rust SDK. It is used to specify that the contract function call is returning a Promise
+  which defines actions for the NEAR runtime to execute after the current function call is committed. This means that contract
+  state is persisted to storage and permanently stored on the blockchain. The returned Promise is run scheduled to run
+  after the current function completes. If you are coming from Ethereum, this may not be what you expected. The cross 
+  contract call is not part of the current function call's transaction. Thus, in order to be able to handle Promise failures,
+  the pattern on NEAR is to register callbacks on the Promise. This is what is done here.
 
 ## Show Me the Tests
 
@@ -288,3 +299,4 @@ your friends some STAKE tokens.
 [8]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/interface/fungible_token.rs
 [9]: https://crates.io/crates/near-bindgen
 [10]: https://docs.rs/near-sdk/2.0.1/near_sdk/json_types/struct.ValidAccountId.html
+[11]: https://docs.rs/near-sdk/2.0.1/near_sdk/struct.Promise.html
