@@ -784,11 +784,17 @@ near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL --args "{\"account_i
 ```
 
 ## It's a wrap folks...
-That was longer than expected, but time flies by when you are having fun. We did a little design, coding, and even testing
-in Rust. Along the way we also got a little taste of how cross contract calls and promises work on NEAR using NEAR Rust SDK.
-
+That was longer than expected, but time flies by when you are having fun. We learned about staking on NEAR. We implemented 
+the Fungible Token Core Standard (NEP-141) for the STAKE contract. We did a some design, coding, and even testing in Rust. 
+Along the way we also got a little taste of how cross contract calls and promises work on NEAR using NEAR Rust SDK. I also
+showed you some tricks I picked up to unit test cross contract calls and callbacks. Finally, you got a chance to earn some
+NEAR while learning with us.
 
 ## What's Next ...
+When I first introduced the Fungible Token Core Standard (NEP-141), I mentioned that was only a piece of the possible.
+Account registration and metadata are required for the full solution. The community has been busy working on the new
+[Account Registration Standard][19] and we have entered finalization step. In the next tutorial, I will present to you
+the new Account Registration Standard API.
 
 [1]: https://github.com/oysterpack/oysterpack-near-stake-token
 [2]: https://github.com/near/core-contracts/tree/master/staking-pool
@@ -808,3 +814,4 @@ in Rust. Along the way we also got a little taste of how cross contract calls an
 [16]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/lib.rs
 [17]: https://learn.figment.io/network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub#configure-environment
 [18]: https://github.com/near/near-cli
+[19]: https://github.com/near/NEPs/discussions/145#discussioncomment-297583
