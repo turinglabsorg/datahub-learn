@@ -413,11 +413,331 @@ There are multiple types of tests:
 3. Integration tests using deployed contracts on testnet
 
 All three types of tests are crucial. However, in order to not turn this tutorial into a novel, we'll save simulation
-and integration tests for future tutorials.
+and integration tests for future tutorials. Don't worry, we'll keep it as short as possible, but if you want to see more,
+the full test suite is on github. I'll cover the most interesting parts related to unit testing cross-contract calls.
 
-## Show Me the Demo
+... another reason I love Rust is because it comes with batteries included with robust support for [testing][14]. 
 
-## Show Me the Money: Earn Some NEAR
+### How I structure unit tests
+I create one test module per contract function, e.g., 
+
+```rust
+#[cfg(test)]
+mod test_transfer {
+  // tests
+}
+
+#[cfg(test)]
+mod test_transfer_call {
+  // tests
+}
+
+#[cfg(test)]
+mod test_resolve_transfer_call {
+  // tests
+}
+```
+
+Unit tests are written following the [Arrange-Act-Assert][15] test pattern, e.g., 
+```rust
+#[test]
+pub fn transfer_ok() {
+    // Arrange
+    // TODO: setup the test
+  
+    // Act
+    // TODO: execute the code to test
+  
+    // Assert
+    // TODO: check the test results
+}
+```
+
+### Unit testing cross-contract calls
+The title is a little misleading because technically you can't unit test cross contract calls for technical reasons
+discussed above. To test cross contract calls locally, you would use simulation tests. However, simulation tests also
+has its limitations for more complex workflows. Ultimately, you will need to run integration tests on testnet to fully 
+test more complex cross-contract workflows ... but I digress
+
+Try to test as much as possible with unit tests because they run the fastest and give the quickest feedback. Using unit tests
+we can verify that the expected cross-contract workflows are setup correctly.
+
+> **NOTE:** I am linking to the NEAR Rust SDK on github because it provides improved testing support that is not available
+> on the version published on crates.io
+
+
+Let's take a look at the happy case scenario for the `ft_transfer_call`:
+```rust
+    #[test]
+pub fn transfer_ok() {
+  // Arrange
+  let mut test_ctx = TestContext::with_registered_account();
+  let contract = &mut test_ctx.contract;
+
+  let sender_id = test_ctx.account_id;
+  let receiver_id = "receiver.near";
+
+  // register receiver account
+  {
+    let mut context = test_ctx.context.clone();
+    context.predecessor_account_id = receiver_id.to_string();
+    context.attached_deposit = YOCTO;
+    testing_env!(context);
+    contract.register_account();
+  }
+
+  assert!(contract.account_registered(to_valid_account_id(sender_id)));
+  assert!(contract.account_registered(to_valid_account_id(receiver_id)));
+
+  assert_eq!(contract.ft_total_supply(), 0.into());
+  assert_eq!(
+    contract.ft_balance_of(to_valid_account_id(sender_id)),
+    0.into()
+  );
+  assert_eq!(
+    contract.ft_balance_of(to_valid_account_id(receiver_id)),
+    0.into()
+  );
+
+  // credit the sender with STAKE
+  let mut sender = contract.registered_account(sender_id);
+  let total_supply = YoctoStake(100 * YOCTO);
+  sender.apply_stake_credit(total_supply);
+  contract.total_stake.credit(total_supply);
+  contract.save_registered_account(&sender);
+
+  // Act - transfer with no memo
+  let mut context = test_ctx.context.clone();
+  context.predecessor_account_id = sender_id.to_string();
+  context.attached_deposit = 1; // 1 yoctoNEAR is required to transfer
+  testing_env!(context.clone());
+  let transfer_amount = 10 * YOCTO;
+  let msg = TransferCallMessage::from("pay");
+  contract.ft_transfer_call(
+    to_valid_account_id(receiver_id),
+    transfer_amount.into(),
+    msg.clone(),
+    None,
+  );
+
+  // Assert
+  assert_eq!(contract.ft_total_supply().value(), total_supply.value());
+  assert_eq!(
+    contract
+            .ft_balance_of(to_valid_account_id(sender_id))
+            .value(),
+    total_supply.value() - transfer_amount
+  );
+  assert_eq!(
+    contract
+            .ft_balance_of(to_valid_account_id(receiver_id))
+            .value(),
+    transfer_amount
+  );
+  let sender = contract.predecessor_registered_account();
+  assert_eq!(sender.near.unwrap().amount().value(), 1,
+             "expected the attached 1 yoctoNEAR for the transfer to be credited to the account's NEAR balance");
+
+  let receipts = deserialize_receipts();
+  assert_eq!(receipts.len(), 2);
+  {
+    let receipt = &receipts[0];
+    match &receipt.actions[0] {
+      Action::FunctionCall {
+        method_name,
+        args,
+        deposit,
+        gas,
+      } => {
+        assert_eq!(method_name, "ft_on_transfer");
+        assert_eq!(*deposit, 0);
+        let args: TransferCallArgs = serde_json::from_str(args).unwrap();
+        assert_eq!(args.sender_id, to_valid_account_id(sender_id));
+        assert_eq!(args.amount, transfer_amount.into());
+        assert_eq!(args.msg, msg);
+        assert!(*gas >= context.prepaid_gas - (TGAS * 35).value())
+      }
+      _ => panic!("expected `ft_on_transfer` function call"),
+    }
+  }
+  {
+    let receipt = &receipts[1];
+    match &receipt.actions[0] {
+      Action::FunctionCall {
+        method_name,
+        args,
+        deposit,
+        gas,
+      } => {
+        assert_eq!(method_name, "ft_resolve_transfer_call");
+        assert_eq!(*deposit, 0);
+        let args: ResolveTransferCallArgs = serde_json::from_str(args).unwrap();
+        assert_eq!(args.sender_id, to_valid_account_id(sender_id));
+        assert_eq!(args.receiver_id, to_valid_account_id(receiver_id));
+        assert_eq!(args.amount, transfer_amount.into());
+        assert_eq!(
+          *gas,
+          contract
+                  .config
+                  .gas_config()
+                  .callbacks()
+                  .resolve_transfer_gas()
+                  .value()
+        )
+      }
+      _ => panic!("expected `ft_on_transfer` function call"),
+    }
+  }
+
+  // Act - transfer with memo
+  testing_env!(context.clone());
+  contract.ft_transfer_call(
+    to_valid_account_id(receiver_id),
+    transfer_amount.into(),
+    "pay".into(),
+    Some("memo".into()),
+  );
+  let sender = contract.predecessor_registered_account();
+  assert_eq!(sender.near.unwrap().amount().value(), 2,
+             "expected the attached 1 yoctoNEAR for the transfer to be credited to the account's NEAR balance");
+
+  // Assert
+  assert_eq!(contract.ft_total_supply().value(), total_supply.value());
+  assert_eq!(
+    contract
+            .ft_balance_of(to_valid_account_id(sender_id))
+            .value(),
+    total_supply.value() - (transfer_amount * 2)
+  );
+  assert_eq!(
+    contract
+            .ft_balance_of(to_valid_account_id(receiver_id))
+            .value(),
+    transfer_amount * 2
+  );
+}
+```
+The `ft_transfer_call` is expected to produce to function call action receipts for the cross-contract workflow. This is
+tested using the following code:
+```rust
+let receipts = deserialize_receipts();
+  assert_eq!(receipts.len(), 2);
+  {
+    let receipt = &receipts[0];
+    match &receipt.actions[0] {
+      Action::FunctionCall {
+        method_name,
+        args,
+        deposit,
+        gas,
+      } => {
+        assert_eq!(method_name, "ft_on_transfer");
+        assert_eq!(*deposit, 0);
+        let args: TransferCallArgs = serde_json::from_str(args).unwrap();
+        assert_eq!(args.sender_id, to_valid_account_id(sender_id));
+        assert_eq!(args.amount, transfer_amount.into());
+        assert_eq!(args.msg, msg);
+        assert!(*gas >= context.prepaid_gas - (TGAS * 35).value())
+      }
+      _ => panic!("expected `ft_on_transfer` function call"),
+    }
+  }
+  {
+    let receipt = &receipts[1];
+    match &receipt.actions[0] {
+      Action::FunctionCall {
+        method_name,
+        args,
+        deposit,
+        gas,
+      } => {
+        assert_eq!(method_name, "ft_resolve_transfer_call");
+        assert_eq!(*deposit, 0);
+        let args: ResolveTransferCallArgs = serde_json::from_str(args).unwrap();
+        assert_eq!(args.sender_id, to_valid_account_id(sender_id));
+        assert_eq!(args.receiver_id, to_valid_account_id(receiver_id));
+        assert_eq!(args.amount, transfer_amount.into());
+        assert_eq!(
+          *gas,
+          contract
+                  .config
+                  .gas_config()
+                  .callbacks()
+                  .resolve_transfer_gas()
+                  .value()
+        )
+      }
+      _ => panic!("expected `ft_on_transfer` function call"),
+    }
+  }
+```
+The unit test is able to verify the following:
+- that the cross-contract workflow is setup correctly
+- that the correct amounts of gas is supplied to each function call
+- that the function call arguments are correct
+
+That's pretty cool for a unit test and it was made possible because NEAR Rust SDK exposed receipts for testing - see
+`deserialize_receipts()` for details on how to retrieve the receipts.
+
+Unit testing the callback is a bit more tricky because of the data dependencies ...
+```rust
+#[test]
+pub fn ok_zero_refund() {
+    // Arrange
+    let mut test_ctx = TestContext::with_registered_account();
+    let contract = &mut test_ctx.contract;
+
+    let sender_id = test_ctx.account_id;
+    let receiver_id = "receiver.near";
+
+    // register receiver account
+    {
+        let mut context = test_ctx.context.clone();
+        context.predecessor_account_id = receiver_id.to_string();
+        context.attached_deposit = YOCTO;
+        testing_env!(context);
+        contract.register_account();
+    }
+
+    set_env_with_promise_result(contract, promise_result_zero_refund);
+
+    // Act
+    let result = contract.ft_resolve_transfer_call(
+        to_valid_account_id(sender_id),
+        to_valid_account_id(receiver_id),
+        YOCTO.into(),
+    );
+
+    // Assert
+    match result {
+        PromiseOrValue::Value(refund_amount) => assert_eq!(refund_amount.value(), 0),
+        _ => panic!("expected value to be returned"),
+    }
+}
+
+pub fn set_env_with_promise_result( contract: &mut StakeTokenContract, promise_result: fn(u64) -> PromiseResult) {
+  pub fn promise_results_count() -> u64 {
+    1
+  }
+
+  contract.set_env(Env {
+    promise_results_count_: promise_results_count,
+    promise_result_: promise_result,
+  });
+}
+
+fn promise_result_zero_refund(_result_index: u64) -> PromiseResult {
+  PromiseResult::Successful(serde_json::to_vec(&TokenAmount::from(0)).unwrap())
+}
+```
+The key to making this work is the magic performed by `set_env_with_promise_result(contract, promise_result_zero_refund);`
+To summarize how this works, what I did was I proxied the Rust `env`. Instead of the contract using `env` provided by
+the NEAR Rust SDK directly, I wrapped it in order to be able to inject promise results into it - but only when the code
+is compiled in test mode. I leverage Rust conditional compilation feature to select which `env` to use. If the code is compiled
+in release mode, then it uses NEAR's provided `env`. Take a look at [lib.rs][16] to see exactly how I do that. If there any
+questions, feel free to post them on the tutorial.
+
+## Show Me the Demo: Earn Some NEAR
 As a bonus for making it to the end, you can earn some NEAR by taking the STAKE token contract for a test drive on testnet
 and submit some token transfer transactions using your DataHub account.
 
@@ -456,3 +776,6 @@ Along the way we also got a little sample of how cross contract calls and promis
 [11]: https://docs.rs/near-sdk/2.0.1/near_sdk/struct.Promise.html
 [12]: https://docs.rs/near-sdk/2.0.1/near_sdk/struct.Promise.html#method.then
 [13]: https://datahub.figment.io/
+[14]: https://doc.rust-lang.org/book/ch11-00-testing.html
+[15]: https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/
+[16]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/lib.rs
