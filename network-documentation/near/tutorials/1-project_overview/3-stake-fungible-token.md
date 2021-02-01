@@ -749,10 +749,11 @@ the instructions in the following link on [how to obtain your DataHub access key
 We will use the NEAR CLI to submit the transactions:
 ```shell
 export DATAHUB_APIKEY=<DATAHUB_APIKEY>
+export NEAR_ACCOUNT=<YOUR-NEAR-ACCOUNT.testnet>
+
 export CONTRACT=stake-demo.oysterpack.testnet
 export NEAR_NODE_URL=https://near-testnet--rpc.datahub.figment.io/apikey/$DATAHUB_APIKEY
 export NEAR_ENV=testnet
-export NEAR_ACCOUNT=<YOUR-NEAR-ACCOUNT.testnet>
 
 # register account
 near call $CONTRACT register_account --node_url $NEAR_NODE_URL --accountId $NEAR_ACCOUNT --amount 1
