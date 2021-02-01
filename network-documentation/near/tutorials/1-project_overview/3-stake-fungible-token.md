@@ -739,27 +739,53 @@ questions, feel free to post them on the tutorial.
 
 ## Show Me the Demo: Earn Some NEAR
 As a bonus for making it to the end, you can earn some NEAR by taking the STAKE token contract for a test drive on testnet
-and submit some token transfer transactions using your DataHub account.
+and running through the demo below using the [NEAR CLI][18]. I have deployed the STAKE contract to `stake-demo.oysterpack.testnet` 
+on testnet for the demo.
 
+To earn NEAR rewards for exercising the demo, you will need to submit the NEAR requests through [DataHub][13] using your
+DataHub access key. If you have earned NEAR on previous NEAR tutorials, then you should already be set. Otherwise, follow
+the instructions in the following link on [how to obtain your DataHub access key][17].
 
 We will use the NEAR CLI to submit the transactions:
 ```shell
-# export your 
+export DATAHUB_APIKEY=<DATAHUB_APIKEY>
+export CONTRACT=stake-demo.oysterpack.testnet
+export NEAR_NODE_URL=https://near-testnet--rpc.datahub.figment.io/apikey/$DATAHUB_APIKEY
+export NEAR_ENV=testnet
+export NEAR_ACCOUNT=<YOUR-NEAR-ACCOUNT.testnet>
 
-# 1. Register your NEAR account with the contract:
+# register account
+near call $CONTRACT register_account --node_url $NEAR_NODE_URL --accountId $NEAR_ACCOUNT --amount 1
 
-# 2. Deposit and stake some NEAR to get some STAKE tokens
+# deposit and stake some NEAR to get some STAKE tokens
+near call $CONTRACT deposit_and_stake --node_url $NEAR_NODE_URL --accountId $NEAR_ACCOUNT --amount 1 --gas 200000000000000
 
-# 3. Check your STAKE balance and the balance for the receiver account you will transfer STAKE to
+# check balance
+near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL --args "{\"account_id\":\"$NEAR_ACCOUNT\"}" 
 
-# 4. Transfer some STAKE tokens to another registered account - you could use "oysterpack.testnet"
+# check total supply
+near view $CONTRACT ft_total_supply --node_url $NEAR_NODE_URL
 
-# 5. Check the STAKE balances to confirm the tokens were transferred
+# check balance for receiver contract - before transfer call
+near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL --args '{"account_id":"dev-1611907846758-1343432"}'
+
+# transfer STAKE via a simple transfer
+near call $CONTRACT ft_transfer --node_url $NEAR_NODE_URL --accountId $NEAR_ACCOUNT  --args '{"receiver_id":"dev-1611907846758-1343432", "amount":"10000000"}' --amount 0.000000000000000000000001
+
+# check balance for transfer receiver contract - before transfer call
+near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL--args "{\"account_id\":\"dev-1611907846758-1343432\"}"
+
+# transfer STAKE via a transfer call to another contract
+near call $CONTRACT ft_transfer_call --node_url $NEAR_NODE_URL --accountId $NEAR_ACCOUNT  --args '{"receiver_id":"dev-1611907846758-1343432", "amount":"1000000", "memo":"merry christmas", "msg":"{\"Accept\":{\"refund_percent\":50}}"}' --amount 0.000000000000000000000001
+
+# check balance for transfer receiver contract - after transfer call
+near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL --args "{\"account_id\":\"dev-1611907846758-1343432\"}"
 ```
 
 ## It's a wrap folks...
-That was longer than expected, but time flies by when you are having fun. We did a little design, coding, and even testing.
-Along the way we also got a little sample of how cross contract calls and promises work on NEAR using NEAR Rust SDK.
+That was longer than expected, but time flies by when you are having fun. We did a little design, coding, and even testing
+in Rust. Along the way we also got a little taste of how cross contract calls and promises work on NEAR using NEAR Rust SDK.
+
 
 ## What's Next ...
 
@@ -779,3 +805,5 @@ Along the way we also got a little sample of how cross contract calls and promis
 [14]: https://doc.rust-lang.org/book/ch11-00-testing.html
 [15]: https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/
 [16]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/lib.rs
+[17]: https://learn.figment.io/network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub#configure-environment
+[18]: https://github.com/near/near-cli
