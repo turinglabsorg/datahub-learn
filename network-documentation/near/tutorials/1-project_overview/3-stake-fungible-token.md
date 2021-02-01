@@ -460,7 +460,7 @@ My goal here is to cover the basics to get you started and point you in the righ
 ton of tests, and there's nothing better than having actual real code to reference.
 
 ### NEAR Rust SDK Unit Testing Support
-These are the key 3 things every unit requires to test contract functions:
+These are the 3 key ingredients every contract unit test requires:
 
 1. **VMContext** - provided by the NEAR Rust SDK - it provides the context for contract execution
 2. Contract instance
