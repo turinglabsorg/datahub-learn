@@ -417,8 +417,8 @@ There are multiple types of tests:
 3. Integration tests using deployed contracts on testnet
 
 All three types of tests are crucial. However, in order to not turn this tutorial into a novel, we'll save simulation
-and integration tests for future tutorials. Don't worry, we'll keep it as short as possible, but if you want to see more,
-the full test suite is on github. I'll cover the most interesting parts related to unit testing cross-contract calls.
+and integration tests for future tutorials. Don't worry, we'll keep it as short as possible, but if you want to dive deeper,
+the full test suite is on github. I'll focus on the most interesting parts related to unit testing cross-contract calls.
 
 ... another reason I love Rust is because it comes with batteries included with robust support for [testing][14]. 
 
