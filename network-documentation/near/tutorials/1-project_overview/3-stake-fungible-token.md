@@ -769,12 +769,13 @@ NEAR by providing you with fungible tokens for your staked NEAR. We then impleme
 (NEP-141) for the STAKE contract. We did a some design, coding, and even testing in Rust. Along the way we also got a little 
 taste of how cross contract calls and promises work on NEAR using NEAR Rust SDK. I also showed you some tricks I picked 
 up to unit test cross contract calls and callbacks. Finally, you got a chance to earn some NEAR while learning with us.
+I invite you to join the Figment and NEAR communities and embark on our common mission to take back the Internet together.
 
 ## What's Next ...
 When I first introduced the Fungible Token Core Standard (NEP-141), I mentioned that was only a piece of the puzzle.
 Account registration and metadata are required for the full solution. The community has been busy working on the new
 [Account Registration Standard][19] and we have entered the finalization phase. In the next tutorial, I will present to 
-you the new Account Registration Standard API.
+you the new Account Registration Standard API. The fun's just begun!
 
 [1]: https://github.com/oysterpack/oysterpack-near-stake-token
 [2]: https://github.com/near/core-contracts/tree/master/staking-pool
