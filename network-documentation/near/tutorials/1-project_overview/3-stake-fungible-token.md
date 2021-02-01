@@ -10,11 +10,11 @@ trade-offs is that the staked NEAR is locked because it is effectively put up as
 We can do better than that by unlocking the value. The [STAKE][1] contract unlocks the value stored in the staked NEAR by 
 transforming it into a [fungible token][3]. You can now have your STAKE and trade it too.
 
-In this tutorial we'll learn about how staking works on NEAR. We'll see how the STAKE token unlocks value. We'll
+In this tutorial we'll learn about how staking works on NEAR. We'll see how the STAKE token unlocks value. We'll then
 apply what we learned from the [fungible token][3] tutorial and implement the fungible token core NEP-141 standard in my
 favorite programming language, Rust. We will take it step by step and divide it up into 3 phases - design, coding, and last 
-but most important is testing. Finally, we'll deploy to testnet and take it for a test drive. As a bonus, you can earn 
-some NEAR by submitting some STAKE transactions through [DataHub][13]. There's a lot to cover, so let's get started ...
+but most important is testing. Finally, we'll take the STAKE contract for a test drive and give you a chance to earn some 
+NEAR. There's a lot to cover, so let's get started ...
 
 ## NEAR Staking 101
 
@@ -42,11 +42,11 @@ Here's how it works:
 4. When delegators choose to withdraw their NEAR they must first unstake the NEAR. The unstaked NEAR will remain locked 
   within the staking pool for 4 epoch periods (2 days) before being eligible for withdrawal from the staking pool contract.
    - **ATTENTION**: One thing users need to be aware and careful about is how the unstaking lock period functions in 
-     the current version staking pool contract implementation. Each time the user submits a request to unstake NEAR it
+     the current version of the staking pool contract. Each time the user submits a request to unstake NEAR it
      resets the lock period to 4 epochs (2 days). For example, if a user unstaked 1000 NEAR in epoch (1), then the 1000 NEAR
      will be available for withdrawal in epoch (4). What happens if the user submits another request to unstake 1 NEAR
      on epoch (3)? When you try to withdraw the 1000 NEAR in epoch (4), it is still locked because the lock period has
-     been reset and extended for all unstaked NEAR. The 1001 NEAR will no be available for withdrawal in epoch (7).
+     been reset and extended for all unstaked NEAR. The 1001 NEAR will then be available for withdrawal in epoch (7).
 
 For more information on how staking works on NEAR see:
 - [Economics in a Sharded Blockchain - Validators section](https://near.org/papers/economics-in-sharded-blockchain/#validators)
@@ -58,20 +58,20 @@ For more information on how staking works on NEAR see:
 
 When you deposit NEAR into the STAKE token contract, it will delegate the NEAR to the staking pool for you. In return you 
 are issued STAKE tokens that grow in value via staking rewards issued through the staking pool contract. STAKE tokens unlock 
-the value of the staked NEAR that is locked up by the staking pool contract. The STAKE token contract adds even more value
-beyond letting you use staked NEAR as fungible tokens. However, we'll save that for future tutorials. For now, we'll
-stay focused on how the STAKE token implements [NEP-141][3].
+the value of the staked NEAR that is locked up by the staking pool contract by enabling the user to transfer the staked NEAR 
+value to other accounts. The STAKE token contract adds even more value beyond letting you use staked NEAR as fungible tokens. 
+However, we'll save that for future tutorials. For now, we'll stay focused on how the STAKE token implements [NEP-141][3].
 
 ## Why Rust for Smart Contracts
 Rust's website sums it up in 3 words: performance, reliability, and productivity. For me it's a no-brainer. Over the past
 20+ years, I have used many programming languages, and [Rust][5] is the clear winner for me. For five years running, Rust has 
-also been voted by developers as the[most loved language][4] on stackoverflow for good reason. It is becoming the preferred 
+also been voted by developers as the [most loved language][4] on stackoverflow for good reason. It is becoming the preferred 
 language of choice for the crypto space because it is a perfect fit to build highly performant, reliable, and secure 
 blockchain software. On NEAR, for any serious or more complex smart contracts, especially within the DeFi space, I 
 strongly encourage and recommend Rust to you. 
 
-For developing NEAR smart contracts, you will need to learn to use the [NEAR RUST SDK][7]. I personally link to the latest
-and greatest version which is tagged on github because:
+For developing NEAR smart contracts, you will need to learn to use the [NEAR Rust SDK][7]. I personally link to the latest
+and greatest tagged version on github because:
 - it provides a few features that are not yet released via crates.io to reduce boilerplate
   - `#[private]` macro for callbacks
   - `PanicOnDefault` used to derive `Default` implementation that panics. This is a helpful macro in case the contract is 
@@ -92,15 +92,16 @@ near-sdk-sim = { git = "https://github.com/near/near-sdk-rs",  tag = "2.4.0" }
 To keep the code clean we will first design the interfaces separate from the implementation. The contract API will be defined
 explicitly via an interface. In Rust, interfaces are called [traits][6]. The design approach will be to leverage Rust strongly
 typed system to model the domain. The [NEP-141][3] standard defined the API using the lowest common denominator to keep the
-API programming language neutral as musch as possible. In doing so, we lost type safety. For example, numeric amounts were
-specified as `string` types. In Rust, we will instead be working with a typed domain model that makes the code clear and precise.
+API programming language neutral as much as possible. In doing so, we lost type safety. For example, numeric amounts were
+specified as `string` types. With Rust, we get type safety back. We will be working with a typed domain model that makes 
+the code clear and precise.
 
 ![](../../../../.gitbook/assets/oysterpack-near-stake-token-FT-NEP-141.png)
  
 - see [Rust code][8] on github
 
-**StakeTokeContract** represents the contract implementation that implements the **FungibaleToken** and **ResolveTransferCall**
-traits. It depends on the **TransferReceiver** interface for cross-contract calls. 
+**StakeTokeContract** implements the **FungibaleToken** and **ResolveTransferCall** traits. It depends on the 
+**TransferReceiver** interface for cross-contract calls. 
 
 **FungibleToken** trait
 - specifies the core fungible token API
@@ -114,10 +115,9 @@ traits. It depends on the **TransferReceiver** interface for cross-contract call
 - represents the contract API required by the transfer receiver contract
 
 **ResolveTransferCall** trait
-- specifies the **private* callback interface used as part of the transfer call workflow
-- the key word here to notice is **private**
-- private means that even though the function is exposed on the contract, only the contract itself is allowed to call the
-  function. If any other account tries to call the private function, then it should fail. 
+- specifies the **private** callback interface used as part of the transfer call workflow
+- the key word here to notice is **private** - it means that even though the function is exposed on the contract, only 
+  the contract itself is allowed to call the function. If any other account tries to call the private function, then it should fail. 
 - **NOTE**: the callback function signature is not explicitly defined by the FT standard (NEP-141). I am presenting to you
   my implementation, but you may choose to name your callback whatever you want
 
@@ -168,25 +168,25 @@ fn ft_transfer(
 - `#[payable]` marks the function to allow callers to attach NEAR to the function call. Recall that according to the 
    specification, callers must attach exactly 1 yoctoNEAR to the function call as a security measure
 - `&mut self` tells the rust compiler that the function will modify contract state
-- [ValidAccountId][10] comes from NEAR rust SDK. It provides boilerplate code to validate the NEAR account ID. If the account
+- [ValidAccountId][10] comes from NEAR rust SDK. It eliminates boilerplate code to validate the NEAR account ID. If the account
   ID is not a valid NEAR account ID, then the function call will fail fast
 - `_memo` - the STAKE contract has no use for memo, and thus tells the rust compiler that it will not be used by using a naming
   convention, i.e., by prefixing the name with an `_`. The rust compiler is very strict and disciplined. By default, it 
   will emit warnings for any sign of something possibly wrong with the code. 
-- the first the code does is perform some checks:
+- the first thing the code does is perform some checks:
   - it checks to make sure exactly 1 yoctoNEAR is attached
   - it checks that the transfer amount is not zero
   - by this point in the code the `receiver_id` has already been validated by NEAR SDK
 - I like to keep the contract function code as clean and readable as possible. The goal is to be able to read the code 
   and easily understand the business logic. Implementation details or boilerplate should be separated out into other functions.
-  If come back to code in 6 months and can't understand it or is hard to follow, then it's time to refactor and clean it up. 
+  If you come back to the code in 6 months and can't understand it or is hard to follow, then it's time to refactor and clean it up. 
 - converting the token amount to `YoctoStake` is specific to the STAKE token business logic. The code is expecting the 
   transfer amount to be specified in yocto scale - yoctoSTAKE is the smallest unit for the STAKE token, just like yoctoNEAR
   is the smallest unit for NEAR. That's a bit off topic ... we'll revist this in future tutorials
 - NEP-141 requires that the accounts involved in the transfer must both be registered. The `predecessor_registered_account()`
   and `registered_account()` helper functions will lookup the accounts and panic if the account is not registeredd
 - `claim_receipt_funds()` is specific to STAKE business logic and we'll skip this for now
-- `sender.apply_near_credit(1.into())` - remember the sender was required to attach 1 yoctoNEAR to the function call. How the
+- `sender.apply_near_credit(1.into())` - remember the sender was required to attach 1 yoctoNEAR to the function call. How
   the attached deposit is handled is not defined in the standard. In the STAKE contract, every registered account has a NEAR
   balance. Thus, the contract will credit the yoctoNEAR to the sender account (because 1 yoctoNEAR is not zero).
 - the transfer amount is debited from the sender and then credited to the receiver
@@ -194,9 +194,9 @@ fn ft_transfer(
   and receiver accounts are saved to storage.
   
 > #### Best Practices
-> 1. you should always use [ValidAccountId][10] as the contract function argument type
-> 2. contract API function should be easy to read to understand the business logic
-> 3. remember to commit contract state changes to storage
+> 1. You should always use [ValidAccountId][10] as the contract function argument type
+> 2. Contract API function should be easy to read to understand the business logic
+> 3. Remember to commit contract state changes to storage
 
 ```rust
  #[payable]
@@ -293,8 +293,8 @@ function call that is required by the NEAR protocol:
 #### How Promises work on NEAR
 On NEAR, think of [promises][11] as a way to compose **actions** to run asynchronously on remote contracts. I use the 
 term actions because promises support more than just calling remote functions. You can perform other actions, such as 
-creating and deleting accounts, adding keys, deploying contracts, and of course transferring NEAR - see the [docs][11] details.
-For now, we'll focus the discussion on using promises for remote function calls. 
+creating and deleting accounts, adding keys, deploying contracts, and of course transferring NEAR - see the [docs][11] for 
+details. For now, we'll focus the discussion on using promises for remote function calls. 
 
 Remote function calls are always scheduled to run async after the current function is committed to the blockchain. 
 This means contract state will be persisted to blockchain storage before the remote function is executed in a future block - 
@@ -468,7 +468,7 @@ we can verify that the expected cross-contract workflows are setup correctly.
 
 Let's take a look at the happy case scenario for the `ft_transfer_call`:
 ```rust
-    #[test]
+#[test]
 pub fn transfer_ok() {
   // Arrange
   let mut test_ctx = TestContext::with_registered_account();
@@ -617,8 +617,8 @@ pub fn transfer_ok() {
   );
 }
 ```
-The `ft_transfer_call` is expected to produce to function call action receipts for the cross-contract workflow. This is
-tested using the following code:
+The `ft_transfer_call` is expected to produce 2 function call action receipts for the cross-contract workflow. This is
+verified using the following code:
 ```rust
 let receipts = deserialize_receipts();
   assert_eq!(receipts.len(), 2);
@@ -738,15 +738,16 @@ in release mode, then it uses NEAR's provided `env`. Take a look at [lib.rs][16]
 questions, feel free to post them on the tutorial.
 
 ## Show Me the Demo: Earn Some NEAR
-As a bonus for making it to the end, you can earn some NEAR by taking the STAKE token contract for a test drive on testnet
-and running through the demo below using the [NEAR CLI][18]. I have deployed the STAKE contract to `stake-demo.oysterpack.testnet` 
-on testnet for the demo.
+As a bonus, you can earn some NEAR by taking the STAKE token contract for a test drive on testnet and running through the 
+demo below using the [NEAR CLI][18]. I have deployed the STAKE contract to `stake-demo.oysterpack.testnet` on testnet 
+for the demo.
 
 To earn NEAR rewards for exercising the demo, you will need to submit the NEAR requests through [DataHub][13] using your
 DataHub access key. If you have earned NEAR on previous NEAR tutorials, then you should already be set. Otherwise, follow
 the instructions in the following link on [how to obtain your DataHub access key][17].
 
-We will use the NEAR CLI to submit the transactions:
+We will use the NEAR CLI to submit the transactions. Plugin your DataHub API Key and NEAR account at the top, and then
+you should be all set to go.
 ```shell
 export DATAHUB_APIKEY=<DATAHUB_APIKEY>
 export NEAR_ACCOUNT=<YOUR-NEAR-ACCOUNT.testnet>
@@ -784,14 +785,15 @@ near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL --args "{\"account_i
 ```
 
 ## It's a wrap folks...
-That was longer than expected, but time flies by when you are having fun. We learned about staking on NEAR. We implemented 
-the Fungible Token Core Standard (NEP-141) for the STAKE contract. We did a some design, coding, and even testing in Rust. 
-Along the way we also got a little taste of how cross contract calls and promises work on NEAR using NEAR Rust SDK. I also
-showed you some tricks I picked up to unit test cross contract calls and callbacks. Finally, you got a chance to earn some
-NEAR while learning with us.
+That was longer than expected, but time flies by when you are having fun. We learned about staking on NEAR and how you
+can earn staking rewards as a delegator. I went over, at a high level, how the STAKE contract unlocks value in your staked 
+NEAR by providing you with fungible tokens for your staked NEAR. We then implemented the Fungible Token Core Standard 
+(NEP-141) for the STAKE contract. We did a some design, coding, and even testing in Rust. Along the way we also got a little 
+taste of how cross contract calls and promises work on NEAR using NEAR Rust SDK. I also showed you some tricks I picked 
+up to unit test cross contract calls and callbacks. Finally, you got a chance to earn some NEAR while learning with us.
 
 ## What's Next ...
-When I first introduced the Fungible Token Core Standard (NEP-141), I mentioned that was only a piece of the possible.
+When I first introduced the Fungible Token Core Standard (NEP-141), I mentioned that was only a piece of the puzzle.
 Account registration and metadata are required for the full solution. The community has been busy working on the new
 [Account Registration Standard][19] and we have entered finalization step. In the next tutorial, I will present to you
 the new Account Registration Standard API.
