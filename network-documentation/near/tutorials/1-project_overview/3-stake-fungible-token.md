@@ -13,7 +13,7 @@ transforming it into a [fungible token][3]. You can now have your STAKE and trad
 In this tutorial we'll learn about how staking works on NEAR. We'll see how the STAKE token unlocks value. We'll then
 apply what we learned from the [fungible token][3] tutorial and implement the fungible token core NEP-141 standard in my
 favorite programming language, Rust. We will take it step by step and divide it up into 3 phases - design, coding, and last 
-but most important is testing. Finally, we'll take the STAKE contract for a test drive and give you a chance to earn some 
+but not least, testing. Finally, we'll take the STAKE contract for a test drive and give you a chance to earn some 
 NEAR. There's a lot to cover, so let's get started ...
 
 ## NEAR Staking 101
@@ -238,7 +238,7 @@ stands out from other blockchains thanks to its sharded architecture.
 
 - transfer call workflow will first transfer the tokens - it simply delegates to `ft_transfer()` as we saw above
 - then it composes the async transfer call workflow using the [Promise][11] abstraction provided by the NEAR Rust SDK
-  - the Promise that is returned is not executed as part of the current block. The NEAR runtime will schedule the
+  - the Promise that is returned is not executed as part of the current block. The NEAR runtime will schedule 
     the Promise to run async and kickoff the workflow in the next block. It will be executed on the shard that hosts the 
     receiver account. Once the `ft_on_transfer` call completes on the receiver account, then the NEAR runtime will
     capture its output data and provide it as input data for the `ft_resolve_transfer_call`. The callback will be 
@@ -246,8 +246,8 @@ stands out from other blockchains thanks to its sharded architecture.
   - with cross contract calls gas considerations need to be taken into account. The FT standard states that `ft_transfer_call`
     must pass along all unused gas to the receiver contract. Technically speaking that is not possible. We can approximately
     pass along the unused gas. Getting gas right in cross contract calls requires experimentation. The approach I use is to
-    measure the gas consumption on the callback by temporarily relaxing the private contraint. This enables me to invoke 
-    the function manually and measure the gas consumption. The STAKE contract provides an operator interface to enables
+    measure the gas consumption on the callback by temporarily relaxing the private constraint. This enables me to invoke 
+    the function directly and measure the gas consumption. The STAKE contract provides an operator interface to enable
     the operator to configure the gas usage for cross contract calls.  This is beyond the scope of this tutorial, but worth
     mentioning. Checkout the `ft_on_transfer_gas()` and `resolve_transfer_gas()` methods in the source code for details.
 - the code uses what's called the high level cross contract pattern provided by NEAR Rust SDK. It works as follows:
@@ -255,7 +255,7 @@ stands out from other blockchains thanks to its sharded architecture.
 The remote function calls are declared as rust traits and annotated with the `#[ext_contract]` attribute. This attribute
 will be used to generate the low level code to invoke the remote call on the external contract. For each external
 contract interface that is annotated, a rust module is generated containing functions that map to the functions defined
-on the trait. I explicitly specify the module name in the attribute, i.e., `ext_transfer_receiver` explicitly specifies
+on the trait. I explicitly specify the module name in the attribute, e.g., `ext_transfer_receiver` explicitly specifies
 the module name. The name is optional, and a default name will be generated based on the trait name if not specified - 
 but I prefer to be specific. 
 
@@ -394,8 +394,9 @@ The business logic is pretty straight forward. The callback's main purpose is tw
 
 Certain business rules and checks are executed to gaurd against receiver contracts that violate the contract. This ties
 back to our earlier discussion on promises. Before the receiver contract is invoked, the transfer has already been committed
-to contract storage on the blockchain. Thus, the callback must be coded defensively to handle errors or contracts that 
-violate the transfer contract.
+to contract storage on the blockchain. By the time the callback runs, the contract state for the STAKE contract and for the
+receiver contract have already been committed to the blockchain. Thus, the callback must be coded defensively to handle 
+errors or contracts that violate the transfer call protocol.
 
 The NEAR Rust SDK currently has no high level support for handling promise failures in cross contract calls - but it's on
 the NEAR Rust SDK roadmap. The `transfer_call_receiver_unused_amount` function shows how to use the low level NEAR SDK
