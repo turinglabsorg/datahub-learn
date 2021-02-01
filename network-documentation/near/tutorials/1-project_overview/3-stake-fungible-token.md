@@ -773,8 +773,8 @@ up to unit test cross contract calls and callbacks. Finally, you got a chance to
 ## What's Next ...
 When I first introduced the Fungible Token Core Standard (NEP-141), I mentioned that was only a piece of the puzzle.
 Account registration and metadata are required for the full solution. The community has been busy working on the new
-[Account Registration Standard][19] and we have entered finalization step. In the next tutorial, I will present to you
-the new Account Registration Standard API.
+[Account Registration Standard][19] and we have entered the finalization phase. In the next tutorial, I will present to 
+you the new Account Registration Standard API.
 
 [1]: https://github.com/oysterpack/oysterpack-near-stake-token
 [2]: https://github.com/near/core-contracts/tree/master/staking-pool
