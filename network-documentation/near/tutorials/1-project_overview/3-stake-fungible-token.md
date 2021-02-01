@@ -109,14 +109,17 @@ traits. It depends on the **TransferReceiver** interface for cross-contract call
     may think this is overkill for something so simple, but my advice is to never take shortcuts. If you are going to do
     something, then do it right in the first place. In addition, the beauty of Rust's zero cost abstractions, is that we 
     can leverage the type system for zero runtime costs (if done right).
-    
-**ResolveTransferCall** trait
-- specifies the private callback interface used as part of the transfer call workflow
-- private means that even though the function is exposed on the contract, only the contract itself is allowed to call the
-  function. If any other account tries to call the private function, then it should fail.
   
 **TransferReceiver** trait
 - represents the contract API required by the transfer receiver contract
+
+**ResolveTransferCall** trait
+- specifies the **private* callback interface used as part of the transfer call workflow
+- the key word here to notice is **private**
+- private means that even though the function is exposed on the contract, only the contract itself is allowed to call the
+  function. If any other account tries to call the private function, then it should fail. 
+- **NOTE**: the callback function signature is not explicitly defined by the FT standard (NEP-141). I am presenting to you
+  my implementation, but you may choose to name your callback whatever you want
 
 ## Show Me the Code
 You can refer to the full source code on github. I will be reviewing the most important parts of the code below.
@@ -225,20 +228,27 @@ fn ft_transfer_call(
 }
 ```
 
-Transfer call is a little more interesting because it involves cross contract calls:
+Transfer call is a little more interesting because it involves cross contract calls. It showcases how NEAR differs and 
+stands out from other blockchains thanks to its sharded architecture.
 
 ![](../../../../.gitbook/assets/oysterpack-near-stake-token-transfer-call.png)
 
-- transfer call workflow will first transfer the tokens - it simply delegates to `ft_transfer()`
-- then it invokes the receiver contract and registers a callback to itself to finalize the transfer
+- transfer call workflow will first transfer the tokens - it simply delegates to `ft_transfer()` as we saw above
+- then it composes the async transfer call workflow using the [Promise][11] abstraction provided by the NEAR Rust SDK
+  - the Promise that is returned is not executed as part of the current block. The NEAR runtime will schedule the
+    the Promise to run async and kickoff the workflow in the next block. It will be executed on the shard that hosts the 
+    receiver account. Once the `ft_on_transfer` call completes on the receiver account, then the NEAR runtime will
+    capture its output data and provide it as input data for the `ft_resolve_transfer_call`. The callback will be 
+    scheduled in the next block to run on the shard that hosts the STAKE token contract.
 - the code uses what's called the high level cross contract pattern provided by NEAR Rust SDK. It works as follows:
 
 The remote function calls are declared as rust traits and annotated with the `#[ext_contract]` attribute. This attribute
-will be used to generate the more low level code to invoke the remote call on the external contract. For each external
-contract interface that is annotated a rust module is generated containing functions that map to the funtions defined
-on the trait. I explicitly specify the module name in the attibute, i.e., `#[ext_contract(ext_transfer_receiver)]` specifies
-the module name to be `ext_transfer_receiver`. The name is optional, and a default name will be generated based on the trait
-name if not specified - but I prefer to be specific. 
+will be used to generate the low level code to invoke the remote call on the external contract. For each external
+contract interface that is annotated, a rust module is generated containing functions that map to the functions defined
+on the trait. I explicitly specify the module name in the attribute, i.e., `ext_transfer_receiver` explicitly specifies
+the module name. The name is optional, and a default name will be generated based on the trait name if not specified - 
+but I prefer to be specific. 
+
 ```rust
 #[ext_contract(ext_transfer_receiver)]
 pub trait ExtTransferReceiver {
@@ -268,16 +278,31 @@ function call that is required by the NEAR protocol:
 - how prepaid gas to supply to the function call
 
 > #### Side Topic ... 
-> Something to be aware of is the the high level cross contract approach works for simple cross contract calls - as in this
-> case. However, sometimes you may need to reach down to use the lower level cross contract approach because you need more
-> robust error handling, or your use case requires batched transactions, etc. We'll explore this topic in future tutorials.
+> Something to be aware of is that the high level cross contract approach works well for simple cross contract calls - 
+> as in this case. However, you may need to reach down to use the lower level cross contract approach because you
+> require more robust error handling, or your use case requires batched transactions, etc. We'll explore this topic in 
+> future tutorials. 
 
-- [Promise][11] is provided by NEAR's Rust SDK. It is used to specify that the contract function call is returning a Promise
-  which defines actions for the NEAR runtime to execute after the current function call is committed. This means that contract
-  state is persisted to storage and permanently stored on the blockchain. The returned Promise is run scheduled to run
-  after the current function completes. If you are coming from Ethereum, this may not be what you expected. The cross 
-  contract call is not part of the current function call's transaction. Thus, in order to be able to handle Promise failures,
-  the pattern on NEAR is to register callbacks on the Promise. This is what is done here.
+#### How Promises work on NEAR
+On NEAR, think of [promises][11] as a way to compose **actions** to run asynchronously on remote contracts. I use the 
+term actions because promises support more than just calling remote functions. You can perform other actions, such as 
+creating and deleting accounts, adding keys, deploying contracts, and of course transferring NEAR - see the [docs][11] details.
+For now, we'll focus the discussion on using promises for remote function calls. 
+
+Remote function calls are always scheduled to run async after the current function is committed to the blockchain. 
+This means contract state will be persisted to blockchain storage before the remote function is executed in a future block - 
+most likely in the next block. If the contract requires to handle the remote contract function call results or perform
+error handling, then the contract must schedule a callback that is triggered when the remote function call completes. 
+We used [Promise::then][12] to connect the two function calls and compose them into the transfer call workflow. 
+
+>#### Remember this about NEAR Promises:
+>
+> 1. Promises are always run async. 
+> 2. In order to handle promise results, the contract must schedule a callback.
+> 3. There are no global transactions that spans across contracts. Think of each contract function call always being executed 
+>   in its own separate transaction. If contract state needs to be rolled back because a downstream promise failed, then
+>   the contract is responsible to rollback the contract state in the form of a compensating transaction.
+
 
 ## Show Me the Tests
 
@@ -300,3 +325,4 @@ your friends some STAKE tokens.
 [9]: https://crates.io/crates/near-bindgen
 [10]: https://docs.rs/near-sdk/2.0.1/near_sdk/json_types/struct.ValidAccountId.html
 [11]: https://docs.rs/near-sdk/2.0.1/near_sdk/struct.Promise.html
+[12]: https://docs.rs/near-sdk/2.0.1/near_sdk/struct.Promise.html#method.then
