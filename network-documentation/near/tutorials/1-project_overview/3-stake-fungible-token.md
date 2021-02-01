@@ -753,7 +753,7 @@ near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL --args '{"account_id
 near call $CONTRACT ft_transfer --node_url $NEAR_NODE_URL --accountId $NEAR_ACCOUNT  --args '{"receiver_id":"dev-1611907846758-1343432", "amount":"10000000"}' --amount 0.000000000000000000000001
 
 # check balance for transfer receiver contract - before transfer call
-near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL--args "{\"account_id\":\"dev-1611907846758-1343432\"}"
+near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL --args "{\"account_id\":\"dev-1611907846758-1343432\"}"
 
 # transfer STAKE via a transfer call to another contract
 near call $CONTRACT ft_transfer_call --node_url $NEAR_NODE_URL --accountId $NEAR_ACCOUNT  --args '{"receiver_id":"dev-1611907846758-1343432", "amount":"1000000", "memo":"merry christmas", "msg":"{\"Accept\":{\"refund_percent\":50}}"}' --amount 0.000000000000000000000001
