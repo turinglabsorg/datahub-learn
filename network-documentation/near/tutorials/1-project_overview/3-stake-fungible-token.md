@@ -10,11 +10,11 @@ trade-offs is that the staked NEAR is locked because it is effectively put up as
 We can do better than that by unlocking the value. The [STAKE][1] contract unlocks the value stored in the staked NEAR by 
 transforming it into a [fungible token][3]. You can now have your STAKE and trade it too.
 
-In this tutorial we'll learn about how staking works on NEAR. We'll see how the STAKE token adds and unlocks value. We'll
+In this tutorial we'll learn about how staking works on NEAR. We'll see how the STAKE token unlocks value. We'll
 apply what we learned from the [fungible token][3] tutorial and implement the fungible token core NEP-141 standard in my
 favorite programming language, Rust. We will take it step by step and divide it up into 3 phases - design, coding, and last 
-but most important is testing. Finally, we'll deploy to testnet and take it for a test drive. There's a lot to cover, 
-so let's get started ...
+but most important is testing. Finally, we'll deploy to testnet and take it for a test drive. As a bonus, you can earn 
+some NEAR by submitting some STAKE transactions through [DataHub][13]. There's a lot to cover, so let's get started ...
 
 ## NEAR Staking 101
 
@@ -240,6 +240,13 @@ stands out from other blockchains thanks to its sharded architecture.
     receiver account. Once the `ft_on_transfer` call completes on the receiver account, then the NEAR runtime will
     capture its output data and provide it as input data for the `ft_resolve_transfer_call`. The callback will be 
     scheduled in the next block to run on the shard that hosts the STAKE token contract.
+  - with cross contract calls gas considerations need to be taken into account. The FT standard states that `ft_transfer_call`
+    must pass along all unused gas to the receiver contract. Technically speaking that is not possible. We can approximately
+    pass along the unused gas. Getting gas right in cross contract calls requires experimentation. The approach I use is to
+    measure the gas consumption on the callback by temporarily relaxing the private contraint. This enables me to invoke 
+    the function manually and measure the gas consumption. The STAKE contract provides an operator interface to enables
+    the operator to configure the gas usage for cross contract calls.  This is beyond the scope of this tutorial, but worth
+    mentioning. Checkout the `ft_on_transfer_gas()` and `resolve_transfer_gas()` methods in the source code for details.
 - the code uses what's called the high level cross contract pattern provided by NEAR Rust SDK. It works as follows:
 
 The remote function calls are declared as rust traits and annotated with the `#[ext_contract]` attribute. This attribute
@@ -303,14 +310,136 @@ We used [Promise::then][12] to connect the two function calls and compose them i
 >   in its own separate transaction. If contract state needs to be rolled back because a downstream promise failed, then
 >   the contract is responsible to rollback the contract state in the form of a compensating transaction.
 
+Let's bring it home ...
+```rust
+#[near_bindgen]
+impl ResolveTransferCall for StakeTokenContract {
+    #[private]
+    fn ft_resolve_transfer_call(
+        &mut self,
+        sender_id: ValidAccountId,
+        receiver_id: ValidAccountId,
+        amount: TokenAmount,
+    ) -> PromiseOrValue<TokenAmount> {
+        let unused_amount = self.transfer_call_receiver_unused_amount(amount);
+
+        let refund_amount = if unused_amount.value() > 0 {
+            log!("unused amount: {}", unused_amount);
+            let mut sender = self.registered_account(sender_id.as_ref());
+            let mut receiver = self.registered_account(receiver_id.as_ref());
+            match receiver.stake.as_mut() {
+                Some(balance) => {
+                    let refund_amount = if balance.amount().value() < unused_amount.value() {
+                        log!("ERROR: partial amount will be refunded because receiver STAKE balance is insufficient");
+                        balance.amount()
+                    } else {
+                        unused_amount.value().into()
+                    };
+                    receiver.apply_stake_debit(refund_amount);
+                    sender.apply_stake_credit(refund_amount);
+
+                    self.save_registered_account(&receiver);
+                    self.save_registered_account(&sender);
+                    log!("sender refunded: {}", refund_amount.value());
+                    refund_amount.value().into()
+                }
+                None => {
+                    log!("ERROR: refund is not possible because receiver STAKE balance is zero");
+                    0.into()
+                }
+            }
+        } else {
+            unused_amount
+        };
+
+        PromiseOrValue::Value(refund_amount)
+    }
+}
+
+impl StakeTokenContract {
+  /// the unused amount is retrieved from the `TransferReceiver::ft_on_transfer` promise result
+  fn transfer_call_receiver_unused_amount(&self, transfer_amount: TokenAmount) -> TokenAmount {
+    let unused_amount: TokenAmount = match self.promise_result(0) {
+      PromiseResult::Successful(result) => {
+        serde_json::from_slice(&result).expect("unused token amount")
+      }
+      _ => {
+        log!(
+          "ERROR: transfer call failed on receiver contract - full transfer amount will be refunded"
+        );
+        transfer_amount.clone()
+      }
+    };
+  
+    if unused_amount.value() > transfer_amount.value() {
+      log!(
+        "WARNING: unused_amount({}) > amount({}) - full transfer amount will be refunded",
+        unused_amount,
+        transfer_amount
+      );
+      transfer_amount
+    } else {
+      unused_amount
+    }
+  }
+}
+```
+The business logic is pretty straight forward. The callback's main purpose is two-fold
+
+1. It refunds any unused amount back from the reciever account to the sender account. 
+2. If the function call failed on the receiver contract, then the callback will attempt to refund the full amount.
+
+Certain business rules and checks are executed to gaurd against receiver contracts that violate the contract. This ties
+back to our earlier discussion on promises. Before the receiver contract is invoked, the transfer has already been committed
+to contract storage on the blockchain. Thus, the callback must be coded defensively to handle errors or contracts that 
+violate the transfer contract.
+
+The NEAR Rust SDK currently has no high level support for handling promise failures in cross contract calls - but it's on
+the NEAR Rust SDK roadmap. The `transfer_call_receiver_unused_amount` function shows how to use the low level NEAR SDK
+API to handle the promise result, which requires us to manually deserialize the result:
+`serde_json::from_slice(&result).expect("unused token amount")`
 
 ## Show Me the Tests
+Testing smart contracts is crucial because once contracts are deployed in a **permissionless** manner, the contract code
+cannot be upgraded. Permissionless means that the contract has no access keys which would permit the code to be changed.
+In other words, once the contract is deployed and stripped of all access keys, its code and interface will never change.
+To be considered truly permissionless, the code requires audit to make sure there is no hidden code that would be able 
+to add access keys later on or redeploy the contract - but that is a whole other topic. 
+
+There are multiple types of tests:
+
+1. Unit tests
+2. Local simulation tests
+3. Integration tests using deployed contracts on testnet
+
+All three types of tests are crucial. However, in order to not turn this tutorial into a novel, we'll save simulation
+and integration tests for future tutorials.
 
 ## Show Me the Demo
 
+## Show Me the Money: Earn Some NEAR
+As a bonus for making it to the end, you can earn some NEAR by taking the STAKE token contract for a test drive on testnet
+and submit some token transfer transactions using your DataHub account.
+
+
+We will use the NEAR CLI to submit the transactions:
+```shell
+# export your 
+
+# 1. Register your NEAR account with the contract:
+
+# 2. Deposit and stake some NEAR to get some STAKE tokens
+
+# 3. Check your STAKE balance and the balance for the receiver account you will transfer STAKE to
+
+# 4. Transfer some STAKE tokens to another registered account - you could use "oysterpack.testnet"
+
+# 5. Check the STAKE balances to confirm the tokens were transferred
+```
+
 ## It's a wrap folks...
-That was longer than expected, but time flies by when you are having fun. STAKE makes staking better ... you can send
-your friends some STAKE tokens.
+That was longer than expected, but time flies by when you are having fun. We did a little design, coding, and even testing.
+Along the way we also got a little sample of how cross contract calls and promises work on NEAR using NEAR Rust SDK.
 
 ## What's Next ...
 
@@ -326,3 +455,4 @@ your friends some STAKE tokens.
 [10]: https://docs.rs/near-sdk/2.0.1/near_sdk/json_types/struct.ValidAccountId.html
 [11]: https://docs.rs/near-sdk/2.0.1/near_sdk/struct.Promise.html
 [12]: https://docs.rs/near-sdk/2.0.1/near_sdk/struct.Promise.html#method.then
+[13]: https://datahub.figment.io/
