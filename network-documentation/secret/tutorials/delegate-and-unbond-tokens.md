@@ -6,9 +6,9 @@ description: Learn how to delegate and unbond tokens on Secret Network
 
 ## About the Author
 
-This tutorial was created by [Minato Fund](https://github.com/minatofund), an active group helping merge blockchain projects operating as a validator. 
+This tutorial was created by [Minato Fund](https://github.com/minatofund), an active group helping merge blockchain projects operating as a validator.
 
-## Introduction 
+## Introduction
 
 If you are interested in staking SCRT tokens but do not want to run your own node, delegation is a great option. In this tutorial, we will delegate SCRT tokens to a validator, and unbond the delegation using SecretJS and a [DataHub](https://datahub.figment.io/sign_up?service=secret) node.
 
@@ -26,9 +26,9 @@ If you have completed the Secret Pathway, you should have already taken care of 
 
 ## Delegate to a Validator
 
-First, you need to decide which validator you would like to delegate to. You can go to this URL https://explorer.secrettestnet.io/validators/ to check the active validators. Once you have selected one, you can start to build the delegation transaction by creating a new file `delegate.js` and adding the code below:
+First, you need to decide which validator you would like to delegate to. You can go to this URL [https://explorer.secrettestnet.io/validators/](https://explorer.secrettestnet.io/validators/) to check the active validators. Once you have selected one, you can start to build the delegation transaction by creating a new file `delegate.js` and adding the code below:
 
-```JavaScript
+```javascript
 const {
   CosmWasmClient, Secp256k1Pen, pubkeyToAddress, encodeSecp256k1Pubkey, makeSignBytes,
 } = require('secretjs');
@@ -69,7 +69,7 @@ main().catch((err) => {
 
 Now, you need to define the TX message that allows you to specify the delegator address, validator address and the amount of tokens you want to delegate. In the `delegate.js` file under the comment `// 1. Define TX message` add the following code snippet:
 
-```JavaScript
+```javascript
   const sendMsg = {
     type: 'cosmos-sdk/MsgDelegate',
     value: {
@@ -87,7 +87,7 @@ Now, you need to define the TX message that allows you to specify the delegator 
 
 Then, you have to define the fee and gas for this transaction. Under the comment `// 2. Define fees` add the following code snippet:
 
-```JavaScript
+```javascript
   const fee = {
     amount: [
       {
@@ -103,7 +103,7 @@ Then, you have to define the fee and gas for this transaction. Under the comment
 
 In order to authorize the transaction, and prove it is valid, you need to sign the transaction with the details you defined above. Under the comment `// 3. Sign transaction` add the following code snippet:
 
-```JavaScript
+```javascript
   const chainId = await client.getChainId()
     .catch((err) => { throw new Error(`Could not get chain id: ${err}`); });
   const { accountNumber, sequence } = await client.getNonce(accAddress)
@@ -171,7 +171,7 @@ Copy the transaction's `hash` from the output and replace `<TRANSACTION HASH>` i
 
 If for any reason the validator misbehaves, or you just want to unbond a certain amount of tokens, make a copy of `delegate.js` and rename is as `unbond.js`. Then, change the code under the comment `// 1. Define TX message` as following code snippet below:
 
-```JavaScript
+```javascript
   const sendMsg = {
     // This time, we use MsgUndelegate type to unbond tokens.
     type: 'cosmos-sdk/MsgUndelegate',
@@ -219,3 +219,4 @@ The unbonding will be automatically completed when the unbonding period has pass
 Congratulations! You now know how to delegate and unbond your tokens by crafting advanced transactions from scratch with SecretJS and DataHub. You will be able to make complex transactions and interactions on the Secret Network. More message types can be found in the [Cosmos SDK](https://docs.cosmos.network/master/modules/).
 
 The complete code can be found on [**Github**](https://github.com/figment-networks/tutorials/blob/main/secret/6_delegations)**.**
+
