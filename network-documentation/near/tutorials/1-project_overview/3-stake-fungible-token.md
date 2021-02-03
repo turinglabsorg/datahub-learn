@@ -85,7 +85,7 @@ tagged version on github because:
   - Better unit testing support
 - For simulation testing support
 
-Below is how I link the project directly to a tagged version of the NEAR Rust SDK on github:
+Below is how to link the project directly to a tagged version of the NEAR Rust SDK on github:
 **Cargo.toml**
 ```toml
 [dependencies]
