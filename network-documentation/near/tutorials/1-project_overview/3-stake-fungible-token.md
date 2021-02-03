@@ -36,7 +36,7 @@ Anyone can earn staking rewards by delegating their NEAR tokens to a validator t
 Here's how it works:
 1. Each deployed staking pool contract instance is owned by a single validator.
 2. Users deposit NEAR into the staking pool contract. Recall that validator seats are auctioned off to the highest bidder.
-   Delegators pool their NEAR with validators to help them win auction bids for validator seats. Staking rewards earned
+   Delegators pool their NEAR tokens with validators to help them win auction bids for validator seats. Staking rewards earned
    by the validator are shared with the delegator minus validator fees.
 3. While delegated NEAR is deposited in the staking pool, it is effectively locked. While being staked, the delegated
    NEAR is owned by the staking pool contract (which is owned by the validator). Effectively, delegators are lending
