@@ -6,10 +6,10 @@ description: STAKE Fungible Token NEP-141 Rust Implementation
 
 ## Show Me the Money: You Can Have Your STAKE and Trade It Too
 
-Plain old vanilla staking is a great way to earn more NEAR, but their are some trade-offs to be aware of. One of the main
+Plain old vanilla staking is a great way to earn more NEAR, but there are some trade-offs to be aware of. One of the main
 trade-offs is that the staked NEAR is locked because it is effectively put up as collateral to help secure the NEAR network.
-We can do better than that by unlocking the value. The [STAKE][1] contract unlocks the value stored in the staked NEAR by
-transforming it into a [fungible token][3]. You can now have your STAKE and trade it too.
+We can do better than that by unlocking its value. The [STAKE][1] contract unlocks the value stored in the staked NEAR by
+transferring it into a [fungible token][3]. You can now have your STAKE and trade it too.
 
 In this tutorial we'll learn about how staking works on NEAR. We'll see how the STAKE token unlocks value. We'll then
 apply what we learned from the [fungible token][3] tutorial and implement the fungible token core NEP-141 standard in my
@@ -40,11 +40,11 @@ Here's how it works:
    by the validator are shared with the delegator minus validator fees.
 3. While delegated NEAR is deposited in the staking pool, it is effectively locked. While being staked, the delegated
    NEAR is owned by the staking pool contract (which is owned by the validator). Effectively, delegators are lending
-   their NEAR to validators through the staking pool contract. Delegators return on investment is their share of staking
+   their NEAR to validators through the staking pool contract. Delegators' return on investment is their share of staking
    rewards - assuming the validator acquires a seat and does his job.
-4. When delegators choose to withdraw their NEAR they must first unstake the NEAR. The unstaked NEAR will remain locked
+4. When delegators choose to withdraw their NEAR they must first unstake the NEAR tokens. The unstaked NEAR will remain locked
    within the staking pool for 4 epoch periods (2 days) before being eligible for withdrawal from the staking pool contract.
-  - **ATTENTION**: One thing users need to be aware and careful about is how the unstaking lock period functions in
+  - **ATTENTION**: One thing users need to be aware of and careful about is how the unstaking lock period functions in
     the current version of the staking pool contract. Each time the user submits a request to unstake NEAR it
     resets the lock period to 4 epochs (2 days). For example, if a user unstaked 1000 NEAR in epoch (1), then the 1000 NEAR
     will be available for withdrawal in epoch (4). What happens if the user submits another request to unstake 1 NEAR
@@ -76,7 +76,7 @@ the DeFi space, I strongly encourage and recommend Rust to you.
 
 ## NEAR Rust SDK
 
-For developing NEAR smart contracts, you will need to learn to use the [NEAR Rust SDK][7]. I link to the latest and greatest
+To develop NEAR smart contracts, you will need to learn to use the [NEAR Rust SDK][7]. I link to the latest and greatest
 tagged version on github because:
 - It provides a few features that are not yet released via crates.io to reduce boilerplate
   - `#[private]` macro for callbacks
@@ -180,7 +180,7 @@ fn ft_transfer(
 - `#[payable]` marks the function to allow callers to attach NEAR to the function call. Recall that according to the
   specification, callers must attach exactly 1 yoctoNEAR to the function call as a security measure
 - `&mut self` tells the rust compiler that the function will modify contract state
-- [ValidAccountId][10] comes from NEAR rust SDK. It eliminates boilerplate code to validate the NEAR account ID. If the account
+- [ValidAccountId][10] comes from NEAR Rust SDK. It eliminates boilerplate code to validate the NEAR account ID. If the account
   ID is not a valid NEAR account ID, then the function call will fail fast
 - `_memo` - the STAKE contract has no use for memo, and thus tells the rust compiler that it will not be used by using a naming
   convention, i.e., by prefixing the name with an `_`. The rust compiler is very strict and disciplined. By default, it
@@ -321,7 +321,7 @@ We used [Promise::then][12] to connect the two function calls and compose them i
 {% hint style="info" %}
 #### NEAR Promises Considerations:
 
-1. Promises are always run async.
+1. Promises always run async.
 2. In order to handle promise results, the contract must schedule a callback.
 3. There are no global transactions that spans across contracts. Think of each contract function call always being executed
    in its own separate transaction. If contract state needs to be rolled back because a downstream promise failed, then
@@ -407,7 +407,7 @@ The business logic is pretty straight forward. The callback's main purpose is tw
 1. It refunds any unused amount back from the reciever account to the sender account.
 2. If the function call failed on the receiver contract, then the callback will attempt to refund the full amount.
 
-Certain business rules and checks are executed to gaurd against receiver contracts that violate the contract. This ties
+Certain business rules and checks are executed to guard against receiver contracts that violate the contract. This ties
 back to our earlier discussion on promises. Before the receiver contract is invoked, the transfer has already been committed
 to contract storage on the blockchain. By the time the callback runs, the contract state for the STAKE contract and for the
 receiver contract have already been committed to the blockchain. Thus, the callback must be coded defensively to handle
