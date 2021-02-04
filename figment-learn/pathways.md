@@ -20,7 +20,7 @@ NEAR is a decentralized application platform that is secure enough to manage hig
 
 ## ![](../.gitbook/assets/logo1.png) Secret Pathway
 
-Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project to earn **$50 in SCRT equivalent**! 
+Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project to earn **$20 in SCRT equivalent**! 
 
 **Get started with the Secret Pathway by visiting the page below.** 
 

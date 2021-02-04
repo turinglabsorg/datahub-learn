@@ -146,6 +146,7 @@
     * [3. Query the Secret Network](network-documentation/secret/tutorials/3.-querying-the-secret-blockchain.md)
     * [4. Submit your first Secret transaction](network-documentation/secret/tutorials/4.-submit-your-first-transaction.md)
     * [5. Write & deploy your first Secret contract](network-documentation/secret/tutorials/5.-writing-and-deploying-your-first-secret-contract.md)
+    * [Delegate to a Validator & Unbond Tokens](network-documentation/secret/tutorials/delegate-and-unbond-tokens.md)
 * [🌍 Terra](network-documentation/terra/README.md)
   * [✏ Terra 101](network-documentation/terra/terra-101.md)
   * [🎮 RPC & REST API](network-documentation/terra/rpc-and-rest-api/README.md)

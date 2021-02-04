@@ -15,7 +15,7 @@ NEAR's first attempt to bootstrap the ecosystem with an FT \(**F**ungible **T**o
 * [What's Wrong With ERC-20 Token](https://ihodl.com/analytics/2018-10-04/whats-wrong-erc-20-token/)
 * [Critical problems of ERC20 token standard](https://medium.com/@dexaran820/erc20-token-standard-critical-problems-3c10fd48657b)
 
-The key to NEAR's success will be its ability to attract capital flows into NEAR through tokens. Starting from a clean state, NEAR has the opportunity to learn from ERC-20 mistakes and build a superior FT solution that provides a better developer and user experience that aligns with NEAR's platform and vision. The NEAR community has been coming together to design the next generation token standards that are needed to make the dream a reality. 
+The key to NEAR's success will be its ability to attract capital flows into NEAR through tokens. Starting from a clean state, NEAR has the opportunity to learn from ERC-20 mistakes and build a superior FT solution that provides a better developer and user experience that aligns with NEAR's platform and vision. The NEAR community has been coming together to design the next generation token standards that are needed to make the dream a reality.
 
 The first result of that collective effort has produced [Fungible Token Core Standard NEP-141](https://github.com/near/NEPs/discussions/146). Yours truly has been actively involved in the process, and in this tutorial lesson I will do a deep dive into [NEP-141](https://github.com/near/NEPs/discussions/146) and walk you through the new and improved **Fungible Token Core API**. The online discussion is quite lengthy, and my goal here is to sum it all up for you here.
 
@@ -33,8 +33,7 @@ Transfers are executed with a single function call. There are two transfer mecha
 
 Second, there is a **transfer call** function targeting contract receiver accounts. This is where NEP-141 shines over NEP-21. The **transfer call** mechanism is superior to NEP-21's \(allowance + transfer\_from\) mechanism because it eliminates allowances.
 
-  
-This results in removing UX flaws and optimizes contract storage usage. Because of storage staking costs on NEAR, NEP-21 required the sender to attach enough deposit to cover storage allocated to track allowances. To further complicate matters, storage staking costs differ between contracts based on contract implementation. 
+This results in removing UX flaws and optimizes contract storage usage. Because of storage staking costs on NEAR, NEP-21 required the sender to attach enough deposit to cover storage allocated to track allowances. To further complicate matters, storage staking costs differ between contracts based on contract implementation.
 
 In addition, this adds overhead and costs to each transfer workflow while providing no value. NEP-141 simplifies and optimizes the UX and workflows to transfer tokens to contracts. Furthermore, removing all this complexity, makes it simpler for developers to implement and integrate. The overall mental model is easier to grasp and understand.
 
@@ -84,16 +83,16 @@ On NEAR, the contract is responsible to pay for its long term persistent storage
 * API functions are specified using the lowest common denominator with the goal of being programming language neutral \(as much as possible\)
 * String type is used as the de facto platform neutral type - but we will be leveraging Rust's type system when building the smart contract implementation
   * When interacting with the token contract, all amounts and balances MUST be unsigned integers. Internally all values are stored as a denomination based on the token's base unit used for decimal precision. For example, in NEAR the base unit is yoctoNEAR which translates to a decimal precision of 24 digits, i.e., 1 NEAR = 10^24 yoctoNEAR. Thus, when 1 NEAR is transferred, the transfer amount is specified as 1_000\_000\_000\_000\_000\_000\_000\_000 \(\`_\` added to make it easier to read\)
-* All FT API functions are namespaced using a prefix naming convention \(`ft_`\). On NEAR, smart contracts are deployed as [WASM](https://webassembly.org/) binaries. At the WASM low level, all functions are effectively in the global namespace and function names must be unique \(function overloading is not permitted\). Using function prefix names is a trade-off. 
+* All FT API functions are namespaced using a prefix naming convention \(`ft_`\). On NEAR, smart contracts are deployed as [WASM](https://webassembly.org/) binaries. At the WASM low level, all functions are effectively in the global namespace and function names must be unique \(function overloading is not permitted\). Using function prefix names is a trade-off.
 
-  It enables global functions to be namespaced using a naming convention to avoid function name collisions. For example, a contract may want to implement both FT and NFT token transfer interfaces. 
+  It enables global functions to be namespaced using a naming convention to avoid function name collisions. For example, a contract may want to implement both FT and NFT token transfer interfaces.
 
 * `#[payable]` implies that the function supports NEAR to be attached to the function call. I will explain why this is needed below
-* API functions are tagged as either _**change methods**_ or _**view methods**_. 
+* API functions are tagged as either _**change methods**_ or _**view methods**_.
 
   This is from the [NEAR JSON RPC API](https://docs.near.org/docs/roles/developer/contracts/api) perspective.
 
-  * Cross contract calls always require gas regardless of whether the function call being invoked is a _**view method**_ 
+  * Cross contract calls always require gas regardless of whether the function call being invoked is a _**view method**_
 
     or _**change method**_
 
@@ -127,7 +126,7 @@ Enables simple transfer between accounts.
 * Both accounts must be registered with the contract for transfer to succeed.
 * Sender account is required to attach exactly 1 yoctoNEAR to the function call
   * The purpose to require 1 yoctoNEAR is to address security concerns explained above
-  * Attached yoctoNEAR will be credited to the sender account. Most FT contracts will likely deposit the NEAR into the account's storage escrow. However, the NEAR can be deposited using a different approach as long as the NEAR can be later made available to be withdrawn from the contract. Even though it's only 1 yoctoNEAR, it's still not **zero** 
+  * Attached yoctoNEAR will be credited to the sender account. Most FT contracts will likely deposit the NEAR into the account's storage escrow. However, the NEAR can be deposited using a different approach as long as the NEAR can be later made available to be withdrawn from the contract. Even though it's only 1 yoctoNEAR, it's still not **zero**
 
     yoctoNEAR.
 
@@ -155,11 +154,11 @@ _change\_method_
 
 Transfer tokens to a contract with a callback to handle refunds and resolve the transfer.
 
-* Transfers positive `amount` of tokens from the function call's predecessor account \(sender\) to `receiver_id`account. 
+* Transfers positive `amount` of tokens from the function call's predecessor account \(sender\) to `receiver_id`account.
 
   Then calls `ft_on_transfer` method on `receiver_id` contract and attaches a callback to resolve this transfer.
 
-* `ft_on_transfer` method must return the amount of tokens unused by the receiver contract. The unused tokens must be 
+* `ft_on_transfer` method must return the amount of tokens unused by the receiver contract. The unused tokens must be
 
   refunded back to the sender account by the `ft_resolve_transfer` callback.
 
@@ -176,7 +175,7 @@ FT token contract must pass all the remaining unused gas to `ft_on_transfer`
 How to handle malicious or invalid behavior by the receiver contract:
 
 * If the receiver contract promise fails or returns invalid value, then the full transfer amount must be refunded.
-* If the receiver contract overspent the tokens, and the `receiver_id` balance is lower than the required refund amount, 
+* If the receiver contract overspent the tokens, and the `receiver_id` balance is lower than the required refund amount,
 
   then the remaining balance must be refunded.
 
@@ -237,18 +236,18 @@ Called by FT contract as part of `ft_transfer_call` chain initiated by the `send
 The method must return the number of tokens that are not used/accepted by this contract from the transferred amount, e.g.:
 
 * The transferred amount was `500`, the contract completely takes it and must return `0`.
-* The transferred amount was `500`, but this transfer call only needs `450` for the action passed in the `msg` field, 
+* The transferred amount was `500`, but this transfer call only needs `450` for the action passed in the `msg` field,
 
   then the method must return `50`.
 
-* The transferred amount was `500`, but the action in `msg` field has expired and the transfer must be canceled. 
+* The transferred amount was `500`, but the action in `msg` field has expired and the transfer must be canceled.
 
   The method must return `500` or panic.
 
 **Arguments:**
 
 * `sender_id` - the NEAR account ID that initiated the transfer on the FT contract via `ft_transfer_call`
-* `amount` - the number of tokens that were transferred to this account as an unsigned integer in the token's base unit 
+* `amount` - the number of tokens that were transferred to this account as an unsigned integer in the token's base unit
 
   ```text
          in string representation
@@ -275,13 +274,13 @@ Now for a fungible token function call using `ft_transfer_call`, you have the fo
 
 * predecessor\_id - since actual predecessor is token contract, the sender account ID is given using sender\_id.
 * receiver\_id - the receiver contract
-* **method\_name** - there is no way to specify a method name using `ft_transfer_call` API, so it's predefined to `ft_on_transfer`. 
+* **method\_name** - there is no way to specify a method name using `ft_transfer_call` API, so it's predefined to `ft_on_transfer`.
 
-  But the receiving contract needs to know why transfer was received and which method has to be executed. 
+  But the receiving contract needs to know why transfer was received and which method has to be executed.
 
-  It's possible that there is only one action that needs to handle receiving tokens, so method\_name can be implied. 
+  It's possible that there is only one action that needs to handle receiving tokens, so method\_name can be implied.
 
-  But also possible that there is more than one action available, e.g. swap or account\_deposit for uniswap contract. 
+  But also possible that there is more than one action available, e.g. swap or account\_deposit for uniswap contract.
 
   If there is more than one action, then we need to use msg field to specify which action to take.
 
@@ -312,7 +311,7 @@ This method must get `unused_amount` from the receiver's promise result and refu
 
 * `sender_id` - the NEAR account ID that initiated the `ft_transfer_call`.
 * `receiver_id` - the NEAR account ID of the receiver contract.
-* `amount` - the amount of tokens that were transferred from the sender account to the receiver account as an unsigned 
+* `amount` - the amount of tokens that were transferred from the sender account to the receiver account as an unsigned
 
   integer in the token's base unit in string representation
 
@@ -320,7 +319,7 @@ Promise result data dependency \(`unused_amount`\):
 
 * The amount of tokens that were unused by receiver's contract.
 * Received from `on_ft_transfer` on receiver contract
-* `unused_amount` must be `U128` in range from `0` to `amount`. All other invalid values are considered to be equal 
+* `unused_amount` must be `U128` in range from `0` to `amount`. All other invalid values are considered to be equal
 
   to be the total transfer amount.
 
