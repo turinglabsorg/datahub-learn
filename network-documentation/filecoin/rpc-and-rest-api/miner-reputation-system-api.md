@@ -10,9 +10,9 @@ The Miner Reputation System API provides users with all of the necessary informa
 
 By tracking storage capacity, sector faults, deals, and slashes of every storage miner, the API calculates a reputation score, which can be used by network participants to compare and choose a reliable miner.
 
-Additionally, the API allows users to look up account details \(such as balance\) or retrieve a list of transactions for an account. It also keeps a history of miner-related events, such as storage capacity changes, sector faults, and deal slashes.
+Additionally, the API allows users to look up account details \(such as balance\) or retrieve a list of transactions for an account. It also keeps a history of miner-related events, such as storage capacity changes, sector faults, and deal slashes. 
 
-Check out the API documentation below and sign up to [DataHub](https://datahub.figment.io/sign_up?service=filecoin) to test it out. 
+Check out the API documentation below and sign up to [**DataHub**](https://datahub.figment.io/sign_up?service=filecoin) to test it out. 
 
 {% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/miners" %}
 {% api-method-summary %}

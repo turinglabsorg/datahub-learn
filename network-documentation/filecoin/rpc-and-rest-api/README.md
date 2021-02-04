@@ -8,7 +8,7 @@ description: Learn what Filecoin APIs are available via DataHub and how to use t
 
 Figment has created a Reputation System API to track miner performance on the Filecoin network.
 
-Learn about the APIs available via Filecoin [**DataHub**](https://datahub.figment.io/) _\*\*_below.
+Learn about the APIs available via Filecoin [**DataHub**](https://datahub.figment.io/) below.
 
 ## Miner Reputation System API by Figment
 
