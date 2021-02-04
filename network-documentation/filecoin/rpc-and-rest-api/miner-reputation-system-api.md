@@ -12,9 +12,9 @@ By tracking storage capacity, sector faults, deals, and slashes of every storage
 
 Additionally, the API allows users to look up account details \(such as balance\) or retrieve a list of transactions for an account. It also keeps a history of miner-related events, such as storage capacity changes, sector faults, and deal slashes.
 
-Check out the API documentation below. 
+Check out the API documentation below and sign up to [DataHub](https://datahub.figment.io/sign_up?service=filecoin) to test it out. 
 
-{% api-method method="get" host="" path="/miners" %}
+{% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/miners" %}
 {% api-method-summary %}
 Get miners
 {% endapi-method-summary %}
@@ -80,7 +80,7 @@ The epoch number
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/miners/:address" %}
+{% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/miners/:address" %}
 {% api-method-summary %}
 Get miner
 {% endapi-method-summary %}
@@ -128,7 +128,7 @@ The epoch number
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/miners/:address/events" %}
+{% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/miners/:address/events" %}
 {% api-method-summary %}
 Get miner events
 {% endapi-method-summary %}
@@ -183,7 +183,7 @@ The event kind. One of the following values: `storage_capacity_change`, `new_dea
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/top\_miners" %}
+{% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/top\_miners" %}
 {% api-method-summary %}
 Get top miners
 {% endapi-method-summary %}
@@ -249,7 +249,7 @@ The epoch number
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/transactions" %}
+{% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/transactions" %}
 {% api-method-summary %}
 Get transactions
 {% endapi-method-summary %}
@@ -322,7 +322,7 @@ The epoch number
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/accounts/:address" %}
+{% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/accounts/:address" %}
 {% api-method-summary %}
 Get account
 {% endapi-method-summary %}
@@ -361,7 +361,7 @@ The address of an account \(ID or public key\)
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/accounts/:address/transactions" %}
+{% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/accounts/:address/transactions" %}
 {% api-method-summary %}
 Get account transactions
 {% endapi-method-summary %}
@@ -408,7 +408,7 @@ The epoch number
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/events" %}
+{% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/events" %}
 {% api-method-summary %}
 Get events
 {% endapi-method-summary %}
@@ -481,7 +481,7 @@ The event kind. One of the following values: `storage_capacity_change`, `new_dea
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/health" %}
+{% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/health" %}
 {% api-method-summary %}
 Get health
 {% endapi-method-summary %}
@@ -517,7 +517,7 @@ Checks if the service is working properly.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/status" %}
+{% api-method method="get" host="https://filecoin--mainnet--miner-rep-api.datahub.figment.io" path="/status" %}
 {% api-method-summary %}
 Get status
 {% endapi-method-summary %}
