@@ -26,17 +26,15 @@ The NEAR protocol is a Proof-of-Stake \(PoS\) blockchain. Those who participate 
 
 Anyone can earn staking rewards by delegating their NEAR tokens to a validator through a [staking pool](https://github.com/near/core-contracts/tree/master/staking-pool) contract. Here's how it works: 1. Each deployed staking pool contract instance is owned by a single validator. 2. Users deposit NEAR into the staking pool contract. Recall that validator seats are auctioned off to the highest bidder. Delegators pool their NEAR tokens with validators to help them win auction bids for validator seats. Staking rewards earned by the validator are shared with the delegator minus validator fees. 3. While delegated NEAR is deposited in the staking pool, it is effectively locked. While being staked, the delegated NEAR is owned by the staking pool contract \(which is owned by the validator\). Effectively, delegators are lending their NEAR to validators through the staking pool contract. Delegators' return on investment is their share of staking rewards - assuming the validator acquires a seat and does his job. 4. When delegators choose to withdraw their NEAR they must first unstake the NEAR tokens. The unstaked NEAR will remain locked within the staking pool for 4 epoch periods \(2 days\) before being eligible for withdrawal from the staking pool contract.
 
-* **ATTENTION**: One thing users need to be aware of and careful about is how the unstaking lock period functions in
-
-  the current version of the staking pool contract. Each time the user submits a request to unstake NEAR it
-
-  resets the lock period to 4 epochs \(2 days\). For example, if a user unstaked 1000 NEAR in epoch \(1\), then the 1000 NEAR
-
-  will be available for withdrawal in epoch \(4\). What happens if the user submits another request to unstake 1 NEAR
-
-  on epoch \(3\)? When you try to withdraw the 1000 NEAR in epoch \(4\), it is still locked because the lock period has
-
-  been reset and extended for all unstaked NEAR. The 1001 NEAR will then be available for withdrawal in epoch \(7\).
+{% hint style="info" %}
+#### ATTENTION: How Unstaking Affects Withdrawals
+One thing users need to be aware of and careful about is how the unstaking lock period functions in
+the current version of the staking pool contract. Each time the user submits a request to unstake NEAR it
+resets the lock period to 4 epochs (2 days). For example, if a user unstaked 1000 NEAR in epoch (1), then the 1000 NEAR
+will be available for withdrawal in epoch (4). What happens if the user submits another request to unstake 1 NEAR
+on epoch (3)? When you try to withdraw the 1000 NEAR in epoch (4), it is still locked because the lock period has
+been reset and extended for all unstaked NEAR. The 1001 NEAR will then be available for withdrawal in epoch (7).
+{% endhint %}
 
 For more information on how staking works on NEAR see:
 
