@@ -125,6 +125,7 @@
       * [5. Write and deploy your first NEAR smart contract](network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/5.-writing-and-deploying-your-first-near-smart-contract.md)
     * [Show Me the Money: Learn How to Monetize NEAR Smart Contracts](network-documentation/near/tutorials/1-project_overview/README.md)
       * [The New and Improved Fungible Token Standard \(NEP-141\) Has Arrived](network-documentation/near/tutorials/1-project_overview/2-fungible-token.md)
+      * [You Can Have Your STAKE and Trade It Too](network-documentation/near/tutorials/1-project_overview/3-stake-fungible-token.md)
     * [Cross-contract calls](network-documentation/near/tutorials/cross-contract-calls.md)
     * [Simple AssemblyScript App](network-documentation/near/tutorials/simple-webassembly-script.md)
     * [Write an NFT contract & mint your NFT](network-documentation/near/tutorials/write-nft-contracts-in-rust.md)
