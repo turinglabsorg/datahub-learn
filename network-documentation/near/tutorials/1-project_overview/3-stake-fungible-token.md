@@ -481,6 +481,3 @@ That was longer than expected, but time flies by when you are having fun. We lea
 Just kidding folks ... I didn't forget about testing. Testing was intentionally left out of this tutorial because it is a huge topic in itself that deserves full attention. I also didn't want to turn this tutorial into a novel 😄. In the next tutorial, we'll be following up on how to test our smart contracts using the STAKE fungible token as an example.
 
 The fun's just begun!
-
-\[23\]: [https://github.com/oysterpack/oysterpack-near-stake-token/tree/main/contract/ft-transfer-receiver-mock](https://github.com/oysterpack/oysterpack-near-stake-token/tree/main/contract/ft-transfer-receiver-mock)
-
