@@ -29,7 +29,8 @@ Here's how it works:
 
 1. Each deployed staking pool contract instance is owned by a single validator. 
 2. Users deposit NEAR into the staking pool contract. Recall that validator seats are auctioned off to the highest bidder. Delegators pool their NEAR tokens with validators to help them win auction bids for validator seats. Staking rewards earned by the validator are shared with the delegator minus validator fees. 
-3. While delegated NEAR is deposited in the staking pool, it is effectively locked. While being staked, the delegated NEAR is owned by the staking pool contract \(which is owned by the validator\). Effectively, delegators are lending their NEAR to validators through the staking pool contract. Delegators' return on investment is their share of staking rewards - assuming the validator acquires a seat and does his job. 4. When delegators choose to withdraw their NEAR they must first unstake the NEAR tokens. The unstaked NEAR will remain locked within the staking pool for 4 epoch periods \(2 days\) before being eligible for withdrawal from the staking pool contract.
+3. While delegated NEAR is deposited in the staking pool, it is effectively locked. While being staked, the delegated NEAR is owned by the staking pool contract \(which is owned by the validator\). Effectively, delegators are lending their NEAR to validators through the staking pool contract. Delegators' return on investment is their share of staking rewards - assuming the validator acquires a seat and does his job. 
+4. When delegators choose to withdraw their NEAR they must first unstake the NEAR tokens. The unstaked NEAR will remain locked within the staking pool for 4 epoch periods \(2 days\) before being eligible for withdrawal from the staking pool contract.
 
 {% hint style="info" %}
 #### ATTENTION: How Unstaking Affects Withdrawals
@@ -394,7 +395,7 @@ near call $CONTRACT ft_transfer_call --node_url $NEAR_NODE_URL --accountId $NEAR
 near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL --args "{\"account_id\":\"dev-1611907846758-1343432\"}"
 ```
 
-* **NOTE**: in case you wondering what **dev-1611907846758-1343432** is, it's a mock contract that implements the **TransferReceiver** contract interface. The `near dev-deploy` CLI command was used to deploy the contract, which automatically creates the account and auto-generated the contract account ID. For those that are even more curious about the mock contract, the code is located within the same STAKE project: \[ft-transfer-receiver-mock\]\[23\].
+* **NOTE**: in case you wondering what **dev-1611907846758-1343432** is, it's a mock contract that implements the **TransferReceiver** contract interface. The `near dev-deploy` CLI command was used to deploy the contract, which automatically creates the account and auto-generated the contract account ID. For those that are even more curious about the mock contract, the code is located within the same STAKE project: [ft-transfer-receiver-mock](https://github.com/oysterpack/oysterpack-near-stake-token/tree/main/contract/ft-transfer-receiver-mock).
 
 ### It's a wrap folks
 
