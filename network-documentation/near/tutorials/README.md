@@ -36,6 +36,10 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="1-project\_overview/2-fungible-token.md" %}
 
+## Create a STAKE fungible token 
+
+{% page-ref page="1-project\_overview/3-stake-fungible-token.md" %}
+
 ## Cross-contract calls 
 
 {% page-ref page="cross-contract-calls.md" %}
