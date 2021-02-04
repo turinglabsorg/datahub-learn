@@ -24,7 +24,12 @@ The NEAR protocol is a Proof-of-Stake \(PoS\) blockchain. Those who participate 
 
 #### As a Delegator
 
-Anyone can earn staking rewards by delegating their NEAR tokens to a validator through a [staking pool](https://github.com/near/core-contracts/tree/master/staking-pool) contract. Here's how it works: 1. Each deployed staking pool contract instance is owned by a single validator. 2. Users deposit NEAR into the staking pool contract. Recall that validator seats are auctioned off to the highest bidder. Delegators pool their NEAR tokens with validators to help them win auction bids for validator seats. Staking rewards earned by the validator are shared with the delegator minus validator fees. 3. While delegated NEAR is deposited in the staking pool, it is effectively locked. While being staked, the delegated NEAR is owned by the staking pool contract \(which is owned by the validator\). Effectively, delegators are lending their NEAR to validators through the staking pool contract. Delegators' return on investment is their share of staking rewards - assuming the validator acquires a seat and does his job. 4. When delegators choose to withdraw their NEAR they must first unstake the NEAR tokens. The unstaked NEAR will remain locked within the staking pool for 4 epoch periods \(2 days\) before being eligible for withdrawal from the staking pool contract.
+Anyone can earn staking rewards by delegating their NEAR tokens to a validator through a [staking pool](https://github.com/near/core-contracts/tree/master/staking-pool) contract. 
+Here's how it works: 
+
+1. Each deployed staking pool contract instance is owned by a single validator. 
+2. Users deposit NEAR into the staking pool contract. Recall that validator seats are auctioned off to the highest bidder. Delegators pool their NEAR tokens with validators to help them win auction bids for validator seats. Staking rewards earned by the validator are shared with the delegator minus validator fees. 
+3. While delegated NEAR is deposited in the staking pool, it is effectively locked. While being staked, the delegated NEAR is owned by the staking pool contract \(which is owned by the validator\). Effectively, delegators are lending their NEAR to validators through the staking pool contract. Delegators' return on investment is their share of staking rewards - assuming the validator acquires a seat and does his job. 4. When delegators choose to withdraw their NEAR they must first unstake the NEAR tokens. The unstaked NEAR will remain locked within the staking pool for 4 epoch periods \(2 days\) before being eligible for withdrawal from the staking pool contract.
 
 {% hint style="info" %}
 #### ATTENTION: How Unstaking Affects Withdrawals
@@ -58,10 +63,7 @@ To develop NEAR smart contracts, you will need to learn to use the [NEAR Rust SD
 
 * It provides a few features that are not yet released via crates.io to reduce boilerplate
   * `#[private]` macro for callbacks
-  * `PanicOnDefault` used to derive `Default` implementation that panics. This is a helpful macro in case the contract is
-
-    required to be initialized with either `#[init]` or `#[init_once]`.
-
+  * `PanicOnDefault` used to derive `Default` implementation that panics. This is a helpful macro in case the contract is required to be initialized with either `#[init]` or `#[init_once]`.
   * Better unit testing support
 * For simulation testing support
 
@@ -77,9 +79,7 @@ near-sdk-sim = { git = "https://github.com/near/near-sdk-rs",  tag = "2.4.0" }
 
 That's pretty cool because if you are eager to start using new features then you don't need to wait until the crate is published to [https://crates.io](https://crates.io).
 
-* **NOTE**: to view the corresponding Rust docs, you will need to clone the above git projects and generate the Rust
-
-  docs locally.
+* **NOTE**: to view the corresponding Rust docs, you will need to clone the above git projects and generate the Rust docs locally.
 
 ### Show Me the Design
 
@@ -95,13 +95,7 @@ To keep the code clean we will first design the interfaces separate from the imp
 
 * Specifies the core fungible token API
 * Instead of using native String types, I use specific domain type wrappers for `TokenAmount`, `Memo`, and `TransferCallMessage`
-  * This leaves absolutely zero ambiguity in the code and enables the domain model to be encoded into the type system. You
-
-    may think this is overkill for something so simple, but my advice is to never take shortcuts. If you are going to do
-
-    something, then do it right in the first place. In addition, the beauty of Rust's zero-cost abstractions, is that we
-
-    can leverage the type system for zero runtime costs \(if done right\).
+  * This leaves absolutely zero ambiguity in the code and enables the domain model to be encoded into the type system. You may think this is overkill for something so simple, but my advice is to never take shortcuts. If you are going to do something, then do it right in the first place. In addition, the beauty of Rust's zero-cost abstractions, is that we can leverage the type system for zero runtime costs \(if done right\).
 
 **TransferReceiver** trait
 
@@ -110,13 +104,9 @@ To keep the code clean we will first design the interfaces separate from the imp
 **ResolveTransferCall** trait
 
 * Specifies the **private** callback interface used as part of the transfer call workflow
-* The keyword here to notice is **private** - it means that even though the function is exposed on the contract, only
+* The keyword here to notice is **private** - it means that even though the function is exposed on the contract, only the contract itself is allowed to call the function. If any other account tries to call the private function, then it should fail.
 
-  the contract itself is allowed to call the function. If any other account tries to call the private function, then it should fail.
-
-* **NOTE**: the callback function signature is not explicitly defined by the FT standard \(NEP-141\). I am presenting to you
-
-  my implementation, but you may choose to name your callback whatever you want
+* **NOTE**: the callback function signature is not explicitly defined by the FT standard \(NEP-141\). I am presenting to you my implementation, but you may choose to name your callback whatever you want
 
 ### Show Me the Code
 
@@ -163,52 +153,21 @@ fn ft_transfer(
 }
 ```
 
-* `#[payable]` marks the function to allow callers to attach NEAR to the function call. Recall that according to the
-
-  specification, callers must attach exactly 1 yoctoNEAR to the function call as a security measure
-
+* `#[payable]` marks the function to allow callers to attach NEAR to the function call. Recall that according to the specification, callers must attach exactly 1 yoctoNEAR to the function call as a security measure
 * `&mut self` tells the rust compiler that the function will modify contract state
-* [ValidAccountId](https://docs.rs/near-sdk/2.0.1/near_sdk/json_types/struct.ValidAccountId.html) comes from NEAR Rust SDK. It eliminates boilerplate code to validate the NEAR account ID. If the account
-
-  ID is not a valid NEAR account ID, then the function call will fail fast
-
-* `_memo` - the STAKE contract has no use for memo, and thus tells the rust compiler that it will not be used by using a naming
-
-  convention, i.e., by prefixing the name with an `_`. The rust compiler is very strict and disciplined. By default, it
-
-  will emit warnings for any sign of something possibly wrong with the code.
-
+* [ValidAccountId](https://docs.rs/near-sdk/2.0.1/near_sdk/json_types/struct.ValidAccountId.html) comes from NEAR Rust SDK. It eliminates boilerplate code to validate the NEAR account ID. If the account ID is not a valid NEAR account ID, then the function call will fail fast
+* `_memo` - the STAKE contract has no use for memo, and thus tells the rust compiler that it will not be used by using a naming convention, i.e., by prefixing the name with an `_`. The rust compiler is very strict and disciplined. By default, it will emit warnings for any sign of something possibly wrong with the code.
 * The first thing the code does is perform some checks:
   * It checks to make sure exactly 1 yoctoNEAR is attached
   * It checks that the transfer amount is not zero
   * By this point in the code the `receiver_id` has already been validated by NEAR SDK
-* Let's keep the contract function code as clean and readable as possible. The goal is to be able to read the code
-
-  and easily understand the business logic. Implementation details or boilerplate should be separated out into other functions.
-
-  If you come back to the code in 6 months and can't understand it or is hard to follow, then it's time to refactor and clean it up.
-
-* Converting the token amount to `YoctoStake` is specific to the STAKE token business logic. The code is expecting the
-
-  transfer amount to be specified in yocto scale - yoctoSTAKE is the smallest unit for the STAKE token, just like yoctoNEAR
-
-  is the smallest unit for NEAR. That's a bit off-topic ... we'll revisit this in future tutorials
-
-* NEP-141 requires that the accounts involved in the transfer must both be registered. The `predecessor_registered_account()`
-
-  and `registered_account()` helper functions will lookup the accounts and panic if the account is not registered
-
+* Let's keep the contract function code as clean and readable as possible. The goal is to be able to read the code and easily understand the business logic. Implementation details or boilerplate should be separated out into other functions. If you come back to the code in 6 months and can't understand it or is hard to follow, then it's time to refactor and clean it up.
+* Converting the token amount to `YoctoStake` is specific to the STAKE token business logic. The code is expecting the transfer amount to be specified in yocto scale - yoctoSTAKE is the smallest unit for the STAKE token, just like yoctoNEAR is the smallest unit for NEAR. That's a bit off-topic ... we'll revisit this in future tutorials
+* NEP-141 requires that the accounts involved in the transfer must both be registered. The `predecessor_registered_account()`and `registered_account()` helper functions will lookup the accounts and panic if the account is not registered
 * `claim_receipt_funds()` is specific to STAKE business logic and we'll skip this for now
-* `sender.apply_near_credit(1.into())` - remember the sender was required to attach 1 yoctoNEAR to the function call. How
-
-  the attached deposit is handled is not defined in the standard. In the STAKE contract, every registered account has a NEAR
-
-  balance. Thus, the contract will credit the yoctoNEAR to the sender account \(because 1 yoctoNEAR is not zero\).
-
+* `sender.apply_near_credit(1.into())` - remember the sender was required to attach 1 yoctoNEAR to the function call. How the attached deposit is handled is not defined in the standard. In the STAKE contract, every registered account has a NEAR balance. Thus, the contract will credit the yoctoNEAR to the sender account \(because 1 yoctoNEAR is not zero\).
 * The transfer amount is debited from the sender and then credited to the receiver
-* In order to commit the transfer to the blockchain, we must remember to persist the state change to storage. Both the sender
-
-  and receiver accounts are saved to storage.
+* In order to commit the transfer to the blockchain, we must remember to persist the state change to storage. Both the sender and receiver accounts are saved to storage.
 
 {% hint style="info" %}
 #### Best Practices
@@ -254,29 +213,8 @@ Transfer call is a little more interesting because it involves cross contract ca
 
 * Transfer call workflow will first transfer the tokens - it simply delegates to `ft_transfer()` as we saw above
 * Then it composes the async transfer call workflow using the [Promise](https://docs.rs/near-sdk/2.0.1/near_sdk/struct.Promise.html) abstraction provided by the NEAR Rust SDK
-  * The Promise that is returned is not executed as part of the current block. The NEAR runtime will schedule
-
-    the Promise to run async and kickoff the workflow in the next block. It will be executed on the shard that hosts the
-
-    receiver account. Once the `ft_on_transfer` call completes on the receiver account, then the NEAR runtime will
-
-    capture its output data and provide it as input data for the `ft_resolve_transfer_call`. The callback will be
-
-    scheduled in the next block to run on the shard that hosts the STAKE token contract.
-
-  * With cross contract calls gas considerations need to be taken into account. The FT standard states that `ft_transfer_call`
-
-    must pass along all unused gas to the receiver contract. Technically speaking that is not possible. We can approximately
-
-    pass along the unused gas. Getting gas right in cross contract calls requires experimentation. The approach I use is to
-
-    measure the gas consumption on the callback by temporarily relaxing the private constraint. This enables me to invoke
-
-    the function directly and measure the gas consumption. The STAKE contract provides an operator interface to enable
-
-    the operator to configure the gas usage for cross contract calls.  This is beyond the scope of this tutorial, but worth
-
-    mentioning. Checkout the `ft_on_transfer_gas()` and `resolve_transfer_gas()` methods in the source code for details.
+  * The Promise that is returned is not executed as part of the current block. The NEAR runtime will schedule the Promise to run async and kickoff the workflow in the next block. It will be executed on the shard that hosts the receiver account. Once the `ft_on_transfer` call completes on the receiver account, then the NEAR runtime will capture its output data and provide it as input data for the `ft_resolve_transfer_call`. The callback will be scheduled in the next block to run on the shard that hosts the STAKE token contract.
+  * With cross contract calls gas considerations need to be taken into account. The FT standard states that `ft_transfer_call`must pass along all unused gas to the receiver contract. Technically speaking that is not possible. We can approximately pass along the unused gas. Getting gas right in cross contract calls requires experimentation. The approach I use is to measure the gas consumption on the callback by temporarily relaxing the private constraint. This enables me to invoke the function directly and measure the gas consumption. The STAKE contract provides an operator interface to enable the operator to configure the gas usage for cross contract calls. This is beyond the scope of this tutorial, but worth mentioning. Checkout the `ft_on_transfer_gas()` and `resolve_transfer_gas()` methods in the source code for details.
 * The code uses what's called the high-level cross contract pattern provided by NEAR Rust SDK. It works as follows:
 
 The remote function calls are declared as rust traits and annotated with the `#[ext_contract]` attribute. This attribute will be used to generate the low-level code to invoke the remote call on the external contract. For each external contract interface that is annotated, a rust module is generated containing functions that map to the functions defined on the trait. I explicitly specify the module name in the attribute, e.g., `ext_transfer_receiver` explicitly specifies the module name. The name is optional, and a default name will be generated based on the trait name if not specified - but I prefer to be specific.
@@ -326,11 +264,7 @@ Remote function calls are always scheduled to run async after the current functi
 
 1. Promises always run async.
 2. In order to handle promise results, the contract must schedule a callback.
-3. There are no global transactions that spans across contracts. Think of each contract function call always being executed
-
-   in its own separate transaction. If contract state needs to be rolled back because a downstream promise failed, then
-
-   the contract is responsible to rollback the contract state in the form of a compensating transaction.
+3. There are no global transactions that spans across contracts. Think of each contract function call always being executed in its own separate transaction. If contract state needs to be rolled back because a downstream promise failed, then the contract is responsible to rollback the contract state in the form of a compensating transaction.
 {% endhint %}
 
 Let's bring it home:
@@ -421,9 +355,7 @@ The NEAR Rust SDK currently has no high-level support for handling promise failu
 ### Show Me the Demo: Earn Some NEAR
 
 As a bonus, you can earn some NEAR by taking the STAKE token contract for a test drive on testnet and running through the demo below using the [NEAR CLI](https://github.com/near/near-cli). I have deployed the STAKE contract to `stake-demo.oysterpack.testnet` on testnet for the demo.
-
 To earn NEAR rewards for exercising the demo, you will need to submit the NEAR requests through [DataHub](https://datahub.figment.io/) using your DataHub access key. If you have earned NEAR on previous NEAR tutorials, then you should already be set. Otherwise, follow the instructions in the following link on [how to obtain your DataHub access key](https://learn.figment.io/network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub#configure-environment).
-
 We will use the NEAR CLI to submit the transactions. Plugin your DataHub API Key and NEAR account at the top, and then you should be all set to go.
 
 ```text
@@ -462,13 +394,7 @@ near call $CONTRACT ft_transfer_call --node_url $NEAR_NODE_URL --accountId $NEAR
 near view $CONTRACT ft_balance_of --node_url $NEAR_NODE_URL --args "{\"account_id\":\"dev-1611907846758-1343432\"}"
 ```
 
-* **NOTE**: in case you wondering what **dev-1611907846758-1343432** is, it's a mock contract that implements the **TransferReceiver**
-
-  contract interface. The `near dev-deploy` CLI command was used to deploy the contract, which automatically creates the
-
-  account and auto-generated the contract account ID. For those that are even more curious about the mock contract, the
-
-  code is located within the same STAKE project: \[ft-transfer-receiver-mock\]\[23\].
+* **NOTE**: in case you wondering what **dev-1611907846758-1343432** is, it's a mock contract that implements the **TransferReceiver** contract interface. The `near dev-deploy` CLI command was used to deploy the contract, which automatically creates the account and auto-generated the contract account ID. For those that are even more curious about the mock contract, the code is located within the same STAKE project: \[ft-transfer-receiver-mock\]\[23\].
 
 ### It's a wrap folks
 
