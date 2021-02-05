@@ -24,8 +24,7 @@ The NEAR protocol is a Proof-of-Stake \(PoS\) blockchain. Those who participate 
 
 #### As a Delegator
 
-Anyone can earn staking rewards by delegating their NEAR tokens to a validator through a [staking pool](https://github.com/near/core-contracts/tree/master/staking-pool) contract. 
-Here's how it works: 
+Anyone can earn staking rewards by delegating their NEAR tokens to a validator through a [staking pool](https://github.com/near/core-contracts/tree/master/staking-pool) contract. Here's how it works:
 
 1. Each deployed staking pool contract instance is owned by a single validator. 
 2. Users deposit NEAR into the staking pool contract. Recall that validator seats are auctioned off to the highest bidder. Delegators pool their NEAR tokens with validators to help them win auction bids for validator seats. Staking rewards earned by the validator are shared with the delegator minus validator fees. 
@@ -34,12 +33,8 @@ Here's how it works:
 
 {% hint style="info" %}
 #### ATTENTION: How Unstaking Affects Withdrawals
-One thing users need to be aware of and careful about is how the unstaking lock period functions in
-the current version of the staking pool contract. Each time the user submits a request to unstake NEAR it
-resets the lock period to 4 epochs (2 days). For example, if a user unstaked 1000 NEAR in epoch (1), then the 1000 NEAR
-will be available for withdrawal in epoch (4). What happens if the user submits another request to unstake 1 NEAR
-on epoch (3)? When you try to withdraw the 1000 NEAR in epoch (4), it is still locked because the lock period has
-been reset and extended for all unstaked NEAR. The 1001 NEAR will then be available for withdrawal in epoch (7).
+
+One thing users need to be aware of and careful about is how the unstaking lock period functions in the current version of the staking pool contract. Each time the user submits a request to unstake NEAR it resets the lock period to 4 epochs \(2 days\). For example, if a user unstaked 1000 NEAR in epoch \(1\), then the 1000 NEAR will be available for withdrawal in epoch \(4\). What happens if the user submits another request to unstake 1 NEAR on epoch \(3\)? When you try to withdraw the 1000 NEAR in epoch \(4\), it is still locked because the lock period has been reset and extended for all unstaked NEAR. The 1001 NEAR will then be available for withdrawal in epoch \(7\).
 {% endhint %}
 
 For more information on how staking works on NEAR see:
@@ -106,7 +101,6 @@ To keep the code clean we will first design the interfaces separate from the imp
 
 * Specifies the **private** callback interface used as part of the transfer call workflow
 * The keyword here to notice is **private** - it means that even though the function is exposed on the contract, only the contract itself is allowed to call the function. If any other account tries to call the private function, then it should fail.
-
 * **NOTE**: the callback function signature is not explicitly defined by the FT standard \(NEP-141\). I am presenting to you my implementation, but you may choose to name your callback whatever you want
 
 ### Show Me the Code
@@ -355,9 +349,7 @@ The NEAR Rust SDK currently has no high-level support for handling promise failu
 
 ### Show Me the Demo: Earn Some NEAR
 
-As a bonus, you can earn some NEAR by taking the STAKE token contract for a test drive on testnet and running through the demo below using the [NEAR CLI](https://github.com/near/near-cli). I have deployed the STAKE contract to `stake-demo.oysterpack.testnet` on testnet for the demo.
-To earn NEAR rewards for exercising the demo, you will need to submit the NEAR requests through [DataHub](https://datahub.figment.io/) using your DataHub access key. If you have earned NEAR on previous NEAR tutorials, then you should already be set. Otherwise, follow the instructions in the following link on [how to obtain your DataHub access key](https://learn.figment.io/network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub#configure-environment).
-We will use the NEAR CLI to submit the transactions. Plugin your DataHub API Key and NEAR account at the top, and then you should be all set to go.
+As a bonus, you can earn some NEAR by taking the STAKE token contract for a test drive on testnet and running through the demo below using the [NEAR CLI](https://github.com/near/near-cli). I have deployed the STAKE contract to `stake-demo.oysterpack.testnet` on testnet for the demo. To earn NEAR rewards for exercising the demo, you will need to submit the NEAR requests through [DataHub](https://datahub.figment.io/) using your DataHub access key. If you have earned NEAR on previous NEAR tutorials, then you should already be set. Otherwise, follow the instructions in the following link on [how to obtain your DataHub access key](https://learn.figment.io/network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub#configure-environment). We will use the NEAR CLI to submit the transactions. Plugin your DataHub API Key and NEAR account at the top, and then you should be all set to go.
 
 ```text
 export DATAHUB_APIKEY=<DATAHUB_APIKEY>
@@ -408,3 +400,4 @@ That was longer than expected, but time flies by when you are having fun. We lea
 Just kidding folks ... I didn't forget about testing. Testing was intentionally left out of this tutorial because it is a huge topic in itself that deserves full attention. I also didn't want to turn this tutorial into a novel 😄. In the next tutorial, we'll be following up on how to test our smart contracts using the STAKE fungible token as an example.
 
 The fun's just begun!
+
