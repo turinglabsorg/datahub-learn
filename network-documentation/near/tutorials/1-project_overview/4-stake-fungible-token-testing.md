@@ -31,10 +31,10 @@ contracts can only be fully trusted if the code has been audited either by yours
 
 ## Show Me the Tests
 Lucky for us, Rust comes with batteries included with robust support for [testing][1]. We'll also leverage the
-NEAR Rust SDK which also provides great support for unit testing smart contracts. Once again, we'll use the [STAKE][3] 
-project to showcase the code. The STAKE project links to NEAR Rust SDK [v2.4.0][6] on GitHub to take advantage of the l
-atest and greatest features. The current version of the NEAR Rust SDK on [crates.io][7] as of this writing is v2.0.1, 
-and unit testing support has improved a bit in v2.4.0 with some non-backward compatible breaking changes. To pull in 
+[NEAR Rust SDK][6] which also provides great support for unit testing smart contracts. Once again, we'll use the [STAKE][3] 
+project to showcase the code. The STAKE project links to NEAR Rust SDK [v2.4.0][6] on GitHub to take advantage of the 
+latest and greatest features. The current version of the NEAR Rust SDK on [crates.io][7] as of this writing is v2.0.1, 
+and unit testing support has improved in v2.4.0 with some non-backward compatible breaking changes. To pull in 
 NEAR Rust SDK [v2.4.0][6] into the project, specify the dependency in Cargo.toml as:
 
 ```toml
@@ -43,7 +43,7 @@ near-sdk = { git = "https://github.com/near/near-sdk-rs",  tag = "2.4.0" }
 ```
 
 {% hint style="info" %}
-#### How to generate NEAR Rust SDK locally
+#### How to generate NEAR Rust SDK docs locally
 ```bash
 gh repo clone near/near-sdk-rs -- --branch 2.4.0
 cd near-sdk-rs
@@ -57,18 +57,18 @@ cargo doc --no-deps --open
 **NOTE:** I prefer to use the [GitHub CLI][7] tool when working with GitHub
 {% endhint %}
 
-The relevant code to look at is located in the following files:
-- [lib.rs][9] - the thing to pay attention to is StakeTokenContract::env
+The relevant code to look at within the [STAKE][3] is:
+- [lib.rs][9] - take note of the `StakeTokenContract::env` field - notice anything interesting about it?
 - [contract.rs][12] - decouples the contract from `near_sdk::env`, which is "hard wired" to the contract by default (this will make more sense down below)
 - [test_utils.rs][10] - builds upon NEAR SDK unit testing support
 - [contract/fungible_token.rs][11] - contains the Fungible Token unit tests - as a follow up to our last tutorial where we implemented the FT NEP-141 standard for the STAKE token  
   
 ### How we will structure the test code
 I will share with you my coding standards, but the key here is to have coding standards. Be consistent and disciplined 
-in following the coding standard that is in place. This keeps the code better organized, easier to navigate, and simpler
+in following the coding standard that are in place. This keeps the code better organized, easier to navigate, and simpler
 to follow.
 
-##### 1. Create one test module per contract function. For example:
+##### 1. Group unit tests for each contract function into separate test modules. For example:
 ```rust
 #[cfg(test)]
 mod test_transfer {
@@ -86,7 +86,7 @@ mod test_resolve_transfer_call {
 }
 ```
 
-#### 2. Unit tests are written following the [Arrange-Act-Assert][2] test pattern
+#### 2. Write unit tests following the [Arrange-Act-Assert][2] test pattern
 ```rust
 #[test]
 pub fn transfer_ok() {
