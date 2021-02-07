@@ -141,11 +141,11 @@ It serves a different purpose, which we'll revisit in future tutorials.
 
 #### Necessity is the mother of invention ... 
 To be able to inject promise results into unit tests, I decoupled the contract code from the `near_sdk::env` through a 
-facade that leverages Rust conditional compilation. Here's my solution to the problem:
+facade that leverages Rust conditional compilation. That's a mouthful ... let's look at code and to see what I mean:
 
 [contract.rs][12]
 ```rust
-#[cfg(not(test))]
+#[cfg(not(test))]                       // used when compiled in release mode
 impl StakeTokenContract {
   /// checks if the first PromiseResult was successful
   ///
@@ -164,7 +164,7 @@ impl StakeTokenContract {
 }
 
 /// in order to make it easier to unit test Promise func callbacks, we need to abstract away the near env
-#[cfg(test)]
+#[cfg(test)]                            // used when compiled in test mode
 impl StakeTokenContract {
   /// checks if the first PromiseResult was successful
   ///
@@ -186,7 +186,7 @@ impl StakeTokenContract {
   }
 }
 
-#[cfg(test)]
+#[cfg(test)]                            // used when compiled in test mode
 pub(crate) mod near_env {
     use near_sdk::PromiseResult;
 
