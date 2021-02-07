@@ -137,11 +137,11 @@ The key to unit testing cross contract calls is to be able to inject receipts to
 The NEAR Rust SDK does not provide any such ability and the NEAR team suggests using NEAR Rust SDK simulation tests for
 testing cross contract calls. Simulation tests are great, but they are ***very*** slow to run. On my beefy laptop running
 with 24 cores (3rd Gen AMD® Ryzen™ 9 PRO 3900: 3.1 up to 4.3 GHz - 12 Cores - 24 Threads) and 64 GB RAM, it takes on the 
-order of minutes to run simple cross contract simulation tests. I want to be able to test cross contract call functionality
-as much as possible before moving onto simulation tests because I can run unit tests orders of magnitude faster. 
+order of minutes to run simple cross contract simulation tests. That's a blocker for me and kills productivity. 
 
-To be able to inject promise results into unit tests, the code is decoupled from the `near_sdk::env` through a facade that
-leverages Rust conditional compilation:
+#### Necessity is the mother of invention ... 
+To be able to inject promise results into unit tests, I decoupled the contract code from the `near_sdk::env` through a 
+facade that leverages Rust conditional compilation. Here's my solution to the problem:
 
 [contract.rs][12]
 ```rust
@@ -222,10 +222,11 @@ All contract interactions with the `near_sdk::env` go through the following func
 - `promise_result()`
 
 The implementation for those functions is chosen conditionally at compile time depending on the specified compile mode:
-- release mode - functions use `near_sdk::env` directly
-- test mode - functions use `near_env::Env` instead which enables promise results to be injected via functions
+- **release mode** - functions use `near_sdk::env` directly
+- **test mode** - functions use `near_env::Env` instead which enables promise results to be injected via functions
 
-The last piece to the puzzle to make this all work is `StakeTokenContract::env` ([lib.rs][9]):
+There's a few pieces to the puzzle left to make this all work. First, we use Rust conditional compilation for the
+`StakeTokenContract::env` field ([lib.rs][9]):
 ```rust
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
@@ -239,27 +240,205 @@ pub struct StakeTokenContract {
 ```
 This is telling the Rust compiler to only add the `env` field when compiled in test mode. 
 
+Within [test_utils.rs] we have some helpers for checking receipts:
+```rust
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(crate = "near_sdk::serde")]
+pub struct Receipt {
+    pub receiver_id: String,
+    pub receipt_indices: Vec<usize>,
+    pub actions: Vec<Action>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(crate = "near_sdk::serde")]
+pub enum Action {
+    Transfer {
+        deposit: u128,
+    },
+    FunctionCall {
+        method_name: String,
+        args: String,
+        gas: u64,
+        deposit: u128,
+    },
+}
+
+pub fn deserialize_receipts() -> Vec<Receipt> {
+    get_created_receipts()
+        .iter()
+        .map(|receipt| {
+            let json = serde_json::to_string_pretty(receipt).unwrap();
+            println!("{}", json);
+            let receipt: Receipt = serde_json::from_str(&json).unwrap();
+            receipt
+        })
+        .collect()
+}
+```
+
+And finally, also withing [test_utils][9], there are a few helper functions used to inject `PromiseResult`s into the 
+mocked test NEAR blockchain environment to round it all out.
+```rust
+pub fn set_env_with_success_promise_result(contract: &mut StakeTokenContract) {
+    pub fn promise_result(_result_index: u64) -> PromiseResult {
+        PromiseResult::Successful(vec![])
+    }
+
+    pub fn promise_results_count() -> u64 {
+        1
+    }
+
+    contract.set_env(Env {
+        promise_results_count_: promise_results_count,
+        promise_result_: promise_result,
+    });
+}
+
+pub fn set_env_with_promise_result(
+    contract: &mut StakeTokenContract,
+    promise_result: fn(u64) -> PromiseResult,
+) {
+    pub fn promise_results_count() -> u64 {
+        1
+    }
+
+    contract.set_env(Env {
+        promise_results_count_: promise_results_count,
+        promise_result_: promise_result,
+    });
+}
+
+pub fn set_env_with_failed_promise_result(contract: &mut StakeTokenContract) {
+    pub fn promise_result(_result_index: u64) -> PromiseResult {
+        PromiseResult::Failed
+    }
+
+    pub fn promise_results_count() -> u64 {
+        1
+    }
+
+    contract.set_env(Env {
+        promise_results_count_: promise_results_count,
+        promise_result_: promise_result,
+    });
+}
+```
+
 Cool - using this Rust conditional compilation trick, we will be able to unit test contract callback functions easily. 
+This provides a huge productivity boost because this enables us to test much more using plain old unit tests.
 
 ### Key Ingredients For Unit Testing Contract Functions
 
-1. **VMContext** - provided by the NEAR Rust SDK - it provides the context for contract execution
-2. Contract instance
+1. **VMContext** - it provides the context for contract execution
+2. Initialized contract instance
 3. NEAR account used to execute the contract functions
 
-In the STAKE project there is a [test_utils][20] module that you may find useful. I'll call out what's most interesting
-and relevant to our current discussion - see the source code on github for full details.
-
-In the STAKE project, the first thing each contract unit test does is create a **TestContext** to get the 3 key ingredients:
+In the STAKE project we bundle these up into what I call a `TestContext` ([test_utils.rs][9])
 ```rust
 pub struct TestContext<'a> {
     pub contract: StakeTokenContract,
     pub account_id: &'a str,
     pub context: VMContext,
 }
-```
-- TestContext is simply a wrapper that collects what is needed to test the contract
 
+impl<'a> TestContext<'a> {
+  pub fn with_vm_context(context: VMContext) -> Self {
+    let mut context = context.clone();
+    context.is_view = false;
+    testing_env!(context.clone());
+
+    let contract = StakeTokenContract::new(
+      to_valid_account_id(TEST_STAKING_POOL_ID),
+      to_valid_account_id(TEST_OWNER_ID),
+      to_valid_account_id(TEST_OPERATOR_ID),
+    );
+
+    Self {
+      contract,
+      account_id: TEST_ACCOUNT_ID,
+      context,
+    }
+  }
+
+  /// uses [`TEST_ACCOUNT_ID`] as the predecessor account ID
+  pub fn new() -> Self {
+    TestContext::with_vm_context(new_context(TEST_ACCOUNT_ID))
+  }
+
+  /// uses [`TEST_ACCOUNT_ID`] as the predecessor account ID and registers the account with the contract
+  pub fn with_registered_account() -> Self {
+    let mut context = new_context(TEST_ACCOUNT_ID);
+    testing_env!(context.clone());
+
+    let mut contract = StakeTokenContract::new(
+      to_valid_account_id(TEST_STAKING_POOL_ID),
+      to_valid_account_id(TEST_OWNER_ID),
+      to_valid_account_id(TEST_OPERATOR_ID),
+    );
+
+    context.attached_deposit = YOCTO;
+    testing_env!(context.clone());
+    contract.register_account();
+    context.account_balance += contract.account_storage_fee().value();
+
+    context.attached_deposit = 0;
+    context.storage_usage = contract.contract_initial_storage_usage.value();
+    testing_env!(context.clone());
+
+    Self {
+      contract,
+      account_id: TEST_ACCOUNT_ID,
+      context,
+    }
+  }
+
+  pub fn register_owner(&mut self) {
+    self.register_account(TEST_OWNER_ID);
+  }
+
+  pub fn register_operator(&mut self) {
+    self.register_account(TEST_OPERATOR_ID);
+  }
+
+  pub fn register_account(&mut self, account_id: &str) {
+    let mut context = self.set_predecessor_account_id(account_id);
+    context.attached_deposit = YOCTO;
+    testing_env!(context.clone());
+    self.contract.register_account();
+
+    context.attached_deposit = 0;
+    testing_env!(context);
+  }
+
+  pub fn set_predecessor_account_id(&mut self, account_id: &str) -> VMContext {
+    let mut context = self.context.clone();
+    context.predecessor_account_id = account_id.to_string();
+    context
+  }
+}
+
+impl<'a> Deref for TestContext<'a> {
+  type Target = StakeTokenContract;
+
+  fn deref(&self) -> &Self::Target {
+    &self.contract
+  }
+}
+
+impl<'a> DerefMut for TestContext<'a> {
+  fn deref_mut(&mut self) -> &mut Self::Target {
+    &mut self.contract
+  }
+}
+```
+- TestContext provides a bunch of useful methods to help keep the unit test code leaner. For example, `TestContext::with_registered_account`
+is probably the most widely used because most tests will require a registered account to execute contract functions
+- Another trick I like to use is to implement `Deref` and `DerefMut` from the Rust std library. This enables the TestContext
+to be used as `StakeTokenContract`, which makes it a little easier in the code.
+
+#### How to work with the VMContext
 Knowing how to work with the VMContext provided by the NEAR Rust SDK is half the battle. It will be  worth your time to
 familiarize yourself and become comfortable working with it. The basic pattern to work with the VMContext is:
 1. Clone the VMContext
@@ -291,54 +470,47 @@ pub fn ok_with_refund_gt_transfer_amount() {
 }
 ```
 
-### Unit Testing Cross-Contract Calls
-The title is a little misleading because technically you can't unit test cross contract calls for technical reasons
-discussed above. To test cross contract calls locally, you would use simulation tests. However, simulation tests also
-has its limitations for more complex workflows. Ultimately, you will need to run integration tests on testnet to fully
-test more complex cross-contract workflows ... but I digress ...
+### How to Unit Test Cross-Contract Calls
+The title is a little misleading because technically you can't technically unit test cross contract calls. To truly test 
+cross contract calls, you would use simulation tests. However, simulation tests also has its limitations for more complex 
+workflows. Ultimately, you will need to run integration tests on testnet to fully test more complex cross-contract workflows ... but I digress ...
 
-Try to test as much as possible with unit tests because they run the fastest and give the quickest feedback. Unit tests
-allow us to verify that the expected cross-contract workflows are setup correctly.
+With all of the work we did above, i.e., referring back to the Rust conditional compilation tricks, we can test all of
+the cross contract business logic code, without actually making cross contract calls. To clarify what I mean, let's 
+take a look at some test code. 
 
-Let's take a look at the happy case scenario for the `ft_transfer_call`:
+With all of the work we did, the pay off is that we can fully test all of the business logic code for the fungible token
+transfer call workflow. Here's a refresher:
+
+![](../../../../.gitbook/assets/oysterpack-near-stake-token-transfer-call.png)
+
+This tests the happy case scenario for the transfer call with and with out a memo:
 ```rust
-#[test]
+    #[test]
 pub fn transfer_ok() {
   // Arrange
-  let mut test_ctx = TestContext::with_registered_account();                            
-  let contract = &mut test_ctx.contract;
+  let mut test_ctx = TestContext::with_registered_account();
 
   let sender_id = test_ctx.account_id;
   let receiver_id = "receiver.near";
+  test_ctx.register_account(receiver_id);
 
-  // register receiver account
-  {
-    let mut context = test_ctx.context.clone();
-    context.predecessor_account_id = receiver_id.to_string();
-    context.attached_deposit = YOCTO;
-    testing_env!(context);
-    contract.register_account();
-  }
-
-  assert!(contract.account_registered(to_valid_account_id(sender_id)));
-  assert!(contract.account_registered(to_valid_account_id(receiver_id)));
-
-  assert_eq!(contract.ft_total_supply(), 0.into());
+  assert_eq!(test_ctx.ft_total_supply(), 0.into());
   assert_eq!(
-    contract.ft_balance_of(to_valid_account_id(sender_id)),
+    test_ctx.ft_balance_of(to_valid_account_id(sender_id)),
     0.into()
   );
   assert_eq!(
-    contract.ft_balance_of(to_valid_account_id(receiver_id)),
+    test_ctx.ft_balance_of(to_valid_account_id(receiver_id)),
     0.into()
   );
 
   // credit the sender with STAKE
-  let mut sender = contract.registered_account(sender_id);
+  let mut sender = test_ctx.registered_account(sender_id);
   let total_supply = YoctoStake(100 * YOCTO);
   sender.apply_stake_credit(total_supply);
-  contract.total_stake.credit(total_supply);
-  contract.save_registered_account(&sender);
+  test_ctx.total_stake.credit(total_supply);
+  test_ctx.save_registered_account(&sender);
 
   // Act - transfer with no memo
   let mut context = test_ctx.context.clone();
@@ -347,7 +519,7 @@ pub fn transfer_ok() {
   testing_env!(context.clone());
   let transfer_amount = 10 * YOCTO;
   let msg = TransferCallMessage::from("pay");
-  contract.ft_transfer_call(
+  test_ctx.ft_transfer_call(
     to_valid_account_id(receiver_id),
     transfer_amount.into(),
     msg.clone(),
@@ -355,26 +527,23 @@ pub fn transfer_ok() {
   );
 
   // Assert
-  
-  // check that the funds were transfered
-  assert_eq!(contract.ft_total_supply().value(), total_supply.value());
+  assert_eq!(test_ctx.ft_total_supply().value(), total_supply.value());
   assert_eq!(
-    contract
+    test_ctx
             .ft_balance_of(to_valid_account_id(sender_id))
             .value(),
     total_supply.value() - transfer_amount
   );
   assert_eq!(
-    contract
+    test_ctx
             .ft_balance_of(to_valid_account_id(receiver_id))
             .value(),
     transfer_amount
   );
-  let sender = contract.predecessor_registered_account();
+  let sender = test_ctx.predecessor_registered_account();
   assert_eq!(sender.near.unwrap().amount().value(), 1,
              "expected the attached 1 yoctoNEAR for the transfer to be credited to the account's NEAR balance");
-  
-  // check that the Promise workflow is setup correctly for the transfer call
+
   let receipts = deserialize_receipts();
   assert_eq!(receipts.len(), 2);
   {
@@ -414,7 +583,7 @@ pub fn transfer_ok() {
         assert_eq!(args.amount, transfer_amount.into());
         assert_eq!(
           *gas,
-          contract
+          test_ctx
                   .config
                   .gas_config()
                   .callbacks()
@@ -425,41 +594,68 @@ pub fn transfer_ok() {
       _ => panic!("expected `ft_on_transfer` function call"),
     }
   }
+
+  // Act - transfer with memo
+  testing_env!(context.clone());
+  test_ctx.ft_transfer_call(
+    to_valid_account_id(receiver_id),
+    transfer_amount.into(),
+    "pay".into(),
+    Some("memo".into()),
+  );
+  let sender = test_ctx.predecessor_registered_account();
+  assert_eq!(sender.near.unwrap().amount().value(), 2,
+             "expected the attached 1 yoctoNEAR for the transfer to be credited to the account's NEAR balance");
+
+  // Assert
+  assert_eq!(test_ctx.ft_total_supply().value(), total_supply.value());
+  assert_eq!(
+    test_ctx
+            .ft_balance_of(to_valid_account_id(sender_id))
+            .value(),
+    total_supply.value() - (transfer_amount * 2)
+  );
+  assert_eq!(
+    test_ctx
+            .ft_balance_of(to_valid_account_id(receiver_id))
+            .value(),
+    transfer_amount * 2
+  );
 }
 ```
-The `ft_transfer_call` is expected to produce 2 function call action receipts for the cross-contract workflow.
-The unit test is able to verify the following:
-- That the cross-contract workflow is setup correctly
-- That the correct amounts of gas is supplied to each function call
-- That the function call arguments are correct
+That's a pretty long test ... but it would be a lot longer if it weren't for all of the helper functions. Let's walk through it:
 
-That's pretty cool for a unit test and it was made possible because NEAR Rust SDK exposed receipts for testing - see
-`deserialize_receipts()` for details on how to retrieve the receipts.
+1. Arrange
+   - it creates the `TestContext` with the predecessor account pre-registered, which will be used as the sender account.
+   - it then registers the receiver account with the contract. Recall from the FT NEP-141 standard that both the sender
+     and receiver accounts must be registered with the account before being able to use it.
+   - it asserts that the STAKE FT total supply and account balances are zero
+   - it then credits the sender account with the STAKE tokens
+2. Act - the sender executes `ft_tranfer_call` with no memo
+3. Assert
+   - balances are checked to ensure funds are transferred
+   - **here's the really cool part** - receipts are checked to verify the transfer call workflow is properly setup, i.e.,
+     each function call receipt action is checked
+4. Act - the sender executes `ft_tranfer_call` with a memo
+5. Assert - memo is ignored and not used by the STAKE contract. The main purpose is to ensure that a memo can be specified
+  but has no effect
 
-Unit testing the callback is a bit more tricky because of the data dependencies ...
+Here's the payoff for all of the hard work we did above. We are no able to Unit test the `ft_resolve` callback because 
+we are now able to inject the data dependencies into the test:
 ```rust
 #[test]
 pub fn ok_zero_refund() {
     // Arrange
     let mut test_ctx = TestContext::with_registered_account();
-    let contract = &mut test_ctx.contract;
 
     let sender_id = test_ctx.account_id;
     let receiver_id = "receiver.near";
+    test_ctx.register_account(receiver_id);
 
-    // register receiver account
-    {
-        let mut context = test_ctx.context.clone();
-        context.predecessor_account_id = receiver_id.to_string();
-        context.attached_deposit = YOCTO;
-        testing_env!(context);
-        contract.register_account();
-    }
-
-    set_env_with_promise_result(contract, promise_result_zero_refund);
+    set_env_with_promise_result(&mut test_ctx, promise_result_zero_refund);     // inject the PromiseResult
 
     // Act
-    let result = contract.ft_resolve_transfer_call(
+    let result = test_ctx.ft_resolve_transfer_call(
         to_valid_account_id(sender_id),
         to_valid_account_id(receiver_id),
         YOCTO.into(),
@@ -489,12 +685,14 @@ fn promise_result_zero_refund(_result_index: u64) -> PromiseResult {
   PromiseResult::Successful(serde_json::to_vec(&TokenAmount::from(0)).unwrap())
 }
 ```
-The key to making this work is the magic performed by `set_env_with_promise_result(contract, promise_result_zero_refund);`
-To summarize how this works, the Rust `env` is proxied . Instead of the contract using `env` provided by the NEAR Rust SDK 
-directly, it was wrapped in order to be able to inject promise results into it - but only when the code is compiled in 
-test mode. Rust conditional compilation feature is leveraged to select which `env` to use. If the code is compiled
-in release mode, then it uses NEAR's provided `env`. Take a look at [lib.rs][16] to see exactly how that was done. If there 
-any questions, feel free to post them on the tutorial.
+The key to making this work is the magic performed by `set_env_with_promise_result(contract, promise_result_zero_refund);`,
+which injects the PromiseResult to provide the data dependency for the callback.
+
+### It's a wrap folks
+That's all of the actual unit test code we'll look at in this tutorial. The rest of the unit tests follow a similar pattern
+and it's all available on online on GitHub for you to review at your leisure.
+
+### What's Next
 
 [1]: https://doc.rust-lang.org/book/ch11-00-testing.html
 [2]: https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/
