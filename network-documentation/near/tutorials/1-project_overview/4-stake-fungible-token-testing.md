@@ -690,9 +690,26 @@ which injects the PromiseResult to provide the data dependency for the callback.
 
 ### It's a wrap folks
 That's all of the actual unit test code we'll look at in this tutorial. The rest of the unit tests follow a similar pattern
-and it's all available on online on GitHub for you to review at your leisure.
+and it's all available on online on GitHub for you to review at your leisure. Let's review what we have learned in this tutorial ... 
+
+We discussed why testing smart contracts is serious business due to their immutable code on the blockchain. 
+I shared with you how I structure and organize unit tests in my projects. We went over the key pieces provided by the 
+NEAR Rust SDK for unit testing. We leveraged Rust conditional compilation tricks to make contracts more unit testable by
+being able to decouple the contract from the NEAR runtime blockchain test environment. You should now be able to comfortably
+and productively unit test cross contract workflows by inspecting transaction receipts and injecting promise results and 
+data dependencies for callback functions. 
+
+I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take back the Internet together.
 
 ### What's Next
+Circling back to the [Fungible Token Core Standard NEP-141][13], I mentioned a need for account registration as part of 
+the full FT solution. The NEAR community discussion on the account registration topic has led us into what we are now 
+calling the [Account Storage Standard][14]. I expect the standard to soon be finalized. Once it is, I'll follow up and 
+write it all up here for you. 
+
+We still have only scratched the surface. My brain is full of ideas on how to monetize NEAR smart contracts using the STAKE
+token as a pillar for the DeFi ecosystem on NEAR. I would love to hear your ideas and thoughts from all the brains in the 
+NEAR community. Until then, happy testing.
 
 [1]: https://doc.rust-lang.org/book/ch11-00-testing.html
 [2]: https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/
@@ -706,3 +723,5 @@ and it's all available on online on GitHub for you to review at your leisure.
 [10]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/test_utils.rs
 [11]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/contract/fungible_token.rs
 [12]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/contract.rs
+[13]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/2-fungible-token
+[14]: https://github.com/near/NEPs/discussions/145#discussioncomment-342580
