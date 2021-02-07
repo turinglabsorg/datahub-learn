@@ -7,22 +7,21 @@ description: Complete guide to unit test your NEAR Rust smart contracts
 ![](../../../../.gitbook/assets/oysterpack-testing-code-meme.jpg)
 
 Don't try this at home folks because it is very dangerous! Sadly this happens much too often than folks like to admit. 
-Others might even say that is the price to pay for "agile" ... Kidding aside, you better have thoroughly tested your smart 
-contract before you stripped it of all access keys because you will not get a second chance. After all access keys are 
-deleted from the contract, the deployed contract is locked down and becomes **immutable**. Immutable means the contract 
-code can never change and becomes married to the blockchain forever ... until death do us part. 
+In the corporate world, some might even say that is the price to pay for "agile" ... All kidding aside, you better have 
+thoroughly tested your smart contract before you stripped it of all access keys because you will not get a second chance. 
+After all access keys are deleted from the contract, the deployed contract is locked down and becomes **immutable**. 
+Immutable means the contract code can never change and becomes married to the blockchain forever ... until death do us part. 
 
 It boils down to risk management. In order to reap the high rewards that smart contracts offer, we must manage the high
 risk that comes along. Hopefully we can learn from mistakes that other have made like the [DAO attack][4] or the 
-[second Parity Wallet Hack][5] where literally hundreds of millions of dollars worth of assets we lost. Smart contracts
+[second Parity Wallet Hack][5] where literally hundreds of millions of dollars worth of assets were lost. Smart contracts
 is serious business, and DeFi smart contracts are serious money. Testing is the crucial pillar of the software development 
 process that directly correlates to risk. I hope I have your attention by now.
 
-That being said, testing is a huge topic and all we will have time here is to focus on unit testing. It all starts with 
-unit testing, but it does not end there. You should also run local simulation tests and integration tests using deployed 
-contracts on testnet, but we'll save that for another time. In this tutorial, we will continue where we left off from last time. 
-and look at unit testing the fungible token NEP-141 interface on the [STAKE][3] project. There's a lot to cover, so let's 
-roll up our sleeves and get to work ...
+Testing is a huge topic and all we will only have time here to get started and focus on unit testing. Unit testing is just
+the beginning and acts as a critical first line of defense. In this tutorial, we will continue where we left off from 
+last time. We'll get hands-on and write unit tests for the fungible token NEP-141 interface on the [STAKE][3] project. 
+There's a lot to cover, so let's roll up our sleeves and get to work ...
 
 {% hint style="danger" %}
 #### WARNING: Do not trust contract code blindly
@@ -32,13 +31,45 @@ can only be fully trusted if the code has been audited either by yourself or by 
 {% endhint %}
 
 ## Show Me the Tests
-All of the code is located on GitHub:
-- 
-Lucky for us, Rust provides comes with batteries included with robust support for [testing][1]. 
+Lucky for us, Rust provides comes with batteries included with robust support for [testing][1]. We'll also leverage the
+NEAR Rust SDK which also provides great support for unit testing. The STAKE project links to NEAR Rust SDK [v2.4.0][6]
+on GitHub to take advantage of the latest and greatest features. The current version of the NEAR Rust SDK on [crates.io][7]
+as of this writing is v2.0.1, and unit testing support has changed a bit in v2.4.0 with some non-backward compatible breaking
+changes. To pull in NEAR Rust SDK [v2.4.0][6] into the project, specify the dependency in Cargo.toml as:
 
-### How to structure unit tests
-I create one test module per contract function, e.g.,
+```toml
+[dependencies]
+near-sdk = { git = "https://github.com/near/near-sdk-rs",  tag = "2.4.0" }
+```
 
+{% hint style="info" %}
+#### How to generate NEAR Rust SDK locally
+```bash
+gh repo clone near/near-sdk-rs -- --branch 2.4.0
+cd near-sdk-rs
+
+# edit the rust-toolchain to use the Rust stable toolchain
+echo stable > rust-toolchain
+cd near-sdk
+# builds the NEAR Rust SDK docs and opens the docs in your web browser
+cargo doc --no-deps --open
+```
+**NOTE:** I prefer to use the [GitHub CLI][7] tool when working with GitHub
+{% endhint %}
+
+The relevant code to look at is located in the following files:
+- [lib.rs][9] - the thing to pay attention to is StakeTokenContract::env
+- [contract.rs][12] - decouples the contract from `near_sdk::env`, which is "hard wired" to the contract by default (this will make more sense down below)
+- [test_utils.rs][10] - builds upon NEAR SDK unit testing support
+- [contract/fungible_token.rs][11] - the unit test modules are located at the bottom of the file along side the fungible 
+  token NEP-141 implementation
+  
+### How we will structure the test code
+I will share with you my coding standards, but the key here is to have coding standards. Be consistent and disciplined 
+in following the coding standard that is in place. This keeps the code better organized, easier to navigate, and simpler
+to follow.
+
+##### 1. Create one test module per contract function. For example:
 ```rust
 #[cfg(test)]
 mod test_transfer {
@@ -55,9 +86,8 @@ mod test_resolve_transfer_call {
   // tests
 }
 ```
-- **NOTE**: the test modules are located write next to the code that is being tested at the bottom of the source code file.
 
-Unit tests are written following the [Arrange-Act-Assert][2] test pattern, e.g.,
+#### 2. Unit tests are written following the [Arrange-Act-Assert][2] test pattern
 ```rust
 #[test]
 pub fn transfer_ok() {
@@ -72,11 +102,146 @@ pub fn transfer_ok() {
 }
 ```
 
-Our goal here is to cover the basics to get you started and point you in the right direction. The [STAKE][1] project has a
-ton of tests, and there's nothing better than having actual real code to reference.
-
 ### NEAR Rust SDK Unit Testing Support
-These are the 3 key ingredients every contract unit test requires:
+Here's what we use from the NEAR Rust SDK for unit testing:
+- module `near_sdk::test_utils` 
+  - struct `VMContextBuilder` - makes it easier to construct a `near_sdk::VMContext`
+  - function`get_created_receipts()` - used to check that contract functions are creating the expected receipts
+  - function `get_logs()` - used to check that the contract functions are emitting the expected logs
+- `near_sdk::VMContext` - this is the key center piece for unit testing contract execution
+- macro `near_sdk::testing_env!` - is the glue that brings it all together by preparing a mocked blockchain testing environment
+  with a provided near_sdk::VMContext`
+  
+At a high level, the general unit test code pattern is:
+```rust
+// Arrange
+let ctx: VMContext = create_vm_context();
+testing_env!(ctx);                         // provides mocked blockchain with specified VMContext for the contract
+let contract = create_contract();
+
+// Act
+contract.foo(); // execute contract function
+
+// Assert
+// check contract state
+// check receipts
+// check logs
+// ...
+```
+
+### Mocking out the NEAR blockchain runtime environment  
+The key to unit testing cross contract calls is to be able to inject receipts to simulate different test scenarios such as
+- providing promise results to callbacks
+- simulating promise failures
+
+The NEAR Rust SDK does not provide any such ability and the NEAR team suggests using NEAR Rust SDK simulation tests for
+testing cross contract calls. Simulation tests are great, but they are ***very*** slow to run. On my beefy laptop running
+with 24 cores (3rd Gen AMD® Ryzen™ 9 PRO 3900: 3.1 up to 4.3 GHz - 12 Cores - 24 Threads) and 64 GB RAM, it takes on the 
+order of minutes to run simple cross contract simulation tests. I want to be able to test cross contract call functionality
+as much as possible before moving onto simulation tests because I can run unit tests orders of magnitude faster. 
+
+To be able to inject promise results into unit tests, the code is decoupled from the `near_sdk::env` through a facade that
+leverages Rust conditional compilation:
+
+[contract.rs][12]
+```rust
+#[cfg(not(test))]
+impl StakeTokenContract {
+  /// checks if the first PromiseResult was successful
+  ///
+  /// ## Panics
+  /// if there are no promise results - this should only be called if promise results are expected
+  pub fn promise_result_succeeded(&self) -> bool {
+    match env::promise_result(0) {
+      PromiseResult::Successful(_) => true,
+      _ => false,
+    }
+  }
+
+  pub fn promise_result(&self, result_index: u64) -> PromiseResult {
+    env::promise_result(result_index)
+  }
+}
+
+/// in order to make it easier to unit test Promise func callbacks, we need to abstract away the near env
+#[cfg(test)]
+impl StakeTokenContract {
+  /// checks if the first PromiseResult was successful
+  ///
+  /// ## Panics
+  /// if there are no promise results - this should only be called if promise results are expected
+  pub fn promise_result_succeeded(&self) -> bool {
+    match self.env.promise_result(0) {
+      PromiseResult::Successful(_) => true,
+      _ => false,
+    }
+  }
+
+  pub fn promise_result(&self, result_index: u64) -> PromiseResult {
+    self.env.promise_result(result_index)
+  }
+
+  pub fn set_env(&mut self, env: near_env::Env) {
+    self.env = env;
+  }
+}
+
+#[cfg(test)]
+pub(crate) mod near_env {
+    use near_sdk::PromiseResult;
+
+    /// abstracts away the NEAR env
+    /// - this enables the Near env to be decoupled to make it easier to test
+    pub struct Env {
+        pub promise_results_count_: fn() -> u64,
+        pub promise_result_: fn(u64) -> PromiseResult,
+    }
+
+    impl Env {
+        pub fn promise_results_count(&self) -> u64 {
+            (self.promise_results_count_)()
+        }
+
+        pub fn promise_result(&self, result_index: u64) -> PromiseResult {
+            (self.promise_result_)(result_index)
+        }
+    }
+
+    impl Default for Env {
+        fn default() -> Self {
+            Self {
+                promise_results_count_: near_sdk::env::promise_results_count,
+                promise_result_: near_sdk::env::promise_result,
+            }
+        }
+    }
+}
+```
+All contract interactions with the `near_sdk::env` go through the following functions:
+- `promise_result_succeeded()`
+- `promise_result()`
+
+The implementation for those functions is chosen conditionally at compile time depending on the specified compile mode:
+- release mode - functions use `near_sdk::env` directly
+- test mode - functions use `near_env::Env` instead which enables promise results to be injected via functions
+
+The last piece to the puzzle to make this all work is `StakeTokenContract::env` ([lib.rs][9]):
+```rust
+#[near_bindgen]
+#[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
+pub struct StakeTokenContract {
+    // ...
+  
+    #[cfg(test)]
+    #[borsh_skip]
+    env: near_env::Env,
+}
+```
+This is telling the Rust compiler to only add the `env` field when compiled in test mode. 
+
+Cool - using this Rust conditional compilation trick, we will be able to unit test contract callback functions easily. 
+
+### Key Ingredients For Unit Testing Contract Functions
 
 1. **VMContext** - provided by the NEAR Rust SDK - it provides the context for contract execution
 2. Contract instance
@@ -336,3 +501,10 @@ any questions, feel free to post them on the tutorial.
 [3]: https://github.com/oysterpack/oysterpack-near-stake-token
 [4]: https://medium.com/swlh/the-story-of-the-dao-its-history-and-consequences-71e6a8a551ee
 [5]: https://hackernoon.com/parity-wallet-hack-2-electric-boogaloo-e493f2365303
+[6]: https://github.com/near/near-sdk-rs/tree/2.4.0
+[7]: https://crates.io/crates/near-sdk
+[8]: https://cli.github.com/
+[9]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/lib.rs
+[10]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/test_utils.rs
+[11]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/contract/fungible_token.rs
+[12]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/contract.rs
