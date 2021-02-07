@@ -141,7 +141,7 @@ It serves a different purpose, which we'll revisit in future tutorials.
 
 #### Necessity is the mother of invention ... 
 To be able to inject promise results into unit tests, I decoupled the contract code from the `near_sdk::env` through a 
-facade that leverages Rust conditional compilation. That's a mouthful ... let's look at code and to see what I mean:
+facade that leverages Rust conditional compilation. That's a mouthful ... let's look at the code to see what I mean:
 
 [contract.rs][12]
 ```rust
