@@ -240,7 +240,7 @@ pub struct StakeTokenContract {
 ```
 This is telling the Rust compiler to only add the `env` field when compiled in test mode. 
 
-Within [test_utils.rs] we have some helpers for checking receipts:
+Within [test_utils.rs][10] we have some helpers for checking receipts:
 ```rust
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
