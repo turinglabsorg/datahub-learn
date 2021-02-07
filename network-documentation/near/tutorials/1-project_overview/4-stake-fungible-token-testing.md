@@ -725,7 +725,7 @@ write it all up here for you.
 
 We still have only scratched the surface. My brain is full of ideas on how to monetize NEAR smart contracts using the STAKE
 token as a pillar for the DeFi ecosystem on NEAR. I would love to hear your ideas and thoughts from all the brains in the 
-NEAR community. Until then, happy testing.
+NEAR community. Until next time ...
 
 ![](../../../../.gitbook/assets/oysterpack-matrix.gif)
 
