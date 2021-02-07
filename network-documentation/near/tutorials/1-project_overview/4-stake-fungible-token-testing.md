@@ -19,8 +19,8 @@ is serious business, and DeFi smart contracts are serious money. Testing is the 
 process that directly correlates to risk. I hope I have your attention by now.
 
 Testing is a huge topic and all we will only have time here to get started and focus on unit testing. Unit testing is just
-the beginning and acts as a critical first line of defense. In this tutorial, we will continue where we left off from 
-last time. We'll get hands-on and write unit tests for the fungible token NEP-141 interface on the [STAKE][3] project. 
+the beginning and acts as a critical first line of defense. In this tutorial, we will pick up where we left off from the
+last tutorial. We'll take a look at how we unit test NEAR Rust smart contracts on my favorite [STAKE][3] project. 
 There's a lot to cover, so let's roll up our sleeves and get to work ...
 
 {% hint style="danger" %}
@@ -61,8 +61,7 @@ The relevant code to look at is located in the following files:
 - [lib.rs][9] - the thing to pay attention to is StakeTokenContract::env
 - [contract.rs][12] - decouples the contract from `near_sdk::env`, which is "hard wired" to the contract by default (this will make more sense down below)
 - [test_utils.rs][10] - builds upon NEAR SDK unit testing support
-- [contract/fungible_token.rs][11] - the unit test modules are located at the bottom of the file along side the fungible 
-  token NEP-141 implementation
+- [contract/fungible_token.rs][11] - contains the Fungible Token unit tests - as a follow up to our last tutorial where we implemented the FT NEP-141 standard for the STAKE token  
   
 ### How we will structure the test code
 I will share with you my coding standards, but the key here is to have coding standards. Be consistent and disciplined 
