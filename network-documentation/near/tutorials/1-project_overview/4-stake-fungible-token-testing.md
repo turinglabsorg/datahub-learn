@@ -223,7 +223,7 @@ All contract interactions with the `near_sdk::env` go through the following func
 
 The implementation for those functions is chosen conditionally at compile time depending on the specified compile mode:
 - **release mode** - functions use `near_sdk::env` directly
-- **test mode** - functions use `near_env::Env` instead which enables promise results to be injected via functions
+- **test mode** - functions use `near_env::Env` instead which is defined within the STAKE project and enables promise results to be injected
 
 There's a few pieces to the puzzle left to make this all work. First, we use Rust conditional compilation for the
 `StakeTokenContract::env` field ([lib.rs][9]):
