@@ -105,11 +105,11 @@ pub fn transfer_ok() {
 Here's what we use from the NEAR Rust SDK for unit testing:
 - module `near_sdk::test_utils` 
   - struct `VMContextBuilder` - makes it easier to construct a `near_sdk::VMContext`
-  - function`get_created_receipts()` - used to check that contract functions are creating the expected receipts
+  - function`get_created_receipts()` - used to check that contract functions are creating the expected transaction receipts
   - function `get_logs()` - used to check that the contract functions are emitting the expected logs
 - `near_sdk::VMContext` - this is the key center piece for unit testing contract execution
 - macro `near_sdk::testing_env!` - is the glue that brings it all together by preparing a mocked blockchain testing environment
-  with a provided near_sdk::VMContext`
+  using a `near_sdk::VMContext` that is provided
   
 At a high level, the general unit test code pattern is:
 ```rust
@@ -133,10 +133,11 @@ The key to unit testing cross contract calls is to be able to inject receipts to
 - providing promise results to callbacks
 - simulating promise failures
 
-The NEAR Rust SDK does not provide any such ability and the NEAR team suggests using NEAR Rust SDK simulation tests for
-testing cross contract calls. Simulation tests are great, but they are ***very*** slow to run. On my beefy laptop running
-with 24 cores (3rd Gen AMD® Ryzen™ 9 PRO 3900: 3.1 up to 4.3 GHz - 12 Cores - 24 Threads) and 64 GB RAM, it takes on the 
-order of minutes to run simple cross contract simulation tests. That's a blocker for me and kills productivity. 
+The NEAR Rust SDK does not provide any such ability and the NEAR team suggests using NEAR Rust SDK simulation test framework 
+for testing cross contract calls. Simulation tests are great, but they are ***very*** slow to run. On my beefy laptop running
+with 24 cores and 64 GB RAM, it takes on the order of minutes to run simple cross contract simulation tests. That's a 
+blocker for me because it kills productivity. The simulation test framework is not designed to be used for unit testing.
+It serves a different purpose, which we'll revisit in future tutorials.
 
 #### Necessity is the mother of invention ... 
 To be able to inject promise results into unit tests, I decoupled the contract code from the `near_sdk::env` through a 
