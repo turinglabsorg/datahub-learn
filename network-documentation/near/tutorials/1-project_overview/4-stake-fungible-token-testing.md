@@ -689,16 +689,33 @@ which injects the PromiseResult to provide the data dependency for the callback.
 
 ### It's a wrap folks
 That's all of the actual unit test code we'll look at in this tutorial. The rest of the unit tests follow a similar pattern
-and it's all available on online on GitHub for you to review at your leisure. Let's review what we have learned in this tutorial ... 
+and it's all available on online on GitHub for you to review at your leisure. Let's recap what we covered and the key take aways: 
 
-We discussed why testing smart contracts is serious business due to their immutable code on the blockchain. 
-I shared with you how I structure and organize unit tests in my projects. We went over the key pieces provided by the 
-NEAR Rust SDK for unit testing. We leveraged Rust conditional compilation tricks to make contracts more unit testable by
-being able to decouple the contract from the NEAR runtime blockchain test environment. You should now be able to comfortably
-and productively unit test cross contract workflows by inspecting transaction receipts and injecting promise results and 
-data dependencies for callback functions. 
+- Smart contracts is serious business with big money at risk, especially in the DeFi space. 
+- Smart contract immutability is a double-edged sword. You don't get a second chance to get it right.
+- Unit testing is a crucial first line of defense to protect against undesirable consequences
+- I shared with you how I structure unit tests to stay organized and to make it easier to navigate the code
+- We reviewed what the NEAR Rust SDK provides for unit testing support using the latest published version on GitHub
+- We identified some unit testing gaps in the NEAR Rust SDK around testing callback functions as part of cross-contract
+call workflows. 
+- I showed you how we can leverage conditional Rust compilation to bridge the gap to be able to inject promise results
+and data dependencies to be able to unit test callback functions. Using conditional compilations, we were able to expose
+hooks when the code is compiled in test mode - with no impact to the release build.
+- We reviewed the basic pattern for working with the `VMContext`, provided by the NEAR Rust SDK, for setting up the context
+  for contract function execution
+- We reviewed how to inspect transaction receipts to check that cross-contract workflows are correctly setup.
+- We went over the key ingredients for unit testing contract functions. We reviewed my approach with building a `TestContext`
+to help keep the test code cleaner.
 
-I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take back the Internet together.
+{% hint style="tip" %}
+Contracts are dumb - it's up to us to be smart and responsible. Do not take any shortcuts and cut corners. Establish 
+and follow best practices with strict discipline. Do not ignore risk - manage risk at all levels and layers. Be strategic
+and think long term. Do your homework and never stop learning. Learn from others and share your knowledge with the community.
+{% hint %}
+
+The Internet is the greatest revolution in humanity's history. It provides the people of the world with an opportunity to 
+connect and unite to build a global community that has no borders. I invite you to join the Figment and NEAR communities 
+and embark on our common mission to defend and take back the Internet together.
 
 ### What's Next
 Circling back to the [Fungible Token Core Standard NEP-141][13], I mentioned a need for account registration as part of 
