@@ -727,6 +727,8 @@ We still have only scratched the surface. My brain is full of ideas on how to mo
 token as a pillar for the DeFi ecosystem on NEAR. I would love to hear your ideas and thoughts from all the brains in the 
 NEAR community. Until then, happy testing.
 
+![](../../../../.gitbook/assets/oysterpack-matrix.gif)
+
 [1]: https://doc.rust-lang.org/book/ch11-00-testing.html
 [2]: https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/
 [3]: https://github.com/oysterpack/oysterpack-near-stake-token
