@@ -690,7 +690,7 @@ which injects the PromiseResult to provide the data dependency for the callback.
 
 ### It's a wrap folks
 That's all of the actual unit test code we'll look at in this tutorial. The rest of the unit tests follow a similar pattern
-and it's all available on online on GitHub for you to review at your leisure. Let's recap what we covered and the key take aways: 
+and it's all available on online on GitHub for you to review at your leisure. Let's recap: 
 
 - Smart contracts is serious business with big money at risk, especially in the DeFi space. 
 - Smart contract immutability is a double-edged sword. You don't get a second chance to get it right.
