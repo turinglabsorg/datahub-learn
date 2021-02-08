@@ -14,7 +14,7 @@ Immutable means the contract code can never change and becomes married to the bl
 
 It boils down to risk management. In order to reap the high rewards that smart contracts offer, we must manage the high
 risk that comes along. Hopefully we can learn from mistakes that other have made like the [DAO attack][4] or the 
-[second Parity Wallet Hack][5] where literally hundreds of millions of dollars worth of assets were lost. Smart contracts
+[second Parity Wallet Hack][5] where hundreds of millions of dollars worth of assets were lost. Smart contracts
 is serious business, and DeFi smart contracts are serious money. Testing is the crucial pillar of the software development 
 process that directly correlates to risk. I hope I have your attention by now.
 
