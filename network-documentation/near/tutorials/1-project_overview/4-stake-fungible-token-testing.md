@@ -130,8 +130,8 @@ contract.foo(); // execute contract function
 
 ### Mocking out the NEAR blockchain runtime environment  
 The key to unit testing cross contract calls is to be able to inject receipts to simulate different test scenarios such as
-- providing promise results to callbacks
-- simulating promise failures
+- Providing promise results to callbacks
+- Simulating promise failures
 
 The NEAR Rust SDK does not provide any such ability and the NEAR team suggests using NEAR Rust SDK simulation test framework 
 for testing cross contract calls. Simulation tests are great, but they are ***very*** slow to run. On my beefy laptop running
@@ -222,8 +222,8 @@ All contract interactions with the `near_sdk::env` go through the following func
 - `promise_result()`
 
 The implementation for those functions is chosen conditionally at compile time depending on the specified compile mode:
-- **release mode** - functions use `near_sdk::env` directly
-- **test mode** - functions use `near_env::Env` instead which is defined within the STAKE project and enables promise results to be injected
+- **Release Mode** - functions use `near_sdk::env` directly
+- **Test Mode** - functions use `near_env::Env` instead which is defined within the STAKE project and enables promise results to be injected
 
 There's a few pieces to the puzzle left to make this all work. First, we use Rust conditional compilation for the
 `StakeTokenContract::env` field ([lib.rs][9]):
@@ -441,6 +441,7 @@ to be used as `StakeTokenContract`, which makes it a little easier in the code.
 #### How to work with the VMContext
 Knowing how to work with the VMContext provided by the NEAR Rust SDK is half the battle. It will be  worth your time to
 familiarize yourself and become comfortable working with it. The basic pattern to work with the VMContext is:
+
 1. Clone the VMContext
 2. Modify the VMContext to setup the test
 3. Update the testing env with the new VMContext
@@ -627,15 +628,15 @@ pub fn transfer_ok() {
 That's a pretty long test ... but it would be a lot longer if it weren't for all of the helper functions. Let's walk through it:
 
 1. Arrange
-   - it creates the `TestContext` with the predecessor account pre-registered, which will be used as the sender account.
-   - it then registers the receiver account with the contract. Recall from the FT NEP-141 standard that both the sender
+   - It creates the `TestContext` with the predecessor account pre-registered, which will be used as the sender account.
+   - Ot then registers the receiver account with the contract. Recall from the FT NEP-141 standard that both the sender
      and receiver accounts must be registered with the account before being able to use it.
-   - it asserts that the STAKE FT total supply and account balances are zero
-   - it then credits the sender account with the STAKE tokens
+   - It asserts that the STAKE FT total supply and account balances are zero
+   - It then credits the sender account with the STAKE tokens
 2. Act - the sender executes `ft_tranfer_call` with no memo
 3. Assert
-   - balances are checked to ensure funds are transferred
-   - **here's the really cool part** - receipts are checked to verify the transfer call workflow is properly setup, i.e.,
+   - Balances are checked to ensure funds are transferred
+   - **Here's the really cool part** - receipts are checked to verify the transfer call workflow is properly setup, i.e.,
      each function call receipt action is checked
 4. Act - the sender executes `ft_tranfer_call` with a memo
 5. Assert - memo is ignored and not used by the STAKE contract. The main purpose is to ensure that a memo can be specified
