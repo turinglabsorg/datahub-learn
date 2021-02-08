@@ -33,9 +33,7 @@ contracts can only be fully trusted if the code has been audited either by yours
 Lucky for us, Rust comes with batteries included with robust support for [testing][1]. We'll also leverage the
 [NEAR Rust SDK][6] which also provides great support for unit testing smart contracts. Once again, we'll use the [STAKE][3] 
 project to showcase the code. The STAKE project links to NEAR Rust SDK [v2.4.0][6] on GitHub to take advantage of the 
-latest and greatest features. The current version of the NEAR Rust SDK on [crates.io][7] as of this writing is v2.0.1, 
-and unit testing support has improved in v2.4.0 with some non-backward compatible breaking changes. To pull in 
-NEAR Rust SDK [v2.4.0][6] into the project, specify the dependency in Cargo.toml as:
+latest and greatest features. To pull in NEAR Rust SDK [v2.4.0][6] into the project, specify the dependency in Cargo.toml as:
 
 ```toml
 [dependencies]
