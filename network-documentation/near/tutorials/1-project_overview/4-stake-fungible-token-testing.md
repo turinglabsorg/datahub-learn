@@ -55,7 +55,7 @@ cargo doc --no-deps --open
 **NOTE:** I prefer to use the [GitHub CLI][7] tool when working with GitHub
 {% endhint %}
 
-The relevant code to look at within the [STAKE][3] is:
+The relevant code to look at within the [STAKE][3] project is:
 - [lib.rs][9] - take note of the `StakeTokenContract::env` field - notice anything interesting about it?
 - [contract.rs][12] - decouples the contract from `near_sdk::env`, which is "hard wired" to the contract by default (this will make more sense down below)
 - [test_utils.rs][10] - builds upon NEAR SDK unit testing support
