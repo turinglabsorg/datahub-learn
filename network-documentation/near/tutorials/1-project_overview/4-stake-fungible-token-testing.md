@@ -233,8 +233,8 @@ There's a few pieces to the puzzle left to make this all work. First, we use Rus
 pub struct StakeTokenContract {
     // ...
   
-    #[cfg(test)]
-    #[borsh_skip]
+    #[cfg(test)]        // tells compiled to only include if compiled in test mode
+    #[borsh_skip]       // tells #[near_bindgen] to ignore this field as part of the contract's state used for borsh serialization
     env: near_env::Env,
 }
 ```
