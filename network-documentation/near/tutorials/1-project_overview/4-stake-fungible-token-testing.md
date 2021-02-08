@@ -694,7 +694,7 @@ and it's all available on online on GitHub for you to review at your leisure. Le
 
 - Smart contracts is serious business with big money at risk, especially in the DeFi space. 
 - Smart contract immutability is a double-edged sword. You don't get a second chance to get it right.
-- Unit testing is a crucial first line of defense to protect against undesirable consequences
+- Unit testing is a crucial first line of defense to help protect the base
 - I shared with you how I structure unit tests to stay organized and to make it easier to navigate the code
 - We reviewed what the NEAR Rust SDK provides for unit testing support using the latest published version on GitHub
 - We identified some unit testing gaps in the NEAR Rust SDK around testing callback functions as part of cross-contract
