@@ -696,11 +696,11 @@ and it's all available on online on GitHub for you to review at your leisure. Le
 - Smart contracts is serious business with big money at risk, especially in the DeFi space. 
 - Smart contract immutability is a double-edged sword. You don't get a second chance to get it right.
 - Unit testing is a crucial first line of defense to help protect the base
-- I shared with you how I structure unit tests to stay organized and to make it easier to navigate the code
+- We went over how to structure unit tests to stay organized and to make it easier to navigate the code
 - We reviewed what the NEAR Rust SDK provides for unit testing support using the latest published version on GitHub
 - We identified some unit testing gaps in the NEAR Rust SDK around testing callback functions as part of cross-contract
 call workflows. 
-- I showed you how we can leverage conditional Rust compilation to bridge the gap to be able to inject promise results
+- We saw how to leverage conditional Rust compilation to bridge the gap to be able to inject promise results
 and data dependencies to be able to unit test callback functions. Using conditional compilations, we were able to expose
 hooks when the code is compiled in test mode - with no impact to the release build.
 - We reviewed the basic pattern for working with the `VMContext`, provided by the NEAR Rust SDK, for setting up the context
