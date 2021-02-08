@@ -278,8 +278,8 @@ pub fn deserialize_receipts() -> Vec<Receipt> {
 }
 ```
 
-And finally, also withing [test_utils][9], there are a few helper functions used to inject `PromiseResult`s into the 
-mocked test NEAR blockchain environment to round it all out.
+To round it all out, within [test_utils][9], there also are a few helper functions used to inject `PromiseResult`s into
+the mocked test NEAR blockchain environment:
 ```rust
 pub fn set_env_with_success_promise_result(contract: &mut StakeTokenContract) {
     pub fn promise_result(_result_index: u64) -> PromiseResult {
@@ -326,7 +326,7 @@ pub fn set_env_with_failed_promise_result(contract: &mut StakeTokenContract) {
 }
 ```
 
-Cool - using this Rust conditional compilation trick, we will be able to unit test contract callback functions easily. 
+Using this Rust conditional compilation tactic, we will be able to unit test contract callback functions easily. 
 This provides a huge productivity boost because this enables us to test much more using plain old unit tests.
 
 ### Key Ingredients For Unit Testing Contract Functions
@@ -471,16 +471,17 @@ pub fn ok_with_refund_gt_transfer_amount() {
 ```
 
 ### How to Unit Test Cross-Contract Calls
-The title is a little misleading because technically you can't technically unit test cross contract calls. To truly test 
-cross contract calls, you would use simulation tests. However, simulation tests also has its limitations for more complex 
-workflows. Ultimately, you will need to run integration tests on testnet to fully test more complex cross-contract workflows ... but I digress ...
+The title is a little misleading because technically speaking you can't unit test cross contract calls. To truly test 
+cross contract calls, you would use the simulation test framework. However, simulation tests runs into limitations for 
+more complex workflows. Ultimately, you will need to run integration tests on testnet to fully test complex cross-contract 
+workflows ... but I digress ...
 
 With all of the work we did above, i.e., referring back to the Rust conditional compilation tricks, we can test all of
 the cross contract business logic code, without actually making cross contract calls. To clarify what I mean, let's 
 take a look at some test code. 
 
-With all of the work we did, the pay off is that we can fully test all of the business logic code for the fungible token
-transfer call workflow. Here's a refresher:
+The pay off for all of the groundwork that was laid down is that we can now fully test all of the business logic code for 
+the fungible token transfer call workflow. Here's a refresher:
 
 ![](../../../../.gitbook/assets/oysterpack-near-stake-token-transfer-call.png)
 
