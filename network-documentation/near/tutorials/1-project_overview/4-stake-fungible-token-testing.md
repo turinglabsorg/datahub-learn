@@ -234,7 +234,7 @@ pub struct StakeTokenContract {
     // ...
   
     #[cfg(test)]        // tells compiled to only include if compiled in test mode
-    #[borsh_skip]       // tells #[near_bindgen] to ignore this field as part of the contract's state used for borsh serialization
+    #[borsh_skip]       // tells #[near_bindgen] to skip this field for borsh serialization
     env: near_env::Env,
 }
 ```
