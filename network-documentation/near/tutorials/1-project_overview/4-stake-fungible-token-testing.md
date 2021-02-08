@@ -641,8 +641,7 @@ That's a pretty long test ... but it would be a lot longer if it weren't for all
 5. Assert - memo is ignored and not used by the STAKE contract. The main purpose is to ensure that a memo can be specified
   but has no effect
 
-Here's the payoff for all of the hard work we did above. We are no able to Unit test the `ft_resolve` callback because 
-we are now able to inject the data dependencies into the test:
+Another another payoff is being able to unit test the `ft_resolve` callback by injecting the data dependencies into the test:
 ```rust
 #[test]
 pub fn ok_zero_refund() {
