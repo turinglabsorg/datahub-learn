@@ -4,7 +4,7 @@ description: Learn how to write smart contracts that talk to each other
 
 # Cross-contract calls
 
-[The original tutorial can be found in the official NEAR documentation here. ](https://docs.near.org/docs/tutorials/how-to-write-contracts-that-talk-to-each-other)
+[The original tutorial can be found in the official NEAR documentation here](https://docs.near.org/docs/tutorials/contracts/cross-contract-calls). 
 
 ## Introduction
 
