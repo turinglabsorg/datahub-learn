@@ -10,13 +10,13 @@ On this page you can find all tutorials currently available for Celo, including 
 
 Don't forget that you can try them out [**via Datahub**](https://datahub.figment.io/sign_up?service=celo)!
 
-### [Join our community today ](https://discord.gg/fszyM7K)if you want to interact with other builders and become a part of this growing ecosystem!
+[**Join our community today** ](https://discord.gg/fszyM7K)**if you want to interact with other builders and become a part of this growing ecosystem!**
 
-## 1. Connecting to Celo node with DataHub
+## 1. Connect to a Celo node with DataHub
 
 {% page-ref page="1.connect.md" %}
 
-## 2. Creating your first Celo account
+## 2. Create your first Celo account
 
 {% page-ref page="2.account.md" %}
 
@@ -24,11 +24,11 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="3.query.md" %}
 
-## 4. Submitting transactions
+## 4. Submit your first transactions
 
 {% page-ref page="4.transactions.md" %}
 
-## 5. Deploying and interacting with custom smart contract
+## 5. Write and deploy your first Celo smart contract
 
 {% page-ref page="5.smart-contract.md" %}
 
