@@ -6,35 +6,35 @@ description: Learn how to create and interact with NFTs on NEAR
 
 ## About the Author
 
-This tutorial was created by [Mykle Hansen](https://github.com/myklemykle), a contributor to the [Plantary](https://github.com/myklemykle/plantary) project which allows users to grow and harvest plant NFTs on NEAR. 
+This tutorial was created by [Mykle Hansen](https://github.com/myklemykle), a contributor to the [Plantary](https://github.com/myklemykle/plantary) project which allows users to grow and harvest plant NFTs on NEAR.
 
-## Introduction 
+## Introduction
 
 [Non-Fungible Tokens](https://en.wikipedia.org/wiki/Non-fungible_token) are unique records of ownership on the blockchain. Usually an NFT is tied to something interesting and rare, such as an artwork, a concert ticket, a collectable cat, a domain name, or a real physical object. NFTs can be bought, sold, given away, and can even be minted or destroyed, depending on the rules of the contract. [Cryptokitties](https://www.cryptokitties.co/) and [SuperRare](https://superrare.co/) are two popular examples of Ethereum-based NFTs. We can implement NFTs just as easily on NEAR.
 
 In this tutorial we will issue a new species of NFT: the CryptoFlarn, a single-celled organism with unique DNA. Our smart contract will allow Flarns to be created, collected and traded on the NEAR blockchain.
 
-### About NFT standards:
+### About NFT standards
 
 There are many standards for NFTs! However the most widely supported by far is the [ERC721](https://eips.ethereum.org/EIPS/eip-721) standard, which defines how NFTs can be created and transfered among other things. This standard works well, but like all the ERC standards it is defined only for the Ethereum blockchain. ERC721 may be portable to NEAR once [NEAR EVM](https://near.org/blog/running-ethereum-applications-on-near/) emulation is available, but for now, the NEAR team has created an NFT reference implementation that uses a different NFT standard: [NEP-4](https://github.com/nearprotocol/NEPs/pull/4), which is defined in a language-independent way that is more compatible with NEAR.
 
 NEP-4 is a very simple standard that does the bare minimum required to support ownership and transfer of NFTs, but it includes the possibility of delegating authority to other users or to other smart contracts. This is a powerful feature, because it means that future enhancements might be added by cross-contract calls with another, smarter contract, instead of having to upgrade the contract we write today. Other NFT projects on NEAR are already beginning to support NEP-4, so it's a good short-term choice.
 
-### About Rust:
+### About Rust
 
 In the NEAR Pathway, the smart contract was written in AssemblyScript, which was then compiled to WebAssembly \(WASM\) to run in the blockchain. However, NEAR smart contracts can also be written in [Rust](https://www.rust-lang.org/), a C-like language for server applications that has become popular for its built-in safety checks that help avoid bugs. Rust also features a robust testing infrastructure, copious on-line documentation, and a compiler that tries its best to help you fix any errors it finds.
 
 The NEAR team recommends using Rust for any smart contracts of a financial nature, and their reference implementation of NEP-4 NFTs is written in Rust. So we will start with that reference implementation, and add some useful features.
 
-### Prerequisites:
+### Prerequisites
 
 If you have completed the NEAR Pathway, you should have already taken care of these prerequisites. For this tutorial you must:
 
 * Install node.js and npm, and set up your DataHub environment [\(see Tutorial 1\)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
-* Create an account on the NEAR testnet [\(see Tutorial 2\)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
+* Create an account on the NEAR Testnet [\(see Tutorial 2\)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
 * Install the NEAR CLI [\(also in Tutorial 2\)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
 
-## Installing The Toolchain
+## Installing the Toolchain
 
 Before we can start working on the Rust contract, we need to install a few more tools.
 
@@ -108,9 +108,9 @@ serde_json = "1.0.60"
 near-sdk = "2.0.0"
 borsh = "0.7.1"
 wee_alloc = "0.4.5"
-rand = "0.7.3"
-rand_chacha = "0.2.2"
-rand_seeder = "0.2.1"
+rand = "=0.7.3"
+rand_chacha = "=0.2.2"
+rand_seeder = "=0.2.1"
 
 [profile.release]
 codegen-units = 1
@@ -521,7 +521,7 @@ Done deploying to dev-1607722059840-7354752
 
 The provided link will give you complete details about the deployment in the NEAR Explorer.
 
-[ screenshot ](https://github.com/figment-networks/datahub-learn/tree/master/.gitbook/assets/screenshot-near-rust-tut.png)
+![](../../../.gitbook/assets/screen-shot-2021-02-01-at-6.30.27-pm.png)
 
 In this step, the CLI created a new user account on the testnet and deployed the contract in that account. Make a note of that new Account ID, which looks something like `dev-nnnnnnnnn-nnnnn`, where the `n`s are replaced by digits.
 
@@ -529,7 +529,7 @@ In this step, the CLI created a new user account on the testnet and deployed the
 
 Our NFT smart contract is now deployed on NEAR! Let's use the CLI to test this interface.
 
-### contract arguments
+### Contract arguments
 
 First, we we need to call our contract's `new()` method, to initialize the blockchain data store. If we call any other method before that, we'll get an error. The 'new' method takes one argument, `owner_id`, the accountID of the user who will be allowed to mint new Flarns from this contract.
 

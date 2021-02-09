@@ -10,7 +10,7 @@ Learn Pathways are short curriculums that help developers understand which netwo
 
 ## ![](../.gitbook/assets/tnear_icon_1.png) NEAR Pathway 
 
-NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands. Learn what makes it unique and build your first project to earn **$10 in NEAR** equivalent! 
+NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands. Learn what makes it unique and build your first project to earn **$20 in NEAR** equivalent! 
 
 **Get started with the NEAR Pathway by visiting the page below.** 
 
@@ -20,7 +20,7 @@ NEAR is a decentralized application platform that is secure enough to manage hig
 
 ## ![](../.gitbook/assets/logo1.png) Secret Pathway
 
-Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project to earn **$50 in SCRT equivalent**! 
+Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project to earn **$20 in SCRT equivalent**! 
 
 **Get started with the Secret Pathway by visiting the page below.** 
 

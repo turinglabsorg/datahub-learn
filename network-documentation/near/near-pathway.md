@@ -6,7 +6,7 @@ description: Learn what makes NEAR unique and build your first NEAR smart contra
 
 ## ![](../../.gitbook/assets/unnamed-1-.png) Welcome to the NEAR Pathway
 
-NEAR Protocol is a decentralized platform where developers can host serverless applications and smart contracts which have easy access to open finance networks and benefit from an ecosystem of open web components. Learn what makes it unique and build your first project to earn **$10 in NEAR equivalent**! 
+NEAR Protocol is a decentralized platform where developers can host serverless applications and smart contracts which have easy access to open finance networks and benefit from an ecosystem of open web components. Learn what makes it unique and build your first project to earn **$20 in NEAR equivalent**! 
 
 ## 🏁 Get started by signing up for DataHub
 
@@ -28,23 +28,23 @@ Verify each tutorial as you complete them and make sure to click on "Submit to e
 
 ### 💡1. Connect to a NEAR node using DataHub 
 
-{% page-ref page="tutorials/1.-connecting-to-a-near-node-using-datahub.md" %}
+{% page-ref page="tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub.md" %}
 
 ### 💡2. Create your first NEAR account
 
-{% page-ref page="tutorials/2.-creating-your-first-near-account-using-the-sdk.md" %}
+{% page-ref page="tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/2.-creating-your-first-near-account-using-the-sdk.md" %}
 
 ### 💡3. Query the NEAR blockchain 
 
-{% page-ref page="tutorials/3.-querying-the-near-blockchain.md" %}
+{% page-ref page="tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/3.-querying-the-near-blockchain.md" %}
 
 ### 💡4. Submit your first transactions 
 
-{% page-ref page="tutorials/4.-submitting-your-first-transactions.md" %}
+{% page-ref page="tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/4.-submitting-your-first-transactions.md" %}
 
 ### 💡5. Write & deploy your first NEAR smart contract
 
-{% page-ref page="tutorials/5.-writing-and-deploying-your-first-near-smart-contract.md" %}
+{% page-ref page="tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/5.-writing-and-deploying-your-first-near-smart-contract.md" %}
 
 ## ![](../../.gitbook/assets/tnear_icon_1.png)Extra NEAR Pathway Challenges
 

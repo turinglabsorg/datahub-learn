@@ -1,5 +1,5 @@
 ---
-description: Learn how to interact with the Figment's Oasis REST API
+description: Learn how to interact with Figment's Oasis REST API
 ---
 
 # Oasis REST API

@@ -6,7 +6,7 @@ description: Learn what makes Secret unique and build your first Secret smart co
 
 ## ![](../../.gitbook/assets/logo1.png) Welcome to the Secret Pathway
 
-Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project to earn **$50 in SCRT equivalent**! 
+Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project to earn **$20 in SCRT equivalent**! 
 
 ## 🏁 Get started by signing up for DataHub
 
@@ -64,7 +64,7 @@ Bonus Activity Rewards will be given out at the discretion of the reviewer. Plea
 
 Make sure to refer to Figment Learn in your tweet! 
 
-### ![](../../.gitbook/assets/download-7-.png) Medium \($25 in SCRT each, `1500-2000` words each\)
+### ![](../../.gitbook/assets/download-7-.png) Medium \($20 in SCRT each, `1500-2000` words each\)
 
 1. Recount your Secret learning experience
 2. Share your ideas for improving the Secret developer experience
