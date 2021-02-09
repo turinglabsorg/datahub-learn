@@ -58,7 +58,7 @@
     * [Web3.shh](network-documentation/celo/rpc-and-rest-api/web3.shh.md)
     * [Web3.utils](network-documentation/celo/rpc-and-rest-api/web3.utils.md)
   * [💡 Tutorials](network-documentation/celo/tutorial/README.md)
-    * [1. Connect to Celo node with DataHub](network-documentation/celo/tutorial/1.connect.md)
+    * [1. Connect to a Celo node with DataHub](network-documentation/celo/tutorial/1.connect.md)
     * [2. Create your first Celo account](network-documentation/celo/tutorial/2.account.md)
     * [3. Query the Celo network](network-documentation/celo/tutorial/3.query.md)
     * [4. Submit your first transactions](network-documentation/celo/tutorial/4.transactions.md)
