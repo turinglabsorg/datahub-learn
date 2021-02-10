@@ -707,7 +707,7 @@ hooks when the code is compiled in test mode - with no impact to the release bui
 - We went over the key ingredients for unit testing contract functions. We reviewed my approach with building a `TestContext`
 to help keep the test code cleaner.
 
-{% hint style="tip" %}
+{% hint style="info" %}
 Contracts are dumb - it's up to us to be smart and responsible. Do not take any shortcuts or cut corners. Establish 
 and follow best practices with strict discipline. Do not ignore risk - manage risk at all levels and layers. Be strategic
 and think long term. Do your homework and never stop learning. Learn from others and share your knowledge with the community.
