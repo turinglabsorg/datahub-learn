@@ -711,7 +711,7 @@ to help keep the test code cleaner.
 Contracts are dumb - it's up to us to be smart and responsible. Do not take any shortcuts or cut corners. Establish 
 and follow best practices with strict discipline. Do not ignore risk - manage risk at all levels and layers. Be strategic
 and think long term. Do your homework and never stop learning. Learn from others and share your knowledge with the community.
-{% hint %}
+{% endhint %}
 
 The Internet is the greatest revolution in humanity's history. It provides the people of the world with an opportunity to 
 connect and unite to build a global community that has no borders. I invite you to join the Figment and NEAR communities 
