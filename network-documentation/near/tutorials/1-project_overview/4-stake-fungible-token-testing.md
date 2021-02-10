@@ -13,9 +13,9 @@ After all access keys are deleted from the contract, the deployed contract is lo
 Immutable means the contract code can never change and becomes married to the blockchain forever ... until death do us part. 
 
 It boils down to risk management. In order to reap the high rewards that smart contracts offer, we must manage the high
-risk that comes along. Hopefully we can learn from mistakes that other have made like the [DAO attack][4] or the 
-[second Parity Wallet Hack][5] where hundreds of millions of dollars worth of assets were lost. Smart contracts
-is serious business, and DeFi smart contracts are serious money. Testing is the crucial pillar of the software development 
+risk that comes along. Hopefully, we can learn from mistakes that others have made like the [DAO attack][4] or the 
+[second Parity Wallet Hack][5], where hundreds of millions of dollars worth of assets were lost. Smart contracts
+are serious business, and DeFi smart contracts are serious money. Testing is the crucial pillar of the software development 
 process that directly correlates to risk. I hope I have your attention by now.
 
 Testing is a huge topic. Our learning journey into testing begins with unit testing. Unit testing is a crucial first line 
@@ -32,7 +32,7 @@ contracts can only be fully trusted if the code has been audited either by yours
 ## Show Me the Tests
 Lucky for us, Rust comes with batteries included with robust support for [testing][1]. We'll also leverage the
 [NEAR Rust SDK][6] which also provides great support for unit testing smart contracts. Once again, we'll use the [STAKE][3] 
-project to showcase the code. The STAKE project links to NEAR Rust SDK [v2.4.0][6] on GitHub to take advantage of the 
+project to showcase the code. The STAKE project links to the NEAR Rust SDK [v2.4.0][6] on GitHub to take advantage of the 
 latest and greatest features. To pull in NEAR Rust SDK [v2.4.0][6] into the project, specify the dependency in Cargo.toml as:
 
 ```toml
@@ -127,11 +127,11 @@ contract.foo(); // execute contract function
 ```
 
 ### Mocking out the NEAR blockchain runtime environment  
-The key to unit testing cross contract calls is to be able to inject receipts to simulate different test scenarios such as
+The key to unit testing cross contract calls is to be able to inject receipts to simulate different test scenarios such as:
 - Providing promise results to callbacks
 - Simulating promise failures
 
-The NEAR Rust SDK does not provide any such ability and the NEAR team suggests using NEAR Rust SDK simulation test framework 
+The NEAR Rust SDK does not provide any such ability and the NEAR team suggests using the NEAR Rust SDK simulation test framework 
 for testing cross contract calls. Simulation tests are great, but they are ***very*** slow to run. On my beefy laptop running
 with 24 cores and 64 GB RAM, it takes on the order of minutes to run simple cross contract simulation tests. That's a 
 blocker for me because it kills productivity. The simulation test framework is not designed to be used for unit testing.
@@ -479,7 +479,7 @@ With all of the work we did above, i.e., referring back to the Rust conditional 
 the cross contract business logic code, without actually making cross contract calls. To clarify what I mean, let's 
 take a look at some test code. 
 
-The pay off for all of the groundwork that was laid down is that we can now fully test all of the business logic code for 
+The payoff for all of the groundwork that was laid down is that we can now fully test all of the business logic code for 
 the fungible token transfer call workflow. Here's a refresher:
 
 ![](../../../../.gitbook/assets/oysterpack-near-stake-token-transfer-call.png)
