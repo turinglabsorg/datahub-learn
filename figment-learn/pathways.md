@@ -8,6 +8,16 @@ description: See all available and upcoming pathways
 
 Learn Pathways are short curriculums that help developers understand which network is right for them and how to interact with Web 3 protocols at every step. Developers will have to complete a suite of tutorials that will help them set up their first DApp \(decentralized application\) via [**DataHub**](https://datahub.figment.io/sign_up), even with little to no expertise with the selected protocol. As they complete the tutorials, developers earn protocol tokens offered by foundations to help align their interests with the network. 
 
+## ![](../.gitbook/assets/37552875-2-.png) Celo Pathway
+
+Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users. Learn what makes it unique and build your first project to earn **$100 in cUSD!** 
+
+**Get started with the Celo Pathway by visiting the page below.** 
+
+{% page-ref page="../network-documentation/celo/celo-pathway.md" %}
+
+#### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
+
 ## ![](../.gitbook/assets/tnear_icon_1.png) NEAR Pathway 
 
 NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands. Learn what makes it unique and build your first project to earn **$20 in NEAR** equivalent! 

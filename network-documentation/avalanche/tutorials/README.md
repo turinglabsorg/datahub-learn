@@ -12,39 +12,57 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
+## Create a New Blockchain  <a id="deploy-a-smart-contract-on-avalanche-using-remix-and-metamask"></a>
+
+{% page-ref page="create-a-new-blockchain.md" %}
+
+## Create a Local Test Network
+
+{% page-ref page="create-a-local-test-network.md" %}
+
+## Create a Subnet
+
+{% page-ref page="create-a-subnet.md" %}
+
+## Create a new Virtual Machine
+
+{% page-ref page="create-a-new-virtual-machine.md" %}
+
+## Connect DataHub to Metamask
+
+{% page-ref page="connect-datahub-to-metamask.md" %}
+
 ## Deploy a Smart Contract on Avalanche using Remix and MetaMask <a id="deploy-a-smart-contract-on-avalanche-using-remix-and-metamask"></a>
 
 {% page-ref page="deploy-a-smart-contract-on-avalanche-using-remix-and-metamask.md" %}
 
-## Creating A Fixed-Cap Asset <a id="creating-a-fixed-cap-asset"></a>
+## Using Truffle with the Avalanche C-Chain <a id="creating-a-fixed-cap-asset"></a>
+
+{% page-ref page="using-truffle-with-the-avalanche-c-chain.md" %}
+
+## Transfer AVAX Between the X-Chain and P-Chain
+
+{% page-ref page="transfer-avax-between-the-x-chain-and-p-chain.md" %}
+
+## Transfer AVAX Between the X-Chain and C-Chain
+
+{% page-ref page="transfer-avax-between-the-x-chain-and-c-chain.md" %}
+
+## Creating a Fixed-Cap Asset
 
 {% page-ref page="creating-a-fixed-cap-asset.md" %}
 
-## Creating An NFT—Part 1 <a id="creating-an-nftpart-1"></a>
-
-{% page-ref page="creating-an-nft-part-1.md" %}
-
-## Creating A Variable-Cap Asset <a id="creating-a-variable-cap-asset"></a>
+## Creating a Variable-Cap Asset
 
 {% page-ref page="creating-a-variable-cap-asset.md" %}
 
-## Create a Subnet <a id="create-a-subnet"></a>
+## Creating an NFT - Part 1
 
-{% page-ref page="create-a-subnet.md" %}
+{% page-ref page="creating-an-nft-part-1.md" %}
 
-## Create a New Blockchain <a id="create-a-new-blockchain"></a>
+## Create NFTs with the Avalanche Wallet
 
-{% page-ref page="create-a-new-blockchain.md" %}
+{% page-ref page="create-nfts-with-the-avalanche-wallet.md" %}
 
-## Create a New Virtual Machine <a id="create-a-new-virtual-machine"></a>
 
-{% page-ref page="create-a-new-virtual-machine.md" %}
-
-## Transfer AVAX tokens between Chains <a id="transfer-avax-tokens-between-chains"></a>
-
-{% page-ref page="transfer-avax-tokens-between-chains.md" %}
-
-## Create a Local Test Network <a id="create-a-local-test-network"></a>
-
-{% page-ref page="create-a-local-test-network.md" %}
 

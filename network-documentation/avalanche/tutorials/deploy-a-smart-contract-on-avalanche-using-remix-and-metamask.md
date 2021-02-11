@@ -25,7 +25,10 @@ Log in to MetaMask -&gt; Click the Network drop-down -&gt; Select Custom RPC
 **FUJI Testnet Settings:**
 
 * **Network Name**: Avalanche FUJI C-Chain
-* **New RPC URL**: [https://api.avax-test.network/ext/bc/C/rpc](https://api.avax-test.network/ext/bc/C/rpc)
+* **New RPC URL**: 
+
+  `https://avalanche--fuji--rpc.datahub.figment.io/apikey/APIKEYGOESHERE/ext/bc/C/rpc`
+
 * **ChainID**: `0xa869`
 * **Symbol**: `C-AVAX`
 * **Explorer**: [https://cchain.explorer.avax-test.network](https://cchain.explorer.avax-test.network/)
@@ -33,7 +36,10 @@ Log in to MetaMask -&gt; Click the Network drop-down -&gt; Select Custom RPC
 **Avalanche Mainnet Settings:**
 
 * **Network Name**: Avalanche Mainnet C-Chain
-* **New RPC URL**: [https://api.avax.network/ext/bc/C/rpc](https://api.avax.network/ext/bc/C/rpc) 
+* **New RPC URL**: 
+
+  `https://avalanche--mainnet--rpc.datahub.figment.io/apikey/APIKEYGOESHERE/ext/bc/C/rpc`
+
 * **ChainID**: `0xa86a`
 * **Symbol**: `C-AVAX`
 * **Explorer**: [https://cchain.explorer.avax.network/](https://cchain.explorer.avax.network/)
@@ -55,8 +61,6 @@ Log in to MetaMask -&gt; Click the Network drop-down -&gt; Select Custom RPC
 ### Funding your C-Chain address on Mainnet <a id="1997"></a>
 
 Funding your C-chain address on mainnet is done through a cross-chain swap from X-chain to C-chain. 
-
-{% page-ref page="transfer-avax-tokens-between-chains.md" %}
 
 ### Funding your C-chain address on local testnet
 
