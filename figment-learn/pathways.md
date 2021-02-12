@@ -8,7 +8,7 @@ description: See all available and upcoming pathways
 
 Learn Pathways are short curriculums that help developers understand which network is right for them and how to interact with Web 3 protocols at every step. Developers will have to complete a suite of tutorials that will help them set up their first DApp \(decentralized application\) via [**DataHub**](https://datahub.figment.io/sign_up), even with little to no expertise with the selected protocol. As they complete the tutorials, developers earn protocol tokens offered by foundations to help align their interests with the network. 
 
-## ![](../.gitbook/assets/37552875-2-.png) Celo Pathway
+## ![](../.gitbook/assets/37552875.png) Celo Pathway
 
 Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users. Learn what makes it unique and build your first project to earn **$100 in cUSD!** 
 
