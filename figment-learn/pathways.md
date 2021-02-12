@@ -10,7 +10,7 @@ Learn Pathways are short curriculums that help developers understand which netwo
 
 ## ![](../.gitbook/assets/37552875.png) Celo Pathway
 
-Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users. Learn what makes it unique and build your first project to earn **$100 in cUSD!** 
+Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users. Learn what makes it unique and build your first project to earn **$20 in cUSD!** 
 
 **Get started with the Celo Pathway by visiting the page below.** 
 
