@@ -75,8 +75,7 @@ _change method_
 
 Used by accounts to deposit funds to pay for account storage staking fees. This function supports 2 deposit modes:
 1. **self deposit** (`account_id` is not specified): predecessor account is used as the account
-2. **third party deposit** (`account_id` is valid NEAR account ID):  the function caller is depositing NEAR funds for the
-   specified `account_id`
+2. **third party deposit** (`account_id` is valid NEAR account ID):  the function caller is depositing NEAR funds for the specified `account_id`
 
 If this is the initial deposit for the account, then the deposit must be enough to cover the minimum required balance.
 If the attached deposit is more than the required minimum balance, then the funds are credited to the account storage available balance.
