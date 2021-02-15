@@ -164,10 +164,12 @@ Overall, the Account Storage API itself is pretty straight forward. The key is t
 - We learned about how [storage staking][1] works on NEAR and how it impacts multi-user contracts.
 - We reviewed the new standard Account Storage API (NEP-145) in detail.
 
+### What's Next
+Enough theoretical discussion for now ... in the next tutorial we will get back to coding where we will implement the Account Storage API for the [STAKE][5] token contract. Until next time, I leave you with these final words ...
+
 The Internet is the greatest revolution in humanity's history. It provides the people of the world with an opportunity to connect and unite to build a global community that knows no borders. I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take back the Internet together.
 
-### What's Next
-Enough theoretical discussion for now ... in the next tutorial we will get back to coding where we will implement the Account Storage API for the [STAKE][5] token contract.
+![](../../../../.gitbook/assets/oysterpack-smart-coder.jpeg)
 
 [1]: https://docs.near.org/docs/concepts/storage-staking
 [2]: https://docs.near.org/docs/concepts/storage-staking#the-million-cheap-data-additions-attack
