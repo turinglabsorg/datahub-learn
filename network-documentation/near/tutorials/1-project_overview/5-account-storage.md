@@ -6,23 +6,23 @@ description: Complete guide to NEAR's new account storage standard
 
 [Storage staking][1] is an issue that needs to be addressed by any multi-user contract that allocates storage for the
 user on the blockchain. This issue first arose while designing the [Fungible Token Core Standard - NEP-141][3]. Once
-NEP-141 was finalized, the NEAR community went back to work on this problem. The [online discussion][4] has been lengthy,
-and here I will present to you the fruits of our labor.
+NEP-141 was finalized, the NEAR community circled back to work on this problem. In this tutorial, I will summarize the
+lengthy [online discussion][4] and present to you the fruits of our labor.
 
 ## Motivation: There Is No Free Storage
 
 You can't get something for nothing. Long term contract state storage on the blockchain must be paid for. On the NEAR
-platform long term storage is paid for using a process called [Storage staking][1]. The contract is responsible to stake NEAR
+platform long term storage is paid for using a process called [storage staking][1]. The contract is responsible to stake NEAR
 to pay for the contract's storage usage. The NEAR amount that is used for storage staking is effectively locked and cannot
 be transferred or used to pay for gas. Storage staking costs are the most expensive costs to consider for the contract on 
 NEAR. If storage costs are not managed properly, then they can [break the bank][2] for the contract.
 
 {% hint style="info" %}
 ### Side Note about "Account Storage Standard (formerly Account Registration)"
-If you happened to follow the [online discussion][4], the discussion started with "Account Registration". However,
+If you happened to follow the [online discussion][4], it started as "Account Registration". As we dove deeper,
 the discussion evolved into "Account Storage". The two are related, but with a different focus. The discussion was shifted
-towards account storage to focus the discussion on the core problem we were trying to solve with [storage staking][1].
-Account registration is related but separate concern and is to be continued in future discussions ...
+towards account storage to focus on the core problem we were trying to solve with [storage staking][1] for multi-user contracts.
+Account registration is related but a separate concern, which is to be continued in future discussions ...
 {% endhint %}
 
 # Account Storage API
@@ -37,8 +37,8 @@ up in the contract. Any storage balance above storage staking costs is available
 4. Accounts can withdraw NEAR from the account's storage available balance.
 
 ### Out of Scope
-- How to close the account and be able to withdraw all funds has been intentionally excluded from this standard.
-- How the contract should account for changes in price for storage on the NEAR blockchain over time is out of scope.
+- How to close the account and be able to withdraw all funds.
+- How the contract should account for changes in price for storage on the NEAR blockchain over time.
 
 ## Quick API Overview 
 ![](../../../../.gitbook/assets/oysterpack-smart-account-storage-api.png)
@@ -58,12 +58,12 @@ up in the contract. Any storage balance above storage staking costs is available
 
 ```javascript
 class AccountStorageBalance {
-    total: string;
-    available: string;
+  total: string;
+  available: string;
 }
 ```
-- `total` represents the account's total storage balance in yoctoNEAR
-- `available` represents the portion of the account's total storage balance that is available for withdrawal
+- `total` represents the account's total storage balance in yoctoNEAR (in string representation)
+- `available` represents portion of the account's total balance that is available for withdrawal
 
 --- 
 
@@ -78,9 +78,15 @@ _change method_
 
 Used by accounts to deposit funds to pay for account storage staking fees. This function supports 2 deposit modes:
 1. **self deposit** (`account_id` is not specified): predecessor account is used as the account
-2. **third party deposit** (`account_id` is valid NEAR account ID):  the function caller is depositing NEAR funds for the specified `account_id`
-   
+2. **third party deposit** (`account_id` is valid NEAR account ID):  the function caller is depositing NEAR funds for the
+   specified `account_id`
+
 If this is the initial deposit for the account, then the deposit must be enough to cover the minimum required balance.
+If the attached deposit is more than the required minimum balance, then the funds are credited to the account storage available balance.
+
+##### Example Use Cases
+1. In order for the account to hold tokens, the account must first have enough NEAR funds deposited into the token contract to pay for the account's storage staking fees. The account can deposit NEAR funds for itself into the token contract, or another contract might have deposited NEAR funds into the token contract on the account's behalf to pay for the account's storage staking fees.
+2. Account's may use the blockchain to store data that grows over time. The account can use this API to deposit additional funds to pay for additional account storage usage growth.
 
 ##### Arguments
 - `account_id` - optional NEAR account ID. If not specified, then predecessor account ID will be used.
@@ -98,14 +104,16 @@ The account's updated storage balance.
 
 ```javascript
 #[payable]
-function storage_withdraw(amount: string): AccountStorageBalance;
+function storage_withdraw(amount: string|null): AccountStorageBalance;
 ```
 
 _change method_
 
-Used to withdraw NEAR from the predecessor account's storage available balance. The attached yoctoNEAR will be refunded with the withdrawal transfer.
+Used to withdraw NEAR from the predecessor account's storage available balance. If amount is not specified, then all of the account's storage available balance will be withdrawn.
 
-The account is required to attach exactly 1 yoctoNEAR to the function call to prevent restricted function-call access-key call.
+The attached yoctoNEAR will be refunded with the withdrawal transfer.
+
+The account is required to attach exactly 1 yoctoNEAR to the function call to prevent restricted function-call access-key calls.
 
 ##### Arguments
 - `amount` - the amount to withdraw from the account's storage available balance expressed in yoctoNEAR
@@ -115,11 +123,8 @@ The account's updated storage balance.
 
 ##### Panics
 - If the attached deposit does not equal 1 yoctoNEAR
+- If the account is not registered with the contract
 - If the specified withdrawal amount is greater than the account's available storage balance
-
-##### Notes
-How an account will be able to withdraw funds is out of scope for this standard. For example, the contract could provide
-a function to close the account, which would refund the account storage balance.
 
 --- 
 
@@ -134,7 +139,7 @@ _view method_
 Used to look up the minimum balance required for the initial deposit.
 
 
-#### Returns 
+#### Returns
 Amount in yoctoNEAR
 
 --- 
@@ -142,15 +147,12 @@ Amount in yoctoNEAR
 #### Function
 
 ```javascript
-function storage_balance(account_id: string): AccountStorageBalance|null;
+function storage_balance_of(account_id: string): AccountStorageBalance;
 ```
 
 _view method_
 
-Used to lookup the account storage balance for the specified account.
-
-##### Returns 
-If the account is unknown to the contract, then null is returned. Otherwise `AccountStorageBalance` is returned.
+Used to lookup the account storage balance for the specified account. If the account is unknown to the contract then the total account storage balance returned will be zero.
 
 ##### Panics
 - If `account_id` is not a valid NEAR account ID
