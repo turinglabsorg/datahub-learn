@@ -158,8 +158,7 @@ If the account is unknown to the contract, then null is returned. Otherwise `Acc
 ---
 
 ### It's a wrap folks
-Overall, the Account Storage API itself is pretty straight forward. The key is to know its purpose and what problem it is
-trying to solve. Let's recap:
+Overall, the Account Storage API itself is pretty straight forward. The key is to know its purpose and what problem it is trying to solve. Let's recap:
 
 - We discussed why contract storage costs must be carefully managed and accounted for by the contract.
 - We learned about how [storage staking][1] works on NEAR and how it impacts multi-user contracts.
