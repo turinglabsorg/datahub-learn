@@ -138,7 +138,6 @@ _view method_
 
 Used to look up the minimum balance required for the initial deposit.
 
-
 #### Returns
 Amount in yoctoNEAR
 
