@@ -59,7 +59,7 @@ class AccountStorageBalance {
   available: string;
 }
 ```
-- `total` represents the account's total storage balance in yoctoNEAR (in string representation)
+- `total` represents the account's total storage balance in yoctoNEAR
 - `available` represents portion of the account's total balance that is available for withdrawal
 
 --- 
