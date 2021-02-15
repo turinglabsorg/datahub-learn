@@ -71,6 +71,7 @@
     * [Send CELO & cUSD](network-documentation/celo/tutorial/hello-celo.md)
     * [Deploy and Interact with Contracts \(Remotely\)](network-documentation/celo/tutorial/hello-contracts.md)
     * [Hello Mobile DApp](network-documentation/celo/tutorial/hello-mobile-dapp.md)
+  * [💼 CELO Wallet](network-documentation/celo/celo-wallet.md)
 * [🌌 Cosmos](network-documentation/cosmos/README.md)
   * [✏ Cosmos 101](network-documentation/cosmos/cosmos-101.md)
   * [🎮 RPC & REST API](network-documentation/cosmos/rpc-and-rest-api/README.md)
