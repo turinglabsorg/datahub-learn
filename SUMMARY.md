@@ -79,6 +79,7 @@
     * [Cosmos LCD](network-documentation/cosmos/rpc-and-rest-api/cosmos-lcd.md)
   * [🎊 Enriched APIs](network-documentation/cosmos/enriched-apis/README.md)
     * [Transaction Search](network-documentation/cosmos/enriched-apis/transaction-search.md)
+    * [Rewards API](network-documentation/cosmos/enriched-apis/rewards-api.md)
   * [💡 Tutorials](network-documentation/cosmos/tutorials/README.md)
     * [Build a polling app](network-documentation/cosmos/tutorials/build-a-polling-app.md)
     * [Create a blog app](network-documentation/cosmos/tutorials/create-a-blog-app.md)
