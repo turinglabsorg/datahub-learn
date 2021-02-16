@@ -44,7 +44,7 @@ On NEAR, the contract is responsible to pay for its long term persistent storage
 - API functions are specified using the lowest common denominator with the goal of being programming language neutral \(as much as possible\)
 - String type is used as the de facto platform neutral type - but we will be leveraging Rust's type system when building the smart contract implementation
    - When interacting with the contract, all amounts and balances MUST be unsigned integers in yoctoNEAR.
-- all account storage API functions are namespaced using a prefix naming convention (`account_`)
+- All account storage API functions are namespaced using a prefix naming convention (`account_`)
 - `#[payable]` implies that the function supports NEAR to be attached to the function call
 - API functions are tagged as either _**change methods**_ or _**view methods**_. This is from the [NEAR JSON RPC API](https://docs.near.org/docs/roles/developer/contracts/api) perspective.
    - Cross contract calls always require gas regardless of whether the function call being invoked is a _**view method**_ or _**change method**_
