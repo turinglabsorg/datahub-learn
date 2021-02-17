@@ -2,9 +2,9 @@
 description: Review best practices to deal with 5XX errors in NodeJS
 ---
 
-# 5XX Retry Logic Best Practices - NodeJs
+# 5XX Retry Logic Best Practices - NodeJS
 
-## **Recursive request structure**
+## Method 1 - **Recursive request structure**
 
 To begin, we'll be making a request from within a failed request. This requires the use of recursion. Recursion is when a function calls itself.
 
@@ -170,6 +170,98 @@ function retryGet(url, retries = 3, backoff = 300) {
 ```
 
 Source & for more details - [Check Here](https://hackernoon.com/how-to-improve-your-backend-by-adding-retries-to-your-api-calls-83r3udx)
+
+## **Method 2 - Add Retries to API Calls using Async Await in NodeJS**
+
+Async functions are available natively in Node and are denoted by the async keyword in their declaration. They always return a promise, even if you don’t explicitly write them to do so. Also, the await keyword is only available inside async functions at the moment - it cannot be used in the global scope.  
+****In an async function, you can await any Promise or catch its rejection cause.  
+  
+****So if you had some logic implemented with promises:
+
+```ruby
+function handler (req, res) {
+  return request('https://user-handler-service')
+    .catch((err) => {
+      logger.error('Http error', err);
+      error.logged = true;
+      throw err;
+    })
+    .then((response) => Mongo.findOne({ user: response.body.user }))
+    .catch((err) => {
+      !error.logged && logger.error('Mongo error', err);
+      error.logged = true;
+      throw err;
+    })
+    .then((document) => executeLogic(req, res, document))
+    .catch((err) => {
+      !error.logged && console.error(err);
+      res.status(500).send();
+    });
+}
+```
+
+You can make it look like synchronous code using async/await:
+
+```ruby
+async function handler (req, res) {
+  let response;
+  try {
+    response = await request('https://user-handler-service')  ;
+  } catch (err) {
+    logger.error('Http error', err);
+    return res.status(500).send();
+  }
+
+  let document;
+  try {
+    document = await Mongo.findOne({ user: response.body.user });
+  } catch (err) {
+    logger.error('Mongo error', err);
+    return res.status(500).send();
+  }
+
+  executeLogic(document, req, res);
+}
+```
+
+Currently, in Node you get a warning about unhandled promise rejections, so you don’t necessarily need to bother with creating a listener. However, it is recommended to crash your app in this case as when you don’t handle an error, your app is in an unknown state. This can be done either by using the --unhandled-rejections=strict CLI flag, or by implementing something like this:
+
+```ruby
+process.on('unhandledRejection', (err) => {
+  console.error(err);
+  process.exit(1);
+})
+```
+
+### **Retry with exponential backoff:**
+
+Implementing retry logic is pretty clumsy with Promises, but async/await makes it a lot more simple:
+
+```ruby
+function wait (timeout) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve()
+    }, timeout);
+  });
+}
+
+async function requestWithRetry (url) {
+  const MAX_RETRIES = 10;
+  for (let i = 0; i <= MAX_RETRIES; i++) {
+    try {
+      return await request(url);
+    } catch (err) {
+      const timeout = Math.pow(2, i);
+      console.log('Waiting', timeout, 'ms');
+      await wait(timeout);
+      console.log('Retrying', err.message, i);
+    }
+  }
+}
+```
+
+You can read more about Async & Await in [**This Article**](https://blog.risingstack.com/mastering-async-await-in-nodejs/#rewritingnodejsappswithasyncawait) from RisingStack.
 
 ## **NodeJS - Re-Calling function on error callback pseudo code**
 
