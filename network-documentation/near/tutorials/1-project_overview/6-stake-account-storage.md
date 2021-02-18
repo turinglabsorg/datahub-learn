@@ -226,5 +226,3 @@ how it can serve as a cornerstone to help bootstrap the NEAR DeFi ecosystem.
 [4]: https://docs.rs/near-sdk/2.0.1/near_sdk/json_types/struct.U128.html
 [5]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/lib.rs
 [6]: https://crates.io/crates/near-sdk
-
-
