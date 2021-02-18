@@ -2,10 +2,9 @@
 description: Learn how to use the Rewards API on Cosmos
 ---
 
-# Rewards Api
+# Rewards API
 
 Test out our Rewards API today with [**DataHub**](https://datahub.figment.io/sign_up?service=cosmos)!
-
 
 {% api-method method="post" host="https://cosmos--search.datahub.figment.io/rewards" path=" " %}
 {% api-method-summary %}
@@ -23,7 +22,7 @@ Rewards enpoint allows users to query daily reward summaries for an account.
 Network identifier \(eg. `cosmos`\)
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="chain_id" type="string" required=true %}
+{% api-method-parameter name="chain\_id" type="string" required=true %}
 The chain id \(eg. `cosmoshub-3`\)
 {% endapi-method-parameter %}
 
@@ -31,9 +30,8 @@ The chain id \(eg. `cosmoshub-3`\)
 The account identifier
 {% endapi-method-parameter %}
 
-
 {% api-method-parameter name="start\_time" type="string" required=true %}
-The start time in UTC. Daily reward summaries will be calculated in 24 hour periods from the start time. 
+The start time in UTC. Daily reward summaries will be calculated in 24 hour periods from the start time.
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="end\_time" type="string" required=true %}
@@ -48,7 +46,7 @@ The end time in UTC.
 Success response
 {% endapi-method-response-example-description %}
 
-```json
+```javascript
 [
     {
         "start": 3997443,
@@ -92,6 +90,7 @@ Internal/Other server error while processing request
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
+
 ## Example Request
 
 ```http

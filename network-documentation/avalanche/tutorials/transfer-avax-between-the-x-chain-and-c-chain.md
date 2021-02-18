@@ -24,7 +24,7 @@ The Avalanche Wallet source code can be found [here](https://github.com/ava-labs
 
 ### Step 1 - Open the Avalanche Wallet
 
-![](../../../.gitbook/assets/wallet-x2p-01-login-1-%20%281%29.png)
+![](../../../.gitbook/assets/wallet-x2p-01-login-1-%20%281%29%20%281%29.png)
 
 Select **Access Wallet** to enter your wallet. To connect the wallet to a network other than the main Avalanche network, select **Mainnet** and choose the network to connect to.
 
