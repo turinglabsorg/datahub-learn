@@ -2,7 +2,7 @@
 description: STAKE Account Storage NEP-145 Rust Implementation
 ---
 
-# Show me the Code: STAKE Account Storage NEP-145 Rust Implementation
+# Show Me the Rust Code: Account Storage API (NEP-145)
 
 ![](../../../../.gitbook/assets/oysterpack-show-me-code.jpeg)
 
