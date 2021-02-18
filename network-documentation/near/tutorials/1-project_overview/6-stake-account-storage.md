@@ -81,7 +81,7 @@ will be put into that balance. Currently, there is no [STAKE][2] use case that r
 minimum required balance, i.e., account storage usage is capped. Thus, [STAKE][3] accounts will only ever need
 to make the initial minimum deposit to register the account with the contract. One other note is that if/when NEAR storage
 prices decrease, [STAKE][2] contract is designed to update the storage price, which will unlock NEAR from the account's 
-storage balance for withdrawal.
+storage balance and make it available for withdrawal.
 
 Let's walk through the code:
 
@@ -154,7 +154,7 @@ fn storage_withdraw(&mut self, amount: Option<YoctoNear>) -> AccountStorageBalan
 3. Update the account storage balance, and persist the account change to storage. In the STAKE contract, accounts are stored using the [LookupMap][5] provided by the NEAR Rust SDK. Any changes made to objects retrieved from the [LookupMap][5] must be explicitly written back out to contract storage. For details on how that exactly works, look at the 
 `self.predecessor_registered_account()` for reading and `self.save_registered_account(&account)` for writing to contract storage.
 4. Then we get the updated account storage balance to return at the end.
-5. Before returning the the updated account storage balance, the requested withdrawal amount is transferred back to the predecessor account.
+5. Before returning the updated account storage balance, the requested withdrawal amount is transferred back to the predecessor account.
 
 ### And the Rest of the Code
 ```rust
@@ -166,7 +166,7 @@ fn storage_balance_of(&self, account_id: ValidAccountId) -> AccountStorageBalanc
   self._storage_balance_of(account_id.as_ref())
 }
 ```
-The above code is pretty simple. What you may find of useful is how the STAKE contract sets the account storage fee. 
+The above code is pretty simple. What you may find of useful is how the STAKE contract computes the account storage fee. 
 When the contract is first deployed, it measures how much storage is allocated for a "mock" account that is temporarily
 created and then deleted during the contract initialization phase - see the [Contract::new()][5] init function for details.
 
