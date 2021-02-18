@@ -33,7 +33,7 @@ pub trait AccountStorage {
     fn storage_balance_of(&self, account_id: ValidAccountId) -> AccountStorageBalance;
 }
 ```
-Overall, the Rust interface code is pretty straight forward. However, you may be asking, where is [YoctoNear][3] is 
+Overall, the Rust interface code is pretty straight forward. However, you may be asking, where is [YoctoNear][3] 
 coming from? It's one of my creations, currently residing within the [STAKE][2] project. Your follow up question may be, 
 why not use [U128][4]? My answer is because I am a big fan of domain driven design. I prefer to model the domain and 
 encode it into the type system. It keeps the code cleaner, easier to understand, safer, and smarter. 
@@ -52,10 +52,6 @@ We'll look at each function in turn and see how it fits into the [STAKE][2] pict
 
 ### storage_deposit
 ```rust
-/// To be compliant with the expected behavior for the Account Storage Standard API (NEP-145):
-/// - if overpayment is attached, then it is simply stored in the account storage escrow balance
-///
-/// NOTE: We never want the function to panic.
 #[payable]
 fn storage_deposit(&mut self, account_id: Option<ValidAccountId>) -> AccountStorageBalance {
     assert!(env::attached_deposit() > 0, ATTACHED_DEPOSIT_IS_REQUIRED);               // #1
@@ -80,23 +76,18 @@ fn storage_deposit(&mut self, account_id: Option<ValidAccountId>) -> AccountStor
     self._storage_balance_of(&account_id)                                             // #5
 }
 ```
-In the [STAKE][2] project, accounts have an explicit storage escrow balance. Any funds deposited via `storage_deposit`
+In the [STAKE][2] project, accounts have an explicit storage escrow balance. Any funds deposited via `storage_deposit()`
 will be put into that balance. Currently, there is no [STAKE][2] use case that requires a storage deposit more than the 
-minimum required balance, i.e., account storage usage is capped. Thus, for [STAKE][3] accounts will only ever need
+minimum required balance, i.e., account storage usage is capped. Thus, [STAKE][3] accounts will only ever need
 to make the initial minimum deposit to register the account with the contract. One other note is that if/when NEAR storage
-prices decrease overtime, [STAKE][2] contract is designed to update the storage price, which will unlock NEAR from the
-account's storage balance for withdrawal.
+prices decrease, [STAKE][2] contract is designed to update the storage price, which will unlock NEAR from the account's 
+storage balance for withdrawal.
 
 Let's walk through the code:
-1. First thing the code does is perform a quick check to make sure there is an attached deposit. As a best practice,
-the first thing your functions should do is check args and constraints. `ValidAccountId` has built in validation, and will
-cause the function call to fail fast if an invalid account ID is specified.
-2. We determine which account ID is the storage deposit for. Recall that this function enables the predecessor account
-to deposit storage funds on behalf of the specified `account_id`. If `account_id`, is not specified, the storage deposit
-is for the predecessor account.
-3. Next we check if the account is already registered. If there is no registered account, then the account is registered.
-I prefer to keep functions small, easy to follow, and focused. The account registration logic is put into its own separate 
-private function:   
+
+1. First thing the code does is perform a quick check to make sure there is an attached deposit. As a best practice, the first thing your functions should do is check args and constraints. `ValidAccountId`, which is provided by the NEAR Rust SDK, has built in validation. The function call will fail fast if an invalid account ID is specified.
+2. We determine which account ID is the storage deposit for. Recall that this function enables the predecessor account to deposit storage funds on behalf of the specified `account_id`. If `account_id`, is not specified, the storage deposit is for the predecessor account.
+3. Next we check if the account is already registered. If there is no registered account, then the account is registered. I prefer to keep functions small, easy to follow, and focused. The account registration logic is put into its own separate private function:
 ```rust
 fn _register_account(&mut self, account_id: &str) {
     assert!(
@@ -110,9 +101,7 @@ fn _register_account(&mut self, account_id: &str) {
     });
 }
 ```
-4. The total amount of NEAR that is escrowed for storage across all accounts is tracked on the [STAKE][2]. This is specific
-to the [STAKE][2] use case related to its "profit sharing" program to boost STAKE token yield - that's a future topic for 
-discussion.
+4. The total amount of NEAR that is escrowed for storage across all accounts is tracked on [STAKE][2]. This is specific to the [STAKE][2] use case related to its "profit sharing" program to boost STAKE token yield - that's a future topic for discussion.
 5. Finally, we return the account's storage balance. It uses a private function that is shared with `storage_balance_of`
 ```rust
 fn _storage_balance_of(&self, account_id: &str) -> AccountStorageBalance {
@@ -161,11 +150,8 @@ fn storage_withdraw(&mut self, amount: Option<YoctoNear>) -> AccountStorageBalan
    - Check that exactly 1 yoctoNEAR is attached (per NEP-145)
    - If amount is specified, check that the amount is greater than zero
    - `self.predecessor_registered_account()` kills 2 birds with 1 stone - the function is designed to panic if the account is not registered
-2. Check if the requested withdrawal amount is less than or equal to the account's storage available balance. If an amount
-is not specified, then the total available storage balance will be withdrawn.
-3. Update the account storage balance, and persist the account change to storage. In the STAKE contract, accounts are stored
-using the [LookupMap][5] provided by the NEAR Rust SDK. Any changes made to objects retrieved from the [LookupMap][5]
-must be explicitly written back out to contract storage. For details on how that exactly works, look at the 
+2. Check if the requested withdrawal amount is less than or equal to the account's storage available balance. If an amount is not specified, then the total available storage balance will be withdrawn.
+3. Update the account storage balance, and persist the account change to storage. In the STAKE contract, accounts are stored using the [LookupMap][5] provided by the NEAR Rust SDK. Any changes made to objects retrieved from the [LookupMap][5] must be explicitly written back out to contract storage. For details on how that exactly works, look at the 
 `self.predecessor_registered_account()` for reading and `self.save_registered_account(&account)` for writing to contract storage.
 4. Then we get the updated account storage balance to return at the end.
 5. Before returning the the updated account storage balance, the requested withdrawal amount is transferred back to the predecessor account.
@@ -217,15 +203,14 @@ near view $CONTRACT storage_balance_of --node_url $NEAR_NODE_URL --args "{\"acco
 ```
 
 ### It's a wrap folks
-The NEAR Rust ecosystem support for writing smart contract is very young. For now, all you have is the NEAR Rust SDK.
+The NEAR Rust ecosystem support for writing smart contracts is very young. For now, all you have is the [NEAR Rust SDK][6].
 There is currently no library support for the new standards that are being developed in the ecosystem yet. Until there is, 
 you will need to implement standard contract interfaces yourself. It's pretty straight forward, but much more time consuming
 for new developers coming onboard to NEAR to write Rust smart contracts. Until then, you have my tutorials and the reference 
 code implementations within the [STAKE][2] project to help you get going faster.
 
-This is on my radar, but there is only so much time available in a day ... This is where I make my call for action to
-the community. I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take 
-back the Internet together.
+This is where I make my call for action to the community. I invite you to join the Figment and NEAR communities and embark 
+on our common mission to defend and take back the Internet together.
 
 ### What's Next
 Here's my plan going forward. As new NEAR standards are released, I plan to document them and provide reference implementations
@@ -240,5 +225,6 @@ how it can serve as a cornerstone to help bootstrap the NEAR DeFi ecosystem.
 [3]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/interface/model/yocto_near.rs
 [4]: https://docs.rs/near-sdk/2.0.1/near_sdk/json_types/struct.U128.html
 [5]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/lib.rs
+[6]: https://crates.io/crates/near-sdk
 
 
