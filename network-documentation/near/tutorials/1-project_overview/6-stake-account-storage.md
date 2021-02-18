@@ -170,10 +170,75 @@ must be explicitly written back out to contract storage. For details on how that
 4. Then we get the updated account storage balance to return at the end.
 5. Before returning the the updated account storage balance, the requested withdrawal amount is transferred back to the predecessor account.
 
+### And the Rest of the Code
+```rust
+fn storage_minimum_balance(&self) -> YoctoNear {
+  self.account_storage_fee()
+}
+
+fn storage_balance_of(&self, account_id: ValidAccountId) -> AccountStorageBalance {
+  self._storage_balance_of(account_id.as_ref())
+}
+```
+The above code is pretty simple. What you may find of useful is how the STAKE contract sets the account storage fee. 
+When the contract is first deployed, it measures how much storage is allocated for a "mock" account that is temporarily
+created and then deleted during the contract initialization phase - see the [Contract::new()][5] init function for details.
+
+### Show Me the Demo: Earn Some NEAR
+
+As a bonus, you can earn some NEAR by taking the STAKE token contract for a test drive on testnet and running through the demo below using the [NEAR CLI](https://github.com/near/near-cli). I have deployed the STAKE contract to `stake-demo.oysterpack.testnet` on testnet for the demo. To earn NEAR rewards for exercising the demo, you will need to submit the NEAR requests through [DataHub](https://datahub.figment.io/) using your DataHub access key. If you have earned NEAR on previous NEAR tutorials, then you should already be set. Otherwise, follow the instructions in the following link on [how to obtain your DataHub access key](https://learn.figment.io/network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub#configure-environment). We will use the NEAR CLI to submit the transactions. Plugin your DataHub API Key and NEAR account at the top, and then you should be all set to go.
+
+```text
+export DATAHUB_APIKEY=<DATAHUB_APIKEY>
+export NEAR_ACCOUNT=<YOUR-NEAR-ACCOUNT.testnet>
+
+export CONTRACT=stake-demo.oysterpack.testnet
+export NEAR_NODE_URL=https://near-testnet--rpc.datahub.figment.io/apikey/$DATAHUB_APIKEY
+export NEAR_ENV=testnet
+
+# check what is the account's minimum required storage balance required to register the account with the contract
+near view $CONTRACT storage_minimum_balance --node_url $NEAR_NODE_URL
+
+# check your storage balance
+# if your account is not registered with the contract, then a zero balance is returned
+near view $CONTRACT storage_balance_of --node_url $NEAR_NODE_URL --args "{\"account_id\":\"$NEAR_ACCOUNT\"}" 
+
+# deposit funds into your storage balance
+# if this is your initial deposit, then your account will be registered with the contract
+near call $CONTRACT storage_deposit --node_url $NEAR_NODE_URL --accountId $NEAR_ACCOUNT --amount 1
+
+# withdraw your storage available balance
+# per the NEP-145, 1 yoctoNEAR must be attached to the function call
+near call $CONTRACT storage_withdraw --node_url $NEAR_NODE_URL --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001
+
+# check your storage balance again
+# after the withdrawal, your available balance should be zero
+near view $CONTRACT storage_balance_of --node_url $NEAR_NODE_URL --args "{\"account_id\":\"$NEAR_ACCOUNT\"}" 
+```
+
+### It's a wrap folks
+The NEAR Rust ecosystem support for writing smart contract is very young. For now, all you have is the NEAR Rust SDK.
+There is currently no library support for the new standards that are being developed in the ecosystem yet. Until there is, 
+you will need to implement standard contract interfaces yourself. It's pretty straight forward, but much more time consuming
+for new developers coming onboard to NEAR to write Rust smart contracts. Until then, you have my tutorials and the reference 
+code implementations within the [STAKE][2] project to help you get going faster.
+
+This is on my radar, but there is only so much time available in a day ... This is where I make my call for action to
+the community. I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take 
+back the Internet together.
+
+### What's Next
+Here's my plan going forward. As new NEAR standards are released, I plan to document them and provide reference implementations
+as tutorials. The rest of the time will be spend focused on the core mission, which is to build the [STAKE Token][2] with 
+the community and bring it to market. In the next tutorial, I will share with you my vision for the [STAKE Token][2] and
+how it can serve as a cornerstone to help bootstrap the NEAR DeFi ecosystem.
+
+![](../../../../.gitbook/assets/oysterpack-stake-cornerstone.png)
 
 [1]: ./5-account-storage.md
 [2]: https://github.com/oysterpack/oysterpack-near-stake-token
 [3]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/interface/model/yocto_near.rs
 [4]: https://docs.rs/near-sdk/2.0.1/near_sdk/json_types/struct.U128.html
+[5]: https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/lib.rs
 
 
