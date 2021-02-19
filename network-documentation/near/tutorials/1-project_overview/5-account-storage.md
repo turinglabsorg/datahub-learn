@@ -28,6 +28,7 @@ Account registration is related but a separate concern, which is to be continued
 # Account Storage API
 
 On NEAR, the contract is responsible to pay for its long term persistent storage. Thus, multi-user contracts should be designed to pass on storage costs to its user accounts. The account storage API provides the following:
+
 1. Accounts can lookup the minimum required account storage balance for the initial deposit in order to be able to use the contract.
 2. Accounts can deposit NEAR funds into the contract to pay for storage for either itself or on behalf of another account. The initial deposit for the account must be at least the minimum amount required by the contract.
 3. Account storage balances can be looked up. The amount required to pay for the account's storage usage will be locked up in the contract. Any storage balance above storage staking costs is available for withdrawal.
@@ -74,6 +75,7 @@ function storage_deposit(account_id: string|null): AccountStorageBalance;
 _change method_
 
 Used by accounts to deposit funds to pay for account storage staking fees. This function supports 2 deposit modes:
+
 1. **self deposit** (`account_id` is not specified): predecessor account is used as the account
 2. **third party deposit** (`account_id` is valid NEAR account ID):  the function caller is depositing NEAR funds for the specified `account_id`
 
@@ -81,6 +83,7 @@ If this is the initial deposit for the account, then the deposit must be enough 
 If the attached deposit is more than the required minimum balance, then the funds are credited to the account storage available balance.
 
 ##### Example Use Cases
+
 1. In order for the account to hold tokens, the account must first have enough NEAR funds deposited into the token contract to pay for the account's storage staking fees. The account can deposit NEAR funds for itself into the token contract, or another contract might have deposited NEAR funds into the token contract on the account's behalf to pay for the account's storage staking fees.
 2. Account's may use the blockchain to store data that grows over time. The account can use this API to deposit additional funds to pay for additional account storage usage growth.
 
