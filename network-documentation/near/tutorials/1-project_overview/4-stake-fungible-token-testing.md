@@ -99,9 +99,7 @@ Here's what we use from the NEAR Rust SDK for unit testing:
   * function`get_created_receipts()` - used to check that contract functions are creating the expected transaction receipts
   * function `get_logs()` - used to check that the contract functions are emitting the expected logs
 * `near_sdk::VMContext` - this is the key center piece for unit testing contract execution
-* macro `near_sdk::testing_env!` - is the glue that brings it all together by preparing a mocked blockchain testing environment
-
-  using a `near_sdk::VMContext` that is provided
+* macro `near_sdk::testing_env!` - is the glue that brings it all together by preparing a mocked blockchain testing environment using a `near_sdk::VMContext` that is provided
 
 At a high level, the general unit test code pattern is:
 
@@ -430,13 +428,8 @@ impl<'a> DerefMut for TestContext<'a> {
 }
 ```
 
-* TestContext provides a bunch of useful methods to help keep the unit test code leaner. For example, `TestContext::with_registered_account`
-
-  is probably the most widely used because most tests will require a registered account to execute contract functions
-
-* Another trick I like to use is to implement `Deref` and `DerefMut` from the Rust std library. This enables the TestContext
-
-  to be used as `StakeTokenContract`, which makes it a little easier in the code.
+* TestContext provides a bunch of useful methods to help keep the unit test code leaner. For example, `TestContext::with_registered_account`is probably the most widely used because most tests will require a registered account to execute contract functions
+* Another trick I like to use is to implement `Deref` and `DerefMut` from the Rust std library. This enables the TestContext to be used as `StakeTokenContract`, which makes it a little easier in the code.
 
 #### How to work with the VMContext
 
@@ -627,22 +620,15 @@ That's a pretty long test ... but it would be a lot longer if it weren't for all
 
 1. Arrange
    * It creates the `TestContext` with the predecessor account pre-registered, which will be used as the sender account.
-   * Ot then registers the receiver account with the contract. Recall from the FT NEP-141 standard that both the sender
-
-     and receiver accounts must be registered with the account before being able to use it.
-
+   * Ot then registers the receiver account with the contract. Recall from the FT NEP-141 standard that both the sender and receiver accounts must be registered with the account before being able to use it.
    * It asserts that the STAKE FT total supply and account balances are zero
    * It then credits the sender account with the STAKE tokens
 2. Act - the sender executes `ft_tranfer_call` with no memo
 3. Assert
    * Balances are checked to ensure funds are transferred
-   * **Here's the really cool part** - receipts are checked to verify the transfer call workflow is properly setup, i.e.,
-
-     each function call receipt action is checked
+   * **Here's the really cool part** - receipts are checked to verify the transfer call workflow is properly setup, i.e., each function call receipt action is checked
 4. Act - the sender executes `ft_tranfer_call` with a memo
-5. Assert - memo is ignored and not used by the STAKE contract. The main purpose is to ensure that a memo can be specified
-
-   but has no effect
+5. Assert - memo is ignored and not used by the STAKE contract. The main purpose is to ensure that a memo can be specified but has no effect.
 
 Another payoff is being able to unit test the `ft_resolve_transfer_call` callback by injecting the data dependencies into the test:
 
@@ -701,24 +687,11 @@ That's all of the actual unit test code we'll look at in this tutorial. The rest
 * Unit testing is a crucial first line of defense to help protect the base
 * We went over how to structure unit tests to stay organized and to make it easier to navigate the code
 * We reviewed what the NEAR Rust SDK provides for unit testing support using the latest published version on GitHub
-* We identified some unit testing gaps in the NEAR Rust SDK around testing callback functions as part of cross-contract
-
-  call workflows. 
-
-* We saw how to leverage conditional Rust compilation to bridge the gap to be able to inject promise results
-
-  and data dependencies to be able to unit test callback functions. Using conditional compilations, we were able to expose
-
-  hooks when the code is compiled in test mode - with no impact to the release build.
-
-* We reviewed the basic pattern for working with the `VMContext`, provided by the NEAR Rust SDK, for setting up the context
-
-  for contract function execution
-
+* We identified some unit testing gaps in the NEAR Rust SDK around testing callback functions as part of cross-contract call workflows.
+* We saw how to leverage conditional Rust compilation to bridge the gap to be able to inject promise results and data dependencies to be able to unit test callback functions. Using conditional compilations, we were able to expose hooks when the code is compiled in test mode - with no impact to the release build.
+* We reviewed the basic pattern for working with the `VMContext`, provided by the NEAR Rust SDK, for setting up the context for contract function execution
 * We reviewed how to inspect transaction receipts to check that cross-contract workflows are correctly setup.
-* We went over the key ingredients for unit testing contract functions. We reviewed my approach with building a `TestContext`
-
-  to help keep the test code cleaner.
+* We went over the key ingredients for unit testing contract functions. We reviewed my approach with building a `TestContext`to help keep the test code cleaner.
 
 {% hint style="info" %}
 Contracts are dumb - it's up to us to be smart and responsible. Do not take any shortcuts or cut corners. Establish and follow best practices with strict discipline. Do not ignore risk - manage risk at all levels and layers. Be strategic and think long term. Do your homework and never stop learning. Learn from others and share your knowledge with the community.
