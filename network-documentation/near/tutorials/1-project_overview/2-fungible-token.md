@@ -145,9 +145,7 @@ _change\_method_
 Transfer tokens to a contract with a callback to handle refunds and resolve the transfer.
 
 * Transfers positive `amount` of tokens from the function call's predecessor account \(sender\) to `receiver_id`account. Then calls `ft_on_transfer` method on `receiver_id` contract and attaches a callback to resolve this transfer.
-
 * `ft_on_transfer` method must return the amount of tokens unused by the receiver contract. The unused tokens must be refunded back to the sender account by the `ft_resolve_transfer` callback.
-
 * Both accounts must be registered with the contract for transfer to succeed.
 * Sender must attach exactly 1 yoctoNEAR to address security concerns explained above
   * Attached yoctoNEAR will be credited to the sender account. Most FT contracts will likely deposit the NEAR into the account's storage escrow. However, the NEAR can be deposited using a different approach as long as the NEAR can be made available to be withdrawn from the contract. Even though it's only 1 yoctoNEAR, it's still not **zero** yoctoNEAR.
@@ -217,7 +215,6 @@ The method must return the number of tokens that are not used/accepted by this c
 
 * The transferred amount was `500`, the contract completely takes it and must return `0`.
 * The transferred amount was `500`, but this transfer call only needs `450` for the action passed in the `msg` field, then the method must return `50`.
-
 * The transferred amount was `500`, but the action in `msg` field has expired and the transfer must be canceled. The method must return `500` or panic.
 
 **Arguments:**
@@ -251,7 +248,6 @@ Now for a fungible token function call using `ft_transfer_call`, you have the fo
 * predecessor\_id - since actual predecessor is token contract, the sender account ID is given using sender\_id.
 * receiver\_id - the receiver contract
 * **method\_name** - there is no way to specify a method name using `ft_transfer_call` API, so it's predefined to `ft_on_transfer`. But the receiving contract needs to know why transfer was received and which method has to be executed. It's possible that there is only one action that needs to handle receiving tokens, so method\_name can be implied. But also possible that there is more than one action available, e.g. swap or account\_deposit for uniswap contract. If there is more than one action, then we need to use msg field to specify which action to take.
-
 * **arguments** - if the receiving contract needs any information or data beyond transfer amount, then msg is useful to include them.
 * deposit - this comes from transfer amount
 * prepaid\_gas - all the remaining gas is forwarded to the receiver's call.
