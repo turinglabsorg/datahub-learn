@@ -8,9 +8,9 @@ description: Learn how to interact with Figment's Miner Reputation System API
 
 The Miner Reputation System API provides users with all of the necessary information for assessing the reputation of storage miners on the Filecoin network.
 
-By tracking storage capacity, sector faults, deals, and slashes of every storage miner, the API calculates a reputation score, which can be used by network participants to compare and choose a reliable miner.
+By tracking storage capacity, sector faults and deal slashes of every storage miner, the API calculates a reputation score, which can be used by network participants to compare and choose a reliable miner.
 
-Additionally, the API allows users to look up account details \(such as balance\) or retrieve a list of transactions for an account. It also keeps a history of miner-related events, such as storage capacity changes, sector faults, and deal slashes. 
+Additionally, the API allows users to look up account details \(such as balance\) or retrieve a list of transactions for a given account. It also keeps a history of miner-related events, such as storage capacity changes, sector faults, and deal slashes. 
 
 Check out the API documentation below and sign up to [**DataHub**](https://datahub.figment.io/sign_up?service=filecoin) to test it out. 
 
@@ -177,7 +177,7 @@ The epoch number
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="kind" type="string" required=false %}
-The event kind. One of the following values: `storage_capacity_change`, `new_deal`, `slashed_deal`, `sector_fault`, `sector_recovery`
+The event kind
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="page" type="integer" required=false %}
@@ -529,7 +529,7 @@ The epoch number
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="kind" type="string" required=false %}
-The event kind. One of the following values: `storage_capacity_change`, `new_deal`, `slashed_deal`, `sector_fault`, `sector_recovery`
+The event kind
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="page" type="integer" required=false %}
@@ -677,4 +677,13 @@ Returns the status of the synchronization process.
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
+
+## Event Kinds
+
+| Kind | Description |
+| :--- | :--- |
+| `storage_capacity_change` | A change of miner's storage capacity |
+| `slashed_deal` | A slash of a miner's deal |
+| `sector_fault` | An increase in miner's faults |
+| `sector_recovery` | A decrease in miner's faults |
 
