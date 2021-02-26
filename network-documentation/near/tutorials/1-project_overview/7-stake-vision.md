@@ -48,6 +48,7 @@ that transaction. The percentage of fees which are allocated to this reward is s
 The super powers are provided by the contract rewards coupled with the power of compounding that boost the overall yield for [STAKE][2] tokens:
 
 ![STAKE Token is Internet Money with Super Powers](../../../../.gitbook/assets/oysterpack-near-stake-token-overview-1-.png)
+
 - STAKE token contract contributes contract rewards to the staking pool
 - External contracts contribute earnings to the staking pool
 - The contract owner chooses what percentage of the contract earnings is shared with the staking pool
@@ -95,14 +96,14 @@ NeFi.
 ## The Case for STAKE: Massive Opportunity is Knocking on the Door
 
 STAKE is a game changer for NEAR that can help it take root and take off. 
+
 - STAKE transforms staked NEAR into **Internet Money with Super Powers** backed by the value of the NEAR network
 - STAKE can be used for **income** and **investment** through staking rewards, contract monetization, and NeFi
 - STAKE unlocks staked NEAR and makes it available for **NeFi** protocols
 - STAKE creates a much more competitive staking arena and makes possible whole new staking business models
 - STAKE provides users with greater incentives to stake
 
-In the coming years, exponential DeFi growth will create generational wealth opportunities. Let's walk through the STAKE
-effect:
+In the coming years, exponential DeFi growth will create generational wealth opportunities. Let's walk through the STAKE effect:
 
 1. STAKE will make DeFi much more attractive on NEAR - say hello to **NeFi**. 
 2. NeFi will provide greater incentive for STAKE. 
