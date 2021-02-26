@@ -37,15 +37,15 @@ if you submit another unstaking request while an unstaking request has not yet c
 period for the total amount that is unstaked. This makes it more complicated to manage access to your staked NEAR.
 
 ## The STAKE Solution
+
 The [STAKE][2] Token provides a solution by issuing fungible tokens for your staked NEAR, which I covered in my prior
 [You Can Have Your Stake and Trade It Too][4].
 
 However, [STAKE][2] offers much more than simply providing tradeable fungible tokens for your staked NEAR. It captures
 more value by combining staking rewards and contract rewards, transforming [STAKE][2] into **Internet Money with Super Powers**. 
 Contract rewards are a percentage of the transaction fees that are provided back to the contracts that were run during 
-that transaction. The percentage of fees which are allocated to this reward is set to a minimum value as system-level 
-parameter, initially 30%. The super powers are provided by the contract rewards coupled with the power of compounding
-that boost the overall yield for [STAKE][2] tokens:
+that transaction. The percentage of fees which are allocated to this reward is set to a minimum value of initially 30%. 
+The super powers are provided by the contract rewards coupled with the power of compounding that boost the overall yield for [STAKE][2] tokens:
 
 ![STAKE Token is Internet Money with Super Powers](../../../../.gitbook/assets/oysterpack-near-stake-token-overview-1-.png)
 - STAKE token contract contributes contract rewards to the staking pool
@@ -59,15 +59,8 @@ This effectively distributes the **income** earned by the STAKE contract and ext
 STAKE provides the following benefits over the current staking pool:
 
 1. STAKE enables the staked NEAR value to be transferred. STAKE enables staked NEAR to be used as **MONEY** _backed by the value of the network_.
-2. STAKE provides more yield than the staking pool contract leveraging the contract rewards super powers. The more the STAKE
-contract is used, the higher the yield. The more NEAR that is deposited by external contracts, the higher the yield. This
-transforms STAKE into an **INCOME** stream.
-3. STAKE contract also provides liquidity to unstaking through staking. Basically, the way this works is simple. If you submitted
-a request to unstake, then normally you would need to wait 2 days. However, if users are depositing NEAR into the STAKE 
-contract to stake, then those funds are used to add liquidity that the unstakers can withdraw against. For example, Bob
-unstakes STAKE that is worth 1 NEAR. A few seconds later, Alice deposits 1 NEAR to stake. The 1 NEAR that Alice deposited
-is added to the liquidity pool. Bob's 1 NEAR that was unstaked is simply restaked back into the staking pool. Bob can now 
-immediately withdraw the 1 NEAR from the liquidity pool with out having to wait 2 days. 
+2. STAKE provides more yield than the staking pool contract leveraging the contract rewards super powers. The more the STAKE contract is used, the higher the yield. The more NEAR that is deposited by external contracts, the higher the yield. This transforms STAKE into an **INCOME** stream.
+3. STAKE contract also provides liquidity to unstaking through staking. Basically, the way this works is simple. If you submitted a request to unstake, then normally you would need to wait 2 days. However, if users are depositing NEAR into the STAKE contract to stake, then those funds are used to add liquidity that the unstakers can withdraw against. For example, Bob unstakes STAKE that is worth 1 NEAR. A few seconds later, Alice deposits 1 NEAR to stake. The 1 NEAR that Alice deposited is added to the liquidity pool. Bob's 1 NEAR that was unstaked is simply restaked back into the staking pool. Bob can now immediately withdraw the 1 NEAR from the liquidity pool with out having to wait 2 days. 
 
 ## Show me the MONEY!
 
@@ -139,6 +132,7 @@ If Facebook can onboard ~2.8 billion people, then that gives me a minimum target
 This is where I make my call for action to the community. I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take back the Internet together. 
 
 ## What's Next
+
 The game plan remains the same. As new NEAR standards are released, I plan to document them and provide reference implementations as tutorials. 
 The rest of the time will be spend focused on the core mission, which is to build the [STAKE Token][2] with the community and bring it to market.
 
