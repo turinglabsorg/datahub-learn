@@ -50,7 +50,7 @@ The super powers are provided by the contract rewards coupled with the power of 
 ![STAKE Token is Internet Money with Super Powers](../../../../.gitbook/assets/oysterpack-near-stake-token-overview-1-.png)
 - STAKE token contract contributes contract rewards to the staking pool
 - External contracts contribute earnings to the staking pool
-- The contract owner chooses what percentage of the contract earnings is share with the staking pool
+- The contract owner chooses what percentage of the contract earnings is shared with the staking pool
 
 This effectively distributes the **income** earned by the STAKE contract and external contracts to all STAKE holders.
 
@@ -134,7 +134,7 @@ This is where I make my call for action to the community. I invite you to join t
 ## What's Next
 
 The game plan remains the same. As new NEAR standards are released, I plan to document them and provide reference implementations as tutorials. 
-The rest of the time will be spend focused on the core mission, which is to build the [STAKE Token][2] with the community and bring it to market.
+The rest of the time will be focused on the core mission, which is to build the [STAKE Token][2] with the community and bring it to market.
 
 ![](../../../../.gitbook/assets/oysterpack-team-holding-hands.jpeg)
 
