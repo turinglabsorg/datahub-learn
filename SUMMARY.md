@@ -6,7 +6,8 @@
 
 * [🚀 Why Build on Web 3?](introduction/why-build-on-web3.md)
 * [💻 What is DataHub?](introduction/what-is-datahub.md)
-* [👩‍🏫 What is Figment Learn?](introduction/what-is-figment-learn.md)
+* [👩‍🏫 What is Figment Learn?](introduction/what-is-figment-learn/README.md)
+  * [Figment Learn Guidelines for Users](introduction/what-is-figment-learn/figment-learn-guidelines-for-users.md)
 
 ## 🍎 Figment Learn
 
