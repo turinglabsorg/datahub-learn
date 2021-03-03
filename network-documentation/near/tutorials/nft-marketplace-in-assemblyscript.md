@@ -32,7 +32,7 @@ If that worked, you're ready to develop smart contracts in AssemblyScript and Ru
 In this tutorial we'll use the forked NEAR's NFT example code on Github. On Unix, run these commands in the `bash` shell to clone that repo and install its requirements:
 
 ```bash
-git clone https://github.com/hdriqi/NFT
+git clone https://github.com/figment-networks/NFT
 cd NFT
 yarn install
 ```
