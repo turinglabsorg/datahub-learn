@@ -142,6 +142,7 @@
       * [Test Now Or Forever Hold Your Peace](network-documentation/near/tutorials/1-project_overview/4-stake-fungible-token-testing.md)
       * [Account Storage Standard \(NEP-145\)](network-documentation/near/tutorials/1-project_overview/5-account-storage.md)
       * [Show me the Code: STAKE Account Storage NEP-145 Rust Implementation](network-documentation/near/tutorials/1-project_overview/6-stake-account-storage.md)
+      * [It's Time to Put a STAKE in the Ground!](network-documentation/near/tutorials/1-project_overview/7-stake-vision.md)
     * [Cross-contract calls](network-documentation/near/tutorials/cross-contract-calls.md)
     * [Simple AssemblyScript App](network-documentation/near/tutorials/simple-webassembly-script.md)
     * [Write an NFT contract & mint your NFT](network-documentation/near/tutorials/write-nft-contracts-in-rust.md)
