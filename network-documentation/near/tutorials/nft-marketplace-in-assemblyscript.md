@@ -1,4 +1,4 @@
-# NFT Marketplace tutorial
+# Create an NFT marketplace
 
 ## Introduction
 
@@ -12,10 +12,10 @@ In this tutorial we will be creating the smart contracts for a simple NFT Market
 
 This tutorial requires:
 
-- Install Node.js and NPM [(see Tutorial 1)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
-- Install the NEAR CLI [(see Tutorial 2)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
-- Complete the first NEAR smart contract tutorial [(see Tutorial 5)](https://learn.figment.io/network-documentation/near/tutorials/5.-writing-and-deploying-your-first-near-smart-contract)
-- Complete the intro to NFTs on NEAR [(see Tutorial)](https://learn.figment.io/network-documentation/near/tutorials/write-nft-contracts-in-rust)
+* Install Node.js and NPM [\(see Tutorial 1\)](https://learn.figment.io/network-documentation/near/tutorials/1.-connecting-to-a-near-node-using-datahub)
+* Install the NEAR CLI [\(see Tutorial 2\)](https://learn.figment.io/network-documentation/near/tutorials/2.-creating-your-first-near-account-using-the-sdk)
+* Complete the first NEAR smart contract tutorial [\(see Tutorial 5\)](https://learn.figment.io/network-documentation/near/tutorials/5.-writing-and-deploying-your-first-near-smart-contract)
+* Complete the intro to NFTs on NEAR [\(see Tutorial\)](https://learn.figment.io/network-documentation/near/tutorials/write-nft-contracts-in-rust)
 
 Not required but still valuable reference material can be found in the NEAR Docs [AssemblyScript Intro](https://docs.near.org/docs/develop/contracts/as/intro), as well as the [Data Storage](https://docs.near.org/docs/concepts/data-storage) page.
 
@@ -49,9 +49,9 @@ We can also run all of the included unit tests with this command:
 yarn test:unit:as
 ```
 
-Note that the series of commands being triggered by `test:unit:as` with yarn are defined within the package.json file.
-You can use this to customize your own commands, but that lies beyond the scope of this tutorial. The important thing to know is that you can see and modify these commands within your `package.json` file! If you get any errors when running `yarn test:unit:as`, you will have to resolve them before you continue. 
-```json
+Note that the series of commands being triggered by `test:unit:as` with yarn are defined within the package.json file. You can use this to customize your own commands, but that lies beyond the scope of this tutorial. The important thing to know is that you can see and modify these commands within your `package.json` file! If you get any errors when running `yarn test:unit:as`, you will have to resolve them before you continue.
+
+```javascript
 "scripts": {
     ...
     "test:unit:as": "asp --verbose --nologo -c contracts/assemblyscript/as-pect.config.js -f unit.spec",
@@ -72,7 +72,7 @@ If all the tests are passing then you are ready to proceed.
 
 ## Getting to know the NEP-4 Contract
 
-Our marketplace will be based on the NEP-4 Contract. NEP stands for NEAR Enhancement Proposal, which contains various common interfaces and APIs that are used by smart contract developers on top of the NEAR Protocol. NEP-4 is the standard used in NEAR blockchain for non-fungible token (NFT) asset, this standard allows the interoperability between many NFT contracts on the NEAR blockchain like ownership and transfer. The first thing we need to do is to understand the base contract and expand it into a marketplace. The smart contract that we will modify is at `contracts/assemblyscript/NEP-4-basic/main.ts`. Open the file and we'll run through the code together.
+Our marketplace will be based on the NEP-4 Contract. NEP stands for NEAR Enhancement Proposal, which contains various common interfaces and APIs that are used by smart contract developers on top of the NEAR Protocol. NEP-4 is the standard used in NEAR blockchain for non-fungible token \(NFT\) asset, this standard allows the interoperability between many NFT contracts on the NEAR blockchain like ownership and transfer. The first thing we need to do is to understand the base contract and expand it into a marketplace. The smart contract that we will modify is at `contracts/assemblyscript/NEP-4-basic/main.ts`. Open the file and we'll run through the code together.
 
 ### Data Types and Storage
 
@@ -105,7 +105,7 @@ const TOTAL_SUPPLY = 'c'
 
 ### Change Methods
 
-These change methods are the ones that mutate the blockchain state. The code itself is similar to the `ERC721` standard of Ethereum. One thing to note is the `grant_access` function, which allows other accounts (including smart contracts) to have access to your account. This is usually used in conjunction with front-end code to transfer tokens on your behalf.
+These change methods are the ones that mutate the blockchain state. The code itself is similar to the `ERC721` standard of Ethereum. One thing to note is the `grant_access` function, which allows other accounts \(including smart contracts\) to have access to your account. This is usually used in conjunction with front-end code to transfer tokens on your behalf.
 
 ```typescript
 /******************/
@@ -114,35 +114,35 @@ These change methods are the ones that mutate the blockchain state. The code its
 
 // Grant access to the given `accountId` for all tokens the caller has
 export function grant_access(escrow_account_id: string): void {
-	escrowAccess.set(context.predecessor, escrow_account_id)
+    escrowAccess.set(context.predecessor, escrow_account_id)
 }
 
 // Revoke access to the given `accountId` for all tokens the caller has
 export function revoke_access(escrow_account_id: string): void {
-	escrowAccess.delete(context.predecessor)
+    escrowAccess.delete(context.predecessor)
 }
 
 // Transfer the given `token_id` to the given `new_owner_id`. Account `new_owner_id` becomes the new owner.
 // Requirements:
 // * The caller of the function (`predecessor`) should have access to the token.
 export function transfer_from(
-	owner_id: string,
-	new_owner_id: string,
-	token_id: TokenId
+    owner_id: string,
+    new_owner_id: string,
+    token_id: TokenId
 ): void {
-	const predecessor = context.predecessor
+    const predecessor = context.predecessor
 
-	// fetch token owner and escrow; assert access
-	const owner = tokenToOwner.getSome(token_id)
-	assert(owner == owner_id, ERROR_OWNER_ID_DOES_NOT_MATCH_EXPECTATION)
-	const escrow = escrowAccess.get(owner)
-	assert(
-		[owner, escrow].includes(predecessor),
-		ERROR_CALLER_ID_DOES_NOT_MATCH_EXPECTATION
-	)
+    // fetch token owner and escrow; assert access
+    const owner = tokenToOwner.getSome(token_id)
+    assert(owner == owner_id, ERROR_OWNER_ID_DOES_NOT_MATCH_EXPECTATION)
+    const escrow = escrowAccess.get(owner)
+    assert(
+        [owner, escrow].includes(predecessor),
+        ERROR_CALLER_ID_DOES_NOT_MATCH_EXPECTATION
+    )
 
-	// assign new owner to token
-	tokenToOwner.set(token_id, new_owner_id)
+    // assign new owner to token
+    tokenToOwner.set(token_id, new_owner_id)
 }
 
 // Transfer the given `token_id` to the given `new_owner_id`. Account `new_owner_id` becomes the new owner.
@@ -150,14 +150,14 @@ export function transfer_from(
 // * The caller of the function (`predecessor`) should be the owner of the token. Callers who have
 // escrow access should use transfer_from.
 export function transfer(new_owner_id: string, token_id: TokenId): void {
-	const predecessor = context.predecessor
+    const predecessor = context.predecessor
 
-	// fetch token owner and escrow; assert access
-	const owner = tokenToOwner.getSome(token_id)
-	assert(owner == predecessor, ERROR_TOKEN_NOT_OWNED_BY_CALLER)
+    // fetch token owner and escrow; assert access
+    const owner = tokenToOwner.getSome(token_id)
+    assert(owner == predecessor, ERROR_TOKEN_NOT_OWNED_BY_CALLER)
 
-	// assign new owner to token
-	tokenToOwner.set(token_id, new_owner_id)
+    // assign new owner to token
+    tokenToOwner.set(token_id, new_owner_id)
 }
 ```
 
@@ -172,24 +172,24 @@ View methods have GET functionalities. It does not cost any gas fee to call but 
 
 // Returns `true` or `false` based on caller of the function (`predecessor`) having access to account_id's tokens
 export function check_access(account_id: string): boolean {
-	const caller = context.predecessor
+    const caller = context.predecessor
 
-	// throw error if someone tries to check if they have escrow access to their own account;
-	// not part of the spec, but an edge case that deserves thoughtful handling
-	assert(caller != account_id, ERROR_CALLER_ID_DOES_NOT_MATCH_EXPECTATION)
+    // throw error if someone tries to check if they have escrow access to their own account;
+    // not part of the spec, but an edge case that deserves thoughtful handling
+    assert(caller != account_id, ERROR_CALLER_ID_DOES_NOT_MATCH_EXPECTATION)
 
-	// if we haven't set an escrow yet, then caller does not have access to account_id
-	if (!escrowAccess.contains(account_id)) {
-		return false
-	}
+    // if we haven't set an escrow yet, then caller does not have access to account_id
+    if (!escrowAccess.contains(account_id)) {
+        return false
+    }
 
-	const escrow = escrowAccess.getSome(account_id)
-	return escrow == caller
+    const escrow = escrowAccess.getSome(account_id)
+    return escrow == caller
 }
 
 // Get an individual owner by given `tokenId`
 export function get_token_owner(token_id: TokenId): string {
-	return tokenToOwner.getSome(token_id)
+    return tokenToOwner.getSome(token_id)
 }
 ```
 
@@ -201,26 +201,26 @@ In this example the NFT itself is just a simple ID with owner. The metadata such
 
 ```typescript
 export function mint_to(owner_id: AccountId): u64 {
-	// Fetch the next tokenId, using a simple indexing strategy that matches IDs
-	// to current supply, defaulting the first token to ID=1
-	//
-	// * If your implementation allows deleting tokens, this strategy will not work!
-	// * To verify uniqueness, you could make IDs hashes of the data that makes tokens
-	//   special; see https://twitter.com/DennisonBertram/status/1264198473936764935
-	const tokenId = storage.getPrimitive<u64>(TOTAL_SUPPLY, 1)
+    // Fetch the next tokenId, using a simple indexing strategy that matches IDs
+    // to current supply, defaulting the first token to ID=1
+    //
+    // * If your implementation allows deleting tokens, this strategy will not work!
+    // * To verify uniqueness, you could make IDs hashes of the data that makes tokens
+    //   special; see https://twitter.com/DennisonBertram/status/1264198473936764935
+    const tokenId = storage.getPrimitive<u64>(TOTAL_SUPPLY, 1)
 
-	// enforce token limits – not part of the spec but important!
-	assert(tokenId <= MAX_SUPPLY, ERROR_MAXIMUM_TOKEN_LIMIT_REACHED)
+    // enforce token limits – not part of the spec but important!
+    assert(tokenId <= MAX_SUPPLY, ERROR_MAXIMUM_TOKEN_LIMIT_REACHED)
 
-	// assign ownership
-	tokenToOwner.set(tokenId, owner_id)
+    // assign ownership
+    tokenToOwner.set(tokenId, owner_id)
 
-	// increment and store the next tokenId
-	storage.set<u64>(TOTAL_SUPPLY, tokenId + 1)
+    // increment and store the next tokenId
+    storage.set<u64>(TOTAL_SUPPLY, tokenId + 1)
 
-	// return the tokenId – while typical change methods cannot return data, this
-	// is handy for unit tests
-	return tokenId
+    // return the tokenId – while typical change methods cannot return data, this
+    // is handy for unit tests
+    return tokenId
 }
 ```
 
@@ -248,11 +248,11 @@ First, let's import `u128` and `PersistentUnorderedMap` from the `near-sdk-as`. 
 
 ```typescript
 import {
-	PersistentMap,
-	storage,
-	context,
-	u128,
-	PersistentUnorderedMap,
+    PersistentMap,
+    storage,
+    context,
+    u128,
+    PersistentUnorderedMap,
 } from 'near-sdk-as'
 ```
 
@@ -272,24 +272,24 @@ Add the following in the section `NON-SPEC METHODS` at the bottom of the file `m
 
 ```typescript
 export function add_to_market(token_id: TokenId, price: Price): boolean {
-	const caller = context.predecessor
+    const caller = context.predecessor
 
-	// validate token owner
-	const owner = tokenToOwner.getSome(token_id)
-	assert(owner == caller, ERROR_TOKEN_NOT_OWNED_BY_CALLER)
+    // validate token owner
+    const owner = tokenToOwner.getSome(token_id)
+    assert(owner == caller, ERROR_TOKEN_NOT_OWNED_BY_CALLER)
 
-	// set the price for sale
-	internal_add_to_market(token_id, price)
+    // set the price for sale
+    internal_add_to_market(token_id, price)
 
-	return true
+    return true
 }
 
 function internal_add_to_market(token_id: TokenId, price: Price): void {
-	market.set(token_id, price)
+    market.set(token_id, price)
 }
 ```
 
-Like I mentioned earlier, we'll be adding a test after adding a new feature for the smart contract. First let's update the import statement at the top of the file (`__tests__/main.unit.spec.ts`).
+Like I mentioned earlier, we'll be adding a test after adding a new feature for the smart contract. First let's update the import statement at the top of the file \(`__tests__/main.unit.spec.ts`\).
 
 ```typescript
 import { u128, VMContext } from 'near-sdk-as'
@@ -299,28 +299,28 @@ You can add the following code at the end of the current unit test file `__tests
 
 ```typescript
 describe('add_to_market', () => {
-	it('should add nft to market and return true', () => {
-		VMContext.setPredecessor_account_id(alice)
-		// mint new token that return its id
-		const tokenId = nonSpec.mint_to(alice)
-		// 1 NEAR
-		const price = u128.from('1000000000000000000000000')
+    it('should add nft to market and return true', () => {
+        VMContext.setPredecessor_account_id(alice)
+        // mint new token that return its id
+        const tokenId = nonSpec.mint_to(alice)
+        // 1 NEAR
+        const price = u128.from('1000000000000000000000000')
 
-		expect(nonSpec.add_to_market(tokenId, price)).toBe(true)
-	})
+        expect(nonSpec.add_to_market(tokenId, price)).toBe(true)
+    })
 
-	it('should throw error if called by non owner', () => {
-		expect(() => {
-			VMContext.setPredecessor_account_id(alice)
-			// mint new token that return its id
-			const tokenId = nonSpec.mint_to(alice)
-			// 1 NEAR
-			const price = u128.from('1000000000000000000000000')
+    it('should throw error if called by non owner', () => {
+        expect(() => {
+            VMContext.setPredecessor_account_id(alice)
+            // mint new token that return its id
+            const tokenId = nonSpec.mint_to(alice)
+            // 1 NEAR
+            const price = u128.from('1000000000000000000000000')
 
-			VMContext.setPredecessor_account_id(bob)
-			nonSpec.add_to_market(tokenId, price)
-		}).toThrow(nonSpec.ERROR_TOKEN_NOT_OWNED_BY_CALLER)
-	})
+            VMContext.setPredecessor_account_id(bob)
+            nonSpec.add_to_market(tokenId, price)
+        }).toThrow(nonSpec.ERROR_TOKEN_NOT_OWNED_BY_CALLER)
+    })
 })
 ```
 
@@ -328,7 +328,7 @@ After creating the market we need to have a function to fetch the price. Let's c
 
 ```typescript
 export function get_market_price(token_id: TokenId): Price {
-	return market.getSome(token_id)
+    return market.getSome(token_id)
 }
 ```
 
@@ -336,16 +336,16 @@ Again, we need to create a unit test for our function to make sure it works as e
 
 ```typescript
 describe('get_market_price', () => {
-	it('return market price for a token', () => {
-		VMContext.setPredecessor_account_id(alice)
-		// mint new token that return its id
-		const tokenId = nonSpec.mint_to(alice)
-		// set price to be 1 NEAR
-		const price = u128.from('1000000000000000000000000')
-		nonSpec.add_to_market(tokenId, price)
-		// get the market price of tokenId
-		expect(nonSpec.get_market_price(tokenId)).toBe(price)
-	})
+    it('return market price for a token', () => {
+        VMContext.setPredecessor_account_id(alice)
+        // mint new token that return its id
+        const tokenId = nonSpec.mint_to(alice)
+        // set price to be 1 NEAR
+        const price = u128.from('1000000000000000000000000')
+        nonSpec.add_to_market(tokenId, price)
+        // get the market price of tokenId
+        expect(nonSpec.get_market_price(tokenId)).toBe(price)
+    })
 })
 ```
 
@@ -359,12 +359,8 @@ It should return something like this:
 
 ```bash
 ...
-[Describe]: add_to_market
-
  [Success]: ✔ should add nft to market and return true
  [Success]: ✔ should throw error if called by non owner
-
-[Describe]: get_market_price
 
  Success]: ✔ return market price for a token
 ...
@@ -376,26 +372,26 @@ The code for removing a token from the market is pretty similar to adding one. W
 
 ```typescript
 export function remove_from_market(token_id: TokenId): boolean {
-	const caller = context.predecessor
+    const caller = context.predecessor
 
-	// validate token owner
-	const owner = tokenToOwner.getSome(token_id)
-	const escrow = escrowAccess.get(owner)
-	assert(
-		[owner, escrow].includes(caller),
-		ERROR_CALLER_ID_DOES_NOT_MATCH_EXPECTATION
-	)
+    // validate token owner
+    const owner = tokenToOwner.getSome(token_id)
+    const escrow = escrowAccess.get(owner)
+    assert(
+        [owner, escrow].includes(caller),
+        ERROR_CALLER_ID_DOES_NOT_MATCH_EXPECTATION
+    )
 
-	assert(market.getSome(token_id), ERROR_TOKEN_NOT_IN_MARKET)
+    assert(market.getSome(token_id), ERROR_TOKEN_NOT_IN_MARKET)
 
-	// remove token from market
-	internal_remove_from_market(token_id)
+    // remove token from market
+    internal_remove_from_market(token_id)
 
-	return true
+    return true
 }
 
 function internal_remove_from_market(token_id: TokenId): void {
-	market.delete(token_id)
+    market.delete(token_id)
 }
 ```
 
@@ -409,27 +405,27 @@ Here's the test case that we create for `remove_from_market`, you can put it at 
 
 ```typescript
 describe('remove_from_market', () => {
-	it('should remove nft from market and return true', () => {
-		VMContext.setPredecessor_account_id(alice)
-		// mint new token that return its id
-		const tokenId = nonSpec.mint_to(alice)
-		// 1 NEAR
-		const price = u128.from('1000000000000000000000000')
-		// add token to market
-		expect(nonSpec.add_to_market(tokenId, price)).toBe(true)
-		// remove token from market
-		expect(nonSpec.remove_from_market(tokenId)).toBe(true)
-	})
+    it('should remove nft from market and return true', () => {
+        VMContext.setPredecessor_account_id(alice)
+        // mint new token that return its id
+        const tokenId = nonSpec.mint_to(alice)
+        // 1 NEAR
+        const price = u128.from('1000000000000000000000000')
+        // add token to market
+        expect(nonSpec.add_to_market(tokenId, price)).toBe(true)
+        // remove token from market
+        expect(nonSpec.remove_from_market(tokenId)).toBe(true)
+    })
 
-	it('should throw error for nft available in market', () => {
-		expect(() => {
-			VMContext.setPredecessor_account_id(alice)
-			// mint new token that return its id
-			const tokenId = nonSpec.mint_to(alice)
-			// throw error when try to remove token id that was not listed
-			nonSpec.remove_from_market(tokenId)
-		}).toThrow(nonSpec.ERROR_TOKEN_NOT_IN_MARKET)
-	})
+    it('should throw error for nft available in market', () => {
+        expect(() => {
+            VMContext.setPredecessor_account_id(alice)
+            // mint new token that return its id
+            const tokenId = nonSpec.mint_to(alice)
+            // throw error when try to remove token id that was not listed
+            nonSpec.remove_from_market(tokenId)
+        }).toThrow(nonSpec.ERROR_TOKEN_NOT_IN_MARKET)
+    })
 })
 ```
 
@@ -443,8 +439,6 @@ It should return something like this:
 
 ```bash
 ...
-[Describe]: remove_from_market
-
  [Success]: ✔ should remove nft from market and return true
  [Success]: ✔ should throw error for nft available in market
 ...
@@ -470,17 +464,17 @@ Let's start coding the buy function. To retrieve the amount of payment in the sm
 
 ```typescript
 export function buy(token_id: TokenId): TokenId {
-	const caller = context.predecessor
+    const caller = context.predecessor
 
-	const amount = context.attachedDeposit
-	const price = market.getSome(token_id)
+    const amount = context.attachedDeposit
+    const price = market.getSome(token_id)
 
-	// check if the amount deposited match with the price
-	assert(amount == price, ERROR_DEPOSIT_NOT_MATCH)
+    // check if the amount deposited match with the price
+    assert(amount == price, ERROR_DEPOSIT_NOT_MATCH)
 
-	// 1. Calculate commission & transfer payment
+    // 1. Calculate commission & transfer payment
 
-	// 2. Remove from market & update token ownership
+    // 2. Remove from market & update token ownership
 }
 ```
 
@@ -492,23 +486,23 @@ First, we need to import the `ContractPromiseBatch` by updating the top section 
 
 ```typescript
 import {
-	PersistentMap,
-	storage,
-	context,
-	u128,
-	PersistentUnorderedMap,
-	ContractPromiseBatch,
+    PersistentMap,
+    storage,
+    context,
+    u128,
+    PersistentUnorderedMap,
+    ContractPromiseBatch,
 } from 'near-sdk-as'
 ```
 
-We also need to update our buy function to automatically transfer the deposited amount to the receiver and to the smart contract (transaction fee). Update the buy function in the `main.ts` file under the comment `// 1. Calculate commission & transfer payment` add the following code snippet below:
+We also need to update our buy function to automatically transfer the deposited amount to the receiver and to the smart contract \(transaction fee\). Update the buy function in the `main.ts` file under the comment `// 1. Calculate commission & transfer payment` add the following code snippet below:
 
 ```typescript
 // calculate commission for the smart contract
 const owner = tokenToOwner.getSome(token_id)
 const forOwner: u128 = u128.div(
-	u128.mul(amount, u128.from(100 - COMMISSION)),
-	u128.from(100)
+    u128.mul(amount, u128.from(100 - COMMISSION)),
+    u128.from(100)
 )
 const contract = context.contractName
 const forContract: u128 = u128.sub(amount, forOwner)
@@ -538,21 +532,21 @@ We can now test our `buy` function using the unit test below by updating the end
 
 ```typescript
 describe('buy', () => {
-	it('transfer token and remove it from market', () => {
-		VMContext.setPredecessor_account_id(alice)
-		// mint new token that return its id
-		const tokenId = nonSpec.mint_to(alice)
-		// set price to be 1 NEAR
-		const price = u128.from('1000000000000000000000000')
-		nonSpec.add_to_market(tokenId, price)
-		// mock the Buyer id & the deposit amount
-		VMContext.setPredecessor_account_id(bob)
-		VMContext.setAttached_deposit(price)
-		// Buyer (bob) will call this buy function
-		nonSpec.buy(tokenId)
-		// after successful purchase the owner of the NFT must be bob
-		expect(get_token_owner(tokenId)).toBe(bob)
-	})
+    it('transfer token and remove it from market', () => {
+        VMContext.setPredecessor_account_id(alice)
+        // mint new token that return its id
+        const tokenId = nonSpec.mint_to(alice)
+        // set price to be 1 NEAR
+        const price = u128.from('1000000000000000000000000')
+        nonSpec.add_to_market(tokenId, price)
+        // mock the Buyer id & the deposit amount
+        VMContext.setPredecessor_account_id(bob)
+        VMContext.setAttached_deposit(price)
+        // Buyer (bob) will call this buy function
+        nonSpec.buy(tokenId)
+        // after successful purchase the owner of the NFT must be bob
+        expect(get_token_owner(tokenId)).toBe(bob)
+    })
 })
 ```
 
@@ -566,41 +560,39 @@ It should return something like this:
 
 ```bash
 ...
-[Describe]: buy
-
  [Success]: ✔ transfer token and remove it from market
 ...
 ```
 
 ### Fetch Marketplace Tokens
 
-First we need to create the struct `TokenDetail` and add the decorator `nearBindgen` to serialize/deserialize the struct in the NEAR runtime (think of it as the required syntax for every struct to run on the NEAR protocol).
+First we need to create the struct `TokenDetail` and add the decorator `nearBindgen` to serialize/deserialize the struct in the NEAR runtime \(think of it as the required syntax for every struct to run on the NEAR protocol\).
 
-We will create the function `get_market` that will return a list of `TokenDetail` that contains the `tokenId` and its `price`. For the implementation, we use `.entries()` from `PersistentUnorderedMap` that takes the start and end indexes from our list (we can use this for pagination later when building the frontend application).
+We will create the function `get_market` that will return a list of `TokenDetail` that contains the `tokenId` and its `price`. For the implementation, we use `.entries()` from `PersistentUnorderedMap` that takes the start and end indexes from our list \(we can use this for pagination later when building the frontend application\).
 
 Add the following code at the end of `main.ts`:
 
 ```typescript
 @nearBindgen
 export class TokenDetail {
-	tokenId: TokenId
-	price: Price
+    tokenId: TokenId
+    price: Price
 
-	constructor(tokenId: TokenId, price: Price) {
-		this.tokenId = tokenId
-		this.price = price
-	}
+    constructor(tokenId: TokenId, price: Price) {
+        this.tokenId = tokenId
+        this.price = price
+    }
 }
 
 export function get_market(start: i32, end: i32): TokenDetail[] {
-	const results: TokenDetail[] = []
+    const results: TokenDetail[] = []
 
-	const tokenList = market.entries(start, end)
-	for (let i = 0; i < tokenList.length; i++) {
-		results.push(new TokenDetail(tokenList[i].key, tokenList[i].value))
-	}
+    const tokenList = market.entries(start, end)
+    for (let i = 0; i < tokenList.length; i++) {
+        results.push(new TokenDetail(tokenList[i].key, tokenList[i].value))
+    }
 
-	return results
+    return results
 }
 ```
 
@@ -608,23 +600,23 @@ Let's write the test and see if it works as expected. We will mint 3 new NFTs an
 
 ```typescript
 describe('get_market', () => {
-	it('return market price for a token', () => {
-		VMContext.setPredecessor_account_id(alice)
+    it('return market price for a token', () => {
+        VMContext.setPredecessor_account_id(alice)
 
-		const price = u128.from('1000000000000000000000000')
-		// mint new token that return its id
-		const tokenId_1 = nonSpec.mint_to(alice)
-		nonSpec.add_to_market(tokenId_1, price)
+        const price = u128.from('1000000000000000000000000')
+        // mint new token that return its id
+        const tokenId_1 = nonSpec.mint_to(alice)
+        nonSpec.add_to_market(tokenId_1, price)
 
-		const tokenId_2 = nonSpec.mint_to(alice)
-		nonSpec.add_to_market(tokenId_2, price)
+        const tokenId_2 = nonSpec.mint_to(alice)
+        nonSpec.add_to_market(tokenId_2, price)
 
-		const tokenId_3 = nonSpec.mint_to(alice)
-		nonSpec.add_to_market(tokenId_3, price)
-		// set price to be 1 NEAR
-		// get the first 5 NFTs listed on the market
-		expect(nonSpec.get_market(0, 5)).toHaveLength(3)
-	})
+        const tokenId_3 = nonSpec.mint_to(alice)
+        nonSpec.add_to_market(tokenId_3, price)
+        // set price to be 1 NEAR
+        // get the first 5 NFTs listed on the market
+        expect(nonSpec.get_market(0, 5)).toHaveLength(3)
+    })
 })
 ```
 
@@ -638,8 +630,6 @@ It should return something like this:
 
 ```bash
 ...
-[Describe]: get_market
-
  [Success]: ✔ return market price for a token
 ...
 ```
@@ -715,7 +705,7 @@ Choose one of the accounts that you've just created to authenticate in our termi
 
 ![image](https://user-images.githubusercontent.com/9144402/105279194-a5a4bd80-5bd9-11eb-991f-ddd6928eb255.png)
 
-Click allow and follow the confirmation page by entering your account id. Just type in your selected account id (in this example we need to type `paras.testnet`)
+Click allow and follow the confirmation page by entering your account id. Just type in your selected account id \(in this example we need to type `paras.testnet`\)
 
 ![image](https://user-images.githubusercontent.com/9144402/105279309-dc7ad380-5bd9-11eb-8266-3ce21d043e7e.png)
 
@@ -741,13 +731,13 @@ near call --accountId [ARTIST_ID] [DEV_ID] mint_to '{"owner_id": "[ARTIST_ID]"}'
 
 Make sure to change `[ARTIST-ID]` to one of the accounts that you created earlier in the browser, and `[DEV-ID]` with the account id we created when deploying our smart contract. Running the above command will return the tokenId of the newly minted NFT:
 
-```
+```text
 '1'
 ```
 
 ### Add to Marketplace
 
-We can add our newly minted NFT to the marketplace to see if there are collectors that are interested in adding it into their collections. We can use the function `add_to_market` to do this which takes `token_id` and `price` as parameters. The price must be in yoctoNEAR (10^24), in this case we sell our NFT for 1 N -> 1000000000000000000000000 yoctoNEAR. Make sure to change the parameters `[TOKEN_ID]` into any NFT ID that you own/mint.
+We can add our newly minted NFT to the marketplace to see if there are collectors that are interested in adding it into their collections. We can use the function `add_to_market` to do this which takes `token_id` and `price` as parameters. The price must be in yoctoNEAR \(10^24\), in this case we sell our NFT for 1 N -&gt; 1000000000000000000000000 yoctoNEAR. Make sure to change the parameters `[TOKEN_ID]` into any NFT ID that you own/mint.
 
 ```bash
 near call --accountId [ARTIST_ID] [DEV_ID] add_to_market '{"token_id": "[TOKEN_ID]", "price": "1000000000000000000000000"}'
@@ -775,16 +765,16 @@ near state [ACCOUNT_ID]
 
 You can replace the `[ACCOUNT_ID]` with `[ARTIST_ID]` or `[COLLECTOR_ID]` and it will return something like this:
 
-```json
+```javascript
 {
-	"amount": "88126613751512027823390000",
-	"locked": "0",
-	"code_hash": "11111111111111111111111111111111",
-	"storage_usage": 2844,
-	"storage_paid_at": 0,
-	"block_height": 32018936,
-	"block_hash": "Ffc1kw56xpCV1fPJVHNEtfbDbfPF4wkhQNbvbUbXpH5M",
-	"formattedAmount": "88.12661375151202782339"
+    "amount": "88126613751512027823390000",
+    "locked": "0",
+    "code_hash": "11111111111111111111111111111111",
+    "storage_usage": 2844,
+    "storage_paid_at": 0,
+    "block_height": 32018936,
+    "block_hash": "Ffc1kw56xpCV1fPJVHNEtfbDbfPF4wkhQNbvbUbXpH5M",
+    "formattedAmount": "88.12661375151202782339"
 }
 ```
 
@@ -809,3 +799,4 @@ Congratulations! We have deployed the modified NFT smart contract in AssemblyScr
 Please remember that this code is not intended for production: there are still a few other things to consider if you wanted to deploy this to mainnet such as disabling the transfer method if the token is listed on the market and so on.
 
 The complete code can be found on [Github](https://github.com/figment-networks/tutorials/near/7_NFT_marketplace/).
+
