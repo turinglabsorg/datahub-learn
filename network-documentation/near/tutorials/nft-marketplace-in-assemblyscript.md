@@ -2,11 +2,11 @@
 
 ## Introduction
 
-NFTs are digital items that are unique and have provable ownerships on the blockchain. One of the most popular use cases for NFTs right now is digital art. Projects on Ethereum such as [SuperRare](https://superrare.co) leverage the power of blockchain to create digital art that has digital scarcity and true ownership, thus creating a whole new market for artists and collectors in the digital space.
+[NFTs](https://en.wikipedia.org/wiki/Non-fungible_token) are unique digital items that have provable ownership on a blockchain. One of the most popular use cases for NFTs right now is digital art. Projects on Ethereum such as [SuperRare](https://superrare.co) leverage the power of blockchain to create digital art that has digital scarcity and true ownership, thus creating a whole new market for artists and collectors in the digital space.
 
 Built on NEAR, [Paras: Digital Art Card](https://paras.id) is an NFT Marketplace that is already available to use. It offers much cheaper NFT minting fees than what is possible on Ethereum, enabling artists to create without being limited by high on-chain fees.
 
-In this tutorial we will be creating a simple NFT Marketplace similar to [Paras](https://paras.id) and [SuperRare](https://superrare.co) where artists can mint their digital art and sell them directly to collectors. We will be using [NEP-4](https://github.com/near/NEPs/pull/4) NFT standard which is based on [ERC721](https://eips.ethereum.org/EIPS/eip-721).
+In this tutorial we will be creating the smart contracts for a simple NFT Marketplace similar to [Paras](https://paras.id) and [SuperRare](https://superrare.co) where artists can mint their digital art and sell them directly to collectors. We will be using [NEP-4](https://github.com/near/NEPs/pull/4) NFT standard which is based on the Ethereum [ERC721](https://eips.ethereum.org/EIPS/eip-721) standard.
 
 ### Prerequisites:
 
@@ -17,6 +17,8 @@ This tutorial requires:
 - Complete the first NEAR smart contract tutorial [(see Tutorial 5)](https://learn.figment.io/network-documentation/near/tutorials/5.-writing-and-deploying-your-first-near-smart-contract)
 - Complete the intro to NFTs on NEAR [(see Tutorial)](https://learn.figment.io/network-documentation/near/tutorials/write-nft-contracts-in-rust)
 
+Not required but still valuable reference material can be found in the NEAR Docs [AssemblyScript Intro](https://docs.near.org/docs/develop/contracts/as/intro), as well as the [Data Storage](https://docs.near.org/docs/concepts/data-storage) page.
+
 ## Installing Yarn
 
 If you haven't already, we need to install the `yarn` package manager. The example code we're working with uses `yarn` as its build tool. Run this command to install `yarn`:
@@ -25,7 +27,7 @@ If you haven't already, we need to install the `yarn` package manager. The examp
 npm i -g yarn
 ```
 
-If that worked, you're ready to develop smart contracts in AssemblyScript and Rust.
+If that worked, you're ready to develop smart contracts in AssemblyScript and Rust. If you encounter any errors or issues during the install process, you can check out the forums or Discord for help.
 
 ### Cloning the NEAR NFT repo
 
@@ -47,6 +49,16 @@ We can also run all of the included unit tests with this command:
 yarn test:unit:as
 ```
 
+Note that the series of commands being triggered by `test:unit:as` with yarn are defined within the package.json file.
+You can use this to customize your own commands, but that lies beyond the scope of this tutorial. The important thing to know is that you can see and modify these commands within your `package.json` file! If you get any errors when running `yarn test:unit:as`, you will have to resolve them before you continue. 
+```json
+"scripts": {
+    ...
+    "test:unit:as": "asp --verbose --nologo -c contracts/assemblyscript/as-pect.config.js -f unit.spec",
+    ...
+  },
+```
+
 The unit test output is messy, but at the end you should see a summary of results.
 
 ```bash
@@ -56,7 +68,7 @@ The unit test output is messy, but at the end you should see a summary of result
 [Tests]: 13 pass, 0 fail, 13 total
 ```
 
-If you see something like that then we're good to go.
+If all the tests are passing then you are ready to proceed.
 
 ## Getting to know the NEP-4 Contract
 
@@ -93,7 +105,7 @@ const TOTAL_SUPPLY = 'c'
 
 ### Change Methods
 
-These change methods are the ones that mutate the blockchain state. The code itself is self-explanatory and pretty similar to the `ERC721` standard. One thing to note is the `grant_access` function which allows other accounts including smart contracts to have access to your account (usually used to transfer tokens on your behalf).
+These change methods are the ones that mutate the blockchain state. The code itself is similar to the `ERC721` standard of Ethereum. One thing to note is the `grant_access` function, which allows other accounts (including smart contracts) to have access to your account. This is usually used in conjunction with front-end code to transfer tokens on your behalf.
 
 ```typescript
 /******************/
@@ -183,9 +195,9 @@ export function get_token_owner(token_id: TokenId): string {
 
 ### Minting
 
-Now here's the main function that allows users to mint the NFT. The NFT itself is just a simple ID with owner. The metadata such as an image, video or audio is usually stored off-chain on [IPFS](https://ipfs.io/), [Sia](https://siasky.net/) or even a centralized file storage such as [AWS S3](https://aws.amazon.com/s3). Unlike in Ethereum blockchain, storing data on NEAR is pretty cheap; you can actually store the whole metadata on chain but it will not be covered in this tutorial, you can try it yourself!
+In this example the NFT itself is just a simple ID with owner. The metadata such as an image, video or audio is usually stored off-chain on [IPFS](https://ipfs.io/), [Sia](https://siasky.net/) or even a centralized file storage such as [AWS S3](https://aws.amazon.com/s3). In contrast to the Ethereum blockchain, storing data on NEAR is pretty cheap; you can actually store the whole metadata on chain but that is outside the scope of this tutorial. You can always experiment with it for free on the testnet!
 
-[Paras](https://paras.id) is not storing any metadata on-chain, instead they use an IPFS Hash as the Token ID. There are many designs that you can experiment with when building your NFTs.
+[Paras](https://paras.id) does not store any metadata on-chain, instead Paras uses an [IPFS CID](https://docs.ipfs.io/concepts/content-addressing/) as the Token ID. There are many designs that you can experiment with when building your NFTs.
 
 ```typescript
 export function mint_to(owner_id: AccountId): u64 {
@@ -564,7 +576,7 @@ It should return something like this:
 
 First we need to create the struct `TokenDetail` and add the decorator `nearBindgen` to serialize/deserialize the struct in the NEAR runtime (think of it as the required syntax for every struct to run on the NEAR protocol).
 
-We will create the function `get_market` that will return a list of `TokenDetail` that contains the `tokenId` and its `price`. For the implementation, we use `.entries` from `PersistentUnorderedMap` that takes the start and end indexes from our list (we can use this for pagination later when building the frontend application).
+We will create the function `get_market` that will return a list of `TokenDetail` that contains the `tokenId` and its `price`. For the implementation, we use `.entries()` from `PersistentUnorderedMap` that takes the start and end indexes from our list (we can use this for pagination later when building the frontend application).
 
 Add the following code at the end of `main.ts`:
 
