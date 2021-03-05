@@ -24,7 +24,7 @@ The Transaction Search API documentation for Cosmos can be found below.
 
 ## Rewards API
 
-Detailed rewards reports are also available via the Rewards API available on Cosmos DataHub.
+Detailed rewards reports are also available via the Rewards API available on Cosmos DataHub. It allows users generate daily rewards earned for an account for a given period of time.
 
 The Rewards API documentation for Cosmos can be found below.
-
+{% page-ref page="rewards-api.md" %}
