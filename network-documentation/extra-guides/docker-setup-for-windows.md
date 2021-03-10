@@ -8,6 +8,8 @@ description: "How to download and Install Docker \U0001F433 Desktop on Windows"
 
 Note - Before we proceed further please note that steps for installing Docker 🐳 are slightly different for Windows Home edition and Windows Pro/Student edition. Here we’re describing the Windows Home edition \(because it’s used by most of the people\). For Windows Pro/Student edition please refer - [Check Here](https://docs.docker.com/docker-for-windows/install/)
 
+{% embed url="https://youtu.be/q6MpbiqvpgA" caption="Docker Setup for Windows \| How to download & Install Docker 🐳 Desktop on Windows" %}
+
 ## **System Requirements**
 
 Windows 10 Home machines must meet the following requirements to install Docker Desktop:
