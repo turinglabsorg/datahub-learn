@@ -1,4 +1,4 @@
-# Tutorial: Developing your first secret contract
+# Developing your first secret contract
 
 ## Introduction
 
@@ -30,9 +30,9 @@ There are three main functions that any secret contract can execute once it has 
 2. `handle` takes a handle message as input from a client, executes transactions based on the content of the message, and outputs a response message to the client.
 3. `query` takes a query message as input from a client, reads data from storage to answer the query, and outputs a response message to the client.
 
-The key difference between `handle` and `query` is that `handle` can execute transactions that change the state of the storage, whereas `query` is read-only. `handle` transactions therefore require a gas payment from the requester in order to succeed, but a `query` does not<sup id="a1">[1](#f1)</sup>. You can see this in the `customFees` object created in the Figment Learn [Tutorial 5](https://learn.figment.io/network-documentation/secret/tutorials/5.-writing-and-deploying-your-first-secret-contract#deploying-the-contract).
+The key difference between `handle` and `query` is that `handle` can execute transactions that change the state of the storage, whereas `query` is read-only. `handle` transactions therefore require a gas payment from the requester in order to succeed, but a `query` does not[1](creating-a-secret-contract-from-scratch.md#f1). You can see this in the `customFees` object created in the Figment Learn [Tutorial 5](https://learn.figment.io/network-documentation/secret/tutorials/5.-writing-and-deploying-your-first-secret-contract#deploying-the-contract).
 
-We define these three functions (and any additional helper functions) in our `src/contract.rs` file as follows:
+We define these three functions \(and any additional helper functions\) in our `src/contract.rs` file as follows:
 
 ```rust
 use cosmwasm_std::{to_binary, Api, Binary, Env, Extern, HandleResponse, InitResponse, Querier, StdError, StdResult, Storage};
@@ -72,11 +72,11 @@ At the top of this file, we have a number of module imports, some of which will 
 
 * `deps` is a struct that contains three external dependencies of the contract:
   * `deps.storage` implements `get()`, `set()`, and `remove()` methods to read, write, and delete data from the private storage of the contract;
-  * `deps.api` currently only implements two methods that translate back and forth between secret network human address Strings (`"secret..."`) and a binary canonical address format;
+  * `deps.api` currently only implements two methods that translate back and forth between secret network human address Strings \(`"secret..."`\) and a binary canonical address format;
   * `deps.querier` implements a number of functions to query other contracts.
 * `env` is a struct that contains the following information about the external state of contract:
   * `env.block`, a struct that includes the current block height, time, and chain-id;
-  * `env.message`, a struct with information about the address that executed the contract (`env.message.sender`), plus any funds that might have been sent to the contract at that time;
+  * `env.message`, a struct with information about the address that executed the contract \(`env.message.sender`\), plus any funds that might have been sent to the contract at that time;
   * `env.contract`, the address of the contract;
   * `env.contract-key`, the code id used when instantiating the contract;
   * `env.contract_code_hash`, a hex encoded hash of the code id.
@@ -92,13 +92,13 @@ Now we need to specify the valid structure of input messages and output response
 
 Before we specify any message structures, let's step back and detail some functionality we want our contract to implement by coming up with some simple user stories:
 
-* We want a contract that lets a user upload a string of text (the reminder) that will be stored for that user only.
+* We want a contract that lets a user upload a string of text \(the reminder\) that will be stored for that user only.
 * A user should be able to read their stored message, but it should not be accessible to anyone else.
 * When a user receives their reminder they should also get information on when it was added.
 * When no message is stored and a user tries to read their reminder, then the user should receive a message that no reminder exists.
 * When a user uploads a new reminder it should replace the old one.
 * Anyone should be allowed to query for the total number of reminders that have been stored.
-* When the contract is first initialized we want the maximum size (in bytes) of a reminder to be set. If a user tries to upload a reminder larger than this size, then they should receive an error message.
+* When the contract is first initialized we want the maximum size \(in bytes\) of a reminder to be set. If a user tries to upload a reminder larger than this size, then they should receive an error message.
 
 Now let's create a skeleton for the message types that will support this functionality in `msg.rs`:
 
@@ -136,16 +136,15 @@ pub enum HandleAnswer {
 pub enum QueryAnswer {
     // add QueryMsg response types here
 }
-
 ```
 
 Since there is only one type of `InitMsg` we can simply define that as a struct. In contrast, there might be multiple kinds of `HandleMsg` and `QueryMsg` types in our contract, so for clarity we will organize those into enums of structs as shown in the following table. This is not a requirement, however. You can simply define your message and response types individually as differently-named structs in your `msg.rs` code. For the response from `init` we will not define a specific type in this contract, but rather use a default response. However, there is nothing to prevent you from creating your own custom responses to `init` if you want.
 
-| Functions | Messages     | Responses                     |
-|-----------|--------------|-------------------------------|
-| `init`    | `InitMsg`      | `InitResponse::default()` |
-| `handle`  | `HandleMsg::{...}`  | `HandleAnswer::{...}`      |
-| `query`   | `QueryMsg::{...}`   | `QueryAnswer::{...}`       |
+| Functions | Messages | Responses |
+| :--- | :--- | :--- |
+| `init` | `InitMsg` | `InitResponse::default()` |
+| `handle` | `HandleMsg::{...}` | `HandleAnswer::{...}` |
+| `query` | `QueryMsg::{...}` | `QueryAnswer::{...}` |
 
 First, we define `InitMsg` to add a field called `max_size`. This will be saved and used to make sure that reminders do not exceed a specified length.
 
@@ -217,9 +216,9 @@ Sometimes an incoming message or a response will have an optional field. Those a
 
 ### A note about data types between the client and contract
 
-A message is, in fact, received by the contract as an encrypted and then Base64-encoded version of the JSON stringify'd version of the original message (i.e., Javascript object) defined in the client code. This transformation is transparent to you as a secret contract developer, but awareness of this process is important because of how it affects data types. Your contract will create a schema document for each message type if you add `derive(JsonSchema)` macro to your message definitions. But you might still need to do some additional value checking and type casting in your contract code depending on the context.
+A message is, in fact, received by the contract as an encrypted and then Base64-encoded version of the JSON stringify'd version of the original message \(i.e., Javascript object\) defined in the client code. This transformation is transparent to you as a secret contract developer, but awareness of this process is important because of how it affects data types. Your contract will create a schema document for each message type if you add `derive(JsonSchema)` macro to your message definitions. But you might still need to do some additional value checking and type casting in your contract code depending on the context.
 
-In addition, number values in Javascript are limited in range. The maximum safe integer value in Javascript falls somewhere between maximum `i32` and `i64` values in Rust. Therefore, 128-bit integers, for example, need to be sent from the client as string values. Because 128-bit numbers are commonly used in contracts to represent currency values (e.g. $\mu$SCRT), the Cosmos SDK (which Secret Network is built on) has a pre-defined type `Uint128`. A message type with a `Uint128` field will expect a string from the incoming JSON, which is further validated to be a correct representation of 128-bit unsigned integer value. In order, to use the `Uint128` field value in your contract code, e.g., to put it in contract storage, you will then need to convert it to a Rust `u128` type.
+In addition, number values in Javascript are limited in range. The maximum safe integer value in Javascript falls somewhere between maximum `i32` and `i64` values in Rust. Therefore, 128-bit integers, for example, need to be sent from the client as string values. Because 128-bit numbers are commonly used in contracts to represent currency values \(e.g. $\mu$SCRT\), the Cosmos SDK \(which Secret Network is built on\) has a pre-defined type `Uint128`. A message type with a `Uint128` field will expect a string from the incoming JSON, which is further validated to be a correct representation of 128-bit unsigned integer value. In order, to use the `Uint128` field value in your contract code, e.g., to put it in contract storage, you will then need to convert it to a Rust `u128` type.
 
 Likewise, a message type that has a `HumanAddr` or `CanonicalAddr` as a field value will also be sent from the client using string values.
 
@@ -229,7 +228,7 @@ Now we are going to define how we want to model our contract's state in the cont
 
 Conceptually, storage for a secret contract is quite simple. It is a key-value store on the chain where each unit of data is identified by a unique key and the value of the data is a serialized representation of some data structure in Rust. Storage is encrypted and only the contract has access to its own storage.
 
-For our contract we need to store two types of information: 1) general state information for the contract and 2) the reminder messages for each user. Add the following code in `src/state.rs`:
+For our contract we need to store two types of information: 1\) general state information for the contract and 2\) the reminder messages for each user. Add the following code in `src/state.rs`:
 
 ```rust
 use std::{any::type_name};
@@ -253,17 +252,17 @@ pub struct Reminder {
 }
 ```
 
-First, we define a `static` unique key to point to our `State` struct and give it the value `b"config"`. Note, we will also need unique key values for each `Reminder`, but we will wait to create those in our `handle` function using the address of the sender. Next, we define our `State` struct, which keeps track of the `max_size` of the reminder messages along with a running count of the number of users and total reminders recorded. A `Reminder` consists of the reminder `content` (as a vector of bytes) and the timestamp when it was recorded.
+First, we define a `static` unique key to point to our `State` struct and give it the value `b"config"`. Note, we will also need unique key values for each `Reminder`, but we will wait to create those in our `handle` function using the address of the sender. Next, we define our `State` struct, which keeps track of the `max_size` of the reminder messages along with a running count of the number of users and total reminders recorded. A `Reminder` consists of the reminder `content` \(as a vector of bytes\) and the timestamp when it was recorded.
 
-You can serialize your data on storage in any way you want. It is recommended that you use `bincode2` serialization from the [Secret Contract Development Toolkit](https://github.com/enigmampc/secret-toolkit) if you do not want numbers and `Option` types encoded on the chain at variable lengths. Other types of serialization, such as json encode numbers as strings, so different values can have different byte lengths in storage. That can lead to data leakage if information can be discerned due to that difference (see [here](https://github.com/baedrik/SCRT-sealed-bid-auction/blob/master/WALKTHROUGH.md#staters) and [here](https://build.scrt.network/dev/privacy-model-of-secret-contracts.html#api-calls-2) for more detailed information).
+You can serialize your data on storage in any way you want. It is recommended that you use `bincode2` serialization from the [Secret Contract Development Toolkit](https://github.com/enigmampc/secret-toolkit) if you do not want numbers and `Option` types encoded on the chain at variable lengths. Other types of serialization, such as json encode numbers as strings, so different values can have different byte lengths in storage. That can lead to data leakage if information can be discerned due to that difference \(see [here](https://github.com/baedrik/SCRT-sealed-bid-auction/blob/master/WALKTHROUGH.md#staters) and [here](https://build.scrt.network/dev/privacy-model-of-secret-contracts.html#api-calls-2) for more detailed information\).
 
 The toolkit is not automatically added in the secret contract template, so add the following line to the end of the `Cargo.toml` file in the root directory of your project:
 
-```toml
+```text
 secret-toolkit = { git = "https://github.com/enigmampc/secret-toolkit" }
 ```
 
-We now define three helper functions in `state.rs` to read and write data to storage using bincode2 <sup id="a2">[2](#f2)</sup>:
+We now define three helper functions in `state.rs` to read and write data to storage using bincode2 [2](creating-a-secret-contract-from-scratch.md#f2):
 
 * `save` will serialize a struct using `bincode2` and write it to storage using the storage `set()` method.
 * `load` will retrieve the data from storage using the `get()` method, deserialize it, and returns a `StdResult` with the data. If the key is not found a "not found" `StdError` is returned. Using the `?` operator in the calling function will cause the error to be sent back up as the response.
@@ -310,7 +309,7 @@ fn valid_max_size(val: i32) -> Option<u16> {
 }
 ```
 
-In `init` add the following, which will cause our `init` function to return a `StdError` with an informative error message to the client if `max_size` is out of bounds. (Note, we have changed `env` to `_env` because we will not use it in our `init` function and the Rust compiler will emit a warning otherwise):
+In `init` add the following, which will cause our `init` function to return a `StdError` with an informative error message to the client if `max_size` is out of bounds. \(Note, we have changed `env` to `_env` because we will not use it in our `init` function and the Rust compiler will emit a warning otherwise\):
 
 ```rust
 pub fn init<S: Storage, A: Api, Q: Querier>(
@@ -409,7 +408,7 @@ fn try_record<S: Storage, A: Api, Q: Querier>(
 }
 ```
 
-First thing we do is define a String that will hold our `status` message and convert the incoming `reminder` message into a byte slice. Next, we load the config state from storage and put it in a variable called `config`. We can use `load` and the `?` operator because we know that it was created in `init`. We test the length of our incoming reminder (# of bytes) against the `max_size` field in our config struct. If the message is too long, we indicate it in `status`.
+First thing we do is define a String that will hold our `status` message and convert the incoming `reminder` message into a byte slice. Next, we load the config state from storage and put it in a variable called `config`. We can use `load` and the `?` operator because we know that it was created in `init`. We test the length of our incoming reminder \(\# of bytes\) against the `max_size` field in our config struct. If the message is too long, we indicate it in `status`.
 
 If the incoming reminder is an acceptable length, then we need to store the new reminder and its timestamp using a key derived from the current sender's address. Once that is done we increment the `reminder_count`. To get the address we use `deps.api.canonical_address` method and pass it the current sender from `env`. The result is stored in `sender_address`. We construct a `Reminder` struct and set the `content` to a `vec<u8>` representation of the reminder byte slice and the current block time, also from `env`. Keys in storage are byte sequences, so to use `sender_address` as a key we need to call `.as_slice().to_vec()`. We use `save` to write the new `Reminder` at this key. Finally, we update the config by incrementing `reminder_count`, overwrite it in storage, and set the `status` message.
 
@@ -485,16 +484,14 @@ Unlike a normal web service, there is no mechanism for a secret contract to repe
 
 ## Notes
 
-<b id="f1">1</b>: Although, queries do not impose a fee, they are metered by gas. This allows a node to reject a long-running query.[↩](#a1)
+**1**: Although, queries do not impose a fee, they are metered by gas. This allows a node to reject a long-running query.[↩](creating-a-secret-contract-from-scratch.md#a1)
 
-<b id="f2">2</b>: These functions are based on the [Sealed Bid Auction contract code](https://github.com/baedrik/SCRT-sealed-bid-auction/blob/master/src/state.rs).[↩](#a2)
+**2**: These functions are based on the [Sealed Bid Auction contract code](https://github.com/baedrik/SCRT-sealed-bid-auction/blob/master/src/state.rs).[↩](creating-a-secret-contract-from-scratch.md#a2)
 
 ## About the author
 
 This tutorial was written by Ben Adams, a senior lecturer in computer science and software engineering at the University of Canterbury in New Zealand.
 
-<div class="cc">
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-</div>
-
+ [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)  
+This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
 
