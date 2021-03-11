@@ -23,11 +23,17 @@ Head over to [Remix](https://remix.ethereum.org/) and click on `Plugin Manger`. 
 
 
 <p>
-  <img src="../../.gitbook/assets/celo-extension-1.JPG" width="250" alt="accessibility text">
+  <img src="../../../.gitbook/assets/celo-extension-1.JPG" width="250">
 </p>
 
 
 Now we should be able to see **Celo** icon in Icon Tray.
+
+Our development area should look like this.
+
+<p>
+  <img src="../../../.gitbook/assets/celo-extension-added.JPG" >
+</p>
 
 
 
@@ -89,8 +95,14 @@ After compiling the succesfully, we are ready to deploy our contract.
 
 Click on **Deploy** button and sign the transaction using your wallet.
 
+<p align="center">
+  <img src="../../../.gitbook/assets/celo-extension-deploy-button.JPG" >
+</p>
 
-Yay! we have successfully deployed our contract to the Alfajores Testnet. Now try playing around with store and retrieve functionality of our smart contract.
+
+Yay! we have successfully deployed our contract to the Alfajores Testnet. We can check the status of transaction on [Alfajores Blockscout](https://alfajores-blockscout.celo-testnet.org/) by pasting the transaction hash.
+
+Now try playing around with store and retrieve functionality of our smart contract.
 We can use similar instructions for deploying contracts on mainnet by selecting **Celo Main Network** in celo-extension-wallet but we will need real celo in that case.
 
 
