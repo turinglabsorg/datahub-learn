@@ -62,6 +62,7 @@
     * [Web3.bzz](network-documentation/celo/rpc-and-rest-api/web3.bzz.md)
     * [Web3.shh](network-documentation/celo/rpc-and-rest-api/web3.shh.md)
     * [Web3.utils](network-documentation/celo/rpc-and-rest-api/web3.utils.md)
+    * [How to mint your own fungible Celo Token](network-documentation/celo/tutorial/celo-ERC20-token-on-remix.md)
   * [🗺 Celo Pathway](network-documentation/celo/celo-pathway.md)
   * [💡 Tutorials](network-documentation/celo/tutorial/README.md)
     * [1. Connect to a Celo node with DataHub](network-documentation/celo/tutorial/1.connect.md)
