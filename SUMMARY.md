@@ -166,6 +166,7 @@
     * [Secret REST API](network-documentation/secret/rpc-and-rest-api/secret-rest-api.md)
   * [🗺 Secret Pathway](network-documentation/secret/secret-pathway.md)
   * [💡 Tutorials](network-documentation/secret/tutorials/README.md)
+    * [Intro Pathway: Secret basics](network-documentation/secret/tutorials/intro-pathway-secret-basics.md)
     * [1. Connect to a Secret node with DataHub](network-documentation/secret/tutorials/1.-connecting-to-a-secret-node-using-datahub.md)
     * [2. Create your first Secret account](network-documentation/secret/tutorials/2.-setting-up-your-wallet.md)
     * [3. Query the Secret Network](network-documentation/secret/tutorials/3.-querying-the-secret-blockchain.md)
