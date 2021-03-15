@@ -161,10 +161,42 @@ We can get free testnet balance from [here]().
 3. Pay the transaction fee and sign the transaction using celo wallet.
 
 Congratulation! we have deployed our very own Fungible token on celo blockchain. It usually takes aroound 5 seconds to get our transaction confirmed. Once our trasaction is confirmed
-Lets head over to [blockScout]() to see all the details.
+Let's head over to [blockScout](https://alfajores-blockscout.celo-testnet.org/) to see all the details.
 
-[Here]() are the details of the smart contract deployment shown in the example.
+[Here](https://alfajores-blockscout.celo-testnet.org/address/0x4324bf228a8a3f1ddfd232335372d5cbaae38cd1/transactions) are the details of the smart contract deployment shown in the example.
 
-## 6. Transfering Token
+## 6. Transferring Token
+
+Now that our contract is deployed, we have all the CFT tokens that exists on Celo Blockchain. Now we should also learn how to tranfer these tokens from our account to others.
 
 
+There are 2 ways of transfering tokens:
+1. **SMART CONTRACT** :  
+
+a. Select the account which have 1000 CFT, in my case `0x0eAd666A5B65ED614990fD582693039ed49847E6` (which you can verify on Blockscout using the link given above) on Celo extesnion wallet.
+
+b. In the tranfer tab and enter the **Alfajores Testnet Address** of account to which you want to tranfer the tokens. I will tranfer it to `0x39E526B01fDe70d64FABDCe5Ca92b47789AA231D`.
+
+c. Click on `Transact` and sign the transactiion.
+
+With that we have learned how to tranfer your fungible tokens to other addresses. But there is still a problem, we aren't able to see our tokens on our celo wallet. So Let's learn how to do that.
+
+1. Select the **Add Token** button on your celo wallet.
+2. Enter the contract address in **Token Contract Address** and ckick `Next`.
+
+Now you will be able to see your token balance.
+
+
+2. **Celo Wallet**
+
+After you have added the token address to our wallet, simply click on `Send` button and add the address of recipient. Tokens will be transfered after you sign the trasaction and pay `transaction fee`.
+
+## Conclusion
+
+This was a very intresting tutorial. In this tutorial we learned:
+1. What are tokens
+2. Different types of tokens
+3. How to deploy fungible token on Celo blockchain
+4. How to send tokens over Celo.
+
+Now deploy more fungible tokens on Celo and send some over to `0x0eAd666A5B65ED614990fD582693039ed49847E6`. We would love to see what you created.
