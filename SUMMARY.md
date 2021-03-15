@@ -72,6 +72,7 @@
   * [🗺 Celo Pathway](network-documentation/celo/celo-pathway.md)
   * [💡 Tutorials](network-documentation/celo/tutorial/README.md)
     * [1. Connect to a Celo node with DataHub](network-documentation/celo/tutorial/1.connect.md)
+    * [Intro Pathway: Celo Basics](network-documentation/celo/tutorial/intro-pathway-celo-basics.md)
     * [2. Create your first Celo account](network-documentation/celo/tutorial/2.account.md)
     * [3. Query the Celo network](network-documentation/celo/tutorial/3.query.md)
     * [4. Submit your first transactions](network-documentation/celo/tutorial/4.transactions.md)
