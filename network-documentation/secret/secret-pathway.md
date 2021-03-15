@@ -8,6 +8,10 @@ description: Learn what makes Secret unique and build your first Secret smart co
 
 Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project.
 
+{% hint style="info" %}
+ rewards for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn.
+{% endhint %}
+
 ## 🏁 Get started by signing up for DataHub
 
 Once you are ready, get started by [**setting up an account on DataHub**](https://datahub.figment.io/sign_up?service=secret) ****to put your skills to the test and follow-along the tutorials to start building on Secret. Make sure to click on "Start" on the first tutorial before starting to code! 
