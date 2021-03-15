@@ -173,7 +173,7 @@
     * [5. Write & deploy your first Secret contract](network-documentation/secret/tutorials/5.-writing-and-deploying-your-first-secret-contract.md)
     * [Developing your first secret contract](network-documentation/secret/tutorials/creating-a-secret-contract-from-scratch.md)
     * [Delegate to a Validator & Unbond Tokens](network-documentation/secret/tutorials/delegate-and-unbond-tokens.md)
-* [📱Mina](network-documentation/mina/README.md)
+* [📱 Mina](network-documentation/mina/README.md)
   * [🎮 RPC & REST API](network-documentation/mina/rpc-and-rest-api/README.md)
     * [Indexer API Documentation](network-documentation/mina/rpc-and-rest-api/indexer-api-documentation.md)
 * [🌍 Terra](network-documentation/terra/README.md)
