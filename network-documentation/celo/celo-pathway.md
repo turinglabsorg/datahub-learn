@@ -37,23 +37,23 @@ We also do not accept "Google phone numbers" or any online SMS number.
 
 ### 💡 1. Connect to a Celo node using DataHub
 
-{% page-ref page="tutorial/1.connect.md" %}
+{% page-ref page="tutorial/intro-pathway-celo-basics/1.connect.md" %}
 
 ### 💡 2. Create your first Celo account 
 
-{% page-ref page="tutorial/2.account.md" %}
+{% page-ref page="tutorial/intro-pathway-celo-basics/2.account.md" %}
 
 ### 💡 3. Query the Celo network
 
-{% page-ref page="tutorial/3.query.md" %}
+{% page-ref page="tutorial/intro-pathway-celo-basics/3.query.md" %}
 
 ### 💡 4. Submit your first transactions
 
-{% page-ref page="tutorial/4.transactions.md" %}
+{% page-ref page="tutorial/intro-pathway-celo-basics/4.transactions.md" %}
 
 ### 💡 5. Write & deploy your first Celo smart contract
 
-{% page-ref page="tutorial/5.smart-contract.md" %}
+{% page-ref page="tutorial/intro-pathway-celo-basics/5.smart-contract.md" %}
 
 ## ![](../../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Extra Celo Pathway Challenges
 
