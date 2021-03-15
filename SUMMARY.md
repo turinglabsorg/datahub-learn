@@ -137,7 +137,7 @@
     * [NEAR RPC](network-documentation/near/rpc-and-rest-api/near-rpc.md)
   * [🗺 NEAR Pathway](network-documentation/near/near-pathway.md)
   * [💡 Tutorials](network-documentation/near/tutorials/README.md)
-    * [Intro Pathway: write & deploy your first NEAR smart contract](network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/README.md)
+    * [Intro Pathway: NEAR Basics](network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/README.md)
       * [1. Connect to a NEAR node using DataHub](network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub.md)
       * [2. Create your first NEAR account](network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/2.-creating-your-first-near-account-using-the-sdk.md)
       * [3. Query the NEAR blockchain](network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/3.-querying-the-near-blockchain.md)
