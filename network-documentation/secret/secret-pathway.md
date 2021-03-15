@@ -34,23 +34,23 @@ We also do not accept "Google phone numbers" or any online SMS number.
 
 ### 💡1. Connect to a Secret node using DataHub 
 
-{% page-ref page="tutorials/1.-connecting-to-a-secret-node-using-datahub.md" %}
+{% page-ref page="tutorials/intro-pathway-secret-basics/1.-connecting-to-a-secret-node-using-datahub.md" %}
 
 ### 💡2. Create your first Secret account
 
-{% page-ref page="tutorials/2.-setting-up-your-wallet.md" %}
+{% page-ref page="tutorials/intro-pathway-secret-basics/2.-setting-up-your-wallet.md" %}
 
 ### 💡3. Query the Secret Network 
 
-{% page-ref page="tutorials/3.-querying-the-secret-blockchain.md" %}
+{% page-ref page="tutorials/intro-pathway-secret-basics/3.-querying-the-secret-blockchain.md" %}
 
 ### 💡4. Submit your first Secret transaction
 
-{% page-ref page="tutorials/4.-submit-your-first-transaction.md" %}
+{% page-ref page="tutorials/intro-pathway-secret-basics/4.-submit-your-first-transaction.md" %}
 
 ### 💡5. Write & deploy your first Secret smart contract
 
-{% page-ref page="tutorials/5.-writing-and-deploying-your-first-secret-contract.md" %}
+{% page-ref page="tutorials/intro-pathway-secret-basics/5.-writing-and-deploying-your-first-secret-contract.md" %}
 
 ## ![](../../.gitbook/assets/logo1.png)Extra Secret Pathway Challenges
 
