@@ -8,9 +8,23 @@ description: See all available and upcoming pathways
 
 Learn Pathways are short curriculums that help developers understand which network is right for them and how to interact with Web 3 protocols at every step. Developers will have to complete a suite of tutorials that will help them set up their first DApp \(decentralized application\) via [**DataHub**](https://datahub.figment.io/sign_up), even with little to no expertise with the selected protocol. As they complete the tutorials, developers earn protocol tokens offered by foundations to help align their interests with the network. 
 
+## ![](../.gitbook/assets/avalanche_token_round-300x300.png) Avalanche Pathway
+
+Avalanche is a layer one protocol by Ava Labs that offers high-throughput, fast finality, and unprecedented decentralization. Developers are able to launch their own public or private blockchains \(called subnets\), create and trade digital assets, and build scalable smart contracts and decentralized applications. Learn what makes it unique and build your first project to **earn $50 in AVAX**!
+
+**Get started with the Avalanche Pathway by visiting the page below.** 
+
+{% page-ref page="../network-documentation/avalanche/tutorials/pathway/" %}
+
+#### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
+
 ## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Celo Pathway
 
-Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users. Learn what makes it unique and build your first project to earn **$5 in cUSD!** 
+Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users. Learn what makes it unique and build your first project! 
+
+{% hint style="info" %}
+There are currently no rewards for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn. 
+{% endhint %}
 
 **Get started with the Celo Pathway by visiting the page below.** 
 
@@ -20,7 +34,11 @@ Celo’s aim is to empower anyone with a smartphone anywhere in the world to hav
 
 ## ![](../.gitbook/assets/tnear_icon_1.png) NEAR Pathway 
 
-NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands. Learn what makes it unique and build your first project to earn **$20 in NEAR** equivalent! 
+NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands. Learn what makes it unique and build your first project.
+
+{% hint style="info" %}
+There are currently no rewards for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn.
+{% endhint %}
 
 **Get started with the NEAR Pathway by visiting the page below.** 
 
@@ -30,7 +48,11 @@ NEAR is a decentralized application platform that is secure enough to manage hig
 
 ## ![](../.gitbook/assets/logo1.png) Secret Pathway
 
-Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project to earn **$20 in SCRT equivalent**! 
+Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project.
+
+{% hint style="info" %}
+There are currently no rewards for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn.
+{% endhint %}
 
 **Get started with the Secret Pathway by visiting the page below.** 
 

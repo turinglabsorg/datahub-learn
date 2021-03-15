@@ -6,7 +6,7 @@ description: Learn what makes NEAR unique and build your first NEAR smart contra
 
 ## ![](../../.gitbook/assets/unnamed-1-.png) Welcome to the NEAR Pathway
 
-NEAR Protocol is a decentralized platform where developers can host serverless applications and smart contracts which have easy access to open finance networks and benefit from an ecosystem of open web components. Learn what makes it unique and build your first project to earn **$20 in NEAR equivalent**! 
+NEAR Protocol is a decentralized platform where developers can host serverless applications and smart contracts which have easy access to open finance networks and benefit from an ecosystem of open web components. Learn what makes it unique and build your first project. 
 
 ## 🏁 Get started by signing up for DataHub
 
@@ -80,7 +80,7 @@ Make sure to refer to Figment Learn in your tweet!
 
 Make sure to refer to Figment Learn in your post! 
 
-### ![](../../.gitbook/assets/github-square-512.png) Github \(100$ in NEAR each up to `1` max of `meaningful` piece of software\)
+### ![](../../.gitbook/assets/github-square-512.png) Github \(50$ in NEAR each up to `1` max of `meaningful` piece of software\)
 
 1. Build a demo of an interesting feature of NEAR \(ie. cross-contract calls\)
 2. Integrate NEAR with a popular framework \(ie. Express middleware\)

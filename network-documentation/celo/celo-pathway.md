@@ -8,7 +8,7 @@ description: Learn what makes Celo unique and build your first Celo smart contra
 
 Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users.   
   
-To achieve this, Celo offers a complete stack of new blockchain software, core libraries that run on that blockchain, and end-user applications including a Wallet app that communicates with that logic. Learn what makes it unique and build your first project to earn **$5 in cUSD!** 
+To achieve this, Celo offers a complete stack of new blockchain software, core libraries that run on that blockchain, and end-user applications including a Wallet app that communicates with that logic. Learn what makes it unique and build your first project.
 
 ## **🏁** Get started by signing up for DataHub <a id="get-started-by-signing-up-for-datahub"></a>
 
