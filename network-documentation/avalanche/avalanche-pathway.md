@@ -24,6 +24,12 @@ Verify each tutorial as you complete them and make sure to click on "Submit to e
 
 ### ![](../../.gitbook/assets/vhhp1wl4_400x400-1-.jpg) [Get started by signing up to DataHub](https://datahub.figment.io/sign_up?service=avalanche)! 
 
+{% hint style="warning" %}
+Make sure to use a browser that does not hide your IP address, we will deny submissions with hidden IPs.   
+  
+We also do not accept "Google phone numbers" or any online SMS number. 
+{% endhint %}
+
 ### 💡 1. Connect to an Avalanche node using DataHub
 
 {% page-ref page="tutorials/pathway/1.-connect-to-avalanche-node-with-datahub.md" %}
