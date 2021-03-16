@@ -203,6 +203,7 @@
     * [Oracle Contracts](network-documentation/tezos/tutorials/oracle-contracts.md)
     * [Creating NFTs](network-documentation/tezos/tutorials/creating-nfts.md)
 * [📚 Extra Guides](network-documentation/extra-guides/README.md)
+  * [Getting started with BrightID](network-documentation/extra-guides/getting-started-with-brightid.md)
   * [Docker Setup for Windows](network-documentation/extra-guides/docker-setup-for-windows.md)
   * [5XX Retry Logic Best Practices](network-documentation/extra-guides/5xx-retry-logic-best-practices/README.md)
     * [5XX Retry Logic Best Practices - NodeJS](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-nodejs.md)
