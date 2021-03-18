@@ -10,7 +10,7 @@ Mina exposes a Graphql API to enable the development of applications on the Mina
 
 Learn about the APIs available via Mina [**DataHub**](https://datahub.figment.io/sign_up?service=mina) ****below.
 
-## Mina Graphql API by Figment
+## Mina Indexer API by Figment
 
 {% page-ref page="indexer-api-documentation.md" %}
 
