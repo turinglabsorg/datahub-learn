@@ -4,9 +4,7 @@ description: HTTP API documentation for the Mina Indexer API service provided by
 
 # Indexer API Documentation
 
-## Available Endpoints
-
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/health" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/health" %}
 {% api-method-summary %}
 Health Status
 {% endapi-method-summary %}
@@ -46,7 +44,7 @@ Service is unhealthy
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/status" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/status" %}
 {% api-method-summary %}
 Service Status
 {% endapi-method-summary %}
@@ -83,7 +81,7 @@ Success
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/height" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/height" %}
 {% api-method-summary %}
 Latest Height
 {% endapi-method-summary %}
@@ -112,7 +110,7 @@ Success
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/block" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/block" %}
 {% api-method-summary %}
 Latest Block
 {% endapi-method-summary %}
@@ -200,7 +198,7 @@ Success
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/blocks" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/blocks" %}
 {% api-method-summary %}
 Blocks Search
 {% endapi-method-summary %}
@@ -270,7 +268,7 @@ Success
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/blocks/{id}" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/blocks/{id}" %}
 {% api-method-summary %}
 Block Details
 {% endapi-method-summary %}
@@ -377,7 +375,7 @@ Block does not exist
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/block\_stats" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/block\_stats" %}
 {% api-method-summary %}
 Block Stats
 {% endapi-method-summary %}
@@ -429,7 +427,7 @@ Success
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/block\_times" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/block\_times" %}
 {% api-method-summary %}
 Block Times
 {% endapi-method-summary %}
@@ -461,7 +459,7 @@ Number of block to include in calculation
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/validators" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/validators" %}
 {% api-method-summary %}
 All Validators
 {% endapi-method-summary %}
@@ -553,7 +551,7 @@ Success
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/snarkers" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/snarkers" %}
 {% api-method-summary %}
 All Snarkers
 {% endapi-method-summary %}
@@ -588,7 +586,7 @@ Success
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/validators/{id}" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/validators/{id}" %}
 {% api-method-summary %}
 Validator stats
 {% endapi-method-summary %}
@@ -630,7 +628,7 @@ Success
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/delegations" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/delegations" %}
 {% api-method-summary %}
 Active delegations
 {% endapi-method-summary %}
@@ -670,7 +668,7 @@ Success
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/transactions" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/transactions" %}
 {% api-method-summary %}
 Transaction Search
 {% endapi-method-summary %}
@@ -789,7 +787,7 @@ Server error
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/transactions/{hash}" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/transactions/{hash}" %}
 {% api-method-summary %}
 Transaction Details
 {% endapi-method-summary %}
@@ -851,7 +849,7 @@ Not Found
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="https://mina--testnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/account/{id}" %}
+{% api-method method="get" host="https://mina--devnet--indexer.datahub.figment.io/apikey/YOURAPIKEY" path="/accounts/{id}" %}
 {% api-method-summary %}
 Account Details
 {% endapi-method-summary %}
