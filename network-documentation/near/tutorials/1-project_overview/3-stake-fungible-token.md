@@ -85,7 +85,7 @@ To keep the code clean we will first design the interfaces separate from the imp
 
 * see [Rust code](https://github.com/oysterpack/oysterpack-near-stake-token/blob/main/contract/src/interface/fungible_token.rs) on Github
 
-**StakeTokeContract** implements the **FungibaleToken** and **ResolveTransferCall** traits. It depends on the **TransferReceiver** interface for cross-contract calls.
+**StakeTokenContract** implements the **FungibleToken** and **ResolveTransferCall** traits. It depends on the **TransferReceiver** interface for cross-contract calls.
 
 **FungibleToken** trait
 
