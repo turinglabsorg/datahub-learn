@@ -4,7 +4,7 @@ description: Learn what makes Celo unique and build your first Celo smart contra
 
 # 🗺 Celo Pathway
 
-## ![](../../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Welcome to the Celo Pathway
+## ![](../../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Welcome to the Celo Pathway
 
 Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users.   
   
@@ -29,7 +29,7 @@ Verify each tutorial as you complete them and make sure to click on "Submit to e
 
 \*\*\*\*[**Make sure to read our Terms of Use before starting**](https://learn.datahub.figment.io/terms-of-use)**.** 
 
-## \*\*\*\*![](../../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) **Celo** Pathway Tutorials
+## \*\*\*\*![](../../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) **Celo** Pathway Tutorials
 
 ### ![](../../.gitbook/assets/vhhp1wl4_400x400-1-.jpg) [Get started by signing up to DataHub!](https://datahub.figment.io/sign_up?service=celo) 
 
@@ -59,7 +59,7 @@ We also do not accept "Google phone numbers" or any online SMS number.
 
 {% page-ref page="tutorial/intro-pathway-celo-basics/5.smart-contract.md" %}
 
-## ![](../../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Extra Celo Pathway Challenges
+## ![](../../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Extra Celo Pathway Challenges
 
 Celo is providing Bonus Activity Rewards for additional activities following the completion of the Celo Pathway tutorials. Complete any of these challenges and earn more cUSD tokens! 
 
@@ -67,7 +67,7 @@ Simply fill [**this form**](https://forms.gle/PHrw73rN6R5sX3n17) and include dir
   
 Bonus Activity Rewards will be given out at the discretion of the reviewer. Please provide any context you would like us to consider to maximize your Bonus Activity Reward. 
 
-### ![](../../.gitbook/assets/download-6-.png) Twitter \($5 in cUSD each\)
+### ![](../../.gitbook/assets/download-6-1-%20%281%29.png) Twitter \($5 in cUSD each\)
 
 1. Post a lesson learned about the Celo platform, tools, community, etc.
 2. Post a screenshot of what you just built with Celo
@@ -77,7 +77,7 @@ Bonus Activity Rewards will be given out at the discretion of the reviewer. Plea
 
 Make sure to refer to Figment Learn in your tweet! 
 
-### ![](../../.gitbook/assets/download-7-.png) Medium \($20 in cUSD each, `1500-2000` words each\)
+### ![](../../.gitbook/assets/download-7-1-%20%281%29.png) Medium \($20 in cUSD each, `1500-2000` words each\)
 
 1. Recount your Celo learning experience
 2. Share your ideas for improving the Celo developer experience
