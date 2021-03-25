@@ -178,6 +178,7 @@
       * [5. Write & deploy your first Secret contract](network-documentation/secret/tutorials/intro-pathway-secret-basics/5.-writing-and-deploying-your-first-secret-contract.md)
     * [Developing your first secret contract](network-documentation/secret/tutorials/creating-a-secret-contract-from-scratch.md)
     * [Delegate to a Validator & Unbond Tokens](network-documentation/secret/tutorials/delegate-and-unbond-tokens.md)
+    * [Create your first secret NFT](network-documentation/secret/tutorials/create-your-first-secret-nft.md)
 * [🌍 Terra](network-documentation/terra/README.md)
   * [✏ Terra 101](network-documentation/terra/terra-101.md)
   * [🎮 RPC & REST API](network-documentation/terra/rpc-and-rest-api/README.md)
