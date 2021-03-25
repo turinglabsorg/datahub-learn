@@ -1,10 +1,9 @@
 ---
-description: This is the first installment of a series about the newly arrived NFT feature on the secret network. In this first tutorial you will learn about the idea of NFTs, the difference between 'classical' and secret NFTs and how to interact with an deployed contract to mint, read and send your NFTs. At the end of this tutorial you will have a good understanding of the concepts and a small toolbox, which serves as a foundation for upcoming articles, to explore NFTs on secret network in greater depth.
+description: This is the first installment of a series about the newly arrived NFT feature on the secret network. In this first tutorial you will learn about the idea of NFTs, the difference between 'classical' and secret NFTs and how to interact with an deployed contract to mint, read and send your NFTs. At the end of this tutorial you will have a good understanding of the concepts and a small toolbox, which serves as a foundation for upcoming tutorials, to explore NFTs on secret network in greater depth.
 ---
 
 # Create your first secretNFT
 
-<!-- This is the first installment of a series about the newly arrived NFT feature on the secret network. In this first tutroail you will learn about the idea of NFTs, the difference between 'classical' and secret NFTs and how to interact with an deployed contract to mint, read and send your NFTs. At the end of this tutorial you will have a good understanding of the concepts and a small toolbox, which serves as a foundation for upcoming articles, to explore NFTs on secret network in greater depth. -->
 
 ## About the Author
 
@@ -28,7 +27,7 @@ In this section we will connect to an already deployed instance of the [NFT refe
 
 ### Prerequisites
 
-This article assumes that you have completed the secret pathway already, as we are reusing some of the scripts you wrote back there. If you haven't done so until now you should take a few minutes and go through the pathway. We will start in the same project folder as you left off after section 5.
+This tutorial assumes that you have completed the secret pathway already, as we are reusing some of the scripts you wrote back there. If you haven't done so until now you should take a few minutes and go through the pathway. We will start in the same project folder as you left off after section 5.
 
 {% page-ref page="intro-pathway-secret-basics/5.-writing-and-deploying-your-first-secret-contract.md" %}
 
