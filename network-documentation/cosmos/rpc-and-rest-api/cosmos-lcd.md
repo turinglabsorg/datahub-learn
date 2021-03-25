@@ -10,135 +10,54 @@ description: Learn how to interact with the Cosmos LCD
 
 A REST interface for state queries, transaction generation and broadcasting. 
 
-## **Transactions**
+## **Gaia REST**
 
-**Search, encode, or broadcast transactions.**
-
-### `GET/txs/{hash}`
+### `GET/node_info`
 
 **Description**
 
-Get a transaction by hash ****
+Get the properties of the connected node 
 
 **Parameters**
 
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **hash** | string \* required | Transaction hash  |
+No parameters
 
-**Example JSON Output**
+**Example JSON output**
 
 ```javascript
 {
-  "hash": "D085138D913993919295FF4B0A9107F1F2CDE0D37A87CE0644E217CBF3B49656",
-  "height": 368,
-  "tx": {
-    "msg": [
-      "string"
-    ],
-    "fee": {
-      "gas": "string",
-      "amount": [
-        {
-          "denom": "stake",
-          "amount": "50"
-        }
-      ]
-    },
-    "memo": "string",
-    "signature": {
-      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
-      "pub_key": {
-        "type": "tendermint/PubKeySecp256k1",
-        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
-      },
-      "account_number": "0",
-      "sequence": "0"
-    }
+  "application_version": {
+    "build_tags": "string",
+    "client_name": "string",
+    "commit": "string",
+    "go": "string",
+    "name": "string",
+    "server_name": "string",
+    "version": "string"
   },
-  "result": {
-    "log": "string",
-    "gas_wanted": "200000",
-    "gas_used": "26354",
-    "tags": [
-      {
-        "key": "string",
-        "value": "string"
-      }
-    ]
+  "node_info": {
+    "id": "string",
+    "moniker": "validator-name",
+    "protocol_version": {
+      "p2p": 7,
+      "block": 10,
+      "app": 0
+    },
+    "network": "gaia-2",
+    "channels": "string",
+    "listen_addr": "192.168.56.1:26656",
+    "version": "0.15.0",
+    "other": {
+      "tx_index": "on",
+      "rpc_address": "tcp://0.0.0.0:26657"
+    }
   }
 }
 ```
 
-### `GET/txs`
+## **Transactions**
 
-**Description**
-
-Search transactions
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **message.action** | string  | Transaction events such as 'message.action=send' which results in the following /txs?message.action=send'  |
-| **message.sender** | string | Transaction tags with sender: 'GET /txs message.action=send&message.sender=cosmos16xyempempp92x9hyzz9wrgf94r6j9h5f06pxxv' |
-| **page** | integer | Page number |
-| **limit** | integer | Maximum number of items per page |
-| **tx.minheight** | integer | Transactions on blocks with height greater or equal this value |
-| **tx.maxheight** | integer | Transactions on blocks with height less than or equal this value |
-
-**Example JSON Output**
-
-```javascript
-{
-  "total_count": 1,
-  "count": 1,
-  "page_number": 1,
-  "page_total": 1,
-  "limit": 30,
-  "txs": [
-    {
-      "hash": "D085138D913993919295FF4B0A9107F1F2CDE0D37A87CE0644E217CBF3B49656",
-      "height": 368,
-      "tx": {
-        "msg": [
-          "string"
-        ],
-        "fee": {
-          "gas": "string",
-          "amount": [
-            {
-              "denom": "stake",
-              "amount": "50"
-            }
-          ]
-        },
-        "memo": "string",
-        "signature": {
-          "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
-          "pub_key": {
-            "type": "tendermint/PubKeySecp256k1",
-            "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
-          },
-          "account_number": "0",
-          "sequence": "0"
-        }
-      },
-      "result": {
-        "log": "string",
-        "gas_wanted": "200000",
-        "gas_used": "26354",
-        "tags": [
-          {
-            "key": "string",
-            "value": "string"
-          }
-        ]
-      }
-    }
-  ]
-}
-```
+**Search, encode, or broadcast transactions.**
 
 ### `POST/txs`
 
@@ -214,57 +133,6 @@ Broadcast a signed transaction
   },
   "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
   "height": 0
-}
-```
-
-### `POST/txs/encode`
-
-**Description**
-
-Encode a transaction to the Amino wire format 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **tx** | object | The transaction to encode |
-
-**Example Request**
-
-```javascript
-{
-  "tx": {
-    "msg": [
-      "string"
-    ],
-    "fee": {
-      "gas": "string",
-      "amount": [
-        {
-          "denom": "stake",
-          "amount": "50"
-        }
-      ]
-    },
-    "memo": "string",
-    "signature": {
-      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
-      "pub_key": {
-        "type": "tendermint/PubKeySecp256k1",
-        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
-      },
-      "account_number": "0",
-      "sequence": "0"
-    }
-  }
-}
-```
-
-**Example JSON Output**
-
-```javascript
-{
-  "tx": "The base64-encoded Amino-serialized bytes for the tx"
 }
 ```
 
@@ -619,171 +487,9 @@ Get a validator set a certain height
 }
 ```
 
-## **Authentication**
-
-**Authenticate accounts**
-
-### `GET/auth/accounts/{address}`
-
-**Description**
-
-Get the account information on blockchain
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **address** | string \* required | Account address |
-
-**Example JSON Output**
-
-```javascript
-{
-  "type": "string",
-  "value": {
-    "account_number": "string",
-    "address": "string",
-    "coins": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "public_key": {
-      "type": "string",
-      "value": "string"
-    },
-    "sequence": "string"
-  }
-}
-```
-
-## **Bank**
-
-**Create and broadcast transactions**
-
-### `GET/bank/balances/{address}`
-
-**Description**
-
-Get the account balances 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **address** | string \* required | Account address |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "denom": "stake",
-    "amount": "50"
-  }
-]
-```
-
-### `POST/bank/accounts/{address}/transfers`
-
-**Description**
-
-Send coins from one account to another 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **address** | string \* required | Account address in bech32 format |
-| **account** | object \* required | The sender and transaction information |
-
-**Example Request**
-
-```javascript
-{
-  "base_req": {
-    "from": "cosmos1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
-    "memo": "Sent via Cosmos Voyager 🚀",
-    "chain_id": "Cosmos-Hub",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "simulate": false
-  },
-  "amount": [
-    {
-      "denom": "stake",
-      "amount": "50"
-    }
-  ]
-}
-```
-
-**Example JSON Output**
-
-```javascript
-{
-  "msg": [
-    "string"
-  ],
-  "fee": {
-    "gas": "string",
-    "amount": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ]
-  },
-  "memo": "string",
-  "signature": {
-    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
-    "pub_key": {
-      "type": "tendermint/PubKeySecp256k1",
-      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
-    },
-    "account_number": "0",
-    "sequence": "0"
-  }
-}
-```
-
 ## **Staking**
 
 **Stake module APIs**
-
-### `GET/staking/delegators/{delegatorAddr}​/delegations`
-
-**Description**
-
-Get all delegations from a delegator 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "delegator_address": "string",
-    "validator_address": "string",
-    "shares": "string",
-    "height": 0
-  }
-]
-```
 
 ### `POST/staking/delegators/{delegatorAddr}​/delgations`
 
@@ -831,84 +537,29 @@ Submit delegation
 
 ```javascript
 {
-  "check_tx": {
-    "code": 0,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
+  "msg": [
+    "string"
+  ],
+  "fee": {
+    "gas": "string",
+    "amount": [
+      {
+        "denom": "stake",
+        "amount": "50"
+      }
     ]
   },
-  "deliver_tx": {
-    "code": 5,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
-  "height": 0
-}
-```
-
-### `GET/staking/delegators/{delegatorAddr}​/delegations/{validatorAddr}`
-
-**Description**
-
-Query the current delegation between a delegator and a validator 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech 32 AccAddress of Delegator |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
-
-**Example JSON Output**
-
-```javascript
-{
-  "delegator_address": "string",
-  "validator_address": "string",
-  "shares": "string",
-  "height": 0
-}
-```
-
-### `GET/staking/delegators/{delegatorAddr}/unbonding_delegations`
-
-**Description**
-
-Get all unbonding delegations 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech 32 AccAddress of Delegator |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "delegator_address": "string",
-    "validator_address": "string",
-    "initial_balance": "string",
-    "balance": "string",
-    "creation_height": 0,
-    "min_time": 0
+  "memo": "string",
+  "signature": {
+    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
+    "pub_key": {
+      "type": "tendermint/PubKeySecp256k1",
+      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
+    },
+    "account_number": "0",
+    "sequence": "0"
   }
-]
+}
 ```
 
 ### `POST/staking/delegators/{delegatorAddr}/unbonding_delegations`
@@ -954,138 +605,6 @@ Submit an unbonding delegation
 
 ```javascript
 {
-  "check_tx": {
-    "code": 0,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "deliver_tx": {
-    "code": 5,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
-  "height": 0
-}
-```
-
-### `GET/staking/delegators/{delegatorAddr}/unbonding_delegations/ {validatorAddr}`
-
-**Description**
-
-Query all unbonding delegations between a delegator and a validator
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech 32 AccAddress of Delegator |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
-
-**Example JSON Output**
-
-```javascript
-{
-  "delegator_address": "string",
-  "validator_address": "string",
-  "entries": [
-    {
-      "initial_balance": "string",
-      "balance": "string",
-      "creation_height": "string",
-      "min_time": "string"
-    }
-  ]
-}
-```
-
-### `GET/staking/redelegations`
-
-**Description**
-
-Get all redelegations \(filter by query params\) __
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegator** | string | Bech32 AccAddress of Delegator |
-| **validator\_from** | string | Bech32 ValAddress of SrcValidator |
-| **validator\_to** | string | Bech32 ValAddress of DstValidator |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "delegator_address": "string",
-    "validator_src_address": "string",
-    "validator_dst_address": "string",
-    "entries": [
-      null
-    ]
-  }
-]
-```
-
-### `POST/staking/delegators/{delegatorAddr}​/redelegations`
-
-**Description**
-
-Submit a redelegation 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegation** | object | The sender and transaction information |
-| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
-
-**Example Request**
-
-```javascript
-{
-  "base_req": {
-    "from": "cosmos1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
-    "memo": "Sent via Cosmos Voyager 🚀",
-    "chain_id": "Cosmos-Hub",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "simulate": false
-  },
-  "delegator_address": "cosmos1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27",
-  "validator_src_addressess": "cosmosvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
-  "validator_dst_address": "cosmosvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
-  "shares": "100"
-}
-```
-
-**Example JSON Output**
-
-```javascript
-{
   "msg": [
     "string"
   ],
@@ -1111,1018 +630,218 @@ Submit a redelegation
 }
 ```
 
-### `GET/staking/delegators/{delegatorAddr}​/validators`
+## **Query**
+
+### **`GET/cosmos/auth/v1beta1/accounts/{address}`**
 
 **Description**
 
-Query all validators that a delegator is bonded to 
+Account returns account details based on address
 
 **Parameters**
 
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
+| **address** | string \* required | address defines the address to query for |
 
 **Example JSON Output**
 
 ```javascript
-[
-  {
-    "operator_address": "cosmosvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
-    "consensus_pubkey": "cosmosvalconspub1zcjduepq0vu2zgkgk49efa0nqwzndanq5m4c7pa3u4apz4g2r9gspqg6g9cs3k9cuf",
-    "jailed": true,
-    "status": 0,
-    "tokens": "string",
-    "delegator_shares": "string",
-    "description": {
-      "moniker": "string",
-      "identity": "string",
-      "website": "string",
-      "details": "string"
-    },
-    "bond_height": "0",
-    "bond_intra_tx_counter": 0,
-    "unbonding_height": "0",
-    "unbonding_time": "1970-01-01T00:00:00Z",
-    "commission": {
-      "rate": "0",
-      "max_rate": "0",
-      "max_change_rate": "0",
-      "update_time": "1970-01-01T00:00:00Z"
+{
+  "account": {
+    "type_url": "string",
+    "value": "string"
+  }
+}
+```
+
+### **`GET/cosmos/auth/v1beta1/params`**
+
+**Description**
+
+Params queries all parameters
+
+**Parameters**  
+  
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "params": {
+    "max_memo_characters": "string",
+    "tx_sig_limit": "string",
+    "tx_size_cost_per_byte": "string",
+    "sig_verify_cost_ed25519": "string",
+    "sig_verify_cost_secp256k1": "string"
+  }
+}
+```
+
+### **`GET/cosmos/bank/v1beta1/balances/{address}`**
+
+**Description**
+
+Queries the balance of all coins for a single account
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **address** | string \* required | address is the address to query balances for |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "balances": [
+    {
+      "denom": "string",
+      "amount": "string"
     }
-  }
-]
-```
-
-### `GET/staking/delegators/{delegatorAddr}/validators/{validatorAddr}`
-
-**Description**
-
-Query a validator that a delegator is bonded to 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
-| **validatorAddr** | string \* required | Bech32 ValAddress of Delegator  |
-
-**Example JSON Output**
-
-```javascript
-{
-  "operator_address": "cosmosvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
-  "consensus_pubkey": "cosmosvalconspub1zcjduepq0vu2zgkgk49efa0nqwzndanq5m4c7pa3u4apz4g2r9gspqg6g9cs3k9cuf",
-  "jailed": true,
-  "status": 0,
-  "tokens": "string",
-  "delegator_shares": "string",
-  "description": {
-    "moniker": "string",
-    "identity": "string",
-    "website": "string",
-    "details": "string"
-  },
-  "bond_height": "0",
-  "bond_intra_tx_counter": 0,
-  "unbonding_height": "0",
-  "unbonding_time": "1970-01-01T00:00:00Z",
-  "commission": {
-    "rate": "0",
-    "max_rate": "0",
-    "max_change_rate": "0",
-    "update_time": "1970-01-01T00:00:00Z"
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
   }
 }
 ```
 
-### `GET/staking/validators`
+### **`GET/cosmos/bank/v1beta1/balances/{address}/{denom}`**
 
 **Description**
 
-Get all validator candidates. By default it returns only the bonded validators 
+Queries the balance of a single coin for a single account
 
 **Parameters**
 
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
-| **status** | string | The validator bond status. Must be either 'bonded', 'unbonded', or 'unbonding'  |
-| **page** | integer | The page number |
-| **limit** | integer | The maximum number of items per page |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "operator_address": "cosmosvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
-    "consensus_pubkey": "cosmosvalconspub1zcjduepq0vu2zgkgk49efa0nqwzndanq5m4c7pa3u4apz4g2r9gspqg6g9cs3k9cuf",
-    "jailed": true,
-    "status": 0,
-    "tokens": "string",
-    "delegator_shares": "string",
-    "description": {
-      "moniker": "string",
-      "identity": "string",
-      "website": "string",
-      "details": "string"
-    },
-    "bond_height": "0",
-    "bond_intra_tx_counter": 0,
-    "unbonding_height": "0",
-    "unbonding_time": "1970-01-01T00:00:00Z",
-    "commission": {
-      "rate": "0",
-      "max_rate": "0",
-      "max_change_rate": "0",
-      "update_time": "1970-01-01T00:00:00Z"
-    }
-  }
-]
-```
-
-### `GET/staking/validators/{validatorAddr}`
-
-**Description**
-
-Query the information from a single validator
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
+| **address** | string \* required | address defines the address to query for |
+| **denom** | string \* required | denom is the coin denom to query balances for |
 
 **Example JSON Output**
 
 ```javascript
 {
-  "operator_address": "cosmosvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
-  "consensus_pubkey": "cosmosvalconspub1zcjduepq0vu2zgkgk49efa0nqwzndanq5m4c7pa3u4apz4g2r9gspqg6g9cs3k9cuf",
-  "jailed": true,
-  "status": 0,
-  "tokens": "string",
-  "delegator_shares": "string",
-  "description": {
-    "moniker": "string",
-    "identity": "string",
-    "website": "string",
-    "details": "string"
-  },
-  "bond_height": "0",
-  "bond_intra_tx_counter": 0,
-  "unbonding_height": "0",
-  "unbonding_time": "1970-01-01T00:00:00Z",
-  "commission": {
-    "rate": "0",
-    "max_rate": "0",
-    "max_change_rate": "0",
-    "update_time": "1970-01-01T00:00:00Z"
+  "balance": {
+    "denom": "string",
+    "amount": "string"
   }
 }
 ```
 
-### `GET/staking/validators/{validatorAddr}​/delegations`
+### **`GET/cosmos/bank/v1beta1/params`**
 
 **Description**
 
-Get all delegations from a validator 
+Queries the parameters of x/bank module
 
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator  |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "delegator_address": "string",
-    "validator_address": "string",
-    "shares": "string",
-    "height": 0
-  }
-]
-```
-
-### `GET/staking/validators{validatorAddr}/unbonding_delegations`
-
-**Description**
-
-Get all unbonding delegations from a validator 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "delegator_address": "string",
-    "validator_address": "string",
-    "initial_balance": "string",
-    "balance": "string",
-    "creation_height": 0,
-    "min_time": 0
-  }
-]
-```
-
-### `GET/staking/pool`
-
-**Description**
-
-Get the current state of the staking pool 
-
-**Parameters**
-
-no parameters
+**Parameters**  
+  
+No parameters
 
 **Example JSON Output**
 
 ```javascript
 {
-  "loose_tokens": "string",
-  "bonded_tokens": "string",
-  "inflation_last_time": "string",
-  "inflation": "string",
-  "date_last_commission_reset": "string",
-  "prev_bonded_shares": "string"
-}
-```
-
-### `GET/staking/parameters`
-
-**Description**
-
-Get the current staking parameter values
-
-**Parameters**
-
-no parameters
-
-**Example JSON Output**
-
-```javascript
-{
-  "inflation_rate_change": "string",
-  "inflation_max": "string",
-  "inflation_min": "string",
-  "goal_bonded": "string",
-  "unbonding_time": "string",
-  "max_validators": 0,
-  "bond_denom": "string"
-}
-```
-
-## **Governance**
-
-**Governance module APIs**
-
-### `POST/gov/proposals`
-
-**Description**
-
-Submit a proposal 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **post\_proposal\_body** | object \* required | Valid value of `"proposal_type"` can be `"text"`, `"parameter_change"`, `"software_upgrade"` |
-
-**Example Request**
-
-```javascript
-{
-  "base_req": {
-    "from": "cosmos1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
-    "memo": "Sent via Cosmos Voyager 🚀",
-    "chain_id": "Cosmos-Hub",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
+  "params": {
+    "send_enabled": [
       {
-        "denom": "stake",
-        "amount": "50"
+        "denom": "string",
+        "enabled": true
       }
     ],
-    "simulate": false
-  },
-  "title": "string",
-  "description": "string",
-  "proposal_type": "text",
-  "proposer": "cosmos1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27",
-  "initial_deposit": [
+    "default_send_enabled": true
+  }
+}
+```
+
+### **`GET/cosmos/bank/v1beta1/supply`**
+
+**Description**
+
+Queries the total supply of all coins
+
+**Parameters**  
+  
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "supply": [
     {
-      "denom": "stake",
-      "amount": "50"
+      "denom": "string",
+      "amount": "string"
     }
   ]
 }
 ```
 
+### **`GET/cosmos/bank/v1beta1/supply/{denom}`**
+
+**Description**
+
+Queries the balance of a single coin for a single account
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **denom** | string \* required | denom is the coin denom to query balances for |
+
 **Example JSON Output**
 
 ```javascript
 {
-  "msg": [
-    "string"
-  ],
-  "fee": {
-    "gas": "string",
-    "amount": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ]
-  },
-  "memo": "string",
-  "signature": {
-    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
-    "pub_key": {
-      "type": "tendermint/PubKeySecp256k1",
-      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
-    },
-    "account_number": "0",
-    "sequence": "0"
+  "amount": {
+    "denom": "string",
+    "amount": "string"
   }
 }
 ```
 
-### `GET/gov/proposals`
+### **`GET/cosmos/distribution/v1beta1/community_pool`**
 
 **Description**
 
-Query proposals 
+Queries the community pool coins
 
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **voter** | string | Transaction hash |
-| **deposit** | string | Depositor address |
-| **status** | string | Proposal status, valid values can be `"deposit_period"`, `"voting_period"`, `"passed"`, `"rejected"` |
+**Parameters**  
+  
+No parameters
 
 **Example JSON Output**
 
 ```javascript
-[
-  {
-    "proposal_id": 0,
-    "title": "string",
-    "description": "string",
-    "proposal_type": "string",
-    "proposal_status": "string",
-    "final_tally_result": {
-      "yes": "0.0000000000",
-      "abstain": "0.0000000000",
-      "no": "0.0000000000",
-      "no_with_veto": "0.0000000000"
-    },
-    "submit_time": "string",
-    "total_deposit": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "voting_start_time": "string"
-  }
-]
-```
-
-### `POST/gov/proposals/param_change`
-
-**Description**
-
-Generate a parameter change proposal transaction 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **post\_proposal\_body** | object \* required | The parameter change proposal body that contains all parameter changes |
-
-**Example Request**
-
-```javascript
 {
-  "base_req": {
-    "from": "cosmos1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
-    "memo": "Sent via Cosmos Voyager 🚀",
-    "chain_id": "Cosmos-Hub",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "simulate": false
-  },
-  "title": "string",
-  "description": "string",
-  "proposer": "cosmos1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27",
-  "deposit": [
+  "pool": [
     {
-      "denom": "stake",
-      "amount": "50"
-    }
-  ],
-  "changes": [
-    {
-      "subspace": "staking",
-      "key": "MaxValidators",
-      "subkey": "",
-      "value": {}
+      "denom": "string",
+      "amount": "string"
     }
   ]
 }
 ```
 
-**Example JSON Output**
-
-```javascript
-{
-  "msg": [
-    "string"
-  ],
-  "fee": {
-    "gas": "string",
-    "amount": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ]
-  },
-  "memo": "string",
-  "signature": {
-    "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
-    "pub_key": {
-      "type": "tendermint/PubKeySecp256k1",
-      "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
-    },
-    "account_number": "0",
-    "sequence": "0"
-  }
-}
-```
-
-### `GET/gov/proposals/{proposalId}`
+### **`GET/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards`**
 
 **Description**
 
-Query a proposal 
+Queries the total rewards accrued by each validator
 
 **Parameters**
 
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
-| **proposalId** | string \* required | Proposal ID |
-
-**Example JSON Output**
-
-```javascript
-{
-  "proposal_id": 0,
-  "title": "string",
-  "description": "string",
-  "proposal_type": "string",
-  "proposal_status": "string",
-  "final_tally_result": {
-    "yes": "0.0000000000",
-    "abstain": "0.0000000000",
-    "no": "0.0000000000",
-    "no_with_veto": "0.0000000000"
-  },
-  "submit_time": "string",
-  "total_deposit": [
-    {
-      "denom": "stake",
-      "amount": "50"
-    }
-  ],
-  "voting_start_time": "string"
-}
-```
-
-### `GET/gov/proposals/{proposalId}/proposer`
-
-**Description**
-
-Query a proposer
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **proposalId** | string \* required | Proposal ID |
-
-**Example JSON Output**
-
-```javascript
-{
-  "proposal_id": "string",
-  "proposer": "string"
-}
-```
-
-### `GET/gov/proposals/{proposalId}/deposits`
-
-**Description**
-
-Query deposits 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **proposalId** | string \* required | Proposal ID  |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "amount": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "proposal_id": "string",
-    "depositor": "cosmos1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27"
-  }
-]
-```
-
-### `POST/gov/proposals/{proposalId}/deposits`
-
-**Description**
-
-Deposit tokens to a proposal 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **proposalId** | string \* required | Proposal ID |
-| **post\_deposit\_body**  | object \* required |  |
-
-**Example Request**
-
-```javascript
-{
-  "base_req": {
-    "from": "cosmos1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
-    "memo": "Sent via Cosmos Voyager 🚀",
-    "chain_id": "Cosmos-Hub",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "simulate": false
-  },
-  "depositor": "cosmos1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27",
-  "amount": [
-    {
-      "denom": "stake",
-      "amount": "50"
-    }
-  ]
-}
-```
-
-**Example JSON Output**
-
-```javascript
-{
-  "check_tx": {
-    "code": 0,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "deliver_tx": {
-    "code": 5,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
-  "height": 0
-}
-```
-
-### `GET/gov/proposals/{proposalId}​/deposits/{depositor}`
-
-**Description**
-
-Query deposit 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **proposalId** | string \* required | Proposal ID |
-| depositor | string \* required | Bech32 depositor address |
-
-**Example JSON Output**
-
-```javascript
-{
-  "amount": [
-    {
-      "denom": "stake",
-      "amount": "50"
-    }
-  ],
-  "proposal_id": "string",
-  "depositor": "cosmos1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27"
-}
-```
-
-### `GET/gov/proposals/{proposalId}/votes`
-
-**Description**
-
-Query voters
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **proposalId** | string \* required | Proposal ID |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "voter": "string",
-    "proposal_id": "string",
-    "option": "string"
-  }
-]
-```
-
-### `POST/gov/proposals/{proposalId}/votes`
-
-**Description**
-
-Vote a proposal 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **proposalId** | string \* required | Transaction hash |
-| **post\_vote\_body** | object \* required  | Valid value of `"option"` field can be `"yes"`, `"no"`, `"no_with_veto"` and `"abstain"` |
-
-**Example Request**
-
-```javascript
-{
-  "base_req": {
-    "from": "cosmos1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
-    "memo": "Sent via Cosmos Voyager 🚀",
-    "chain_id": "Cosmos-Hub",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "simulate": false
-  },
-  "voter": "cosmos1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27",
-  "option": "yes"
-}
-```
-
-**Example JSON Output**
-
-```javascript
-{
-  "check_tx": {
-    "code": 0,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "deliver_tx": {
-    "code": 5,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
-  "height": 0
-}
-```
-
-### `GET/gov/proposals/{proposalId}/votes/{voter}`
-
-**Description**
-
-Query vote 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **proposalId** | string \* required | Proposal ID |
-| **voter** | string \* required | Bech32 voter address |
-
-**Example JSON Output**
-
-```javascript
-{
-  "voter": "string",
-  "proposal_id": "string",
-  "option": "string"
-}
-```
-
-### `GET/gov/proposals/{proposalId}/tally`
-
-**Description**
-
-Get a proposal's tally result at the current time 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **proposalId**  | string \* required | Proposal ID  |
-
-**Example JSON Output**
-
-```javascript
-{
-  "yes": "0.0000000000",
-  "abstain": "0.0000000000",
-  "no": "0.0000000000",
-  "no_with_veto": "0.0000000000"
-}
-```
-
-### `GET/gov/parameters/deposit`
-
-**Description**
-
-Query governance deposit parameters 
-
-**Parameters**
-
-no parameters
-
-**Example JSON Output**
-
-```javascript
-{
-  "min_deposit": [
-    {
-      "denom": "stake",
-      "amount": "50"
-    }
-  ],
-  "max_deposit_period": "86400000000000"
-}
-```
-
-### `GET/gov/parameters/tallying`
-
-**Description**
-
-Query governance tally parameters 
-
-**Parameters**
-
-no parameters
-
-**Example JSON Output**
-
-```javascript
-{
-  "threshold": "0.5000000000",
-  "veto": "0.3340000000",
-  "governance_penalty": "0.0100000000"
-}
-```
-
-### `GET/gov/parameters/voting`
-
-**Description**
-
-Query governance parameters 
-
-**Parameters**
-
-no parameters
-
-**Example JSON Output**
-
-```javascript
-{
-  "voting_period": "86400000000000"
-}
-```
-
-## **Slashing**
-
-**Slashing module APIs**
-
-### `GET/slashing/signing_infos`
-
-**Description**
-
-Get sign info of all given validators 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **page** | integer \* required | Page number |
-| **limit** | integer \* required | Maximum number of items per page |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "start_height": "string",
-    "index_offset": "string",
-    "jailed_until": "string",
-    "missed_blocks_counter": "string"
-  }
-]
-```
-
-### `POST/slashing/validators/{validatorAddr}/unjail`
-
-**Description**
-
-Unjail a jailed validator 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **validatorAddr** | string \* required | Bech32 validator address |
-| **UnjailBody** | object \* required |  |
-
-**Example Request**
-
-```javascript
-{
-  "base_req": {
-    "msg": [
-      "string"
-    ],
-    "fee": {
-      "gas": "string",
-      "amount": [
-        {
-          "denom": "stake",
-          "amount": "50"
-        }
-      ]
-    },
-    "memo": "string",
-    "signature": {
-      "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=",
-      "pub_key": {
-        "type": "tendermint/PubKeySecp256k1",
-        "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH"
-      },
-      "account_number": "0",
-      "sequence": "0"
-    }
-  }
-}
-```
-
-**Example JSON Output**
-
-```javascript
-{
-  "check_tx": {
-    "code": 0,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "deliver_tx": {
-    "code": 5,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
-  "height": 0
-}
-```
-
-### `GET/slashing/parameters`
-
-**Description**
-
-Get the current slashing parameters 
-
-**Parameters**
-
-no parameters
-
-**Example JSON Output**
-
-```javascript
-{
-  "max_evidence_age": "string",
-  "signed_blocks_window": "string",
-  "min_signed_per_window": "string",
-  "double_sign_unbond_duration": "string",
-  "downtime_unbond_duration": "string",
-  "slash_fraction_double_sign": "string",
-  "slash_fraction_downtime": "string"
-}
-```
-
-## **Distribution**
-
-**Fee distribution module APIs**
-
-### `GET/distribution/delegators/{delegatorAddr}/rewards`
-
-**Description**
-
-Get the total rewards balance from all delegations 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
+| **delegator\_address** | string \* required | defines the delegator address to query for |
 
 **Example JSON Output**
 
@@ -2130,565 +849,1493 @@ Get the total rewards balance from all delegations
 {
   "rewards": [
     {
-      "validator_address": "cosmosvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
+      "validator_address": "string",
       "reward": [
         {
-          "denom": "stake",
-          "amount": "50"
+          "denom": "string",
+          "amount": "string"
         }
       ]
     }
   ],
   "total": [
     {
-      "denom": "stake",
-      "amount": "50"
+      "denom": "string",
+      "amount": "string"
     }
   ]
 }
 ```
 
-### `POST/distribution/delegators/{delegatorAddr}/rewards`
+
+
+### **`GET/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}`**
 
 **Description**
 
-Withdraw all the delegator's delegation rewards 
+Queries the total rewards accrued by a delegator
 
 **Parameters**
 
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
-| **Withdraw request body** | body |  |
-
-**Example Request**
-
-```javascript
-{
-  "base_req": {
-    "from": "cosmos1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
-    "memo": "Sent via Cosmos Voyager 🚀",
-    "chain_id": "Cosmos-Hub",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "simulate": false
-  }
-}
-```
+| **delegator\_address** | string \* required | defines the delegator address to query for |
+| **validator\_address** | string \* required | defines the validator address to query for |
 
 **Example JSON Output**
 
 ```javascript
 {
-  "check_tx": {
-    "code": 0,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "deliver_tx": {
-    "code": 5,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
-  "height": 0
-}
-```
-
-### `GET/distribution/delegators/{delegatorAddr}/rewards/{validatorAddr}`
-
-**Description**
-
-Query a delegation reward
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "denom": "stake",
-    "amount": "50"
-  }
-]
-```
-
-### `POST/distribution/delegators/{delegatorAddr}​/rewards/{validatorAddr}`
-
-**Description**
-
-Withdraw a delegation reward 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
-| **Withdraw request body** | body |  |
-
-**Example Request**
-
-```javascript
-{
-  "base_req": {
-    "from": "cosmos1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
-    "memo": "Sent via Cosmos Voyager 🚀",
-    "chain_id": "Cosmos-Hub",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "simulate": false
-  }
-}
-```
-
-**Example JSON Output**
-
-```javascript
-{
-  "check_tx": {
-    "code": 0,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "deliver_tx": {
-    "code": 5,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
-  "height": 0
-}
-```
-
-### `GET/distribution/delegators/{delegatorAddr}/withdraw_address`
-
-**Description**
-
-Get the rewards withdrawal address 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
-
-**Example JSON Output**
-
-```javascript
-cosmos1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27
-```
-
-### `POST/distribution/delegators/{delegatorAddr}/withdraw_address`
-
-**Description**
-
-Replace the rewards withdrawal address 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **delegatorAddr** | string \* required | Bech32 AccAddress of Delegator |
-| **Withdraw request body** | body |  |
-
-**Example Request**
-
-```javascript
-{
-  "base_req": {
-    "from": "cosmos1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
-    "memo": "Sent via Cosmos Voyager 🚀",
-    "chain_id": "Cosmos-Hub",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
-      {
-        "denom": "stake",
-        "amount": "50"
-      }
-    ],
-    "simulate": false
-  },
-  "withdraw_address": "cosmos1depk54cuajgkzea6zpgkq36tnjwdzv4afc3d27"
-}
-```
-
-**Example JSON Output**
-
-```javascript
-{
-  "check_tx": {
-    "code": 0,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "deliver_tx": {
-    "code": 5,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
-  "height": 0
-}
-```
-
-### `GET/distribution/validators/{validatorAddr}`
-
-**Description**
-
-Validator distribution information 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
-
-**Example JSON Output**
-
-```javascript
-{
-  "operator_address": "cosmosvaloper16xyempempp92x9hyzz9wrgf94r6j9h5f2w4n2l",
-  "self_bond_rewards": [
+  "rewards": [
     {
-      "denom": "stake",
-      "amount": "50"
+      "denom": "string",
+      "amount": "string"
+    }
+  ]
+}
+```
+
+### **`GET/cosmos/distribution/v1beta1/delegators/{delegator_address}/validators`**
+
+**Description**
+
+Queries the validators of a delegator
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **delegator\_address** | string \* required | defines the delegator address to query for |
+
+**Example JSON Output**
+
+```javascript
+{
+  "validators": [
+    "string"
+  ]
+}
+```
+
+### **`GET/cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address`**
+
+**Description**
+
+Queries the withdrawal address of a delegator
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **delegator\_address** | string \* required | defines the delegator address to query for |
+
+**Example JSON Output**
+
+```javascript
+{
+  "withdraw_address": "string"
+}
+```
+
+### **`GET/cosmos/distribution/v1beta1/params`**
+
+**Description**
+
+Queries the params of the distribution module 
+
+**Parameters**  
+  
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "params": {
+    "community_tax": "string",
+    "base_proposer_reward": "string",
+    "bonus_proposer_reward": "string",
+    "withdraw_addr_enabled": true
+  }
+}
+```
+
+### **`GET/cosmos/distribution/v1beta1/validators/{validator_address}/commission`**
+
+**Description**
+
+Queries accumulated commission for a validator
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator\_address** | string \* required | defines the validator address to query for |
+
+**Example JSON Output**
+
+```javascript
+{
+  "commission": {
+    "commission": [
+      {
+        "denom": "string",
+        "amount": "string"
+      }
+    ]
+  }
+}
+```
+
+### **`GET/cosmos/distribution/v1beta1/validators/{validator_address}/outstanding_rewards`**
+
+**Description**
+
+Queries rewards of a validator address
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator\_address** | string \* required | defines the validator address to query for |
+
+**Example JSON Output**
+
+```javascript
+{
+  "rewards": {
+    "rewards": [
+      {
+        "denom": "string",
+        "amount": "string"
+      }
+    ]
+  }
+}
+```
+
+### **`GET/cosmos/distribution/v1beta1/validators/{validator_address}/slashes`**
+
+**Description**
+
+Queries slash events of a validator
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator\_address** | string \* required | defined the validator address to query for |
+| **starting\_height** | string | The optional starting height to query the slashes |
+| **ending\_height** | string | the optional ending height to query the slashes  |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "slashes": [
+    {
+      "validator_period": "string",
+      "fraction": "string"
     }
   ],
-  "val_commission": [
-    {
-      "denom": "stake",
-      "amount": "50"
-    }
-  ]
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
 }
 ```
 
-### `GET/distribution/validators/{validatorAddr}/outstanding_rewards`
+### **`GET/cosmos/evidence/v1beta1/evidence`**
 
 **Description**
 
-Fee distribution outstanding rewards of a single validator __
+Queries all evidence
 
 **Parameters**
 
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
 
 **Example JSON Output**
-
-```javascript
-[
-  {
-    "denom": "stake",
-    "amount": "50"
-  }
-]
-```
-
-### `GET/distribution/validators/{validatorAddr}/rewards`
-
-**Description**
-
-Commission and self-delegation rewards of a single validator 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| **validatorAddr** | string \* required | Bech32 OperatorAddress of validator |
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "denom": "stake",
-    "amount": "50"
-  }
-]
-```
-
-### `POST/distribution/validators/{validatorAddr}/rewards`
-
-**Description**
-
-Withdraw the validator's rewards 
-
-**Parameters**
-
-| **Parameters** | Type | Description |
-| :--- | :--- | :--- |
-| validatorAddr | string \* required | Bech32 OperatorAddress of validator |
-| **Withdraw request body** | body |  |
-
-**Example Request**
 
 ```javascript
 {
-  "base_req": {
-    "from": "cosmos1g9ahr6xhht5rmqven628nklxluzyv8z9jqjcmc",
-    "memo": "Sent via Cosmos Voyager 🚀",
-    "chain_id": "Cosmos-Hub",
-    "account_number": "0",
-    "sequence": "1",
-    "gas": "200000",
-    "gas_adjustment": "1.2",
-    "fees": [
+  "evidence": [
+    {
+      "type_url": "string",
+      "value": "string"
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+
+
+### **`GET/cosmos/evidence/v1beta1/evidence/{evidence_hash}`**
+
+Queries evidence based on evidence hash
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **evidence\_hash** | string \* required | the hash of the requested evidence |
+
+**Example JSON Output**
+
+```javascript
+{
+  "evidence": {
+    "type_url": "string",
+    "value": "string"
+  }
+}
+```
+
+### **`GET/cosmos/gov/v1beta1/params/{params_type}`**
+
+Queries all parameters of the gov module
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **params\_type** | string \* required | Which parameters to query for, can be one of "voting", "tallying" or "deposit" |
+
+**Example JSON Output**
+
+```javascript
+{
+  "voting_params": {
+    "voting_period": "string"
+  },
+  "deposit_params": {
+    "min_deposit": [
       {
-        "denom": "stake",
-        "amount": "50"
+        "denom": "string",
+        "amount": "string"
       }
     ],
-    "simulate": false
+    "max_deposit_period": "string"
+  },
+  "tally_params": {
+    "quorum": "string",
+    "threshold": "string",
+    "veto_threshold": "string"
   }
 }
 ```
 
-**Example JSON Output**
-
-```javascript
-{
-  "check_tx": {
-    "code": 0,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "deliver_tx": {
-    "code": 5,
-    "data": "data",
-    "log": "log",
-    "gas_used": 5000,
-    "gas_wanted": 10000,
-    "info": "info",
-    "tags": [
-      "",
-      ""
-    ]
-  },
-  "hash": "EE5F3404034C524501629B56E0DDC38FAD651F04",
-  "height": 0
-}
-```
-
-### `GET/distribution/community_pool`
+### **`GET/cosmos/gov/v1beta1/proposals`**
 
 **Description**
 
-Community pool parameters 
-
-**Parameters**
-
-no parameters
-
-**Example JSON Output**
-
-```javascript
-[
-  {
-    "denom": "stake",
-    "amount": "50"
-  }
-]
-```
-
-### `GET/distribution/parameters`
-
-**Description**
-
-Fee distribution parameters 
-
-**Parameters**
-
-no parameters
-
-**Example JSON Output**
-
-```javascript
-{
-  "base_proposer_reward": "string",
-  "bonus_proposer_reward": "string",
-  "community_tax": "string"
-}
-```
-
-## **Supply**
-
-**Supply module APIs**
-
-### `GET/supply/total`
-
-**Description**
-
-Total supply of coins in the chain 
-
-**Parameters**
-
-no parameters
-
-**Example JSON Output**
-
-```javascript
-{
-  "total": [
-    {
-      "denom": "stake",
-      "amount": "50"
-    }
-  ]
-}
-```
-
-### `GET/supply/total/{denomination}`
-
-**Description**
-
-Total supply of a single coin denomination 
+Queries all proposals based on given status
 
 **Parameters**
 
 | **Parameters** | Type | Description |
 | :--- | :--- | :--- |
-| **denomination** | string \* required | Coin denomination |
-
-**Example JSON Output**
-
-```javascript
-string
-```
-
-## **Mint**
-
-**Minting module APIs**
-
-### `GET/minting/parameters`
-
-**Description**
-
-Minting module parameters 
-
-**Parameters**
-
-no parameters
+| **proposal\_status** | string | the status of the proposals |
+| **voter** | string | the voter address for the proposals |
+| **depositor** | string | the deposit addresses from the proposals  |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
 
 **Example JSON Output**
 
 ```javascript
 {
-  "mint_denom": "string",
-  "inflation_rate_change": "string",
-  "inflation_max": "string",
-  "inflation_min": "string",
-  "goal_bonded": "string",
-  "blocks_per_year": "string"
+  "proposals": [
+    {
+      "proposal_id": "string",
+      "content": {
+        "type_url": "string",
+        "value": "string"
+      },
+      "status": "PROPOSAL_STATUS_UNSPECIFIED",
+      "final_tally_result": {
+        "yes": "string",
+        "abstain": "string",
+        "no": "string",
+        "no_with_veto": "string"
+      },
+      "submit_time": "2021-03-25T15:00:52.800Z",
+      "deposit_end_time": "2021-03-25T15:00:52.801Z",
+      "total_deposit": [
+        {
+          "denom": "string",
+          "amount": "string"
+        }
+      ],
+      "voting_start_time": "2021-03-25T15:00:52.801Z",
+      "voting_end_time": "2021-03-25T15:00:52.801Z"
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
 }
 ```
 
-### `GET/minting/inflation`
+### **`GET/cosmos/gov/v1beta1/proposals/{proposal_id}`**
 
-**Description**
-
-Current minting inflation value 
+Queries proposal details based on Proposal ID
 
 **Parameters**
 
-no parameters
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **proposal\_id** | string \* required | the unique id of the proposal |
 
 **Example JSON Output**
 
 ```javascript
-string
+{
+  "proposal": {
+    "proposal_id": "string",
+    "content": {
+      "type_url": "string",
+      "value": "string"
+    },
+    "status": "PROPOSAL_STATUS_UNSPECIFIED",
+    "final_tally_result": {
+      "yes": "string",
+      "abstain": "string",
+      "no": "string",
+      "no_with_veto": "string"
+    },
+    "submit_time": "2021-03-25T15:05:00.435Z",
+    "deposit_end_time": "2021-03-25T15:05:00.435Z",
+    "total_deposit": [
+      {
+        "denom": "string",
+        "amount": "string"
+      }
+    ],
+    "voting_start_time": "2021-03-25T15:05:00.435Z",
+    "voting_end_time": "2021-03-25T15:05:00.435Z"
+  }
+}
 ```
 
-### `GET/minting/annual-provisions`
+### **`GET/cosmos/gov/v1beta1/proposals/{proposal_id}/deposits`**
 
 **Description**
 
-Current minting annual provisions value 
+Queries all deposits of a single proposal
 
 **Parameters**
 
-no parameters
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **proposal\_id** | string \* required | the unique id of the proposal |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
 
 **Example JSON Output**
 
 ```javascript
-string
+{
+  "deposits": [
+    {
+      "proposal_id": "string",
+      "depositor": "string",
+      "amount": [
+        {
+          "denom": "string",
+          "amount": "string"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+### **`GET/cosmos/gov/v1beta1/proposals/{proposal_id}/deposits/{depositor}`**
+
+Queries single deposit information based proposalID, depositAddr
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **proposal\_id** | string \* required | the unique id of the proposal |
+| **depositor** | string \* required | the deposit addresses from the proposals |
+
+**Example JSON Output**
+
+```javascript
+{
+  "deposit": {
+    "proposal_id": "string",
+    "depositor": "string",
+    "amount": [
+      {
+        "denom": "string",
+        "amount": "string"
+      }
+    ]
+  }
+}
+```
+
+### **`GET/cosmos/gov/v1beta1/proposals/{proposal_id}/tally`**
+
+Queries the tally of a proposal vote
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **proposal\_id** | string \* required | the unique id of the proposal |
+
+**Example JSON Output**
+
+```javascript
+{
+  "tally": {
+    "yes": "string",
+    "abstain": "string",
+    "no": "string",
+    "no_with_veto": "string"
+  }
+}
+```
+
+### **`GET/cosmos/gov/v1beta1/proposals/{proposal_id}/deposits`**
+
+**Description**
+
+Queries votes of a given proposal
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **proposal\_id** | string \* required | the unique id of the proposal |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "votes": [
+    {
+      "proposal_id": "string",
+      "voter": "string",
+      "option": "VOTE_OPTION_UNSPECIFIED"
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+### **`GET/cosmos/gov/v1beta1/proposals/{proposal_id}/votes/{voter}`**
+
+Queries voted information based on proposalID, voterAddr
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **proposal\_id** | string \* required | the unique id of the proposal |
+| **voter** | string \* required | The voter address for the proposals |
+
+**Example JSON Output**
+
+```javascript
+{
+  "vote": {
+    "proposal_id": "string",
+    "voter": "string",
+    "option": "VOTE_OPTION_UNSPECIFIED"
+  }
+}
+```
+
+### **`GET/cosmos/mint/v1beta1/annual_provisions`**
+
+**Description**
+
+Current minting annual provisions value
+
+**Parameters**  
+  
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "annual_provisions": "string"
+}
+```
+
+### **`GET/cosmos/mint/v1beta1/inflation`**
+
+**Description**
+
+Returns the current minting inflation value
+
+**Parameters**  
+  
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "inflation": "string"
+}
+```
+
+### **`GET/cosmos/mint/v1beta1/params`**
+
+**Description**
+
+Returns the total set of minting parameters
+
+**Parameters**  
+  
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "params": {
+    "mint_denom": "string",
+    "inflation_rate_change": "string",
+    "inflation_max": "string",
+    "inflation_min": "string",
+    "goal_bonded": "string",
+    "blocks_per_year": "string"
+  }
+}
+```
+
+### **`GET/cosmos/params/v1beta1/params`**
+
+Queries a specific parameter of a module, given its subspace and key 
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **subspace** | string | the module to query the parameter for |
+| **key** | string | the key of the parameter in the subspace  |
+
+**Example JSON Output**
+
+```javascript
+{
+  "param": {
+    "subspace": "string",
+    "key": "string",
+    "value": "string"
+  }
+}
+```
+
+### **`GET/cosmos/mint/v1beta1/params`**
+
+**Description**
+
+Queries the parameters of the slashing module
+
+**Parameters**  
+  
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "params": {
+    "signed_blocks_window": "string",
+    "min_signed_per_window": "string",
+    "downtime_jail_duration": "string",
+    "slash_fraction_double_sign": "string",
+    "slash_fraction_downtime": "string"
+  }
+}
+```
+
+### **`GET/cosmos/slashing/v1beta1/signing_infos`**
+
+**Description**
+
+Queries signing info of all validators
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "info": [
+    {
+      "address": "string",
+      "start_height": "string",
+      "index_offset": "string",
+      "jailed_until": "2021-03-25T15:18:29.945Z",
+      "tombstoned": true,
+      "missed_blocks_counter": "string"
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+### **`GET/cosmos/slashing/v1beta1/signing_infos/{cons_address}`**
+
+Queries the signing info of a given cons address 
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **cons\_address** | string \* required | the address to query the  signing info for |
+
+**Example JSON Output**
+
+```javascript
+{
+  "val_signing_info": {
+    "address": "string",
+    "start_height": "string",
+    "index_offset": "string",
+    "jailed_until": "2021-03-25T15:19:35.216Z",
+    "tombstoned": true,
+    "missed_blocks_counter": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/delegations/{delegator_addr}`**
+
+**Description**
+
+Queries all delegations of a given delegator address
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **delegator\_addr** | string \* required | the delegator address to query for |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "delegation_responses": [
+    {
+      "delegation": {
+        "delegator_address": "string",
+        "validator_address": "string",
+        "shares": "string"
+      },
+      "balance": {
+        "denom": "string",
+        "amount": "string"
+      }
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/delegators/{delegator_addr}/redelegations`**
+
+**Description**
+
+Queries redelegations of a given address
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **delegator\_addr** | string \* required | the delegator address to query for |
+| **src\_validator\_addr** | string | the validator address to redelegate from |
+| **dst\_validator\_addr** | string | the validator address to redelegate to  |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "redelegation_responses": [
+    {
+      "redelegation": {
+        "delegator_address": "string",
+        "validator_src_address": "string",
+        "validator_dst_address": "string",
+        "entries": [
+          {
+            "creation_height": "string",
+            "completion_time": "2021-03-25T15:22:40.747Z",
+            "initial_balance": "string",
+            "shares_dst": "string"
+          }
+        ]
+      },
+      "entries": [
+        {
+          "redelegation_entry": {
+            "creation_height": "string",
+            "completion_time": "2021-03-25T15:22:40.747Z",
+            "initial_balance": "string",
+            "shares_dst": "string"
+          },
+          "balance": "string"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/delegators/{delegator_addr}/unbonding_delegations`**
+
+**Description**
+
+Queries all unbonding delegations of a given delegator address
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **delegator\_addr** | string \* required | the delegator address to query for |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "unbonding_responses": [
+    {
+      "delegator_address": "string",
+      "validator_address": "string",
+      "entries": [
+        {
+          "creation_height": "string",
+          "completion_time": "2021-03-25T15:24:19.244Z",
+          "initial_balance": "string",
+          "balance": "string"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/delegators/{delegator_addr}/validators`**
+
+**Description**
+
+Queries all validators info for given delegator address
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **delegator\_addr** | string \* required | the delegator address to query for |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "validators": [
+    {
+      "operator_address": "string",
+      "consensus_pubkey": {
+        "type_url": "string",
+        "value": "string"
+      },
+      "jailed": true,
+      "status": "BOND_STATUS_UNSPECIFIED",
+      "tokens": "string",
+      "delegator_shares": "string",
+      "description": {
+        "moniker": "string",
+        "identity": "string",
+        "website": "string",
+        "security_contact": "string",
+        "details": "string"
+      },
+      "unbonding_height": "string",
+      "unbonding_time": "2021-03-25T15:25:53.172Z",
+      "commission": {
+        "commission_rates": {
+          "rate": "string",
+          "max_rate": "string",
+          "max_change_rate": "string"
+        },
+        "update_time": "2021-03-25T15:25:53.172Z"
+      },
+      "min_self_delegation": "string"
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/delegators/{delegator_addr}/validators/{validator_addr}`**
+
+Queries validator info for given delegator-validator pair
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **delegator\_addr** | string \* required | the delegator address to query for |
+| **validator\_addr** | string \* required | the validator address to query for  |
+
+**Example JSON Output**
+
+```javascript
+{
+  "validator": {
+    "operator_address": "string",
+    "consensus_pubkey": {
+      "type_url": "string",
+      "value": "string"
+    },
+    "jailed": true,
+    "status": "BOND_STATUS_UNSPECIFIED",
+    "tokens": "string",
+    "delegator_shares": "string",
+    "description": {
+      "moniker": "string",
+      "identity": "string",
+      "website": "string",
+      "security_contact": "string",
+      "details": "string"
+    },
+    "unbonding_height": "string",
+    "unbonding_time": "2021-03-25T15:26:44.700Z",
+    "commission": {
+      "commission_rates": {
+        "rate": "string",
+        "max_rate": "string",
+        "max_change_rate": "string"
+      },
+      "update_time": "2021-03-25T15:26:44.700Z"
+    },
+    "min_self_delegation": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/historical_info/{height}`**
+
+Queries the historical info for given height
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **height** | string \* required | which height to query the historical info |
+
+**Example JSON Output**
+
+```javascript
+{
+  "hist": {
+    "header": {
+      "version": {
+        "block": "string",
+        "app": "string"
+      },
+      "chain_id": "string",
+      "height": "string",
+      "time": "2021-03-25T15:28:31.852Z",
+      "last_block_id": {
+        "hash": "string",
+        "part_set_header": {
+          "total": 0,
+          "hash": "string"
+        }
+      },
+      "last_commit_hash": "string",
+      "data_hash": "string",
+      "validators_hash": "string",
+      "next_validators_hash": "string",
+      "consensus_hash": "string",
+      "app_hash": "string",
+      "last_results_hash": "string",
+      "evidence_hash": "string",
+      "proposer_address": "string"
+    },
+    "valset": [
+      {
+        "operator_address": "string",
+        "consensus_pubkey": {
+          "type_url": "string",
+          "value": "string"
+        },
+        "jailed": true,
+        "status": "BOND_STATUS_UNSPECIFIED",
+        "tokens": "string",
+        "delegator_shares": "string",
+        "description": {
+          "moniker": "string",
+          "identity": "string",
+          "website": "string",
+          "security_contact": "string",
+          "details": "string"
+        },
+        "unbonding_height": "string",
+        "unbonding_time": "2021-03-25T15:28:31.852Z",
+        "commission": {
+          "commission_rates": {
+            "rate": "string",
+            "max_rate": "string",
+            "max_change_rate": "string"
+          },
+          "update_time": "2021-03-25T15:28:31.852Z"
+        },
+        "min_self_delegation": "string"
+      }
+    ]
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/params`**
+
+**Description**
+
+Queries the parameters of the slashing module
+
+**Parameters**  
+  
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "params": {
+    "unbonding_time": "string",
+    "max_validators": 0,
+    "max_entries": 0,
+    "historical_entries": 0,
+    "bond_denom": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/pool`**
+
+**Description**
+
+Queries the pool info
+
+**Parameters**  
+  
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "pool": {
+    "not_bonded_tokens": "string",
+    "bonded_tokens": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/validators`**
+
+**Description**
+
+Queries all validators that match the given address
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **status** | string | validators matching a given status |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "validators": [
+    {
+      "operator_address": "string",
+      "consensus_pubkey": {
+        "type_url": "string",
+        "value": "string"
+      },
+      "jailed": true,
+      "status": "BOND_STATUS_UNSPECIFIED",
+      "tokens": "string",
+      "delegator_shares": "string",
+      "description": {
+        "moniker": "string",
+        "identity": "string",
+        "website": "string",
+        "security_contact": "string",
+        "details": "string"
+      },
+      "unbonding_height": "string",
+      "unbonding_time": "2021-03-25T15:30:52.279Z",
+      "commission": {
+        "commission_rates": {
+          "rate": "string",
+          "max_rate": "string",
+          "max_change_rate": "string"
+        },
+        "update_time": "2021-03-25T15:30:52.279Z"
+      },
+      "min_self_delegation": "string"
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/validators/{validator_addr}`**
+
+Queries validator info for a given validator address
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator\_addr** | string \* required | the validator address to query for |
+
+**Example JSON Output**
+
+```javascript
+{
+  "validator": {
+    "operator_address": "string",
+    "consensus_pubkey": {
+      "type_url": "string",
+      "value": "string"
+    },
+    "jailed": true,
+    "status": "BOND_STATUS_UNSPECIFIED",
+    "tokens": "string",
+    "delegator_shares": "string",
+    "description": {
+      "moniker": "string",
+      "identity": "string",
+      "website": "string",
+      "security_contact": "string",
+      "details": "string"
+    },
+    "unbonding_height": "string",
+    "unbonding_time": "2021-03-25T15:32:16.587Z",
+    "commission": {
+      "commission_rates": {
+        "rate": "string",
+        "max_rate": "string",
+        "max_change_rate": "string"
+      },
+      "update_time": "2021-03-25T15:32:16.587Z"
+    },
+    "min_self_delegation": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/validators/{validator_addr}/delegations`**
+
+**Description**
+
+Queries delegate info for a given validator
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator\_addr** | string \* required | the validator address to query for |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "delegation_responses": [
+    {
+      "delegation": {
+        "delegator_address": "string",
+        "validator_address": "string",
+        "shares": "string"
+      },
+      "balance": {
+        "denom": "string",
+        "amount": "string"
+      }
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}`**
+
+Queries delegator info for a given delegator-validator pair
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator\_addr** | string \* required | the validator address to query for |
+| **delegator\_addr** | string \* required | the delegator address to query for |
+
+**Example JSON Output**
+
+```javascript
+{
+  "delegation_response": {
+    "delegation": {
+      "delegator_address": "string",
+      "validator_address": "string",
+      "shares": "string"
+    },
+    "balance": {
+      "denom": "string",
+      "amount": "string"
+    }
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}/unbonding_delegation`**
+
+Queries unbonding info for given delegator-validator pair
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator\_addr** | string \* required | the validator address to query for |
+| **delegator\_addr** | string \* required | the delegator address to query for |
+
+**Example JSON Output**
+
+```javascript
+{
+  "unbond": {
+    "delegator_address": "string",
+    "validator_address": "string",
+    "entries": [
+      {
+        "creation_height": "string",
+        "completion_time": "2021-03-25T15:37:00.114Z",
+        "initial_balance": "string",
+        "balance": "string"
+      }
+    ]
+  }
+}
+```
+
+### **`GET/cosmos/staking/v1beta1/validators/{validator_addr}/unbonding_delegations`**
+
+**Description**
+
+Queries unbonding delegations of a validator
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **validator\_addr** | string \* required | the validator address to query for |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "unbonding_responses": [
+    {
+      "delegator_address": "string",
+      "validator_address": "string",
+      "entries": [
+        {
+          "creation_height": "string",
+          "completion_time": "2021-03-25T15:38:08.922Z",
+          "initial_balance": "string",
+          "balance": "string"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
+}
+```
+
+### **`GET/cosmos/upgrade/v1beta1/applied_plan/{name}`**
+
+Queries a previously applied upgrade plan by its name
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **name** | string \* required | the name of the applied plan to query for |
+
+**Example JSON Output**
+
+```javascript
+{
+  "height": "string"
+}
+```
+
+### **`GET/cosmos/upgrade/v1beta1/current_plan`**
+
+**Description**
+
+Queries the current upgrade plan
+
+**Parameters**  
+  
+No parameters
+
+**Example JSON Output**
+
+```javascript
+{
+  "plan": {
+    "name": "string",
+    "time": "2021-03-25T15:41:30.411Z",
+    "height": "string",
+    "info": "string",
+    "upgraded_client_state": {
+      "type_url": "string",
+      "value": "string"
+    }
+  }
+}
+```
+
+### **`GET/cosmos/upgrade/v1beta1/upgraded_consensus_state/{last_height}`**
+
+Queries the consensus state that will serve as a trusted kernel for the next version of this chain. It will only be stored at the last height of this chain. UpgradedConsensusState RPC not supported with legacy querier
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **last\_height** | string \* required | last height of the current chain must be sent in request as this is the height under which next consensus state is stored |
+
+**Example JSON output**
+
+```javascript
+{
+  "upgraded_consensus_state": {
+    "type_url": "string",
+    "value": "string"
+  }
+}
+```
+
+### **`GET/ibc/core/channel/v1beta1/channels`**
+
+**Description**
+
+Queries all the IBC channels of a chain
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **pagination.key** | string | key is a value returned to begin querying the next page most efficiently. Only one of offset or key should be set. |
+| **pagination.offset** | string | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set |
+| **pagination.limit** | string | limit is the total number of results to be returned in  the result page. If left empty, it will default to a value to be set by each app |
+| **pagination.count\_total** | boolean | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs |
+
+**Example JSON Output**
+
+```javascript
+{
+  "channels": [
+    {
+      "state": "STATE_UNINITIALIZED_UNSPECIFIED",
+      "ordering": "ORDER_NONE_UNSPECIFIED",
+      "counterparty": {
+        "port_id": "string",
+        "channel_id": "string"
+      },
+      "connection_hops": [
+        "string"
+      ],
+      "version": "string",
+      "port_id": "string",
+      "channel_id": "string"
+    }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  },
+  "height": {
+    "revision_number": "string",
+    "revision_height": "string"
+  }
+}
+```
+
+### **`GET/ibc/core/channel/v1beta1/channels/{channel_id}/ports/{port_id}`**
+
+Queries an IBC channel
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **channel\_id** | string \* required | channel unique identifier |
+| **port\_id** | string \* required | port unique identifier |
+
+**Example JSON output**
+
+```javascript
+{
+  "channel": {
+    "state": "STATE_UNINITIALIZED_UNSPECIFIED",
+    "ordering": "ORDER_NONE_UNSPECIFIED",
+    "counterparty": {
+      "port_id": "string",
+      "channel_id": "string"
+    },
+    "connection_hops": [
+      "string"
+    ],
+    "version": "string"
+  },
+  "proof": "string",
+  "proof_height": {
+    "revision_number": "string",
+    "revision_height": "string"
+  }
+}
+```
+
+### **`GET/ibc/core/channel/v1beta1/channels/{channel_id}/ports/{port_id}`**
+
+Queries an IBC channel
+
+**Parameters**
+
+| **Parameters** | Type | Description |
+| :--- | :--- | :--- |
+| **channel\_id** | string \* required | channel unique identifier |
+| **port\_id** | string \* required | port unique identifier |
+
+**Example JSON output**
+
+```javascript
+{
+  "channel": {
+    "state": "STATE_UNINITIALIZED_UNSPECIFIED",
+    "ordering": "ORDER_NONE_UNSPECIFIED",
+    "counterparty": {
+      "port_id": "string",
+      "channel_id": "string"
+    },
+    "connection_hops": [
+      "string"
+    ],
+    "version": "string"
+  },
+  "proof": "string",
+  "proof_height": {
+    "revision_number": "string",
+    "revision_height": "string"
+  }
+}
 ```
 
