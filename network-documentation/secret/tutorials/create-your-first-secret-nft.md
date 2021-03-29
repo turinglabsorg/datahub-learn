@@ -11,45 +11,45 @@ This tutorial was create by [Florian Uhde](https://twitter.com/florianuhde), a s
 
 ## Introduction
 
-[Non-Fungible Tokens](https://en.wikipedia.org/wiki/Non-fungible_token) implement the idea of uniqueness in the blockchain world. With classical, fungible tokens the only important characteristic is how *many* of them you own. You can think of those as currency, or , to make a more exotic example, carrots. It is interesting to know how many kilograms of carrots you, but no body is going to be really into you telling them which carrots you own precisely. For non-fungible tokens on the other hand, the number you are holding is not as important as *which* token you hold. Given an example: If I tell you that I own three paintings it won't give you any information about my worth as an art collector. If I tell you on the other hand that I own the Mona Lisa it will tell you quite a bit.
+[Non-Fungible Tokens](https://en.wikipedia.org/wiki/Non-fungible_token) implement the idea of uniqueness in the blockchain world. With classical, fungible tokens the only important characteristic is how *many* of them you own. You can think of those as currency, or to make a more exotic example, carrots. It is interesting to know how many kilograms of carrots you have, but nobody is likely to be really into you telling them which carrots you own precisely. For non-fungible tokens on the other hand, the number you are holding is not as important as *which* token you hold. Given an example: If I tell you that I own three paintings, it's not that impressive. If I tell you on the other hand that I own the Mona Lisa, Guernica and The Persistence of Time you might be impressed and still want me to prove it. 
 
-On a high level a NFT has a number of important properties. First we are interested in the current owner of a single token, to decide who is allowed to interact with it. Secondly we need a way to store the uniqueness, which is the data that makes this NFT different from all the others on the token.
+At a high level, an NFT has a number of important properties. First we are interested in which account holds a token, as this can decide who is allowed to interact with it. Secondly we need a way to store the metadata, which is the information that users will see and interact with that makes this NFT more than just a tokenID!
 
 ### What is different between ERC721 and snip721
 
-As mentioned above each NFT contains unique data, or at least a way to identify the unique data. Due to the open ledger nature of most blockchains this means that anyone can read this data. So even if you bought an expensive painting as an NFT no one is stopping me from finding the NFT on a blockchain explorer, having a look at the data and downloading that image for myself.
+As mentioned above each NFT contains unique data, or at least a way to identify the unique data. Due to the distributed public ledger property of most blockchains, this means that anyone can read this data. So even if you bought an expensive painting as an NFT no one is stopping me from finding the NFT on a blockchain explorer, having a look at the data and downloading that image for myself.
 
-Secret Network is focussed on privacy by default and this paradigm extends to its implementation of NFT. The snip721 standard mimics the functionality to the corresponding ERC721 standard of the ethereum blockchain, but provides fine control about what information you want to be private, rather than publicly available. When a new snip721 token contract is deployed to the secret network you can define if the total supply and the owners of tokens should be publicly available. Furthermore for each token minted you decide what data is readable by everyone and what data only by the current owner.
+Secret Network is focused on privacy by default and this paradigm extends to its implementation of NFT standards. The snip721 standard mimics functionality of the corresponding ERC721 standard on the Ethereum blockchain, but provides more granular control over what information is private, rather than everything being publicly available. When a new snip721 token contract is deployed to the secret network you can define if the total supply and the owners of tokens should be publicly available. The deployer of the contract decides which data is public and which is only available to the current owner of the NFT.
 
 ## Getting started with secretNFTs
 
-In this section we will connect to an already deployed instance of the [NFT reference implementation](https://github.com/baedrik/snip721-reference-impl): The *SecretFigment token*. We will build the functionality you need to interact with a secret NFT, namely the ability to mint new tokens, to set the viewing key on tokens and to query your private metadata.
+We will connect to an already deployed instance of the [snip721 reference implementation](https://github.com/baedrik/snip721-reference-impl): The *SecretFigment token*. We will build the functionality needed to interact with an NFT on secret. Namely the ability to mint new tokens, to set the Viewing key on tokens and to query the token private metadata.
 
 ### Prerequisites
 
-This tutorial assumes that you have completed the secret pathway already, as we are reusing some of the scripts you wrote back there. If you haven't done so until now you should take a few minutes and go through the pathway. We will start in the same project folder as you left off after section 5.
+This tutorial assumes that you have completed the [Secret Learn Pathway](https://learn.figment.io/network-documentation/secret/secret-pathway) already, as we weill be building upon that foundation of knowledge and skill. If you have not already done so, you would be wise to take the time to complete the Pathway. We will start with the same project folder as section 5 of the Pathway.
 
 {% page-ref page="intro-pathway-secret-basics/5.-writing-and-deploying-your-first-secret-contract.md" %}
 
-#### Requirements in this tutorial are
+#### Requirements to successfully complete this tutorial
 
-* The latest version of NodeJS
-* Any Code editor like VSCode etc.
-* Required packages –
+* The latest version of NodeJS installed (use of nvm, the node version manager, is _encouraged_ for web3 developers)
+* A code editor like VSCode, Theia, Atom, _etc_.
+* Required JavaScript packages –
   * secretjs - for the Secret Network JavaScript API
   * dotenv - for working with environment variables
 
-You do not need docker and rust *yet*, as we are using a pre-deployed contract for this first tutorial. A future installment will guide you through writing and compiling your own variant of a snip721 token.
+It is not required to install docker and the Rust toolchain *yet*, as we are using a pre-deployed contract in this case. A future installment in this series will guide you through writing and compiling your own variant of a snip721 token.
 
 ### Minting
 
-As we will communicate a number of times with the contract the first think you want to do is adding the contract address to your `.env` file:
+As we will be frequently communicating with the contract, the first thing we will do is add the contract address to our `.env` file:
 
 ```javascript
 SECRET_NFT_CONTRACT='secret15gs5mnm8hfw5n3r8602tmy5z736yzv33qsa8q8'
 ```
 
-Next create a new file in your project folder from the pathway called `mint.js` and paste the following code into it:
+Next, we create a new file in the project folder called `mint.js` and add the following code into it:
 
 ```javascript
 const {
@@ -60,7 +60,8 @@ const {
   encodeSecp256k1Pubkey,
 } = require("secretjs");
 
-// Load environment variables
+// Requiring the dotenv package in this way
+// lets us use environment variables defined in .env
 require("dotenv").config();
 
 const customFees = {
@@ -85,7 +86,7 @@ const customFees = {
 const main = async () => {
   const httpUrl = process.env.SECRET_REST_URL;
 
-  // Use key created in tutorial #2
+  // Use the mnemonic created in step #2 of the Secret Pathway
   const mnemonic = process.env.MNEMONIC;
 
   // A pen is the most basic tool you can think of for signing.
@@ -112,7 +113,7 @@ const main = async () => {
   );
   console.log(`Wallet address=${accAddress}`);
 
-  // 1. Define your meta data
+  // 1. Define your metadata
 
   // 2. Mint a new token to yourself
 
@@ -124,15 +125,19 @@ main().catch((err) => {
 
 ```
 
-The first part of this script should look familiar to what you have done section 5 of the pathway. We are getting out account data from the `.env` file and generate a secretjs client from it that we can use further down the line to sign our transactions. The next step is to define the metadata that we want to attach to our nft. In this example we will set two different strings, one will be visible to everyone and another that will be private and only accessible to the owner of the nft. Under  `// 1. Define your meta data` add both declarations and feel free to change the string to whatever you like.
+Here we are getting our account data from the `.env` file and generating a secretjs client from it, which we can use to sign our transactions. The next step is to define the metadata that we want to attach to our Secret NFT. In this example we use strings: One public, one private and only accessible to the holder of the NFT. Under  `// 1. Define your metadata` add both constant declarations. Feel free to change the string to whatever you like. If we wanted to use string interpolation to import data programmatically, remember to swap the double quotes with backticks!
 
 ```javascript
-  const publicMetadata = "<public metadata>";
+  // String interpolation example
+  // const derivedMetadata = "<additional payload>";
+  // const publicMetadata = `<public metadata> ${derivedMetadata}`;
 
+
+  const publicMetadata = "<public metadata>";
   const privateMetadata = "<private metadata>";
 ```
 
-As a final step we will construct a minting message, fill it with data and send it of to our contract. Paste the snippet below under `// 2. Mint a new token to yourself`.
+The next step is for us to construct a message object to pass into our client, populate it with data, then send it to our pre-defined contract. Paste the snippet below under `// 2. Mint a new token to yourself`.
 
 ```javascript
   const handleMsg = {
@@ -156,7 +161,7 @@ As a final step we will construct a minting message, fill it with data and send 
   console.log("response: ", response);
 ```
 
-  We define handleMsg to mint a new token for our own address and assign the values we created above as public and private metadata. We pass and execute the object to the contract and read the response. If everything worked like intended you should see something along the lines of:
+ `handleMsg` is the data we pass into our Secret client, which mints a new token for our own address then assigns the values we created above as public and private metadata. We pass and execute the object to the contract and read the response. If there were no errors, the output will be in the form of the reponse object:
 
 ```javascript
   response:  {
@@ -177,9 +182,9 @@ As a final step we will construct a minting message, fill it with data and send 
 }
 ```
 
-Congratulations! You have just minted yourself your first nft on the secret network!
+Congratulations! We have just minted a Non-Fungible Token on the Secret network using an already deployed contract!
 
-### Querying of your tokens
+### Querying the contract
 
 In this section we want to query information about our token from the contract. For this create a new file called `query_token.js` and paste the following code into it:
 
@@ -268,7 +273,7 @@ main().catch((err) => {
 
 ```
 
-The overall structure of this file looks familia by now and contains the setup for the client and signing structures that we will to interact with the contract. The fist thing we want to do, is getting a list of all our tokens. For this you should add the following code under `// 1. Get a list of all tokens`:
+The overall structure of this file should look familiar by now. It contains the setup for the client and signing functionality that we will use to interact with the contract. The fist step is to get a list of all our tokens. For this we will add the following code under `// 1. Get a list of all tokens`:
 
 ```javascript
  let queryMsg = {
@@ -286,10 +291,10 @@ The overall structure of this file looks familia by now and contains the setup f
   console.log("response: ", response);
 ```
 
-We will ask the contract for a list of all token ids, which are currently assigned to your address.
-_**Note -**_ The deployed contract is configured to have public ownership for the sake of this tutorial. If you would deploy the contract yourself you can also decide to make this private, so that nobody but you will be able to see which tokens you own. We will do this in a later installment of this series.
+We will ask the contract for a list of all token ids, which are currently assigned to our address.
+_**Note -**_ The deployed contract is configured to have public ownership for the sake of this tutorial. If you would deploy the contract yourself you can also decide to make it private, so that nobody but you will be able to see which tokens you own. This will be covered in a later installment of this series.
 
-Next we will take the first token id and ask for the details of this nft. There are different queries that are supported by the reference implementation. After `// 2. Query the public metadata` insert this code block:
+Next we will take the first token id and ask for the details of this NFT. There are a few different queries supported by the reference implementation. After `// 2. Query the public metadata` insert this code block:
 
 ```javascript
   queryMsg = {
@@ -325,7 +330,7 @@ This will retrieve the message you added as `publicMetadata` during the mint pro
   console.log("response: ", response);
 ```
 
-The token dossier return all the data that we have access to, including public- and private-metadata, as well as some overall configuration of this token.
+The token dossier returns all of the data that we have access to, including public and private metadata, as well as some overall configuration of this token.
 If you run this file using `node query-token.js` you should receive similar output to this:
 
 ```javascript
@@ -360,27 +365,27 @@ response:  {
 }
 ```
 
-One particular interesting part is this line: `display_private_metadata_error: 'You are not authorized to perform this action on token 0',`. Why are we not able to see our private metadata even if we *are* owning the nft?
+Of interest is this line: `display_private_metadata_error: 'You are not authorized to perform this action on token 0',`. Why are we not able to see our private metadata even if we *are* owning the NFT?
 
 To answer this we need to take a small detour through the inner workings of secret contract interactions.
 
-Interaction with a contract fall into one of two distinct categories, you either *execute* a contract or you *query* a contract. The main difference here is that execution modifies the internal state of the contract and incurs a gas fee for doing so, while a query only reads from the internal state and it usually free.
+Interaction with a contract falls into one of two distinct categories, you either *execute* a contract or you *query* a contract. The main difference here is that execution modifies the internal state of the contract and incurs a gas fee for doing so, while a query only reads from the internal state and it usually free.
 
-_**Note -**_ Queries also have a calculated gas cost but are executed for free by the secret nodes. Node runners can define how expensive a qu7ery might be until they refuse to execute it. Also if you run a query during an execution call, its gas cost will be added to the total cost of the query.
+_**Note -**_ Queries also have a calculated gas cost but are executed for free by the secret nodes. Node runners can define how expensive a query might be until they refuse to execute it. Also if you run a query during an execution call, its gas cost will be added to the total cost of the query.
 
-In regards of the [privacy model](https://build.scrt.network/dev/privacy-model-of-secret-contracts.html#outputs) of secret contract whenever we send a query the sending address is not verified, as a query does not happen on chain, but rather just between the client and the contract. This means ultimately that we need to execute on a contract if we want to make sure who the contract is talking to. This is not optimal because of gas costs.
+In regards to the [privacy model](https://build.scrt.network/dev/privacy-model-of-secret-contracts.html#outputs) of Secret contracts - whenever we send a query, the sending address is not verified, as a query does not happen on chain but rather just between the client and the contract. This means ultimately that we need to execute on a contract if we want to make sure who the contract is talking to. This is not optimal because of gas costs.
 
 This leads to the problem above: We do not want to execute on the contract, because we are not changing its inner state. As a query is not recorded on chain we have no way of making sure *who* is sending that query. So even if we tell the contract that the query was send by us, it rejects our request for the private data, as there is no tamperproof way to make *sure* it is us.
 
 The concept of Viewing keys is a clever solution for this problem. Instead of executing every time you will execute a single call and set a secret phrase, the so called key, for the contract. Whenever you send a query in the future you include this key with your query and the contract can look it up and validate it is actually you it is talking to. As secret network transmits fully encrypted messages no one will ever know your viewing keys.
 
-To use this mechanic to get access to our private metadata add a string for your viewing key to the `.env` file, so that we can reuse it in our code.
+To be able to use this mechanic to get access to our private metadata, we must add a string for the viewing key to our `.env` file, so that we can reuse it in our code.
 
 ```javascript
 SECRET_VIEWING_KEY = "<random phrase>"
 ```
 
-We will use this phrase in the following code, that you should add after `// 4. Set our viewing key`, as a kind of passphrase, uniquely identifying our address.
+We will use this phrase in the following code, which should go add after `// 4. Set our viewing key`, as a kind of passphrase, uniquely identifying our address.
 
 ```javascript
  const handleMsg = {
@@ -398,7 +403,7 @@ We will use this phrase in the following code, that you should add after `// 4. 
   console.log('response: ', response);
 ```
 
-After we set our viewing key you also need to pass it with the query for the token dossier, so add the following code after `// 5. Query the dossier again`.
+After we set our viewing key, we also need to pass it along with the query for the token dossier. Add the following code after `// 5. Query the dossier again`.
 
 ```javascript
 queryMsg = {
@@ -420,7 +425,7 @@ queryMsg = {
   console.log('response: ', response);
 ```
 
-Take note of how we augmented the query message to specify who is viewing the contract information, passing our own address and the secret key we told the contract in step 4. If you run the script again using `node query_token.js` you should find two results of query token in your output. The first one, that you already saw above has no access to the private metadata. The second entry however, where you passed the information about the viewer, will give you the private metadata along with all the other info and should look like this:
+Take note of how we changed `queryMsg` to specify who is viewing the contract information, passing our own address and the Viewing key. When we run the script at this point using `node query_token.js` there will be two results of querying the contract in your output. The first one, that you already saw above has no access to the private metadata. The second entry where we supplied the Viewing key, will return the private metadata along with all the other info and should look like this:
 
 ```javascript
 response:  {
@@ -449,22 +454,22 @@ response:  {
 
 ## Wrap up
 
-Congratulations you have made it to the end of the first installment of the NFT on secret series. You have learned quite a few things on the way and I fell you can really be proud of what you achieved. Just to recap:
+Congratulations! We have made it to the end of the first installment of this Secret NFT series. We have covered a lot of information, and I feel you can really be proud of what you have achieved. Just to recap:
 
-* You have minted your own, personalized nft
-* You learned about the privacy model and how viewing keys help us to save gas, while making sure we can validate who we are talking to
-* You had a close look into your own nft, learning about public, private and extended metadata.
+* You have minted your own, personalized NFT on the Secret network
+* You learned about the privacy model and how Viewing keys help us to save gas, while making sure we can verify ownership of an account
+* You had hands-on experience interacting with the Secret network, learning about public, private and extended metadata.
 
 This is a solid foundation to play with and build upon!
 
-## What is coming next
+## What is next?
 
-Of course we are not yet at the end of our journey. In the coming tutorial we will have a look together into interesting and more complex examples of nft and their possibilities.
+Of course we are not yet at the end of our journey. In the coming tutorial we will have a look together into interesting and more complex examples of NFT properties.
 You can look forward to:
 
-* Customizing your nft with a custom deployed contract
-* Sending nfts around between different accounts
-* Building a simple nft viewer
-* Adding complex logic to your nfts, making them much more than *just* a store of secret data
+* Customizing your NFT by deploying your own contract
+* Sending NFTs between different accounts
+* Building a simple NFT viewer
+* Adding complex logic to your NFTs, making them much more than *just* a store of secret data
 
 Lets keep on building!
