@@ -255,7 +255,8 @@ pub struct NonFungibleTokenBasic {
 
 That's technically everything our contract needs to manage the ownership of a set of Non-Fungible Token IDs. But so far these token IDs don't refer to anything but themselves. They have no metadata!
 
-Every type of NFT needs to define some metadata, to describe the individual interesting things being tracked: the name of a CryptoKitty, the title and author of an artwork, the date of a virtual ticketed event, or whatever else the NFT represents. In fact, most NFTs are mostly metadata. So let's enhance this contract to store the metadata of each unique Flarn.
+Every type of NFT needs to define some metadata, to describe the individual interesting things being tracked: the name of a CryptoKitty, the title and author of an artwork, the date of a virtual ticketed event, or whatever else the NFT represents. In fact, most NFTs are mostly metadata, and the metadata would in most cases principally refer to an image, video, or gif which is stored off-chain, say on a cloud storage service(like AWS S3) or preferably on a decentralized file storage service(like IPFS, Sia). 
+That said, let's go ahead and enhance this contract to store the metadata of each unique Flarn.
 
 Add the following lines of Rust code right beneath the comment that says `// Begin implementation`:
 
