@@ -16,7 +16,7 @@ Avalanche is a layer one protocol by AVA Labs that offers high-throughput, fast 
 
 **Get Started with** [**Avalanche DataHub today!** ](https://figment.io/datahub/avalanche/)\*\*\*\*
 
-## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Celo Tutorials
+## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Celo Tutorials
 
 Celo is an open platform that makes financial tools accessible to anyone with a mobile phone.
 
