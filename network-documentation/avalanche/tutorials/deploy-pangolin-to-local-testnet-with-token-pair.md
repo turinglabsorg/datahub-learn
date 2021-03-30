@@ -1,24 +1,22 @@
----
-description: Deploy Pangolin To Your Local Testnet And Create Token Pair
----
+# Deploy Pangolin To Your Local Testnet And Create Token Pair
 
 ## Introduction
 
-Whether you are looking to create your own token and have it tradable on Pangolin Avalanche c-chain Pangolin verses another token or provide liquidity for tokens you already hold, you will need to create a token pair on Pangolin. 
+Whether you are looking to create your own token, provide liquidity for existing tokens or to trade on Pangolin Avalanche c-chain Pangolin, you will need to create a token pair on Pangolin. 
 
-However before that, if you are interested in familiarizing yourself with the actions you can do with such a token pair, such as simulating a universe of token pairs and wallets, or even test your assumptions of your contracts tokenomics on a dex, you may want to deploy it locally. 
+However before that, we must familiarize ourselves with the functionality of token pairs, so that we can simulate a universe of token pairs and wallets, or even test our assumptions about contracts and tokenomics on a DEX. We will want to deploy a local testnet so that we can check our code for bugs and unintended interactions! 
 
-In this tutorial we will show you how to create your own Pangolin exchange locally and create a pair from any arbitrary ERC20 tokens.
+In this tutorial we will illustrate how to create your own Pangolin exchange locally and also create a trading pair from any arbitrary ERC20 tokens.
 
 ## About Pangolin
 
-Pangolin is a fork of Uniswap V2 and the first decentralized exchange (DEX) on Avalanche c-chain where users can swap their [ERC20](https://eips.ethereum.org/EIPS/eip-20) for others.
+Pangolin is a fork of Uniswap V2 and the first decentralized exchange (DEX) on Avalanche c-chain where users can swap their [ERC20](https://eips.ethereum.org/EIPS/eip-20) tokens.
 
 ## Prerequisites
 
-If you have completed the tutorial on [Using Truffle with the Avalanche C-Chain](https://docs.avax.network/build/tutorials/smart-contracts/using-truffle-with-the-avalanche-c-chain), you would have completed most of the prerequisites.
+If you have completed the Avalanche tutorial on [Using Truffle with the Avalanche C-Chain](https://docs.avax.network/build/tutorials/smart-contracts/using-truffle-with-the-avalanche-c-chain), you will have completed most of the prerequisites.
 
-You have to be mindful that avalanchego is being constantly improved and things may change from the above tutorial (i.e. the address of the x/p/c chains used in the libraries above my differ from the current version of avalanchejs, private keys may change, etc. This means that you may need to modify the code when getting your local test net up and running).
+You have to be mindful that `avalanchego` is being constantly improved and things may change from the time this tutorial is published (i.e. the address of the x/p/c chains used in the libraries above my differ from the current version of avalanchejs, private keys may change, etc. This means that you may need to modify the code when getting your local test net up and running).
 
 In addition, you will need to:
 
@@ -74,7 +72,6 @@ We now need to create a new migration file called `3_deploy.js` with the content
 		for (let i = 0; i < 32; i++) {
 			pangolinArg += '00';
 		}
-
 
 		const pangolinFactoryAddress = (await web3.eth.sendTransaction({from: accounts[0], gas: 8000000, data: PangolinFactoryBytecode + pangolinArg})).contractAddress;
 
