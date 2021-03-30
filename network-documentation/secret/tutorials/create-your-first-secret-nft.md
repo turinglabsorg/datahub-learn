@@ -27,7 +27,7 @@ We will connect to an already deployed instance of the [snip721 reference implem
 
 ### Prerequisites
 
-This tutorial assumes that you have completed the [Secret Learn Pathway](https://learn.figment.io/network-documentation/secret/secret-pathway) already, as we weill be building upon that foundation of knowledge and skill. If you have not already done so, you would be wise to take the time to complete the Pathway. We will start with the same project folder as section 5 of the Pathway.
+This tutorial assumes that you have completed the [Secret Learn Pathway](https://learn.figment.io/network-documentation/secret/secret-pathway) already, as we will be building upon that foundation of knowledge and skill. If you have not already done so, you would be wise to take the time to complete the Pathway. We will start with the same project folder as section 5 of the Pathway.
 
 {% page-ref page="intro-pathway-secret-basics/5.-writing-and-deploying-your-first-secret-contract.md" %}
 
