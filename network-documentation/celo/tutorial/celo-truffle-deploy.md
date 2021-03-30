@@ -18,18 +18,18 @@ Before you continue, make sure you have truffle installed. If you don't, run the
 
 # Project setup 
 
-First, open the terminal and make a new project folder. We’ll call if celoSmartContract:
+First, open the terminal and make a new project folder. We’ll call it celoSmartContract:
 
 `mkdir celoSmartContract && cd celoSmartContract`
 
-Next, let’s initialize the project directory with NPM
+Next, let’s initialize the project directory with NPM the [Node Package Manager](https://npmjs.com), using the -y flag to accept default parameters.
 
 `npm init -y`
 
-After it’s been initialized, we’ll need to install some additional packages. Here’s an overview of them:
-* ContractKit is a package created by the Celo team to aid in Celo development
-* Dotenv is used for reading environment variables in our code
-* And finally, the Web3 library which facilitates interactions with the blockchain
+After NPM has initialized the project directory, we’ll need to install some additional packages. Here’s an overview of what we need to install:
+* ContractKit - this is a package created by the Celo team to aid in Celo development
+* dotenv - this is used for reading environment variables in our code
+* And finally, the Web3 library which facilitates our interactions with the blockchain
 
 Install all of the above using:
 
@@ -123,11 +123,11 @@ First, create a .env file in the  **root directory**  of the  `celoSmartContract
 
 ```touch .env```
 
-Great! You've made a .env file which will hold the environment secrets. Make sure to not commit this file to Github.
+Great! You've made a .env file which will hold the environment secrets. Make sure you do not commit this file to GitHub! Add `.env` to a line in your `.gitignore` file to prevent it from being sent to GitHub if you were to commit.
 
-We're going to use [Datahub](https://figment.io/datahub/) to connect to the Celo test network. If you don't have an account, sign up on the  [Datahub](https://figment.io/datahub/)  website and resume this tutorial. 
+We're going to use [DataHub](https://figment.io/datahub/) to connect to the Celo test network. If you don't have an account, sign up on the [DataHub](https://datahub.figment.io/) website and then resume this tutorial. 
 
-Next, open the .env file you created in your text editor and add the following variable, where **<YOUR_API_KEY>** is the API key from datahub:
+Next, open the .env file you created in your code editor and add the following variable, where **<YOUR_API_KEY>** is the API key from DataHub:
 
 `REST_URL=https://celo-alfajores--rpc.datahub.figment.io/apikey/<YOUR API KEY>/`
 
@@ -141,7 +141,7 @@ Next, we’re going to need a Celo account to deploy from. We will need three th
 
 -   A Celo account address
 -   A Celo account private key
--   A Celo account  [loaded with testnet funds](https://celo.org/developers/faucet)
+-   A Celo account [loaded with testnet funds](https://celo.org/developers/faucet)
 
 First things first, let's get an account and a private key. Create a file named `getAccount.js` in your root directory. In that file, write the following: 
 
@@ -206,7 +206,7 @@ Now that you have a Celo account, take the address and paste it into the [Celo d
 
 The **truffle-config.js** is used in order to tell truffle how you want to deploy your contract.
 
-For our purposes, write the following in your truffle-config file: 
+For our purposes, we will need to add the following code to the project truffle-config file: 
 
 ```
 const ContractKit = require('@celo/contractkit');
@@ -297,15 +297,15 @@ You should see a successful contract deployment at that address!
 
 # Conclusion
 
-Congrats! You've just deployed a smart contract on the Celo network. 
+Congratulations! You've just deployed a smart contract on the Celo network using Truffle! 
 
 Now that you've finished the tutorial, you should have a basic understanding of deploying smart contracts on the Celo network. The possibilities are endless for what you can create! It's still early. You can use this tutorial as a jumping off point for deploying the smart contracts of your dreams   🥳
 
-The complete source code for this tutorial can be found on  [Github](https://github.com/alexreyes/Celo-Deploying-With-Truffle).
+The complete source code for this tutorial can be found on [Github](https://github.com/alexreyes/Celo-Deploying-With-Truffle).
 
 # Next steps
 
-Now that you've learned how to deploy smart contracts on Celo, you can build new use cases for the cryptoeconomy on Celo. Feel free to learn more solidity, or continue the tutorials on [Figment Learn](https://learn.figment.io).
+Now that you've learned how to deploy smart contracts on Celo, you can build new use cases for the cryptoeconomy on Celo. Feel free to learn more Solidity, or continue the tutorials on [Figment Learn](https://learn.figment.io).
 
 # Common Errors
 
