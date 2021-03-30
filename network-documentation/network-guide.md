@@ -36,6 +36,18 @@ Cosmos provides tools that make it easy to build a new, custom-designed blockcha
 
 {% page-ref page="cosmos/" %}
 
+## ![](../.gitbook/assets/filecoin_logo.png) Filecoin 
+
+Filecoin is a peer-to-peer network that stores files, with built-in economic incentives to ensure files are stored reliably over time. Users pay to store their files on storage miners. Storage miners are computers responsible for storing files and proving they have stored the files correctly over time. Anyone who wants to store their files or get paid for storing other users’ files can join Filecoin. Available storage, and the price of that storage, is not controlled by any single company. Instead, Filecoin facilitates open markets for storing and retrieving files that anyone can participate in.
+
+{% page-ref page="filecoin/" %}
+
+## ![](../.gitbook/assets/1_gc0dp8vfvm6bwwn51nuqew.png) Mina 
+
+Mina is the first cryptocurrency protocol with a succinct blockchain. Current cryptocurrencies like Bitcoin and Ethereum store hundreds of gigabytes of data, and as time goes on, their blockchains will only increase in size. With Mina, however, no matter how much the usage grows, the blockchain always stays the same size - about 22kb \(the size of a few tweets\). This means participants can quickly sync and verify the network.
+
+{% page-ref page="mina/" %}
+
 ## ![](../.gitbook/assets/tnear_icon_1.png) NEAR 
 
 NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands.
