@@ -165,6 +165,15 @@ Not too different from what we have done for the router and WAVAX, we will creat
 	})).contractAddress;
 ```
 
+## PangolinFactory interface (IPangolinFactory) and PangolinPair interface (IPangolinPair)
+
+The interface for the factory and pair token contracts isn’t necessarily needed here because we are deploying both contracts themselves and we could use the contract ABI directly.
+
+However if we were going to access these through another contract, they would allow us to be able to still call the methods defined on PangolinFactory and PangolinPair even if those underlying contracts changed in the future if while only needing to change the address.
+
+For example, if you wanted to modify PangolinPair and PangolinRouter without changing the contracts you may have already deployed (assuming they have a way to pull in the new address), then you will easily be able to do this if you deployed your contracts with the interfaces.
+
+
 ## Create Pair with router and pair interfaces
 
 For the final step, we need to access the instance of the factory address through the interface.
@@ -182,6 +191,11 @@ Then if you wanted to later call functions on the pair address, you need to acce
 	const PangoPair = await IPangolinPair.at(PangoPairAddress);
 ```
 
+# Deployment
+
+[This is what your deployment should look like if succesful](https://i.ibb.co/sWVpf6n/3-deploy.png)
+
+
 ## Wrapping Up
 
 In this tutorial we have covered:
@@ -194,6 +208,7 @@ In this tutorial we have covered:
 * Deploying WAVAX
 * Deploying Pangolin Router
 * Creating a token pair with our mock ERC20 Tokens
+
 
 ## Conclusion
 
