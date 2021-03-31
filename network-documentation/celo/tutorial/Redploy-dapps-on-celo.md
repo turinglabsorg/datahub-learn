@@ -1,5 +1,5 @@
 ---
-description: Learn how to deploy your own smart contracts on the Celo network
+description: Learn how to re-deploy Ethereum Dapps on the Celo network
 ---
 
 # How to re-deploy your Ethereum DApp to the Celo Blockchain
