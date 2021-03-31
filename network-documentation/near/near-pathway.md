@@ -6,7 +6,11 @@ description: Learn what makes NEAR unique and build your first NEAR smart contra
 
 ## ![](../../.gitbook/assets/unnamed-1-.png) Welcome to the NEAR Pathway
 
-NEAR Protocol is a decentralized platform where developers can host serverless applications and smart contracts which have easy access to open finance networks and benefit from an ecosystem of open web components. Learn what makes it unique and build your first project to earn **$20 in NEAR equivalent**! 
+NEAR Protocol is a decentralized platform where developers can host serverless applications and smart contracts which have easy access to open finance networks and benefit from an ecosystem of open web components. Learn what makes it unique and build your first project. 
+
+{% hint style="info" %}
+There are currently no rewards for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn.
+{% endhint %}
 
 ## 🏁 Get started by signing up for DataHub
 
@@ -60,7 +64,7 @@ Simply fill [**this form**](https://forms.gle/6JoCD6wmqoq33Brp7) and include dir
   
 Bonus Activity Rewards will be given out at the discretion of the reviewer. Please provide any context you would like us to consider to maximize your Bonus Activity Reward. 
 
-### ![](../../.gitbook/assets/download-6-.png) Twitter \(5$ in NEAR each\)
+### ![](../../.gitbook/assets/download-6-1-%20%281%29%20%281%29.png) Twitter \(5$ in NEAR each\)
 
 1. Post a lesson learned about the NEAR platform, tools, community, etc.
 2. Post a screenshot of what you just built with NEAR
@@ -70,7 +74,7 @@ Bonus Activity Rewards will be given out at the discretion of the reviewer. Plea
 
 Make sure to refer to Figment Learn in your tweet! 
 
-### ![](../../.gitbook/assets/download-7-.png) Medium \(25$ in NEAR each, `1500-2000` words each\)
+### ![](../../.gitbook/assets/download-7-1-%20%281%29%20%281%29.png) Medium \(25$ in NEAR each, `1500-2000` words each\)
 
 1. Recount your NEAR learning experience
 2. Share your ideas for improving the NEAR developer experience
@@ -80,7 +84,7 @@ Make sure to refer to Figment Learn in your tweet!
 
 Make sure to refer to Figment Learn in your post! 
 
-### ![](../../.gitbook/assets/github-square-512.png) Github \(100$ in NEAR each up to `1` max of `meaningful` piece of software\)
+### ![](../../.gitbook/assets/github-square-512.png) Github \(50$ in NEAR each up to `1` max of `meaningful` piece of software\)
 
 1. Build a demo of an interesting feature of NEAR \(ie. cross-contract calls\)
 2. Integrate NEAR with a popular framework \(ie. Express middleware\)

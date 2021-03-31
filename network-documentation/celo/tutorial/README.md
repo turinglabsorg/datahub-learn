@@ -18,23 +18,23 @@ If you prefer going through the tutorial with videos, check out this ****[**CELO
 
 ## 1. Connect to a Celo node with DataHub
 
-{% page-ref page="1.connect.md" %}
+{% page-ref page="intro-pathway-celo-basics/1.connect.md" %}
 
 ## 2. Create your first Celo account
 
-{% page-ref page="2.account.md" %}
+{% page-ref page="intro-pathway-celo-basics/2.account.md" %}
 
 ## 3. Query the Celo Network
 
-{% page-ref page="3.query.md" %}
+{% page-ref page="intro-pathway-celo-basics/3.query.md" %}
 
 ## 4. Submit your first transactions
 
-{% page-ref page="4.transactions.md" %}
+{% page-ref page="intro-pathway-celo-basics/4.transactions.md" %}
 
 ## 5. Write and deploy your first Celo smart contract
 
-{% page-ref page="5.smart-contract.md" %}
+{% page-ref page="intro-pathway-celo-basics/5.smart-contract.md" %}
 
 ## Hello Celo
 

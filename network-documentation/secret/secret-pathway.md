@@ -6,7 +6,11 @@ description: Learn what makes Secret unique and build your first Secret smart co
 
 ## ![](../../.gitbook/assets/logo1.png) Welcome to the Secret Pathway
 
-Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project to earn **$20 in SCRT equivalent**! 
+Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project.
+
+{% hint style="info" %}
+There are currently no rewards for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn.
+{% endhint %}
 
 ## 🏁 Get started by signing up for DataHub
 
@@ -34,23 +38,23 @@ We also do not accept "Google phone numbers" or any online SMS number.
 
 ### 💡1. Connect to a Secret node using DataHub 
 
-{% page-ref page="tutorials/1.-connecting-to-a-secret-node-using-datahub.md" %}
+{% page-ref page="tutorials/intro-pathway-secret-basics/1.-connecting-to-a-secret-node-using-datahub.md" %}
 
 ### 💡2. Create your first Secret account
 
-{% page-ref page="tutorials/2.-setting-up-your-wallet.md" %}
+{% page-ref page="tutorials/intro-pathway-secret-basics/2.-setting-up-your-wallet.md" %}
 
 ### 💡3. Query the Secret Network 
 
-{% page-ref page="tutorials/3.-querying-the-secret-blockchain.md" %}
+{% page-ref page="tutorials/intro-pathway-secret-basics/3.-querying-the-secret-blockchain.md" %}
 
 ### 💡4. Submit your first Secret transaction
 
-{% page-ref page="tutorials/4.-submit-your-first-transaction.md" %}
+{% page-ref page="tutorials/intro-pathway-secret-basics/4.-submit-your-first-transaction.md" %}
 
 ### 💡5. Write & deploy your first Secret smart contract
 
-{% page-ref page="tutorials/5.-writing-and-deploying-your-first-secret-contract.md" %}
+{% page-ref page="tutorials/intro-pathway-secret-basics/5.-writing-and-deploying-your-first-secret-contract.md" %}
 
 ## ![](../../.gitbook/assets/logo1.png)Extra Secret Pathway Challenges
 
@@ -60,7 +64,7 @@ Simply fill [**this form**](https://forms.gle/w9DBnAtUjtHc6ADV8) and include dir
   
 Bonus Activity Rewards will be given out at the discretion of the reviewer. Please provide any context you would like us to consider to maximize your Bonus Activity Reward. 
 
-### ![](../../.gitbook/assets/download-6-.png) Twitter \($5 in SCRT each\)
+### ![](../../.gitbook/assets/download-6-1-%20%281%29%20%281%29.png) Twitter \($5 in SCRT each\)
 
 1. Post a lesson learned about the Secret platform, tools, community, etc.
 2. Post a screenshot of what you just built with Secret
@@ -70,7 +74,7 @@ Bonus Activity Rewards will be given out at the discretion of the reviewer. Plea
 
 Make sure to refer to Figment Learn in your tweet! 
 
-### ![](../../.gitbook/assets/download-7-.png) Medium \($20 in SCRT each, `1500-2000` words each\)
+### ![](../../.gitbook/assets/download-7-1-%20%281%29%20%281%29.png) Medium \($20 in SCRT each, `1500-2000` words each\)
 
 1. Recount your Secret learning experience
 2. Share your ideas for improving the Secret developer experience

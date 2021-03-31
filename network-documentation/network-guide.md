@@ -24,7 +24,7 @@ Avalanche is a layer one protocol by Ava Labs that offers high-throughput, fast 
 
 {% page-ref page="avalanche/" %}
 
-## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Celo
+## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Celo
 
 Celo is a smart contract blockchain network. The technology uses a phone-number-based identity system with address-based encryption and eigentrust-based reputation. Their first application is a social payments system that can be used on a smartphone. 
 
@@ -35,6 +35,18 @@ Celo is a smart contract blockchain network. The technology uses a phone-number-
 Cosmos provides tools that make it easy to build a new, custom-designed blockchain that may interoperate with an arbitrary number of others in the Cosmos network. Its transactions are fast and low-cost, and the network is scalable. Cosmos is intended to break the silos of blockchain economies by enabling assets to be transferred between one another. A custom Cosmos blockchain can be securely connected with other blockchains, increasing the rate of adoption and liquidity.
 
 {% page-ref page="cosmos/" %}
+
+## ![](../.gitbook/assets/filecoin_logo.png) Filecoin 
+
+Filecoin is a peer-to-peer network that stores files, with built-in economic incentives to ensure files are stored reliably over time. Users pay to store their files on storage miners. Storage miners are computers responsible for storing files and proving they have stored the files correctly over time. Anyone who wants to store their files or get paid for storing other users’ files can join Filecoin. Available storage, and the price of that storage, is not controlled by any single company. Instead, Filecoin facilitates open markets for storing and retrieving files that anyone can participate in.
+
+{% page-ref page="filecoin/" %}
+
+## ![](../.gitbook/assets/1_gc0dp8vfvm6bwwn51nuqew.png) Mina 
+
+Mina is the first cryptocurrency protocol with a succinct blockchain. Current cryptocurrencies like Bitcoin and Ethereum store hundreds of gigabytes of data, and as time goes on, their blockchains will only increase in size. With Mina, however, no matter how much the usage grows, the blockchain always stays the same size - about 22kb \(the size of a few tweets\). This means participants can quickly sync and verify the network.
+
+{% page-ref page="mina/" %}
 
 ## ![](../.gitbook/assets/tnear_icon_1.png) NEAR 
 

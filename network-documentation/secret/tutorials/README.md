@@ -14,23 +14,23 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 ## Connect to a Secret node with DataHub
 
-{% page-ref page="1.-connecting-to-a-secret-node-using-datahub.md" %}
+{% page-ref page="intro-pathway-secret-basics/1.-connecting-to-a-secret-node-using-datahub.md" %}
 
 ## Create your first Secret account
 
-{% page-ref page="2.-setting-up-your-wallet.md" %}
+{% page-ref page="intro-pathway-secret-basics/2.-setting-up-your-wallet.md" %}
 
 ## Query the Secret blockchain
 
-{% page-ref page="3.-querying-the-secret-blockchain.md" %}
+{% page-ref page="intro-pathway-secret-basics/3.-querying-the-secret-blockchain.md" %}
 
 ## Submit your first Secret transaction
 
-{% page-ref page="4.-submit-your-first-transaction.md" %}
+{% page-ref page="intro-pathway-secret-basics/4.-submit-your-first-transaction.md" %}
 
 ## Write & deploy your first Secret smart contract
 
-{% page-ref page="5.-writing-and-deploying-your-first-secret-contract.md" %}
+{% page-ref page="intro-pathway-secret-basics/5.-writing-and-deploying-your-first-secret-contract.md" %}
 
 
 
