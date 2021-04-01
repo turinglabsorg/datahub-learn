@@ -14,7 +14,7 @@ Because of this customization, companies can create legally compliant permission
 
 ### **Why build on Avalanche?** 
 
-AVA was created to fill use cases, that existing platforms are unable to provide while retaining the promise of decentralization. People who use Avalanche do so because they need to support their high-throughput systems but do not wish to rely on a trusted intermediary. With the ability to partition private data away from the rest of the Avalanche network while still being a member of the overall network, Avalanche enables the privacy use cases other platforms do not. 
+AVA was created to fill use cases that existing platforms are unable to provide while retaining the promise of decentralization. People who use Avalanche do so because they need to support their high-throughput systems but do not wish to rely on a trusted intermediary. With the ability to partition private data away from the rest of the Avalanche network while still being a member of the overall network, Avalanche enables the privacy use cases other platforms do not. 
 
 With fast decision times and reasonable hardware requirements, Avalanche powers a system that can accept many times the data and productive yield than existing decentralized systems provide at a low cost to the end user. Avalanche is an asset engine that can deploy and power new markets or integrate existing ones into a global exchange backbone.
 
