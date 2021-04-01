@@ -136,6 +136,7 @@
   * [🎮 RPC & REST API](network-documentation/filecoin/rpc-and-rest-api/README.md)
     * [Miner Reputation System API](network-documentation/filecoin/rpc-and-rest-api/miner-reputation-system-api.md)
 * [📱 Mina](network-documentation/mina/README.md)
+  * [✏ Mina 101](network-documentation/mina/mina-101.md)
   * [🎮 RPC & REST API](network-documentation/mina/rpc-and-rest-api/README.md)
     * [Indexer API Documentation](network-documentation/mina/rpc-and-rest-api/indexer-api-documentation.md)
 * [🌈 NEAR](network-documentation/near/README.md)
