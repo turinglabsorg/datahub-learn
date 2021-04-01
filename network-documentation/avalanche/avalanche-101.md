@@ -12,15 +12,15 @@ Subnets within the Avalanche network will be highly customizable and will have t
 
 Because of this customization, companies can create legally compliant permissioned subnets while still being connected to the grander Avalanche network. This could lead to the creation of new financial primitives and bring more traditional financial products into the blockchain space in a decentralized way.
 
-### **Why build on Avalanche?** 
+### **Why build on Avalanche?**
 
-AVA was created to fill use cases that existing platforms are unable to provide while retaining the promise of decentralization. People who use Avalanche do so because they need to support their high-throughput systems but do not wish to rely on a trusted intermediary. With the ability to partition private data away from the rest of the Avalanche network while still being a member of the overall network, Avalanche enables the privacy use cases other platforms do not. 
+AVA was created to fill use cases that existing platforms are unable to provide while retaining the promise of decentralization. People who use Avalanche do so because they need to support their high-throughput systems but do not wish to rely on a trusted intermediary. With the ability to partition private data away from the rest of the Avalanche network while still being a member of the overall network, Avalanche enables the privacy use cases other platforms do not.
 
 With fast decision times and reasonable hardware requirements, Avalanche powers a system that can accept many times the data and productive yield than existing decentralized systems provide at a low cost to the end user. Avalanche is an asset engine that can deploy and power new markets or integrate existing ones into a global exchange backbone.
 
-### **What can you build on Avalanche?** 
+### **What can you build on Avalanche?**
 
-Avalanche provides developers with one of the most versatile protocols available today. Developers can: 
+Avalanche provides developers with one of the most versatile protocols available today. Developers can:
 
 * Create their own VM for their needs
 * Create their subnets \(private and public\), to customize their value proposition 
@@ -29,7 +29,7 @@ Avalanche provides developers with one of the most versatile protocols available
 * Create native NFTs as first-order objects
 * Create powerful decentralized financial applications
 
-And more! 
+And more!
 
 ## **Network Specifications**
 
@@ -81,7 +81,7 @@ Avalanche protocols are lightweight and sustainable. Unlike Nakamoto protocols, 
 
 ### **Languages supported**
 
-Avalanche's ****C-Chain is the standard Ethereum suite of tools. 
+Avalanche's _\*\*_C-Chain is the standard Ethereum suite of tools.
 
 The X-Chain and P-Chain use a Typescript library that supports native javascript cross-platform.
 

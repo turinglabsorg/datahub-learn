@@ -173,6 +173,7 @@
   * [🎊 Enriched APIs](network-documentation/polkadot/enriched-apis/README.md)
     * [Indexer API](network-documentation/polkadot/enriched-apis/polkadot-rest-api.md)
     * [Transaction Search](network-documentation/polkadot/enriched-apis/transaction-search.md)
+* [💡 Tutorials](network-documentation/tutorials.md)
 * [🤫 Secret](network-documentation/secret/README.md)
   * [✏ Secret 101](network-documentation/secret/secret-101.md)
   * [🎮 RPC & REST API](network-documentation/secret/rpc-and-rest-api/README.md)
