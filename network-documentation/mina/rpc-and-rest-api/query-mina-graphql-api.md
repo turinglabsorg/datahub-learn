@@ -14,7 +14,7 @@ Make sure to replace the API key in the link!
 
 We can check out the node/network status by running the following query:
 
-```text
+```graphql
 query status {
   daemonStatus {
     syncStatus
@@ -30,7 +30,7 @@ query status {
 
 You'll get an output like:
 
-```text
+```graphql
 {
   "data": {
     "daemonStatus": {
@@ -57,7 +57,7 @@ You'll get an output like:
 
 Pull information about latest 10 blocks:
 
-```text
+```graphql
 query blocks {
   bestChain(maxLength: 10) {
     stateHash
@@ -72,7 +72,7 @@ query blocks {
 
 Example output:
 
-```text
+```graphql
 {
   "data": {
     "bestChain": [
@@ -165,7 +165,7 @@ Example output:
 
 We can obtain the latest canonical block and it's information with:
 
-```text
+```graphql
 query block {
   bestChain(maxLength: 1) {
     creator
@@ -200,7 +200,7 @@ query block {
 
 Example output:
 
-```text
+```graphql
 {
   "data": {
     "bestChain": [
@@ -284,7 +284,7 @@ query snarkPool {
 
 Example output:
 
-```text
+```graphql
 {
   "data": {
     "snarkPool": [
@@ -305,7 +305,7 @@ Example output:
 
 We can get account balance with:
 
-```text
+```graphql
 query accDetails {
   account(publicKey: "B62qix9vooX5NqJYo8nT6xWqCeQu5AJoS1ng6FRnUpVAra6PAZZ1CU4") {
     delegate
@@ -330,7 +330,7 @@ query accDetails {
 
 Example output:
 
-```text
+```graphql
 {
   "data": {
     "account": {
