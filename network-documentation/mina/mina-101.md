@@ -18,7 +18,7 @@ zk-SNARKs give Mina **permissionless apps** that compute logic and data off-chai
 
 Mina’s protocol design gives developers **easy access to digital dollars** — anyone building on Mina can integrate stablecoin payments into their apps with just a couple lines of code. 
 
-### **What can you build on NEAR?** 
+### **What can you build on Mina?** 
 
 As the world’s lightest blockchain, Mina enables an entirely new category of applications called Snapps \[3\] : Snarkified Applications. Snapps are featurewise similar to Dapps on Ethereum, but are superior thanks to three specific properties:
 
