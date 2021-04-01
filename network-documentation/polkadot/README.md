@@ -20,6 +20,8 @@ Be sure to check out the[ **official Polkadot documentation**](https://wiki.polk
 
 {% page-ref page="polkadot-101.md" %}
 
+{% page-ref page="rpc-and-rest-api/" %}
+
 {% page-ref page="enriched-apis/" %}
 
 
