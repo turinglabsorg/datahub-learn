@@ -174,6 +174,7 @@
     * [Indexer API](network-documentation/polkadot/enriched-apis/polkadot-rest-api.md)
     * [Transaction Search](network-documentation/polkadot/enriched-apis/transaction-search.md)
   * [💡 Tutorials](network-documentation/polkadot/tutorials/README.md)
+    * [Add A Pallet To Your Runtime](network-documentation/polkadot/tutorials/add-a-pallet-to-your-runtime.md)
     * [Create Your First Substrate Chain](network-documentation/polkadot/tutorials/create-your-first-substrate-chain.md)
 * [🤫 Secret](network-documentation/secret/README.md)
   * [✏ Secret 101](network-documentation/secret/secret-101.md)
