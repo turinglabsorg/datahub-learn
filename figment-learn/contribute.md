@@ -30,14 +30,17 @@ Authors are paid in the tokens of the protocol they write about, which allows us
 
 ### What should I write about?
 
-At a high level, we are looking for two categories of tutorials
+[NEAR tutorial ideas ](https://docs.google.com/document/d/1yk2nr1pg-LidzdQg2ZogQ6phX-AcPJNwuW7LdQPoL5k/edit)
 
-* **Connecting Web 2 & Web 3:** For Web3 to be adopted widely, we'll need to bridge its technology with platforms and languages that are popular in Web2 development today. Tutorials inspire developers to build DApps in their favorite languages and architect their DApps the way they are used to.  
-* **Project-specific walkthroughs:** We need to leverage the open-nature of Web3 development to collaborate and iterate on existing projects to quickly increase their UX and performance. Tutorials providing a guide to build necessary infrastructures such as wallets, payment apps, and exchanges are welcomed.
+[Secret tutorial ideas](https://docs.google.com/document/d/11jLaH0AFbvMLs_ORcj29OeqR_07GsUgtRrDi9E0lTTc/edit#heading=h.lq158u48d890) 
+
+[Celo tutorial ideas](https://docs.google.com/document/d/1kLBWbEygrVQcFNoMLpCtH7Dxk674FI6Dmegg4J3rSCM/edit#heading=h.lq158u48d890)
+
+[Avalanche tutorial ideas](https://docs.google.com/document/d/1F2SPqZGVwA7_lSpfl0iZ3LUmqfjV4SZRh7R9qz9VenU/edit) 
 
 #### Are you interested in contributing and writing tutorials?
 
-Then please check our Learn Tutorial Guidelines for more details - [**HERE**](https://docs.google.com/document/d/13LWLrWzZ34M0ldWGeDANcWxw9nEWk3AX3VwXRBIOs1M/edit?usp=sharing)\*\*\*\*
+Then please check our Learn Tutorial Guidelines for more details - [**HERE**](https://docs.google.com/document/d/13LWLrWzZ34M0ldWGeDANcWxw9nEWk3AX3VwXRBIOs1M/edit?usp=sharing)
 
 **See examples of community tutorials below.**
 
