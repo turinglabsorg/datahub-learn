@@ -48,3 +48,6 @@ If you prefer going through the tutorial with videos, check out this ****[**CELO
 
 {% page-ref page="hello-mobile-dapp.md" %}
 
+## Deploying an existing Smart Contract with Truffle
+
+{% page-ref page="celo-truffle-deploy.md" %}
