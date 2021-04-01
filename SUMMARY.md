@@ -81,6 +81,7 @@
     * [Send CELO & cUSD](network-documentation/celo/tutorial/hello-celo.md)
     * [Deploy and Interact with Contracts \(Remotely\)](network-documentation/celo/tutorial/hello-contracts.md)
     * [Hello Mobile DApp](network-documentation/celo/tutorial/hello-mobile-dapp.md)
+    * [How to re-deploy your Ethereum DApp to Celo ](network-documentation/celo/tutorial/Redploy-dapps-on-celo.md)
     * [Deploy Celo Smart contracts with Remix IDE](network-documentation/celo/tutorial/celo-for-remix.md)
   * [💼 CELO Wallet](network-documentation/celo/celo-wallet.md)
 * [🌌 Cosmos](network-documentation/cosmos/README.md)
