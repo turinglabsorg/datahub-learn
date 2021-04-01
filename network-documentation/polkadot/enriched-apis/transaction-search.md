@@ -51,7 +51,7 @@ ChainID to search in. In this case, `mainnet`
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="epoch" type="string" required=false %}
-Era the transaction occurred, 
+Era the transaction occurred,
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="hash" type="string" required=false %}
@@ -287,12 +287,11 @@ List of currently supported transaction event types in polkadot-worker are \(lis
 | **proxy** | `bonded`, `reward`, `slash` |
 | **staking** | `bonded`, `reward`, `slash` |
 | **system** | `extrinsicfailed`, `extrinsicsuccess`, `killedaccount`, `newaccount` |
-| **technicalcommittee** |  `approved`, `closed`, `disapproved`, `executed`, `memberexecuted`, `proposed`, `voted` |
+| **technicalcommittee** | `approved`, `closed`, `disapproved`, `executed`, `memberexecuted`, `proposed`, `voted` |
 | **tips** | `newtip`, `tipclosed`, `tipclosing`, `tipretracted`, `tipslashed` |
 | **treasury** | `proposed`, `rejected` |
 | **utility** | `batchcompleted`, `batchinterrupted` |
 | **vesting** | `vestingupdated`, `vestingcompleted` |
-
 
 ## Example Request
 

@@ -2,7 +2,7 @@
 description: Learn how to interact with Figment's Polkadot REST API
 ---
 
-# Polkadot REST API
+# Indexer API
 
 ## Source Documentation
 
@@ -20,9 +20,8 @@ Gets account balance details for given height
 
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
-| **stash_account** | string | account (required) |
-| **height** | int | block height (optional- if unspecified, returns latest) |
-
+| **stash\_account** | string | account \(required\) |
+| **height** | int | block height \(optional- if unspecified, returns latest\) |
 
 **Example Request**
 
@@ -32,7 +31,7 @@ polkadot--mainnet.datahub.figment.io/account/138QdRbUTB9eNY94Q4Mj5r39FkgMiyHCAy8
 
 **Example JSON output**
 
-```json
+```javascript
 {
     "nonce": 14,
     "free": "1018474380754",
@@ -46,19 +45,18 @@ polkadot--mainnet.datahub.figment.io/account/138QdRbUTB9eNY94Q4Mj5r39FkgMiyHCAy8
 
 **Description**
 
-Gets latest account balances, latest identity associated with the account (display name, email, social medias, etc), and all balance related events.
+Gets latest account balances, latest identity associated with the account \(display name, email, social medias, etc\), and all balance related events.
 
 **Parameters**
 
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
-| **stash_account** | string | account (required) |
+| **stash\_account** | string | account \(required\) |
 
 **Example Request**
 
 ```javascript
 polkadot--mainnet.datahub.figment.io/account_details/138QdRbUTB9eNY94Q4Mj5r39FkgMiyHCAy8UFMNA5gvtrfSB
-
 ```
 
 **Example JSON output**
@@ -155,16 +153,15 @@ polkadot--mainnet.datahub.figment.io/account_details/138QdRbUTB9eNY94Q4Mj5r39Fkg
 
 **Description**
 
-Returns all rewards claimed for an account for given time period from `start` to `end`. 
+Returns all rewards claimed for an account for given time period from `start` to `end`.
 
 **Parameters**
 
 | **Parameter** | Type | Description |
 | :--- | :--- | :--- |
-| **stash_account** | string | stash_account (required) |
-| **start** | time | start time of period (required). Format must be `2006-01-02 15:04:05` |
+| **stash\_account** | string | stash\_account \(required\) |
+| **start** | time | start time of period \(required\). Format must be `2006-01-02 15:04:05` |
 | **end** | time | end time of period. Format must be `2006-01-02 15:04:05` |
-
 
 **Example Request**
 
@@ -209,3 +206,4 @@ polkadot--mainnet.datahub.figment.io/account_rewards/14j3azi9gKGx2de7ADL3dkzZXFz
     ]
 }
 ```
+

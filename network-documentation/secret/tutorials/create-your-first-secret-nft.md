@@ -1,9 +1,11 @@
 ---
-description: This is the first installment of a series about the newly arrived NFT feature on the secret network. In this first tutorial you will learn about the idea of NFTs, the difference between 'classical' and secret NFTs and how to interact with an deployed contract to mint, read and send your NFTs. At the end of this tutorial you will have a good understanding of the concepts and a small toolbox, which serves as a foundation for upcoming tutorials, to explore NFTs on secret network in greater depth.
+description: >-
+  This is the first installment of a series about the newly arrived NFT feature
+  on the secret network. In this first tutorial you will learn about the idea of
+  NFTs, the difference between 'classical' an
 ---
 
-# Create your first secretNFT
-
+# Create your first secret NFT
 
 ## About the Author
 
@@ -11,7 +13,7 @@ This tutorial was create by [Florian Uhde](https://twitter.com/florianuhde), a s
 
 ## Introduction
 
-[Non-Fungible Tokens](https://en.wikipedia.org/wiki/Non-fungible_token) implement the idea of uniqueness in the blockchain world. With classical, fungible tokens the only important characteristic is how *many* of them you own. You can think of those as currency, or to make a more exotic example, carrots. It is interesting to know how many kilograms of carrots you have, but nobody is likely to be really into you telling them which carrots you own precisely. For non-fungible tokens on the other hand, the number you are holding is not as important as *which* token you hold. Given an example: If I tell you that I own three paintings, it's not that impressive. If I tell you on the other hand that I own the Mona Lisa, Guernica and The Persistence of Time you might be impressed and still want me to prove it. 
+[Non-Fungible Tokens](https://en.wikipedia.org/wiki/Non-fungible_token) implement the idea of uniqueness in the blockchain world. With classical, fungible tokens the only important characteristic is how _many_ of them you own. You can think of those as currency, or to make a more exotic example, carrots. It is interesting to know how many kilograms of carrots you have, but nobody is likely to be really into you telling them which carrots you own precisely. For non-fungible tokens on the other hand, the number you are holding is not as important as _which_ token you hold. Given an example: If I tell you that I own three paintings, it's not that impressive. If I tell you on the other hand that I own the Mona Lisa, Guernica and The Persistence of Time you might be impressed and still want me to prove it.
 
 At a high level, an NFT has a number of important properties. First we are interested in which account holds a token, as this can decide who is allowed to interact with it. Secondly we need a way to store the metadata, which is the information that users will see and interact with that makes this NFT more than just a tokenID!
 
@@ -23,7 +25,7 @@ Secret Network is focused on privacy by default and this paradigm extends to its
 
 ## Getting started with secretNFTs
 
-We will connect to an already deployed instance of the [snip721 reference implementation](https://github.com/baedrik/snip721-reference-impl): The *SecretFigment token*. We will build the functionality needed to interact with an NFT on secret. Namely the ability to mint new tokens, to set the Viewing key on tokens and to query the token private metadata.
+We will connect to an already deployed instance of the [snip721 reference implementation](https://github.com/baedrik/snip721-reference-impl): The _SecretFigment token_. We will build the functionality needed to interact with an NFT on secret. Namely the ability to mint new tokens, to set the Viewing key on tokens and to query the token private metadata.
 
 ### Prerequisites
 
@@ -33,13 +35,13 @@ This tutorial assumes that you have completed the [Secret Learn Pathway](https:/
 
 #### Requirements to successfully complete this tutorial
 
-* The latest version of NodeJS installed (use of nvm, the node version manager, is _encouraged_ for web3 developers)
+* The latest version of NodeJS installed \(use of nvm, the node version manager, is _encouraged_ for web3 developers\)
 * A code editor like VSCode, Theia, Atom, _etc_.
 * Required JavaScript packages –
   * secretjs - for the Secret Network JavaScript API
   * dotenv - for working with environment variables
 
-It is not required to install docker and the Rust toolchain *yet*, as we are using a pre-deployed contract in this case. A future installment in this series will guide you through writing and compiling your own variant of a snip721 token.
+It is not required to install docker and the Rust toolchain _yet_, as we are using a pre-deployed contract in this case. A future installment in this series will guide you through writing and compiling your own variant of a snip721 token.
 
 ### Minting
 
@@ -122,10 +124,9 @@ const main = async () => {
 main().catch((err) => {
   console.error(err);
 });
-
 ```
 
-Here we are getting our account data from the `.env` file and generating a secretjs client from it, which we can use to sign our transactions. The next step is to define the metadata that we want to attach to our Secret NFT. In this example we use strings: One public, one private and only accessible to the holder of the NFT. Under  `// 1. Define your metadata` add both constant declarations. Feel free to change the string to whatever you like. If we wanted to use string interpolation to import data programmatically, remember to swap the double quotes with backticks!
+Here we are getting our account data from the `.env` file and generating a secretjs client from it, which we can use to sign our transactions. The next step is to define the metadata that we want to attach to our Secret NFT. In this example we use strings: One public, one private and only accessible to the holder of the NFT. Under `// 1. Define your metadata` add both constant declarations. Feel free to change the string to whatever you like. If we wanted to use string interpolation to import data programmatically, remember to swap the double quotes with backticks!
 
 ```javascript
   // String interpolation example
@@ -161,7 +162,7 @@ The next step is for us to construct a message object to pass into our client, p
   console.log("response: ", response);
 ```
 
- `handleMsg` is the data we pass into our Secret client, which mints a new token for our own address then assigns the values we created above as public and private metadata. We pass and execute the object to the contract and read the response. If there were no errors, the output will be in the form of the reponse object:
+`handleMsg` is the data we pass into our Secret client, which mints a new token for our own address then assigns the values we created above as public and private metadata. We pass and execute the object to the contract and read the response. If there were no errors, the output will be in the form of the reponse object:
 
 ```javascript
   response:  {
@@ -260,9 +261,9 @@ const main = async () => {
   // 2. Query the public metadata
 
   // 3. Query the token dossier
-  
+
   // 4. Set our viewing key
-  
+
   // 5. Query the dossier again
 
 };
@@ -270,7 +271,6 @@ const main = async () => {
 main().catch((err) => {
   console.error(err);
 });
-
 ```
 
 The overall structure of this file should look familiar by now. It contains the setup for the client and signing functionality that we will use to interact with the contract. The fist step is to get a list of all our tokens. For this we will add the following code under `// 1. Get a list of all tokens`:
@@ -291,8 +291,7 @@ The overall structure of this file should look familiar by now. It contains the 
   console.log("response: ", response);
 ```
 
-We will ask the contract for a list of all token ids, which are currently assigned to our address.
-_**Note -**_ The deployed contract is configured to have public ownership for the sake of this tutorial. If you would deploy the contract yourself you can also decide to make it private, so that nobody but you will be able to see which tokens you own. This will be covered in a later installment of this series.
+We will ask the contract for a list of all token ids, which are currently assigned to our address. _**Note -**_ The deployed contract is configured to have public ownership for the sake of this tutorial. If you would deploy the contract yourself you can also decide to make it private, so that nobody but you will be able to see which tokens you own. This will be covered in a later installment of this series.
 
 Next we will take the first token id and ask for the details of this NFT. There are a few different queries supported by the reference implementation. After `// 2. Query the public metadata` insert this code block:
 
@@ -330,8 +329,7 @@ This will retrieve the message you added as `publicMetadata` during the mint pro
   console.log("response: ", response);
 ```
 
-The token dossier returns all of the data that we have access to, including public and private metadata, as well as some overall configuration of this token.
-If you run this file using `node query-token.js` you should receive similar output to this:
+The token dossier returns all of the data that we have access to, including public and private metadata, as well as some overall configuration of this token. If you run this file using `node query-token.js` you should receive similar output to this:
 
 ```javascript
 Reading all tokens
@@ -365,17 +363,17 @@ response:  {
 }
 ```
 
-Of interest is this line: `display_private_metadata_error: 'You are not authorized to perform this action on token 0',`. Why are we not able to see our private metadata even if we *are* owning the NFT?
+Of interest is this line: `display_private_metadata_error: 'You are not authorized to perform this action on token 0',`. Why are we not able to see our private metadata even if we _are_ owning the NFT?
 
 To answer this we need to take a small detour through the inner workings of secret contract interactions.
 
-Interaction with a contract falls into one of two distinct categories, you either *execute* a contract or you *query* a contract. The main difference here is that execution modifies the internal state of the contract and incurs a gas fee for doing so, while a query only reads from the internal state and it usually free.
+Interaction with a contract falls into one of two distinct categories, you either _execute_ a contract or you _query_ a contract. The main difference here is that execution modifies the internal state of the contract and incurs a gas fee for doing so, while a query only reads from the internal state and it usually free.
 
 _**Note -**_ Queries also have a calculated gas cost but are executed for free by the secret nodes. Node runners can define how expensive a query might be until they refuse to execute it. Also if you run a query during an execution call, its gas cost will be added to the total cost of the query.
 
 In regards to the [privacy model](https://build.scrt.network/dev/privacy-model-of-secret-contracts.html#outputs) of Secret contracts - whenever we send a query, the sending address is not verified, as a query does not happen on chain but rather just between the client and the contract. This means ultimately that we need to execute on a contract if we want to make sure who the contract is talking to. This is not optimal because of gas costs.
 
-This leads to the problem above: We do not want to execute on the contract, because we are not changing its inner state. As a query is not recorded on chain we have no way of making sure *who* is sending that query. So even if we tell the contract that the query was send by us, it rejects our request for the private data, as there is no tamperproof way to make *sure* it is us.
+This leads to the problem above: We do not want to execute on the contract, because we are not changing its inner state. As a query is not recorded on chain we have no way of making sure _who_ is sending that query. So even if we tell the contract that the query was send by us, it rejects our request for the private data, as there is no tamperproof way to make _sure_ it is us.
 
 The concept of Viewing keys is a clever solution for this problem. Instead of executing every time you will execute a single call and set a secret phrase, the so called key, for the contract. Whenever you send a query in the future you include this key with your query and the contract can look it up and validate it is actually you it is talking to. As secret network transmits fully encrypted messages no one will ever know your viewing keys.
 
@@ -464,12 +462,12 @@ This is a solid foundation to play with and build upon!
 
 ## What is next?
 
-Of course we are not yet at the end of our journey. In the coming tutorial we will have a look together into interesting and more complex examples of NFT properties.
-You can look forward to:
+Of course we are not yet at the end of our journey. In the coming tutorial we will have a look together into interesting and more complex examples of NFT properties. You can look forward to:
 
 * Customizing your NFT by deploying your own contract
 * Sending NFTs between different accounts
 * Building a simple NFT viewer
-* Adding complex logic to your NFTs, making them much more than *just* a store of secret data
+* Adding complex logic to your NFTs, making them much more than _just_ a store of secret data
 
 Lets keep on building!
+

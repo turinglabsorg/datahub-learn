@@ -22,4 +22,3 @@ The Transaction Search API documentation for Polkadot can be found below.
 
 {% page-ref page="transaction-search.md" %}
 
-
