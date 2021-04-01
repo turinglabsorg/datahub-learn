@@ -167,6 +167,7 @@
     * [Oasis REST API](network-documentation/oasis/rpc-and-rest-api/oasis-rest-api.md)
 * [🍡 Polkadot](network-documentation/polkadot/README.md)
   * [✏ Polkadot 101](network-documentation/polkadot/polkadot-101.md)
+  * [🎮 RPC & REST API](network-documentation/polkadot/rpc-and-rest-api.md)
   * [🎊 Enriched APIs](network-documentation/polkadot/enriched-apis/README.md)
     * [Indexer API](network-documentation/polkadot/enriched-apis/polkadot-rest-api.md)
     * [Transaction Search](network-documentation/polkadot/enriched-apis/transaction-search.md)
