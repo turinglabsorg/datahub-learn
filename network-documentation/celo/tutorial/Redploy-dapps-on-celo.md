@@ -47,6 +47,10 @@ After installing it, we need to make sure it is pointing to correct endpoint. Le
 ```
  celocli config:get
 ```
+<p align="center">
+  <img src="https://imgur.com/EEur2f5.png"  title="celo-config">
+</p>
+
 Our node should be pointing to **node: https://alfajores-forno.celo-testnet.org**
 
 In case your endpoint is something else, you can change it by using 
@@ -59,6 +63,12 @@ Use the following command to get a new aacount on testnet.
  celocli account:new
 ```
 
+Our terminal should look something like this. (Everyone will have different values though!)
+
+
+<p align="center">
+  <img src="https://imgur.com/qMjrv5Z.png" title="celo-new-account">
+</p>
 {% hint style="info" %}
 Don't share this information if you are on mainnet.
 {% endhint %}
@@ -78,6 +88,10 @@ To check if we have received funds, use
 ```
  celocli account:balance <YOUR_PUBLIC_KEY>
 ```
+
+<p align="center">
+  <img src="https://imgur.com/RFWBgTr.png" title="celo-account-balance">
+</p>
 
 ## Changing Truffle-config
 To deploy our dapp to the Celo blockchain, all we need to do now is to change the `truffle-config.js` so that it can work with Celo blockchain.
