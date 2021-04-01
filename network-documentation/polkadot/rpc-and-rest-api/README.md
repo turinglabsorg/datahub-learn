@@ -12,3 +12,7 @@ Learn about the APIs available via Polkadot [**DataHub**](https://datahub.figmen
 
 ## Polkadot RPC
 
+{% page-ref page="polkadot-rpc.md" %}
+
+
+
