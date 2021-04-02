@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Whether you are looking to create your own token, provide liquidity for existing tokens or to trade on Pangolin Avalanche c-chain Pangolin, you will need to create a token pair on Pangolin. 
+Whether you are looking to create your own token, provide liquidity for existing tokens or to trade on Pangolin that is deployed on Avalanche's c-chain, you will need to create a token pair on Pangolin. 
 
 However before that, we must familiarize ourselves with the functionality of token pairs, so that we can simulate a universe of token pairs and wallets, or even test our assumptions about contracts and tokenomics on a DEX. We will want to deploy a local testnet so that we can check our code for bugs and unintended interactions! 
 
@@ -122,7 +122,7 @@ These could be any other kind of ERC20 tokens, but for simplicity we simply depl
 	const AnotherERC20 = await deployer.deploy(MockERC20);
 ```
 
-## Construct Zero Address Arguement And Deploy Factory
+## Construct Zero Address Argument And Deploy Factory
 
 In order to construct any token pair on Pangolin, you will need to interact with the Factory contract and that means we need to deploy it to our local testnet first. 
 
