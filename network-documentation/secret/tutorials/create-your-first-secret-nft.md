@@ -46,7 +46,7 @@ It is not required to install docker and the Rust toolchain *yet*, as we are usi
 As we will be frequently communicating with the contract, the first thing we will do is add the contract address to our `.env` file:
 
 ```javascript
-SECRET_NFT_CONTRACT='secret15gs5mnm8hfw5n3r8602tmy5z736yzv33qsa8q8'
+SECRET_NFT_CONTRACT='secret166tjlgmahhjrl8ndegq8xmzjxfe6p6h4hdvx6a'
 ```
 
 Next, we create a new file in the project folder called `mint.js` and add the following code into it:
