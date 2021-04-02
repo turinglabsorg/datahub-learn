@@ -2,7 +2,7 @@
 description: Learn how Polkadot works and what makes it special
 ---
 
-# ✏ Polkadot 102
+# ✏ Polkadot 103
 
 ## **What is Polkadot?**
 
