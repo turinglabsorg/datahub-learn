@@ -1,8 +1,8 @@
 ---
 description: >-
-  This is the first part of a series about the newly arrived NFT feature on the
-  secret network. In this first tutorial, you will learn about the idea of NFTs
-  and a lot more.
+  This is the first part of a series about using snip721 tokens on the Secret
+  network. In this first tutorial, you will learn how to interact with these
+  tokens and a pre-deployed contract.
 ---
 
 # Create your first secret NFT
