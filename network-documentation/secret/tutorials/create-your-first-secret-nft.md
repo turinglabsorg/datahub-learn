@@ -1,15 +1,15 @@
 ---
 description: >-
-  This is the first installment of a series about the newly arrived NFT feature
-  on the secret network. In this first tutorial you will learn about the idea of
-  NFTs, the difference between 'classical' and secret NFTs and how to interact with an deployed contract to mint, read and send your NFTs. At the end of this tutorial you will have a good understanding of the concepts and a small toolbox, which serves as a foundation for upcoming tutorials, to explore NFTs on secret network in greater depth.
+  This is the first part of a series about the newly arrived NFT feature on the
+  secret network. In this first tutorial you will learn about the idea of NFTs
+  and a lot more.
 ---
 
 # Create your first secret NFT
 
 ## About the Author
 
-This tutorial was create by [Florian Uhde](https://twitter.com/florianuhde), a software engineer and game developer with a passion for blockchain, creativity and systemic design.
+This tutorial was created by [Florian Uhde](https://twitter.com/florianuhde), a software engineer and game developer with a passion for blockchain, creativity and systemic design.
 
 ## Introduction
 
