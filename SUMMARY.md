@@ -1,6 +1,6 @@
 # Table of contents
 
-* [👋 Welcome to Figment Learn TEST STGAING DONT MERGE](README.md)
+* [👋 Bienvenue chez Figment](README.md)
 
 ## 🚩 Introduction
 
