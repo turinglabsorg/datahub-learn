@@ -44,11 +44,27 @@ In general, a Snapp on Mina has the following workflow:
 
 ### **Transaction Fees**
 
-
+The average gas price suggested on the Mina protocol is 0.001 MINA. 
 
 ### **Transaction Speed & Finality**
 
+With each subsequent block, a recipient has a higher degree of confidence that the payment is actually complete and that the network has consensus about that block. However, like in most blockchains, payments are said to be confirmed after a certain number of blocks, also known as transaction finality.
 
+In the Bitcoin network, a transaction is confirmed after [6 blocks](https://en.bitcoin.it/wiki/Confirmation) \(60 mins\) with an assumption that an attacker is unlikely to amass more than 10% of the hashrate.
+
+With slot duration of 3 mins and assuming 90% honest stake, the following table shows the finality in blocks, average time it takes to produce the corresponding number of blocks and the confidence that payment will be confirmed.
+
+| Finality \(in blocks\) | Average time for finality | Finality confidence \(%\) |
+| :--- | :--- | :--- |
+| 8 | 33 mins | 98.6709 |
+| 15 | 60 mins | 99.9231 |
+| 23 | 1hr 32mins | 99.9965 |
+| 30 | 2hrs | 99.9998 |
+| 38 | 2hrs 32mins | 100 |
+
+Average time is calculated based on consensus constants that determine the number of slots filled per epoch. This is currentlyset to 75%
+
+The recommended wait time for a transaction to be confirmed is 15 blocks which provides a 99.9% confidence that the transaction will not be reversed.
 
 ### **Languages supported**
 
