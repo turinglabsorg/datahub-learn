@@ -193,7 +193,7 @@ Then if you wanted to later call functions on the pair address, you need to acce
 
 # Deployment
 
-[This is what your deployment should look like if succesful](https://i.ibb.co/sWVpf6n/3-deploy.png)
+[This is what your deployment should look like if succesful](../../../.gitbook/assets/deploy-pangolin-to-local-testnet-with-token-pair-3_deploy.png)
 
 
 ## Wrapping Up
