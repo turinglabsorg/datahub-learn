@@ -50,3 +50,4 @@ If you prefer going through the tutorial with videos, check out this **\*\*\[**C
 
 ## Deploying an existing Smart Contract with Truffle
 
+{% page-ref page="celo-truffle-deploy.md" %}
