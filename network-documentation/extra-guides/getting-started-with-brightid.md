@@ -1,5 +1,5 @@
 ---
-description: Learn how to use BrightID's identity system
+description: Learn how to set up & use the BrightID identity system
 ---
 
 # Getting started with BrightID
@@ -21,13 +21,13 @@ The functionalities of BrightID are as follows:
 
 How to install BrightID?
 
-Anyone can easily install BrightID for free from Google Play Store & Apple Store. Use the links mentioned below to download & install BrightID on your device -
+Anyone can easily install BrightID for free from Google Play Store & Apple Store. Use the following links  to download & install BrightID on your device.
 
 1. [BrightID for Android](https://play.google.com/store/apps/details?id=org.brightid)
 2. [BrightID for iOS](https://apps.apple.com/us/app/brightid/id1428946820)
 3. [BrightID Android APK](https://drive.google.com/file/d/1EJIFrf8xPNrES6prB4qYaJogtYwEIKCG)
 
-Once you have installed the BrightID App on your device, you can get verified and start the Figment Learn Pathway.
+Once you have installed the BrightID App on your device, you can get verified and become part of the Figment Learn developer community, which will allow you to become eligible for rewards based on your participation in the community and completion of Pathways.
 
 ## **2. How to get verified on BrightID?**
 
@@ -37,20 +37,20 @@ You will get verified on BrightID based on your social relationships and the com
 
 There are different levels of verification on BrightID. 
 
-The first level of verification can be achieved by joining a [verification party](http://meet.brightid.org/) and following the instructions that are provided by the hosts from BrightID else you can join the verification party by the Figment team.  
+The first level of verification can be achieved by joining a [connection party](http://meet.brightid.org/) and following the instructions that are provided by the hosts from BrightID - alternatively you can join one of the daily connection parties held by members of the Learn team.  
 ****
 
 ![How to access your achievements list](https://lh4.googleusercontent.com/gX9agGGySsr-dhVgu3cE1Q3qhU_HhhHzlZVbdfpIPaxp38suQUEdrbmArWRiFvj_PHlpOOuy0-v-fEMqLghskjUO6AEfVxeZwsMGv6_zaDq5kW5qzuukk65KjMZLf60iChT6sFPY)
 
 ## **3. How to link your BrightID account with DataHub**
 
-**Step 1 -** Get verified during one of BrightID’s or Figment’s verification parties. 
+**Step 1 - Install and set up BrightID!** You can then become verified during one of BrightID’s or Figment’s connection events. 
 
-**Step 2 -** Go to - [https://datahub.figment.io](https://datahub.figment.io)
+**Step 2 -** Go to [https://datahub.figment.io](https://datahub.figment.io) and sign in to your dashboard!
 
-**Step 3 -** Complete all the tutorials in a Learn Pathway and click on “Submit to Earn”. 
+**Step 3 -** Complete all steps in any of the Learn Pathways, then click on the “Submit to Earn” button. 
 
-**Step 4 -** On step 3 of the verification process, you will be prompted with a QR code that you can scan with the BrightID app. Your account will now be linked to the Figment Learn group. 
+**Step 4 -** You will be prompted with a QR code which you must scan with your BrightID App. Your account will then be linked to the Figment Learn group, and you are a part of the Learn developer community! 
 
 If you have any questions, feel free to join [our community on Discord](https://discord.gg/5mUUqaTGr9) and our team will guide you through the process.  
   
