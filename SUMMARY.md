@@ -71,6 +71,7 @@
     * [Web3.utils](network-documentation/celo/rpc-and-rest-api/web3.utils.md)
   * [🗺 Celo Pathway](network-documentation/celo/celo-pathway.md)
   * [💡 Tutorials](network-documentation/celo/tutorial/README.md)
+    * [Deploying smart contracts on Celo with Truffle](network-documentation/celo/tutorial/deploying-smart-contracts-on-celo-with-truffle.md)
     * [Intro Pathway: Celo Basics](network-documentation/celo/tutorial/intro-pathway-celo-basics/README.md)
       * [1. Connect to a Celo node with DataHub](network-documentation/celo/tutorial/intro-pathway-celo-basics/1.connect.md)
       * [2. Create your first Celo account](network-documentation/celo/tutorial/intro-pathway-celo-basics/2.account.md)
