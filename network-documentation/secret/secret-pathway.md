@@ -58,9 +58,11 @@ We also do not accept "Google phone numbers" or any online SMS number.
 
 ## ![](../../.gitbook/assets/logo1.png)Extra Secret Pathway Challenges
 
-Secret is providing Bonus Activity Rewards for additional activities following the completion of the Secret Pathway tutorials. Complete any of these challenges and earn more SCRT tokens! 
+{% hint style="warning" %}
+Bonus activities have been turned off for now until we launch the next Secret Pathway. 
+{% endhint %}
 
-Simply fill [**this form**](https://forms.gle/w9DBnAtUjtHc6ADV8) and include direct links for our reference.   
+Secret is providing Bonus Activity Rewards for additional activities following the completion of the Secret Pathway tutorials. Complete any of these challenges and earn more SCRT tokens!   
   
 Bonus Activity Rewards will be given out at the discretion of the reviewer. Please provide any context you would like us to consider to maximize your Bonus Activity Reward. 
 

@@ -61,9 +61,11 @@ We also do not accept "Google phone numbers" or any online SMS number.
 
 ## ![](../../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Extra Celo Pathway Challenges
 
-Celo is providing Bonus Activity Rewards for additional activities following the completion of the Celo Pathway tutorials. Complete any of these challenges and earn more cUSD tokens! 
+{% hint style="warning" %}
+Bonus activities have been turned off for now until we launch the next Celo Pathway. 
+{% endhint %}
 
-Simply fill [**this form**](https://forms.gle/PHrw73rN6R5sX3n17) and include direct links for our reference.   
+Celo is providing Bonus Activity Rewards for additional activities following the completion of the Celo Pathway tutorials. Complete any of these challenges and earn more cUSD tokens!   
   
 Bonus Activity Rewards will be given out at the discretion of the reviewer. Please provide any context you would like us to consider to maximize your Bonus Activity Reward. 
 

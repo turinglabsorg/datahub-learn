@@ -58,9 +58,11 @@ We also do not accept "Google phone numbers" or any online SMS number.
 
 ## ![](../../.gitbook/assets/tnear_icon_1.png)Extra NEAR Pathway Challenges
 
-NEAR is providing Bonus Activity Rewards for additional activities following the completion of the NEAR Pathway tutorials. Complete any of these challenges and earn more NEAR tokens! 
+{% hint style="warning" %}
+Bonus activities have been turned off for now until we launch the next NEAR Pathway. 
+{% endhint %}
 
-Simply fill [**this form**](https://forms.gle/6JoCD6wmqoq33Brp7) and include direct links for our reference.   
+NEAR is providing Bonus Activity Rewards for additional activities following the completion of the NEAR Pathway tutorials. Complete any of these challenges and earn more NEAR tokens!   
   
 Bonus Activity Rewards will be given out at the discretion of the reviewer. Please provide any context you would like us to consider to maximize your Bonus Activity Reward. 
 
