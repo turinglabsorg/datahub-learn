@@ -4,7 +4,7 @@ description: Learn what makes Web 3 protocols unique and how to use them
 
 # 👋 Welcome to Figment Learn
 
-## ![](.gitbook/assets/vhhp1wl4_400x400-1-.jpg) The Web 3 Knowledge Base
+## ![](.gitbook/assets/vhhp1wl4_400x400-1-.jpg) The Web 3 Knowledge Base.
 
 **Figment has embarked on a mission to introduce more developers to Web 3 by simplifying the experience for its users and shining the light on Web 3’s potential.**   
   
