@@ -66,3 +66,7 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 ## Deploy Pangolin To Your Local Testnet And Create Token Pair
 
+{% page-ref page="deploy-pangolin-to-your-local-testnet-and-create-token-pair.md" %}
+
+
+
