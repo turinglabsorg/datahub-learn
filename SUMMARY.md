@@ -49,7 +49,6 @@
     * [Using Truffle with the Avalanche C-Chain](network-documentation/avalanche/tutorials/using-truffle-with-the-avalanche-c-chain.md)
     * [Transfer AVAX between the X-Chain and P-Chain](network-documentation/avalanche/tutorials/transfer-avax-between-the-x-chain-and-p-chain.md)
     * [Transfer AVAX Between the X-Chain and C-Chain](network-documentation/avalanche/tutorials/transfer-avax-between-the-x-chain-and-c-chain.md)
-    * [Deploy Pangolin To Your Local Testnet And Create Token Pair](network-documentation/avalanche/tutorials/deploy-pangolin-to-your-local-testnet-and-create-token-pair.md)
     * [Creating A Fixed-Cap Asset](network-documentation/avalanche/tutorials/creating-a-fixed-cap-asset.md)
     * [Creating A Variable-Cap Asset](network-documentation/avalanche/tutorials/creating-a-variable-cap-asset.md)
     * [Creating An NFT—Part 1](network-documentation/avalanche/tutorials/creating-an-nft-part-1.md)
