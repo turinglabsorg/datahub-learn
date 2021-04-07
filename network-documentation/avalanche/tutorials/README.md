@@ -64,5 +64,7 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="create-nfts-with-the-avalanche-wallet.md" %}
 
+## Deploy Pangolin To Your Local Testnet And Create Token Pair
 
+{% page-ref page="deploy-pangolin-to-local-testnet-with-token-pair.md" %}
 
