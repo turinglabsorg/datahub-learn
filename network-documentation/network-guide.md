@@ -60,6 +60,12 @@ The Oasis Network is the first privacy-enabled blockchain platform for open fina
 
 {% page-ref page="oasis/" %}
 
+## ![](../.gitbook/assets/4129.png) Polkadot
+
+Polkadot enables scalability by allowing specialized blockchains to communicate with each other in a secure, trust-free environment. It is built to connect and secure unique blockchains, whether they be public, permission-less networks, private consortium chains, or oracles and other Web3 technologies. It enables an internet where independent blockchains can exchange information under common security guarantees.
+
+{% page-ref page="polkadot/" %}
+
 ## ![](../.gitbook/assets/logo1.png) Secret
 
 Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps.
