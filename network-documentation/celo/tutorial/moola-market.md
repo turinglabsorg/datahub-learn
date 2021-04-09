@@ -35,22 +35,22 @@ We will be presented with a screen like this.
 
 Click on `Connect Valora` button and then press `Allow`.
 
-Now Valora can see out funds from Valora App.
+Now Moola has view access to our funds which we have deposited on Valora App.
 
 <p align="center">
   <img src="https://imgur.com/HXKeUlh.png" width="250" title="hover text">
 </p>
 
-We can deposit cUSD or CELO using your Valora app and start earning compound interest. 
+We can deposit cUSD or CELO using our Valora app and start earning compound interest. 
 Interest rates are variable and adjust based on demand for borrowing.  
 When demand to borrow the asset is low, rates are low.  When demand 
 to borrow the asset is high, rates are high.
 
 Now there are a couple of things to give attention to:
 1. **Deposit APY(annual percentage yield)** - This is the amount of interest that the user will get if they deposit collateral.
-2. **Borrow APR(Annual Percentage Rate)** - This is the  cost you pay each year to borrow collateral.
+2. **Borrow APR(Annual Percentage Rate)** - This is the  cost borrower pay each year to borrow collateral.
 3. **Maximum Loan to Value (75%)** - This is amount a user can borrow by depositing collateral. For example - User who has deposited 100 cUSD can borrow 75cUSD or Celo of equivalent worth on that collateral. Keep in mind that this loan will have interest associated with it.
-4. **Liquidation Threshold (80%)** - Moola always make sure that users have healthy LTV(Loan to value) ratio. Let's suppose a user depositied Celo worth $100 and borrowed 75 cUSD. Now the price of Celo decreased and the deposited Celo is now worth less than $100. This means that LTV is more than 75%. Thisis not acceptable to Moola and user is at a risk of liquidation. If LTV ratio falls below the Liquidation Threshold (80%) then a portion of user's collateral can be liquidated at a discount to bring the LTV back down below 75%. User can deposit more collateral to save themselves from being liquidated.
+4. **Liquidation Threshold (80%)** - Moola always make sure that users have healthy LTV(Loan to value) ratio. Let's suppose a user depositied Celo worth $100 and borrowed 75 cUSD. Now the price of Celo decreased and the deposited Celo is now worth less than $100. This means that LTV is more than 75%. This is not acceptable to Moola and user will be  at a risk of liquidation. If LTV ratio falls below the Liquidation Threshold (80%) then a portion of user's collateral can be liquidated at a discount to bring the LTV back down below 75%. User can deposit more collateral to save themselves from being liquidated.
 5. **Health Factor** - This indicates the health of user's loan. It should always be `SAFE`.
 
 ## How to use Moola
