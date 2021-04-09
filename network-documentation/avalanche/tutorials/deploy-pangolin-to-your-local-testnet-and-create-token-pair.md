@@ -12,7 +12,7 @@ description: >-
 
 Whether you are looking to create your own token, provide liquidity for existing tokens or trade on Pangolin that is deployed on Avalanche's c-chain, you will need to create a token pair on Pangolin.
 
-However, before that, we must familiarize ourselves with the functionality of token pairs, so that we can simulate a universe of token pairs and wallets, or even test our assumptions about contracts and tokenomics on a DEX. We will want to deploy a local testnet so that we can check our code for bugs and unintended interactions!
+However, before that, we must familiarize ourselves with the functionality of token pairs, so that we can simulate a universe of token pairs and wallets, or even test our assumptions about contracts and tokenomics on a [DEX](https://cryptocurrencyfacts.com/what-is-a-dex/). We will want to deploy a local testnet so that we can check our code for bugs and unintended interactions!
 
 In this tutorial, we will illustrate how to create your own Pangolin exchange locally and also create a trading pair from any arbitrary ERC20 tokens.
 
@@ -24,7 +24,7 @@ Pangolin is a fork of Uniswap V2 and the first decentralized exchange \(DEX\) on
 
 If you have completed the Avalanche tutorial on [Using Truffle with the Avalanche C-Chain](https://docs.avax.network/build/tutorials/smart-contracts/using-truffle-with-the-avalanche-c-chain), you will have completed most of the prerequisites.
 
-You have to be mindful that `avalanchego` is being constantly improved and things may change from the time this tutorial is published \(i.e. the address of the x/p/c chains used in the libraries above my differ from the current version of avalanchejs, private keys may change, etc. This means that you may need to modify the code when getting your local test net up and running\).
+You have to be mindful that `avalanchego` is being constantly improved and things may change from the time this tutorial is published \(i.e. the address of the x/p/c chains used in the libraries above my differ from the current version of Avalanche JS, private keys may change, etc. This means that you may need to modify the code when getting your local test net up and running\).
 
 In addition, you will need to:
 
@@ -174,7 +174,7 @@ Not too different from what we have done for the router and WAVAX, we will creat
 	})).contractAddress;
 ```
 
-### PangolinFactory interface \(IPangolinFactory\) and PangolinPair interface \(IPangolinPair\)
+### Pangolin Factory interface \(IPangolinFactory\) and PangolinPair interface \(IPangolinPair\)
 
 The interface for the factory and pair token contracts isn’t necessarily needed here because we are deploying both contracts themselves and we could use the contract ABI directly.
 
@@ -199,9 +199,7 @@ Then if you wanted to later call functions on the pair address, you need to acce
 	const PangoPair = await IPangolinPair.at(PangoPairAddress);
 ```
 
-## Deployment
 
-[This is what your deployment should look like if successful](https://github.com/figment-networks/datahub-learn/blob/master/.gitbook/assets/deploy-pangolin-to-local-testnet-with-token-pair-3_deploy.png)
 
 ### Wrapping Up
 
@@ -218,5 +216,5 @@ In this tutorial we have covered:
 
 ### Conclusion
 
-You have now deployed Pangolin to your local testnet with your two ERC20 tokens, created a pair token from the ERC20 tokens and now are ready to interact with pangolin through the router as you would on uniswap v2.
+You have now deployed Pangolin to your local testnet with your two ERC20 tokens, created a pair token from the ERC20 tokens and now are ready to interact with pangolin through the router as you would on Uniswap v2.
 
