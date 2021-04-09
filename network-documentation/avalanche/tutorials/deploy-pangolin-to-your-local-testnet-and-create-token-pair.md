@@ -6,9 +6,11 @@ description: >-
 
 # Deploy Pangolin To Your Local Testnet And Create Token Pair
 
-## Deploy Pangolin To Your Local Testnet And Create Token Pair
+## About the Author
 
-### Introduction
+This Tutorial was created by [Cinque McFarlane-Blake](https://github.com/cinquemb). Cinque is a reluctant software engineer and he worked on projects at labs related to brain-computer interfaces, back office stuff for trading in futures markets, and academic publishing tools in developing markets. Overall, He is just trying to help build a more decentralized hyper-connected world while pushing on the boundaries of our existence.
+
+## Introduction
 
 Whether you are looking to create your own token, provide liquidity for existing tokens or trade on Pangolin that is deployed on Avalanche's c-chain, you will need to create a token pair on Pangolin.
 
