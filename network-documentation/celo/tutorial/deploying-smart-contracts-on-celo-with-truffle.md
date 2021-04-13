@@ -6,9 +6,13 @@ description: >-
 
 # Deploying smart contracts on Celo with Truffle
 
-How would you go about deploying an existing Solidity smart contract on the Celo network?
+## About the Author
 
-One answer is that you could do it with the help of Truffle -- a development environment which is designed to make deploying smart contracts much easier.
+This tutorial was created by [Alex Reyes](https://www.linkedin.com/in/alexreyes-tech). Alex is a student \(BS, Computer Science\) and crypto enthusiast who's learning all about the world of web3 one day at a time and he's contributing to Web3 communities actively. He completed his previous internships at Facebook and Microsoft.
+
+## Introduction
+
+How would you go about deploying an existing Solidity smart contract on the Celo network? One answer is that you could do it with the help of Truffle -- a development environment that is designed to make deploying smart contracts much easier.
 
 Read on to learn how to deploy smart contracts on Celo with Truffle!
 
@@ -60,7 +64,7 @@ In this tutorial, the **Migrations.sol** contract which is initialized by Truffl
 
 **Note**: If you want to deploy a smart contract you've written, replace the **Migrations.sol** file in the **contracts/** folder with your own Solidity file. Here's what the default **Migrations.sol** file looks like:
 
-```text
+```javascript
 // SPDX-License-Identifier: MIT
 pragma  solidity >=0.4.22 <0.9.0;
 
@@ -87,9 +91,9 @@ We won't be going over this smart contract in this tutorial, but if you want to 
 
 Files in the migrations folder are used as deployment scripts. In Truffle, these deployment scripts are called migrations. For each Solidity file you want to deploy, you'll need a corresponding migration.
 
-At it simplest, a migration it will look like the `1_initial_migration.js` file you see below:
+At its simplest, a migration will look like the `1_initial_migration.js` file you see below:
 
-```text
+```javascript
 const  Migrations = artifacts.require("Migrations");
 
 module.exports = function (deployer)  {
@@ -109,7 +113,7 @@ And that's it! At its simplest, migrations are short like this.
 
 **Note:** If you want to deploy your custom Solidity contract, create a new file using the numbered migrations convention, and replace YOUR\_CONTRACT\_NAME with your contract definition:
 
-```text
+```javascript
 const YOUR_CONTRACT_NAME = artifacts.require("YOUR_CONTRACT_NAME"); 
 
 module.exports  =  function  (deployer)  {
@@ -146,7 +150,7 @@ Next, we’re going to need a Celo account to deploy from. We will need a few th
 
 First things first, let's get an account and a private key. Create a file named `getAccount.js` in your project root directory. In that file, write the following code:
 
-```text
+```javascript
 const ContractKit =  require('@celo/contractkit');
 
 const Web3 =  require('web3');
@@ -208,7 +212,7 @@ The **truffle-config.js** is used in order to tell truffle how you want to deplo
 
 For our purposes, we will need to add the following code to the project truffle-config file:
 
-```text
+```javascript
 const ContractKit = require('@celo/contractkit');
 const Web3 = require('web3');
 
@@ -263,7 +267,7 @@ And finally, in the `module.exports` function, we set the Solidity version we wa
 
 The following block of code is what tells truffle to deploy to alfajores \(Celo's test network\):
 
-```text
+```javascript
 alfajores: {
     provider: client.connection.web3.currentProvider, // CeloProvider
     network_id: 44787  // latest Alfajores network id

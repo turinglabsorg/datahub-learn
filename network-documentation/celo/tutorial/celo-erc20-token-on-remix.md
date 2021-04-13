@@ -11,7 +11,7 @@ description: How to create fungible tokens on Celo using Remix-IDE
 
 ## 1. What are tokens?
 
-Tokens are a unit of measurement in virtual world. It can represent any value the creator wants it to have.
+Tokens are a unit of measurement in the virtual world. It can represent any value the creator wants it to have.
 
 For Example:
 
@@ -27,11 +27,11 @@ Broadly these digital tokens can be classified into two categories:
 
 ### a. Fungible Tokens :
 
-Fungibility means **replaceable** by another identical item. In simple term, tokens that have equal value and are interchangable. This is identical to `Fiat currency`. Every Dollar is equal to every other Dollar of same value.
+Fungibility means **replaceable** by another identical item. In simple terms, tokens that have equal value and are interchangable. This is identical to `Fiat currency`. Every Dollar is equal to every other Dollar of same value.
 
 ### b. Non-Fungible Tokens \(NFTs\):
 
-As you can guess, these are exactly opposite of fungible tokens. Every non-fungible token is `unique` thus can't be interchanged. Examples can be Digital Art or Songs.
+As you can guess, these are exactly the opposite of fungible tokens. Every non-fungible token is `unique` thus can't be interchanged. Examples can be Digital Art or Songs.
 
 In this example we will learn how to mint `fungible tokens`. We will use standard interface of `fungible tokens` that are quite popular on **Ethereum** and learn how to build similar tokens on **Celo**.
 
@@ -41,7 +41,7 @@ ERC20 is a standard interface used on Ethereum to build fungible tokens.
 
 This interface contains some **functions**
 
-```text
+```javascript
 //optional
 function name() public view returns (string)
 function symbol() public view returns (string)
@@ -57,12 +57,12 @@ function transferFrom(address from, address to, uint tokens)public returns (bool
 
 and some **events**
 
-```text
+```javascript
 event Transfer(address indexed from, address indexed to, uint tokens)
 event Approval(address indexed tokenOwner, address indexed spender, uint tokens)
 ```
 
-that needs to be defined before deploying our smart contract on blockchain.
+that needs to be defined before deploying our smart contract on the blockchain.
 
 In this tutorial, we will create a minimalistic version of ERC20 \(fungible\) tokens.
 
@@ -70,7 +70,7 @@ In this tutorial, we will create a minimalistic version of ERC20 \(fungible\) to
 
 We have named our contract `CeloFungibleToken` and the implementation is given below. Create a new file on Remix `erc20.sol` and copy the code.
 
-```text
+```javascript
 // This contract should not be used in production
 
 pragma solidity ^0.5.0;
@@ -176,19 +176,19 @@ c. Pay the `transaction fee` and sign the transaction using celo wallet.
 
 ![accessibility text](../../../.gitbook/assets/signing-transaction-celo.JPG)
 
-**Congratulations!** we have deployed our very own Fungible token on the Celo blockchain. It usually takes around 5 seconds to acheive finality for our transactions. Once our transaction is confirmed, let's head over to [BlockScout](https://alfajores-blockscout.celo-testnet.org/) to see all the details.
+**Congratulations!** we have deployed our very own Fungible token on the Celo blockchain. It usually takes around 5 seconds to achieve finality for our transactions. Once our transaction is confirmed, let's head over to [BlockScout](https://alfajores-blockscout.celo-testnet.org/) to see all the details.
 
 [Here](https://alfajores-blockscout.celo-testnet.org/address/0x4324bf228a8a3f1ddfd232335372d5cbaae38cd1/transactions) are the details of the smart contract deployment shown in this example.
 
 ## 6. Transferring Token
 
-Now that our contract is deployed, we have all the CFT tokens that exists on Celo Blockchain. Now we should also learn how to transfer these tokens from our account to others.
+Now that our contract is deployed, we have all the CFT tokens that exist on Celo Blockchain. Now we should also learn how to transfer these tokens from our account to others.
 
 There are many ways of transferring tokens from one address to another. We will discuss a couple of methods. **1. SMART CONTRACT INTERACTION** :
 
 a. Select the account which has 1000 CFT, in the example case `0x0eAd666A5B65ED614990fD582693039ed49847E6` \(which you can verify on Blockscout using the link given above\) on Celo extension wallet.
 
-b. In the tranfer tab and we need to enter the **Alfajores Testnet Address** of account to which we want to tranfer the tokens with the amount of tokens to be transfered. For this tutorial, we will use `0x39E526B01fDe70d64FABDCe5Ca92b47789AA231D` and send 10 CFT tokens \(be mindful of decimals that we defined in the contract\).
+b. In the transfer tab and we need to enter the **Alfajores Testnet Address** of the account to which we want to transfer the tokens with the amount of tokens to be transferred. For this tutorial, we will use `0x39E526B01fDe70d64FABDCe5Ca92b47789AA231D` and send 10 CFT tokens \(be mindful of decimals that we defined in the contract\).
 
 ![accessibility text](../../../.gitbook/assets/transfer-tab-celo-extension.JPG)
 
@@ -198,7 +198,7 @@ c. Click on `Transact`
 
 d. Pay the `transaction fee`
 
-With that we have learned how to tranfer your fungible tokens to other addresses. But there is still a problem, we aren't able to see our tokens on our Celo wallet. To display the tokens we'll need to
+With that, we have learned how to transfer your fungible tokens to other addresses. But there is still a problem, we aren't able to see our tokens on our Celo wallet. To display the tokens we'll need to
 
 a. Select the **Add Token** button on our Celo wallet as shown in the image.
 
@@ -216,11 +216,11 @@ Now we are able to see our token balance!
 
 **2. Celo Wallet**
 
-After adding the token address to our wallet, simply click on `Send` button and input the address of a recipient. Tokens will be transfered after signing the trasaction and paying the `transaction fee`.
+After adding the token address to our wallet, simply click on the `Send` button and input the address of a recipient. Tokens will be transferred after signing the transaction and paying the `transaction fee`.
 
 ## Conclusion
 
-This was a very intresting tutorial. In this tutorial we learned: 1. Some different use cases of Fungible tokens 2. There are different types of tokens with different standards 3. How to deploy a custom Fungible token on the Celo blockchain 4. How to send tokens over Celo!
+This was a very interesting tutorial. In this tutorial, we learned: 1. Some different use cases of Fungible tokens 2. There are different types of tokens with different standards 3. How to deploy a custom Fungible token on the Celo blockchain 4. How to send tokens over Celo!
 
 We cannot wait to see what you create!
 

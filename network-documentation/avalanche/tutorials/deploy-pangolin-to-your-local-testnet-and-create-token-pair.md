@@ -6,15 +6,17 @@ description: >-
 
 # Deploy Pangolin To Your Local Testnet And Create Token Pair
 
-## Deploy Pangolin To Your Local Testnet And Create Token Pair
+## About the Author
 
-### Introduction
+This Tutorial was created by [Cinque McFarlane-Blake](https://github.com/cinquemb). Cinque is a reluctant software engineer and he worked on projects at labs related to brain-computer interfaces, back office stuff for trading in futures markets, and academic publishing tools in developing markets. Overall, He is just trying to help build a more decentralized hyper-connected world while pushing on the boundaries of our existence.
 
-Whether you are looking to create your own token, provide liquidity for existing tokens or to trade on Pangolin that is deployed on Avalanche's c-chain, you will need to create a token pair on Pangolin.
+## Introduction
 
-However before that, we must familiarize ourselves with the functionality of token pairs, so that we can simulate a universe of token pairs and wallets, or even test our assumptions about contracts and tokenomics on a DEX. We will want to deploy a local testnet so that we can check our code for bugs and unintended interactions!
+Whether you are looking to create your own token, provide liquidity for existing tokens or trade on Pangolin that is deployed on Avalanche's c-chain, you will need to create a token pair on Pangolin.
 
-In this tutorial we will illustrate how to create your own Pangolin exchange locally and also create a trading pair from any arbitrary ERC20 tokens.
+However, before that, we must familiarize ourselves with the functionality of token pairs, so that we can simulate a universe of token pairs and wallets, or even test our assumptions about contracts and tokenomics on a [DEX](https://cryptocurrencyfacts.com/what-is-a-dex/). We will want to deploy a local testnet so that we can check our code for bugs and unintended interactions!
+
+In this tutorial, we will illustrate how to create your own Pangolin exchange locally and also create a trading pair from any arbitrary ERC20 tokens.
 
 ### About Pangolin
 
@@ -24,11 +26,11 @@ Pangolin is a fork of Uniswap V2 and the first decentralized exchange \(DEX\) on
 
 If you have completed the Avalanche tutorial on [Using Truffle with the Avalanche C-Chain](https://docs.avax.network/build/tutorials/smart-contracts/using-truffle-with-the-avalanche-c-chain), you will have completed most of the prerequisites.
 
-You have to be mindful that `avalanchego` is being constantly improved and things may change from the time this tutorial is published \(i.e. the address of the x/p/c chains used in the libraries above my differ from the current version of avalanchejs, private keys may change, etc. This means that you may need to modify the code when getting your local test net up and running\).
+You have to be mindful that `avalanchego` is being constantly improved and things may change from the time this tutorial is published \(i.e. the address of the x/p/c chains used in the libraries above my differ from the current version of Avalanche JS, private keys may change, etc. This means that you may need to modify the code when getting your local test net up and running\).
 
 In addition, you will need to:
 
-```text
+```javascript
 * install pangolindex exchange contracts
 
 ```bash
@@ -48,13 +50,13 @@ We now need to make sure we have access to ERC20 token contracts that we will us
 
 These contracts will be found in the `node_modules` directory
 
-```text
-	cp node_modules/\@openzeppelin/contracts/build/contracts/ERC20.json build/contracts/
+```javascript
+cp node_modules/\@openzeppelin/contracts/build/contracts/ERC20.json build/contracts/
 ```
 
 Similarly, we need to copy the IPangolinFactory and IPangolinPair interface contracts to our build directory.
 
-```text
+```javascript
 	cp node_modules/\@pangolindex/exchange-contracts/artifacts/contracts/pangolin-core/interfaces/IPangolinPair.sol/IPangolinPair.json build/contracts/
 	cp node_modules/\@pangolindex/exchange-contracts/artifacts/contracts/pangolin-core/interfaces/IPangolinFactory.sol/IPangolinFactory.json build/contracts/
 ```
@@ -63,7 +65,7 @@ Similarly, we need to copy the IPangolinFactory and IPangolinPair interface cont
 
 We now need to create a new migration file called `3_deploy.js` with the content, following this; we will step through what is going on below:
 
-```text
+```javascript
 	const MockERC20 = artifacts.require('ERC20');
 	const PangolinFactoryBytecode = require('@pangolindex/exchange-contracts/artifacts/contracts/pangolin-core/PangolinFactory.sol/PangolinFactory.json').bytecode
 	const PangolinRouter02Bytecode = require('@pangolindex/exchange-contracts/artifacts/contracts/pangolin-periphery/PangolinRouter.sol/PangolinRouter.json').bytecode;
@@ -110,9 +112,9 @@ We now need to create a new migration file called `3_deploy.js` with the content
 
 ## Import Required Contracts/Bytecode
 
-The first thing we need do is to import the ERC20 contracts as well as the bytecode for the Pangolin Factory, Router, Pair Interface and Factory Interface and the Wrapped AVAX \(wAVAX\).
+The first thing we need to do is to import the ERC20 contracts as well as the bytecode for the Pangolin Factory, Router, Pair Interface and Factory Interface and the Wrapped AVAX \(wAVAX\).
 
-```text
+```javascript
 	const MockERC20 = artifacts.require('ERC20');
 	const PangolinFactoryBytecode = require('@pangolindex/exchange-contracts/artifacts/contracts/pangolin-core/PangolinFactory.sol/PangolinFactory.json').bytecode
 	const PangolinRouter02Bytecode = require('@pangolindex/exchange-contracts/artifacts/contracts/pangolin-periphery/PangolinRouter.sol/PangolinRouter.json').bytecode;
@@ -123,11 +125,11 @@ The first thing we need do is to import the ERC20 contracts as well as the bytec
 
 ### Deploy Mock Tokens
 
-Next we need to deploy the mock ERC20 tokens.
+Next, we need to deploy the mock ERC20 tokens.
 
-These could be any other kind of ERC20 tokens, but for simplicity we simply deploy the same contract to different address.
+These could be any other kind of ERC20 tokens, but for simplicity, we simply deploy the same contract to a different address.
 
-```text
+```javascript
 	const OneERC20 = await deployer.deploy(MockERC20);
 	const AnotherERC20 = await deployer.deploy(MockERC20);
 ```
@@ -136,9 +138,9 @@ These could be any other kind of ERC20 tokens, but for simplicity we simply depl
 
 In order to construct any token pair on Pangolin, you will need to interact with the Factory contract and that means we need to deploy it to our local testnet first.
 
-By appending a zero address to the bytecode of the contract, we make a transaction with the data to store it on chain.
+By appending a zero address to the bytecode of the contract, we make a transaction with the data to store it on-chain.
 
-```text
+```javascript
 	let pangolinArg = '';
 	for (let i = 0; i < 32; i++) {
 		pangolinArg += '00';
@@ -150,11 +152,11 @@ By appending a zero address to the bytecode of the contract, we make a transacti
 
 As with ETH, AVAX is not ERC20 compliant and since it's the native token on avalanche, it must be wrapped.
 
-It is also needed to deploy the router \(a hold over from the Uniswap V1 architecture that required ERC20 tokens be swapped for ETH before being swapped for another ERC20 token\).
+It is also needed to deploy the router \(a holdover from the Uniswap V1 architecture that required ERC20 tokens to be swapped for ETH before being swapped for another ERC20 token\).
 
 We need to create a transaction where we send the WAVAX bytecode and get back the address.
 
-```text
+```javascript
 	const wAVAXAddress = (await web3.eth.sendTransaction({from: accounts[0], gas: 8000000, data: WAVAXBytecode})).contractAddress;
 ```
 
@@ -162,11 +164,11 @@ We need to create a transaction where we send the WAVAX bytecode and get back th
 
 After we have deployed the bytecode for both the factory and WAVAX, we will take the address and append them as arguments to the router bytecode.
 
-In doing this, we will then be able to interact all the router functions of the exchange in downstream applications.
+In doing this, we will then be able to interact with all the router functions of the exchange in downstream applications.
 
-Not too different from what we have done for the router and WAVAX, we will create a transaction and get the address of the deploy bytecode.
+Not too different from what we have done for the router and WAVAX, we will create a transaction and get the address of the deployed bytecode.
 
-```text
+```javascript
 	const PangolinRouterAddress = (await web3.eth.sendTransaction({
 	  from: accounts[0],
 	  gas: 8000000,
@@ -174,11 +176,11 @@ Not too different from what we have done for the router and WAVAX, we will creat
 	})).contractAddress;
 ```
 
-### PangolinFactory interface \(IPangolinFactory\) and PangolinPair interface \(IPangolinPair\)
+### Pangolin Factory interface \(IPangolinFactory\) and PangolinPair interface \(IPangolinPair\)
 
 The interface for the factory and pair token contracts isn’t necessarily needed here because we are deploying both contracts themselves and we could use the contract ABI directly.
 
-However if we were going to access these through another contract, they would allow us to be able to still call the methods defined on PangolinFactory and PangolinPair even if those underlying contracts changed in the future if while only needing to change the address.
+However, if we were going to access these through another contract, they would allow us to be able to still call the methods defined on PangolinFactory and PangolinPair even if those underlying contracts changed in the future if while only needing to change the address.
 
 For example, if you wanted to modify PangolinPair and PangolinRouter without changing the contracts you may have already deployed \(assuming they have a way to pull in the new address\), then you will easily be able to do this if you deployed your contracts with the interfaces.
 
@@ -188,20 +190,18 @@ For the final step, we need to access the instance of the factory address throug
 
 Once that is done, we will call `createPair` on the instance with our ERC20 token address as arguments.
 
-This will generate a transaction that we will need to parse the logs and get the pair address from.
+This will generate a transaction that we will need to parse the logs and get the pair address.
 
 Then if you wanted to later call functions on the pair address, you need to access the address through the pair interface.
 
-```text
+```javascript
 	const PangoFactoryInstance = await IPangolinFactory.at(pangolinFactoryAddress);
 	const PangoPairTx = await PangoFactoryInstance.createPair(OneERC20.address, AnotherERC20.address);
 	const PangoPairAddress = PangoPairTx['logs'][0]['args']['pair'];
 	const PangoPair = await IPangolinPair.at(PangoPairAddress);
 ```
 
-## Deployment
 
-[This is what your deployment should look like if succesful](https://github.com/figment-networks/datahub-learn/blob/master/.gitbook/assets/deploy-pangolin-to-local-testnet-with-token-pair-3_deploy.png)
 
 ### Wrapping Up
 
@@ -218,5 +218,5 @@ In this tutorial we have covered:
 
 ### Conclusion
 
-You have now deployed Pangolin to your local testnet with your two ERC20 tokens, created a pair token of from the ERC20 tokens and now are ready to interact with pangolin throught the router as you would on uniswap v2.
+You have now deployed Pangolin to your local testnet with your two ERC20 tokens, created a pair token from the ERC20 tokens and now are ready to interact with pangolin through the router as you would on Uniswap v2.
 
