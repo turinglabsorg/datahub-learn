@@ -20,7 +20,13 @@ Ubeswap is based on Sushiswap, which is a fork the popular Ethereum DEX called U
 Compared to traditional exchanges, DEXes can be much simpler and faster to use when buying and selling cryptocurrencies. On top of that, we can find many tokens on decentralized exchanges, or DEXes, that you can’t find anywhere else! DEXes offer a great way to discover unique opportunities.
 Anyone can create a token that can be traded on DEXes.
 
+On any centralized exchange, users can easily maintain a order book but this concept can't work on the blockchains because of gas fees, slippage and latency in price discovery on the markets. To solve these problems, **Automated Market Maker** (AMM) were created. On AMM-based decentralized exchanges, the traditional order book is replaced by liquidity pools that are pre-funded on-chain for both assets of the trading pair. The liquidity is provided by other users who also earn passive income on their deposit through trading fees based on the percentage of the liquidity pool that they provide.
+AMM based exchanges are based on a constant function(Constant Function Market Makers), where the combined asset reserves of trading pairs must remain unchanged.
 
+All this information can be a bit overwhelming at first but we all can learn it with time.
+
+More information about AMMs can be found [here](https://blog.chain.link/challenges-in-defi-how-to-bring-more-capital-and-less-risk-to-automated-market-maker-dexs/).
+If you wish to learn about about the DeFi, you can visit [this](https://academy.ivanontech.com/blog/defi-encyclopedia-the-ultimate-list-of-decentralized-finance-terms) website.
 
 ## Prerequisites
 
