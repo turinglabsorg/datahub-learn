@@ -9,8 +9,8 @@ He spends most of the his time studying new DeFi protocols and loves to travel.
 
 ## Introduction 
 This article is meant to act as a tutorial for new Ubeswap users or for people who are just discovering the benefits of DeFi altogether.
-Ubeswap is a decentralized exchange(DEX) and automated market maker protocol for Celo assets.
-Ubeswap is based on Sushiswap, a fork of Uniswap. This is to ensure that the Ubeswap ecosystem can support as many existing tools and projects from the Ethereum ecosystem as possible.
+Ubeswap is a DEX (Decentralized EXchange) and AMM (Automated Market Maker) protocol for Celo assets.
+Ubeswap is based on Sushiswap, which is a fork the popular Ethereum DEX called Uniswap. This is to ensure that the Ubeswap ecosystem can support as many existing tools and projects from the Ethereum ecosystem as possible.
 
 
 ## Why do people use DEX ?
@@ -24,7 +24,7 @@ Anyone can create a token that can be traded on DEXes.
 
 ## Prerequisites
 
-1. Celo Wallet (Example Celo Extension Wallet , Valora or Leadger device)
+1. A Celo compatible wallet (Example: Celo Extension Wallet, Valora or a Ledger device)
 2. Funds to interact with UBESWAP.
 
 
@@ -105,13 +105,10 @@ If the transaction went through, we should see a confirmation like this.
 New tokens will appear in our wallet.
 
 
-## Pool 
-A liquidity pool is a storehouse where users add their assets to increase market liquidity. 
-This allows for a large stock of assets and little slippage for users which to exchange an asset. The assets are frozen on a special smart contract 
-that conducts exchange operations and protects the pool funds. Liquidity Providers receives some rewards which are collected from users that interact with their pool. Before participating in 
-liquidity pools, users must be aware about the risks associated with it.
+## Liquidity Pools on Ubeswap 
+A liquidity pool is a collection of funds locked in a smart contract. Users add a pair of assets to the liquidity pool, which allows other users to make swaps for either of the paired tokens. This allows for a large range of assets to be represented on the DEX (Decentralized EXchange) - also, it enables smaller margins of slippage for users when they exchange assets. Liquidity Providers (otherwise known as LPs) receive a percentage of the fees generated when other users interact with the liquidity pool they are providing assets to. Before participating in liquidity pools, users need to educate themselves and be aware of the risks associated with DeFi.
 
-We can create our own pools of ERC20 compatible tokens on Celo. We will be adding liquidity to cUSD-CELO pool.
+We can create our own pools of ERC20 compatible tokens on Celo using Ubeswap. We will be adding liquidity to the cUSD-CELO pool.
 
 Click on `Add Liquidity` button to start the process.
 
@@ -149,9 +146,6 @@ That's it, we have supplied liquidity to a pool on Ubeswap. We can see out posit
 </p>
 
 ## Conclusion
-Ubeswap's goal is to increase liquidity on Celo. A world where anyone can trade any asset from their phone or browser, without having to rely on decades-old clearinghouse technology or other centralized systems. This is only possible if people can invest in good assets. Ubeswap seeks to bring in liquidity from all of DeFi by harnessing the fast transaction times, high block gas limit, and stablecoin system of Celo.
-Ubeswap recently announced that DeFi users will receive rewards for paticipating in DeFi on Ubeswap which makes it the best time to get involved.
+Ubeswap recently announced that DeFi users will receive rewards for paticipating in DeFi on Ubeswap which makes it the best time to get involved!
 
-
-
-‍
+Ubeswap's goal is to increase liquidity for digital assets on Celo. A world where anyone can trade any asset from their phone or browser, without having to rely on decades-old clearinghouse technology or other centralized systems is more effective in the long-term. This is only possible if people can invest in good assets. Ubeswap seeks to bring in liquidity from all of DeFi by harnessing the fast transaction times, high block gas limit, and stablecoin system of Celo.
