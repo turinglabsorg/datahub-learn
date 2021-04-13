@@ -150,7 +150,7 @@ That's it, we have supplied liquidity to a pool on Ubeswap. We can see out posit
 
 ## Conclusion
 Ubeswap's goal is to increase liquidity on Celo. A world where anyone can trade any asset from their phone or browser, without having to rely on decades-old clearinghouse technology or other centralized systems. This is only possible if people can invest in good assets. Ubeswap seeks to bring in liquidity from all of DeFi by harnessing the fast transaction times, high block gas limit, and stablecoin system of Celo.
-So use Ubeswap
+Ubeswap recently announced that DeFi users will receive rewards for paticipating in DeFi which makes it the best time to get involved.
 
 
 
