@@ -1,0 +1,157 @@
+---
+description: This tutorial is a part of DeFi series where people can learn how to participate in DeFi on the Celo Blockchain.
+---
+
+# How to use Ubeswap DEX on Celo
+## About the Author
+This tutorial was created by [Deepanshu Hooda](https://github.com/gitofdeepanshu/), who is a computer science junior and a blockchain developer with high interest in finance. 
+He spends most of the his time studying new DeFi protocols and loves to travel.
+
+## Introduction 
+This article is meant to act as a tutorial for new Ubeswap users or for people who are just discovering the benefits of DeFi altogether.
+Ubeswap is a decentralized exchange(DEX) and automated market maker protocol for Celo assets.
+Ubeswap is based on Sushiswap, a fork of Uniswap. This is to ensure that the Ubeswap ecosystem can support as many existing tools and projects from the Ethereum ecosystem as possible.
+
+
+## Why do people use DEX ?
+**Decentralized exchanges** (DEX) are a type of cryptocurrency exchange which allows for direct peer-to-peer cryptocurrency transactions to take place online securely and without the need for an intermediary.
+
+
+Compared to traditional exchanges, DEXes can be much simpler and faster to use when buying and selling cryptocurrencies. On top of that, we can find many tokens on decentralized exchanges, or DEXes, that you can’t find anywhere else! DEXes offer a great way to discover unique opportunities.
+Anyone can create a token that can be traded on DEXes.
+
+
+
+## Prerequisites
+
+1. Celo Wallet (Example Celo Extension Wallet , Valora or Leadger device)
+2. Funds to interact with UBESWAP.
+
+
+## How to use Ubeswap
+
+### 1. Mobile DeFI
+Celo focuses on mobile first approach so it has created a way for mobile defi users to use Ubeswap. Usera can set up their Valora app which is a custodian wallet on Celo blockchain.
+After setting up Valora, users can go to [UBESWAP](https://app.ubeswap.org/).
+
+
+<p align="center">
+  <img src="https://imgur.com/WtXKsne.png" width="250" title="hover text">
+</p>
+
+and select `Valora`. This will make a connection with Valora account and we will be able to use our funds in Valora app to interact with Ubeswap.
+
+### 2. Desktop version
+We can connect with Ubeswap in a traditional way of using an extension wallet. On the Celo Blockchain, it is Celo Extension Wallet which can be downloaded from  [here](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en).
+We will be using this way to connect with Ubeswap in this tutorial.
+
+
+## Connecting with Ubeswap
+It is always better to learn any new blockchain technology using a testnet so that we don't have to spend real crypto assets. Ubeswap has deployed all of it's contracts on `Alfajores`
+testnet so that users can first learn to use it's platform on testnet. We will be doing the same.
+
+Let's head over to  [https://app-alfajores.ubeswap.org/]( https://app-alfajores.ubeswap.org/).
+
+
+We will need to connect our Celo Extension wallet with the Front-end of Ubeswap. Before connecting, make sure that we have testnet funds to interact with the DEX. Head over to 
+[testnet faucet](https://celo.org/developers/faucet) to get some testnet funds.
+
+Click on `Connect a wallet` button present at the top-right corner of the screen.
+
+<img src="https://imgur.com/5spw3xa.png">
+
+and select `Celo Extension Wallet`
+
+<p align="center">
+  <img src="https://imgur.com/c8VnTn6.png" width="350" title="hover text">
+</p>
+
+Then sign the transaction with the extension wallet. If everything went well, our screen should look something like this.
+
+<img src="https://imgur.com/v2wkn1t.png">
+
+
+Now that we have connected our wallet, let's learn how we can swap tokens on Ubeswap.
+
+## Swap
+We will learn how we can swap one token for another. In this tutorial, we will swap cUSD to CELO.
+
+Select the token in **From** tab and enter the amount. We will swap 5 cUSD to CELO. Our screen should look something like this.
+
+<p align="center">
+  <img src="https://imgur.com/eTZz9V1.png" width="350" title="hover text">
+</p>
+
+Before swapping, we need to approve Ubeswap to use our cUSD. This is done to protect users from sending their crypto to unknown addresses. 
+Click on `Approve cUSD` to approve it.
+
+If everything went well, our screen should look like this.
+
+<p align="center">
+  <img src="https://imgur.com/t3Kfo9G.png" width="350" title="hover text">
+</p>
+
+
+Click on`Confirm Swap` and sign the transaction.
+<p align="center">
+  <img src="https://imgur.com/Si8clM7.png" width="350" title="hover text">
+</p>
+
+If the transaction went through, we should see a confirmation like this.
+
+<p align="center">
+  <img src="https://imgur.com/kImJlAd.png" width="350" title="hover text">
+</p>
+New tokens will appear in our wallet.
+
+
+## Pool 
+A liquidity pool is a storehouse where users add their assets to increase market liquidity. 
+This allows for a large stock of assets and little slippage for users which to exchange an asset. The assets are frozen on a special smart contract 
+that conducts exchange operations and protects the pool funds. Liquidity Providers receives some rewards which are collected from users that interact with their pool. Before participating in 
+liquidity pools, users must be aware about the risks associated with it.
+
+We can create our own pools of ERC20 compatible tokens on Celo. We will be adding liquidity to cUSD-CELO pool.
+
+Click on `Add Liquidity` button to start the process.
+
+<img src="https://imgur.com/WGN5rHT.png" >
+
+Now select the tokens. Keep in mind that we need to add both the tokens of same value in cUSD terms. 
+
+
+
+Now as mentioned before, we have to give contracts we are interating with permission to use our tokens. We already approved Ubeswap to use our cUSD and we need to do the same for CELO also.
+
+Click on `Approve CELO`
+
+<p align="center">
+  <img src="https://imgur.com/hSaUqqD.png" width="350" title="hover text">
+</p>
+
+
+Now click on `Supply`
+
+<p align="center">
+  <img src="https://imgur.com/KAtfdQy.png" width="350" title="hover text">
+</p>
+
+Check all the details, if they are correct, click on `Confirm Supply`.
+
+<p align="center">
+  <img src="https://imgur.com/rhZP9a9.png" width="350" title="hover text">
+</p>
+
+That's it, we have supplied liquidity to a pool on Ubeswap. We can see out position at bottom of the screen.
+
+<p align="center">
+  <img src="https://imgur.com/wuXnaN8.png" width="350" title="hover text">
+</p>
+
+## Conclusion
+Ubeswap's goal is to increase liquidity on Celo. A world where anyone can trade any asset from their phone or browser, without having to rely on decades-old clearinghouse technology or other centralized systems. This is only possible if people can invest in good assets. Ubeswap seeks to bring in liquidity from all of DeFi by harnessing the fast transaction times, high block gas limit, and stablecoin system of Celo.
+So use Ubeswap
+
+
+
+‍
