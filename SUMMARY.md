@@ -85,6 +85,7 @@
     * [Deploy Celo Smart contracts with Remix IDE](network-documentation/celo/tutorial/celo-for-remix.md)
     * [Deploying smart contracts on Celo with Truffle](network-documentation/celo/tutorial/deploying-smart-contracts-on-celo-with-truffle.md)
     * [How to mint your own fungible Celo Token](network-documentation/celo/tutorial/celo-erc20-token-on-remix.md)
+    * [How to use Ubeswap DEX on Celo](network-documentation/celo/tutorial/celo-ubeswap-tutorial.md)
   * [💼 CELO Wallet](network-documentation/celo/celo-wallet.md)
 * [🌌 Cosmos](network-documentation/cosmos/README.md)
   * [✏ Cosmos 101](network-documentation/cosmos/cosmos-101.md)
