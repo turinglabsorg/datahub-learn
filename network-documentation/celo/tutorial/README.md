@@ -52,3 +52,6 @@ If you prefer going through the tutorial with videos, check out this CELO Learn 
 
 {% page-ref page="./" %}
 
+## Celo-hardhat-deploy-and-nft-app.md
+
+{% page-ref page="Celo-hardhat-deploy-and-nft-app.md" %}
