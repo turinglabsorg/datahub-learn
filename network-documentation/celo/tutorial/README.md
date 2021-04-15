@@ -52,3 +52,14 @@ If you prefer going through the tutorial with videos, check out this CELO Learn 
 
 {% page-ref page="./" %}
 
+## 1. Building a Crowdfunding Smart Contract in Celo
+
+{% page-ref page="celo-crowdfunding/1.smart-contract.md" %}
+
+## 2. Deploying a Crowdfunding Smart Contract in Celo
+
+{% page-ref page="celo-crowdfunding/2.deploy.md" %}
+
+## 3. Interacting with the Crowdfunding Smart Contracts
+
+{% page-ref page="celo-crowdfunding/3.interacting.md" %}
