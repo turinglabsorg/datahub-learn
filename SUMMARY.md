@@ -87,7 +87,6 @@
     * [How to mint your own fungible Celo Token](network-documentation/celo/tutorial/celo-erc20-token-on-remix.md)
     * [How to use Ubeswap DEX on Celo](network-documentation/celo/tutorial/celo-ubeswap-tutorial.md)
     * [How to use Moola’s money market](network-documentation/celo/tutorial/moola-market.md)
-
   * [💼 CELO Wallet](network-documentation/celo/celo-wallet.md)
 * [🌌 Cosmos](network-documentation/cosmos/README.md)
   * [✏ Cosmos 101](network-documentation/cosmos/cosmos-101.md)
@@ -183,6 +182,8 @@
   * [💡 Tutorials](network-documentation/polkadot/tutorials/README.md)
     * [Create Your First Substrate Chain](network-documentation/polkadot/tutorials/create-your-first-substrate-chain.md)
     * [Add A Pallet To Your Runtime](network-documentation/polkadot/tutorials/add-a-pallet-to-your-runtime.md)
+    * [Write a Pallet in its Own Crate](network-documentation/polkadot/tutorials/write-a-pallet-in-its-own-crate.md)
+    * [Add the Contracts Pallets to a Runtime](network-documentation/polkadot/tutorials/add-the-contracts-pallets-to-a-runtime.md)
     * [Build a PoE Decentralized App](network-documentation/polkadot/tutorials/build-a-poe-decentralized-app.md)
 * [🤫 Secret](network-documentation/secret/README.md)
   * [✏ Secret 101](network-documentation/secret/secret-101.md)
