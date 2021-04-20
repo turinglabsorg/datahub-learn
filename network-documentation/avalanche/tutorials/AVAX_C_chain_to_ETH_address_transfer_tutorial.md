@@ -19,7 +19,7 @@ The mnemonic key from your AVAX wallet needs to go between the quotation marks b
 let mnemonic = "";
 ```
 
-The code below is pointing to the Fuji network. (if accepted as tutorial, change this to Figment node) or we can point it to the Datahub AVAX node instead. 
+The code below is pointing to the Fuji network. Alternatively, we can point it to the Datahub AVAX node. 
 
 ```text
 const web3 = new Web3(new Web3.providers.HttpProvider("https://api.avax-test.network/ext/bc/C/rpc"))   
