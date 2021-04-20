@@ -205,7 +205,7 @@ Woohoo! All our tests pass.
 
 Now we know how to write tests for our smart contracts. This skill will come in handy whenever you're working on a smart contract and need to verify that all of the functionality works. Although our tests were relatively simple, they should be enough to get you started on your testing journey. 
 
-Good luck! And as always, feel free to ask on the Discord if you run into any problems. 
+Good luck! And as always, feel free to ask on the Figment Learn [Discord](https://discord.gg/f5YuEsQTAx) if you run into any problems. 
 
 ## Further reading
 
