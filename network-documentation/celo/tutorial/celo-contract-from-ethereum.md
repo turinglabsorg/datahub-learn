@@ -1,8 +1,15 @@
-# Converting an Ethereum Contract to the Celo Network
+# Customizing an Ethereum Contract for the Celo Network
 
-The Celo blockchain is completely independent of the Ethereum blockchain, but the contracts are written in the same way and the native currency for the Celo blockchain is ERC-20 compliant.  This means it’s really easy to convert code already written for the Ethereum network to the Celo network.  
+The Celo blockchain is completely independent from the Ethereum blockchain, but both compile their smart contracts to [EVM](https://github.com/ethereumbook/ethereumbook/blob/develop/13evm.asciidoc) bytecode.  This means that any smart contract written for the Ethereum blockchain is already compatible with the Celo network.  
 
-To better understand how to do this, we’re going to take the faucet code from [Chapter 7](https://github.com/ethereumbook/ethereumbook/blob/develop/07smart-contracts-solidity.asciidoc) of the [Ethereum book](https://github.com/ethereumbook/ethereumbook), and make it work for the Celo network.  
+To better understand this relationship, we’re going to take the faucet code from [Chapter 7](https://github.com/ethereumbook/ethereumbook/blob/develop/07smart-contracts-solidity.asciidoc) of the [Ethereum book](https://github.com/ethereumbook/ethereumbook), and customize it for the Celo network. 
+
+Please note that while this contract is written in Solidity, contracts written in any EVM compatible high level programming language (LLL, Serpent, Mutan) can be used for Celo.  As long as the code is compiled to run on an [Ethereum Virtual Machine](-  [The Ethereum Virtual Machine](https://github.com/ethereumbook/ethereumbook/blob/develop/13evm.asciidoc)) it is compatible with both chains.  
+
+### If the contract already works, then why would we want to alter it?  
+Celo's native currency, CELO, is also an ERC-20 compliant token.  The same is true for Celo's stablecoin, cUSD.  We'll see in the next section that our basic Ethereum faucet does not account for ERC-20 tokens.  When it is run on the Celo blockchain, it will assume we want to withdraw the native currency, CELO, as default.  
+
+This tutorial aims to show how we can rewrite the faucet and capitalize on the fact that CELO is an ERC-20 compliant token just like its stablecoin, cUSD. 
 
 ## Original Faucet code
 Below is the [code](https://raw.githubusercontent.com/ethereumbook/ethereumbook/develop/code/Solidity/Faucet8.sol) from the Ethereum book.  
@@ -71,7 +78,7 @@ To withdraw a specific token, we will have to rewrite our faucet to consider ERC
 
 ## Rewriting the Faucet
 
-While we're at it, we should utilize the [Open Zeppelin](https://github.com/pkdcryptos/OpenZeppelin-openzeppelin-solidity) library to avoid writing code that's already been written well.  
+While we're at it, we should utilize the [Open Zeppelin](https://github.com/pkdcryptos/OpenZeppelin-openzeppelin-solidity) library to avoid rewriting code that has already have been security audited and used in many Ethereum contracts without issue.  There is no guaruntee these contracts will provide absolute safety, but they've been tested and can be trusted more than any custom ones we whip up.  
 
 First, we'll remove our Owned and Mortal contracts and import Open Zeppelin contracts instead.
 
@@ -103,13 +110,13 @@ contract Faucet is ReentrancyGuard, Ownable {
 
 ````
 
-We also added the [Reentrancy Guard](https://github.com/pkdcryptos/OpenZeppelin-openzeppelin-solidity/blob/master/contracts/utils/ReentrancyGuard.sol) contract to protect against nested calls to our faucet.  We didn't need to add this for our faucet to be functional, but why not add some security while we can?
+We also added the [Reentrancy Guard](https://github.com/pkdcryptos/OpenZeppelin-openzeppelin-solidity/blob/master/contracts/utils/ReentrancyGuard.sol) contract to protect against nested calls to our faucet.  We didn't need to add this for our faucet to be functional, but we should follow best practices to secure our code and protect our users and ourselves.  
 
 To complete our contract and have it work for both Celo and cUSD, we have to update our withdraw function.  
 
 Everything else stays the same.  Our logging events for withdrawals and deposits don't change.  Our recieve function stays the same.  
 
-We need to add an additional parameter to our withdraw function that specifies which ERC-20 token to withdraw.  
+We need to add an additional parameter to the withdraw() function signature that allows us to specify a token name to the faucet. Then we will be able to send that token out of our faucet and to the user who requests a payout based on the name of the requested token.
 
 ````
     function withdraw(uint256 withdraw_amount, address token) public {
@@ -177,19 +184,23 @@ contract Faucet is ReentrancyGuard, Ownable {
 
 ````
 
-This is our Ethereum faucet contract completely converted to Celo.  We even added some additional checks to make sure the token passed to the withdraw function matches the celo or cUSD contract address.  This ensures only celo currencies can be withdrawn from this faucet.  
+This is our Ethereum faucet contract completely altered for Celo.  
+
+We even added some additional checks to make sure the token passed to the withdraw function matches the CELO or cUSD contract address.  This ensures only Celo currencies can be withdrawn from this faucet.  
 
 
 ## Calling the contract
 To call this contract from a dApp kit frontend, we can run the following code.
-I recommend using the truffle box kit for any fullstack development with Celo.
+There is a truffle box kit that works out-of-the-box for Celo applications that we should use as our foundation for the project because it simplifies the setup process for our Celo fullstack projects.  If we're not interested in seeing our blockchain results in GUI format, we could simply quickstart a [Truffle](https://www.trufflesuite.com/docs/truffle/quickstart#compiling) project with no frontend consideration.
 
 Run the following in the root of a project directory to setup the kit:
 ````bash
 truffle unbox critesjosh/celo-dappkit
 ````
 
-Please note that addresses are handled as strings in javascript and that withdraw amounts have to be handled as big numbers.  
+Please note that addresses are handled as strings in Javascript and that withdraw amounts have to be handled as big numbers.  The reasons for this are outside the scope of this tutorial.  For a more in depth explanation of big numbers in Javascript please see this [article](https://ethereumdev.io/how-to-deal-with-big-numbers-in-javascript/).
+
+To deal with the big numbers we'll install the bignumber.js library. 
 
 ````bash
 cd client
@@ -199,8 +210,17 @@ npm install bignumber
 A withdraw from faucet function would look like this.  This code could be triggered from a button press in a react application as seen in the example [here](https://github.com/BrittanyDeventer/green-deeds-celo/blob/master/client/screens/CeloScreen.js).
 
 ````
+/* 
+ * To see the full context of this code snippet please view the full file:
+ * https://github.com/BrittanyDeventer/green-deeds-celo/blob/master/client/screens/CeloScreen.js
+ * ads
+ * More on async functions can be found:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+ */
+
   withdrawFromFaucet = async (withdrawAmount) => {
 
+    // set variables for the Celo wallet request
     const requestId = 'withdraw_cUSD'
     const dappName = 'Green Deeds'
     const callback = Linking.makeUrl('/my/path')
@@ -241,14 +261,22 @@ A withdraw from faucet function would look like this.  This code could be trigge
 
 
 ## What we learned
-This tutorial was meant to show how easy it is to convert a smart contract written for Ethereum and make it work for the Celo network.  As long as we understand that the celo currency is an ERC-20, etheruem network, compliant token, we can see what part of existing open source code needs to be modified to work in this new environment.  
+In this tutorial we learned how to alter a smart contract originally written for Ethereum and customize it for use on the Celo network. We learned about the difference between a native token such as Ether or Celo, and an ERC-20 token such as cUSD. We altered some example Solidity code to illustrate the process generally used to prepare an Ethereum contract for use on another EVM compatible network, including specific mention of alternative tokens where necessary - such as inside the withdraw function, as part of a require statement.
+
+
+As long as we understand that both blockchains are EVM compatible and run the same bytecode, we can customize any existing Ethereum contract for the Celo network.  
 
 ### Next steps
 I hope this tutorial helps to see the potential in looking at existing open source code and understanding how simple modifications can lead to efficient coding solutions.  Please consider the following reading list to continue on your journey.  
 
-#### Further Reading:
+### Further Reading:
+-  [The Ethereum Virtual Machine](https://github.com/ethereumbook/ethereumbook/blob/develop/13evm.asciidoc)
 -  [Celo Background and Key Concepts](https://docs.celo.org/overview#background-and-key-concepts)
 -  [Open Zeppelin Source](https://github.com/pkdcryptos/OpenZeppelin-openzeppelin-solidity)
 -  [Celo Savings Circle](https://github.com/celo-org/savings-circle-demo)
    -  Another dApp that utilizes the ERC20 interface in Celo contracts
 -  [Ethereum Book](https://github.com/ethereumbook/ethereumbook)
+
+-  [How to deal with big numbers in Javascript](https://ethereumdev.io/how-to-deal-with-big-numbers-in-javascript/)
+-  [Celo for Ethereum Developers](https://docs.celo.org/developer-guide/celo-for-eth-devs)
+-  [Truffle Quickstart](https://www.trufflesuite.com/docs/truffle/quickstart#compiling)
