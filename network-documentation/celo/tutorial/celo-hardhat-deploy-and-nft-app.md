@@ -1,27 +1,29 @@
 # Celo-Tutorial
 
 # How to create a erc1155 contract and connect a Celo wallet in your app
-We'll write a smart contract using solidity language and library erc1155 of Openzeppelin,using nodejs with Hardhat we will compile code of smart contract and test the contract before deploy,after deploying the contract we will create a custom task with Hardhat to create a Celo account and deploy the contract in Celo network using datahub,lastly, we are going to create a react app that will connect to celo wallet account and interact with the smart contract
+In this tutorial we'll write a smart contract using the Solidity language and a contract from the Openzeppelin library for ERC1155 tokens. Using nodejs along with Hardhat we will compile the smart contract code and also test the contract before deploying it. After deploying the contract we will create a custom task within Hardhat to create a Celo account and deploy the contract to the Celo network using [DataHub](https://datahub.figment.io). Lastly, we are going to use `create-react-app` to generate a React application that will connect to the Celo wallet account and interact with the deployed smart contract. 
 
 ![Captura de Tela (39)](https://user-images.githubusercontent.com/52639395/114646091-01e71d00-9cb1-11eb-8acc-214c255d2d4c.png)
 
-# Prerequisite 
- - have Node Js installed
- - basic know about javascript , solidity and react
+# Prerequisites 
+ - We must have NodeJS >= v12.0 installed, preferably the latest version or an LTS release.
+ - Knowledge of JavaScript, Solidity and React is beneficial.
 
 # Install and use Hardhat
-Hardhat is a development environment that compile, deploy, test, and debug your Ethereum software,can also be used to deploy Celo's smart contract 
+Hardhat is a development environment that compiles, deploys, tests, and helps you to debug your Ethereum smart contracts. Hardhat can also be used to deploy to the Celo network because Celo also runs the EVM (Ethereum Virtual Machine). This means smart contracts which work on Ethereum will also work on Celo. For the purposes of this tutorial, we will assume that the reader understands how to initialize a new Node project with a package manager (`npm` or `yarn`). We will go over how to install and configure Hardhat now.
 
-#### We'll install all node modules necessary to run hardhat
+#### Installing Hardhat
 ```bash
 npm install --save-dev hardhat
 npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers web3 @celo/contractkit
 ```
 
-#### Now run the hardhat to create a new project, chose "Create a sample project"
+#### Creating a new Hardhat project
+From within the project directory, run :
 ```bash
 npx hardhat
 ```
+Selecting 'Create a sample project' will allow Hardhat to start its installation process in the current directory. It will create subdirectories and put all of the necessary files in place to empower your project. 
 ```bash
 888    888                      888 888               888
 888    888                      888 888               888
@@ -40,17 +42,17 @@ Welcome to Hardhat v2.1.2
   Quit
 ```
 
-# Write a smart contract using erc1155 library
-RC1155 is a novel token standard that aims to take the best from previous standards to create a fungibility-agnostic and gas-efficient token contract.
-ERC1155 draws ideas from all of ERC20, ERC721, and ERC777.
+# Smart contracts using the OpenZeppelin ERC1155 library
+ERC1155 is a novel token standard that aims to take the best from previous standards to create a fungibility-agnostic and gas-efficient token contract.
+ERC1155 draws ideas from all of ERC20, ERC721, and ERC777. ERC1155s are commonly used in NFT collectible projects, although they are not typically viewed as 'fine art' it is not unreasonable to use this token standard for such purposes. We will examine the use case of a token meant specifically for use within our Tiny Village.
 
-#### we'll need to install the Openzeppelin contract to have the necessary libraries for our contract
+#### Install the OpenZeppelin contracts
  ```bash
 npm install @openzeppelin/contracts
 ```
 
 #### create the file contracts/TinyVillage.sol
-#### lets we'll write our contract using solidity
+#### next we'll write our contract using solidity
 #### choose the compile version and the license
  ```solidity
 //SPDX-License-Identifier: MIT
