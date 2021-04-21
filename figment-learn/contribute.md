@@ -38,6 +38,8 @@ Authors are paid in the tokens of the protocol they write about, which allows us
 
 [Avalanche tutorial ideas](https://docs.google.com/document/d/1F2SPqZGVwA7_lSpfl0iZ3LUmqfjV4SZRh7R9qz9VenU/edit) 
 
+[Polkadot tutorial ideas](https://docs.google.com/document/d/1__8a2Yguaqo2o6uzyhSWUXSnSSTqBludYhudMkJwheU/edit#heading=h.sbftvenqcy6y)
+
 #### Are you interested in contributing and writing tutorials?
 
 Then please check our Learn Tutorial Guidelines for more details - [**HERE**](https://docs.google.com/document/d/13LWLrWzZ34M0ldWGeDANcWxw9nEWk3AX3VwXRBIOs1M/edit?usp=sharing)
