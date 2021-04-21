@@ -54,6 +54,7 @@
     * [Deploy Pangolin To Your Local Testnet And Create Token Pair](network-documentation/avalanche/tutorials/deploy-pangolin-to-your-local-testnet-and-create-token-pair.md)
     * [Creating An NFT—Part 1](network-documentation/avalanche/tutorials/creating-an-nft-part-1.md)
     * [Create NFTs with the Avalanche Wallet](network-documentation/avalanche/tutorials/create-nfts-with-the-avalanche-wallet.md)
+    * [Transfer AVAX tokens from the C chain of your AVAX wallet to an ETH address \(Metamask, for example\)](network-documentation/avalanche/tutorials/avax_c_chain_to_eth_address_transfer_tutorial.md)
 * [💰 Celo](network-documentation/celo/README.md)
   * [✏ Celo 101](network-documentation/celo/celo-101.md)
   * [🎮 RPC & REST API](network-documentation/celo/rpc-and-rest-api/README.md)
@@ -88,7 +89,8 @@
     * [How to use Ubeswap DEX on Celo](network-documentation/celo/tutorial/celo-ubeswap-tutorial.md)
     * [How to use Moola’s money market](network-documentation/celo/tutorial/moola-market.md)
     * [How to customize an Ethereum smart contract for the Celo network](network-documentation/celo/tutorial/celo-contract-from-ethereum.md)
-
+    * [Introduction to DappKit](network-documentation/celo/tutorial/introduction-to-dappkit.md)
+    * [Testing Celo Smart Contracts with Truffle](network-documentation/celo/tutorial/celo-testing-truffle.md)
   * [💼 CELO Wallet](network-documentation/celo/celo-wallet.md)
 * [🌌 Cosmos](network-documentation/cosmos/README.md)
   * [✏ Cosmos 101](network-documentation/cosmos/cosmos-101.md)
@@ -184,6 +186,8 @@
   * [💡 Tutorials](network-documentation/polkadot/tutorials/README.md)
     * [Create Your First Substrate Chain](network-documentation/polkadot/tutorials/create-your-first-substrate-chain.md)
     * [Add A Pallet To Your Runtime](network-documentation/polkadot/tutorials/add-a-pallet-to-your-runtime.md)
+    * [Write a Pallet in its Own Crate](network-documentation/polkadot/tutorials/write-a-pallet-in-its-own-crate.md)
+    * [Add the Contracts Pallets to a Runtime](network-documentation/polkadot/tutorials/add-the-contracts-pallets-to-a-runtime.md)
     * [Build a PoE Decentralized App](network-documentation/polkadot/tutorials/build-a-poe-decentralized-app.md)
 * [🤫 Secret](network-documentation/secret/README.md)
   * [✏ Secret 101](network-documentation/secret/secret-101.md)
@@ -226,13 +230,14 @@
     * [Oracle Contracts](network-documentation/tezos/tutorials/oracle-contracts.md)
     * [Creating NFTs](network-documentation/tezos/tutorials/creating-nfts.md)
 * [📚 Extra Guides](network-documentation/extra-guides/README.md)
-  * [Getting started with BrightID](network-documentation/extra-guides/getting-started-with-brightid.md)
+  * [Blockchain Fundamentals](network-documentation/extra-guides/blockchain-fundamentals.md)
   * [Docker Setup for Windows](network-documentation/extra-guides/docker-setup-for-windows.md)
   * [5XX Retry Logic Best Practices](network-documentation/extra-guides/5xx-retry-logic-best-practices/README.md)
     * [5XX Retry Logic Best Practices - NodeJS](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-nodejs.md)
     * [5XX Retry Logic Best Practices - Python](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-python.md)
     * [5XX Retry Logic Best Practices - Ruby](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-ruby.md)
     * [5XX Retry Logic Best Practices - Go](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-go.md)
+  * [Getting started with BrightID](network-documentation/extra-guides/getting-started-with-brightid.md)
 
 ## 🤔 Other
 
