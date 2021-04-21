@@ -1,10 +1,18 @@
 ---
-description: 20 minute read
+description: You will learn how to integrate The Graph Protocol in your Celo DApps
 ---
 
 # How to create subgraphs for Celo smart contracts
 
 {% embed url="https://www.youtube.com/watch?v=OgIiySTRGQE" caption="Subgraphs for Celo video tutorial" %}
+
+## About the Author
+
+This tutorial was created by Shardul Aeer, a full stack developer exploring the brave new world of Web3 and blockchain. Follow his journey on:
+
+- [GitHub](https://github.com/secretshardul)
+- [LinkedIn](https://www.linkedin.com/in/shardul-aeer-96084a172)
+- [Twitter](https://twitter.com/AeerShardul)
 
 ## 1. What is the Graph Protocol?
 
