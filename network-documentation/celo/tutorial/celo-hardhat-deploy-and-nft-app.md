@@ -317,7 +317,7 @@ save the contract address 0x47A424A0975924C3d177470C519C8DBA37e16Ec9
 
 
 # Creat a react app
-Sites like [opensea.io] (https://opensea.io/) and another NFT marketplaces do not yet support Celo to see your Nfts we will build a reaction application,to did not build a react app from scratch download de souce code from [github] (https://github.com/lucasespinosa28/Celo-Tutorial/),open the folder ```demo\start```, and run:
+Sites like [opensea.io](https://opensea.io/) and another NFT marketplaces do not yet support Celo to see your Nfts we will build a reaction application,to did not build a react app from scratch download de souce code from [github](https://github.com/lucasespinosa28/Celo-Tutorial/tree/main/demo/start),open the folder ```demo\start```, and run:
 ```bash
 npm install
 ```
