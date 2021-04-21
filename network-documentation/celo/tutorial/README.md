@@ -48,10 +48,12 @@ If you prefer going through the tutorial with videos, check out this CELO Learn 
 
 {% page-ref page="hello-mobile-dapp.md" %}
 
+## Celo-hardhat-deploy-and-nft-app.md
+
+{% page-ref page="Celo-hardhat-deploy-and-nft-app.md" %}
+
+
 ## Deploying an existing Smart Contract with Truffle
 
 {% page-ref page="./" %}
 
-## Celo-hardhat-deploy-and-nft-app.md
-
-{% page-ref page="Celo-hardhat-deploy-and-nft-app.md" %}
