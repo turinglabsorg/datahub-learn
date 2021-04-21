@@ -17,7 +17,7 @@ You should have some basic knowledge of javascript, react and solidity. Also, ha
 - Node.js
 - Yarn Package Manager
 - Truffle
-- Expo (cli on your computer and expo client in your mobile)
+- Expo ([cli](https://docs.expo.io/get-started/installation/#1-expo-cli) on your computer and [expo client](https://docs.expo.io/get-started/installation/#2-expo-go-app-for-ios-and) in your mobile)
 - Celo mobile wallet (Alfajores)
 
 As we are going to work with mobile app you should install expo mobile client and alfajores (celo testnet wallet for mobile devices). Make sure to fund your wallet with faucet.
@@ -40,7 +40,7 @@ yarn // isntalls dependencies for expo
 
 ## Smart Contract
 
-Copy the following smart contract code into `HelloWorld.sol` file insideof `contracts` folder and then reaname the file to `Counter.sol`. We are not going through smart contract here but take a look at [solidity documentation](https://docs.soliditylang.org/).
+Copy the following smart contract code into `HelloWorld.sol` file insideof `contracts` folder and then reaname the file to `Counter.sol`. We will not cover writing smart contracts or the Solidity language in this tutorial. The [Solidity documentation](https://docs.soliditylang.org/) is available as a resource to get started.
 
 ```javascript
 //SPDX-License-Identifier: MIT
@@ -87,13 +87,13 @@ contract Counter {
 
 ### Deploy smart contract
 
-For deployment, we need to create migration for `counter` smart contract. In `migrations` folder go to `2_deploy_contracts.js` and change every `HelloWorld` to `Counter`.
+For deployment, we need to create a migration for the counter smart contract. Inside of the `migrations` folder go to `2_deploy_contracts.js` and change every `HelloWorld` to `Counter`.
 
 Run following command in terminal:
 ```javascript
 yarn account
 ```
-This will show you the account address from which you are gonna deploy the smart contract.
+This will display the account address from which we will deploy the Solidity smart contract.
 ```javascript
 xQc@RecycleBin MINGW64 ~/Documents/blockchain/celoDappCounter
 $ yarn account
@@ -102,18 +102,18 @@ $ node utils/createAccount.js
 Account address: 0xbF0eC2F761F2C3303AE5f9695eE79d2EECdb2579
 Done in 2.78s.
 ```
-You need some fund in this account to deploy smart contract that you can get from [faucet](https://celo.org/developers/faucet).
+To be able to afford the deployment costs, it will be necessary to visit the [Celo developers faucet](https://celo.org/developers/faucet) and request some tokens.
 
 We need to make one more change in `truffle-config.js`. Change `web3` that file to following:
 ```javascript
 const web3 = new Web3('https://celo-alfajores--rpc.datahub.figment.io/apikey/<YOUR_API_KEY>/')
 ```
-Now, we can deploy the smart contract.
+Now, we can run Truffle to deploy the smart contract to Celo.
 
 ```javascript
 truffle migrate --network alfajores
 ```
-After samrt contract is done you should get something like this as output:
+After the deployment is completed, you will see similar output in the terminal:
 ```javascript
 xQc@RecycleBin MINGW64 ~/Documents/blockchain/celoDappCounter
 $ truffle migrate --network alfajores
@@ -190,7 +190,7 @@ Summary
 > Final cost:          0.00579932 ETH
 ```
 
-After this there should be 2 new files called `Counter.json` and `Migrations.json` inside `contracts` folder of `client`.
+There should be two additional files now, inside of the `contracts` subdirectory of `client`: `Counter.json` and `Migrations.json`.
 
 ## Mobile Dapp
 
@@ -201,16 +201,16 @@ Run
 cd client
 ```
 
-We have to change some files before working on UI of our dapp. 
+Before starting on the UI of our dapp, we will need to change some files.
 
 Delete `assets` folder in `client` and remove `icon` and `splash` field from `app.json`
 
-Go to `root.js` and change `provider` constant
+Go to `root.js` and change the `provide` to include a valid DataHub API key and RPC endpoint URL. Make sure the URL contains the trailing forward slash after the API key has been inserted
 ```javascript
 export const provider = "https://celo-alfajores--rpc.datahub.figment.io/apikey/<YOUR_API_KEY>/"
 ```
 
-We will go through the react native code but first you should delete all code in `App.js` and paste the following:
+We will go over the React Native portions of the code, but first you need to clear the contents of `App.js` and replace it with the following:
 
 ```javascript
 import React from 'react'
@@ -456,12 +456,12 @@ Now, we will increment the count with `incrementCount` method. For this we need 
 
 For incrementing count we will create transaction. But first we need to create transaction object `txObject` and then pass that to celo wallet using `requestTxSig`.
 
-`requestTxSig` methods takes three arguments:
+`requestTxSig` method takes three parameters:
 - kit: contract kit instance
 - txParams: parameters required for transaction
 - meta: object for dappkit for connecting with celo wallet
 
-This method will create in transaction to increment value of count and you can check the transaction by transaction hash logged in console.
+This method will create a transaction to increment the value of count. The generated transaction hash will be logged to the console.
 
 After this we are waiting for transaction to complete and then we are updating value of count.
 
@@ -478,9 +478,7 @@ yarn start
 ```
 This will open browser window like you see here
 
-<p align="center">
-  <img src="https://i.imgur.com/mIcw4LF.jpeg" width="500" title="Expo terminal">
-</p>
+![Expo terminal]( https://i.imgur.com/mIcw4LF.jpeg )
 
 There you can see QR code at bottom left scan it with QR code scanner from expo client in your mobile device.
 
@@ -498,34 +496,36 @@ Now we can go through process of incrementing the counter. First login by pressi
 
 Select Alfajores wallet.
 
-After selecting wallet it will redirect us to actual wallet and there it will ask for permission
+After selecting the wallet, it will redirect us to the actual wallet and ask for permission.
 
 <p align="center">
   <img src="https://i.imgur.com/TCtRhZ3.jpeg" width="250" title="Account Auth">
 </p>
 
-Click on allow button to give information to our dapp. 
+Click on the allow button to give information to our dapp. 
 
-Now we got access to information it will redirect us to our dapp where account information is displayed now instead of `Not logged in` text
+Now that we have access, we will be redirected once again to our dapp where the account information will be displayed now in place of the `Not logged in` text.
 
 <p align="center">
   <img src="https://i.imgur.com/Ywor7bg.jpeg" width="250" title="Logged In">
 </p>
 
-We should now increment to count by pressing on increment count which will redirect us to wallet to sign the transaction
+We should now increment the count, which will redirect us to the wallet to sign a transaction.
 
 <p align="center">
   <img src="https://i.imgur.com/p7NdEga.jpeg" width="250" title="Sign Transaction">
 </p>
 
-Click on allow and after getting to our dapp screen we can see our count is increased by 1.
+Click on allow. After reaching our dapp screen we can see the count has increased by 1!
 
 <p align="center">
   <img src="https://i.imgur.com/alHJoiS.jpeg" width="250" title="count incremented">
 </p>
 
-And just like that we have created our first ever mobile app.
+Congratulations for completing this tutorial, Introduction to DappKit! We have now created a functioning mobile dapp on the Celo testnet. This same methodology can be applied to the Celo mainnet as well, to produce functioning distributed applications.
 
 ## Wrapping Wp
 
-In this tutorial we have covered some part of dapp kit, how it connects with celo mobile wallet, how we can connect our dapp with the mobile wallet and how to do some basic things like getting account address, balance of account, phone number connected to celo mobile wallet, and signing transaction, etc.
+In this tutorial we have covered some parts of DappKit, how it connects with the Celo mobile wallet, how we can connect our dapp with the mobile wallet and how to do some basic things like getting account addresses, balance of accounts, phone number connected to Celo mobile wallet, and signing transactions.
+
+Thank you for following along with this tutorial, now take this knowledge and build amazing things on Celo!
