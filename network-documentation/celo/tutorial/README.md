@@ -54,4 +54,3 @@ If you prefer going through the tutorial with videos, check out this CELO Learn 
 
 ## Testing Celo Smart Contracts with Truffle
 
-{% page-ref page="celo-testing-truffle.md" %}
