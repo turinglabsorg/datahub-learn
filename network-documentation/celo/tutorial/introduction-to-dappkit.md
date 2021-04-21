@@ -4,9 +4,11 @@ description: Creating simple counter dapp with celo dappkit
 
 # Introduction to DappKit
 
-## Introduction to DappKit
+## About the Author
 
-### Introduction
+This tutorial was created by [Nikhil Bhintade](https://www.linkedin.com/in/nikbhintade). Nikhil is a student \(BE, Electrical\) and crypto enthusiast who's learning all about the world of web3 and want to document what he learned.
+
+## Introduction
 
 Celo offers mobile friendly development environment which includes mainnet and testnet wallet, mobile SDK. In this tutorial we are going to make counter dapp with expo \(react native\). This dapp will be able to do following things:
 
