@@ -27,17 +27,11 @@ We also do not accept "Google phone numbers" or any online SMS number. Only your
 Make sure to read and agree to our [Terms of Use](https://learn.figment.io/terms-and-conditions/terms-of-use) before starting any of the Tutorials.  
 To attempt the Pathway Tutorials, make sure to click the "Start" button on the DataHub dashboard for each of them before starting to code. See the example image below for reference :
 
-{% hint style="danger" %}
-SCREENSHOT
-{% endhint %}
+![](../../../../.gitbook/assets/screen-shot-2021-04-21-at-3.34.57-pm.png)
 
 Verify each tutorial as you complete them and click on "Submit to earn" when you are done with the five tutorials to access the completion form.
 
-{% hint style="danger" %}
-SCREENSHOT
-{% endhint %}
-
-### 💡 Tutorials
+## 💡 Tutorials
 
 {% page-ref page="1.-connecting-to-a-polkadot-node-with-datahub.md" %}
 
