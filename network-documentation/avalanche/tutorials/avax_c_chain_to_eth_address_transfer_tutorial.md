@@ -2,11 +2,28 @@
 description: Teaching how to Transfer AVAX native tokens from C chain to ETH address
 ---
 
+## About the author
+
+This tutorial was created by [Seongwoo Oh](https://github.com/blackwidoq). He is a student and an Avalanche novice.
+
 # Transfer AVAX tokens from the C chain of your AVAX wallet to an ETH address \(Metamask, for example\)
 
 In this tutorial, we are going to learn how to programmatically transfer native AVAX tokens from the C-chain to an ETH wallet.
 
-First, we need to import the appropriate libraries \(web3 and ethers\)
+First, we need to import the appropriate libraries \(web3 and ethers\). So, let's begin by installing them first.
+Both web3.js and ethers.js are Ethereum Javascript APIs desinged to help interact with the Ethereum blockchain. The C chain of Avalanche shares the same libraries. This allows Ethereum developers to migrate over to Avalanche with minimal effort.
+
+We will install the ethers.js library by entering the following line into the terminal
+```bash
+$ npm install ethers
+```
+
+and install the web3.js library by entering the following line into the terminal.
+```bash
+$ npm install web3
+```
+
+After installing the libraries, we need to import them in order to use the libraries to interact with the Avalanche C chain.
 
 ```text
 const Web3 = require("web3")
@@ -32,7 +49,7 @@ const wallet = new ethers.Wallet.fromMnemonic(mnemonic);
 AVAX_privatekey = wallet.privateKey;
 ```
 
-The web3 package is designed to interact with an Ethereum blockchain and Ethereum smart contracts. The web3 module is capable of acting upon the AVAX implementation of the EVM. So, when interacting with the C-chain, the web3 module is used. Here, web3.eth.getBalance fetches the AVAX balance. Additionally, when printing the balance of the C-chain into the terminal, you want to
+The web3 package is designed to interact with an Ethereum blockchain and Ethereum smart contracts. The web3 module is capable of acting upon the AVAX implementation of the EVM. So, when interacting with the C chain, the web3 module is used. Here, web3.eth.getBalance fetches the AVAX balance. `result` in `web3.utils.fromWei` below is the balance of the account in the units of wei \(The minimum unit of Ether is called wei and 1 Ether is 10^18 wei\). `fromWei` is a method in web3.utils, converting a number from one unit to another. So, `web3.utils.fromWei(result, "ether")` in the code below converts the balance from wei to ether. Since we are viewing the AVAX token balance, we will print AVAX at the end.
 
 ```text
 async function main(){
@@ -41,16 +58,11 @@ async function main(){
           console.log(err)
         } else {
           console.log(web3.utils.fromWei(result, "ether") + " AVAX")
-```
-
-"result" in "web3.utils.fromWei" above is the balance of the account in the units of wei \(The minimum unit of Ether is called “wei” and 1 Ether is 10^18 wei\). "fromWei" is a method in web3.utils, converting a number from one unit to another. So,"web3.utils.fromWei\(result, "ether"\)" above converts the balance from wei to ether. Since we are viewing the AVAX token balance, we will print AVAX at the end.
-
-```text
         }
-      })
+    })
 ```
 
-The block below is to view the \# of transactions associated with the wallet address\(not necessary for the purpose of AVAX transfer from C chain to an ETH address\) but could be useful when you later want to transfer an ERC20 token
+The block below is to view the \# of transactions associated with the wallet address \(not necessary for the purpose of AVAX transfer from C chain to an ETH address\) but could be useful when you later want to transfer an ERC20 token.
 
 ```text
     web3.eth.getTransactionCount(wallet.address)       
