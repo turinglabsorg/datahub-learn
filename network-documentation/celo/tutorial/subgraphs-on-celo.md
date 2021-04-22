@@ -497,31 +497,31 @@ You will get a result similar to
 
     You will get an output similar to
 
-        ```
-        yarn run v1.22.10
-        $ graph codegen
-        Skip migration: Bump mapping apiVersion from 0.0.1 to 0.0.2
-        Skip migration: Bump mapping apiVersion from 0.0.2 to 0.0.3
-        Skip migration: Bump mapping apiVersion from 0.0.3 to 0.0.4
-        Skip migration: Bump mapping specVersion from 0.0.1 to 0.0.2
-        ✔ Apply migrations
-        ✔ Load subgraph from subgraph.yaml
-        Load contract ABI from abis/Gravity.json
-        ✔ Load contract ABIs
-        Generate types for contract ABI: Gravity (abis/Gravity.json)
-        Write types to generated/Gravity/Gravity.ts
-        ✔ Generate types for contract ABIs
-        ✔ Generate types for data source templates
-        ✔ Load data source template ABIs
-        ✔ Generate types for data source template ABIs
-        ✔ Load GraphQL schema from schema.graphql
-        Write types to generated/schema.ts
-        ✔ Generate types for GraphQL schema
+    ```
+    yarn run v1.22.10
+    $ graph codegen
+    Skip migration: Bump mapping apiVersion from 0.0.1 to 0.0.2
+    Skip migration: Bump mapping apiVersion from 0.0.2 to 0.0.3
+    Skip migration: Bump mapping apiVersion from 0.0.3 to 0.0.4
+    Skip migration: Bump mapping specVersion from 0.0.1 to 0.0.2
+    ✔ Apply migrations
+    ✔ Load subgraph from subgraph.yaml
+    Load contract ABI from abis/Gravity.json
+    ✔ Load contract ABIs
+    Generate types for contract ABI: Gravity (abis/Gravity.json)
+    Write types to generated/Gravity/Gravity.ts
+    ✔ Generate types for contract ABIs
+    ✔ Generate types for data source templates
+    ✔ Load data source template ABIs
+    ✔ Generate types for data source template ABIs
+    ✔ Load GraphQL schema from schema.graphql
+    Write types to generated/schema.ts
+    ✔ Generate types for GraphQL schema
 
-        Types generated successfully
+    Types generated successfully
 
-        ✨  Done in 16.31s.
-        ```
+    ✨  Done in 16.31s.
+    ```
 
 6. Run the Graph protocol [deployment script mentioned earlier](#3-show-me-the-code).
 
