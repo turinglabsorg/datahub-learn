@@ -22,11 +22,11 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 ## Write a Pallet in its own crate 
 
-{% page-ref page="write-a-pallet-in-its-own-crate.md" %}
+{% page-ref page="../../polkadot-1/tutorials/write-a-pallet-in-its-own-crate.md" %}
 
 ## Add the Contracts Pallets to a Runtime
 
-{% page-ref page="add-the-contracts-pallets-to-a-runtime.md" %}
+{% page-ref page="../../polkadot-1/tutorials/add-the-contracts-pallets-to-a-runtime.md" %}
 
 ## Build a PoE Decentralized Application 
 

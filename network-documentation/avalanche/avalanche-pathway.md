@@ -66,7 +66,7 @@ Simply fill [**this form**](https://forms.gle/nVNBbSEghuH9aUzx5) and include dir
 
 Make sure to refer to Figment Learn in your tweet!
 
-### ​ ![](../../.gitbook/assets/download-7-1-%20%281%29.png) Medium \($20 in AVAX each, `1500-2000` words each\) <a id="medium-usd20-in-cusd-each-1500-2000-words-each"></a>
+### ​ ![](../../.gitbook/assets/download-7-1-%20%281%29%20%282%29.png) Medium \($20 in AVAX each, `1500-2000` words each\) <a id="medium-usd20-in-cusd-each-1500-2000-words-each"></a>
 
 1. Recount your Avalanche learning experience
 2. Share your ideas for improving the Avalanche developer experience

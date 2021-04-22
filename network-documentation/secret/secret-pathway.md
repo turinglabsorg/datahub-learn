@@ -66,7 +66,7 @@ Secret is providing Bonus Activity Rewards for additional activities following t
   
 Bonus Activity Rewards will be given out at the discretion of the reviewer. Please provide any context you would like us to consider to maximize your Bonus Activity Reward. 
 
-### ![](../../.gitbook/assets/download-6-1-%20%281%29%20%281%29.png) Twitter \($5 in SCRT each\)
+### ![](../../.gitbook/assets/download-6-1-%20%281%29%20%284%29.png) Twitter \($5 in SCRT each\)
 
 1. Post a lesson learned about the Secret platform, tools, community, etc.
 2. Post a screenshot of what you just built with Secret
@@ -76,7 +76,7 @@ Bonus Activity Rewards will be given out at the discretion of the reviewer. Plea
 
 Make sure to refer to Figment Learn in your tweet! 
 
-### ![](../../.gitbook/assets/download-7-1-%20%281%29%20%281%29.png) Medium \($20 in SCRT each, `1500-2000` words each\)
+### ![](../../.gitbook/assets/download-7-1-%20%281%29%20%283%29.png) Medium \($20 in SCRT each, `1500-2000` words each\)
 
 1. Recount your Secret learning experience
 2. Share your ideas for improving the Secret developer experience

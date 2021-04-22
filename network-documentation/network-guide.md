@@ -24,7 +24,7 @@ Avalanche is a layer one protocol by Ava Labs that offers high-throughput, fast 
 
 {% page-ref page="avalanche/" %}
 
-## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Celo
+## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%284%29.png) Celo
 
 Celo is a smart contract blockchain network. The technology uses a phone-number-based identity system with address-based encryption and eigentrust-based reputation. Their first application is a social payments system that can be used on a smartphone. 
 
@@ -72,7 +72,7 @@ Secret Network is the first blockchain with privacy-preserving smart contracts. 
 
 {% page-ref page="secret/" %}
 
-## ![](../.gitbook/assets/rsz_terra-logo%20%281%29.jpg) Terra 
+## ![](../.gitbook/assets/rsz_terra-logo%20%282%29.jpg) Terra 
 
 Terra is a blockchain protocol that supports stable programmable payments and open financial infrastructure development. One part of Terra’s value contributions, payments, in essence, replaces the complicated payments value chain, including credit card networks, banks, and payment gateways with a single blockchain layer. 
 

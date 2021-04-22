@@ -24,7 +24,7 @@ The Avalanche Wallet source code can be found [here](https://github.com/ava-labs
 
 ### Step 1 - Open the Avalanche Wallet
 
-![](../../../.gitbook/assets/wallet-x2p-01-login-1-%20%281%29.png)
+![](../../../.gitbook/assets/wallet-x2p-01-login-1-%20%281%29%20%283%29.png)
 
 Select **Access Wallet** to enter your wallet. To connect the wallet to a network other than the main Avalanche network, select **Mainnet** and choose the network to connect to.
 
@@ -32,13 +32,13 @@ Select **Access Wallet** to enter your wallet. To connect the wallet to a networ
 
 You can access your wallet using the private key, mnemonic key phrase, keystore file or Ledger Nano S.
 
-![](../../../.gitbook/assets/wallet-x2p-02-access%20%281%29.png)
+![](../../../.gitbook/assets/wallet-x2p-02-access%20%283%29.png)
 
 After a successful login you will see your balance, assets portfolio and various other information.
 
 ### Step 3 - Go to the Cross Chain Tab
 
-![](../../../.gitbook/assets/wallet-x2p-03-earn-1-.png)
+![](../../../.gitbook/assets/wallet-x2p-03-earn-1-%20%282%29.png)
 
 Functionality for transferring tokens between chains is on the **Cross Chain** tab.
 

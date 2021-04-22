@@ -20,7 +20,7 @@ Learn Pathways are short curriculums that help developers understand which netwo
 
 **Ongoing Pathway: Polkadot** 
 
-{% page-ref page="network-documentation/polkadot/polkadot-pathway.md" %}
+{% page-ref page="network-documentation/polkadot-1/polkadot-pathway.md" %}
 
 **Ongoing Pathway: Avalanche**
 
