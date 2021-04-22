@@ -151,6 +151,8 @@
   * [✏ NEAR 101](network-documentation/near/near-101.md)
   * [🎮 RPC & REST API](network-documentation/near/rpc-and-rest-api/README.md)
     * [NEAR RPC](network-documentation/near/rpc-and-rest-api/near-rpc.md)
+  * [🎊 Enriched APIs](network-documentation/near/enriched-apis/README.md)
+    * [Indexer API](network-documentation/near/enriched-apis/indexer-api.md)
   * [🗺 NEAR Pathway](network-documentation/near/near-pathway.md)
   * [💡 Tutorials](network-documentation/near/tutorials/README.md)
     * [Intro Pathway: NEAR Basics](network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/README.md)
