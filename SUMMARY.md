@@ -300,6 +300,7 @@
     * [How to mint your own fungible Celo Token](network-documentation/celo/tutorial/celo-erc20-token-on-remix.md)
     * [How to use Ubeswap DEX on Celo](network-documentation/celo/tutorial/celo-ubeswap-tutorial.md)
     * [How to use Moola’s money market](network-documentation/celo/tutorial/moola-market.md)
+    * [How to customize an Ethereum smart contract for the Celo network](network-documentation/celo/tutorial/celo-contract-from-ethereum.md)
     * [Introduction to DappKit](network-documentation/celo/tutorial/introduction-to-dappkit.md)
     * [Testing Celo Smart Contracts with Truffle](network-documentation/celo/tutorial/celo-testing-truffle.md)
   * [💼 CELO Wallet](network-documentation/celo/celo-wallet.md)
