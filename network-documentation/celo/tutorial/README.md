@@ -52,6 +52,10 @@ If you prefer going through the tutorial with videos, check out this CELO Learn 
 
 {% page-ref page="./" %}
 
+## Testing Celo Smart Contracts with Truffle
+
+{% page-ref page="celo-testing-truffle.md" %}
+
 ## 1. Building a Crowdfunding Smart Contract in Celo
 
 {% page-ref page="celo-crowdfunding/1.smart-contract.md" %}
