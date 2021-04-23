@@ -80,11 +80,15 @@ create the list with ours NFTs and the ```constructor()```, The constructor code
  uint256 public constant FARM = 2;
  uint256 public constant MILL = 3;
  uint256 public constant CASTLE = 4;
- 
+ ```
+ The uri can include the string {id} which clients must replace with the actual token ID, in lowercase hexadecimal (with no 0x prefix) and leading zero padded to 64 hex 
+  ```solidity
  constructor() ERC1155("https://gateway.pinata.cloud/ipfs/QmTN32qBKYqnyvatqfnU8ra6cYUGNxpYziSddCatEmopLR/metadata/api/item/{id}.json") {
   }
 ```
-When an App ou wallet for use this contract it will change the {id} in the for an NFT Id that the user has. For example, the Mine id is 1 to get NFT metadata will use this URL ```https://gateway.pinata.cloud/ipfs/QmTN32qBKYqnyvatqfnU8ra6cYUGNxpYziSddCatEmopLR/metadata/api/item/1.json```
+For token ID 1 and uri ```https://gateway.pinata.cloud/ipfs/QmTN32qBKYqnyvatqfnU8ra6cYUGNxpYziSddCatEmopLR/metadata/api/item/{id}.json``` clients would replace ***{id}*** with ***1*** to retrieve JSON at https://gateway.pinata.cloud/ipfs/QmTN32qBKYqnyvatqfnU8ra6cYUGNxpYziSddCatEmopLR/metadata/api/item/1.json.
+
+The JSON document for token ID 1 might look something like:
 ```json
 {
   "name": "Mine",
@@ -172,7 +176,7 @@ describe("TinyVillage Test", function() {
         expect(1).to.equal(Number(balance.toString()));
     });
 ```
-The more complex test, to mint a castle we'll need to mint every other NFT,For this tutorial don't take a long time, we won't test all the minting functions 
+Testing the minting of a Castle would require us to mint every other type of NFT, but for the purposes of this tutorial we will cut it short and not cover testing all of the minting functions
 ```javascript
     it("Should mint castle",async function () {
         const accounts = await ethers.getSigners();
