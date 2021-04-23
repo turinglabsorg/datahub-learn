@@ -14,8 +14,6 @@ Avalanche is a layer one protocol by Ava Labs that offers high-throughput, fast 
 
 **Get started with the Avalanche Pathway by visiting the page below.** 
 
-{% page-ref page="../network-documentation/avalanche/avalanche-pathway.md" %}
-
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
 ## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29.png) Celo Pathway
@@ -28,8 +26,6 @@ There are currently no rewards for completing the intro Pathway. Advanced Pathwa
 
 **Get started with the Celo Pathway by visiting the page below.** 
 
-{% page-ref page="../network-documentation/celo/celo-pathway.md" %}
-
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
 ## ![](../.gitbook/assets/tnear_icon_1.png) NEAR Pathway 
@@ -41,8 +37,6 @@ There are currently no rewards for completing the intro Pathway. Advanced Pathwa
 {% endhint %}
 
 **Get started with the NEAR Pathway by visiting the page below.** 
-
-{% page-ref page="../network-documentation/near/near-pathway.md" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
@@ -65,8 +59,6 @@ There are currently no rewards for completing the intro Pathway. Advanced Pathwa
 {% endhint %}
 
 **Get started with the Secret Pathway by visiting the page below.** 
-
-{% page-ref page="../network-documentation/secret/secret-pathway.md" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 

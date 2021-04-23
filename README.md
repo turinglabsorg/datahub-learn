@@ -24,8 +24,6 @@ Learn Pathways are short curriculums that help developers understand which netwo
 
 **Ongoing Pathway: Avalanche**
 
-{% page-ref page="network-documentation/avalanche/avalanche-pathway.md" %}
-
 **See other active and upcoming Pathways:** 
 
 {% page-ref page="figment-learn/pathways.md" %}
