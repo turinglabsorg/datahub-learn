@@ -416,4 +416,4 @@ After you connect to a account go to [Celo faucets ](https://celo.org/developers
 ![Captura de Tela (55)](https://user-images.githubusercontent.com/52639395/115550456-43169880-a280-11eb-94e3-e101d18722eb.png)
 
 # Conclusion
-We learning how writer [ERC1155](https://docs.openzeppelin.com/contracts/3.x/erc1155) contracts, use [hardhat](https://hardhat.org/) to create custom tasks and [celo contractkit](https://github.com/celo-tools/use-contractkit) kit to intereact with Celo contracts. 
+We learning how writer [ERC1155](https://docs.openzeppelin.com/contracts/3.x/erc1155) contracts, use [hardhat](https://hardhat.org/) to create custom tasks and [celo contractkit](https://github.com/celo-tools/use-contractkit)to intereact with Celo contracts. 
