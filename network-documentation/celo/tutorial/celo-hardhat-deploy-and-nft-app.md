@@ -5,11 +5,16 @@ In this tutorial we'll write a smart contract using the Solidity language and a 
 
 ![Captura de Tela (39)](https://user-images.githubusercontent.com/52639395/114646091-01e71d00-9cb1-11eb-8acc-214c255d2d4c.png)
 
+# About the Author
+I'm Lucas Espinosa ,a C#/solidity developer.if you are interested in these topics follow me on Github.
+- [GitHub](https://github.com/lucasespinosa28)
+- [Twitter](https://twitter.com/lucas9espinosa)
+
 # Prerequisites 
  - We must have NodeJS >= v12.0 installed, preferably the latest version or an LTS release.
  - Knowledge of JavaScript, Solidity and React is beneficial.
 
-# Install and use Hardhat
+# 1 - Install Hardhat
 Hardhat is a development environment that compiles, deploys, tests, and helps you to debug your Ethereum smart contracts. Hardhat can also be used to deploy to the Celo network because Celo also runs the EVM (Ethereum Virtual Machine). This means smart contracts which work on Ethereum will also work on Celo. For the purposes of this tutorial, we will assume that the reader understands how to initialize a new Node project with a package manager (`npm` or `yarn`). We will go over how to install and configure Hardhat now.
 
 #### Installing Hardhat
@@ -40,7 +45,7 @@ Welcome to Hardhat v2.1.2
   Quit
 ```
 
-## Now we'll write our smart contract
+# 2 - Write a smart contract
 
 ### The OpenZeppelin ERC1155 library
 ERC1155 is a novel token standard that aims to take the best from previous standards to create a fungibility-agnostic and gas-efficient token contract.
@@ -154,6 +159,9 @@ Learn more at https://hardhat.org/reference/solidity-support"
 Compiling 9 files with 0.8.0
 Compilation finished successfully
 ```
+
+# 3 - Test and Deploy
+
 ### Use Harthat to test you smart contract
 the best practive is test the smart contract in your machine before deploy, create a file ```test/tineyVillageTest.js```. The [hardhat documentation](https://hardhat.org/guides/truffle-testing.html) has more information about testing using other libraries. 
 
@@ -259,7 +267,7 @@ When run ```npx hardhat celo-account```, the new account are created and the pri
 ###### [celo_account.js complete code ](https://github.com/lucasespinosa28/Celo-Tutorial/blob/main/demo/celo_account.js)
 ###### [hardhat.config.js complete code ](https://github.com/lucasespinosa28/Celo-Tutorial/blob/main/demo/hardhat.config.js)
 
-# Use Hardhat to deploy
+### Use Hardhat to deploy
 If your code is already tested, it's time to deploy ,to deploy your smart contract you will need to connect to Celo BlockChain, to do this you will need a server running the Celo network,to connect to Celo and another Blockchain network one of the easiest ways and using figment DataHub, in the [DataHub (figment.io)](https://datahub.figment.io/) and chose Celo, copy celo-alfajores--rpc.datahub.figment.io and save the api key ![Captura de Tela (43)](https://user-images.githubusercontent.com/52639395/114647928-46c08300-9cb4-11eb-90a4-5a8600c7696d.png),Create ```celo_deploy.js``` and write the code bellow,```@celo/contractkit``` is a library to help developers and validators to interact with the celo-blockchain,```TinyVillage()``` is the function used to deploy TinyVillage contract,the ```/artifacts/contracts/TinyVillage.sol/TinyVillage.json```is the file that contains all the information about our compiled contract,to deploy you'll need of [DataHub (figment.io)](https://datahub.figment.io/) to interact will need of 
 ```javascript
 const Web3 = require('web3')
@@ -320,7 +328,9 @@ save the contract address 0x47A424A0975924C3d177470C519C8DBA37e16Ec9
 ###### [hardhat.config.js complete code ](https://github.com/lucasespinosa28/Celo-Tutorial/blob/main/demo/hardhat.config.js)
 
 
-# Creat a react app
+# 3 - Use the contract deployed
+
+
 Sites like [opensea.io](https://opensea.io/) and another NFT marketplaces do not yet support Celo to see your Nfts we will build a reaction application,to did not build a react app from scratch download de souce code from [github](https://github.com/lucasespinosa28/Celo-Tutorial/tree/main/demo/start),open the folder ```demo\start```, and run:
 ```bash
 npm install
@@ -402,5 +412,5 @@ after you connect to a account send go to [Celo faucets ](https://celo.org/devel
 ![Captura de Tela (54)](https://user-images.githubusercontent.com/52639395/115550371-267a6080-a280-11eb-94ab-1840236fdbac.png)
 ![Captura de Tela (55)](https://user-images.githubusercontent.com/52639395/115550456-43169880-a280-11eb-94e3-e101d18722eb.png)
 
-# Learning more
-how this tutorial was about how writer smart contract and use Hardhat to learning more about Celo, you read the [Celo contractkit ](https://docs.celo.org/v/master/developer-guide/contractkit) and the  [Celo dappkit ](https://docs.celo.org/v/master/developer-guide/dappkit)
+# Conclusion
+We learning how writer [ERC1155](https://docs.openzeppelin.com/contracts/3.x/erc1155) contracts, use [hardhat](https://hardhat.org/) to create custom tasks and [celo contractkit](https://github.com/celo-tools/use-contractkit)kit to intereact with our contract, 
