@@ -338,7 +338,7 @@ save the contract address 0x47A424A0975924C3d177470C519C8DBA37e16Ec9
 
 # 3 - Use the contract deployed
 
-Marketplace sites like  [opensea.io](https://opensea.io/)  do not display NFTs on Celo yet. To be able to view NFTs on Celo, we can build a React app. A sample project is available on [github](https://github.com/lucasespinosa28/Celo-Tutorial/tree/main/demo/start).
+Marketplace sites like  [opensea.io](https://opensea.io/)  do not display NFTs on Celo yet. To be able to view NFTs on Celo, we can build a React app. A sample project is available on [github](https://github.com/lucasespinosa28/Celo-Tutorial/tree/main/demo/start),the complate app is available on [github](https://github.com/lucasespinosa28/Celo-Tutorial/tree/main/demo/final)
 ```bash
 npm install
 ```
@@ -356,13 +356,11 @@ async function getBalance() {
  setBalanceArray(balances);
  }
 ```
-This code work accessing the smart contract using  ```kit.web3.eth.Contract...```,The code has 2 arrays one with user address and the other with list NFTs id , when use ***balanceOfBatch*** will return a array with each NFT that the user has depends on the balance the code will show a specific image for each array combination,example: if balanceOfBatch returns ***[1,0,0,0,0]*** the code will show this image
+This code work accessing the smart contract using  ```kit.web3.eth.Contract...```,The code has 2 arrays one with user address and the other with list NFTs id , when call the function ***balance Of Batch*** in contract will return an array with each NFT that the user has,Depends on the balance the code will show a specific image for each array combination,example: if balanceOfBatch returns ***[1,0,0,0,0]*** the code will show this image
 ![village](https://user-images.githubusercontent.com/52639395/115546874-ee711e80-a27b-11eb-90e5-2febf733aabc.jpg)
 
-Open the file ```src/MintNFT.js```,this code work getting the balance like the ***Images.js***,write the code below to showing the button to mint  the NFT
-
-
-the code below work like the Images.js ,but it's create a button only if is possible to mint the NFT
+Open the file ```src/MintNFT.js```,this code work getting the balance like the ***Images.js***,Write the code below to show the buttons to mint the NFT
+the code below work like the Images.js ,But it's create a button only if is possible to mint the NFT.
 ```javascript
  //Access a the contract
         const contract = new kit.web3.eth.Contract(data.abi, "0x47A424A0975924C3d177470C519C8DBA37e16Ec9")
@@ -393,8 +391,7 @@ the code below work like the Images.js ,but it's create a button only if is poss
                 });
         }
 ```
-
-To not create a function to mintVillage,mintFarm,mintMine and etc, the same function will mint an NFT using the name of the function it has in the smart contract ,
+To not create a function to mintVillage,mintFarm,mintMine and etc, The same function will mint an NFT using the name of the function it has in the smart contract ,
 example:
 ```javascript
  async function Mint("mintVillage") {
@@ -402,22 +399,21 @@ example:
  }
  Mint("mintVillage")}
  ....
- contract.methods.["mintVillage"]().send({ from: address })
  //if not using this method
  contract.methods.mintVillage().send({ from: address })
  ....
  contract.methods.mintCastle().send({ from: address })
  ....
 ```
-if the code have any error, test the app
+If the code have any error, test the app.
 ```bash
 npm start
 ```
 ![Captura de Tela (49)](https://user-images.githubusercontent.com/52639395/115549890-94725800-a27f-11eb-9993-c9ddc794eb12.png)
 ![Captura de Tela (50)](https://user-images.githubusercontent.com/52639395/115549907-99370c00-a27f-11eb-9b41-230732ca3155.png)
-after you connect to a account send go to [Celo faucets ](https://celo.org/developers/faucets) and get the test coin to star buying the NFT,first you need to buy a village and next you will need to farm and mine do pass to next level
+After you connect to a account send go to [Celo faucets ](https://celo.org/developers/faucets) and get the test coin to star buying the NFT,First, you need to buy a village and next, you will need to buy a farm and mine to pass to the next level.
 ![Captura de Tela (54)](https://user-images.githubusercontent.com/52639395/115550371-267a6080-a280-11eb-94ab-1840236fdbac.png)
 ![Captura de Tela (55)](https://user-images.githubusercontent.com/52639395/115550456-43169880-a280-11eb-94e3-e101d18722eb.png)
 
 # Conclusion
-We learning how writer [ERC1155](https://docs.openzeppelin.com/contracts/3.x/erc1155) contracts, use [hardhat](https://hardhat.org/) to create custom tasks and [celo contractkit](https://github.com/celo-tools/use-contractkit)kit to intereact with our contract, 
+We learning how writer [ERC1155](https://docs.openzeppelin.com/contracts/3.x/erc1155) contracts, use [hardhat](https://hardhat.org/) to create custom tasks and [celo contractkit](https://github.com/celo-tools/use-contractkit) kit to intereact with Celo contracts. 
