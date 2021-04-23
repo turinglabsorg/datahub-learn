@@ -8,11 +8,15 @@ description: Learn how to write a Vault for Celo, and interface with it using we
 
 In this tutorial, we will create, deploy, and interact with our first Vault Smart Contract on the Celo Ecosystem.
 
-What's a Vault Smart Contract and the deployment and interaction thing?
+What's a Vault Smart Contract, and the deployment, and interaction thing?
 
 A Vault as defined in this tutorial proofs that your contributed funds are locked through inviolable smart contracts.
-With this being said, we will be deploying a Vault Smart Contract to the Alfajores Testnet using DataHub and Truffle.
-After, we will interface with the deployed Vault Smart Contract and demostrate its functionalities using a frontend with react and web3.
+
+First, we will be deploying a Vault Smart Contract to the Alfajores Testnet using DataHub and Truffle.
+
+Second, we will interface with the deployed Vault Smart Contract and demostrate its functionalities using a frontend with React and Web3.
+
+Ready, set, go!
 
 ### Prerequisites
 
@@ -198,7 +202,7 @@ Mode                 LastWriteTime         Length Name
 
 The code for the Vault Smart Contract its been cooked for us already. Copy, paste, read:
 
-```solity
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
@@ -278,11 +282,10 @@ contract HelpiLocker is Ownable{
 }
 ```
 
-Let's go through the main sections of the our Vault Smart Contract
+Let's go through the main sections of the our Vault Smart Contract:
 
-```
 Structure to store our deposits
-
+```
 struct Items {
         IERC20 token;
         address withdrawer;
@@ -293,10 +296,10 @@ struct Items {
     }
 ```
 
+lockTokens function accepts the following parameters when being invoked:
 ```
-function(IERC20, address, amount, time) lockTokens
+lockTokens(IERC20, address, amount, time) 
 ```
-This function accepts the following parameters when being invoked:
 
 ```
 IERC20 _token, => An ERC20 Token.
@@ -305,16 +308,16 @@ uint256 _amount => Amount the ERC20 Token.
 uint256 _unlockTimestamp => When to unclock deposit.
 ```
 
-```
-function(address) withdrawTokens
-```
 The withdraw function accepts an address and checks it's existance as a _withdrawer in our Structure. The function also checks if funds are past the _unlockTimestamp.
+```
+withdrawTokens(address) 
+```
 
 ```
 address _withdrawer => The address which was registered in our contract when the deposit was made _withdrawer
 ```
 
-We are now ready to compile our solity code using Truffle. From your terminal run the following:
+We are now ready to compile our solidity code using Truffle. From your terminal run the following:
 ```bash
 npx truffle compile
 ```
@@ -351,7 +354,7 @@ Mode                 LastWriteTime         Length Name
 -a---           4/17/2021  7:12 AM         870362 Vault.json
 ```
 
-I hope you are ready for deployment, because thats next!
+I hope you are ready for deployment, because that's next!
 
 Before deploying the contract using Truffle, we need to add our funded account to our ContractKit instance inside `truffle-config.js`
 ```js
@@ -460,11 +463,11 @@ Summary
 
 Awesome!, our Vault Smart Contract is now in Alfajores, and we can deposit funds into it, lock them, and withdraw them.
 
-Let's build an interface in react for our Vault Smart Contract next.
+Let's build an interface in React for our Vault Smart Contract next.
 
 ## Interface with the Vault Smart Contract
 
-First, let's initialize our react app:
+First, let's initialize our react app, we can do this within our node/truffle project directory we have been working on:
 
 ```bash
 npx create-react-app my-vault-interface
@@ -488,7 +491,7 @@ REACT_APP_VAULT_ADDRESS=0xB017aD96e31B43AFB670dAB020561dA8E2154C5B
 
 This is how mine looks like, as you can see we still have the same variables, juts added the REACT_APP prefix.
 
-Next, let's transfer the json file where our contract bytecode and abi resides, and paste into the root of our new React Project:
+Next, let's transfer the json file where our contract bytecode and abi resides, and paste inside a new `contract` folder into the root of our new React Project, see below:
 ```
 Original Location (Truffle Compile)
 Directory: C:\Users\aglamadrid19\vault-dapp\build\contracts\Vault.json
@@ -545,16 +548,159 @@ Mode                 LastWriteTime         Length Name
 -a---           4/17/2021  7:35 AM         870803 Vault.json
 ```
 
-Our next step is to copy and paste some code to the App React Component.
+Our next step is to copy and paste some code to the App React Component `App.js`.
 ```
+import React, { useState } from 'react';
+import { newKit } from '@celo/contractkit'
+import dotenv from 'dotenv'
+import Vault from './contract/Vault.json'
+
+// LOAD ENV VAR
+dotenv.config()
+
+const kit = newKit(process.env.REACT_APP_DATAHUB_NODE_URL)
+const connectAccount = kit.addAccount(process.env.REACT_APP_PRIVATE_KEY)
+// CONTRACT INSTANCE
+const VaultO = new kit.web3.eth.Contract(Vault.abi, process.env.REACT_APP_VAULT_ADDRESS)
+
+const lock = async () => {
+  
+  // TIMESTAMP
+  const lastBlock = await kit.web3.eth.getBlockNumber()
+  let {timestamp} = await kit.web3.eth.getBlock(lastBlock)
+  var timestampObj = new Date(timestamp * 1000)
+  // TIME TO LOCK + 10 MINS
+  var unlockTime = timestampObj.setMinutes(timestampObj.getMinutes() + 10) / 1000
+  // GAS ESTIMATOR
+  const gasEstimate = kit.gasEstimate
+  // AMMOUNT TO LOCK
+  const amount = kit.web3.utils.toWei("0.3", 'ether')
+  // ERC20 TO LOCK
+  const goldtoken = await kit._web3Contracts.getGoldToken()
+  
+  // TX OBJECT AND SEND
+  const txo = await VaultO.methods.lockTokens(goldtoken._address, process.env.REACT_APP_ADDRESS, amount, unlockTime)
+  const tx = await kit.sendTransactionObject(txo, {from: process.env.REACT_APP_ADDRESS, gasPrice: gasEstimate})
+
+  // PRINT TX RESULT
+  const receipt = await tx.waitReceipt()
+  console.log(receipt)
+}
+
+const approve = async () => {
+  // MAX ALLOWANCE
+  const allowance = kit.web3.utils.toWei('1000000', 'ether')
+  // GAS ESTIMATOR
+  const gasEstimate = kit.gasEstimate
+  // ASSET TO ALLOW
+  const goldtoken = await kit._web3Contracts.getGoldToken()
+  // TX OBJECT AND SEND
+  const approveTxo = await goldtoken.methods.approve(process.env.REACT_APP_VAULT_ADDRESS, allowance)
+  const approveTx = await kit.sendTransactionObject(approveTxo, {from: process.env.REACT_APP_ADDRESS, gasPrice: gasEstimate})
+
+  const receipt = await approveTx.waitReceipt()
+  // PRINT TX RESULT
+  console.log(receipt)
+}
+
+const withdraw = async () => {
+  const txo = await VaultO.methods.withdrawTokens("12")
+  const tx = await kit.sendTransactionObject(txo, {from: process.env.REACT_APP_ADDRESS})
+  const receipt = tx.waitReceipt()
+  console.log(receipt)
+}
+
+function App() {
+
+  const [CELOBal, setCELOBal] = useState(0);
+  const [cUSDBal, setcUSDBal] = useState(0);
+  const [vaultBal, setVaultBal] = useState(0)
+  const [vaultBalAddress, setVaultBalAddress] = useState(0)
+
+  const getBalanceHandle = async () => { 
+    const totalLockedBalance = await VaultO.methods.getTokenTotalLockedBalance(process.env.REACT_APP_CELO_TOKEN_ADDRESS).call()
+    const totalBalance = await kit.getTotalBalance(process.env.REACT_APP_ADDRESS)
+
+    const {CELO, cUSD} = totalBalance
+    setCELOBal(kit.web3.utils.fromWei(CELO.toString()))
+    setcUSDBal(kit.web3.utils.fromWei(cUSD.toString()))
+    setVaultBal(kit.web3.utils.fromWei(totalLockedBalance.toString()))
+  } 
+
+  return (
+    <div>
+      <h1>ACTIONS</h1>
+      <button onClick={approve}>APPROVE</button>
+      <button onClick={lock}>LOCK</button>
+      <button onClick={withdraw}>WITHDRAW</button>
+      <button onClick={getBalanceHandle}>GET BALANCE</button>
+      <h1>DATA WALLET</h1>
+      <ul>
+        <li>
+          CELO BALANCE: {CELOBal}
+        </li>
+        <li>
+          cUSD BALANCE: {cUSDBal}
+        </li>
+      </ul>
+      <h1>DATA VAULT SMART CONTRACT</h1>
+      <ul>
+        <li>
+          TOTAL CELO BALANCE: {vaultBal}
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+export default App;
 
 ```
 
-After we are ready to start a development server test our APPROVE and LOCK button.
-```
+Let's go over our App Component, much fun here I promise...
+
+We will be using useState to display our balances (wallet and vault contract), contractKit will help us interact with the Celo Blockchain effectively and efficiently using web3 under the hood. Envrioment variables are present, see the use of dotenv. Finally we import our json representing the contract (recently I learned this json with bytecode, abi its called contract/truffle artifact)
 
 ```
+import React, { useState } from 'react';
+import { newKit } from '@celo/contractkit'
+import dotenv from 'dotenv'
+import Vault from './contract/Vault.json'
 
+// LOAD ENV VAR
+dotenv.config()
+```
+
+Next, we initialize our instance of contractKit, using our DataHub Node URL, we also add to the kit our test account using its private key. Finanly the Contract Object is instanciated for later use.
+```
+const kit = newKit(process.env.REACT_APP_DATAHUB_NODE_URL)
+const connectAccount = kit.addAccount(process.env.REACT_APP_PRIVATE_KEY)
+
+// CONTRACT INSTANCE
+const VaultO = new kit.web3.eth.Contract(Vault.abi, process.env.REACT_APP_VAULT_ADDRESS)
+```
+
+Before we can interact with our new Vault Smart Contract, we need to approve the use of this smart contract by our wallet, setting an `allowance`.
+The approve function creates and sends a `Transaction Object` indicating we are approving, though also setting a max allowance for this smart contract to use. After we `console.log` the receipt
+```
+const approve = async () => {
+  // MAX ALLOWANCE
+  const allowance = kit.web3.utils.toWei('1000000', 'ether')
+  // GAS ESTIMATOR
+  const gasEstimate = kit.gasEstimate
+  // ASSET TO ALLOW
+  const goldtoken = await kit._web3Contracts.getGoldToken()
+  // TX OBJECT AND SEND
+  const approveTxo = await goldtoken.methods.approve(process.env.REACT_APP_VAULT_ADDRESS, allowance)
+  const approveTx = await kit.sendTransactionObject(approveTxo, {from: process.env.REACT_APP_ADDRESS, gasPrice: gasEstimate})
+
+  const receipt = await approveTx.waitReceipt()
+  // PRINT TX RESULT
+  console.log(receipt)
+}
+```
+
+`
 If everything went according to plan, we should see the following logs printed on the js console of our react project:
 ```
 {blockHash: "0x2b7bc8c0435fca4dcdbd8de532bd6f8cfdec554e9cf7797bed7081022e86cf8a", blockNumber: 4664409, contractAddress: null, cumulativeGasUsed: 26802, from: "0x5987ffa26150c13caa37d631659db503dfbaf283", …}blockHash: "0x2b7bc8c0435fca4dcdbd8de532bd6f8cfdec554e9cf7797bed7081022e86cf8a"blockNumber: 4664409contractAddress: nullcumulativeGasUsed: 26802events: {Approval: {…}}from: "0x5987ffa26150c13caa37d631659db503dfbaf283"gasUsed: 26802logsBloom: "0x00000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000004000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000020000000000000000000004000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000010000000000000010000000000000000100000000000000000000020000000"status: trueto: "0xf194afdf50b03e69bd7d057c1aa9e10c9954e4c9"transactionHash: "0xaed96e7e5c8b392785f39613420d1cde026a67dc57c915334902c0f7760f152d"transactionIndex: 0__proto__: Object
@@ -575,40 +721,43 @@ transactionIndex: 1
 __proto__: Object
 ```
 
-## Frontend
+Let's take a look at the lock async function which follows. 
+Here, we get our unlock timestamp (10 minutes after transaction is sent), we estimate gas, specify we will lock 1 celo, instanciate our contract object using it's abi and address. Our transaction object (txo) will use the `lockTokens` method available in our contract object, and pass our collected / required paremeters. Finally the transaction object will be included in a new transaction (tx).
 
-Congratulations for deploying your first vault on the Celo Blockchain. Now, we will create a simple React application with web3 and ContractKit to easily interact with our Vault Smart Contract.
+We await our receipt after, and console.log it.
+```
+const lock = async () => {
+  // TIMESTAMP
+  const lastBlock = await kit.web3.eth.getBlockNumber()
+  const {timestamp} = await kit.web3.eth.getBlock(lastBlock)
+  const timestampObj = new Date(timestamp * 1000)
+  // TIME TO LOCK + 10 MINS
+  const unlockTime = timestampObj.setMinutes(timestampObj.getMinutes() + 10) / 1000
+  // GAS ESTIMATOR
+  const gasEstimate = kit.gasEstimate
+  // AMMOUNT TO LOCK
+  const amount = kit.web3.utils.toWei("1", 'ether')
+  // ERC20 TO LOCK
+  const goldtoken = await kit._web3Contracts.getGoldToken()
+  // CONTRACT INSTANCE
+  const VaultO = new kit.web3.eth.Contract(Vault.abi, process.env.REACT_APP_VAULT_ADDRESS)
+  // TX OBJECT AND SEND
+  const txo = await VaultO.methods.lockTokens(goldtoken._address, process.env.REACT_APP_ADDRESS, amount, unlockTime)
+  const tx = await kit.sendTransactionObject(txo, {from: process.env.REACT_APP_ADDRESS, gasPrice: gasEstimate})
 
-First, let's initialize our react app:
-
-```bash
-npx create-react-app my-vault-interface
-cd my-vault-interface
+  // PRINT TX RESULT
+  const receipt = await tx.waitReceipt()
+  console.log(receipt)
+}
 ```
 
-Second, we need to add the following dependencies to our project:
+Our next stop is the withdraw function, at this time we wont be covering it as we recently discovered a bug possibly in our the Vault Smart Contract pretenting us from withdrawing. Really happy to further investigate, sorry we have to end here for now.
 
-```bash
-npm install @celo/contractkit web3
-```
-
+The code repository is here:
+[Link](https://github.com/helpicelo/vault-dapp)
 
 ## Conclusion
 
-In this tutorial, we learned quite a lot! We took a quick look at one of Ethereum’s most powerful development tool - Truffle. We used it to compile our smart contract. Then we deployed our smart contract with few lines of Javascript code and called two methods on that smart contract.
+This tutorial was aimed to provide a barebone implementation of a dapp in the Celo Ecosystem. We covered the Vault Smart Contract development and deployment, together with the bootstrapping of a React Application to interact with it's basic functions (approve, lock, withdraw). We hope to continue extending this documentation.
 
-The complete code for this tutorial can be found on [**Github**](https://github.com/figment-networks/tutorials/tree/main/celo/5_contracts).
-
-We have only covered a very small area of contract development. We invite you to keep experimenting on your own, and we will be providing more advanced Celo tutorials shortly to help you get to the next level.
-
-[Please fill out this short form](https://docs.google.com/forms/d/1MZLA73jCka2OOBfUuLCBzKYiQtSkWUFC1W3eQ7mj1s4/viewform?edit_requested=true) to help our friends at Celo get a better understanding of who our users are!
-
-If you had any difficulties following this tutorial or simply want to discuss Celo and DataHub tech with us you can[ join our community](https://discord.gg/Chhuv5zHy3) today!
-
-FRONTEND TODO
-
--3 Add Network Connector (based ubeswap-interface)
--2 Add celo contract kit to Network Connector
--1 - Added Celo 
-0 - Fix deactivate not loading stake page
-1 - Add contract kit implementation
+The tutorial was a team effort by [Celo Helpi](https://github.com/helpicelo).
