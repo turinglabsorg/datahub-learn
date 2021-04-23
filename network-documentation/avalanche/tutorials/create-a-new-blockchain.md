@@ -8,7 +8,7 @@ description: Learn how to create a new Blockchain on Avalanche
 
 ## Introduction
 
-One of the core features of the Avalanche network is the ability to create new blockchains. Avalanche currently supports creation of new instances of the AVM \(the Virtual Machine the C-Chain runs\) and the Timestamp VM.
+One of the core features of the Avalanche network is the ability to create new blockchains. Avalanche currently supports creation of new instances of the AVM \(the Virtual Machine the X-Chain runs\) and the Timestamp VM.
 
 In this tutorial we’ll create a new instance of the AVM.
 
