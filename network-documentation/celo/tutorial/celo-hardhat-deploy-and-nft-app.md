@@ -174,7 +174,7 @@ Import the module [Chai](https://www.chaijs.com/), it's are our test library,it 
 ```javascript
 const { expect } = require("chai");
 ```
-I'ts the basic testeing just deploying the contract and minting the village,if the contract minted a Village the contract will pass.
+The first test the most basic testing just deploying the contract and minting the village, if the Village is minted the contract will pass.
 ```javascript
 describe("TinyVillage Test", function() {
     it("Should mint village", async function() {
