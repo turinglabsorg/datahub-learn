@@ -14,9 +14,11 @@ Avalanche is a layer one protocol by Ava Labs that offers high-throughput, fast 
 
 **Get started with the Avalanche Pathway by visiting the page below.** 
 
+{% page-ref page="../network-documentation/avalanche/avalanche-pathway.md" %}
+
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
-## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29.png) Celo Pathway
+## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Celo Pathway
 
 Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users. Learn what makes it unique and build your first project! 
 
@@ -25,6 +27,8 @@ There are currently no rewards for completing the intro Pathway. Advanced Pathwa
 {% endhint %}
 
 **Get started with the Celo Pathway by visiting the page below.** 
+
+{% page-ref page="../network-documentation/celo/celo-pathway.md" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
@@ -38,6 +42,8 @@ There are currently no rewards for completing the intro Pathway. Advanced Pathwa
 
 **Get started with the NEAR Pathway by visiting the page below.** 
 
+{% page-ref page="../network-documentation/near/near-pathway.md" %}
+
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
 ## ![](../.gitbook/assets/4129.png)Polkadot Pathway
@@ -46,7 +52,7 @@ Polkadot enables scalability by allowing specialized blockchains to communicate 
 
 Learn what makes it unique and build your first project to **earn 1.1 DOTs**!
 
-{% page-ref page="../network-documentation/polkadot-1/polkadot-pathway.md" %}
+{% page-ref page="../network-documentation/polkadot/polkadot-pathway.md" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
@@ -59,6 +65,8 @@ There are currently no rewards for completing the intro Pathway. Advanced Pathwa
 {% endhint %}
 
 **Get started with the Secret Pathway by visiting the page below.** 
+
+{% page-ref page="../network-documentation/secret/secret-pathway.md" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
