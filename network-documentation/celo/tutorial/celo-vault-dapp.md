@@ -21,12 +21,9 @@ Ready, set, go!
 ### Prerequisites
 
 Go get a connection to Celo Testnet through DataHub below (Figment Docs are made with love):
-1. [Connect to Celo node with DataHub](https://learn.figment.io/network-documentation/celo/tutorial/1.connect)
+1. [Connect to Celo node with DataHub](https://learn.figment.io/network-documentation/celo/tutorial/intro-pathway-celo-basics/1.connect#configuring-environment)
 
-Come back when you get your API KEY, this is required.
-```
-REST_URL=https://celo-alfajores--rpc.datahub.figment.io/apikey/<YOUR API KEY>/
-```
+Come back when you get your API KEY, this is required for next steps in tutorial.
 
 Please make sure that you completed the tutorials:
 
@@ -40,23 +37,23 @@ Please make sure that you completed the tutorials:
 Since Celo runs the Ethereum Virtual Machine, we can use Truffle to compile our Smart Contract. But just to do things right, let's first initialize a node project (silently...).
 
 ```bash
-mkdir vault-dapp 
-cd vault dapp
-npm init -y --silent
+$ mkdir vault-dapp 
+$ cd vault dapp
+$ npm init -y --silent
 ```
 
 Adding our dependencies (for now):
 ```bash
-npm install --save @openzeppelin/contracts truffle @celo/contractkit dotenv web3
+$ npm install --save @openzeppelin/contracts truffle @celo/contractkit dotenv web3
 ```
 
 Initialize a barebone truffle project, by running the following command.
 
 ```bash
-npx truffle init
+$ npx truffle init
 ```
 
-Set (datahub url + api-key) to an enviroment variable. For this create a file called `./.env`
+Set (datahub url + api-key, see Prerequisites for the api-key) to an enviroment variable . For this create a file called `./.env`
 
 ```
 DATAHUB_NODE_URL=https://celo-alfajores--rpc.datahub.figment.io/apikey/<YOUR API KEY>/
@@ -70,7 +67,7 @@ node_modules
 
 Lastly, initialize git.
 ```
-git init
+$ git init
 ```
 
 OK, I'd love to congratulate you, we just initlized a node, and a truffle project. We also added git, and secured our key like a pro. Your directory tree should look like this:
@@ -84,7 +81,8 @@ OK, I'd love to congratulate you, we just initlized a node, and a truffle projec
 04/17/2021  05:00 AM           678,735 package-lock.json
 04/17/2021  05:00 AM               395 package.json
 04/17/2021  05:03 AM    <DIR>          test
-10/26/1985  04:15 AM             4,598 truffle-config.js
+10/26/1985  04:15 AM             4,598 truffle-config.
+04/17/2021  05:00 AM               395 .env
                3 File(s)        683,728 bytes
                6 Dir(s)  231,304,970,240 bytes free
 ```
@@ -100,7 +98,7 @@ require('dotenv').config();
 
 // INIT PROVIDER USING CONTRACT KIT
 const Kit = require('@celo/contractkit')
-const kit = Kit.newKit(DATAHUB_NODE_URL)
+const kit = Kit.newKit(process.env.DATAHUB_NODE_URL)
 
 // AWAIT WRAPPER FOR ASYNC FUNC
 async function awaitWrapper() {
@@ -134,7 +132,7 @@ Here we initliazed a provider using our enviroment variable `DATAHUB_NODE_URL`.
 Now we can connect to Alfajores using `truffle console` . Run the following on your console.
 
 ```bash
-truffle console --network alfajores
+$ npx truffle console --network alfajores
 ```
 
 Once connected, initialize and print an account as follows:
@@ -142,11 +140,10 @@ Once connected, initialize and print an account as follows:
 let account = web3.eth.accounts.create()
 console.log(account)
 ```
-
 This is my output:
 
 ```bash
-PS C:\Users\aglamadrid19\vault-dapp> truffle console --network alfajores
+$ truffle console --network alfajores
 web3-shh package will be deprecated in version 1.3.5 and will no longer be supported.
 web3-bzz package will be deprecated in version 1.3.5 and will no longer be supported.
 truffle(alfajores)> let account = web3.eth.accounts.create()
@@ -160,14 +157,16 @@ truffle(alfajores)> console.log(account)
   encrypt: [Function: encrypt]
 }
 ```
-From here we need the address, and privateKey as I mentioned.
+you can exit from console with `ctrl+C` or `ctrl+D`.
+
+From here we need the address, and `privateKey` as I mentioned.
 
 Success! We got and account, before we forget let's save it into our `.env` as we will use it later. Your `.env` should look like this.
 
 ```bash
 DATAHUB_NODE_URL=https://celo-alfajores--rpc.datahub.figment.io/apikey/<YOUR API KEY>/
-ADDRESS=0x7cdf6c19E5491EA23aB14132f8a76Ff1C74ccAFC
-PRIVATE_KEY=0x167ed276fb95a17de53c6b0fa4737fc2f590f3e6c5b9de0793d9bcdf63140650
+ADDRESS=0x7cdf6c19E5491EA23aB14132f8a76Ff1C74ccAFC # your address
+PRIVATE_KEY=0x167ed276fb95a17de53c6b0fa4737fc2f590f3e6c5b9de0793d9bcdf63140650 # your private key
 ```
 
 Let's add funds to our account using the Alfajores Faucet, go there with you address. (Do you also wish to have one but for the Mainet):
@@ -178,7 +177,9 @@ You will get:
 ```
 cGLD => 5
 cUSD => 10
+cEUR => 10
 ```
+you can verify your balance in [Alfajores Blockscout](https://alfajores-blockscout.celo-testnet.org/) searching you `address`.
 
 We are finally done with this section. We are getting closer by the minute.
 
@@ -187,13 +188,13 @@ We are finally done with this section. We are getting closer by the minute.
 Now that we have an account and funds, let's add a Smart Contract to our Truffle project. From the console, run the following:
 
 ```bash
-npx truffle create contract Vault
+$ npx truffle create contract Vault
 ```
 
 The above command will create a new Smart Contract in the following location: 
 
 ```bash
-Directory: C:\Users\aglamadrid19\vault-dapp\contracts
+$ ls -la vault-dapp/contracts # Listing directory: vault-dapp/contracts:
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
@@ -285,7 +286,7 @@ contract HelpiLocker is Ownable{
 Let's go through the main sections of the our Vault Smart Contract:
 
 Structure to store our deposits
-```
+```solidity
 struct Items {
         IERC20 token;
         address withdrawer;
@@ -296,20 +297,21 @@ struct Items {
     }
 ```
 
-lockTokens function accepts the following parameters when being invoked:
-```
+`lockTokens` function accepts the following parameters when being invoked:
+```solidity
 lockTokens(IERC20, address, amount, time) 
 ```
+and it will lock an amount of ERC20 tokens in the contract for an arbitrary time.
 
-```
+```solidity
 IERC20 _token, => An ERC20 Token.
 address _withdrawer => The Address which can withdraw (usually same as deposting address).
 uint256 _amount => Amount the ERC20 Token.
 uint256 _unlockTimestamp => When to unclock deposit.
 ```
 
-The withdraw function accepts an address and checks it's existance as a _withdrawer in our Structure. The function also checks if funds are past the _unlockTimestamp.
-```
+The `withdrawTokens` function accepts an address and checks it's existance as a `_withdrawer` in our Structure. The function also checks if funds are past the `_unlockTimestamp`.
+```solidity
 withdrawTokens(address) 
 ```
 
@@ -319,13 +321,13 @@ address _withdrawer => The address which was registered in our contract when the
 
 We are now ready to compile our solidity code using Truffle. From your terminal run the following:
 ```bash
-npx truffle compile
+$ npx truffle compile
 ```
 
 This is my output, all good if yours matches:
 
-```
-PS C:\Users\aglamadrid19\vault-dapp> npx truffle compile
+```bash
+$ npx truffle compile
 web3-shh package will be deprecated in version 1.3.5 and will no longer be supported.
 web3-bzz package will be deprecated in version 1.3.5 and will no longer be supported.
 
@@ -346,8 +348,8 @@ Compiling your contracts...
 ```
 
 Truffle would automatically place our Vault Smart Contract bytecode and ABI inside the following json file. Make sure you can see it.
-```
-Directory: C:\Users\aglamadrid19\vault-dapp\build\contracts
+```bash
+$ ls -la  vault-dapp\build\contracts #Directory Listing: vault-dapp\build\contracts
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
