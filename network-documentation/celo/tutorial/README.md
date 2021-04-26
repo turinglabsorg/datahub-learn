@@ -57,6 +57,10 @@ If you prefer going through the tutorial with videos, check out this CELO Learn 
 
 {% page-ref page="./" %}
 
+## Create a Vault Smart contract
+
+{% page-ref page="celo-vault-dapp.md" %}
+
 ## Testing Celo Smart Contracts with Truffle
 
 {% page-ref page="celo-testing-truffle.md" %}
