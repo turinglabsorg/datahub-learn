@@ -10,11 +10,11 @@ Learn Pathways are short curriculums that help developers understand which netwo
 
 ## ![](../.gitbook/assets/avalanche_token_round-300x300.png) Avalanche Pathway
 
-Avalanche is a layer one protocol by Ava Labs that offers high-throughput, fast finality, and unprecedented decentralization. Developers are able to launch their own public or private blockchains \(called subnets\), create and trade digital assets, and build scalable smart contracts and decentralized applications. Learn what makes it unique and build your first project to **earn $20 in AVAX**!
+Avalanche is a layer one protocol by Ava Labs that offers high-throughput, fast finality, and unprecedented decentralization. Developers are able to launch their own public or private blockchains \(called subnets\), create and trade digital assets, and build scalable smart contracts and decentralized applications. Learn what makes it unique and build your first project to **earn $5 in AVAX**!
 
 **Get started with the Avalanche Pathway by visiting the page below.** 
 
-{% page-ref page="../network-documentation/avalanche/tutorials/pathway/" %}
+{% page-ref page="../network-documentation/avalanche/avalanche-pathway.md" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
@@ -43,6 +43,16 @@ There are currently no rewards for completing the intro Pathway. Advanced Pathwa
 **Get started with the NEAR Pathway by visiting the page below.** 
 
 {% page-ref page="../network-documentation/near/near-pathway.md" %}
+
+#### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
+
+## ![](../.gitbook/assets/4129.png)Polkadot Pathway
+
+Polkadot enables scalability by allowing specialized blockchains to communicate with each other in a secure, trust-free environment. It is built to connect and secure unique blockchains, whether they be public, permissionless networks, private consortium chains, or oracles, and other Web3 technologies. It enables an internet where independent blockchains can exchange information under common security guarantees.
+
+Learn what makes it unique and build your first project to **earn 1.1 DOTs**!
+
+{% page-ref page="../network-documentation/polkadot/polkadot-pathway.md" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 

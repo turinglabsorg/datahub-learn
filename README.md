@@ -18,6 +18,10 @@ Tutorials can be completed seamlessly with [**DataHub**](https://datahub.figment
 
 Learn Pathways are short curriculums that help developers understand which network is right for them and how to interact with Web 3 protocols at every step. As they complete the tutorials, developers earn protocol tokens offered by foundations to help align their interests with the network. 
 
+**Ongoing Pathway: Polkadot** 
+
+{% page-ref page="network-documentation/polkadot/polkadot-pathway.md" %}
+
 **Ongoing Pathway: Avalanche**
 
 {% page-ref page="network-documentation/avalanche/avalanche-pathway.md" %}
