@@ -15,6 +15,7 @@ and freely available on GitHub: [OysterPack SMART][2]. The new OysterPack SMART 
 3. Show you how to use the STAKE pool contract as a delegator
 
 ## OysterPack SMART STAKE Benefits
+
 Today there only lives a single staking pool contract in the NEAR wild. All validators on mainnet are using the [staking pool][3] 
 built by the NEAR core DEV team to bootstrap staking on NEAR's PoS blockchain. Staking on NEAR is permissionless, which
 enables staking to evolve. This illustrates the power and beauty of decentralization on the blockchain. There is nothing
@@ -23,9 +24,21 @@ always room for improvement - I call it the first generation staking pool. Here'
 generation OysterPack SMART STAKE Pool and how it compares to the first generation staking pool:
 
 ### Locked staked NEAR is made mobile through **STAKE fungible tokens** provided by the STAKE pool 
+
 This enables staked NEAR value to be transferred while still being staked. This benefit opens the door to many new DeFi use cases for staked NEAR. 
 
-### **Unstaking done right**
+### Staking Done Right - Maximizing Yield
+
+The first generation staking pool will only stake deposited funds and restake earnings once every epoch. Earnings are composed
+of staking rewards plus any contract rewards earned from transaction gas fees. Because earnings are only restaked once per
+epoch, you lose some potential yield from less compounding. The compounding yield opportunity is lost for earnings outside staking
+rewards because the NEAR protocol only issues staking rewards once per epoch. Thus, today some yield is left on the table
+for contract earnings received from transaction gas fees, which impacts long term stakers the most because of less compounding.
+The next generation STAKE pool maximizes yield by checking for earnings in each pool transaction and restakes earnings as 
+soon as they are received to maximize the power of the compounding yield effect.
+
+### Unstaking Done Right
+
 The following 2 improvements enable accounts to withdraw unstaked NEAR sooner:
 
 1. Unstaked NEAR is always available for withdrawal in **at most** 4 epochs per the NEAR protocol. 
@@ -42,17 +55,34 @@ pool until EPOCH 5. However, when other accounts stake while there are locked un
 new staked funds effectively add liquidity and unlock the unstaked funds. Think of it as the unstaked funds are being restaked.
 Thus, higher staking activity automatically provides more liquidity. 
    
-### Enhanced Commercial Model
-The goal is to provide more financial levers to validators in order to promote competition for stakers. 
+### Enhanced Financial Model
 
+The goal is to provide more financial levers to validators in order to promote competition for staker business. 
+
+__More Flexible Fee Model__
 1. **Earnings based fee**
 The staking pool owner takes a percentage of the STAKE pool earnings. This matches the current commercial fee model implemented
 by the first generation staking pool. This fee keeps the financial incentives and interests aligned with all stakers. 
-Owner earnings are directly aligned with the STAKE pool earnings. 
+Owner earnings are directly aligned with the STAKE pool earnings.
 2. **Staking fee**
 This fee type is not supported by the first generation staking pool. The staking fee is a percentage of the amount staked.
 OysterPack SMART STAKE pools provide more commercial levers and can be configured to use a combination of earnings based 
 fees and staking fees. For example, validators may choose to charge only a staking fee and pass on all earnings to delegators.
+   
+__Enables External Revenue Sources for Boosting EPS__
+1. **External revenue distributions**
+External sources of revenue can be deposited into the STAKE pool and distributed to all current stakers simply by staking
+the funds. This immediately distributes the revenue earnings via the STAKE token. 
+2. **External revenue can be deposited into the treasury to distribute dividends**
+Dividends are distributed by the treasury by burning STAKE for earnings it receives. Thus, when STAKE is burned, the validator
+is effectively buying back shares funded by treasury earnings, which boosts the STAKE token value.
+
+STAKE is modeled as a **dividend stock**. STAKE links the dividend yield directly to EPS (earnings per share or earnings per STAKE). 
+When EPS increases, so does the dividend, automatically paid out and governed by the contract (and not a board of directors). 
+The STAKE pool contract enables validators to compete on EPS on more than just staking rewards provided by NEAR PoS.
+
+![](../../../../.gitbook/assets/oysterpack-smart-stake-earnings.png)
+
 
 [1]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/7-stake-vision
 [2]: https://github.com/oysterpack/oysterpack-smart
