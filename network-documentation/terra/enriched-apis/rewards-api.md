@@ -6,7 +6,7 @@ description: Learn how to use the Rewards API on Terra
 
 Test out our Rewards API today with [**DataHub**](https://datahub.figment.io/sign_up?service=terra)!
 
-{% api-method method="post" host="https://terra--search.datahub.figment.io/rewards" path=" " %}
+{% api-method method="get" host="https://terra--search.datahub.figment.io/rewards" path=" " %}
 {% api-method-summary %}
 rewards
 {% endapi-method-summary %}

@@ -6,7 +6,7 @@ description: Learn how to use the Rewards API on Cosmos
 
 Test out our Rewards API today with [**DataHub**](https://datahub.figment.io/sign_up?service=cosmos)!
 
-{% api-method method="post" host="https://cosmos--search.datahub.figment.io/rewards" path=" " %}
+{% api-method method="get" host="https://cosmos--search.datahub.figment.io/rewards" path=" " %}
 {% api-method-summary %}
 rewards
 {% endapi-method-summary %}
