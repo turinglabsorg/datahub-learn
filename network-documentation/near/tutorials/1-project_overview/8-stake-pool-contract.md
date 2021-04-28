@@ -221,7 +221,7 @@ The logs tell the story about what's happening during the deployment, which is i
 The above diagram shows the role and responsibilities for the operator. In this tutorial, I will review the key APIs to be 
 familiar with to get started. The rest is out of scope and will be covered in future tutorials and workshops.
 
-### Starting / Stopping Staking
+#### How to start and stop staking
 When the STAKE pool contract is deployed, it's initial status is offline. You can check the pool status using the following 
 NEAR CLI command:
 
@@ -246,6 +246,8 @@ near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_operator_command --args 
 near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_operator_command --args '{"command":"StopStaking"}' --accountId $NEAR_ACCOUNT
 ```
 
+#### How to query and update fees
+
 Current fees can be queried via:
 ```shell
 near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_fees
@@ -261,6 +263,8 @@ near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_operator_command --args 
 ```
 - both fees must be specified and at least 1 must be non-zero
 
+#### How to query and update the staking public key
+
 The staking public key, i.e., the validator key, can be viewed and changed using the following NEAR CLI commands:
 ```shell
 near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_public_key
@@ -270,6 +274,213 @@ near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_operator_command --args 
 
 ## How to Get Started as a Staker
 
+![](../../../../.gitbook/assets/oysterpack-smart-staker-usecases.png)
+
+The STAKE Pool contract implements the NEAR standard [storage management][8] specification. This means that accounts must
+first register with the contract and deposit funds to pay for account storage before being able to use the contract. I defer 
+to the [storage management][8] documentation for details.
+
+> account registration currently costs 0.000393 NEAR
+
+#### How to stake 
+When an account stakes any account storage available balance will be staked in addition to any attached deposit. 
+The account storage management interface is leveraged to enable accounts to collect deposits to stake at a later time.
+
+```shell
+# stakes only the account's storage available balance
+near call  $STAKE.stake-v1.oysterpack.testnet ops_stake --accountId $NEAR_ACCOUNT
+
+# stakes the account's storage available balance + 1 NEAR attached deposit
+near call  $STAKE.stake-v1.oysterpack.testnet ops_stake --accountId $NEAR_ACCOUNT --amount 1
+```
+The logs tell the story:
+```text
+Log [dev-1618770943926-8326158]: [INFO] [EARNINGS] 4101039949423780538046344837
+Log [dev-1618770943926-8326158]: [INFO] [FT_BURN] account: dev-1618770943926-8326158, amount: 21956195625979298913189923
+Log [dev-1618770943926-8326158]: [INFO] [TREASURY_DIVIDEND] 22859532518386059780519144 yoctoNEAR / 21956195625979298913189923 yoctoSTAKE
+Log [dev-1618770943926-8326158]: [INFO] [ACCOUNT_STORAGE_CHANGED] Withdrawal(YoctoNear(1))
+Log [dev-1618770943926-8326158]: [INFO] [ACCOUNT_STORAGE_CHANGED] Deposit(YoctoNear(1))
+Log [dev-1618770943926-8326158]: [INFO] [STAKE] near_amount=100000000000000000000000, stake_token_amount=96042291735938018665641
+Log [dev-1618770943926-8326158]: [INFO] [FT_MINT] account: alfio-zappala-oysterpack.testnet, amount: 96042291735938018665641
+Log [dev-1618770943926-8326158]: [INFO] [FT_BURN] account: alfio-zappala-oysterpack.testnet, amount: 768338333887504149325
+Log [dev-1618770943926-8326158]: [INFO] [FT_MINT] account: oysterpack.testnet, amount: 768338333887504149325
+```
+- earnings were collected and distributed
+- the treasury paid a dividend from its earnings
+- because of rounding, i yoctoNEAR could not be staked and was deposited into the account's storage balance
+- the STAKE token value for the staked amount is computed
+- STAKE tokens were minted for the account
+- fees were transferred from the account to the owner by burning the fees from the account and minting them on the owner account
+
+The account's updated stake balance is returned and looks like:
+```json
+{
+  "storage_balance": {
+    "total": "3930000000000000000001",
+    "available": "1"
+  },
+  "staked": {
+    "stake": "10888070762166201553542838",
+    "near_value": "11336746129103451686781599"
+  },
+  "unstaked": {
+    "total": "1",
+    "available": "1",
+    "locked": null
+  }
+}
+```
+- all account balances are returned, i.e., storage balance, staked, and unstaked balances
+- the current NEAR value for the account's STAKE token balance is returned
+- unstaked balance shows how much is available for withdrawal and locked - in the above example there is currently zero locked unstaked
+
+#### How to unstake
+```shell
+near call  $STAKE.stake-v1.oysterpack.testnet ops_unstake --accountId $NEAR_ACCOUNT  --args '{"amount":"1000000000000000000000000"}'
+```
+```text
+Log [dev-1618770943926-8326158]: [INFO] [EARNINGS] 1155935938423300000000
+Log [dev-1618770943926-8326158]: [INFO] [FT_BURN] account: dev-1618770943926-8326158, amount: 6119045408724236555
+Log [dev-1618770943926-8326158]: [INFO] [TREASURY_DIVIDEND] 6371198893243536821 yoctoNEAR / 6119045408724236555 yoctoSTAKE
+Log [dev-1618770943926-8326158]: [INFO] [UNSTAKE] near_amount=1000000000000000000000000, stake_token_amount=960422914297395816680428
+Log [dev-1618770943926-8326158]: [INFO] [FT_BURN] account: alfio-zappala-oysterpack.testnet, amount: 960422914297395816680428
+```
+- earnings were collected again - **NOTE**: every contract transaction generates earnings
+- treasury pays a dividend from its earnings
+- the STAKE token value is for the amount unstaked is computed and burned on the account
+
+the account balances now look like:
+```json
+{
+  "storage_balance": {
+    "total": "3930000000000000000001",
+    "available": "1"
+  },
+  "staked": {
+    "stake": "9927647847868805736862410",
+    "near_value": "10336746160201213136176928"
+  },
+  "unstaked": {
+    "total": "1000000000000000000000001",
+    "available": "1",
+    "locked": {
+      "80": "1000000000000000000000000"
+    }
+  }
+}
+```
+- the unstaked balance now shows that there is 1 NEAR locked and will available for withdrawal in epoch 80
+- **NOTE**: if there is liquidity, then the account will be able to withdraw sooner 
+
+#### How to restake unstaked funds
+In order to restake funds using the first generation staking pool, the account would first need to withdraw the funds out
+of the pool and then stake them again. The OysterPack SMART STAKE pool simplifies the restake process by enabling the staker
+to restake unstaked funds.
+```shell
+# restaked all unstaked funds
+near call  $STAKE.stake-v1.oysterpack.testnet  ops_restake --accountId $NEAR_ACCOUNT 
+
+# restakes the specified amount from the account's unstaked balance
+near call  $STAKE.stake-v1.oysterpack.testnet  ops_restake --accountId $NEAR_ACCOUNT  -args '{"amount":"100000000000000000000000"}'
+```
+
+#### How to withdraw unstaked funds
+```shell
+# withdrawa all available unstaked NEAR
+near call  $STAKE.stake-v1.oysterpack.testnet  ops_stake_withdraw --accountId $NEAR_ACCOUNT
+
+# withdraws the specified amount from the unstaked available balance and against liquidity
+near call  $STAKE.stake-v1.oysterpack.testnet  ops_stake_withdraw --accountId $NEAR_ACCOUNT -args '{"amount":"100000000000000000000000"}'
+```
+
+#### How to check STAKE pool balances
+```shell
+near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_pool_balances
+```
+```text
+{
+  total_staked: '364568699342368667595072121779',
+  total_stake_supply: '350140131647969807579006618378',
+  total_unstaked: '900000000000000000000000',
+  unstaked_liquidity: '100000000000000000000001',
+  treasury_balance: '2009406695051801299154334155',
+  current_contract_managed_total_balance: '364576420617778762607772121782',
+  last_contract_managed_total_balance: '364576419433154155124172121782',
+  earnings: '1184624607483600000000'
+}
+```
+- total_staked - total NEAR that has been staked
+- total_stake_supply - total STAKE FT supply
+- total_unstaked - total NEAR that has been unstaked and sitting in unstaked balances
+- unstaked_liquidity - how much liquidity is currently available for withdrawing unstaked funds that are locked
+- treasury_balance - treasury balance that is used to generate dividend payouts
+- current_contract_managed_total_balance and last_contract_managed_total_balance - used to track changes in balances to collect earnings
+- earnings - amount of earnings that are waiting to be collected on the next staking action
+
+#### How to query staker account balances
+```shell
+near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_balance --args '{"account_id":"oysterpack.testnet"}'
+```
+
+#### How to transfer STAKE tokens
+The STAKE pool contract implements the NEAR standard [fungible token][9] interface, and I defer to the NEAR docs for details.
+However, the STAKE Pool API offers 2 convenience transfer methods that enable stakers to transfer STAKE by specifying a 
+NEAR amount. The amount of STAKE tokens transferred will be based on the current STAKE token value. The API's mirror NEAR
+standard `ft_transfer` and `ft_transfer_call` methods:
+
+```shell
+near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_transfer --accountId $NEAR_ACCOUNT --args '{"receiver_id":"xxx.testnet","amount":"1000000000000000000000000"}' --amount 0.000000000000000000000001
+
+near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_transfer_call --accountId $NEAR_ACCOUNT --args '{"receiver_id":"xxx.testnet","amount":"1000000000000000000000000","msg":""}' --amount 0.000000000000000000000001
+```
+
+#### How to query the current STAKE token value
+```shell
+# returns the NEAR value for 1 STAKE token
+near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_token_value
+
+# returns the NEAR value for the specified STAKE token amount
+near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_token_value --args '{"amount":"5000000000000000000000000"}'
+```
+```text
+'1041207985614422459014157'
+```
+- the latest earnings are included in the computation minus treasury dividends
+- if you need the most accurate STAKE token value, then use the following NEAR CLI command
+
+```shell
+# returns the NEAR value for 1 STAKE token
+near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_token_value_with_earnings 
+
+# returns the NEAR value for the specified STAKE token amount
+near call  $STAKE.stake-v1.oysterpack.testnet  ops_stake_token_value_with_earnings --account_id $NEAR_ACCOUNT --args '{"amount":"5000000000000000000000000"}'
+```
+- these are call methods and will require gas
+- earnings are collected and treasury dividend is paid before computing the STAKE token NEAR value - sample CLI command output looks like:
+
+```text
+Receipt: FLBamjxsgq9brEjoHMVTHXyXdiiHbe57wuaH9hs7SzCL
+        Log [dev-1618770943926-8326158]: [INFO] [EARNINGS] 1184624607483600000000
+        Log [dev-1618770943926-8326158]: [INFO] [FT_BURN] account: dev-1618770943926-8326158, amount: 6270926727134172193
+        Log [dev-1618770943926-8326158]: [INFO] [TREASURY_DIVIDEND] 6529338974230524798 yoctoNEAR / 6270926727134172193 yoctoSTAKE
+Transaction Id FoQJ7kmNnjR6g8ew35sZq8snCMBHDQQGpdYPRfAhYr2e
+To see the transaction in the transaction explorer, please open this url in your browser
+https://explorer.testnet.near.org/transactions/FoQJ7kmNnjR6g8ew35sZq8snCMBHDQQGpdYPRfAhYr2e
+'1041207983836766420575151'
+```
+
+## It's a wrap folks
+The next generation STAKE Pool contract is ready and waiting for validators and stakers to use it. It's my gift to the 
+NEAR community, and I hope you enjoy it. Staking is the bread and butter of any PoS blockchain like NEAR. OysterPack SMART
+mission is to build and provide the best staking solutions, products, and services to deliver the best and most profitable
+staking experience. The building never stops, and there's much more in the works ... so stay tuned folks.
+
+I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take back the Internet together.
+
+## What's Next
+The focus will be providing the validators with more in-depth tutorials and workshops to help them get onboard.
+
+![](../../../../.gitbook/assets/oysterpack-smart-field-of-dreams.jpeg)
 
 [1]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/7-stake-vision
 [2]: https://github.com/oysterpack/oysterpack-smart
