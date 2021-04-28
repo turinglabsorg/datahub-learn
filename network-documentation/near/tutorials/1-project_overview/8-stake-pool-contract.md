@@ -188,7 +188,8 @@ https://explorer.testnet.near.org/transactions/Yhrda9sutT4jhGMpwTuUZCZYm5vfH8RLC
 
 ```
 
-> OysterPack SMART contract log records use the following standard format: `[LOG_LEVEL] [EVENT] msg`
+> Log records use the following standard format: `[LOG_LEVEL] [EVENT] msg`
+> 
 > where LOG_LEVEL -> INFO | WARN | ERR
 
 The logs tell the story about what's happening during the deployment, which is illustrated in the below diagram:
