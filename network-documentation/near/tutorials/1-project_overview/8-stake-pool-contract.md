@@ -80,7 +80,7 @@ Dividends are distributed by the treasury by burning STAKE for earnings it recei
 is effectively buying back shares funded by treasury earnings, which boosts the STAKE token value.
 
 STAKE is modeled as a **dividend stock**. STAKE links the dividend yield directly to EPS (earnings per share or earnings per STAKE). 
-When EPS increases, so does the dividend, automatically paid out and governed by the contract (and not a board of directors). 
+When EPS increases, so does the dividend, and gets automatically paid out, which is governed by the contract (and not a board of directors). 
 The STAKE pool contract enables validators to compete on EPS on more than just staking rewards provided by NEAR PoS.
 
 ![](../../../../.gitbook/assets/oysterpack-smart-stake-earnings.png)
