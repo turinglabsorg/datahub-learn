@@ -4,15 +4,17 @@ description: OysterPack SMART STAKE Pool Contract - NEAR Staking Game Changer
 
 # It's Time to Put a STAKE Pool in the Ground!
 
-In my last tutorial, [It's Time to Put a STAKE in the Ground!][1], I shared with you my STAKE vision. That time has arrived. 
+In my last tutorial, [It's Time to Put a STAKE in the Ground!][1], I shared with you my STAKE vision. The time has arrived. 
 Since then, I have been busy building the next generation staking pool contract as a gift for all in the NEAR community.
 The new OysterPack SMART STAKE Pool contract is ready for use on the NEAR testnet network. The project is fully open source
 and freely available on GitHub: [OysterPack SMART][2]. The new OysterPack SMART STAKE Pool contract also showcases the
 **OysterPack SMART NEAR Component Based Framework**. The agenda for this tutorial is:
 
 1. Show you the benefits that the OysterPack SMART STAKE pool provides 
-2. Show you how to deploy and use the STAKE pool contract as a validator
-3. Show you how to use the STAKE pool contract as a delegator
+2. Show you how to deploy and use the STAKE pool contract as a **Validator**
+3. Show you how to use the STAKE pool contract as a **Staker**
+
+> "Stakers" are the delegators ... to me "Stakers" sounds better "delegators"
 
 ## OysterPack SMART STAKE Benefits
 
@@ -20,8 +22,8 @@ Today there only lives a single staking pool contract in the NEAR wild. All vali
 built by the NEAR core DEV team to bootstrap staking on NEAR's PoS blockchain. Staking on NEAR is permissionless, which
 enables staking to evolve. This illustrates the power and beauty of decentralization on the blockchain. There is nothing
 stopping any person with new ideas to build and create on the blockchain. The current staking pool on NEAR works, but there's
-always room for improvement - I call it the first generation staking pool. Here's the list of improvements for the next
-generation OysterPack SMART STAKE Pool and how it compares to the first generation staking pool:
+always room for improvement - I call it the *first generation* staking pool. Here's the list of improvements for the **"next
+generation"** **OysterPack SMART STAKE Pool** and how it compares to the first generation staking pool:
 
 ### Locked staked NEAR is made mobile through **STAKE fungible tokens** provided by the STAKE pool 
 
