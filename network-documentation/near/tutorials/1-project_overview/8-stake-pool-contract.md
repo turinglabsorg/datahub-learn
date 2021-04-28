@@ -22,7 +22,7 @@ Today there only lives a single staking pool contract in the NEAR wild. All vali
 built by the NEAR core DEV team to bootstrap staking on NEAR's PoS blockchain. Staking on NEAR is permissionless, which
 enables staking to evolve. This illustrates the power and beauty of decentralization on the blockchain. There is nothing
 stopping any person with new ideas to build and create on the blockchain. The current staking pool on NEAR works, but there's
-always room for improvement - I call it the *first generation* staking pool. Here's the list of improvements for the **"next
+always room for improvement - I call it the *"first generation"* staking pool. Here's the list of improvements for the **"next
 generation"** **OysterPack SMART STAKE Pool** and how it compares to the first generation staking pool:
 
 ### Locked staked NEAR is made mobile through **STAKE fungible tokens** provided by the STAKE pool 
