@@ -83,7 +83,141 @@ The STAKE pool contract enables validators to compete on EPS on more than just s
 
 ![](../../../../.gitbook/assets/oysterpack-smart-stake-earnings.png)
 
+## STAKE High Level Component Based Architecture
+
+![](../../../../.gitbook/assets/oysterpack-smart-stake-deployment.png)
+
+### STAKE Pool Factory Contract
+
+The factory contract makes it easy for anyone to deploy a new instance of the STAKE pool contract. We'll see how to deploy
+new STAKE pool contracts using the NEAR CLI below. 
+
+It currently costs a little over 5 NEAR to deploy the STAKE pool contract to pay for contract storage usage. Thus, if you 
+attach 6 NEAR, then you should be safe. Any extra will be transferred over to the owner's account storage balance. If deployment
+fails for any reason, then the factory contract is designed to refund the attached deposit.
+
+### STAKE Pool Contract
+
+The STAKE Pool Contract is composed of 4 components, which are depicted on the right-hand side of the diagram. Each component
+provides multiple interfaces which are paired up in the diagram by the coloring scheme. The diagram also depicts the main 
+actors and the key interfaces they depend on. In this tutorial, we will just be scratching the surface and focus on the 
+core staking functionality to get started.
+
+> The STAKE pool contract is built using a component based architecture. If you happen to wander into to the source code,
+> you will probably notice that it follows a completely different design approach to build contracts on NEAR compared to what
+> you are probably used to seeing. There's nothing special besides applying software engineering best practices. A component
+> based approach enables component reuse across contracts - and I have plans for building many. My plan is to eventually publish
+> them all to https://crates.io to make it easy for developers to use them. Until then, if you are interested in using them,
+> you'll need to pull them in from the GitHub project. I'll end the discussion on the benefits of a component based architecture
+> here by putting it into context for web developers. If you prefer building web apps using React components, then you should
+> also prefer building contracts using OysterPack SMART components for the same reasons.
+
+> You might also notice that I have built components that implement the NEAR standard APIs that I have covered in prior 
+> tutorials for account storage management and fungible tokens, but there's much more ...
+
+## How to Get Started as a Validator
+
+I will not be covering on how to setup and run your own validator node. If you are interested in running your own
+validator node, then I refer you to the NEAR [staking][4] docs. 
+
+### How to deploy the STAKE pool contract
+
+> To earn NEAR rewards for exercising the NEAR CLI commands, you will need to submit the NEAR requests through [DataHub][6] 
+> using your DataHub access key. If you have earned NEAR on previous NEAR tutorials, then you should already be set. 
+> Otherwise, follow the instructions in the following link on [how to obtain your DataHub access key][7].
+> We will use the NEAR CLI to submit the transactions. Plugin your DataHub API Key and NEAR account at the top, and then you should be all set to go.
+
+Below is a NEAR CLI example which deploys a new STAKE contract on testnet:
+```shell
+DATAHUB_APIKEY=<DATAHUB_APIKEY>
+NEAR_NODE_URL=https://near-testnet--rpc.datahub.figment.io/apikey/$DATAHUB_APIKEY
+
+NEAR_ACCOUNT=<YOUR-NEAR-ACCOUNT.testnet>
+NEAR_ENV=testnet
+STAKE_FACTORY=dev-1619461926372-2886358
+ACCOUNT_ID=oysterpack.testnet
+
+STAKE_PUBLIC_KEY=ed25519:GTi3gtSio5ZYYKTT8WVovqJEob6KqdmkTi8KqGSfwqdm
+STAKE_SYMBOL=PEARL3
+STAKING_FEE=1
+EARNINGS_FEE=50
+
+near call $STAKE_FACTORY deploy --accountId $ACCOUNT_ID --amount 6 --gas 300000000000000 --node_url $NEAR_NODE_URL --args \
+"{\"stake_symbol\":\"$STAKE_SYMBOL\",\"stake_public_key\":\"$STAKE_PUBLIC_KEY\",\"earnings_fee\":$EARNINGS_FEE,\"staking_fee\":$STAKING_FEE}"
+```
+If you successfully run the command, then the output will look like:
+```text
+Scheduling a call: dev-1619461926372-2886358.deploy({"stake_symbol":"PEARL3","stake_public_key":"ed25519:GTi3gtSio5ZYYKTT8WVovqJEob6KqdmkTi8KqGSfwqdm","earnings_fee":50,"staking_fee":1}) with attached 6 NEAR
+Receipt: 8DxtrFzCzW6iz98NHwEFy7mB9W4qgT8PZUwkZL3zd5b9
+        Log [dev-1619461926372-2886358]: [INFO] [DEPLOYMENT] ContractOwnershipComponent
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(97)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(184)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(-97)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(-184)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(97)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(184)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(8)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(-105)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(-184)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(104)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(-104)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(97)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] Registered(StorageBalance { total: YoctoNear(3930000000000000000000), available: YoctoNear(0) })
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(8)
+        Log [dev-1619461926372-2886358]: [INFO] [DEPLOYMENT] AccountManagementComponent
+        Log [dev-1619461926372-2886358]: [INFO] [DEPLOYMENT] locked balance for 10K contract storage
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] Deposit(YoctoNear(1088320000000000000000000))
+        Log [dev-1619461926372-2886358]: [INFO] [DEPLOYMENT] owner balance = 1088320000000000000000000
+        Log [dev-1619461926372-2886358]: [INFO] [DEPLOYMENT] FungibleTokenComponent {
+  "spec": "ft-1.0.0",
+  "name": "STAKE",
+  "symbol": "PEARL3",
+  "decimals": 24,
+  "icon": null,
+  "reference": null,
+  "reference_hash": null
+}
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] StorageUsageChange(97)
+        Log [dev-1619461926372-2886358]: [INFO] [ACCOUNT_STORAGE_CHANGED] Registered(StorageBalance { total: YoctoNear(3930000000000000000000), available: YoctoNear(0) })
+        Log [dev-1619461926372-2886358]: [INFO] [DEPLOYMENT] StakingPoolComponent
+Receipt: Fi9DoMaxtKfyWg4couRP8WCtytr48RCPGjLcjD28Z6P5
+        Log [dev-1619461926372-2886358]: [INFO] [STAKE_POOL_DEPLOY_SUCCESS] 
+Transaction Id Yhrda9sutT4jhGMpwTuUZCZYm5vfH8RLCkvJzgnZj28
+To see the transaction in the transaction explorer, please open this url in your browser
+https://explorer.testnet.near.org/transactions/Yhrda9sutT4jhGMpwTuUZCZYm5vfH8RLCkvJzgnZj28
+
+```
+
+> OysterPack SMART contract log records use the following standard format: `[LOG_LEVEL] [EVENT] msg`
+> where LOG_LEVEL -> INFO | WARN | ERR
+
+The logs tell the story about what's happening during the deployment, which is illustrated in the below diagram:
+![](../../../../.gitbook/assets/oysterpack-smart-stake-factory-deploy.png)
+
+#### Notes
+- **AccountManagementComponent** is designed to track and log (**ACCOUNT_STORAGE_CHANGED**) all account storage changes
+- The STAKE pool contract implements the NEAR standard [account storage management][8] interface. It measures dynamically
+  how much account storage is required by the contract and configures the minimum storage usage bound accordingly.
+- **AccountManagementComponent** is also designed to track all contract NEAR balances including account storage balances.
+- The **ContractOperator** interface provides the ability to lock a portion of the contract account balance to ensure it 
+  cannot be transferred out. This feature is used to lock enough account balance to pay for 10K of contract storage that 
+  is reserved for the STAKE pool to operational.
+- The **STAKE Factory Contract** is designed to create and initialize the STAKE Pool contract using NEAR's batch transaction 
+  feature. This guarantees that either all actions in the batch transaction succeed or fail atomically. If the batch transaction 
+  fails for any reason, the factory contract is designed to refund the attached deposit.
+- In the above NEAR CLI example, the owner account was specified implicitly using the predecessor account. However note 
+  that the factory deploy function supports an optional `owner` argument that can be used to specify the owner account explicitly. 
+- Fees are specified in basis points ([BPS][5]). An easy way to remember the unit conversion is 100 BPS = 1%. In the above
+  example, the staking fee is 0.01%, and the earnings fee is 0.5%. At least one of the fees must be non-zero and the max fee
+  is currently hard coded to be 1000 BPS (10%). Fees are configurable and can be changed after the STAKE pool is deployed
+  by accounts that have the operator permission.
+  
 
 [1]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/7-stake-vision
 [2]: https://github.com/oysterpack/oysterpack-smart
 [3]: https://github.com/near/core-contracts/tree/master/staking-pool
+[4]: https://docs.near.org/docs/validator/staking
+[5]: https://www.investopedia.com/terms/b/basispoint.asp
+[6]: https://datahub.figment.io/
+[7]: https://learn.figment.io/network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub#configure-environment
+[8]: https://nomicon.io/Standards/StorageManagement.html
