@@ -105,7 +105,7 @@ provides multiple interfaces which are paired up in the diagram by the coloring 
 actors and the key interfaces they depend on. In this tutorial, we will just be scratching the surface and focus on the 
 core staking functionality to get started.
 
-> The STAKE pool contract is built using a component based architecture. If you happen to wander into to the source code,
+> The STAKE pool contract is built using a component based architecture. If you happen to wander into the source code,
 > you will probably notice that it follows a completely different design approach to build contracts on NEAR compared to what
 > you are probably used to seeing. There's nothing special besides applying software engineering best practices. A component
 > based approach enables component reuse across contracts - and I have plans for building many. My plan is to eventually publish
@@ -204,7 +204,7 @@ The logs tell the story about what's happening during the deployment, which is i
 - **AccountManagementComponent** is also designed to track all contract NEAR balances including account storage balances.
 - The **ContractOperator** interface provides the ability to lock a portion of the contract account balance to ensure it 
   cannot be transferred out. This feature is used to lock enough account balance to pay for 10K of contract storage that 
-  is reserved for the STAKE pool to operational.
+  is reserved for the STAKE pool to be operational.
 - The **STAKE Factory Contract** is designed to create and initialize the STAKE Pool contract using NEAR's batch transaction 
   feature. This guarantees that either all actions in the batch transaction succeed or fail atomically. If the batch transaction 
   fails for any reason, the factory contract is designed to refund the attached deposit.
@@ -237,9 +237,9 @@ The status results look like:
 
 'Online'
 ```
-If the pool is offline, then it also displayes the offline reason. There are 2 reason why the pool would be offline:
-- Stopped - means the pool was explicitly stopped an operator
-- StakeActionFailed - means that a NEAR stake action failed, which will take the pool offline automatically
+If the pool is offline, then it also displays the offline reason. There are 2 reason why the pool would be offline:
+- **Stopped** - means the pool was explicitly stopped an operator
+- **StakeActionFailed** - means that a NEAR stake action failed, which will take the pool offline automatically
 
 Staking can be started and stopped using the following NEAR CLI commands:
 ```shell
@@ -309,7 +309,7 @@ Log [dev-1618770943926-8326158]: [INFO] [FT_MINT] account: oysterpack.testnet, a
 ```
 - earnings were collected and distributed
 - the treasury paid a dividend from its earnings
-- because of rounding, i yoctoNEAR could not be staked and was deposited into the account's storage balance
+- because of rounding, 1 yoctoNEAR could not be staked and was deposited into the account's storage balance
 - the STAKE token value for the staked amount is computed
 - STAKE tokens were minted for the account
 - fees were transferred from the account to the owner by burning the fees from the account and minting them on the owner account
@@ -338,6 +338,10 @@ The account's updated stake balance is returned and looks like:
 
 #### How to unstake
 ```shell
+# unstakes all
+near call  $STAKE.stake-v1.oysterpack.testnet ops_unstake --accountId $NEAR_ACCOUNT
+
+# unstakes specified amount
 near call  $STAKE.stake-v1.oysterpack.testnet ops_unstake --accountId $NEAR_ACCOUNT  --args '{"amount":"1000000000000000000000000"}'
 ```
 ```text
@@ -349,7 +353,7 @@ Log [dev-1618770943926-8326158]: [INFO] [FT_BURN] account: alfio-zappala-oysterp
 ```
 - earnings were collected again - **NOTE**: every contract transaction generates earnings
 - treasury pays a dividend from its earnings
-- the STAKE token value is for the amount unstaked is computed and burned on the account
+- the STAKE token value for the amount unstaked is computed and burned on the account
 
 the account balances now look like:
 ```json
@@ -371,7 +375,7 @@ the account balances now look like:
   }
 }
 ```
-- the unstaked balance now shows that there is 1 NEAR locked and will available for withdrawal in epoch 80
+- the unstaked balance now shows that there is 1 NEAR locked and will become available for withdrawal in epoch 80
 - **NOTE**: if there is liquidity, then the account will be able to withdraw sooner 
 
 #### How to restake unstaked funds
@@ -379,7 +383,7 @@ In order to restake funds using the first generation staking pool, the account w
 of the pool and then stake them again. The OysterPack SMART STAKE pool simplifies the restake process by enabling the staker
 to restake unstaked funds.
 ```shell
-# restaked all unstaked funds
+# restakes all unstaked funds
 near call  $STAKE.stake-v1.oysterpack.testnet  ops_restake --accountId $NEAR_ACCOUNT 
 
 # restakes the specified amount from the account's unstaked balance
@@ -388,7 +392,7 @@ near call  $STAKE.stake-v1.oysterpack.testnet  ops_restake --accountId $NEAR_ACC
 
 #### How to withdraw unstaked funds
 ```shell
-# withdrawa all available unstaked NEAR
+# withdraws all available unstaked NEAR
 near call  $STAKE.stake-v1.oysterpack.testnet  ops_stake_withdraw --accountId $NEAR_ACCOUNT
 
 # withdraws the specified amount from the unstaked available balance and against liquidity
@@ -411,13 +415,13 @@ near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_pool_balances
   earnings: '1184624607483600000000'
 }
 ```
-- total_staked - total NEAR that has been staked
-- total_stake_supply - total STAKE FT supply
-- total_unstaked - total NEAR that has been unstaked and sitting in unstaked balances
-- unstaked_liquidity - how much liquidity is currently available for withdrawing unstaked funds that are locked
-- treasury_balance - treasury balance that is used to generate dividend payouts
-- current_contract_managed_total_balance and last_contract_managed_total_balance - used to track changes in balances to collect earnings
-- earnings - amount of earnings that are waiting to be collected on the next staking action
+- **total_staked** - total NEAR that has been staked
+- **total_stake_supply** - total STAKE FT supply
+- **total_unstaked** - total NEAR that has been unstaked and sitting in unstaked balances
+- **unstaked_liquidity** - how much liquidity is currently available for withdrawing unstaked funds that are locked
+- **treasury_balance** - treasury balance that is used to generate dividend payouts
+- **current_contract_managed_total_balance** and **last_contract_managed_total_balance** - used to track changes in balances to collect earnings
+- **earnings** - amount of earnings that are waiting to be collected on the next staking action
 
 #### How to query staker account balances
 ```shell
