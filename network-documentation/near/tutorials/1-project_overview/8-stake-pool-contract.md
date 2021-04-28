@@ -27,7 +27,7 @@ generation"** **OysterPack SMART STAKE Pool** and how it compares to the first g
 
 ### Locked staked NEAR is made mobile through **STAKE fungible tokens** provided by the STAKE pool 
 
-This enables staked NEAR value to be transferred while still being staked. This benefit opens the door to many new DeFi use cases for staked NEAR. 
+This enables staked NEAR value to be transferred while still being staked. This opens the door to many new DeFi use cases for staked NEAR. 
 
 ### Staking Done Right - Maximizing Yield
 
@@ -45,12 +45,12 @@ The following 2 improvements enable accounts to withdraw unstaked NEAR sooner:
 
 1. Unstaked NEAR is always available for withdrawal in **at most** 4 epochs per the NEAR protocol. 
 Unstaked NEAR is locked for 4 epochs before it becomes available to be withdrawn, but is tracked per epoch. Thus, more 
-funds can be unstaked without affecting funds that were unstaked in previous epochs. Compare this to the NEAR provided staking pool, 
-where each time you unstake, it resets the lockup period to 4 epochs for the total unstaked NEAR balance. For example, 
-if 100 NEAR is unstaked in EPOCH 1 and 10 NEAR is unstaked in EPOCH 3. Then 100 NEAR is available for withdrawal in 
-EPOCH 5 and 10 NEAR in EPOCH 7. In the current NEAR provided staking pool implementation, unstaking in the 10 NEAR in 
+funds can be unstaked without affecting funds that were unstaked in previous epochs. Compare this to the first generation 
+staking pool, where each time you unstake, it resets the lockup period to 4 epochs for the total unstaked NEAR balance. 
+For example, if 100 NEAR is unstaked in EPOCH 1 and 10 NEAR is unstaked in EPOCH 3. Then 100 NEAR is available for withdrawal 
+in EPOCH 5 and 10 NEAR in EPOCH 7. In the first generation staking pool implementation, unstaking the 10 NEAR in 
 EPOCH 3 would reset the lock period for the total unstaked, i.e., you would not be able to withdraw the 100 NEAR that 
-was unstaked in EPOCH 1 until EPOCH 7.
+was unstaked in EPOCH 1 until EPOCH 7. This issue has been resolved in the OysterPack SMART STAKE pool.
 2. Staking adds **liquidity** for withdrawing unstaked NEAR that is locked on a first come, first withdraw basis.
 For example, if you unstake 100 NEAR in EPOCH 1, normally you would not be able to withdraw the unstaked NEAR out of the 
 pool until EPOCH 5. However, when other accounts stake while there are locked unstaked funds in the STAKE pool, then the 
