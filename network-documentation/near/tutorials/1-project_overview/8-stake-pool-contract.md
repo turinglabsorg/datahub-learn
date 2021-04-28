@@ -212,7 +212,64 @@ The logs tell the story about what's happening during the deployment, which is i
   example, the staking fee is 0.01%, and the earnings fee is 0.5%. At least one of the fees must be non-zero and the max fee
   is currently hard coded to be 1000 BPS (10%). Fees are configurable and can be changed after the STAKE pool is deployed
   by accounts that have the operator permission.
-  
+- The **STAKE Pool Contract** implements the NEAR standard [fungible token][9] interfaces for the provided STAKE token.
+
+### How to operate the STAKE pool contract
+
+![](../../../../.gitbook/assets/oysterpack-smart-stake-operator-usecases.png)
+
+The above diagram shows the role and responsibilities for the operator. In this tutorial, I will review the key APIs to be 
+familiar with to get started. The rest is out of scope and will be covered in future tutorials and workshops.
+
+### Starting / Stopping Staking
+When the STAKE pool contract is deployed, it's initial status is offline. You can check the pool status using the following 
+NEAR CLI command:
+
+```shell
+STAKE=pearl
+near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_status
+```
+The status results look like:
+```shell
+{ Offline: 'Stopped' }
+
+'Online'
+```
+If the pool is offline, then it also displayes the offline reason. There are 2 reason why the pool would be offline:
+- Stopped - means the pool was explicitly stopped an operator
+- StakeActionFailed - means that a NEAR stake action failed, which will take the pool offline automatically
+
+Staking can be started and stopped using the following NEAR CLI commands:
+```shell
+near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_operator_command --args '{"command":"StartStaking"}' --accountId $NEAR_ACCOUNT
+
+near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_operator_command --args '{"command":"StopStaking"}' --accountId $NEAR_ACCOUNT
+```
+
+Current fees can be queried via:
+```shell
+near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_fees
+```
+which will return output like:
+```text
+{ staking_fee: 80, earnings_fee: 0 }
+```
+
+Fees can be changed with the following NEAR CLI command:
+```shell
+near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_operator_command --args '{"command":{"UpdateFees":{"staking_fee":1,"earnings_fee":50}}}' --accountId $NEAR_ACCOUNT
+```
+- both fees must be specified and at least 1 must be non-zero
+
+The staking public key, i.e., the validator key, can be viewed and changed using the following NEAR CLI commands:
+```shell
+near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_public_key
+
+near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_operator_command --args '{"command":{"UpdatePublicKey":"ed25519:GTi3gtSio5ZYYKTT8WVovqJEob6KqdmkTi8KqGSfwqdm"}}' --accountId $NEAR_ACCOUNT
+```
+
+## How to Get Started as a Staker
+
 
 [1]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/7-stake-vision
 [2]: https://github.com/oysterpack/oysterpack-smart
@@ -222,3 +279,4 @@ The logs tell the story about what's happening during the deployment, which is i
 [6]: https://datahub.figment.io/
 [7]: https://learn.figment.io/network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract/1.-connecting-to-a-near-node-using-datahub#configure-environment
 [8]: https://nomicon.io/Standards/StorageManagement.html
+[9]: https://nomicon.io/Standards/FungibleToken/README.html
