@@ -224,6 +224,7 @@ The above diagram shows the role and responsibilities for the operator. In this 
 familiar with to get started. The rest is out of scope and will be covered in future tutorials and workshops.
 
 #### How to start and stop staking
+
 When the STAKE pool contract is deployed, it's initial status is offline. You can check the pool status using the following 
 NEAR CLI command:
 
@@ -285,6 +286,7 @@ to the [storage management][8] documentation for details.
 > account registration currently costs 0.000393 NEAR
 
 #### How to stake 
+
 When an account stakes any account storage available balance will be staked in addition to any attached deposit. 
 The account storage management interface is leveraged to enable accounts to collect deposits to stake at a later time.
 
@@ -337,6 +339,7 @@ The account's updated stake balance is returned and looks like:
 - unstaked balance shows how much is available for withdrawal and locked - in the above example there is currently zero locked unstaked
 
 #### How to unstake
+
 ```shell
 # unstakes all
 near call  $STAKE.stake-v1.oysterpack.testnet ops_unstake --accountId $NEAR_ACCOUNT
@@ -379,6 +382,7 @@ the account balances now look like:
 - **NOTE**: if there is liquidity, then the account will be able to withdraw sooner 
 
 #### How to restake unstaked funds
+
 In order to restake funds using the first generation staking pool, the account would first need to withdraw the funds out
 of the pool and then stake them again. The OysterPack SMART STAKE pool simplifies the restake process by enabling the staker
 to restake unstaked funds.
@@ -391,6 +395,7 @@ near call  $STAKE.stake-v1.oysterpack.testnet  ops_restake --accountId $NEAR_ACC
 ```
 
 #### How to withdraw unstaked funds
+
 ```shell
 # withdraws all available unstaked NEAR
 near call  $STAKE.stake-v1.oysterpack.testnet  ops_stake_withdraw --accountId $NEAR_ACCOUNT
@@ -400,6 +405,7 @@ near call  $STAKE.stake-v1.oysterpack.testnet  ops_stake_withdraw --accountId $N
 ```
 
 #### How to check STAKE pool balances
+
 ```shell
 near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_pool_balances
 ```
@@ -424,11 +430,13 @@ near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_pool_balances
 - **earnings** - amount of earnings that are waiting to be collected on the next staking action
 
 #### How to query staker account balances
+
 ```shell
 near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_balance --args '{"account_id":"oysterpack.testnet"}'
 ```
 
 #### How to transfer STAKE tokens
+
 The STAKE pool contract implements the NEAR standard [fungible token][9] interface, and I defer to the NEAR docs for details.
 However, the STAKE Pool API offers 2 convenience transfer methods that enable stakers to transfer STAKE by specifying a 
 NEAR amount. The amount of STAKE tokens transferred will be based on the current STAKE token value. The API's mirror NEAR
@@ -441,6 +449,7 @@ near call  $STAKE.stake-v1.oysterpack.testnet ops_stake_transfer_call --accountI
 ```
 
 #### How to query the current STAKE token value
+
 ```shell
 # returns the NEAR value for 1 STAKE token
 near view  $STAKE.stake-v1.oysterpack.testnet ops_stake_token_value
@@ -476,6 +485,7 @@ https://explorer.testnet.near.org/transactions/FoQJ7kmNnjR6g8ew35sZq8snCMBHDQQGp
 ```
 
 ## It's a wrap folks
+
 The next generation STAKE Pool contract is ready and waiting for validators and stakers to use it. It's my gift to the 
 NEAR community, and I hope you enjoy it. Staking is the bread and butter of any PoS blockchain like NEAR. OysterPack SMART
 mission is to build and provide the best staking solutions, products, and services to deliver the best and most profitable
@@ -484,6 +494,7 @@ staking experience. The building never stops, and there's much more in the works
 I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take back the Internet together.
 
 ## What's Next
+
 The focus will be providing the validators with more in-depth tutorials and workshops to help them get onboard.
 
 ![](../../../../.gitbook/assets/oysterpack-smart-field-of-dreams.jpeg)
