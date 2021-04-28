@@ -94,7 +94,7 @@ The STAKE pool contract enables validators to compete on EPS on more than just s
 The factory contract makes it easy for anyone to deploy a new instance of the STAKE pool contract. We'll see how to deploy
 new STAKE pool contracts using the NEAR CLI below. 
 
-It currently costs a little over 5 NEAR to deploy the STAKE pool contract to pay for contract storage usage. Thus, if you 
+It currently costs a little just under 6 NEAR to deploy the STAKE pool contract to pay for contract storage usage. Thus, if you 
 attach 6 NEAR, then you should be safe. Any extra will be transferred over to the owner's account storage balance. If deployment
 fails for any reason, then the factory contract is designed to refund the attached deposit.
 
