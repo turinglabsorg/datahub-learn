@@ -6,7 +6,7 @@ description: See all tutorials currently available for Matic
 
 ## Time to learn
 
-On this page, you can find all tutorials currently available for Celo, including all tutorials created by the community.
+On this page, you can find all tutorials currently available for Matic, including all tutorials created by the community.
 
 Don't forget that you can try them out [**via Datahub**](https://datahub.figment.io/sign_up?service=matic)!
 
