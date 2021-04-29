@@ -156,7 +156,7 @@
     * [Miner Reputation System API](network-documentation/filecoin/rpc-and-rest-api/miner-reputation-system-api.md)
 * [⛽ Matic](network-documentation/matic/README.md)
   * [✏ Matic 101](network-documentation/matic/matic-101.md)
-  * [🎮 RPC & REST API](network-documentation/matic/rpc-and-rest-api.md)
+  * [🎮 RPC & REST API](network-documentation/matic/rpc-and-rest-api/README.md)
     * [Web3](network-documentation/matic/rpc-and-rest-api/web3.md)
     * [Web3.eth](network-documentation/matic/rpc-and-rest-api/web3.eth.md)
     * [Web3.eth.subscribe](network-documentation/matic/rpc-and-rest-api/web3.eth.subscribe.md)
