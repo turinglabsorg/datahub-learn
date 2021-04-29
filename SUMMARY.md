@@ -170,6 +170,7 @@
     * [Web3.bzz](network-documentation/matic/rpc-and-rest-api/web3.bzz.md)
     * [Web3.shh](network-documentation/matic/rpc-and-rest-api/web3.shh.md)
     * [Web3.utils](network-documentation/matic/rpc-and-rest-api/web3.utils.md)
+  * [💡 Tutorials](network-documentation/matic/tutorials.md)
 * [📱 Mina](network-documentation/mina/README.md)
   * [✏ Mina 101](network-documentation/mina/mina-101.md)
   * [🎮 RPC & REST API](network-documentation/mina/rpc-and-rest-api/README.md)
