@@ -157,7 +157,7 @@
 * [⛽ Matic](network-documentation/matic/README.md)
   * [✏ Matic 101](network-documentation/matic/matic-101.md)
   * [🎮 RPC & REST API](network-documentation/matic/rpc-and-rest-api/README.md)
-    * [Matic.js API](network-documentation/matic/rpc-and-rest-api/matic.js-api.md)
+    * [Matic.js](network-documentation/matic/rpc-and-rest-api/matic.js-api.md)
     * [Web3](network-documentation/matic/rpc-and-rest-api/web3.md)
     * [Web3.eth](network-documentation/matic/rpc-and-rest-api/web3.eth.md)
     * [Web3.eth.subscribe](network-documentation/matic/rpc-and-rest-api/web3.eth.subscribe.md)
