@@ -8,7 +8,7 @@ This node will be run on a virtual mashine
 use virtual box to create and run the virtual mashine
 Download and install virtual box 
 
-the valora app on Ios/Android is very helpful for buying and trading celo, it is a must for this tutorial.
+the valora app on Ios/Android is very helpful for buying and trading celo, it is highly recomended for this tutorial.
 
 download the Valora app on android/ios
 
@@ -60,6 +60,8 @@ C.node.js:
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
+^here are some important dependencys to install 
+
 source ~/.bashrc
 
 -#!/bin/bash
@@ -80,7 +82,7 @@ source ~/.bashrc
       . celo.env
 fi
 
-^this script tells celo.env to source in celo.env every time it is refrenced 
+^this script says to source in celo.env every time it is refrenced 
 
 curl -o celo.env https://gist.githubusercontent.com/alchemydc/ce712f6f3caa7ec79f15f930ed5904ed/raw/385c65b1d3f760854258bfd6dd8cbd135710b78f/celo.env 
 
@@ -122,7 +124,7 @@ restart
 
 id
 
-now its time to create a new node 
+Now its time to create a new node 
 
 cd celo-data-dir/
 
@@ -221,4 +223,4 @@ reboot
 
 done
 
-knowing how to set up your own fullnode and light client is a great skill. One bounes is Celo plans on setting up Celo rewards for thoes running nodes. This tutrial is not the only way to set up a full node. This method utilizes many usefull lynix/programing tools that can be very useful for beginer progamers and more experianced ones. I encurage experimenting with these tools and personalizing your node how you like it. Experimenting will this will expand your thinking and make you a more confedent programer. thank you for reading until the end!  
+knowing how to set up your own fullnode and light client is a great skill. A big bonus is Celo plans on setting up Celo rewards for thoes running nodes. Keep in mind this tutrial is not the only way to set up a full node. This method utilizes many usefull lynix/programing tools that can be very useful for beginer progamers and more experianced ones. I encurage experimenting with these tools and personalizing your node how you like it. Experimenting will this will expand your thinking and make you a more confident programer. thank you for reading until the end!  
