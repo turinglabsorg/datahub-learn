@@ -40,12 +40,6 @@ The end time in UTC.
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
 
-{% api-method-parameter name="validators" type="string" required=false %}
-A comma separated list of validator account ids
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
-
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}

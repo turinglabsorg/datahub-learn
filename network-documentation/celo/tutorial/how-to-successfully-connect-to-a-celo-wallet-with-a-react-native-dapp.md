@@ -1,47 +1,41 @@
 ---
-description: How to successfully connect to a Celo Wallet with a React Native DApp
+description: >-
+  Learn how to successfully set up a Celo Wallet with a React Native DApp using
+  Redux
 ---
 
-# How to successfully set up a Celo Wallet with a React Native DApp using Redux
+# How to successfully connect to a Celo Wallet with a React Native DApp
+
 ## About the Authors
 
 This tutorial was created by [Segun Ogundipe](https://www.linkedin.com/in/segun-ogundipe) and [Emmanuel Oaikhenan](https://github.com/emmaodia).
-## Introduction
 
-**In this tutorial you will learn how to successfully connect your React Native App to use the Celo Wallet and return a Wallet Address from the Alfajores Wallet.**
+### Introduction
+
+In this tutorial, you will learn how to successfully connect your React Native App to use the Celo Wallet and return a Wallet Address from the Alfajores Wallet.
 
 _To carry out transactions on the Celo Network, you have to connect your Wallet to be able to carry out transactions. When you start out building a dAPP using React Native, you will need this guide to demonstrate how you can install the required libraries to get your dApp up and running._
 
-&nbsp;
+## Prerequisite
 
-# Prerequisite
-
-This article assumes that you have basic knowledge of JavaScript (TypeScript) and how to start a React Native App using expo. It is also assumed that you have read the expo documentation and have basic knowledge of the Celo Wallet.
+This article assumes that you have basic knowledge of JavaScript \(TypeScript\) and how to start a React Native App using expo. It is also assumed that you have read the expo documentation and have basic knowledge of the Celo Wallet.
 
 1. [Celo Wallet](https://docs.celo.org/getting-started/alfajores-testnet/using-the-mobile-wallet)
 2. [React Native using expo](https://docs.expo.io/)
 3. [DappKit](https://docs.celo.org/developer-guide/dappkit/setup)
 
-&nbsp;
+## Project Setup
 
-# Project Setup
+You will need node version `^10.13.0`  
+Open the Celo documentation and follow the setup instructions:
 
-You will need node version `^10.13.0`.
+`expo init $YOUR_APP_NAME`  
+We will use the `TypeScript Template >> Tabs` 
 
-Open the Celo documentation and follow the set up instructions:
+![](../../../.gitbook/assets/terminalimage.png)
 
-`expo init $YOUR_APP_NAME`
-
-We will use the `TypeScript Template >> Tabs`
-<img src="./images/terminalImage.png" width="600" height="150" />
-
-To use the Celo DappKit, install using:
-
-`yarn add @celo/dappkit`
-
-DAppKit's dependencies require a bit of adjustment to use vanilla Expo. The first are a lot of the Node.js modules that are expected. You can get those mostly by using the following modules:
-
-`yarn add node-libs-react-native vm-browserify`
+To use the Celo DappKit, install using: `yarn add @celo/dappkit`  
+DAppKit's dependencies require a bit of adjustment to use vanilla Expo. The first are a lot of the Node.js modules that are expected. You can get those mostly by using the following modules:`yarn add node-libs-react-native vm-browserify`
 
 **Important Note!**
 
@@ -51,8 +45,7 @@ with this: `^0.63.4` at the time of writing this tutorial. You can always use th
 
 **A Note on the installed Packages**
 
-_node-libs-react-native_:
-This package provides React Native compatible implementations of Node core modules like stream and http. This is a fork of node-libs-browser with a few packages swapped to be compatible in React Native.
+_node-libs-react-native_: This package provides React Native compatible implementations of Node core modules like stream and http. This is a fork of node-libs-browser with a few packages swapped to be compatible in React Native.
 
 _vm-browserify_ is used to emulate node's vm module for the browser.
 
@@ -124,16 +117,12 @@ For TypeScript to run redux logger locally without any errors, you have to add t
 
 Run the app using: `expo start`
 
-Find documentation how to run your app [here]()
+Find documentation how to run your app [here](how-to-successfully-connect-to-a-celo-wallet-with-a-react-native-dapp.md)
 
-&nbsp;
+## Code
 
-# Code
-
-After installing the required libraries, we can then build 2 simple screens in the React Native app.
-
-The first screen will have one button. The button will be used to sign a User into the dApp.
-
+After installing the required libraries, we can then build 2 simple screens in the React Native app.   
+The first screen will have one button. The button will be used to sign a User into the dApp.  
 The second screen will be the screen that proves that the user has successfully authenticated. The second screen will return the user's wallet address.
 
 **Let's build the Screens:**
@@ -148,9 +137,7 @@ export default function LoginScreen() {
 }
 ```
 
-<img src="./images/LoginScreen.png" width="300" height="600" />
-
-Login Screen
+![Login Screen](../../../.gitbook/assets/loginscreen.png)
 
 ```javascript
 export default function HomeScreen() {
@@ -167,7 +154,7 @@ export default function HomeScreen() {
 
 We will use Redux to manage the app state, we have to set up redux actions to make a call to the Celo Wallet and return the result which is then saved in the app global state. To keep your directory devoid of clutter, open a directory to hold the files for the Redux logic:
 
-<img src="./images/ReduxDirectory.png" width="300" height="150" />
+![](../../../.gitbook/assets/reduxdirectory.png)
 
 You can add a file called `constants.js` to the Redux Store Directory. The constants will be used to track the wallet connection process by having the constants as the type of action that was dispatched and then update the state accordingly using a reducer.
 
@@ -292,7 +279,7 @@ export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, l
 
 Let's update the `App.tsx` file with the Redux Provider.
 
-```Javascript
+```javascript
 //The Redux Provider wraps around the entire application
 export default function App() {
   return (
@@ -348,14 +335,11 @@ export default function HomeScreen() {
 
 Run your app and Login to see the Wallet and Phone number returned to the Home Screen.
 
-<img src="./images/WalletScreen.png" width="300" height="600" /> <img src="./images/HomeScreen.png" width="300" height="600" />
+![Wallet Screen](../../../.gitbook/assets/walletscreen.png)
 
-&nbsp;
+![Home Screen](../../../.gitbook/assets/homescreen.png)
 
-# Conclusion
+## Conclusion
 
-This was a very interesting tutorial. In this tutorial, we learned:
-**How to successfully connect your Redux based React Native App to use the Celo Wallet and return a Wallet Address from the Valora/Alfajores Wallet.**
-
-&nbsp;
+This was a very interesting tutorial. In this tutorial, we learned: How to successfully connect your Redux based React Native App to use the Celo Wallet and return a Wallet Address from the Valora/Alfajores Wallet.
 
