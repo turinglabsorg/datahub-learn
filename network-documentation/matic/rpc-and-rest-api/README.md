@@ -12,5 +12,7 @@ This library will help developers to move assets from Ethereum chain to Matic ch
 
 Learn about the API available via Matic [**DataHub**](https://datahub.figment.io/sign_up?service=matic) below.
 
+{% page-ref page="matic.js-api.md" %}
 
+{% page-ref page="web3.md" %}
 
