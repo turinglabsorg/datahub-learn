@@ -14,7 +14,7 @@ You can then get started with the available RPC & REST APIs we support [**via Da
 
 Last but not least, if you are looking for guidelines or simply some inspiration, check out our list of available tutorials!
 
-Be sure to check out the[ **official Matic documentation**](https://docs.matic.network/docs/develop/getting-started).
+Be sure to check out the[ **official Matic documentation**](https://docs.matic.network/docs/develop/getting-started)**,** and if you need tokens to build on testnet, you can check out the [**link here**](https://faucet.matic.network/). 
 
 🚀 Let's start building the decentralized web 🚀[  
 ](https://learn.figment.io/network-documentation/polkadot/polkadot-101)
