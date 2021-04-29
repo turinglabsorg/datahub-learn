@@ -1,5 +1,5 @@
 ---
-description: Learn how to interact with Polkadot using DataHub
+description: Learn how to interact with Matic using DataHub
 ---
 
 # ⛽ Matic
