@@ -43,41 +43,20 @@ soon as they are received to maximize the power of the compounding yield effect.
 
 The following 2 improvements enable accounts to withdraw unstaked NEAR sooner:
 
-1. Unstaked NEAR is always available for withdrawal in **at most** 4 epochs per the NEAR protocol. 
-Unstaked NEAR is locked for 4 epochs before it becomes available to be withdrawn, but is tracked per epoch. Thus, more 
-funds can be unstaked without affecting funds that were unstaked in previous epochs. Compare this to the first generation 
-staking pool, where each time you unstake, it resets the lockup period to 4 epochs for the total unstaked NEAR balance. 
-For example, if 100 NEAR is unstaked in EPOCH 1 and 10 NEAR is unstaked in EPOCH 3. Then 100 NEAR is available for withdrawal 
-in EPOCH 5 and 10 NEAR in EPOCH 7. In the first generation staking pool implementation, unstaking the 10 NEAR in 
-EPOCH 3 would reset the lock period for the total unstaked, i.e., you would not be able to withdraw the 100 NEAR that 
-was unstaked in EPOCH 1 until EPOCH 7. This issue has been resolved in the OysterPack SMART STAKE pool.
-2. Staking adds **liquidity** for withdrawing unstaked NEAR that is locked on a first come, first withdraw basis.
-For example, if you unstake 100 NEAR in EPOCH 1, normally you would not be able to withdraw the unstaked NEAR out of the 
-pool until EPOCH 5. However, when other accounts stake while there are locked unstaked funds in the STAKE pool, then the 
-new staked funds effectively add liquidity and unlock the unstaked funds. Think of it as the unstaked funds are being restaked.
-Thus, higher staking activity automatically provides more liquidity. 
+1. Unstaked NEAR is always available for withdrawal in **at most** 4 epochs per the NEAR protocol. Unstaked NEAR is locked for 4 epochs before it becomes available to be withdrawn, but is tracked per epoch. Thus, more funds can be unstaked without affecting funds that were unstaked in previous epochs. Compare this to the first generation staking pool, where each time you unstake, it resets the lockup period to 4 epochs for the total unstaked NEAR balance. For example, if 100 NEAR is unstaked in EPOCH 1 and 10 NEAR is unstaked in EPOCH 3. Then 100 NEAR is available for withdrawal in EPOCH 5 and 10 NEAR in EPOCH 7. In the first generation staking pool implementation, unstaking the 10 NEAR in EPOCH 3 would reset the lock period for the total unstaked, i.e., you would not be able to withdraw the 100 NEAR that was unstaked in EPOCH 1 until EPOCH 7. This issue has been resolved in the OysterPack SMART STAKE pool.
+2. Staking adds **liquidity** for withdrawing unstaked NEAR that is locked on a first come, first withdraw basis. For example, if you unstake 100 NEAR in EPOCH 1, normally you would not be able to withdraw the unstaked NEAR out of the pool until EPOCH 5. However, when other accounts stake while there are locked unstaked funds in the STAKE pool, then the new staked funds effectively add liquidity and unlock the unstaked funds. Think of it as the unstaked funds are being restaked. Thus, higher staking activity automatically provides more liquidity. 
    
 ### Enhanced Financial Model
 
 The goal is to provide more financial levers to validators in order to promote competition for staker business. 
 
-__More Flexible Fee Model__
-1. **Earnings based fee**
-The staking pool owner takes a percentage of the STAKE pool earnings. This matches the current commercial fee model implemented
-by the first generation staking pool. This fee keeps the financial incentives and interests aligned with all stakers. 
-Owner earnings are directly aligned with the STAKE pool earnings.
-2. **Staking fee**
-This fee type is not supported by the first generation staking pool. The staking fee is a percentage of the amount staked.
-OysterPack SMART STAKE pools provide more commercial levers and can be configured to use a combination of earnings based 
-fees and staking fees. For example, validators may choose to charge only a staking fee and pass on all earnings to delegators.
+#### More Flexible Fee Model
+1. **Earnings based fee** The staking pool owner takes a percentage of the STAKE pool earnings. This matches the current commercial fee model implemented by the first generation staking pool. This fee keeps the financial incentives and interests aligned with all stakers. Owner earnings are directly aligned with the STAKE pool earnings.
+2. **Staking fee** This fee type is not supported by the first generation staking pool. The staking fee is a percentage of the amount staked. OysterPack SMART STAKE pools provide more commercial levers and can be configured to use a combination of earnings based fees and staking fees. For example, validators may choose to charge only a staking fee and pass on all earnings to delegators.
    
-__Enables External Revenue Sources for Boosting EPS__
-1. **External revenue distributions**
-External sources of revenue can be deposited into the STAKE pool and distributed to all current stakers simply by staking
-the funds. This immediately distributes the revenue earnings via the STAKE token. 
-2. **External revenue can be deposited into the treasury to distribute dividends**
-Dividends are distributed by the treasury by burning STAKE for earnings it receives. Thus, when STAKE is burned, the validator
-is effectively buying back shares funded by treasury earnings, which boosts the STAKE token value.
+#### Enables External Revenue Sources for Boosting EPS
+1. **External revenue distributions** External sources of revenue can be deposited into the STAKE pool and distributed to all current stakers simply by staking the funds. This immediately distributes the revenue earnings via the STAKE token. 
+2. **External revenue can be deposited into the treasury to distribute dividends** Dividends are distributed by the treasury by burning STAKE for earnings it receives. Thus, when STAKE is burned, the validator is effectively buying back shares funded by treasury earnings, which boosts the STAKE token value.
 
 STAKE is modeled as a **dividend stock**. STAKE links the dividend yield directly to EPS (earnings per share or earnings per STAKE). 
 When EPS increases, so does the dividend, and gets automatically paid out, which is governed by the contract (and not a board of directors). 
@@ -199,21 +178,12 @@ The logs tell the story about what's happening during the deployment, which is i
 
 #### Notes
 - **AccountManagementComponent** is designed to track and log (**ACCOUNT_STORAGE_CHANGED**) all account storage changes
-- The STAKE pool contract implements the NEAR standard [account storage management][8] interface. It measures dynamically
-  how much account storage is required by the contract and configures the minimum storage usage bound accordingly.
+- The STAKE pool contract implements the NEAR standard [account storage management][8] interface. It measures dynamically how much account storage is required by the contract and configures the minimum storage usage bound accordingly.
 - **AccountManagementComponent** is also designed to track all contract NEAR balances including account storage balances.
-- The **ContractOperator** interface provides the ability to lock a portion of the contract account balance to ensure it 
-  cannot be transferred out. This feature is used to lock enough account balance to pay for 10K of contract storage that 
-  is reserved for the STAKE pool to be operational.
-- The **STAKE Factory Contract** is designed to create and initialize the STAKE Pool contract using NEAR's batch transaction 
-  feature. This guarantees that either all actions in the batch transaction succeed or fail atomically. If the batch transaction 
-  fails for any reason, the factory contract is designed to refund the attached deposit.
-- In the above NEAR CLI example, the owner account was specified implicitly using the predecessor account. However note 
-  that the factory deploy function supports an optional `owner` argument that can be used to specify the owner account explicitly. 
-- Fees are specified in basis points ([BPS][5]). An easy way to remember the unit conversion is 100 BPS = 1%. In the above
-  example, the staking fee is 0.01%, and the earnings fee is 0.5%. At least one of the fees must be non-zero and the max fee
-  is currently hard coded to be 1000 BPS (10%). Fees are configurable and can be changed after the STAKE pool is deployed
-  by accounts that have the operator permission.
+- The **ContractOperator** interface provides the ability to lock a portion of the contract account balance to ensure it cannot be transferred out. This feature is used to lock enough account balance to pay for 10K of contract storage that is reserved for the STAKE pool to be operational.
+- The **STAKE Factory Contract** is designed to create and initialize the STAKE Pool contract using NEAR's batch transaction feature. This guarantees that either all actions in the batch transaction succeed or fail atomically. If the batch transaction fails for any reason, the factory contract is designed to refund the attached deposit.
+- In the above NEAR CLI example, the owner account was specified implicitly using the predecessor account. However note that the factory deploy function supports an optional `owner` argument that can be used to specify the owner account explicitly. 
+- Fees are specified in basis points ([BPS][5]). An easy way to remember the unit conversion is 100 BPS = 1%. In the above example, the staking fee is 0.01%, and the earnings fee is 0.5%. At least one of the fees must be non-zero and the max fee is currently hard coded to be 1000 BPS (10%). Fees are configurable and can be changed after the STAKE pool is deployed by accounts that have the operator permission.
 - The **STAKE Pool Contract** implements the NEAR standard [fungible token][9] interfaces for the provided STAKE token.
 
 ### How to operate the STAKE pool contract
