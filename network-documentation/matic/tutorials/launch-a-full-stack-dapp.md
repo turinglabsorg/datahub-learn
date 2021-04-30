@@ -4,7 +4,7 @@ description: Learn how to build a decentralized AirBnB on Matic
 
 # Launch a full stack DApp
 
-\*\*\*\*[**The original tutorial can be found on Matic's official documentation here.**](https://docs.matic.network/docs/develop/full-stack-dapp-with-pos) ****
+\*\*\*\* [**The original tutorial can be found on Matic's official documentation here.**](https://docs.matic.network/docs/develop/full-stack-dapp-with-pos) \*\*\*\*
 
 ## What this tutorial covers
 
@@ -16,7 +16,7 @@ This tutorial is a brief introduction to Full Stack DApp deployed on Matic with 
 
 **Installation**
 
-1. Nodej 8.10+
+1. Node 8.10+
 
 ```text
 node -v
@@ -26,14 +26,13 @@ v12.16.0
 If you need to update node:
 
 ```text
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bashnvm install --ltsnvm use lts
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash nvm install --ltsnvm use lts
 ```
 
-    2. Metamask
+  2. Metamask
 
 You can download the Metamask extension by using this link: [https://metamask.io/](https://metamask.io/)
-
-### What are we building?
+## What are we building?
 
 We plan to build a Decentralized Airbnb that incorporates three main functionalities:
 
@@ -43,7 +42,8 @@ We plan to build a Decentralized Airbnb that incorporates three main functionali
 
 Go ahead and clone the [repository](https://github.com/maticnetwork/ethindia-workshop) and install dependencies and then run `npm install`
 
-#### Setting up Data Structures[\#](https://docs.matic.network/docs/develop/full-stack-dapp-with-pos#setting-up-data-structures)
+## Setup
+### Setting up Data Structures
 
 We’d like a property with a name, description, owner and a price to be rented.
 
@@ -91,7 +91,7 @@ Similar to what we did to keep track of each property, we can do to keep track o
 ```javascript
 uint256 public bookingId;
 // mapping of bookingId to Booking object
-mapping(uint256 => Booking) 
+mapping(uint256 => Booking)
 public bookings;
 ```
 
@@ -191,7 +191,7 @@ You can view the entire code [here](https://github.com/maticnetwork/ethindia-wor
 
 Once you have the contract code ready, next steps would be to deploy the code on a testnet and test its working.
 
-### Deploy and Test!
+## Deploy and Test
 
 For this, we use the Remix IDE - an online IDE to develop smart contracts.
 
@@ -345,7 +345,7 @@ contract Airbnb {
 ```
 
 * Select `0.5.7+commit.6da8b019` as the compiler and compile the smart contract
-* Once compiled, the smart contract is ready to be deployed onto the testnet/mainnet. For this tutorial
+* Once compiled, the smart contract is ready to be deployed onto the testnet/mainnet.
 * Copy the generated ABI - we would be needing that for our next steps
 
 ![](https://docs.matic.network/img/solidity/remix-abi.png)
@@ -369,26 +369,26 @@ Paste the contract address copied in previous step to the `airbnbContractAddress
 
 Get the ABI copied from the previous step
 
-* navigate to `dapp-ui/plugins/airbnbABI.json` and add the following:
+* Navigate to `dapp-ui/plugins/airbnbABI.json` and add the following:
 
 ```javascript
 {"abi":}
 ```
 
-* Paste the ABI as the value of the “abi” key just defined
+* Paste the ABI as the value of the 'abi' key just defined
 * It should look something like this:
 
 ```javascript
 {"abi": [{"constant": true,"inputs": [],"name": "bookingId","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},.................................]}
 ```
 
-### Connect UI to Metamask[\#](https://docs.matic.network/docs/develop/full-stack-dapp-with-pos#connect-ui-to-metamask)
+### Connect UI to Metamask
 
 Next, we’d like the UI to be connected with Metamask. For this we follow the following two steps:
 
 First, add the `setProvider()` method inside `mounted()` method in `dapp-ui/pages/index.vue`
 
-Note: You might face indentation issues after pasting it.
+> Note: You might face indentation issues after pasting it.
 
 ```javascript
 // init Metamask
@@ -446,7 +446,7 @@ The three main functions we’d like our app to support are:
 
 We’ll first set up our property form - which is used to rent out a property - on the backend it interacts with the `rentOutProperty` function of our Airbnb smart contract
 
-Navigate to `dapp-ui/components/propertyForm.vue` and add the following code inside `postAd()` method. The `postAd()` method should look something like this: 
+Navigate to `dapp-ui/components/propertyForm.vue` and add the following code inside `postAd()` method. The `postAd()` method should look something like this:
 
 ```javascript
 // convert price from ETH to Wei
@@ -502,11 +502,11 @@ const properties = []for (let i = 0; i < propertyId; i++){
   return properties
 ```
 
-### Run and Test!
+## Run and Test
 
 And this marks the end of our DApp tutorial! We know it’s been a long one.
 
-Execute `npm run dev` to view and interact with your decentralized application!
+Execute `npm run dev` to view and interact with your decentralized application.
 
 ![](https://docs.matic.network/img/dapp/rent-your-property.png)
 
