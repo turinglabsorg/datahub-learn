@@ -40,10 +40,10 @@ The mnemonic key from your AVAX wallet needs to go between the quotation marks b
 let mnemonic = "";
 ```
 
-The code below is pointing to the Fuji network. Alternatively, we can point it to the Datahub AVAX node.
+The code below is pointing to AVAX mainnet.
 
 ```javascript
-const web3 = new Web3(new Web3.providers.HttpProvider("https://api.avax-test.network/ext/bc/C/rpc"))
+const web3 = new Web3(new Web3.providers.HttpProvider("https://api.avax.network/ext/bc/C/rpc"))
 ```
 
 The private key is needed to execute a transfer later on. With the mnemonic phrase provided earlier, we can obtain the private key to your AVAX wallet in the ETH address format. 
@@ -189,6 +189,4 @@ async function PNG_getBalance() {
 
 ## Wrapping Up
 
-That’s it! This tutorial has taught you how to transfer AVAX native tokens from the C chain to an ETH wallet. Also, this has shown how Avalanche blockchain C chain is compatible with the usual web3 library. This is a powerful aspect of the Avalanche blockchain, as it allows Ethereum developers to easily port their work over to the Avalanche side.
-
-Try transferring your Fuji AVAX tokens by running this script and see if it worked. 
+That’s it! This tutorial has taught you how to transfer ERC-20 tokens from the C-chain to an ETH wallet. Remember that the C-chain uses the Ethereum Virtual Machine and is compatible with all of the key Ethereum tools.
