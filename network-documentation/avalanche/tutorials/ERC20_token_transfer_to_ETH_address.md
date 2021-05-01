@@ -9,23 +9,70 @@ This tutorial was created by [Seongwoo Oh](https://github.com/blackwidoq). He is
 
 # Transfer ERC-20 tokens from the C-chain of your AVAX wallet to an ETH address \(Metamask, for example\)
 
+In this tutorial, we are going to learn how to programmatically transfer ERC-20 tokens from the C-chain to an ETH wallet.
+
+Simply put, ERC-20 tokens are the tokens that meet the technical standards of the Ethereum blockchain. So, they natively reside on the Ethereum blockchain. Thanks to the C-chain's full Ethereum compatibility, one can transfer ERC-20 token using the Avalanche-Ethereum bridge, which can be found [here](https://aeb.xyz/#/transfer). 
+
+For the purpose of this tutorial, we are going to assume that you already have ERC-20 tokens (PNG and GRT) on the C-chain of your Avalanche wallet, as shown below (I transferred these tokens for the sake of learning how to do it). This module will walk you through transferring PNG tokens from an Avalanche C-chain address to an ETH address.    
+
 ![example](https://i.imgur.com/P09Vl07.png)
 
+Similar to the previous C-chain to ETH address transfer of AVAX token transfer tutorial, we will start by installing some Ethereum libraries. In addition to installing web3 and ethers, we are going to install ethereumjs-tx, which is a module for creating, manipulating, and signing Ethereum transactions. 
 
+```bash
+$ npm install ethereumjs-tx
+$ npm install web3
+$ npm install ethers
+```
+If web3 and ethers are already installed from the previous tutorial, you can skip the last two commands.
+
+After installing the libraries, we need to import them in order to use the libraries to interact with the Avalanche C chain 
 
 ```bash
 var Tx = require('ethereumjs-tx');
 var Web3 = require('web3')
 const { ethers } = require('ethers')
+```
+
+The mnemonic key from your AVAX wallet needs to go between the quotation marks below. This is later used to extract the C chain wallet address. 
+
+```bash
+let mnemonic = "";
+```
+
+The code below is pointing to the Fuji network. Alternatively, we can point it to the Datahub AVAX node.
+
+```javascript
 const web3 = new Web3(new Web3.providers.HttpProvider("https://api.avax-test.network/ext/bc/C/rpc"))
-let mnemonic = "about dutch spy parrot above cry lunch believe ripple radar tomato globe over unfair symbol atom balance ill hen rough tiger era upper favorite";
+```
+
+The private key is needed to execute a transfer later on. With the mnemonic phrase provided earlier, we can obtain the private key to your AVAX wallet in the ETH address format. 
+
+```bash
 const wallet = new ethers.Wallet.fromMnemonic(mnemonic);
 eth_privatekey = wallet.privateKey; 
-const tokenAddress = "0xe66BC94A29A01ea0E897C1bAFe0625C5dA31BC58"  //SHITTKN CONTRACT ADDRESS
-const token_name = "SHITTKN"
-// set token source, destination and amount
-var myAddress =  wallet.address   //<<----AVAX address
-var toAddress = "0x22b2b66191390738e861D25E987FAB2554060bf6"    // << --- Metamask address
+```
+Up to this point, except for the introduction of ethereumjs-tx, it has been a repeat of AVAX C-chain to ETH address transfer tutorial. 
+
+Now comes the new learning material. Transferring tokens from one wallet to another is a transaction. In order to perform a transaction (as in, signing a transaction using the ethereumjs-tx module), certain information needs to be provided. The token address (also known as contract address) of the ERC-20 token (Pangolin in this case) needs to be provided. So, we are going to store the contract address and the ticker below. The token ticker is not needed but we are adding it for our own use.
+
+```bash
+const tokenAddress = "0x60781C2586D68229fde47564546784ab3fACA982"  
+const token_name = "PNG"
+```
+Another piece of information needed is the wallet from which the ERC-20 tokens are to be transferred from. 
+
+```bash
+var myAddress =  wallet.address   
+```
+
+Logically, we also need provide the destination address. Put the destination address between the quotation marks.
+
+```bash
+var toAddress = ""
+```
+
+```bash
 var amount = web3.utils.toHex(1e18)
 
 // get transaction count, later will used as nonce
@@ -48,13 +95,13 @@ async function main() {
     var contract = new web3.eth.Contract(abiArray, contractAddress, {from: myAddress})
 
 
-    async function gasgas() {                                      //gas price, my man
-        let abc = await web3.eth.getGasPrice();
+    async function gas() {                                      //gas price, my man
+        let gas_p = await web3.eth.getGasPrice();
         //console.log(abc);
-        return abc
+        return gas_p
     }
-    var yessir = await gasgas(); // here the data will be return.
-    console.log("gasprice as a number",yessir);
+    var gas_price = await gas(); // here the data will be return.
+    console.log("gasprice as a number",gas_price);
 
     shit_getBalance().then(function (result) {            //shit coin balance
         console.log(result +" " + token_name);
@@ -67,7 +114,7 @@ async function main() {
     // }
     // var gasslimit = await g_limit();
     // console.log("gaslimit",gasslimit)
-    var rawTransaction = {"from":myAddress, "gasPrice":web3.utils.toHex(yessir),"gasLimit":web3.utils.toHex(210000),"to":contractAddress,"value":"0x0","data":contract.methods.transfer(toAddress, amount).encodeABI(),"nonce":web3.utils.toHex(nonce_sir)} 
+    var rawTransaction = {"from":myAddress, "gasPrice":web3.utils.toHex(gas_price),"gasLimit":web3.utils.toHex(210000),"to":contractAddress,"value":"0x0","data":contract.methods.transfer(toAddress, amount).encodeABI(),"nonce":web3.utils.toHex(nonce_sir)} 
     var transaction = new Tx(rawTransaction)
     transaction.sign(privateKey)
     web3.eth.sendSignedTransaction('0x' + transaction.serialize().toString('hex'))
