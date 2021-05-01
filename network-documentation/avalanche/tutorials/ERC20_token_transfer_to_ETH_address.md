@@ -52,6 +52,7 @@ The private key is needed to execute a transfer later on. With the mnemonic phra
 const wallet = new ethers.Wallet.fromMnemonic(mnemonic);
 eth_privatekey = wallet.privateKey; 
 ```
+
 Up to this point, except for the introduction of ethereumjs-tx, it has been a repeat of AVAX C-chain to ETH address transfer tutorial. 
 
 Now comes the new learning material. Transferring tokens from one wallet to another is a transaction. In order to perform a transaction (as in, signing a transaction using the ethereumjs-tx module), certain information needs to be provided. The token address (also known as contract address) of the ERC-20 token (Pangolin in this case) needs to be provided. So, we are going to store the contract address and the ticker below. The token ticker is not needed but we are adding it for our own use. A lot of the token contract addresses for Avalanche can be found [here](https://github.com/pangolindex/tokenlists/blob/main/aeb.tokenlist.json).
@@ -60,6 +61,7 @@ Now comes the new learning material. Transferring tokens from one wallet to anot
 const tokenAddress = "0x60781C2586D68229fde47564546784ab3fACA982"  
 const token_name = "PNG"
 ```
+
 Another piece of information needed is the wallet from which the ERC-20 tokens are to be transferred from. 
 
 ```bash
@@ -73,66 +75,93 @@ var toAddress = ""
 ```
 
 Below is where we set the number of tokens to be transferred. We have currently set it to 1 token (1e18). 
+
 ```bash
 var amount = web3.utils.toHex(1e18)
 ```
-In signing a transaction using ethereumjs-tx, it is very important to provide the number of transactions that have occurred up to this point, associated with the address from which the tokens will be transferred. That number is called `nonce`. 
 
 ```bash 
 async function main() {
 ```
+In signing a transaction using ethereumjs-tx, it is very important to provide the number of transactions that have occurred up to this point, associated with the address from which the tokens will be transferred. That number is called `nonce`. 
+
 To store the nonce from `await web3.eth.getTransactionCount`, because the output of the function is a promise, it needs to be wrapped in an async function (Javascript). `pending` as part of the argument will ensure that the operation waits until pending transactions are complete.
 
 ```bash 
-    async function nonce_funct () {                                                                      //nonce number, my man
+    async function nonce_funct () {                                                                      
         var nonce = await web3.eth.getTransactionCount(myAddress, 'pending');
         return num_transact
     }
 ```
 
+Now, we can store the output of the `await web3.eth.getTransactionCount` to use `nonce` for the transfer later. We will print this number just as a test. 
+
 ```bash 
-    var nonce_ = await nonce_funct(); // here the data will be return.
+    var nonce_ = await nonce_funct(); 
     console.log("nonce numb", nonce);
+```
 
+Additionally, the `transaction.sign` function we will use later requires the private key of the Avalanche wallet with the first two digits of the key removed and converted into the hex format. So, we will massage it into the proper form. 
+```bash 
+    var privateKey = new Buffer.from( eth_privatekey.substring(2), 'hex') 
+```
 
-    var privateKey = new Buffer.from( eth_privatekey.substring(2), 'hex')  
-    // Get abi array here https://etherscan.io/address/0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0#code
+Another piece needed for issuing a transaction is what's called the ABI. The Contract Application Binary Interface (ABI) is the standard way to interact with contracts in the Ethereum ecosystem. The format of the ABI is provided [here](https://etherscan.io/address/0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0#code).
+
+```bash 
     var abiArray = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"stop","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"guy","type":"address"},{"name":"wad","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"owner_","type":"address"}],"name":"setOwner","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"src","type":"address"},{"name":"dst","type":"address"},{"name":"wad","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"dst","type":"address"},{"name":"wad","type":"uint128"}],"name":"push","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"name_","type":"bytes32"}],"name":"setName","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"wad","type":"uint128"}],"name":"mint","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"src","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"stopped","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"authority_","type":"address"}],"name":"setAuthority","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"src","type":"address"},{"name":"wad","type":"uint128"}],"name":"pull","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"wad","type":"uint128"}],"name":"burn","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"dst","type":"address"},{"name":"wad","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"start","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"authority","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"src","type":"address"},{"name":"guy","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[{"name":"symbol_","type":"bytes32"}],"payable":false,"type":"constructor"},{"anonymous":true,"inputs":[{"indexed":true,"name":"sig","type":"bytes4"},{"indexed":true,"name":"guy","type":"address"},{"indexed":true,"name":"foo","type":"bytes32"},{"indexed":true,"name":"bar","type":"bytes32"},{"indexed":false,"name":"wad","type":"uint256"},{"indexed":false,"name":"fax","type":"bytes"}],"name":"LogNote","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"authority","type":"address"}],"name":"LogSetAuthority","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"}],"name":"LogSetOwner","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"}]
     // var abiArray = JSON.parse('[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"stop","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"guy","type":"address"},{"name":"wad","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"owner_","type":"address"}],"name":"setOwner","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"src","type":"address"},{"name":"dst","type":"address"},{"name":"wad","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"dst","type":"address"},{"name":"wad","type":"uint128"}],"name":"push","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"name_","type":"bytes32"}],"name":"setName","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"wad","type":"uint128"}],"name":"mint","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"src","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"stopped","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"authority_","type":"address"}],"name":"setAuthority","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"src","type":"address"},{"name":"wad","type":"uint128"}],"name":"pull","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"wad","type":"uint128"}],"name":"burn","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"dst","type":"address"},{"name":"wad","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"start","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"authority","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"src","type":"address"},{"name":"guy","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[{"name":"symbol_","type":"bytes32"}],"payable":false,"type":"constructor"},{"anonymous":true,"inputs":[{"indexed":true,"name":"sig","type":"bytes4"},{"indexed":true,"name":"guy","type":"address"},{"indexed":true,"name":"foo","type":"bytes32"},{"indexed":true,"name":"bar","type":"bytes32"},{"indexed":false,"name":"wad","type":"uint256"},{"indexed":false,"name":"fax","type":"bytes"}],"name":"LogNote","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"authority","type":"address"}],"name":"LogSetAuthority","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"}],"name":"LogSetOwner","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"}]', 'utf-8')
     var contractAddress = tokenAddress
+```
+
+`new web3.eth.Contract` creates a new contract instance with all its methods and events defined in its json interface object ([source](https://web3js.readthedocs.io/en/v1.2.1/web3-eth-contract.html)). We can think of it as a way to pack the ABI, contract address and token source address in a convenient form. 
+
+```bash
     var contract = new web3.eth.Contract(abiArray, contractAddress, {from: myAddress})
+```
 
+One last item needed, prior to issuing a transaction, and thereby transferring the ERC-20 token, is calculating a recent gas price. We will use `await web3.eth.getGasPrice()` function and wrap it in an async function, similar to what we did for `once` above. 
 
-    async function gas() {                                      //gas price, my man
+```bash
+    async function gas() {                                      
         let gas_p = await web3.eth.getGasPrice();
         //console.log(abc);
         return gas_p
     }
     var gas_price = await gas(); // here the data will be return.
     console.log("gasprice as a number",gas_price);
+```
+Although it is not needed to know the balance of the Pangolin tokens before attempting a transfer, we will print the balance in your Avalanche wallet. `PNG_getBalance()` is defined at the very bottom of the tutorial as an async function. 
 
-    shit_getBalance().then(function (result) {            //shit coin balance
+```bash
+    PNG_getBalance().then(function (result) {            
         console.log(result +" " + token_name);
     });
+```
 
-    // async function g_limit() {
-    //     var glimit = web3.eth.getBlock("latest").gasLimit;
-    //     var gasLimitHex = glimit ;//web3.toHex(glimit);
-    //     return gasLimitHex
-    // }
-    // var gasslimit = await g_limit();
-    // console.log("gaslimit",gasslimit)
+We have gathered all the information needed to issue a new transaction (transfer). We will pack all that in the proper form and name it `rawTransaction`.
+
+```bash
     var rawTransaction = {"from":myAddress, "gasPrice":web3.utils.toHex(gas_price),"gasLimit":web3.utils.toHex(210000),"to":contractAddress,"value":"0x0","data":contract.methods.transfer(toAddress, amount).encodeABI(),"nonce":web3.utils.toHex(nonce)} 
+```
+We will feed `rawTransaction` as the argument of the new transaction `new Tx` below and sign the transaction by `transaction.sign`, which requires the private key we have defined earlier. Then, the transaction needs to be announced to the Avalanche blockchain via `web3.eth.sendSignedTransaction`. Remember that we are interacting with the Avalanche blockchain via ETH tools because the C-chain is an instance of the Ethereum Virtual Machine. 
+
+```bash
     var transaction = new Tx(rawTransaction)
     transaction.sign(privateKey)
     web3.eth.sendSignedTransaction('0x' + transaction.serialize().toString('hex'))
 }
+```
+
+It is good practice to have what we have below to catch a possible error in the main function. 
+
+```bash
 main().catch((err) => {
     console.log("We have encountered an error!")
     console.error(err)
 })
 
-async function shit_getBalance() {
+async function PNG_getBalance() {
     let minABI = [
         // balanceOf
         {
@@ -153,7 +182,13 @@ async function shit_getBalance() {
       ];
     let contract = new web3.eth.Contract(minABI,tokenAddress);  
     balance = await contract.methods.balanceOf(wallet.address).call();
-    converted_balance = web3.utils.fromWei(balance, 'ether') //web3.fromWei(balance, 'ether')
+    converted_balance = web3.utils.fromWei(balance, 'ether') 
     return converted_balance;
   }
 ```
+
+## Wrapping Up
+
+That’s it! This tutorial has taught you how to transfer AVAX native tokens from the C chain to an ETH wallet. Also, this has shown how Avalanche blockchain C chain is compatible with the usual web3 library. This is a powerful aspect of the Avalanche blockchain, as it allows Ethereum developers to easily port their work over to the Avalanche side.
+
+Try transferring your Fuji AVAX tokens by running this script and see if it worked. 
