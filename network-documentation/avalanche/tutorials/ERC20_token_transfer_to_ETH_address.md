@@ -54,7 +54,7 @@ eth_privatekey = wallet.privateKey;
 ```
 Up to this point, except for the introduction of ethereumjs-tx, it has been a repeat of AVAX C-chain to ETH address transfer tutorial. 
 
-Now comes the new learning material. Transferring tokens from one wallet to another is a transaction. In order to perform a transaction (as in, signing a transaction using the ethereumjs-tx module), certain information needs to be provided. The token address (also known as contract address) of the ERC-20 token (Pangolin in this case) needs to be provided. So, we are going to store the contract address and the ticker below. The token ticker is not needed but we are adding it for our own use.
+Now comes the new learning material. Transferring tokens from one wallet to another is a transaction. In order to perform a transaction (as in, signing a transaction using the ethereumjs-tx module), certain information needs to be provided. The token address (also known as contract address) of the ERC-20 token (Pangolin in this case) needs to be provided. So, we are going to store the contract address and the ticker below. The token ticker is not needed but we are adding it for our own use. A lot of the token contract addresses for Avalanche can be found [here](https://github.com/pangolindex/tokenlists/blob/main/aeb.tokenlist.json).
 
 ```bash
 const tokenAddress = "0x60781C2586D68229fde47564546784ab3fACA982"  
@@ -72,19 +72,27 @@ Logically, we also need provide the destination address. Put the destination add
 var toAddress = ""
 ```
 
+Below is where we set the number of tokens to be transferred. We have currently set it to 1 token (1e18). 
 ```bash
 var amount = web3.utils.toHex(1e18)
+```
+In signing a transaction using ethereumjs-tx, it is very important to provide the number of transactions that have occurred up to this point, associated with the address from which the tokens will be transferred. That number is called `nonce`. 
 
-// get transaction count, later will used as nonce
-//var count = web3.eth.getTransactionCount(myAddress);  
+```bash 
 async function main() {
+```
+To store the nonce from `await web3.eth.getTransactionCount`, because the output of the function is a promise, it needs to be wrapped in an async function (Javascript). `pending` as part of the argument will ensure that the operation waits until pending transactions are complete.
 
-    async function nonce_pesky () {                                                                      //nonce number, my man
+```bash 
+    async function nonce_funct () {                                                                      //nonce number, my man
         var nonce = await web3.eth.getTransactionCount(myAddress, 'pending');
-        return nonce
+        return num_transact
     }
-    var nonce_sir = await nonce_pesky(); // here the data will be return.
-    console.log("nonce numb", nonce_sir);
+```
+
+```bash 
+    var nonce_ = await nonce_funct(); // here the data will be return.
+    console.log("nonce numb", nonce);
 
 
     var privateKey = new Buffer.from( eth_privatekey.substring(2), 'hex')  
@@ -114,7 +122,7 @@ async function main() {
     // }
     // var gasslimit = await g_limit();
     // console.log("gaslimit",gasslimit)
-    var rawTransaction = {"from":myAddress, "gasPrice":web3.utils.toHex(gas_price),"gasLimit":web3.utils.toHex(210000),"to":contractAddress,"value":"0x0","data":contract.methods.transfer(toAddress, amount).encodeABI(),"nonce":web3.utils.toHex(nonce_sir)} 
+    var rawTransaction = {"from":myAddress, "gasPrice":web3.utils.toHex(gas_price),"gasLimit":web3.utils.toHex(210000),"to":contractAddress,"value":"0x0","data":contract.methods.transfer(toAddress, amount).encodeABI(),"nonce":web3.utils.toHex(nonce)} 
     var transaction = new Tx(rawTransaction)
     transaction.sign(privateKey)
     web3.eth.sendSignedTransaction('0x' + transaction.serialize().toString('hex'))
