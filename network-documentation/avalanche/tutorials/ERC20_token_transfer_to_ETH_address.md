@@ -29,7 +29,7 @@ If web3 and ethers are already installed from the previous tutorial, you can ski
 After installing the libraries, we need to import them in order to use the libraries to interact with the Avalanche C chain 
 
 ```bash
-var Tx = require('ethereumjs-tx');
+var Tx = require('ethereumjs-tx')
 var Web3 = require('web3')
 const { ethers } = require('ethers')
 ```
