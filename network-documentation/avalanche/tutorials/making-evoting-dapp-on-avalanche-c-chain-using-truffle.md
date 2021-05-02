@@ -38,7 +38,8 @@ mkdir evoting && cd evoting
 Use `npm` to install other dependencies
 
 ```text
-npm install express dotenv truffle-hdwallet-provider
+npm init
+npm install express dotenv truffle-hdwallet-provider --save
 ```
 
 Lastly, create a boilerplace truffle project:
@@ -46,6 +47,7 @@ Lastly, create a boilerplace truffle project:
 ```text
 truffle init
 ```
+This will setup our initial project structure. Smart contracts will be stored in the `contracts` folder, deployment functions for migrating smart contracts to the network will be stored in the `migrations` folder. And `build/contracts` folder would contain information about the deployed contract, ABI etc.
 
 ## Update truffle-config.js
 
@@ -184,7 +186,7 @@ When deploying smart contracts to the C-Chain, it will require some deployment c
 
 ### Fund your account
 
-Follow the steps in the [Transfer AVAX Between X-Chain and C-Chain]() tutorial to fund the newly created account. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments.
+Fund your account using the the faucet link https://faucet.avax-test.network/ and pasting your Fuji's C-Chain address in the input field or follow the steps in the [Transfer AVAX Between X-Chain and C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/transfer-avax-between-the-x-chain-and-c-chain) tutorial to fund the newly created account. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments.
 
 ## Run Migrations
 
@@ -193,8 +195,9 @@ Now everything is in place to run migrations and deploy the `Election` contract:
 ```javascript
 truffle migrate --network fuji
 ```
+This might take a while depending upon your internet connection or traffic on the network.
 
-You should see:
+On successfull execution of this command, you should see:
 
 ```javascript
 Compiling your contracts...
@@ -513,9 +516,11 @@ Server started at 3000
 
 * Visit http://localhost:3000 to interact with built dApp.
 
+* Don't forget to setup Metamask with `Fuji` testnet and also fund the account with Fuji c-chain test tokens in order to vote. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask). You may change address in the Metamask wallet and fund them in order to vote again.
+
+
 ![](https://j.gifs.com/A6qrxj.gif)
 
-* Don't forget to setup Metamask with `Fuji` testnet and also fund the account with Fuji c-chain test tokens in order to vote. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask).
 
 ## Congratulations!
 
