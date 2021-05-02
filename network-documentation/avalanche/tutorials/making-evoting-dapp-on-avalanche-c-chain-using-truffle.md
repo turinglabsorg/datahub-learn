@@ -62,6 +62,7 @@ const mnemonic = process.env.MNEMONIC;
 const APIKEY = process.env.APIKEY;
 
 module.exports = {
+  networks: {
     fuji: {
       provider: function() {
             return new HDWalletProvider(mnemonic, `https://avalanche--fuji--rpc.datahub.figment.io/apikey/${APIKEY}/ext/bc/C/rpc`)
@@ -150,7 +151,7 @@ contract Election {
 Create a new file in the `migrations` directory named `2_deploy_contracts.js`, and add the following block of code. This handles deploying the `Election` smart contract to the blockchain.
 
 ```javascript
-const Election = artifacts.require("Election");
+const Election = artifacts.require("./Election.sol");
 
 module.exports = function (deployer) {
   deployer.deploy(Election);
