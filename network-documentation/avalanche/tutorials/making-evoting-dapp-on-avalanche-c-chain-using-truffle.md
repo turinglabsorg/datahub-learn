@@ -2,9 +2,8 @@
 description: Learn how to use Truffle with the C-Chain
 ---
 
-# Setting up our Truffle project
+# Developing dApp on Fuji C-Chain using Trufflesuite
 
-[**The original tutorial can be found in the AVA Labs documentation here**](https://docs.avax.network/build/tutorials/smart-contracts/using-truffle-with-the-avalanche-c-chain). 
 
 ## Introduction
 
