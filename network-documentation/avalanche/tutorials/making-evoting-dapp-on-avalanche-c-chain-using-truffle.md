@@ -32,7 +32,7 @@ cd /path/to/directory
 Create and enter a new directory named `evoting`:
 
 ```javascript
-mkdir evoting; cd evoting
+mkdir evoting && cd evoting
 ```
 
 Use `npm` to install other dependencies
