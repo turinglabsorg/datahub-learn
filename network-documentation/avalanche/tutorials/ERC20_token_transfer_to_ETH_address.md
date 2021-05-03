@@ -202,6 +202,8 @@ async function PNG_getBalance() {
   }
 ```
 
+Remember that `ether` in `convrted_balance` above is just to massage the balance in a more presentable form. (1 ether = 10^9 Gwei)
+
 ## Wrapping Up
 
 That’s it! This tutorial has taught you how to transfer ERC-20 tokens from the C-chain to an ETH wallet. Remember that the C-chain uses the Ethereum Virtual Machine and is compatible with all of the key Ethereum tools.
