@@ -126,7 +126,7 @@ Another piece needed for issuing a transaction is what's called the ABI. The Con
     var contract = new web3.eth.Contract(abiArray, contractAddress, {from: myAddress})
 ```
 
-One last item needed, prior to issuing a transaction, and thereby transferring the ERC-20 token, is calculating a recent gas price. We will use `await web3.eth.getGasPrice()` function and wrap it in an async function, similar to what we did for `once` above. 
+One last item needed, prior to issuing a transaction, and thereby transferring the ERC-20 token, is calculating a recent gas price. We will use `await web3.eth.getGasPrice()` function and wrap it in an async function, similar to what we did for `nonce` above. 
 
 ```bash
     async function gas() {                                      
