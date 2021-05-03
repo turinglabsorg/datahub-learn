@@ -30,7 +30,8 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 
 # Checklist*:
 
-- [ ] I updated the `SUMMARY.md` file (FYI, It's needed only when you're adding/creating a new file like submitting a new tutorial, pathway section)
+- [ ] I updated the `SUMMARY.md` file (FYI, It's needed only when you're creating a new file like submitting a new tutorial, pathway section)
+- [ ] I created one tutorial for this PR (one PR <=> one tutorial)
 - [ ] I checked and read the contribution guide before making this PR [**HERE**](https://docs.google.com/document/d/13LWLrWzZ34M0ldWGeDANcWxw9nEWk3AX3VwXRBIOs1M/edit)  
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
