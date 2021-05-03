@@ -42,10 +42,6 @@ now that you have gained sudo more comands are executable
 
 vim is a text editor that is very powerfull, but difficult to use. here is a link to help you use vim:https://www.makeuseof.com/how-to-use-vim/
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-
-^here are some important dependencys to install 
-
 --npm install -g @celo/celocli
 
 ^installing the celo client onto your VM is an essential step 
@@ -58,15 +54,15 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
       . celo.env
 fi
 
-^this script says to source in celo.env every time it is refrenced 
+^this script says to source in celo.env every time it is refrenced. the celo.env file will not be read in unless you explicitly tell it to be. 
 
 curl -o celo.env https://gist.githubusercontent.com/alchemydc/ce712f6f3caa7ec79f15f930ed5904ed/raw/385c65b1d3f760854258bfd6dd8cbd135710b78f/celo.env 
 
-^use this link/script to create a new folder called celo.env where you can store your keys for the nodes for easy access this step is optional but is highly recomended for quality of life and general ease of acces to you keys. 
+^use this script to create a new folder called celo.env where you can store your keys for the nodes for easy access this step is optional but is highly recomended for quality of life and general ease of acces to you keys. 
 
 -curl -o start_celo.sh https://gist.githubusercontent.com/alchemydc/e28945f5059acd70969b39a50fd0f80a/raw/0d15cceb89ea86ca46df94441c06ecd88a4e6635/start_celo.sh
 
-^use this link/script to create a new folder for starting the geth console/light client. You can rename this to make the new comand what ever you like to pesronalize your celo comands.  
+^use this script to create a new folder for starting the geth console/light client. You can rename this to make the new comand what ever you like to pesronalize your celo comands.  
 
 curl -o celo.env https://gist.github.com/alchemydc/e28945f5059acd70969b39a50fd0f80a
 
@@ -89,7 +85,7 @@ docker run -v $PWD:/root/.celo --rm -it $CELO_IMAGE account new
 
 ^this is what creates your new node 
 
-than copy your new punlic account address
+than copy your new public account address
 
 (vim celo.env) to use vim to edit the celo.env file and past in your new public address 
 
@@ -97,13 +93,11 @@ paste in you account address into celo.env using shift insert
 
 use (exit vim) to exit vim 
 
-./start_celo.sh
+./start_celo.sh is the comand for starting the light client. this comand is created using the start_celo.sh github link 
 
-./start_celo.sh is the comand for starting the light client this comand is created using the start_celo.sh github link 
+to use the Celocli commands on your full node, you must have the celo light client running 
 
-to use the Celocli commands to check the integrity full node you must have the celo light client running 
-
-here are some quick helpugull comands to use:
+here are some quick helpfull comands to use on the node:
 
 (celocli node:synced) to make sure your node is running correctly 
 
@@ -118,4 +112,4 @@ Copy and past between the virtual mashine and your main mashine will not work. S
 
 another quality of life improvment is The screen resolution. naturaly it is low res and cannot be changed. to get dynamic screen resolution skip to 36:00 in https://www.youtube.com/watch?v=89U866LwzBw&t=280s
 
-knowing how to set up your own fullnode and light client is a great skill. A big bonus is Celo plans on setting up Celo rewards for thoes running nodes. Keep in mind this tutrial is not the only way to set up a full node. This method utilizes many usefull lynix/programing tools that can be very useful for beginer progamers and more experianced ones. I encurage experimenting with these tools and personalizing your node how you like it. Experimenting will this will expand your thinking and make you a more confident programer. thank you for reading until the end!  
+knowing how to set up your own fullnode and light client is a great skill. A big bonus is Celo plans on setting up Celo rewards for thoes running nodes. Keep in mind this tutrial is not the only way to set up a full node. This method utilizes many usefull lynix/programing tools that can be very useful for beginer progamers and more experianced ones. I encurage experimenting with these tools and personalizing your node how you like it. Experimenting with this will expand your thinking and make you a more confident programer. thank you for reading until the end!  
