@@ -4,24 +4,28 @@ description: Learn how to use Truffle with the C-Chain
 
 # Developing dApp on Fuji C-Chain using Trufflesuite
 
+## About the author
+Hi, I am [Raj Ranjan](https://rajranjan0608.github.io) and currently I am doing my graduation (B.Tech, 2018-22) in Computer Science from IIIT Guwahati, India. I love building blockchain applications and is always looking for oppurtunities to give back to the community. You may reach out to me on [Linkedin](https://www.linkedin.com/in/iamrajranjan), if you want to discuss about any project ideas, have doubt or anything like that. Hope you would like the tutorial ahead :)
 
 ## Introduction
 
+Hey, everyone. Today we will be learning how to code a decentralized application on Avalanche's Fuji network from scratch. It would be a simple dapp, in which we will be holding an election between the candidates. And users like you and me will be going to vote them. So, to vote easily and efficiently using the browser, we would also be writing client-side application to interact with the blockchain. For developing this dapplication we would be using Trufflesuite.
 [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
 
 ## Requirements
 
 You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service=avalanche) account and are familiar with [Avalanche's architecture](https://docs.avax.network/learn/platform-overview). You've also performed a cross-chain swap via the [Transfer AVAX Between X-Chain and C-Chain](https://docs.avax.network/build/tutorials/platform/transfer-avax-between-x-chain-and-c-chain) tutorial to get funds to your C-Chain address.
 
-## Dependencies
+## Prerequisites
 
 * [NodeJS](https://nodejs.org/en) v8.9.4 or later.
 * Truffle, which you can install with `npm install -g truffle`
-* Express.js, dotenv and truffle-hdwallet-provider
+* Metamask extension added to the browser, which you can add from [here](https://metamask.io/download.html)
+* Express.js, dotenv and truffle-hdwallet-provider (instructions to install these will be added later)
 
 ## Create truffle directory and install dependencies
 
-Open a new terminal tab to so we can create a `evoting` directory and install some further dependencies.
+Open a new terminal tab ,so that, we can create a `evoting` directory and install some further dependencies.
 
 First, navigate to the directory within which you intend to create your `evoting` working directory:
 
@@ -91,7 +95,7 @@ Note that we're setting the `gasPrice` and `gas` to the appropriate values for t
 
 * Now copy your Datahub's Avalanche Fuji testnet API key in the .env file as shown below.
 
-* Never share or commit your `.env` file. It contains your credentials like `mnemonics` and `API` key.
+* Never share or commit your `.env` file. It contains your credentials like `mnemonics` and `API` key. Therefore, it advised to add `.env` to your `.gitignore` file.
 
 ```javascript
 MNEMONIC="<avalanche-wallet-mnemonic>"
@@ -524,6 +528,10 @@ Server started at 3000
 
 ## Congratulations!
 
-You have successfully built a full fledged `dApp` and deployed the smart contract on `Fuji` test network using `Trufflesuite`. 
+You have successfully built a full fledged `dApp` and deployed the smart contract on `Fuji` test network using `Trufflesuite`. Along with that, we have also built the client side application for interacting with the network.
+  
+## What's next?
+
+The dapp which we built just now is a very simple e-voting application, where for every new election, we need to update the smart contract with new candidates and deploy it on the Avalanche network. So, in order make it more scalable and sophisticated, we would adding more features like creating custom elections, adding new candidates, setting up starting and ending dates for each election and much more in the upcoming tutorials.
   
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://discord.gg/fszyM7K)!
