@@ -55,6 +55,7 @@
     * [Creating An NFT—Part 1](network-documentation/avalanche/tutorials/creating-an-nft-part-1.md)
     * [Create NFTs with the Avalanche Wallet](network-documentation/avalanche/tutorials/create-nfts-with-the-avalanche-wallet.md)
     * [Transfer AVAX tokens from the C chain of your AVAX wallet to an ETH address \(Metamask, for example\)](network-documentation/avalanche/tutorials/avax_c_chain_to_eth_address_transfer_tutorial.md)
+    * [Transfer ERC-20 tokens from the C-chain of your AVAX wallet to an ETH address \(Metamask, for example\)](network-documentation/avalanche/tutorials/ERC20-token-transfer-to-ETH-address.md
 * [💰 Celo](network-documentation/celo/README.md)
   * [✏ Celo 101](network-documentation/celo/celo-101.md)
   * [🎮 RPC & REST API](network-documentation/celo/rpc-and-rest-api/README.md)
