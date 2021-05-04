@@ -8,7 +8,7 @@ description: Teaching how to Transfer ERC-20 tokens from C-chain to ETH address
 
 This tutorial was created by [Seongwoo Oh](https://github.com/blackwidoq). He is a student and an Avalanche novice.
 
-##Introduction
+## Introduction
 
 Continuing the theme of transfers of tokens, in this tutorial, we are going to learn how to programmatically transfer ERC-20 tokens from the C-chain to an ETH wallet.
 
