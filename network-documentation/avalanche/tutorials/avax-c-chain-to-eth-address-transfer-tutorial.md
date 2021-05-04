@@ -2,13 +2,17 @@
 description: Teaching how to Transfer AVAX native tokens from C chain to ETH address
 ---
 
+# Transfer AVAX tokens from the C chain of your AVAX wallet to an ETH address \(Metamask, for example\)
+
 ## About the author
 
 This tutorial was created by [Seongwoo Oh](https://github.com/blackwidoq). He is a student and an Avalanche novice.
 
-# Transfer AVAX tokens from the C chain of your AVAX wallet to an ETH address \(Metamask, for example\)
+## Introduction
 
 In this tutorial, we are going to learn how to programmatically transfer native AVAX tokens from the C chain to an ETH wallet.
+
+## Transfer of AVAX from C-chain to ETH address
 
 First, we need to import the appropriate libraries \(web3 and ethers\). So, let's begin by installing them first. Both web3.js and ethers.js are Ethereum Javascript APIs designed to help interact with the Ethereum blockchain. The C chain of Avalanche shares the same libraries. This allows Ethereum developers to migrate over to Avalanche with minimal effort.
 

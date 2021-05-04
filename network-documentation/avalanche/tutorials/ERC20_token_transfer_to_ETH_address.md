@@ -12,6 +12,8 @@ This tutorial was created by [Seongwoo Oh](https://github.com/blackwidoq). He is
 
 Continuing the theme of transfers of tokens, in this tutorial, we are going to learn how to programmatically transfer ERC-20 tokens from the C-chain to an ETH wallet.
 
+## Transfer of ERC-20 tokens from C-chain to ETH address
+
 Simply put, ERC-20 tokens are the tokens that meet the technical standards of the Ethereum blockchain. So, they natively reside on the Ethereum blockchain. Thanks to the C-chain's full Ethereum compatibility, one can transfer ERC-20 token using the Avalanche-Ethereum bridge, which can be found [here](https://aeb.xyz/#/transfer). 
 
 For the purpose of this tutorial, we are going to assume that you already have ERC-20 tokens (PNG and GRT) on the C-chain of your Avalanche wallet, as shown below (I transferred these tokens for the sake of learning how to do it). This module will walk you through transferring PNG tokens from an Avalanche C-chain address to an ETH address.    
