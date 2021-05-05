@@ -6,6 +6,14 @@ description: Learn what makes Polkadot unique and become a Relay Chain expert
 
 ## ![](../../.gitbook/assets/4129.png) Welcome to the Polkadot Pathway
 
+
+
+{% hint style="danger" %}
+**The faucet which disperses tokens required to complete this pathway is currently not operational. Check our** [**Discord**](https://discord.gg/fszyM7K) **for more information \(5/5/21 - 6pm EST\)**
+{% endhint %}
+
+
+
 Polkadot enables scalability by allowing specialized blockchains to communicate with each other in a secure, trust-free environment. It is built to connect and secure unique blockchains, whether they be public, permissionless networks, private consortium chains, or oracles, and other Web3 technologies. It enables an internet where independent blockchains can exchange information under common security guarantees.
 
 Learn what makes it unique and build your first project to **earn 1.1 DOTs**!
