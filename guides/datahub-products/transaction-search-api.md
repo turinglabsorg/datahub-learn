@@ -24,8 +24,22 @@ Search transactions and protocol events any way you want, if it has happened, it
 
 Whether you are on Celo, Polkadot, Terra, or any of our supported protocols, search transactions exactly the same way so you don’t have to write additional code. It offers a one-time API integration, giving you access to multiple protocols within the same interface. Transaction Search is a JSON API that is easy to manipulate and integrate in your DApp. 
 
-## How it works 
+## **Use cases**
 
-The Transaction Search API gathers data \(like blocks, transactions, and smart contract information\) and maps it into a standardized format across protocols. It then indexes all the data accordingly allowing searches on different parameters.  
+### **User transaction history**
+
+With Transaction Search, DApp developers can provide a filterable list of their past transactions to users so that they can keep track of incoming and outgoing transactions, complete accounting audits, or even gain rewards based on their activity. 
+
+### Transaction triggers 
+
+With Transaction Search, DApp developers can create triggers based on incoming and outgoing transactions so they can update their database and user-facing data automatically. 
+
+### User notifications 
+
+With Transaction Search, DApp developers can notify their users about past events like balance changes, transactions processed, and more so users are kept informed and are incentivized to return to the app. 
+
+### Do more with search
+
+Transaction Search API returns much more information about the entire network activity on the event level. You can search for governance information, slashings, delegation data, and other events happening in the network.  
 
 

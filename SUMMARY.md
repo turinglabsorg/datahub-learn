@@ -19,6 +19,7 @@
 
 * [📍 DataHub Products](guides/datahub-products/README.md)
   * [Transaction Search API](guides/datahub-products/transaction-search-api.md)
+  * [Staking API](guides/datahub-products/staking-api.md)
 * [🏭 DataHub Infrastructure](guides/datahub-infrastructure.md)
 * [🏁 Get Started With DataHub](guides/getting-started-with-datahub.md)
 * [🚨 Quotas & Rate Limits](guides/rate-limits.md)
