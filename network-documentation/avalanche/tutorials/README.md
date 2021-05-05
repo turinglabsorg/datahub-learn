@@ -78,5 +78,5 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 ## Transfer ERC-20 tokens from C-chain of your AVAX wallet to an ETH address
 
-{% page-ref page="ERC20-token-transfer-to-ETH-address.md" %}
+{% page-ref page="erc20-token-transfer-to-eth-address.md" %}
 

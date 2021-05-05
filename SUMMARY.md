@@ -17,7 +17,8 @@
 
 ## 📖 DataHub Guides <a id="guides"></a>
 
-* [📍 DataHub Products](guides/datahub-products.md)
+* [📍 DataHub Products](guides/datahub-products/README.md)
+  * [Transaction Search API](guides/datahub-products/transaction-search-api.md)
 * [🏭 DataHub Infrastructure](guides/datahub-infrastructure.md)
 * [🏁 Get Started With DataHub](guides/getting-started-with-datahub.md)
 * [🚨 Quotas & Rate Limits](guides/rate-limits.md)
@@ -56,7 +57,7 @@
     * [Create NFTs with the Avalanche Wallet](network-documentation/avalanche/tutorials/create-nfts-with-the-avalanche-wallet.md)
     * [Making an e-Voting dApp on Avalanche Fuji network using Trufflesuite](network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle.md)
     * [Transfer AVAX tokens from the C chain of your AVAX wallet to an ETH address \(Metamask, for example\)](network-documentation/avalanche/tutorials/avax-c-chain-to-eth-address-transfer-tutorial.md)
-    * [Transfer ERC-20 tokens from the C-chain of your AVAX wallet to an ETH address \(Metamask, for example\)](network-documentation/avalanche/tutorials/ERC20-token-transfer-to-ETH-address.md)
+    * [Transfer ERC-20 tokens from the C-chain of your AVAX wallet to an ETH address \(Metamask, for example](network-documentation/avalanche/tutorials/erc20-token-transfer-to-eth-address.md)
 * [💰 Celo](network-documentation/celo/README.md)
   * [✏ Celo 101](network-documentation/celo/celo-101.md)
   * [🎮 RPC & REST API](network-documentation/celo/rpc-and-rest-api/README.md)

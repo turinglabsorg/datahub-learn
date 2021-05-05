@@ -2,15 +2,15 @@
 description: Learn how to use Truffle with the C-Chain
 ---
 
-# Developing dApp on Fuji C-Chain using Trufflesuite
+# Making an e-Voting dApp on Avalanche Fuji network using Trufflesuite
 
 ## About the author
-Hi, I am [Raj Ranjan](https://rajranjan0608.github.io) and currently I am doing my graduation (B.Tech, 2018-22) in Computer Science from IIIT Guwahati, India. I love building blockchain applications and is always looking for oppurtunities to give back to the community. You may reach out to me on [Linkedin](https://www.linkedin.com/in/iamrajranjan), if you want to discuss about any project ideas, have doubt or anything like that. Hope you would like the tutorial ahead :)
+
+Hi, I am [Raj Ranjan](https://rajranjan0608.github.io) and currently I am doing my graduation \(B.Tech, 2018-22\) in Computer Science from IIIT Guwahati, India. I love building blockchain applications and is always looking for oppurtunities to give back to the community. You may reach out to me on [Linkedin](https://www.linkedin.com/in/iamrajranjan), if you want to discuss about any project ideas, have doubt or anything like that. Hope you would like the tutorial ahead :\)
 
 ## Introduction
 
-Hey, everyone. Today we will be learning how to code a decentralized application on Avalanche's Fuji network from scratch. It would be a simple dapp, in which we will be holding an election between the candidates. And users like you and me will be going to vote them. So, to vote easily and efficiently using the browser, we would also be writing client-side application to interact with the blockchain. For developing this dapplication we would be using Trufflesuite.
-[Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
+Hey, everyone. Today we will be learning how to code a decentralized application on Avalanche's Fuji network from scratch. It would be a simple dapp, in which we will be holding an election between the candidates. And users like you and me will be going to vote them. So, to vote easily and efficiently using the browser, we would also be writing client-side application to interact with the blockchain. For developing this dapplication we would be using Trufflesuite. [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
 
 ## Requirements
 
@@ -21,7 +21,7 @@ You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service
 * [NodeJS](https://nodejs.org/en) v8.9.4 or later.
 * Truffle, which you can install with `npm install -g truffle`
 * Metamask extension added to the browser, which you can add from [here](https://metamask.io/download.html)
-* Express.js, dotenv and truffle-hdwallet-provider (instructions to install these will be added later)
+* Express.js, dotenv and truffle-hdwallet-provider \(instructions to install these will be added later\)
 
 ## Create truffle directory and install dependencies
 
@@ -51,6 +51,7 @@ Lastly, create a boilerplace truffle project:
 ```text
 truffle init
 ```
+
 This will setup our initial project structure. Smart contracts will be stored in the `contracts` folder, deployment functions for migrating smart contracts to the network will be stored in the `migrations` folder. And `build/contracts` folder would contain information about the deployed contract, ABI etc.
 
 ## Update truffle-config.js
@@ -92,9 +93,7 @@ Note that we're setting the `gasPrice` and `gas` to the appropriate values for t
 ## Add .env file
 
 * First of all, we need to create an account on Avalanche network. Please visit [Avalanche Wallet](https://wallet.avax.network/) to create your account and save your mnemonics in the .env file.
-
 * Now copy your Datahub's Avalanche Fuji testnet API key in the .env file as shown below.
-
 * Never share or commit your `.env` file. It contains your credentials like `mnemonics` and `API` key. Therefore, it advised to add `.env` to your `.gitignore` file.
 
 ```javascript
@@ -190,7 +189,7 @@ When deploying smart contracts to the C-Chain, it will require some deployment c
 
 ### Fund your account
 
-Fund your account using the the faucet link https://faucet.avax-test.network/ and pasting your Fuji's C-Chain address in the input field or follow the steps in the [Transfer AVAX Between X-Chain and C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/transfer-avax-between-the-x-chain-and-c-chain) tutorial to fund the newly created account. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments.
+Fund your account using the the faucet link [https://faucet.avax-test.network/](https://faucet.avax-test.network/) and pasting your Fuji's C-Chain address in the input field or follow the steps in the [Transfer AVAX Between X-Chain and C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/transfer-avax-between-the-x-chain-and-c-chain) tutorial to fund the newly created account. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments.
 
 ## Run Migrations
 
@@ -199,6 +198,7 @@ Now everything is in place to run migrations and deploy the `Election` contract:
 ```javascript
 truffle migrate --network fuji
 ```
+
 This might take a while depending upon your internet connection or traffic on the network.
 
 On successfull execution of this command, you should see:
@@ -279,9 +279,7 @@ The information and ABI of the deployed contract is present in the `/build/contr
 ## Building user interface for interacting with the blockchain
 
 * Make `src` directory where we will keep all our `web2` files, for interacting with the blockchain.
-
 * Go to the `src` directory using `cd src`
-
 * Make a new file `server.js` . Put the following code inside the file.
 
 ```javascript
@@ -310,7 +308,7 @@ app.listen(process.env.PORT || 3000, () => {
 
 * Now make new file `index.html` and put the following code inside the file.
 
-```html
+```markup
 <!DOCTYPE html>
 
 <html lang="en">
@@ -327,9 +325,9 @@ app.listen(process.env.PORT || 3000, () => {
 
             <!-- Loading will appear until blockchain data is loaded -->
             <center id='loader' style="margin:20px;">Loading...</center>
-            
+
             <br><br>
-            
+
             <!-- Blockchain data would appear here -->
             <div id="content" style="display:none" class="container" style="margin-top:30px;">
                 <!-- Table for fetching election data of the candidates -->
@@ -340,10 +338,10 @@ app.listen(process.env.PORT || 3000, () => {
                         <td>Votes</td>
                     </tr>
                     <tbody id="candidateResults">
-    
+
                     </tbody>
                 </table>
-    
+
                 <!-- Form to submit vote to a candidate -->
                 <form onSubmit="App.castVote(); return false;" style="display:none">
                     <div class="form-group">
@@ -356,7 +354,7 @@ app.listen(process.env.PORT || 3000, () => {
                         </center>
                     </div>
                 </form>
-    
+
                 <!-- This would appear and form will be hidden if the address has already voted -->
                 <div id="hasVoted" style="display:none; text-align: center">
                     <b>Thank you for voting !!!</b>
@@ -367,7 +365,7 @@ app.listen(process.env.PORT || 3000, () => {
 
   <!--jQuery CDN-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  
+
   <!--web3 module for interacting with blockchain-->
   <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
 
@@ -453,7 +451,7 @@ var App = {
 
     $("#candidateResults").html("");
     $("#candidatesSelect").html("");
-      
+
     for(var i=1; i <= candidatesCount; i++) {
       const candidate = await App.election.candidates(i);
 
@@ -513,25 +511,24 @@ $(() => {
 window.App = App;
 ```
 
-* Now run `node server.js` in the `src` directory. This should run till you want to interact with the contract. Your output would look like this 
-```
-Server started at 3000
-```
+* Now run `node server.js` in the `src` directory. This should run till you want to interact with the contract. Your output would look like this
 
-* Visit http://localhost:3000 to interact with built dApp.
+  ```text
+  Server started at 3000
+  ```
 
+* Visit [http://localhost:3000](http://localhost:3000) to interact with built dApp.
 * Don't forget to setup Metamask with `Fuji` testnet and also fund the account with Fuji c-chain test tokens in order to vote. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask). You may change address in the Metamask wallet and fund them in order to vote again.
 
-
 ![](https://j.gifs.com/A6qrxj.gif)
-
 
 ## Congratulations!
 
 You have successfully built a full fledged `dApp` and deployed the smart contract on `Fuji` test network using `Trufflesuite`. Along with that, we have also built the client side application for interacting with the network.
-  
+
 ## What's next?
 
 The dapp which we built just now is a very simple e-voting application, where for every new election, we need to update the smart contract with new candidates and deploy it on the Avalanche network. So, in order make it more scalable and sophisticated, we would adding more features like creating custom elections, adding new candidates, setting up starting and ending dates for each election and much more in the upcoming tutorials.
-  
+
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://discord.gg/fszyM7K)!
+

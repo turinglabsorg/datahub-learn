@@ -17,11 +17,13 @@ In this tutorial, we are going to learn how to programmatically transfer native 
 First, we need to import the appropriate libraries \(web3 and ethers\). So, let's begin by installing them first. Both web3.js and ethers.js are Ethereum Javascript APIs designed to help interact with the Ethereum blockchain. The C chain of Avalanche shares the same libraries. This allows Ethereum developers to migrate over to Avalanche with minimal effort.
 
 We will install the ethers.js library by entering the following line into the terminal
+
 ```bash
 $ npm install ethers
 ```
 
 and install the web3.js library by entering the following line into the terminal.
+
 ```bash
 $ npm install web3
 ```
@@ -106,3 +108,4 @@ main().catch((err) => {
 That’s it! This tutorial has taught you how to transfer AVAX native tokens from the C chain to an ETH wallet. Also, this has shown how Avalanche blockchain C chain is compatible with the usual web3 library. This is a powerful aspect of the Avalanche blockchain, as it allows Ethereum developers to easily port their work over to the Avalanche side.
 
 Try transferring your Fuji AVAX tokens by running this script and see if it worked.
+
