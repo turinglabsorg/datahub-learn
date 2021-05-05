@@ -14,5 +14,3 @@ Learn about the API available via Matic [**DataHub**](https://datahub.figment.io
 
 {% page-ref page="matic.js-api.md" %}
 
-{% page-ref page="web3.md" %}
-

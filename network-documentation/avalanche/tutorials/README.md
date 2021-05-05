@@ -68,5 +68,11 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="deploy-pangolin-to-your-local-testnet-and-create-token-pair.md" %}
 
+## Transfer AVAX tokens from C-chain of your AVAX wallet to an ETH address
 
+{% page-ref page="avax-c-chain-to-eth-address-transfer-tutorial.md" %}
+
+## Transfer ERC-20 tokens from C-chain of your AVAX wallet to an ETH address
+
+{% page-ref page="ERC20-token-transfer-to-ETH-address.md" %}
 

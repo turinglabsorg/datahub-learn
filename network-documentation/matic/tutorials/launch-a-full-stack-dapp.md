@@ -29,9 +29,10 @@ If you need to update node:
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash nvm install --ltsnvm use lts
 ```
 
-  2. Metamask
+1. Metamask
 
 You can download the Metamask extension by using this link: [https://metamask.io/](https://metamask.io/)
+
 ## What are we building?
 
 We plan to build a Decentralized Airbnb that incorporates three main functionalities:
@@ -43,6 +44,7 @@ We plan to build a Decentralized Airbnb that incorporates three main functionali
 Go ahead and clone the [repository](https://github.com/maticnetwork/ethindia-workshop) and install dependencies and then run `npm install`
 
 ## Setup
+
 ### Setting up Data Structures
 
 We’d like a property with a name, description, owner and a price to be rented.
