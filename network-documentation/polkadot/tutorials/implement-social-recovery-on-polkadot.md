@@ -590,22 +590,24 @@ const main = async () => {
   const Alice = keyring.addFromUri(process.env.ALICE_MNEMONIC);
   const AliceProxy = keyring.addFromUri(process.env.PROXY_MNEMONIC);
   
-  // 4. Close & Remove recovery config
-  const closeHash = await api.tx.recovery
-    .closeRecovery(AliceProxy.address)
-    .signAndSend(Alice);
-  console.log(`closeRecovery tx: https://westend.subscan.io/extrinsic/${closeHash}`);
+  // 4. Define an array of transactions
+  const transactions = [
+    api.tx.recovery.closeRecovery(AliceProxy.address),
+    api.tx.recovery.removeRecovery(),
+  ];
   
-    // 5. Close recovery config
-  const removeHash = await api.tx.recovery
-    .removeRecovery()
-    .signAndSend(Alice, { tip: 10000000000 });
-  console.log(`removeRecovery tx: https://westend.subscan.io/extrinsic/${removeHash}`);
+  // 5. Close & Remove recovery config
+  const closeHash = await api.tx.utility
+    .batch(transactions)
+    .signAndSend(Alice);
+  console.log(`Required values  : .batch([transactions])`);     
+  console.log(`Submitted values : .batch(${JSON.stringify(transactions, null, 2)})`);
+  console.log(`batch() tx: https://westend.subscan.io/extrinsic/${closeHash}`);  
   
   // 6. Refund the Faucet
   const txHash = await api.tx.balances
     .transfer(figmentFaucet, AMOUNT_TO_SEND)
-    .signAndSend(Alice, { tip: 10000000000 } );
+    .signAndSend(Alice, { tip: 10000000000 });
   console.log(`transfer() tx: https://westend.subscan.io/extrinsic/${txHash}`);
 
 };
