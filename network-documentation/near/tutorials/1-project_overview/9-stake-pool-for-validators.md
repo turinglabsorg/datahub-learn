@@ -259,6 +259,7 @@ near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_contract_storage_usage
 # returns storage usage costs based on current storage byte cost and breaks down who is paying the storage bill
 near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_storage_usage_costs
 
+# returns a breakdown of all NEAR balances
 near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_near_balances
 
 near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_accounts
@@ -297,7 +298,32 @@ managed balances and how they fit into the overall big picture.
     - the treasury is used to pay out dividends by burning STAKE for treasury earnings
     - the treasury balance correlates to the dividend payout - the more funds that the contract owner moves into the treasury,
       the higher the dividend
+    
+Internally contract balances are stored using a numeric ID, which are listed in the `balances` section:
 
+```text
+near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_near_balances
+
+{
+  total: '74007102668152498690300000000',
+  accounts: '7860000000000000000001',
+  balances: {
+    '1955299460766524333040021403508226880': '100000000000000000000000',        // CONTRACT_LOCKED_STORAGE_BALANCE
+    '1955705469859818043123742456310621056': '74002187045471879361699999999'    // TOTAL_UNSTAKED_BALANCE
+  },
+  owner: '4807762680619328600000000',
+  locked: '0'
+}
+```
+In the above sample output, we can see that all funds have been unstaked in the pool.
+
+The corresponding contract balance IDs are defined as:
+```rust
+pub const CONTRACT_LOCKED_STORAGE_BALANCE: BalanceId = BalanceId(1955299460766524333040021403508226880);
+pub const TOTAL_STAKED_BALANCE: BalanceId = BalanceId(1956973021105502521442959170292258855);
+pub const TOTAL_UNSTAKED_BALANCE: BalanceId = BalanceId(1955705469859818043123742456310621056);
+pub const UNSTAKED_LIQUIDITY_POOL: BalanceId = BalanceId(1955784487678443851622222785149485288);
+```
 
 [1]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/8-stake-pool-contract#how-to-operate-the-stake-pool-contract
 [2]: https://docs.near.org/docs/tools/near-cli
