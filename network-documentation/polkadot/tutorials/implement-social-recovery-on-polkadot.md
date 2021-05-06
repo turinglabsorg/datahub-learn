@@ -594,7 +594,7 @@ const main = async () => {
   const removeHash = await api.tx.recovery
     .closeRecovery(AliceProxy.address)
     .signAndSend(Alice);
-  console.log(`removeRecovery tx: https://westend.subscan.io/extrinsic/${removeHash}`);
+  console.log(`closeRecovery tx: https://westend.subscan.io/extrinsic/${removeHash}`);
   
     // 5. Close recovery config
   const removeHash = await api.tx.recovery
