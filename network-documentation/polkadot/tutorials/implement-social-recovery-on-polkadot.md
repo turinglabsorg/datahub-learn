@@ -41,7 +41,8 @@ npm install --save dotenv @polkadot/api
 
 When we copy and paste all four of these commands into a terminal, the first three will execute in sequence. `npm init -y` will output the contents of the default `package.json` to the terminal. `npm install` will be on the commandline, however we must still **press enter** to start the installation process.
 
-Once the installation process is complete, Create an `.env` file in the working directory \(`/polkadot_sr`\). For convenience, copy and paste the template below. Read more about `dotenv`in our handy [quick-reference guide](dotenv-and-.env.md). Also, remember to replace `API_KEY` with a valid DataHub API key from the [Polkadot Services Dashboard](https://datahub.figment.io/services/polkadot).
+Once the installation process is complete, Create an `.env` file in the working directory  
+\(`/polkadot_sr`\). For convenience, copy and paste the template below. Read more about `dotenv`in our handy [quick-reference guide](dotenv-and-.env.md). Also, remember to replace `API_KEY` with a valid DataHub API key from the [Polkadot Services Dashboard](https://datahub.figment.io/services/polkadot).
 
 {% tabs %}
 {% tab title="/polkadot\_sr/.env" %}
@@ -425,6 +426,10 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 
 `initiateRecovery()` creates an active recovery request in storage, which then needs to be vouched for by our social recovery contacts. If `closeRecovery()` is called, the active recovery request will be removed, also refunding the `recoveryDeposit` to the recoverable account, Alice.
 
+Run `node initiate_recovery.js` :
+
+
+
 ## Vouch for recovery
 
 ![](../../../.gitbook/assets/vouchfix.png)
@@ -539,7 +544,7 @@ const main = async () => {
 
   // 3. Initialize accounts
   const Alice = keyring.addFromUri(process.env.ALICE_MNEMONIC);
-  const AliceProxy= keyring.addFromUri(process.env.PROXY_MNEMONIC);
+  const AliceProxy = keyring.addFromUri(process.env.PROXY_MNEMONIC);
 
   // 4. Use asRecovered to bond 0.1 WND for our lost proxy account
   const call = await api.tx.balances.transfer(figmentFaucet, AMOUNT_TO_SEND);
@@ -599,7 +604,7 @@ const main = async () => {
   // 5. Close & Remove recovery config
   const closeHash = await api.tx.utility
     .batch(transactions)
-    .signAndSend(Alice, {tip: );
+    .signAndSend(Alice, { tip: 10000000000 } );
   console.log(`Required values  : .batch([transactions])`);     
   console.log(`Submitted values : .batch(${JSON.stringify(transactions, null, 2)})`);
   console.log(`batch() tx: https://westend.subscan.io/extrinsic/${closeHash}`);  
@@ -618,6 +623,8 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 {% endtabs %}
 
 We will clean up the Recovery configuration by first calling `closeRecovery()` and then `removeRecovery()` . This will refund the deposit we placed earlier to Alice, then send the WND tokens back to the Figment Faucet so that we are not unnecessarily tying up tokens. It must be understood that `removeRecovery()` can only be called once `closeRecovery()` __has been called on any active recovery requests_._ 
+
+Run `node remove_recovery.js` :
 
 ## Conclusion
 
