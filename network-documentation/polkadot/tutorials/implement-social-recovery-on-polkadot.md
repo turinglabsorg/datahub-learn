@@ -86,8 +86,8 @@ const main = async () => {
   
   const mnemonic = mnemonicGenerate();
   const newAccount = await keyring.addFromUri(mnemonic);
-  console.log(`address: ${newAccount.address}`);
-  console.log(`mnemonic: ${mnemonic}`);
+  console.log(`Address: ${newAccount.address}`);
+  console.log(`Mnemonic: ${mnemonic}`);
 };
 
 main().catch((err) => {console.error(err)}).finally(() => process.exit());
