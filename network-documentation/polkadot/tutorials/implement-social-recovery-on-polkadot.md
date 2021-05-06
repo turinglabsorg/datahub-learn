@@ -19,6 +19,8 @@ Because this is a means by which access to your funds could become compromised, 
 
 For the purposes of this tutorial, we will assume the role of all involved parties as a means of demonstrating the relevant code. It is up to developers to transfer this knowledge to a production environment in a responsible manner, keeping best practices and end-user security in mind.
 
+![](../../../.gitbook/assets/flow1_big.png)
+
 ## Setup
 
 Performing these setup steps for the purposes of following the tutorial should not be construed as the only way to implement social recovery. This is solely intended to enable readers to reach a minimum viable product, touching on all the relevant transaction types. This tutorial has two dependencies :
@@ -284,6 +286,8 @@ The submitted values are the hashed data for the transfer functions we set in th
 This step must be completed _**before**_ a seed phrase is lost!
 {% endhint %}
 
+![](../../../.gitbook/assets/flow2_big%20%281%29.png)
+
 Creating a recovery configuration in storage requires a deposit to be paid. The base amount is fixed, with an additional deposit fee based on the number of friends we set up to be our social recovery contacts. 
 
 Create a file called `create_recovery.js` and paste the following code :
@@ -376,6 +380,8 @@ At this point, we have the option to either remove the recovery store to regain 
 
 ## Initiate recovery from the proxy account
 
+![](../../../.gitbook/assets/flow3_big.png)
+
 Create a file called `initiate_recovery.js` and paste the following code :
 
 {% tabs %}
@@ -418,6 +424,8 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 `initiateRecovery()` creates an active recovery request in storage, which then needs to be vouched for by our social recovery contacts. If `closeRecovery()` is called, the active recovery request will be removed, also refunding the `recoveryDeposit` to the recoverable account, Alice.
 
 ## Vouch for recovery
+
+![](../../../.gitbook/assets/flow4_big.png)
 
 Create a file called `vouch_recovery.js` and paste the following code :
 
@@ -462,6 +470,8 @@ Once these transactions are successful, the proxy account will be able to claim 
 
 ## Claim a recovery configuration
 
+![](../../../.gitbook/assets/flow5_big.png)
+
 Create a file called `claim_recovery.js` and paste the following code :
 
 {% tabs %}
@@ -496,6 +506,8 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 We must wait for confirmation from our social recovery contacts that they have done their part before proceeding to claim the recovery configuration. It is important to note that `claimRecovery()` will fail if it is called before the `THRESHOLD` of `vouchRecovery()` functions have been successful.
 
 ## Send transactions as the recovered account
+
+![](../../../.gitbook/assets/flow6_big.png)
 
 Create a file called `use_recovery.js` and paste the following code :
 
@@ -569,7 +581,7 @@ const main = async () => {
   })
   
   // 2. Define relevant constants  
-  const AMOUNT_TO_SEND = 13000000000000; // 13 WND
+  const AMOUNT_TO_SEND = 12000000000000; // 12 WND
   const figmentFaucet = '5Fbm5fa1W9FhoCLBu8Tak7SWJHmbj4tRNyJrPifmLAq8PGp6';
 
   // 3. Initialize accounts
