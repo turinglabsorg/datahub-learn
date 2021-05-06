@@ -40,7 +40,7 @@ NEAR is a decentralized application platform that is secure enough to manage hig
 
 **Get Started with** [**NEAR DataHub today!** ](https://figment.io/datahub/near/)\*\*\*\*
 
-##  **Polkadot Tutorials**
+## \*\*\*\*![](../.gitbook/assets/dot-circle-solid-default.svg) **Polkadot Tutorials**
 
 Polkadot provides unprecedented economic scalability by enabling a common set of validators to secure multiple blockchains. Polkadot is an open-source project founded by the [Web3 Foundation](https://web3.foundation/).
 
