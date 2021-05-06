@@ -262,8 +262,10 @@ near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_storage_usage_costs
 # returns a breakdown of all NEAR balances
 near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_near_balances
 
+# returns metrics for account storage and NEAR balances
 near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_accounts
 
+# returns an aggregate metric view for all of the above metrics
 near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics
 ```
 
