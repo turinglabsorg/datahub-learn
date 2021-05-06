@@ -280,6 +280,8 @@ batch() tx: https://westend.subscan.io/extrinsic/...
 
 The submitted values are the hashed data for the transfer functions we set in the `transactions` array, which will be processed by the `batch()` function. Check the link to SubScan, to view the successful transaction. 
 
+![](../../../.gitbook/assets/utility-batchcompleted-socialrec.png)
+
 ## Create a recovery configuration
 
 {% hint style="warning" %}
@@ -425,7 +427,7 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 
 ## Vouch for recovery
 
-![](../../../.gitbook/assets/flow4_big.png)
+![](../../../.gitbook/assets/vouchfix.png)
 
 Create a file called `vouch_recovery.js` and paste the following code :
 
