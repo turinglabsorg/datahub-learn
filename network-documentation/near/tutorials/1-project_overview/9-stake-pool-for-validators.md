@@ -25,8 +25,8 @@ The contract is composed of 4 OysterPack SMART components:
 
 Each component in turn provides 1 or more contract API interfaces. We will be using a divide and conquer approach and 
 step through each component and API interface. The contract is implemented in Rust. Thus, I will review the contract API
-in Rust, and I will also show how to invoke the contract APIs using the [NEAR CLI][2]. All of the contract [source code][3] 
-is available on GitHub.
+in Rust, and I will also show how to invoke the contract APIs using the [NEAR CLI][2]. All the contract [source code][3] 
+is available on GitHub. I expect the validators to be more technical savvy
 
 ## Component Dependency Graph
 
@@ -177,6 +177,45 @@ API interface using the following method:
 ```shell
 # can only be invoked by the contract owner
 near --node_url $NEAR_NODE_URL call $CONTRACT ops_owner_grant_admin --accountId $NEAR_ACCOUNT
+```
+
+## Contract Component
+
+The **Contract Component** provides APIs for common contract management activities. 
+
+### Contract Ownership API
+
+The API supports the following use cases:
+
+1. Contract ownership can be transferred to another prospective account using the following workflow:
+
+![](../../../../.gitbook/assets/oysterpack-smart-contract-owner-transfer.png)
+
+2. The contract owner can withdraw funds that the contract owner is entitled too.
+   
+The contract owner available balance will always be zero for the STAKE pool contract because all contract transaction earnings
+go towards STAKE earnings. However, the STAKE Pool contract does contain a treasury account which is effectively owned
+by the contract owner. 
+
+#### Notes
+- When the transfer is finalized, any owner balance is transferred to the new owner. The owner can withdraw from its available balance before the transfer is finalized.
+
+![](../../../../.gitbook/assets/oysterpack-smart-contract-ownership.png)
+
+```shell
+near --node_url $NEAR_NODE_URL view $CONTRACT ops_owner
+near --node_url $NEAR_NODE_URL view $CONTRACT ops_owner_balance
+
+# Returns the prospective owner that the transfer is waiting on for finalization.
+near --node_url $NEAR_NODE_URL view $CONTRACT  ops_owner_prospective
+
+# NOTE: 1 yoctoNEAR deposit is required for transfer calls to force the owner to verify and confirm the transactions via the NEAR wallet
+near -node_url $NEAR_NODE_URL call $CONTRACT ops_owner_transfer --args '{"new_owner":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001
+near -node_url $NEAR_NODE_URL call $CONTRACT ops_owner_cancel_transfer --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001
+near -node_url $NEAR_NODE_URL call $CONTRACT ops_owner_finalize_transfer --accountId $NEAR_ACCOUNT  --amount 0.000000000000000000000001
+
+# NOTE: 1 yoctoNEAR deposit is required to force the owner to verify and confirm the transaction via the NEAR wallet
+near -node_url $NEAR_NODE_URL call $CONTRACT ops_owner_withdraw_balance --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001
 ```
 
 
