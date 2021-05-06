@@ -591,10 +591,10 @@ const main = async () => {
   const AliceProxy = keyring.addFromUri(process.env.PROXY_MNEMONIC);
   
   // 4. Close & Remove recovery config
-  const removeHash = await api.tx.recovery
+  const closeHash = await api.tx.recovery
     .closeRecovery(AliceProxy.address)
     .signAndSend(Alice);
-  console.log(`closeRecovery tx: https://westend.subscan.io/extrinsic/${removeHash}`);
+  console.log(`closeRecovery tx: https://westend.subscan.io/extrinsic/${closeHash}`);
   
     // 5. Close recovery config
   const removeHash = await api.tx.recovery
