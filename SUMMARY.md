@@ -55,6 +55,7 @@
     * [Creating A Variable-Cap Asset](network-documentation/avalanche/tutorials/creating-a-variable-cap-asset.md)
     * [Deploy Pangolin To Your Local Testnet And Create Token Pair](network-documentation/avalanche/tutorials/deploy-pangolin-to-your-local-testnet-and-create-token-pair.md)
     * [Creating An NFT—Part 1](network-documentation/avalanche/tutorials/creating-an-nft-part-1.md)
+    * [Create NFTs with the Avalanche Wallet](network-documentation/avalanche/tutorials/create-nfts-with-the-avalanche-wallet.md)
     * [Create, Mint and Transfer NFTs with the Avalanche Wallet](network-documentation/avalanche/tutorials/create-mint-transfer-nft.md)
     * [Making an e-Voting dApp on Avalanche Fuji network using Trufflesuite](network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle.md)
     * [Transfer AVAX tokens from the C chain of your AVAX wallet to an ETH address \(Metamask, for example\)](network-documentation/avalanche/tutorials/avax-c-chain-to-eth-address-transfer-tutorial.md)
