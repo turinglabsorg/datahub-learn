@@ -8,7 +8,11 @@ This tutorial is meant to serve as a guide for validators for managing and opera
 STAKE Pool][1] contract. If you wonder why I call it the "**next generation**" staking pool, then I refer you back to my previous
 tutorial. In the last tutorial I showed you how easy it was to deploy the STAKE pool contract using the STAKE Pool Factory
 contract and how to get started. As a validator, it is fundamental to know your staking pool contract in depth because
-it is core to running your validator business because it impacts your bottom line. 
+it is core to your validator business because it impacts your bottom line.
+
+> Even though the main target audience are validators, contract developers will also benefit. You will learn about OysterPack
+> SMART components and interfaces that you may leverage for your next contract to help you build smarter, faster, and better
+> on the NEAR platform. You will also benefit from my experience and gain insight into my thought process for contract design.
 
 # The Big Picture
 
@@ -217,6 +221,82 @@ near -node_url $NEAR_NODE_URL call $CONTRACT ops_owner_finalize_transfer --accou
 # NOTE: 1 yoctoNEAR deposit is required to force the owner to verify and confirm the transaction via the NEAR wallet
 near -node_url $NEAR_NODE_URL call $CONTRACT ops_owner_withdraw_balance --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001
 ```
+
+### Contract Operator API
+
+The operator API enables storage balance to be locked based on expected contract storage usage. When the STAKE pool contract
+is deployed, it will automatically lock funds to pay for 10K of contract storage, which is a conservative amount. The STAKE
+pool contract should not require more than 10K storage. Locking the funds ensures that there is always enough balance available
+on the contract to pay for storage for the contract to be operational.
+
+![](../../../../.gitbook/assets/oysterpack-smart-contract-operator.png)
+
+```shell
+# storage usage is specified in bytes
+near -node_url $NEAR_NODE_URL call $CONTRACT ops_operator_lock_storage_balance --args '{"storage_usage":10000}' --accountId $NEAR_ACCOUNT 
+
+# can only be invoked by the contract owner
+near --node_url $NEAR_NODE_URL call $CONTRACT ops_owner_grant_admin --accountId $NEAR_ACCOUNT
+```
+
+### Contract Metrics API
+
+This API enables key metrics to be monitored. Metrics track the following
+
+1. total registered accounts
+2. account storage usage
+3. account NEAR balances - from account storage balances
+4. contract NEAR balances - these are funds managed at the contract level - we'll take a closer look at these below
+
+![](../../../../.gitbook/assets/oysterpack-smart-contract-metrics.png)
+
+```shell
+near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_total_registered_accounts
+
+# returns total contract storage usage and total storage usage across all accounts 
+near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_contract_storage_usage
+
+# returns storage usage costs based on current storage byte cost and breaks down who is paying the storage bill
+near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_storage_usage_costs
+
+near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_near_balances
+
+near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_accounts
+
+near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics
+```
+
+#### STAKE Pool Contract Balances
+
+This is fundamental to understand because it's how all the "money" is managed. The diagram below shows all of the contract
+managed balances and how they fit into the overall big picture.
+
+> PAY ATTENTION HERE - This is the most critical diagram to understand how money is flowing within the contract.
+
+![](../../../../.gitbook/assets/oysterpack-smart-stake-pool-balances.png)
+
+1. **Account Locked Balance**
+   - is the portion of the total contract account balance that is currently locked by the NEAR protocol
+   - this will correspond to the total staked balance and unstaked balance that is locked
+2. **TOTAL_STAKED_BALANCE** 
+    - is used by the contract to track the total amount of NEAR that has been staked
+    - NOTE: this balance is related to the account locked balance. When the pool is online the account locked balance should
+      always be greater than or equal to the total staked balance.
+3. **TOTAL_USTAKED_BALANCE** and **UNSTAKED_LIQUIDITY_POOL**
+    - are used by the contract to track the total amount of NEAR that has been unstaked.
+    - the sum of the two balances is equal to the total unstaked balance
+    - liquidity is automatically added when stakers stake new funds while TOTAL_USTAKED_BALANCE > 0. When liquidity is added,
+      the funds are moved from the TOTAL_USTAKED_BALANCE into UNSTAKED_LIQUIDITY_POOL
+    - funds from the UNSTAKED_LIQUIDITY_POOL are avaialble for withdrawal on a first come first serve basis
+4. **Storage Balance** - this refers to the account storage balance
+5. **Transaction Gas Fees** and **Staking Rewards** flow into the contract's total staked balance, which links to the account locked balance
+6. **Contract Storage** and **CONTRACT_LOCKED_STORAGE_BALANCE**
+    - are balances that the contract owner is resposible for to pay for contract operational storage
+7. **Treasury**
+    - is a STAKE account balance owned by the STAKE contract itself
+    - the treasury is used to pay out dividends by burning STAKE for treasury earnings
+    - the treasury balance correlates to the dividend payout - the more funds that the contract owner moves into the treasury,
+      the higher the dividend
 
 
 [1]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/8-stake-pool-contract#how-to-operate-the-stake-pool-contract
