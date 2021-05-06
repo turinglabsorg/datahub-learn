@@ -327,7 +327,15 @@ pub const TOTAL_UNSTAKED_BALANCE: BalanceId = BalanceId(195570546985981804312374
 pub const UNSTAKED_LIQUIDITY_POOL: BalanceId = BalanceId(1955784487678443851622222785149485288);
 ```
 
+## Fungible Token Component
+
+Provides the API's that provide the STAKE token. These APIs are well documented, and I will defer to:
+- [The New and Improved Fungible Token Standard (NEP-141) Has Arrived][5]
+- [NEAR Fungible Token Standard][6]
+
 [1]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/8-stake-pool-contract#how-to-operate-the-stake-pool-contract
 [2]: https://docs.near.org/docs/tools/near-cli
 [3]: https://github.com/oysterpack/oysterpack-smart
 [4]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/5-account-storage
+[5]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/2-fungible-token
+[6]: https://nomicon.io/Standards/FungibleToken/README.html
