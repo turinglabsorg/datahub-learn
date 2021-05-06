@@ -223,6 +223,7 @@
     * [Transaction Search](network-documentation/polkadot/enriched-apis/transaction-search.md)
   * [🗺 Polkadot Pathway](network-documentation/polkadot/polkadot-pathway.md)
   * [💡 Tutorials](network-documentation/polkadot/tutorials/README.md)
+    * [Implement social recovery on Polkadot](network-documentation/polkadot/tutorials/implement-social-recovery-on-polkadot.md)
     * [Intro Pathway: Polkadot Basics](network-documentation/polkadot/tutorials/intro-pathway-polkadot-basics/README.md)
       * [1. Connecting to a Polkadot node with DataHub](network-documentation/polkadot/tutorials/intro-pathway-polkadot-basics/1.-connecting-to-a-polkadot-node-with-datahub.md)
       * [2. Create a Polkadot account](network-documentation/polkadot/tutorials/intro-pathway-polkadot-basics/2.-create-a-polkadot-account.md)
