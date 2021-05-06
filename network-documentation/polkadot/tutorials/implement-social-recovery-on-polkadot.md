@@ -144,7 +144,7 @@ const main = async () => {
     .signAndSend(Alice, {tip: 10000000000});
   console.log(`Required values  : .transfer(destination, amount)`);     
   console.log(`Submitted values : .transfer(${AliceProxy.address}, ${formatBalance(AMOUNT_TO_SEND)})`); // 1.0000 WND
-  console.log(`transfer() tx: https://westend.subscan.io/extrinsic/${txtransferHash}`); 
+  console.log(`transfer() tx: https://westend.subscan.io/extrinsic/${txTransferHash}`); 
 
   // 5. Create a new staking proxy
   const txAddHash = await api.tx.proxy
