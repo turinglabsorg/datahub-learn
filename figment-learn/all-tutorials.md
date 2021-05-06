@@ -40,7 +40,13 @@ NEAR is a decentralized application platform that is secure enough to manage hig
 
 **Get Started with** [**NEAR DataHub today!** ](https://figment.io/datahub/near/)\*\*\*\*
 
-## \*\*\*\*![](../.gitbook/assets/logo1.png) **Secret Tutorials** 
+##  **Polkadot Tutorials**
+
+Polkadot provides unprecedented economic scalability by enabling a common set of validators to secure multiple blockchains. Polkadot is an open-source project founded by the [Web3 Foundation](https://web3.foundation/).
+
+{% page-ref page="../network-documentation/polkadot/tutorials/" %}
+
+## ![](../.gitbook/assets/logo1.png) **Secret Tutorials** 
 
 Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network.
 
