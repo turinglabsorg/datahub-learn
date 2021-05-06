@@ -596,6 +596,12 @@ const main = async () => {
     .signAndSend(Alice);
   console.log(`removeRecovery tx: https://westend.subscan.io/extrinsic/${removeHash}`);
   
+    // 5. Close recovery config
+  const removeHash = await api.tx.recovery
+    .removeRecovery()
+    .signAndSend(Alice, { tip: 10000000000 });
+  console.log(`removeRecovery tx: https://westend.subscan.io/extrinsic/${removeHash}`);
+  
   // 6. Refund the Faucet
   const txHash = await api.tx.balances
     .transfer(figmentFaucet, AMOUNT_TO_SEND)
