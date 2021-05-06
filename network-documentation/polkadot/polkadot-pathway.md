@@ -7,7 +7,7 @@ description: Learn what makes Polkadot unique and become a Relay Chain expert
 ## ![](../../.gitbook/assets/4129.png) Welcome to the Polkadot Pathway
 
 {% hint style="danger" %}
-**Update - The faucet operated by** [**Figment Team**](https://faucet.figment.io/faucet)**, which disperses tokens required to complete this pathway is currently not operational, so for now you can use** [**Polkadot Westend Faucet** ](https://app.element.io/#/room/#westend_faucet:matrix.org)**to get the WND \(test tokens\) and Check our** [**Discord**](https://discord.gg/fszyM7K) **for more information \(6/5/21 - 8am EST\)**
+**The faucet which disperses tokens required to complete this pathway is currently not operational, and you won't be able to complete this pathway at the moment without getting test tokens. Check our** [**Discord**](https://discord.gg/fszyM7K) **for more information \(6/5/21 - 8am EST\)**
 {% endhint %}
 
 Polkadot enables scalability by allowing specialized blockchains to communicate with each other in a secure, trust-free environment. It is built to connect and secure unique blockchains, whether they be public, permissionless networks, private consortium chains, or oracles, and other Web3 technologies. It enables an internet where independent blockchains can exchange information under common security guarantees.
