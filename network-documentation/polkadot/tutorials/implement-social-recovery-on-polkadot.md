@@ -704,17 +704,22 @@ Run `node remove_recovery.js` :
 {% tabs %}
 {% tab title="Output of /polkadot\_sr/remove\_recovery.js" %}
 ```php
-Required values : .batch([transactions]) 
+Required values  : .batch([transactions])
 Submitted values : .batch([
- "0x8c041206085...",
- "0x0c041207085..." 
-]) 
-batch() tx: https://westend.subscan.io/extrinsic/... 
+  "0x8c041206a806dbe17a11f61c09bff38ef9a78cdd1fde311ff8ee09ef241a95052903be66",
+  "0x0c041207"
+])
+batch() tx: https://westend.subscan.io/extrinsic/...
+transfer() tx: https://westend.subscan.io/extrinsic/...
 ```
 {% endtab %}
 {% endtabs %}
 
-In this tutorial, we learned how to configure social recovery on Polkadot using functions like `createRecovery()` as well as the associated deposit fees. We learned how to use the `formatBalance()` helper function to display readable amounts. We covered how to create a Staking type proxy account, as well as batching multiple transactions.
+The events for successful removal of the recovery configuration and refund of the deposits to the Alice account will look similar to this on SubScan :
+
+![](../../../.gitbook/assets/remove_events.png)
+
+Congratulations! In this tutorial, we learned how to configure social recovery on Polkadot using functions like `createRecovery()` as well as transferring the associated deposit fees. We learned how to use the `formatBalance()` helper function to display readable amounts. We covered how to create a Staking type proxy account, as well as batching multiple transactions.
 
 We are now empowered to protect important assets on Polkadot with an additional layer of security that involves our friends.
 
