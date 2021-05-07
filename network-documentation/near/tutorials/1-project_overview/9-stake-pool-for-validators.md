@@ -27,7 +27,8 @@ The contract is composed of 4 OysterPack SMART components:
 3. Fungible Token
 4. Staking Pool
 
-Each component in turn provides 1 or more contract API interfaces. We will be using a divide and conquer approach and 
+Each component in turn provides 1 or more contract API interfaces. in the last tutorial we covered the staking pool APIs.
+We will pick up where we left off and cover the rest in this tutorial. We will be using a divide and conquer approach and 
 step through each component and API interface. The contract is implemented in Rust. Thus, I will review the contract API
 in Rust, and I will also show how to invoke the contract APIs using the [NEAR CLI][2]. All the contract [source code][3] 
 is available on GitHub. I expect the validators to be more technical savvy
