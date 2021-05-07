@@ -691,6 +691,13 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 
 We will clean up the recovery configuration by first calling `closeRecovery()` and then `removeRecovery()` . This will refund the deposit we placed earlier to Alice, then send the WND tokens back to the Figment Faucet so that we are not unnecessarily tying up tokens. It must be understood that `removeRecovery()` can only be called once `closeRecovery()` __has been called on any active recovery requests_._ 
 
+{% hint style="warning" %}
+_**Before running this code:**_  
+Check the available balance of the Alice account on SubScan. After the `recoveryDeposit` and the recovery configuration deposit have been recouped, there should be approximately 11-12 WND available to return to the faucet. If the Reserved balance of Alice is above the 1 WND required for the proxy account, then the other deposits have not been processed. We would therefore need to alter `AMOUNT-TO-SEND` so that the transfer is successful.
+
+We only need to return the available balance from our Alice account when we are done with the tutorial. If further testing of social recovery is necessary, do not proceed with this step. 
+{% endhint %}
+
 Run `node remove_recovery.js` :
 
 {% tabs %}
