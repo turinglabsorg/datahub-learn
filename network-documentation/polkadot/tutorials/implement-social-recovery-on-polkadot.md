@@ -19,8 +19,6 @@ Because this is a means by which access to your funds could become compromised, 
 
 For the purposes of this tutorial, we will assume the role of all involved parties as a means of demonstrating the relevant code. It is up to developers to transfer this knowledge to a production environment in a responsible manner, keeping best practices and end-user security in mind.
 
-![](../../../.gitbook/assets/flow1_big.png)
-
 ## Setup
 
 Performing these setup steps for the purposes of following the tutorial should not be construed as the only way to implement social recovery. This is solely intended to enable readers to reach a minimum viable product, touching on all the relevant transaction types. This tutorial has two dependencies :
@@ -104,6 +102,8 @@ In a terminal window, run `node create_account.js` 4 \(_four_\) times in order t
 
 Get Alice some funding to afford the deposit fees by going to [https://faucet.figment.io](https://faucet.figment.io) and entering the first address we generated. As we will need to pay for transactions during the tutorial, it will also be necessary to transfer some tokens to the other accounts. This will be covered as we proceed.
 
+![](../../../.gitbook/assets/flow1_big.png)
+
 ### Add a proxy account for Alice
 
 Create a file called `create_proxy.js` and paste the following code :
@@ -153,7 +153,7 @@ const main = async () => {
     .signAndSend(Alice, {tip: 10000000000});
   console.log(`\nproxyDepositBase \+ ( proxyDepositFactor * number of proxies )\n : ${formatBalance(DEPOSIT_BASE)} \+ ${formatBalance(DEPOSIT_FACTOR)} \= ${formatBalance(parseInt(DEPOSIT_BASE)+parseInt(DEPOSIT_FACTOR))}\n`);
   console.log(`Required values  : .addProxy(address, type, delay)`);     
-  console.log(`Submitted values : .addProxy(${AliceProxy.address}, ${PROXY_TYPE}, ${DELAY})`);
+  console.log(`Submitted values : .addProxy(${AliceProxy.address}, ${PROXY_TYPE}, ${DELAY_PERIOD})`);
   console.log(`addProxy() tx: https://westend.subscan.io/extrinsic/${txAddHash}\n`);  
 }
 
