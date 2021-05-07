@@ -102,8 +102,8 @@ near-figment call $CONTRACT storage_withdraw --accountId $NEAR_ACCOUNT --amount 
 # withdraw the specified amount from the account storage available balance
 near-figment call $CONTRACT storage_withdraw --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001 -args '{"amount":"1000000"}'
 
-near-figment call $CONTRACT_NAME storage_unregister --accountId oysterpack-2.testnet --amount 0.000000000000000000000001
-near-figment call $CONTRACT_NAME storage_unregister --args '{"force":true}' --accountId oysterpack-2.testnet --amount 0.000000000000000000000001
+near-figment call $CONTRACT storage_unregister --accountId oysterpack-2.testnet --amount 0.000000000000000000000001
+near-figment call $CONTRACT storage_unregister --args '{"force":true}' --accountId oysterpack-2.testnet --amount 0.000000000000000000000001
 ```
 
 ### Account Storage Usage API
@@ -386,51 +386,51 @@ API guide.
 
 ```shell
 # used to check if the STAKE pool is online or offline
-near-figment view $CONTRACT_NAME ops_stake_status
+near-figment view $CONTRACT ops_stake_status
 
 # used to check and monitor pool balances
-near-figment view $CONTRACT_NAME ops_stake_pool_balances
+near-figment view $CONTRACT ops_stake_pool_balances
 
 # returns the current staking fees
-near-figment view $CONTRACT_NAME ops_stake_fees
+near-figment view $CONTRACT ops_stake_fees
 
 # returns the current validator public key used for staking
-near-figment view $CONTRACT_NAME ops_stake_public_key
+near-figment view $CONTRACT ops_stake_public_key
 
 # returns the NEAR value of 1 STAKE token - value includes estimated earnings minus dividends
-near-figment view $CONTRACT_NAME ops_stake_token_value
+near-figment view $CONTRACT ops_stake_token_value
 # returns the NEAR value for the specified amount of STAKE
-near-figment view $CONTRACT_NAME ops_stake_token_value --args '{"amount":"5000000000000000000000000"}'
+near-figment view $CONTRACT ops_stake_token_value --args '{"amount":"5000000000000000000000000"}'
 # same as above except that earnings are collected before computing the NEAR value
 # includes the latest dividend earnings
-near-figment call $CONTRACT_NAME ops_stake_token_value_with_earnings --account_id $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_stake_token_value_with_earnings --account_id $NEAR_ACCOUNT
 
 # looks up the STAKE account balances for the specified account ID
-near-figment view $CONTRACT_NAME ops_stake_balance --args '{"account_id":"oysterpack.testnet"}'
+near-figment view $CONTRACT ops_stake_balance --args '{"account_id":"oysterpack.testnet"}'
 
 # stakes funds from account storage available balance
-near-figment call $CONTRACT_NAME ops_stake --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_stake --accountId $NEAR_ACCOUNT
 # stakes the attached deposit in addition to any account storage available balance
-near-figment call $CONTRACT_NAME ops_stake --accountId $NEAR_ACCOUNT --amount 0.1
+near-figment call $CONTRACT ops_stake --accountId $NEAR_ACCOUNT --amount 0.1
 
 # unstakes account's total staked balance
-near-figment call $CONTRACT_NAME ops_unstake --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_unstake --accountId $NEAR_ACCOUNT
 # unstakes the specified amount
-near-figment call $CONTRACT_NAME ops_unstake --accountId $NEAR_ACCOUNT --args '{"amount":"1000000000000000000000000"}'
+near-figment call $CONTRACT ops_unstake --accountId $NEAR_ACCOUNT --args '{"amount":"1000000000000000000000000"}'
 
 # restakes account's total unstaked balance
-near-figment call $CONTRACT_NAME ops_restake --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_restake --accountId $NEAR_ACCOUNT
 # restakes the specified amount from the account's unstaked balance
-near-figment call $CONTRACT_NAME ops_restake --accountId $NEAR_ACCOUNT --args '{"amount":"1000000000000000000000000"}'
+near-figment call $CONTRACT ops_restake --accountId $NEAR_ACCOUNT --args '{"amount":"1000000000000000000000000"}'
 
 # withdraws account's total unstaked available balance
-near-figment call $CONTRACT_NAME ops_stake_withdraw --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_stake_withdraw --accountId $NEAR_ACCOUNT
 # withdraws the specified amount from the account's unstaked available balance
-near-figment call $CONTRACT_NAME ops_stake_withdraw --accountId $NEAR_ACCOUNT --args '{"amount":"1000000000000000000000000"}'
+near-figment call $CONTRACT ops_stake_withdraw --accountId $NEAR_ACCOUNT --args '{"amount":"1000000000000000000000000"}'
 
 # convenience methods used to transfer STAKE tokens by specifying the amounts in NEAR - instead in STAKE via the FT APis
-near-figment call $CONTRACT_NAME ops_stake_transfer --accountId $NEAR_ACCOUNT --args '{"receiver_id":"oysterpack.testnet","amount":"1000000000000000000000000"}' --amount 0.000000000000000000000001
-near-figment call $CONTRACT_NAME ops_stake_transfer_call --accountId $NEAR_ACCOUNT--args '{"receiver_id":"oysterpack.testnet","amount":"1000000000000000000000000", "msg":""}' --amount 0.000000000000000000000001
+near-figment call $CONTRACT ops_stake_transfer --accountId $NEAR_ACCOUNT --args '{"receiver_id":"oysterpack.testnet","amount":"1000000000000000000000000"}' --amount 0.000000000000000000000001
+near-figment call $CONTRACT ops_stake_transfer_call --accountId $NEAR_ACCOUNT--args '{"receiver_id":"oysterpack.testnet","amount":"1000000000000000000000000", "msg":""}' --amount 0.000000000000000000000001
 ```
 
 ### NEAR STaking Pool API
@@ -443,7 +443,38 @@ fees will be deducted from the attached deposit.
 
 ### Staking Pool Treasury API
 
+The API provides convenience APIs to manage the treasurer permissions, which was discussed above. In addition, it provides
+APIs that affect overall STAKE yield:
+
+1. **ops_stake_treasury_deposit**
+   - Deposits any attached deposit into the treasury.
+   - This will effectively stake the deposit and mint STAKE for the treasury.
+   - This enables external sources of revenue to be deposited into the treasury.
+   - The entire deposit is staked. When minting STAKE, the conversion from NEAR -> STAKE is rounded down. Thus, the NEAR 
+     deposit remainder will also get staked, effectively distributing the funds to the current stakers.
+2. **ops_stake_treasury_distribution**
+   - Deposits and stakes any attached deposit, which effectively distributes the funds to all current STAKE owners.
+   - This enables external sources of revenue to be distributed to STAKE owners.
+   - If no deposit is made, then any collected earnings will simply be staked
+3. **ops_stake_treasury_transfer_to_owner**
+   - Remember that the treasury funds are effectively owned by the contract owner, i.e., the validator
+   - This enables the owner to withdraw funds from the treasury, which has the effect of decreasing the dividend payout
+
+![](../../../../.gitbook/assets/oysterpack-smart-stake-treasury.png)
+
+```shell
+near-figment call $CONTRACT ops_stake_treasury_deposit --accountId oysterpack.testnet --amount 10
+
+near-figment call $CONTRACT ops_stake_treasury_distribution --accountId oysterpack.testnet --amount 10
+
+near-figment call $CONTRACT ops_stake_treasury_transfer_to_owner --accountId oysterpack.testnet --args '{"amount":"1000000000000000000000000"}'
+```
+
 ### Staking Pool Operator API
+
+The staking pool operator APIs were well covered in the [previous tutorial][11]. 
+
+![](../../../../.gitbook/assets/oysterpack-smart-staking-pool-operator.png)
 
 ## It's a wrap folks
 
@@ -461,10 +492,12 @@ resource to take it any further. I have written and provided the code and shared
 rest is up to the validator and NEAR community to step up to the plate and take it from here. I am here to help because 
 I believe in the cause and support the NEAR platform. 
 
-One last thing, I want to add is that staking is also fundamental for on-chain decentralized governance ... I understand
-that DeFi is all the craze, but we must not get ahead of ourselves and leave the base unprotected and vulnerable to attack. 
+One more seed I want to plant in people's minds is that staking is also fundamental for on-chain decentralized governance ... 
 
-I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take back the Internet together.
+Finally, I will conclude with one final thought ... I understand that DeFi is all the craze of late, but we must not get 
+ahead of ourselves and leave the base unprotected and vulnerable to attack.
+
+That being said ... I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take back the Internet together.
 
 ## What's Next
 
@@ -483,3 +516,4 @@ Stay tuned for more tutorials on the OysterPack SMART component based framework 
 [8]: https://nomicon.io/Standards/FungibleToken/Core.html
 [9]: https://nomicon.io/Standards/FungibleToken/Metadata.html
 [10]: https://near.org/
+[11]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/8-stake-pool-contract#how-to-operate-the-stake-pool-contract
