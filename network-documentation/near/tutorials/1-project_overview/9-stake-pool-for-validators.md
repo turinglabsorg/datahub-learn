@@ -58,7 +58,7 @@ that are currently in use. The attack is very simple based on the facts:
 2. The contract is ultimately responsible for paying for storage usage on the blockchain.
 3. Contract transactions will fail if there is not enough account NEAR balance to pay for new storage allocation.
 
-Thus, in order to prevent malicious behavior, contract should pass along the storage costs to the accounts. Otherwise,
+Thus, in order to prevent malicious behavior, contracts should be designed to pass along the storage costs to the accounts. Otherwise,
 malicious actors can easily attack a contract by allocating expensive account storage on the contract using cheap transaction
 gas cost. This reason should motivate current validators to migrate off the current first generation staking pool as soon 
 as possible because it is not a question of will it happen, it's only a question of when. History has taught us that vulnerabilities
@@ -110,12 +110,11 @@ near-figment call $CONTRACT storage_unregister --args '{"force":true}' --account
 
 ### Account Storage Usage API
 
-As stated above, managing account storage usage properly is crucial The storage management NEP-145 standard looks at it 
-from the perspective of cost, i.e., storage balance. Storage costs change overtime. Fundamentally, it boils down to storage
-usage, which is why the contract provides API's to inspect account storage usage. The storage management API provides
-a storage balance bounds, i.e., which is used by accounts to lookup how much it costs to register with the contract. The
-account management component is designed to dynamically compute account storage usage bounds when the contract is deployed.
-Then, storage balance bounds are derived from the storage usage bounds.  
+As stated above, managing account storage usage properly is crucial. The storage management NEP-145 standard looks at it 
+from the perspective of cost, i.e., storage balance. However, storage costs change overtime. Storage usage should be managed
+as storage usage - not storage balance. The storage management API provides a storage balance bounds, i.e., which is used 
+by accounts to lookup how much it costs to register with the contract. The account management component is designed to 
+dynamically compute account storage usage bounds when the contract is deployed. Then, storage balance bounds are derived from the storage usage bounds.  
 
 ![](../../../../.gitbook/assets/oysterpack-smart-storage-usage.png)
 
