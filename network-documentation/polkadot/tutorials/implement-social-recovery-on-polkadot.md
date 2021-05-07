@@ -128,7 +128,7 @@ const main = async () => {
   })
   
   // 2. Define relevant constants
-  const DELAY = 0;
+  const DELAY_PERIOD = 0;
   const PROXY_TYPE = 'Staking';
   const AMOUNT_TO_SEND = 5200000000000; // 5.2000 WND
   const DEPOSIT_BASE = api.consts.proxy.proxyDepositBase.toString();     // 1,000,400,000,000 = 1.00040 WND
@@ -149,8 +149,8 @@ const main = async () => {
 
   // 5. Create a new staking proxy
   const txAddHash = await api.tx.proxy
-    .addProxy(AliceProxy.address, PROXY_TYPE, DELAY)
-    .signAndSend(Alice);
+    .addProxy(AliceProxy.address, PROXY_TYPE, DELAY_PERIOD)
+    .signAndSend(Alice, {tip: 10000000000});
   console.log(`\nproxyDepositBase \+ ( proxyDepositFactor * number of proxies )\n : ${formatBalance(DEPOSIT_BASE)} \+ ${formatBalance(DEPOSIT_FACTOR)} \= ${formatBalance(parseInt(DEPOSIT_BASE)+parseInt(DEPOSIT_FACTOR))}\n`);
   console.log(`Required values  : .addProxy(address, type, delay)`);     
   console.log(`Submitted values : .addProxy(${AliceProxy.address}, ${PROXY_TYPE}, ${DELAY})`);
