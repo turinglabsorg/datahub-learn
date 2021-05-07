@@ -75,8 +75,10 @@ will always eventually be attacked and exploited because the reality is we live 
 ![](../../../../.gitbook/assets/oysterpack-smart-storage-management-api.png)
 
 ```shell
-DATAHUB_APIKEY=<DATAHUB_APIKEY>
-NEAR_NODE_URL=https://near-testnet--rpc.datahub.figment.io/apikey/$DATAHUB_APIKEY
+export DATAHUB_APIKEY=<DATAHUB_APIKEY>
+export NEAR_NODE_URL=https://near-testnet--rpc.datahub.figment.io/apikey/$DATAHUB_APIKEY
+
+alias near-figment='near --nodeUrl $NEAR_NODE_URL --networkId testnet'
 
 NEAR_ACCOUNT=<YOUR-NEAR-ACCOUNT.testnet>
 NEAR_ENV=testnet
@@ -85,23 +87,23 @@ STAKE=<STAKE-FT-SYMBOL>
 CONTRACT=$STAKE.$STAKE_FACTORY
 
 # VIEW METHODS
-near --node_url $NEAR_NODE_URL view $CONTRACT storage_balance_bounds 
-near --node_url $NEAR_NODE_URL view $CONTRACT storage_balance_of --args '{"account_id":"oysterpack.testnet"}'
+near-figment view $CONTRACT storage_balance_bounds 
+near-figment view $CONTRACT storage_balance_of --args '{"account_id":"oysterpack.testnet"}'
 
 # deposits NEAR for predecessor account
-near --node_url $NEAR_NODE_URL call $CONTRACT storage_deposit --accountId $NEAR_ACCOUNT --amount 1
+near-figment call $CONTRACT storage_deposit --accountId $NEAR_ACCOUNT --amount 1
 # deposits funds into specified "account_id" for account registration purposes only
-near --node_url $NEAR_NODE_URL call $CONTRACT storage_deposit --accountId $NEAR_ACCOUNT --amount 0.00393 --args '{"account_id":"oysterpack.testnet", "registration_only":true}' 
+near-figment call $CONTRACT storage_deposit --accountId $NEAR_ACCOUNT --amount 0.00393 --args '{"account_id":"oysterpack.testnet", "registration_only":true}' 
 # deposits funds for account self registration, i.e, for the predecessor account
-near --node_url $NEAR_NODE_URL call $CONTRACT storage_deposit --accountId $NEAR_ACCOUNT --amount 1 --args '{"registration_only":true}'
+near-figment call $CONTRACT storage_deposit --accountId $NEAR_ACCOUNT --amount 1 --args '{"registration_only":true}'
 
 # withdraw total account storage available balance
-near --node_url $NEAR_NODE_URL call $CONTRACT storage_withdraw --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001
+near-figment call $CONTRACT storage_withdraw --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001
 # withdraw the specified amount from the account storage available balance
-near --node_url $NEAR_NODE_URL call $CONTRACT storage_withdraw --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001 -args '{"amount":"1000000"}'
+near-figment call $CONTRACT storage_withdraw --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001 -args '{"amount":"1000000"}'
 
-near call $CONTRACT_NAME storage_unregister --accountId oysterpack-2.testnet --amount 0.000000000000000000000001
-near call $CONTRACT_NAME storage_unregister --args '{"force":true}' --accountId oysterpack-2.testnet --amount 0.000000000000000000000001
+near-figment call $CONTRACT_NAME storage_unregister --accountId oysterpack-2.testnet --amount 0.000000000000000000000001
+near-figment call $CONTRACT_NAME storage_unregister --args '{"force":true}' --accountId oysterpack-2.testnet --amount 0.000000000000000000000001
 ```
 
 ### Account Storage Usage API
@@ -116,8 +118,8 @@ Then, storage balance bounds are derived from the storage usage bounds.
 ![](../../../../.gitbook/assets/oysterpack-smart-storage-usage.png)
 
 ```shell
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_storage_usage_bounds 
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_storage_usage --args '{"account_id":"oysterpack.testnet"}'
+near-figment view $CONTRACT ops_storage_usage_bounds 
+near-figment view $CONTRACT ops_storage_usage --args '{"account_id":"oysterpack.testnet"}'
 ```
 
 ### Permissions Management API
@@ -143,40 +145,40 @@ Any other permission bits granted to an account will be ignored.
 ![](../../../../.gitbook/assets/oysterpack-smart-permissions.png)
 
 ```shell
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_permissions_is_admin --args '{"account_id":"oysterpack.testnet"}'
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_permissions_is_operator --args '{"account_id":"oysterpack.testnet"}'
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_permissions --args '{"account_id":"oysterpack.testnet"}'
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_permissions_granted --args '{"account_id":"oysterpack.testnet"}'
+near-figment view $CONTRACT ops_permissions_is_admin --args '{"account_id":"oysterpack.testnet"}'
+near-figment view $CONTRACT ops_permissions_is_operator --args '{"account_id":"oysterpack.testnet"}'
+near-figment view $CONTRACT ops_permissions --args '{"account_id":"oysterpack.testnet"}'
+near-figment view $CONTRACT ops_permissions_granted --args '{"account_id":"oysterpack.testnet"}'
 
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_permissions_grant_admin --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_permissions_grant_operator --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_permissions_grant_admin --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_permissions_grant_operator --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
 
 # used to grant permissions using a bitmask, e.g, 9 sets permission bits #0  and # 4:
 # 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00001001
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_permissions_grant --args '{"account_id":"oysterpack-2.testnet", "permissions": 9}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_permissions_grant --args '{"account_id":"oysterpack-2.testnet", "permissions": 9}' --accountId $NEAR_ACCOUNT
 # used to specify permission bits separately as an array, e.g., [0,4] does the same as above, but may be easier to use
 # when the API is invoked manually
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_permissions_grant_permissions --args '{"account_id":"oysterpack-2.testnet", "permissions": [0,4]}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_permissions_grant_permissions --args '{"account_id":"oysterpack-2.testnet", "permissions": [0,4]}' --accountId $NEAR_ACCOUNT
 
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_permissions_revoke_admin --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_permissions_revoke_operator --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_permissions_revoke_admin --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_permissions_revoke_operator --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
 
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_permissions_revoke_all --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_permissions_revoke --args '{"account_id":"oysterpack-2.testnet", "permissions": 9}' --accountId $NEAR_ACCOUNT
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_permissions_revoke_permissions --args '{"account_id":"oysterpack-2.testnet", "permissions": [0]}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_permissions_revoke_all --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_permissions_revoke --args '{"account_id":"oysterpack-2.testnet", "permissions": 9}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_permissions_revoke_permissions --args '{"account_id":"oysterpack-2.testnet", "permissions": [0]}' --accountId $NEAR_ACCOUNT
 
 # returns the custom permissions outside of admin and operator that the contract supports
 # for the STAKE pool contract, the only special permission is treasurer
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_permissions_contract_permissions
+near-figment view $CONTRACT ops_permissions_contract_permissions
 ```
 
 To make it easier to manage **treasurer** permissions, the STAKE pool contract provides the following functions for convenience:
 
 ```shell
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_stake_grant_treasurer --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_stake_revoke_treasurer --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_stake_grant_treasurer --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_stake_revoke_treasurer --args '{"account_id":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT
 
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_stake_is_treasurer --args '{"account_id":"oysterpack-2.testnet"}'
+near-figment view $CONTRACT ops_stake_is_treasurer --args '{"account_id":"oysterpack-2.testnet"}'
 ```
 
 If the admin permission is revoked from
@@ -185,7 +187,7 @@ API interface using the following method:
 
 ```shell
 # can only be invoked by the contract owner
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_owner_grant_admin --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_owner_grant_admin --accountId $NEAR_ACCOUNT
 ```
 
 ## Contract Component
@@ -212,11 +214,11 @@ by the contract owner.
 ![](../../../../.gitbook/assets/oysterpack-smart-contract-ownership.png)
 
 ```shell
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_owner
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_owner_balance
+near-figment view $CONTRACT ops_owner
+near-figment view $CONTRACT ops_owner_balance
 
 # Returns the prospective owner that the transfer is waiting on for finalization.
-near --node_url $NEAR_NODE_URL view $CONTRACT  ops_owner_prospective
+near-figment view $CONTRACT  ops_owner_prospective
 
 # NOTE: 1 yoctoNEAR deposit is required for transfer calls to force the owner to verify and confirm the transactions via the NEAR wallet
 near -node_url $NEAR_NODE_URL call $CONTRACT ops_owner_transfer --args '{"new_owner":"oysterpack-2.testnet"}' --accountId $NEAR_ACCOUNT --amount 0.000000000000000000000001
@@ -241,7 +243,7 @@ on the contract to pay for storage for the contract to be operational.
 near -node_url $NEAR_NODE_URL call $CONTRACT ops_operator_lock_storage_balance --args '{"storage_usage":10000}' --accountId $NEAR_ACCOUNT 
 
 # can only be invoked by the contract owner
-near --node_url $NEAR_NODE_URL call $CONTRACT ops_owner_grant_admin --accountId $NEAR_ACCOUNT
+near-figment call $CONTRACT ops_owner_grant_admin --accountId $NEAR_ACCOUNT
 ```
 
 ### Contract Metrics API
@@ -256,22 +258,22 @@ This API enables key metrics to be monitored. Metrics track the following
 ![](../../../../.gitbook/assets/oysterpack-smart-contract-metrics.png)
 
 ```shell
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_total_registered_accounts
+near-figment view $CONTRACT ops_metrics_total_registered_accounts
 
 # returns total contract storage usage and total storage usage across all accounts 
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_contract_storage_usage
+near-figment view $CONTRACT ops_metrics_contract_storage_usage
 
 # returns storage usage costs based on current storage byte cost and breaks down who is paying the storage bill
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_storage_usage_costs
+near-figment view $CONTRACT ops_metrics_storage_usage_costs
 
 # returns a breakdown of all NEAR balances
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_near_balances
+near-figment view $CONTRACT ops_metrics_near_balances
 
 # returns metrics for account storage and NEAR balances
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_accounts
+near-figment view $CONTRACT ops_metrics_accounts
 
 # returns an aggregate metric view for all of the above metrics
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics
+near-figment view $CONTRACT ops_metrics
 ```
 
 #### STAKE Pool Contract Balances
@@ -309,7 +311,7 @@ managed balances and how they fit into the overall big picture.
 Internally contract balances are stored using a numeric ID, which are listed in the `balances` section:
 
 ```text
-near --node_url $NEAR_NODE_URL view $CONTRACT ops_metrics_near_balances
+near-figment view $CONTRACT ops_metrics_near_balances
 
 {
   total: '74007102668152498690300000000',
@@ -345,14 +347,14 @@ which is used to manage the fungible token metadata and transfer callback gas se
 
 ```shell
 # commands require operator permission
-near --node_url $NEAR_NODE_URL call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":{"SetIcon":"data://image/svg+xml,<svg></svg>"}}'
-near --node_url $NEAR_NODE_URL call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":"ClearIcon"}'
-near --node_url $NEAR_NODE_URL call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":{"SetReference":["http://stake.json","UjZ6ZiKxnwiCXpFfrYDFQq1PTDTbzrrZ9QB5lLPjkgg="]}}'
-near --node_url $NEAR_NODE_URL call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":"ClearReference"}'
-near --node_url $NEAR_NODE_URL call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":{"SetTransferCallbackGas":"15"}}'
+near-figment call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":{"SetIcon":"data://image/svg+xml,<svg></svg>"}}'
+near-figment call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":"ClearIcon"}'
+near-figment call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":{"SetReference":["http://stake.json","UjZ6ZiKxnwiCXpFfrYDFQq1PTDTbzrrZ9QB5lLPjkgg="]}}'
+near-figment call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":"ClearReference"}'
+near-figment call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":{"SetTransferCallbackGas":"15"}}'
 
 # returns the amount of gas configured for the resolve transfer callback
-near --node_url $NEAR_NODE_URL view $CONTRACT ft_operator_transfer_callback_gas
+near-figment view $CONTRACT ft_operator_transfer_callback_gas
 ```
 
 
