@@ -2,7 +2,7 @@
 description: How I learned to stop worrying and love social recovery!
 ---
 
-# Implement social recovery on Polkadot
+# Implement Social Recovery on Polkadot
 
 ## Introduction
 
@@ -42,7 +42,7 @@ npm install --save dotenv @polkadot/api
 When we copy and paste all four of these commands into a terminal, the first three will execute in sequence. `npm init -y` will output the contents of the default `package.json` to the terminal. `npm install` will be on the commandline, however we must still **press enter** to start the installation process.
 
 Once the installation process is complete, Create an `.env` file in the working directory  
-\(`/polkadot_sr`\). For convenience, copy and paste the template below. Read more about `dotenv`in our handy [quick-reference guide](dotenv-and-.env.md). Also, remember to replace `API_KEY` with a valid DataHub API key from the [Polkadot Services Dashboard](https://datahub.figment.io/services/polkadot).
+\(`/polkadot_sr`\). For convenience, copy and paste the template below. Read more about `dotenv`in our handy [quick-reference guide](../../extra-guides/dotenv-and-.env.md). Also, remember to replace `API_KEY` with a valid DataHub API key from the [Polkadot Services Dashboard](https://datahub.figment.io/services/polkadot).
 
 {% tabs %}
 {% tab title="/polkadot\_sr/.env" %}
@@ -428,6 +428,15 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 
 Run `node initiate_recovery.js` :
 
+{% tabs %}
+{% tab title="Output of /polkadot\_sr/initiate\_recovery.js" %}
+```bash
+Recovery deposit: 5.0000 WND
+initiateRecovery() tx: https://westend.subscan.io/extrinsic/...
+```
+{% endtab %}
+{% endtabs %}
+
 
 
 ## Vouch for recovery
@@ -475,6 +484,17 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 
 Once these transactions are successful, the proxy account will be able to claim the recovery configuration from storage, which grants authority to sign on behalf of Alice. Without this part of the process, social recovery is impossible. This is why it is of vital importance to maintain a good relationship with the people we select to be our social recovery contacts.
 
+Run `node vouch_recovery.js` :
+
+{% tabs %}
+{% tab title="Output of /polkadot\_sr/vouch\_recovery.js" %}
+```bash
+Bob vouch tx: https://westend.subscan.io/extrinsic/...
+Charlie vouch tx: https://westend.subscan.io/extrinsic/...
+```
+{% endtab %}
+{% endtabs %}
+
 ## Claim a recovery configuration
 
 ![](../../../.gitbook/assets/flow5_big.png)
@@ -511,6 +531,16 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 {% endtabs %}
 
 We must wait for confirmation from our social recovery contacts that they have done their part before proceeding to claim the recovery configuration. It is important to note that `claimRecovery()` will fail if it is called before the `THRESHOLD` of `vouchRecovery()` functions have been successful.
+
+Run `node claim_recovery.js` :
+
+{% tabs %}
+{% tab title="Output of /polkadot\_sr/claim\_recovery.js" %}
+```bash
+claimRecovery tx: https://westend.subscan.io/extrinsic/...
+```
+{% endtab %}
+{% endtabs %}
 
 ## Send transactions as the recovered account
 
@@ -563,6 +593,19 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 
 After the recovery configuration has been claimed, we are able to send function calls on behalf of our lost account using `asRecovered()` . This grants authority for a limited set of functions, which includes transfers.   
 There is also a `cancelRecovered()` function which revokes the ability of a registered proxy account to use `asRecovered()` as well as a `setRecovered()` function, which allows a root account to bypass the recovery process and grant authority for `asRecovered()` directly. For the truly adventurous,  more information on those functions can be found inside the definition files of the Polkadot API.
+
+Run `node use_recovery.js` :
+
+{% tabs %}
+{% tab title="Output of /polkadot\_sr/use\_recovery.js" %}
+```bash
+Required values  : asRecovered(address, function)
+Submitted values : asRecovered(5CwJrhV9DaLncybk2vHbvt62SfwDfqMmPHVbo83u3iPkSDkc,
+"0xa8040400009c642940626369e9702360b468a7d043c8524076cd3d2edf99bdf92a30aabb6b0700e40b5402")
+asRecovered tx: https://westend.subscan.io/extrinsic/...
+```
+{% endtab %}
+{% endtabs %}
 
 ## Clean up with removeRecovery\(\)
 
@@ -622,9 +665,18 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 {% endtab %}
 {% endtabs %}
 
-We will clean up the Recovery configuration by first calling `closeRecovery()` and then `removeRecovery()` . This will refund the deposit we placed earlier to Alice, then send the WND tokens back to the Figment Faucet so that we are not unnecessarily tying up tokens. It must be understood that `removeRecovery()` can only be called once `closeRecovery()` __has been called on any active recovery requests_._ 
+We will clean up the recovery configuration by first calling `closeRecovery()` and then `removeRecovery()` . This will refund the deposit we placed earlier to Alice, then send the WND tokens back to the Figment Faucet so that we are not unnecessarily tying up tokens. It must be understood that `removeRecovery()` can only be called once `closeRecovery()` __has been called on any active recovery requests_._ 
 
 Run `node remove_recovery.js` :
+
+{% tabs %}
+{% tab title="Output of /polkadot\_sr/remove\_recovery.js" %}
+```php
+Required values  : .batch([transactions])
+Submitted values : .batch(
+```
+{% endtab %}
+{% endtabs %}
 
 ## Conclusion
 

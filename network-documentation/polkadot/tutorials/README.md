@@ -32,3 +32,9 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="build-a-poe-decentralized-app.md" %}
 
+## Implement Social Recovery on Polkadot
+
+{% page-ref page="implement-social-recovery-on-polkadot.md" %}
+
+
+
