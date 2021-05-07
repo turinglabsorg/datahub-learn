@@ -1,13 +1,12 @@
 ---
-description: OysterPack SMART STAKE Pool Contract - For Validators
+description: OysterPack SMART STAKE Pool Contract API Guide - For Validators
 ---
 
-# OysterPack SMART STAKE Pool Guide for Validators
+# OysterPack SMART STAKE Pool API Guide for Validators
 
-This tutorial is meant to serve as a guide for validators for managing and operating the **next generation** [OysterPack SMART
-STAKE Pool][1] contract. If you wonder why I call it the "**next generation**" staking pool, then I refer you back to my previous
-tutorial. In the last tutorial I showed you how easy it was to deploy the STAKE pool contract using the STAKE Pool Factory
-contract and how to get started. As a validator, it is fundamental to know your staking pool contract in depth because
+In my last tutorial I introduced you to the **next generation** [OysterPack SMART STAKE Pool][1] contract as a getting
+started guide. In this tutorial, we'll be covering the rest of the contract APIs to help validators manage and operate
+the STAKE Pool contract. As a validator, it is fundamental to know your staking pool contract in depth because
 it is core to your validator business because it impacts your bottom line.
 
 > Even though the main target audience are validators, contract developers will also benefit. You will learn about OysterPack
@@ -20,25 +19,30 @@ it is core to your validator business because it impacts your bottom line.
 
 ![](../../../../.gitbook/assets/oysterpack-smart-stake-operator-usecases.png)
 
-The contract is composed of 4 OysterPack SMART components:
 
-1. Account Management
-2. Contract
-3. Fungible Token
-4. Staking Pool
+1. **Account Management Component**
+   - [Storage Management API][7] - used by stakers to register with the contract and manage account storage balances
+   - **Permissions Management API** - used by validators to manage account permissions for securing API access
+   - **Account Storage Usage API** - used to monitor account storage usage 
+2. **Contract Component**
+   - **Contract Ownership API** - used by the contact owner, i.e., validators, to transfer contract ownership
+   - **Contract Operator API** - used by validators to manage core contract functions
+   - **Contract Metrics API** - used to monitor key contract metrics 
+3. **Fungible Token Component**
+   - [Fungible Token Core API][8] - used by stakers to manage their STAKE fungible token balances
+   - [Fungible Token Metadata API][9] - used by tools and apps to retrieve STAKE token metadata
+   - **Fungible Token Operator** - used by validators to manage the metadata
+   - **STAKE Fungible Token Callbacks** - private API callbacks used to collect and deposit funds into the treasury
+4. **Staking Pool Component**
+   - **Staking Pool API** - used by stakers to stake and manage their staked funds
+   - **NEAR Staking Pool API** - adapts the **Staking Pool API** to match the first generation NEAR staking pool APIs used by stakers
+   - **Staking Pool Treasury API** - used by validators to manage treasury funds
+   - **Staking Pool Operator API** - used by validators to manage the staking pool
+   - **Staking Pool Callbacks** - private API callbacks used to handle NEAR stake actions
 
-Each component in turn provides 1 or more contract API interfaces. in the last tutorial we covered the staking pool APIs.
-We will pick up where we left off and cover the rest in this tutorial. We will be using a divide and conquer approach and 
-step through each component and API interface. The contract is implemented in Rust. Thus, I will review the contract API
-in Rust, and I will also show how to invoke the contract APIs using the [NEAR CLI][2]. All the contract [source code][3] 
-is available on GitHub. I expect the validators to be more technical savvy
-
-## Component Dependency Graph
-
-![](../../../../.gitbook/assets/oysterpack-smart-stake-comps.png)
-
-Notice how everything depends on **Account Management**. That makes sense because ultimately all STAKE Pool contract 
-functionality derives from accounts staking funds into the pool. This is where we will get started. 
+As you can see, there is much to cover. Here's the approach we will take. For each of the contract API interfaces, we'll 
+review the Rust contract API and how to invoke the API via the [NEAR CLI][2]. If you are interested in seeing how the APIs 
+are implemented, then all the contract [source code][3] is available on GitHub to study and explore.
 
 ## Account Management Component
 
@@ -358,3 +362,6 @@ near --node_url $NEAR_NODE_URL view $CONTRACT ft_operator_transfer_callback_gas
 [4]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/5-account-storage
 [5]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/2-fungible-token
 [6]: https://nomicon.io/Standards/FungibleToken/README.html
+[7]: https://nomicon.io/Standards/StorageManagement.html
+[8]: https://nomicon.io/Standards/FungibleToken/Core.html
+[9]: https://nomicon.io/Standards/FungibleToken/Metadata.html
