@@ -671,7 +671,7 @@ const main = async () => {
   // 5. Close & Remove recovery config
   const closeHash = await api.tx.utility
     .batch(transactions)
-    .signAndSend(Alice, { tip: 10000000000 } );
+    .signAndSend(Alice, { nonce: -1 } );
   console.log(`Required values  : .batch([transactions])`);     
   console.log(`Submitted values : .batch(${JSON.stringify(transactions, null, 2)})`);
   console.log(`batch() tx: https://westend.subscan.io/extrinsic/${closeHash}`);  
@@ -679,7 +679,7 @@ const main = async () => {
   // 6. Refund the Faucet
   const txHash = await api.tx.balances
     .transfer(figmentFaucet, AMOUNT_TO_SEND)
-    .signAndSend(Alice, { tip: 10000000000 });
+    .signAndSend(Alice, { nonce: -1 });
   console.log(`transfer() tx: https://westend.subscan.io/extrinsic/${txHash}`);
 
 };
@@ -689,7 +689,8 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 {% endtab %}
 {% endtabs %}
 
-We will clean up the recovery configuration by first calling `closeRecovery()` and then `removeRecovery()` . This will refund the deposit we placed earlier to Alice, then send the WND tokens back to the Figment Faucet so that we are not unnecessarily tying up tokens. It must be understood that `removeRecovery()` can only be called once `closeRecovery()` __has been called on any active recovery requests_._ 
+We will clean up the recovery configuration by first calling `closeRecovery()` and then `removeRecovery()` . This will refund the deposit we placed earlier to Alice, then send the WND tokens back to the Figment Faucet so that we are not unnecessarily tying up tokens. It must be understood that `removeRecovery()` can only be called once `closeRecovery()` __has been called on any active recovery requests_._   
+Regarding `signAndSend(Alice, { nonce: -1 })` , when sending multiple API calls signed by the same account, we must set the nonce directly to avoid an error about transaction priority.
 
 {% hint style="warning" %}
 _**Before running this code:**_  
