@@ -502,7 +502,7 @@ That being said ... I invite you to join the Figment and NEAR communities and em
 ## What's Next
 
 Stay tuned for more tutorials on the OysterPack SMART component based framework to help contract developers build
-***SMARTER***, ***FASTER***, and ***BETTER*** on the [NEAR][10] platform
+***SMARTER***, ***FASTER***, and ***BETTER*** on the [NEAR][10] platform.
 
 ![](../../../../.gitbook/assets/oysterpack-smart-liberty.jpeg)
 
