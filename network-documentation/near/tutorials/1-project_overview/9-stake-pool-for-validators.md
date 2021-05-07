@@ -495,7 +495,7 @@ I believe in the cause and support the NEAR platform.
 
 One more seed I want to plant in people's minds is that staking is also fundamental for on-chain decentralized governance ... 
 
-Finally, I will conclude with one final thought ... I understand that DeFi is all the craze of late, but we must not get 
+I will leave with one final thought ... I understand that DeFi is all the craze of late, but we must not get 
 ahead of ourselves and leave the base unprotected and vulnerable to attack.
 
 That being said ... I invite you to join the Figment and NEAR communities and embark on our common mission to defend and take back the Internet together.
