@@ -123,8 +123,8 @@ near-figment view $CONTRACT ops_storage_usage_bounds
 near-figment view $CONTRACT ops_storage_usage --args '{"account_id":"oysterpack.testnet"}'
 ```
 
->> If you are wondering what the "ops_" prefix stands for, it stands for "OysterPack SMART". All contract APIs are hoisted
->> to a global namespace. Thus, to avoid naming collisions, it's a best practice to namespace your contract API functions.
+> If you are wondering what the "ops_" prefix stands for, it stands for "OysterPack SMART". All contract APIs are hoisted
+> to a global namespace. Thus, to avoid naming collisions, it's a best practice to namespace your contract API functions.
 
 ### Permissions Management API
 
