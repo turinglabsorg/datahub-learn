@@ -54,8 +54,9 @@ tutorial. Proper storage management is crucial to safegaurd any multi-user contr
 attack. Storage management closes a big security vulnerability in the first generation staking pool contracts
 that are currently in use. The attack is very simple based on the facts:
 
-1. storage is orders of magnitude more expensive than transaction gas cost
-2. the contract is ultimately responsible for paying for storage usage on the blockchain
+1. Storage is orders of magnitude more expensive than transaction gas cost
+2. The contract is ultimately responsible for paying for storage usage on the blockchain.
+3. Contract transactions will fail if there is not enough account NEAR balance to pay for new storage allocation.
 
 Thus, in order to prevent malicious behavior, contract should pass along the storage costs to the accounts. Otherwise,
 malicious actors can easily attack a contract by allocating expensive account storage on the contract using cheap transaction
