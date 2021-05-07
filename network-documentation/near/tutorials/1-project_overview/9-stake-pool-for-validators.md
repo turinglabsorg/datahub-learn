@@ -329,9 +329,27 @@ pub const UNSTAKED_LIQUIDITY_POOL: BalanceId = BalanceId(19557844876784438516222
 
 ## Fungible Token Component
 
-Provides the API's that provide the STAKE token. These APIs are well documented, and I will defer to:
+Provides the API's that provide the STAKE token. These APIs are well documented, and I will defer the details to:
 - [The New and Improved Fungible Token Standard (NEP-141) Has Arrived][5]
 - [NEAR Fungible Token Standard][6]
+
+In addition to the standard Fungible Token API interfaces, the contract also provides a Fungible Token Operator API interface,
+which is used to manage the fungible token metadata and transfer callback gas settings:
+
+![](../../../../.gitbook/assets/oysterpack-smart-ft-operator.png)
+
+```shell
+# commands require operator permission
+near --node_url $NEAR_NODE_URL call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":{"SetIcon":"data://image/svg+xml,<svg></svg>"}}'
+near --node_url $NEAR_NODE_URL call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":"ClearIcon"}'
+near --node_url $NEAR_NODE_URL call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":{"SetReference":["http://stake.json","UjZ6ZiKxnwiCXpFfrYDFQq1PTDTbzrrZ9QB5lLPjkgg="]}}'
+near --node_url $NEAR_NODE_URL call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":"ClearReference"}'
+near --node_url $NEAR_NODE_URL call $CONTRACT ft_operator_command --accountId $NEAR_ACCOUNT --args '{"command":{"SetTransferCallbackGas":"15"}}'
+
+# returns the amount of gas configured for the resolve transfer callback
+near --node_url $NEAR_NODE_URL view $CONTRACT ft_operator_transfer_callback_gas
+```
+
 
 [1]: https://learn.figment.io/network-documentation/near/tutorials/1-project_overview/8-stake-pool-contract#how-to-operate-the-stake-pool-contract
 [2]: https://docs.near.org/docs/tools/near-cli
