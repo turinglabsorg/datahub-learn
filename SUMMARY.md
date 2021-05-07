@@ -235,6 +235,7 @@
     * [Write a Pallet in its Own Crate](network-documentation/polkadot/tutorials/write-a-pallet-in-its-own-crate.md)
     * [Add the Contracts Pallets to a Runtime](network-documentation/polkadot/tutorials/add-the-contracts-pallets-to-a-runtime.md)
     * [Build a PoE Decentralized App](network-documentation/polkadot/tutorials/build-a-poe-decentralized-app.md)
+    * [Implement Social Recovery on Polkadot](network-documentation/polkadot/tutorials/implement-social-recovery-on-polkadot.md)
 * [🤫 Secret](network-documentation/secret/README.md)
   * [✏ Secret 101](network-documentation/secret/secret-101.md)
   * [🎮 RPC & REST API](network-documentation/secret/rpc-and-rest-api/README.md)
@@ -284,6 +285,7 @@
     * [5XX Retry Logic Best Practices - Ruby](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-ruby.md)
     * [5XX Retry Logic Best Practices - Go](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-go.md)
   * [Getting started with BrightID](network-documentation/extra-guides/getting-started-with-brightid.md)
+  * [dotenv and .env](network-documentation/extra-guides/dotenv-and-.env.md)
 
 ## 🤔 Other
 
