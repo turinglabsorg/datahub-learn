@@ -289,6 +289,7 @@
 
 ## 🤔 Other
 
+* [👀 Tutorial Guidelines](other/tutorial-guidelines.md)
 * [🧾 Glossary](other/glossary.md)
 * [🗳 Support](other/support.md)
 
