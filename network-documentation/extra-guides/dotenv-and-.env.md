@@ -70,9 +70,14 @@ line'}
 
 ## .gitignore the .env
 
+Read more about [ignoring files in git](https://docs.github.com/en/github/getting-started-with-github/ignoring-files) on the GitHub documentation. 
+
 {% hint style="info" %}
-Ignore files are used in many different Open Source repositories. Since we are working with blockchains and cryptocurrency, it is imperative to point out the security implications of this method. This prevents _git_ from checking in the .env file to a public repository. If you are using a different code versioning system, there will be different requirements.
+Ignore files are used in many different Open Source repositories. Since we are working with blockchains and cryptocurrency, it is imperative to point out the security implications of this method. This prevents _git_ from checking in the .env file to a public repository.  
+If you are using a different code versioning system, there will be different requirements.
 {% endhint %}
+
+Create a file named `.gitignore` in the same directory as the project `package.json` and explicitly name the `.env` file on a line by itself within that `.gitignore` file. 
 
 {% tabs %}
 {% tab title=".gitignore" %}
@@ -82,5 +87,5 @@ Ignore files are used in many different Open Source repositories. Since we are w
 {% endtab %}
 {% endtabs %}
 
-This is an important step to safeguarding any API keys, seed phrases or other sensitive information placed inside a `.env` file. [Read more about ](https://docs.github.com/en/github/getting-started-with-github/ignoring-files)ignoring files in git.
+This is an important step to safeguarding any API keys, seed phrases or other sensitive information placed inside a `.env` file from being inadvertently sent to a public code repository on the internet, where they would immediately become vulnerable with a high likelihood of being scraped by bots.
 
