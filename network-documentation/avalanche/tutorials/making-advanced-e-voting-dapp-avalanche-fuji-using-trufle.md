@@ -4,23 +4,19 @@ description: Learn how to use Truffle with the C-Chain
 
 # Making an advanced e-Voting dApp on Avalanche Fuji network using Trufflesuite
 
-## About the author
-
-Hi, I am [Raj Ranjan](https://rajranjan0608.github.io) and currently I am doing my graduation \(B.Tech, 2018-22\) in Computer Science from IIIT Guwahati, India. I love building blockchain applications and is always looking for oppurtunities to give back to the community. You may reach out to me on [Linkedin](https://www.linkedin.com/in/iamrajranjan), if you want to discuss about any project ideas, have doubt or anything like that. Hope you would like the tutorial ahead :\)
-
 ## Introduction
 
-Hey, everyone. In the last tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), we have learnt how to deploy a smart contract on Avalanche's Fuji C-Chain using Trufflesuite. Along with that we have also coded the client-side application, to easily interact with smart contracts.
+In the last tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), we have learnt how to deploy a smart contract on Avalanche's Fuji C-Chain using Trufflesuite. Along with that we have also coded the client-side application, to easily interact with smart contracts.
 
-Today, we will be building a more advanced e-voting `dApplication`, in which we will not only interact with pre-deployed smart contracts, but will also deploy the contracts in runtime, and would interact with them using their contract address. For developing this dApplication we would be using Trufflesuite framework. 
+Today, in this tutorial, we will be building a more advanced e-voting `dApplication`, in which we will not only interact with pre-deployed smart contracts, but will also deploy the contracts in runtime, and would interact with them using their contract address. For developing this dApplication we would be using Trufflesuite framework. 
 
 For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
 
-## Requirements
+## Prerequisites
 
 You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service=avalanche) account and are familiar with [Avalanche's architecture](https://docs.avax.network/learn/platform-overview). Along with that, you've have followed the tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), though for the sake of completeness, we will be covering everything from start.
 
-## Prerequisites
+## Requirements
 
 * [NodeJS](https://nodejs.org/en) v8.9.4 or later.
 * Truffle, which you can install with `npm install -g truffle`
@@ -43,10 +39,16 @@ Create and enter a new directory named `advanced-evoting`:
 mkdir advanced-evoting && cd advanced-evoting
 ```
 
-Use `npm` to install other dependencies
+First initialize the folder with `npm` for, in order to have organise the project.
 
 ```text
 npm init
+```
+This command would prompt the user to enter the details about the project like `name`, `description`, `author` etc. You may either enter details as directed and press enter, or directly move ahead by hitting enter (it will take default values).
+
+Now use `npm` to install other dependencies
+
+```text
 npm install express dotenv @truffle/hdwallet-provider --save
 ```
 
@@ -168,6 +170,79 @@ contract Election {
 
 `Election` is a solidity smart contract which lets us view the name, description, about the candidates standing in an election and voting them. In this DApp, we will be accessing these runtime deployed election smart contracts using their `address` and `ABI`. This smart contract will be deployed to the blockchain, each time we create a new election.
 
+### Let's understand this smart contract
+
+The code for smart contract is everything within `contract Election {  }`.
+
+1. **Basic details about election** - This block of code would be storing basic details of each `Election` contract. Details include `name` and `description`.
+
+```javascript
+  //Election details will be stored in these variables
+  string public name;
+  string public description;
+```
+<br>
+
+2. **Storing candidate details** - Candidate details would be stored in a mapping between an unsigned integer to the `Candidate` structure. `Candidate` structure would consists of data like `id`, `name` (candidate's name) and `voteCount` (number of times they are voted).
+
+```javascript
+  //Structure of candidate standing in the election
+  struct Candidate {
+    uint id;
+    string name;
+    uint voteCount;
+  }
+
+  //Storing candidates in a map
+  mapping(uint => Candidate) public candidates;
+```
+<br>
+
+3. **Storing details of voters which have already voted and number of candidates** - `voters` is a mapping between the address of voter and a boolean. In Solidity, the default boolean value is `false`, so if the returned value of `voters(address)` is `false` we can understand that the voters is voting for the first time in this election, and vice-versa for `true`.
+
+```javascript
+  //Storing address of those voters who already voted
+  mapping(address => bool) public voters;
+
+  //Number of candidates in standing in the election
+  uint public candidatesCount = 0;
+```
+<br>
+
+4. **Constructor call and adding candidates to the election** - When a smart contract is deployed on a network, the first thing to be called is a `constructor()` function. Whatever we want to initialize in a smart contract, we do it inside the `constructor()` function. Like here, we will be adding a name, description, and candidates to the election. Here, `addCandidate()` is a private function, so that, it cannot be called publicly. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
+
+```javascript
+  //Setting of variables and data, during the creation of election contract
+  constructor (string[] memory _nda, string[] memory _candidates) public {
+    require(_candidates.length > 0, "There should be atleast 1 candidate.");
+    name = _nda[0];
+    description = _nda[1];
+    for(uint i = 0; i < _candidates.length; i++) {
+      addCandidate(_candidates[i]);
+    }
+  }
+
+  //Private function to add a candidate
+  function addCandidate (string memory _name) private {
+    candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+    candidatesCount ++;
+  }
+```
+<br>
+
+5. **Voting candidates in an election** - We made a `vote()` function. It takes `candidateId` as an argument and increments vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking boolean accross the `voters` mapping and `candidateId` should be a valid one, i.e. `0 <= candidateId < candiatesCount`.
+
+```javascript
+  //Public vote function for voting a candidate
+  function vote (uint _candidate) public {
+    require(!voters[msg.sender], "Voter has already Voted!");
+    require(_candidate < candidatesCount && _candidate >= 0, "Invalid candidate to Vote!");
+    voters[msg.sender] = true;
+    candidates[_candidate].voteCount++;
+  }
+```
+<br>
+
 ## Add MainContract.sol
 
 In the `contracts` directory add a new file called `MainContract.sol` and add the following block of code:
@@ -189,7 +264,26 @@ contract MainContract {
     }
 }
 ```
-`MainContract.sol` is the main entry point of our e-voting DApp. It will maintain the number of election contracts deployed, their address on the network and will also help in deploying them.
+`MainContract.sol` is the main entry point of our e-voting DApp. It will maintain the number of election contracts deployed, their address on the network and will also help in deploying them. We have also imported `Election.sol` contract, for using it in the `MainContract`.
+
+1. Here `electionId` is used for assigning ID's to each each election that a user creates and is incremented for using it while creating the next election. Also, `Elections` is a public mapping between `electionId` and address of the deployed election contract.
+
+```javascript
+    uint public electionId = 0;
+    mapping (uint => address) public Elections;
+```
+<br>
+
+2. We have made a `createElection()` function which will be used to deploy our `Election` smart contract. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
+
+```javascript
+    function createElection (string[] memory _nda, string[] memory _candidates) public {
+        Election election = new Election(_nda, _candidates);
+        Elections[electionId] = address(election);
+        electionId++;
+    }
+```
+Here you can see that, new `Election` contract is deployed on the network using the `new` keyword. And address for the deployed smart contract is stored in the `Elections` mapping. Once the election contract is deployed successfully, `electionId` is incremented.
 
 ## Add new migration
 
@@ -228,7 +322,7 @@ Compiling your contracts...
    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 ```
 
-Compiling the smart contracts would create `.json` file in the `build/contracts` directory. It stores `ABI` and other necessary metadata.
+Compiling the smart contracts would create `.json` file in the `build/contracts` directory. It stores `ABI` and other necessary metadata. `ABI` refers to Application Binary Interface, which is basically a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) in order to learn more.
 
 ## Fund the account and run migrations on the C-Chain
 
@@ -236,7 +330,7 @@ When deploying smart contracts to the C-Chain, it will require some deployment c
 
 ### Fund your account
 
-Fund your account using the the faucet link [https://faucet.avax-test.network/](https://faucet.avax-test.network/) and pasting your Fuji's C-Chain address in the input field or follow the steps in the [Transfer AVAX Between X-Chain and C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/transfer-avax-between-the-x-chain-and-c-chain) tutorial to fund the newly created account. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments.
+Fund your account using the the faucet link [https://faucet.avax-test.network/](https://faucet.avax-test.network/) and pasting your Fuji's C-Chain address in the input field. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Though funding through faucet would give you enough `AVAX` to run multiple deployments and transactions on the network.
 
 ## Run Migrations
 
@@ -850,6 +944,10 @@ You have successfully built a full fledged `dApp` and deployed the smart contrac
 ## What's next?
 
 The dapp which we built just now is a somehow advanced e-voting application, as now we can make new elections, give them title and description, vote them separately. But I would recommend you to add few more interesting features to it, like having start and end date for election, declaring winner after the election has ended and many more like that.
+
+## About the author
+
+Hi, I am [Raj Ranjan](https://rajranjan0608.github.io) and currently I am doing my graduation \(B.Tech, 2018-22\) in Computer Science from IIIT Guwahati, India. I love building blockchain applications and is always looking for oppurtunities to give back to the community. You may reach out to me on [Linkedin](https://www.linkedin.com/in/iamrajranjan), if you want to discuss about any project ideas, have doubt or anything like that. Hope you would like the tutorial ahead :\)
 
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://discord.gg/fszyM7K)!
 
