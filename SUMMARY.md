@@ -13,7 +13,7 @@
 
 * [💡 All Tutorials](figment-learn/all-tutorials.md)
 * [🗺 All Pathways](figment-learn/pathways.md)
-* [✒ Contribute](figment-learn/contribute.md)
+* [✒ Contribute and Earn](figment-learn/contribute.md)
 
 ## 📖 DataHub Guides <a id="guides"></a>
 
