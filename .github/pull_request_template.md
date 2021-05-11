@@ -6,7 +6,7 @@ Fixes # (issue)
 
 ## Type of change*
 
-Please delete options that are not relevant.
+Important - Please delete options that are not relevant to your PR.
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
@@ -15,8 +15,11 @@ Please delete options that are not relevant.
 - [ ] Typo fix
 
 ## This PR created for* - 
+
+Important - Please delete option that's not relevant to your PR.
+
 - [ ] DataHub Official Docs (Network Documentation, API docs etc.) changes/updates/fixes
-- [ ] Figment Learn Docs (Pathway, Tutorials, New Tutorials etc.) changes/updates/fixes
+- [ ] Figment Learn Docs (Pathway, Existing Tutorials, New Tutorial etc.) changes/updates/fixes
 
 # How Has This Been Tested? (If Applicable)
 
