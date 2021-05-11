@@ -4,17 +4,11 @@ description: Learn how to contribute to the knowledge base and earn tokens
 
 # ✒ Contribute
 
-## 🤝 Share to Earn
-
-Share your learnings with the community and grow as an author while earning tokens for the protocols you care about.
-
-Showcase your skills and knowledge to the community to make an impact today.
-
 ## **👨‍💻 Become a Contributor**
 
 ### **What is Share to Earn and why should I contribute?**
 
-Share to Earn is a program that supports people who create content for the Web 3 Knowledge Base. Through the program, community authors receive a personal payout in tokens and get to showcase their knowledge and skills to the community. The work of these community authors helps grow DataHub's library of Web 3 tutorials and benefits the entire ecosystem.
+Share to Earn is a program that supports people who create content for the Web 3 Knowledge Base. Through the program, community authors receive a personal payout in tokens and get to showcase their knowledge and skills to the community. The work of these community authors helps grow Figment Learn's library of Web 3 tutorials and benefits the entire ecosystem.
 
 ### What is the payout structure?
 
