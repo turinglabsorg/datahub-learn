@@ -6,7 +6,7 @@ description: Bring your friends along for the ride!
 
 ## Introduction
 
-In this tutorial we will cover the process of creating a multisig - an account which shares authority for transactions across multiple addresses. For the purposes of this tutorial, we will generate two additional accounts and ensure they are both funded with enough WND to cover the existential deposit and to send a few transactions. These will be used to simulate the other signing parties of the multisig wallet.
+In this tutorial we will cover the process of creating a multisig - an account which shares authority for transactions across multiple addresses. The word "multisig" stands for "multiple signature". For the purposes of this tutorial, we will generate two additional accounts and ensure they are both funded with enough WND to cover the existential deposit and to send a few transactions. These will be used to simulate the other signing parties of the multisig wallet.
 
 We will be building a new commandline application in JavaScript to handle the operations of creating and using this multisig account on Westend, though the same concepts and most of the code still applies to Polkadot or other Substrate based blockchains.   
   
@@ -14,7 +14,7 @@ There are many potential applications of this concept, however for this tutorial
 
 Check out the [Polkadot API documentation](https://polkadot.js.org/docs/substrate) for a summary of all the relevant API metadata.
 
-![](../../../.gitbook/assets/workflow.png)
+![](../../../.gitbook/assets/total_flow-fix.png)
 
 {% hint style="info" %}
 From the Polkadot JS API documentation:
