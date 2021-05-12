@@ -1,3 +1,7 @@
+---
+description: Learn how to interact with Solana RPC websockets
+---
+
 # Subscription Websocket
 
 After connecting to the RPC PubSub websocket at `ws://<ADDRESS>/`:
