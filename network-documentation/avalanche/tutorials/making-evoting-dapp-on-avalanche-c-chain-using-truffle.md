@@ -106,7 +106,7 @@ APIKEY=<your-api-key>
 
 ## Add Election.sol
 
-> **Note** : This tutorial has been made by taking reference from [Dapp University](https://github.com/dappuniversity/election). 
+> **References** : This tutorial has been made by taking reference from [Dapp University](https://github.com/dappuniversity/election). 
 
 In the `contracts` directory add a new file called `Election.sol` and add the following block of code:
 
@@ -587,7 +587,13 @@ You have successfully built a full fledged `dApp` and deployed the smart contrac
 The dapp which we built just now is a very simple e-voting application, where for every new election, we need to update the smart contract with new candidates and deploy it on the Avalanche network. So, in order make it more scalable and sophisticated, we would adding more features like creating custom elections, adding new candidates, setting up starting and ending dates for each election and much more in the upcoming tutorials.
 
 ## About the author
-Hi, I am [Raj Ranjan](https://rajranjan0608.github.io) and currently I am doing my graduation (B.Tech, 2018-22) in Computer Science from IIIT Guwahati, India. I love building blockchain applications and is always looking for oppurtunities to give back to the community. You may reach out to me on [Linkedin](https://www.linkedin.com/in/iamrajranjan), if you want to discuss about any project ideas, have doubt or anything like that. Hope you would like the tutorial ahead :)
+Hi, I am [Raj Ranjan](https://rajranjan0608.github.io) and currently I am doing my graduation (B.Tech, 2018-22) in Computer Science from IIIT Guwahati, India. I love building blockchain applications and is always looking for oppurtunities to give back to the community. Please refer to the below mentioned links -
+
+Datahub - [rranjan01234](https://community.figment.io/u/rranjan01234/)
+
+Github Handle - [rajranjan0608](https://github.com/rajranjan0608)
+
+You may reach out to me on [Linkedin](https://www.linkedin.com/in/iamrajranjan), if you want to discuss about any project ideas, have doubt or anything like that. Hope you have enjoyed the tutorial.
   
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://discord.gg/fszyM7K)!
 
