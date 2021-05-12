@@ -127,7 +127,7 @@ There are three types of actions to be taken with a multi-sig account. Executing
 
 ## Create a Multisig account
 
-![](../../../.gitbook/assets/flow1.png)
+![](../../../.gitbook/assets/encode_flow-fix.png)
 
 Create a file called `create_multisig.js` and paste the following code :
 
@@ -227,7 +227,7 @@ Remember to copy and paste the resulting value for Multisig Address into `.env` 
 
 ## Fund a Multisig account
 
-![](../../../.gitbook/assets/approve_asmulti_flow.png)
+![](../../../.gitbook/assets/transfer_flow-fix.png)
 
 Funding the multisig wallet is an important step in this tutorial process, so that it will have enough available balance to cover the existential deposit, and an available balance for sending further transactions. 
 
