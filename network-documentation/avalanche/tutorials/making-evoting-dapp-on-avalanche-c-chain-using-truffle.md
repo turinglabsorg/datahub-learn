@@ -18,7 +18,7 @@ You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service
 * [NodeJS](https://nodejs.org/en) v8.9.4 or later.
 * Truffle, which you can install with `npm install -g truffle`
 * Metamask extension added to the browser, which you can add from [here](https://metamask.io/download.html)
-* Express.js, dotenv and truffle-hdwallet-provider \(instructions to install these will be added later\)
+* Express.js, dotenv and @truffle/hdwallet-provider \(instructions to install these will be added later\)
 
 ## Create truffle directory and install dependencies
 
@@ -46,7 +46,7 @@ This command would prompt the user to enter the details about the project like `
 Use `npm` to install other dependencies
 
 ```text
-npm install express dotenv truffle-hdwallet-provider --save
+npm install express dotenv @truffle/hdwallet-provider --save
 ```
 
 Lastly, create a boilerplace truffle project:
@@ -63,7 +63,7 @@ One of the files created when you ran `truffle init` is `truffle-config.js`. Rep
 
 ```javascript
 require('dotenv').config();
-const HDWalletProvider = require("truffle-hdwallet-provider");
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 //Account credentials from which our contract will be deployed
 const mnemonic = process.env.MNEMONIC;
