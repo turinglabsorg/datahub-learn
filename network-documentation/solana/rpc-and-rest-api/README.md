@@ -10,3 +10,5 @@ Solana exposes a single JSON RPC to enable the development of applications on th
 
 Learn about the APIs available via Solana [**DataHub**](https://datahub.figment.io/sign_up?service=solana) ****below.
 
+{% page-ref page="solana-rpc/" %}
+
