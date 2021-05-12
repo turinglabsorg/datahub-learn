@@ -258,6 +258,7 @@
   * [🎮 RPC & REST API](network-documentation/solana/rpc-and-rest-api/README.md)
     * [Solana RPC](network-documentation/solana/rpc-and-rest-api/solana-rpc/README.md)
       * [Subscription Websocket](network-documentation/solana/rpc-and-rest-api/solana-rpc/subscription-websocket.md)
+  * [💡 Tutorials](network-documentation/solana/tutorials.md)
 * [🌍 Terra](network-documentation/terra/README.md)
   * [✏ Terra 101](network-documentation/terra/terra-101.md)
   * [🎮 RPC & REST API](network-documentation/terra/rpc-and-rest-api/README.md)
