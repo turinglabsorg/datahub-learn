@@ -236,6 +236,7 @@
     * [Add the Contracts Pallets to a Runtime](network-documentation/polkadot/tutorials/add-the-contracts-pallets-to-a-runtime.md)
     * [Build a PoE Decentralized App](network-documentation/polkadot/tutorials/build-a-poe-decentralized-app.md)
     * [Implement Social Recovery on Polkadot](network-documentation/polkadot/tutorials/implement-social-recovery-on-polkadot.md)
+    * [Implement Multisig Accounts on Polkadot](network-documentation/polkadot/tutorials/implement-multisig-accounts-on-polkadot.md)
 * [🤫 Secret](network-documentation/secret/README.md)
   * [✏ Secret 101](network-documentation/secret/secret-101.md)
   * [🎮 RPC & REST API](network-documentation/secret/rpc-and-rest-api/README.md)
