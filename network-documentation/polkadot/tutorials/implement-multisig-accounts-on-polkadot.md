@@ -35,11 +35,6 @@ While Westend is meant to replicate the Polkadot mainnet as closely as possible,
 * The multi signature transaction deposit is equal to ~1 WND instead of ~20.2 DOT.
 {% endhint %}
 
-{% hint style="info" %}
-official polkadot edu video on multisigs using the JS apps UI to illustrate the difference between doing it in code and on the UI : [https://www.youtube.com/watch?v=ZJLqszvhMyM](https://www.youtube.com/watch?v=ZJLqszvhMyM)  
-REFERENCE ONLY :: not in final edit :\)
-{% endhint %}
-
 ## Setup
 
 It is not a requirement, however completing the Polkadot [Pathway](../polkadot-pathway.md) and the [social recovery](implement-social-recovery-on-polkadot.md) tutorial form a strong basis of understanding which will enhance this tutorial. 
