@@ -4,8 +4,6 @@ description: Learn how to interact with the Solana RPC
 
 # Solana RPC
 
-
-
 ## Source documentation
 
 \*\*\*\*[**The Solana RPC's source documentation can be found here**. ](https://docs.solana.com/developing/clients/jsonrpc-api)
