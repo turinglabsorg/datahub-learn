@@ -115,6 +115,8 @@ APIKEY=<your-api-key>
 
 ## Add Election.sol
 
+> **Note** : Few parts of this tutorial has been made by taking reference from [Dapp University](https://github.com/dappuniversity/election). 
+
 In the `contracts` directory add a new file called `Election.sol` and add the following block of code:
 
 ```javascript
