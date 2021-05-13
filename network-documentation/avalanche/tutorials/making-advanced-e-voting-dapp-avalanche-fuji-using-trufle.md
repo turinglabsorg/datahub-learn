@@ -83,7 +83,7 @@ module.exports = {
     },
     fuji: {
       provider: function() {
-        return new HDWalletProvider({mnemonic, providerOrUrl: `https://avalanche--fuji--rpc.datahub.figment.io/apikey/${APIKEY}/ext/bc/C/rpc`})
+        return new HDWalletProvider({mnemonic, providerOrUrl: `https://avalanche--fuji--rpc.datahub.figment.io/apikey/${APIKEY}/ext/bc/C/rpc`, chainId: "0xa869"})
       },
       network_id: "*",
       gas: 3000000,
@@ -332,7 +332,7 @@ When deploying smart contracts to the C-Chain, it will require some deployment c
 
 ### Fund your account
 
-Fund your account using the the faucet link [https://faucet.avax-test.network/](https://faucet.avax-test.network/) and pasting your Fuji's C-Chain address in the input field. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Though funding through faucet would give you enough `AVAX` to run multiple deployments and transactions on the network.
+Fund your account using the the faucet link [https://faucet.avax-test.network/](https://faucet.avax-test.network/) and pasting your Fuji's C-Chain address in the input field. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Here nAVAX refers to nano AVAX, which is one-billionth of an AVAX token. Minimum AVAX required for deployment, will vary from contract to contract, depending upon what variables and data structures our contract is using. Though funding through faucet would give you enough `AVAX` to run multiple deployments and transactions on the network.
 
 ## Run Migrations
 
