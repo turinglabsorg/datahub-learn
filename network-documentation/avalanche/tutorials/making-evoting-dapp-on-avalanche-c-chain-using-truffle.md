@@ -79,7 +79,8 @@ module.exports = {
       },
       network_id: "*",
       gas: 3000000,
-      gasPrice: 470000000000
+      gasPrice: 470000000000,
+      skipDryRun: true
     }
   },
   solc: {
