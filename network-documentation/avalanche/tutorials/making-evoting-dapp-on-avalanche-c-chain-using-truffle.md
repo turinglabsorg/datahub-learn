@@ -18,7 +18,7 @@ You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service
 * [NodeJS](https://nodejs.org/en) v8.9.4 or later.
 * Truffle, which you can install with `npm install -g truffle`
 * Metamask extension added to the browser, which you can add from [here](https://metamask.io/download.html)
-* Express.js, dotenv and @truffle/hdwallet-provider \(instructions to install these will be added later\)
+* Express.js, dotenv, pify and @truffle/hdwallet-provider \(instructions to install these will be added later\)
 
 ## Create truffle directory and install dependencies
 
@@ -46,7 +46,7 @@ This command would prompt the user to enter the details about the project like `
 Use `npm` to install other dependencies
 
 ```text
-npm install express dotenv @truffle/hdwallet-provider --save
+npm install express dotenv @truffle/hdwallet-provider pify --save
 ```
 
 Lastly, create a boilerplace truffle project:
@@ -75,7 +75,7 @@ module.exports = {
   networks: {
     fuji: {
       provider: function() {
-            return new HDWalletProvider(mnemonic, `https://avalanche--fuji--rpc.datahub.figment.io/apikey/${APIKEY}/ext/bc/C/rpc`)
+            return new HDWalletProvider({mnemonic, `https://avalanche--fuji--rpc.datahub.figment.io/apikey/${APIKEY}/ext/bc/C/rpc`, chainId: "0xa869"})
       },
       network_id: "*",
       gas: 3000000,
@@ -245,7 +245,7 @@ When deploying smart contracts to the C-Chain, it will require some deployment c
 
 ### Fund your account
 
-Fund your account using the the faucet link https://faucet.avax-test.network/ and pasting your Fuji's C-Chain address in the input field. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Though faucet will give you enough `AVAX` to deploy and transact mulptiple times on Avalanche's Fuji network.
+Fund your account using the the faucet link https://faucet.avax-test.network/ and pasting your Fuji's C-Chain address in the input field. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Here `nAVAX` refers to nano AVAX, which is one-billionth of an AVAX token. Minimum AVAX required for deployment, will vary from contract to contract, depending upon what variables and data structures our contract is using. Though faucet will give you enough `AVAX` to deploy and transact mulptiple times on Avalanche's Fuji network.
 
 ## Run Migrations
 
