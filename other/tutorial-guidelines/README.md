@@ -45,3 +45,9 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * If you use `npm install` use the `--save` flag
 * If you mention `.env` and `.gitignore` during the tutorial setup, you can reference the Guides [document](https://learn.figment.io/network-documentation/extra-guides/dotenv-and-.env) we wrote on this.
 
+Please check Sample Tutorial Structure on the next page.
+
+{% page-ref page="sample-tutorial-structure.md" %}
+
+
+
