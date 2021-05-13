@@ -75,7 +75,7 @@ module.exports = {
   networks: {
     fuji: {
       provider: function() {
-            return new HDWalletProvider({mnemonic, `https://avalanche--fuji--rpc.datahub.figment.io/apikey/${APIKEY}/ext/bc/C/rpc`, chainId: "0xa869"})
+            return new HDWalletProvider({mnemonic, providerOrUrl: `https://avalanche--fuji--rpc.datahub.figment.io/apikey/${APIKEY}/ext/bc/C/rpc`, chainId: "0xa869"})
       },
       network_id: "*",
       gas: 3000000,
