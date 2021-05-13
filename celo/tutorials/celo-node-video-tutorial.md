@@ -3,7 +3,7 @@
 
    INTRODUCTION
                                            
-  This tutorial is a start to finissh guide on setting up a Celo Full node. Full nodes are an important part of the celo ecosystem. The node bridges the gap between light clients and the validator nodes. full node incentives are one of the ways CELO encurages their use. 
+  This tutorial is a start to finish guide on setting up a Celo Full node. Full nodes are an important part of the celo ecosystem. The node bridges the gap between light clients and the validator nodes. full node incentives are one of the ways CELO encurages their use. 
 #
 
    DESCRIPTION
@@ -73,12 +73,13 @@
     * usermod -aG sudo $YOURUSERNAME
          //restart
     * id (to check if in the sudo group)
+         //sudo allows you to gain an admin like access 
 #
    INSTALLING DEPENDENCY ONTO THE VM USING SUDO COMANDS
    
     * sudo apt update
     * sudo apt upgrade
-         //make sure the VM is up to date
+         //these comands are only posible once in the sudo group 
     * sudo apt install docker.io
     * sudo apt install curl
          //curl will be used to insert git hub links 
@@ -139,12 +140,13 @@
     * source celo.env 
          // now these files can be utilized while in the celo-data-dir 
  # 
-   NOW IT'S TIME TO CREATE THE NODE
+   NOW IT'S TIME TO CREATE THE NODE (do this while in the celo-data-dir)
       
     * sudo usermod -aG docker $YOURNAME
          //restart
     * id (check if you have joined the docker group)
     * cd celo-data-dir
+         //now you are using the celo-data-dir 
     * source celo.env
     * cat celo.env
     * docker run -v $PWD:/root/.celo --rm -it $CELO_IMAGE account new (this comand creates your new node)
@@ -179,7 +181,7 @@
     * celocli transfer:dollars --from $NODE_ADDRESS --to $PHONE_ADDRESS --value=1e16 (this will send the CUSD from this node to another address 1e16=0.01CUSD) 
          //this will send the CUSD from this node to another address (1e16 = 0.01CUSD)
 #
-   IMPROVING THE SCREEN RESOLUTION OF THE VM
+   IMPROVING THE SCREEN RESOLUTION OF THE VM (not Vital but recommended) 
    
     * sudo apt update && sudo apt upgrade
     * sudo apt install build-essential linux-headers-`uname -r`
@@ -193,7 +195,7 @@
 ![image](https://user-images.githubusercontent.com/80616939/118052031-482aad00-b33f-11eb-9195-6289f79dde26.png)
 
 
-after completing all the steps the fullnode and light client are ready to go. Keep in mind this tutrial is not the only way to set up a full node. This node is now under your control so remeber the keys and passwords to avoid losing any money. Please experiment with this setup and personalize it. If you run into any issues please contact me on Discord; Aidan68#9447. 
+after completing all the vital steps the fullnode and light client are ready to go. Keep in mind this tutrial is not the only way to set up a full node. This node is now under your control so remeber the keys and passwords to avoid losing any money. Please experiment with this setup and personalize it. If you run into any issues please contact me on Discord; Aidan68#9447. 
 #
    About the Author 
    
