@@ -20,19 +20,35 @@ Authors are paid in the tokens of the protocol they write about, which allows us
 4. **Revise:** Submit your first draft and collaborate one-on-one with one of our editors to revise your work  
 5. **Publish:** After revisions, your editor will send your payment, publish your article, and ask what you want to write about next. Figment will also promote your article across all of our social networks and you will be identified as the author in the knowledge base. 
 
+## **📝 What is the contribution review process?**
+
+1. First, make sure you have a Github account. Visit [Github.com](http://Github.com) to create a new account if you don't have one yet, it's free.
+2. Clone the Datahub Learn documentation [repository](https://github.com/figment-networks/datahub-learn): It's important that you have the most recent version of documentation before you start your contribution. If you have already cloned it, make sure to pull down the latest changes.
+3. Create a new git branch in your local repository, you can name it however you want, though we prefer if you pick a name relevant to your contribution. \(Example: near-nft-tutorial\).
+4. Create a new file\(s\) under the tutorials section of the network documentation you're contributing to. Example: _**network-documentation/near/tutorials/my-new-tutorial.md**_
+5. **⚠ Most Importantly -** Once you have completed the documentation make sure you have added a new entry in the _**SUMMARY.md**_ file.
+
+Finally, when you're ready to submit your contribution for review, head over to the [Pull Requests](https://github.com/figment-networks/datahub-learn/pulls) section and create a new pull request from your branch. Our team will start the review process and suggest edits in the same pull request.
+
+Once your pull request is approved and merged by our team, it will be automatically published on Learn!
+
+To get your new tutorial reviewed and published, please complete this form - [**bit.ly/learntutorial**](http://bit.ly/learntutorial)
+
+Once our team gets to it, they will review the content and open a discussion with you on discord or email. At the end of this process, they will either include your changes into the Figment Learn or request additional changes. For the final submission of your tutorial you have to make a PR to our GitHub [**HERE**](https://github.com/figment-networks/datahub-learn)
+
 ## 💡 What should I write about?
 
 * [NEAR tutorial ideas](https://docs.google.com/document/d/1yk2nr1pg-LidzdQg2ZogQ6phX-AcPJNwuW7LdQPoL5k/edit)
 * [Secret tutorial ideas](https://docs.google.com/document/d/11jLaH0AFbvMLs_ORcj29OeqR_07GsUgtRrDi9E0lTTc/edit#heading=h.lq158u48d890)
-* [Celo tutorial idea](https://docs.google.com/document/d/1kLBWbEygrVQcFNoMLpCtH7Dxk674FI6Dmegg4J3rSCM/edit#heading=h.lq158u48d890)s
+* [Celo tutorial ideas](https://docs.google.com/document/d/1kLBWbEygrVQcFNoMLpCtH7Dxk674FI6Dmegg4J3rSCM/edit#heading=h.lq158u48d890)
 * [Avalanche tutorial ideas](https://docs.google.com/document/d/1F2SPqZGVwA7_lSpfl0iZ3LUmqfjV4SZRh7R9qz9VenU/edit)
 * [Polkadot tutorial ideas](https://docs.google.com/document/d/1__8a2Yguaqo2o6uzyhSWUXSnSSTqBludYhudMkJwheU/edit#heading=h.sbftvenqcy6y)
 
-See examples of community tutorials [here](https://app.gitbook.com/@figment-learn/s/learn-docs/~/drafts/-M_S4KgTYz59Oml09lly/figment-learn/all-tutorials)
-
 ## 📋 Tutorial Guidelines
 
-Then please check our Learn Tutorial Guidelines for more details - [**HERE**](https://docs.google.com/document/d/13LWLrWzZ34M0ldWGeDANcWxw9nEWk3AX3VwXRBIOs1M/edit?usp=sharing)
+Please check our Learn Tutorial Guidelines for more details 👇
+
+{% page-ref page="../other/tutorial-guidelines/" %}
 
 ## 🙋 How do I apply?
 

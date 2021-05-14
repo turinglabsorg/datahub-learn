@@ -15,7 +15,7 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * **Funding of accounts from faucets needs to be explained clearly** as to which account is being funded, from where and why.
 * **Display sample outputs** to help learners know what to expect, in the form of Terminal snippets or screenshots. Trim long outputs.
 * **Take an error driven approach** where you bump into errors on purpose to teach learners how to debug them. Eg. If you need to fund an account to be able to deploy a contract, first try and deploy without funding, observe the error that is returned, then fix the error \(by funding the account\) and try again.
-* **Add potential errors and troubleshooting.** Of course the tutorial shouldn't list all potential errors but the main important one \(eg. "if you get _`<paste_error_here>`,_ make sure you copied the MNEMONIC to your `.env` file"\)
+* **Add potential errors and troubleshooting.** Of course, the tutorial shouldn't list all potential errors but the main important one \(eg. "if you get _`<paste_error_here>`,_ make sure you copied the MNEMONIC to your `.env` file"\)
 
 ## **Structure**
 
@@ -36,7 +36,8 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * **Use Markdown properly** throughout the tutorial. You can refer to Gitbook's markdown guide [here](https://gitbookio.gitbooks.io/documentation/content/format/markdown.html).
 * **Select the appropriate language** for code blocks' syntax highlighting
 * **The code blocks should be formatted and indented** properly, according to the language's conventions.
-* **The code blocks should be well commented**. Comments should be short \(usuaully two or three lines max at a time\) and effective. If you more space to explain a piece of code, do it outside the code block.
+* **The code blocks should be well commented**. Comments should be short \(usually two or three lines max at a time\) and effective. If you more space to explain a piece of code, do it outside the code block.
+* **Writing Tone -** Learn Tutorials are written by community contributors for their peers. As such, we recommend creating a tone of inclusion and interaction throughout the tutorial. Use words like “we”, “us”, “our”, like “We have successfully deployed our contract”. When providing direct instructions feel free to use “you”, “your” etc. like _“Your file should look like this”_.
 
 ## **App setup**
 
@@ -44,6 +45,19 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * If you use `npm init` explain the prompts or use the `-y` flag
 * If you use `npm install` use the `--save` flag
 * If you mention `.env` and `.gitignore` during the tutorial setup, you can reference the Guides [document](https://learn.figment.io/network-documentation/extra-guides/dotenv-and-.env) we wrote on this.
+
+## **Do’s and Don'ts while creating Tutorials**
+
+### ✅Do’s -
+
+* Ideally, each subsection feels rewarding and has a concise output.
+* Provide regular checkpoints.
+* Run the code by yourself first to avoid any future unknown errors and to make sure it works as expected. 
+* Provide pictures/screenshots where needed.
+
+### ❌Don’ts -
+
+* Including external/cross links to different sources in between the tutorials. 
 
 Please check Sample Tutorial Structure on the next page.
 
