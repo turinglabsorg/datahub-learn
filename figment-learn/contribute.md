@@ -38,13 +38,10 @@ Once our team gets to it, they will review the content and open a discussion wit
 
 ## 💡 What should I write about?
 
-* [NEAR tutorial ideas](https://docs.google.com/document/d/1yk2nr1pg-LidzdQg2ZogQ6phX-AcPJNwuW7LdQPoL5k/edit)
-* [Secret tutorial ideas](https://docs.google.com/document/d/11jLaH0AFbvMLs_ORcj29OeqR_07GsUgtRrDi9E0lTTc/edit#heading=h.lq158u48d890)
-* [Celo tutorial ideas](https://docs.google.com/document/d/1kLBWbEygrVQcFNoMLpCtH7Dxk674FI6Dmegg4J3rSCM/edit#heading=h.lq158u48d890)
-* [Avalanche tutorial ideas](https://docs.google.com/document/d/1F2SPqZGVwA7_lSpfl0iZ3LUmqfjV4SZRh7R9qz9VenU/edit)
-* [Polkadot tutorial ideas](https://docs.google.com/document/d/1__8a2Yguaqo2o6uzyhSWUXSnSSTqBludYhudMkJwheU/edit#heading=h.sbftvenqcy6y)
+It's not a question to worry about 😉 because we got you covered  
+Check the list of all available protocols and tutorial ideas -&gt; [**HERE**](https://www.notion.so/Tutorial-Contribution-Ideas-d8ff9cdc32ca4b58838d81d07eab49bd)\*\*\*\*
 
-## 📋 Tutorial Guidelines
+## 📋Tutorial Guidelines
 
 Please check our Learn Tutorial Guidelines for more details 👇
 
