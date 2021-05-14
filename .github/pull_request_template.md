@@ -36,7 +36,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] I updated the `SUMMARY.md` file (FYI, It's needed only when you're creating a new file like submitting a new tutorial, pathway section)
 - [ ] I created one tutorial for this PR (one PR <=> one tutorial)
 - [ ] I checked and accept that my PR for new tutorial follwoing the [**Tutorial Guidelines**](https://learn.figment.io/other/tutorial-guidelines) of this project
-- [ ] I checked and read the contribution guide before making this PR [**HERE**](https://docs.google.com/document/d/13LWLrWzZ34M0ldWGeDANcWxw9nEWk3AX3VwXRBIOs1M/edit)  
+- [ ] I checked and read the contribution guide before making this PR [**HERE**](https://learn.figment.io/figment-learn/contribute)  
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
