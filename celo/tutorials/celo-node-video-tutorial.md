@@ -25,11 +25,11 @@
   
   building a CELO fullnode 
   
-  runing a light client 
+  running a light client 
   
-  utilizing .env files 
+  using .env files 
   
-  improving the resolution of the VM
+  improving the screen resolution of the VM
   
   Utilizing the Valora mobile app 
   
@@ -53,7 +53,7 @@
 >download Signal(for sending wallet addreses)on your pc and smart phone
 
 #
-   *SETTING UP THE VIRTUAL MASHINE*
+   *STEPS FOR SETTING UP THE VIRTUAL MASHINE*
               
 * Hit the Create New in oracle VM (to create a new virtual mashine) 
 * select a dynamicaly allocated virtual hard disk
