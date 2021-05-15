@@ -6,7 +6,7 @@ Fixes # (issue)
 
 ## Type of change*
 
-Please delete options that are not relevant.
+Important - Please delete options that are not relevant to your PR.
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
@@ -15,8 +15,11 @@ Please delete options that are not relevant.
 - [ ] Typo fix
 
 ## This PR created for* - 
+
+Important - Please delete option that's not relevant to your PR.
+
 - [ ] DataHub Official Docs (Network Documentation, API docs etc.) changes/updates/fixes
-- [ ] Figment Learn Docs (Pathway, Tutorials, New Tutorials etc.) changes/updates/fixes
+- [ ] Figment Learn Docs (Pathway, Existing Tutorials, New Tutorial etc.) changes/updates/fixes
 
 # How Has This Been Tested? (If Applicable)
 
@@ -32,7 +35,8 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 
 - [ ] I updated the `SUMMARY.md` file (FYI, It's needed only when you're creating a new file like submitting a new tutorial, pathway section)
 - [ ] I created one tutorial for this PR (one PR <=> one tutorial)
-- [ ] I checked and read the contribution guide before making this PR [**HERE**](https://docs.google.com/document/d/13LWLrWzZ34M0ldWGeDANcWxw9nEWk3AX3VwXRBIOs1M/edit)  
+- [ ] I checked and accept that my PR for new tutorial follwoing the [**Tutorial Guidelines**](https://learn.figment.io/other/tutorial-guidelines) of this project
+- [ ] I checked and read the contribution guide before making this PR [**HERE**](https://learn.figment.io/figment-learn/contribute)  
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas

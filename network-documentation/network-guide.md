@@ -42,6 +42,8 @@ Filecoin is a peer-to-peer network that stores files, with built-in economic inc
 
 {% page-ref page="filecoin/" %}
 
+## ![](../.gitbook/assets/matic_network.png) Matic
+
 ## ![](../.gitbook/assets/1_gc0dp8vfvm6bwwn51nuqew.png) Mina 
 
 Mina is the first cryptocurrency protocol with a succinct blockchain. Current cryptocurrencies like Bitcoin and Ethereum store hundreds of gigabytes of data, and as time goes on, their blockchains will only increase in size. With Mina, however, no matter how much the usage grows, the blockchain always stays the same size - about 22kb \(the size of a few tweets\). This means participants can quickly sync and verify the network.
@@ -71,6 +73,12 @@ Polkadot enables scalability by allowing specialized blockchains to communicate 
 Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps.
 
 {% page-ref page="secret/" %}
+
+## ![](../.gitbook/assets/solana-sol-logo-1-.png) Solana
+
+Solana is an open-source project implementing a new, high-performance, permissionless blockchain. It provides a platform that enables developers to create DApps without needing to design around performance bottlenecks.
+
+{% page-ref page="solana/" %}
 
 ## ![](../.gitbook/assets/rsz_terra-logo%20%281%29.jpg) Terra 
 

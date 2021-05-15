@@ -12,8 +12,8 @@
 ## 🍎 Figment Learn
 
 * [💡 All Tutorials](figment-learn/all-tutorials.md)
-* [🗺 Pathways](figment-learn/pathways.md)
-* [✒ Contribute](figment-learn/contribute.md)
+* [🗺 All Pathways](figment-learn/pathways.md)
+* [✒ Contribute and Earn](figment-learn/contribute.md)
 
 ## 📖 DataHub Guides <a id="guides"></a>
 
@@ -237,6 +237,7 @@
     * [Add the Contracts Pallets to a Runtime](network-documentation/polkadot/tutorials/add-the-contracts-pallets-to-a-runtime.md)
     * [Build a PoE Decentralized App](network-documentation/polkadot/tutorials/build-a-poe-decentralized-app.md)
     * [Implement Social Recovery on Polkadot](network-documentation/polkadot/tutorials/implement-social-recovery-on-polkadot.md)
+    * [Implement Multisig Accounts on Polkadot](network-documentation/polkadot/tutorials/implement-multisig-accounts-on-polkadot.md)
 * [🤫 Secret](network-documentation/secret/README.md)
   * [✏ Secret 101](network-documentation/secret/secret-101.md)
   * [🎮 RPC & REST API](network-documentation/secret/rpc-and-rest-api/README.md)
@@ -253,6 +254,12 @@
     * [Developing your first secret contract](network-documentation/secret/tutorials/creating-a-secret-contract-from-scratch.md)
     * [Delegate to a Validator & Unbond Tokens](network-documentation/secret/tutorials/delegate-and-unbond-tokens.md)
     * [Create your first secret NFT](network-documentation/secret/tutorials/create-your-first-secret-nft.md)
+* [🔋 Solana](network-documentation/solana/README.md)
+  * [✏ Solana 101](network-documentation/solana/solana-101.md)
+  * [🎮 RPC & REST API](network-documentation/solana/rpc-and-rest-api/README.md)
+    * [Solana RPC](network-documentation/solana/rpc-and-rest-api/solana-rpc/README.md)
+      * [Subscription Websocket](network-documentation/solana/rpc-and-rest-api/solana-rpc/subscription-websocket.md)
+  * [💡 Tutorials](network-documentation/solana/tutorials.md)
 * [🌍 Terra](network-documentation/terra/README.md)
   * [✏ Terra 101](network-documentation/terra/terra-101.md)
   * [🎮 RPC & REST API](network-documentation/terra/rpc-and-rest-api/README.md)
@@ -290,6 +297,8 @@
 
 ## 🤔 Other
 
+* [👀 Tutorial Guidelines](other/tutorial-guidelines/README.md)
+  * [Sample Tutorial Structure](other/tutorial-guidelines/sample-tutorial-structure.md)
 * [🧾 Glossary](other/glossary.md)
 * [🗳 Support](other/support.md)
 

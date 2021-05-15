@@ -19,7 +19,9 @@ Because this is a means by which access to your funds could become compromised, 
 
 For the purposes of this tutorial, we will assume the role of all involved parties as a means of demonstrating the relevant code. It is up to developers to transfer this knowledge to a production environment in a responsible manner, keeping best practices and end-user security in mind.
 
-![](../../../.gitbook/assets/flow1_big.png)
+{% hint style="info" %}
+Throughout this tutorial, when `...` appears in an output block, it indicates that the text has been trimmed for readability. The terminal output from running the code locally will differ slightly from the examples, so do not be overly concerned if they do not match.
+{% endhint %}
 
 ## Setup
 
@@ -104,6 +106,8 @@ In a terminal window, run `node create_account.js` 4 \(_four_\) times in order t
 
 Get Alice some funding to afford the deposit fees by going to [https://faucet.figment.io](https://faucet.figment.io) and entering the first address we generated. As we will need to pay for transactions during the tutorial, it will also be necessary to transfer some tokens to the other accounts. This will be covered as we proceed.
 
+![](../../../.gitbook/assets/flow1_big.png)
+
 ### Add a proxy account for Alice
 
 Create a file called `create_proxy.js` and paste the following code :
@@ -153,7 +157,7 @@ const main = async () => {
     .signAndSend(Alice, {tip: 10000000000});
   console.log(`\nproxyDepositBase \+ ( proxyDepositFactor * number of proxies )\n : ${formatBalance(DEPOSIT_BASE)} \+ ${formatBalance(DEPOSIT_FACTOR)} \= ${formatBalance(parseInt(DEPOSIT_BASE)+parseInt(DEPOSIT_FACTOR))}\n`);
   console.log(`Required values  : .addProxy(address, type, delay)`);     
-  console.log(`Submitted values : .addProxy(${AliceProxy.address}, ${PROXY_TYPE}, ${DELAY})`);
+  console.log(`Submitted values : .addProxy(${AliceProxy.address}, ${PROXY_TYPE}, ${DELAY_PERIOD})`);
   console.log(`addProxy() tx: https://westend.subscan.io/extrinsic/${txAddHash}\n`);  
 }
 
@@ -174,6 +178,8 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 
 Run the code with `node create_proxy.js`. The expected output will look similar to this example :
 
+{% tabs %}
+{% tab title="Output of /polkadot\_sr/create\_proxy.js" %}
 ```php
 Required values  : .transfer(destination, amount)
 Submitted values : .transfer(5FsyYpFCETZpmexY3FZuD5oxK3viQwcDenHa5hiHsVyaqvYA, 2.0000 WND)
@@ -185,6 +191,8 @@ Required values  : .addProxy(address, type, delay)
 Submitted values : .addProxy(5FsyYpFCETZpmexY3FZuD5oxK3viQwcDenHa5hiHsVyaqvYA, Staking, 0)
 addProxy() tx: https://westend.subscan.io/extrinsic/...
 ```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 **About amounts** :
@@ -272,7 +280,7 @@ Submitted values : .batch([
   "0xac040400004c5f5c983eaa1a5ce7cf4462b4f527f69c3b9cb284e2ae941d1b8b3a85a...",
   "0xac04040000ee43c4203c16f4f9f2577a7fb85136788c9aefd0f0666d678078d784c86..."
 ])
-Sending 1.0000 WND to 5DnqpngDQQ4pNpHgmGyhyzrpCaXawGHRiHRoPvdigLpHSQ8K & 
+Sending 500.0000 mWND to 5DnqpngDQQ4pNpHgmGyhyzrpCaXawGHRiHRoPvdigLpHSQ8K & 
 5HT7PFajmKLC7RvLHKNBicuf9xYhMH6tpUzbJDi5EMYFRhQs
 batch() tx: https://westend.subscan.io/extrinsic/...
 ```
@@ -282,6 +290,8 @@ batch() tx: https://westend.subscan.io/extrinsic/...
 The submitted values are the hashed data for the transfer functions we set in the `transactions` array, which will be processed by the `batch()` function. Check the link to SubScan, to view the successful transaction. 
 
 ![](../../../.gitbook/assets/utility-batchcompleted-socialrec.png)
+
+At this point, we are set up and should have a funded main account with a reserved balance of just over 1 WND, a functioning proxy account, and two separate accounts with 0.5 WND each. The next step is to create a recovery configuration. 
 
 ## Create a recovery configuration
 
@@ -371,10 +381,10 @@ createRecovery tx: https://westend.subscan.io/extrinsic/...
 {% endtab %}
 {% endtabs %}
 
-Be aware that we may encounter an `Error: 1010: Invalid Transaction` if there is not a sufficient balance in the Alice account to pay the deposit and network fees. We need a minimum of around 6 WND available balance, which we should have after visiting the faucet.
+Be aware that we may encounter an `Error: 1010: Invalid Transaction` if there is not a sufficient balance in the Alice account to pay the deposit and network fees. We need a minimum of around 6 WND available balance, which we should have after visiting the faucet during setup.
 
 {% hint style="info" %}
-On Polkadot `configDepositBase` is 20.008 and the `friendDepositFactor` is 0.033.  
+On Polkadot `configDepositBase` is 20.008 and the `friendDepositFactor`is 0.033.  
 So the required deposit amount for new social recovery configurations on Polkadot equals   
 \(in DOT\): `20.008 + (0.033 * num_friends)` 
 {% endhint %}
@@ -424,7 +434,11 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 {% endtab %}
 {% endtabs %}
 
-`initiateRecovery()` creates an active recovery request in storage, which then needs to be vouched for by our social recovery contacts. If `closeRecovery()` is called, the active recovery request will be removed, also refunding the `recoveryDeposit` to the recoverable account, Alice.
+`initiateRecovery()` creates an active recovery request in storage, which then needs to be vouched for by our social recovery contacts. 
+
+The `api.consts.recovery.recoveryDeposit` amount will be automatically reserved from the available balance of the AliceProxy account - this is why we transferred 5.2 WND to the AliceProxy during setup. If the `recoveryDeposit` amount is not available on the Proxy, this step will fail. If `closeRecovery()` is called at this stage, the active recovery request will be removed, also refunding the `recoveryDeposit` to the recoverable account, Alice.
+
+After `initiateRecovery()` has been called, it is possible to use `closeRecovery()` to prematurely end the recovery process without completing it. Once `closeRecovery()` has been called on all active recovery configurations, it is possible to call `removeRecovery()` - This will delete the recovery configuration from storage. This is useful in cases where it is necessary to alter the list of social recovery contacts, as there is no means of updating the list in place.
 
 Run `node initiate_recovery.js` :
 
@@ -436,6 +450,10 @@ initiateRecovery() tx: https://westend.subscan.io/extrinsic/...
 ```
 {% endtab %}
 {% endtabs %}
+
+The way to be sure it has completed successfully is to follow the link to the SubScan block explorer and see that the Events for the transaction we just sent include a successful [recovery\(RecoveryInitiated\)](https://westend.subscan.io/event?module=recovery&event=recoveryinitiated) action, which would look like this example :
+
+![](../../../.gitbook/assets/rec_success.png)
 
 
 
@@ -482,7 +500,8 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 {% endtab %}
 {% endtabs %}
 
-Once these transactions are successful, the proxy account will be able to claim the recovery configuration from storage, which grants authority to sign on behalf of Alice. Without this part of the process, social recovery is impossible. This is why it is of vital importance to maintain a good relationship with the people we select to be our social recovery contacts.
+Once these transactions are successful, the AliceProxy account will be able to claim the recovery configuration from storage, which grants authority to sign on behalf of Alice.  
+Without this part of the process, social recovery is impossible. This is why it is of vital importance to maintain a good relationship with the people we select to be our social recovery contacts.
 
 Run `node vouch_recovery.js` :
 
@@ -494,6 +513,8 @@ Charlie vouch tx: https://westend.subscan.io/extrinsic/...
 ```
 {% endtab %}
 {% endtabs %}
+
+In a live scenario involving accounts with actual value \(DOT instead of WND\), these functions would be called by separate individuals at different times. It would therefore be preferable \(although not entirely necessary\) to communicate with our social recovery contacts _in real time_ to coordinate this process.
 
 ## Claim a recovery configuration
 
@@ -516,7 +537,7 @@ const main = async () => {
 
   // 1. Initialize accounts
   const Alice = keyring.addFromUri(process.env.ALICE_MNEMONIC);
-  const AliceProxy= keyring.addFromUri(process.env.PROXY_MNEMONIC);
+  const AliceProxy = keyring.addFromUri(process.env.PROXY_MNEMONIC);
 
   // 2. Claim lost account
   const txHash = await api.tx.recovery
@@ -530,9 +551,7 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 {% endtab %}
 {% endtabs %}
 
-We must wait for confirmation from our social recovery contacts that they have done their part before proceeding to claim the recovery configuration. It is important to note that `claimRecovery()` will fail if it is called before the `THRESHOLD` of `vouchRecovery()` functions have been successful.
-
-Run `node claim_recovery.js` :
+ It is important to note that `claimRecovery()` will fail if it is called before the `THRESHOLD` of `vouchRecovery()` functions have been successful. We must wait for confirmation from our social recovery contacts that they have done their part before proceeding to claim the recovery configuration. Once we aware that the vouch transactions are complete, run `node claim_recovery.js` :
 
 {% tabs %}
 {% tab title="Output of /polkadot\_sr/claim\_recovery.js" %}
@@ -541,6 +560,10 @@ claimRecovery tx: https://westend.subscan.io/extrinsic/...
 ```
 {% endtab %}
 {% endtabs %}
+
+Follow the link in the terminal output to check that the AliceProxy has successfully claimed the recovery attempt. We are looking for the  [recovery\(AccountRecovered\)](https://westend.subscan.io/event?module=recovery&event=accountrecovered) action similar to this example :
+
+![](../../../.gitbook/assets/rec_acct.png)
 
 ## Send transactions as the recovered account
 
@@ -592,7 +615,7 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 {% endtabs %}
 
 After the recovery configuration has been claimed, we are able to send function calls on behalf of our lost account using `asRecovered()` . This grants authority for a limited set of functions, which includes transfers.   
-There is also a `cancelRecovered()` function which revokes the ability of a registered proxy account to use `asRecovered()` as well as a `setRecovered()` function, which allows a root account to bypass the recovery process and grant authority for `asRecovered()` directly. For the truly adventurous,  more information on those functions can be found inside the definition files of the Polkadot API.
+There is also a `cancelRecovered()` function which revokes the ability of a registered proxy account to use `asRecovered()` as well as a `setRecovered()` function, which allows a root account to bypass the recovery process and grant authority for `asRecovered()` directly. For the truly adventurous, more information on those functions can be found inside the definition files of the Polkadot API.
 
 Run `node use_recovery.js` :
 
@@ -600,8 +623,9 @@ Run `node use_recovery.js` :
 {% tab title="Output of /polkadot\_sr/use\_recovery.js" %}
 ```bash
 Required values  : asRecovered(address, function)
-Submitted values : asRecovered(5CwJrhV9DaLncybk2vHbvt62SfwDfqMmPHVbo83u3iPkSDkc,
-"0xa8040400009c642940626369e9702360b468a7d043c8524076cd3d2edf99bdf92a30aabb6b0700e40b5402")
+Submitted values : asRecovered(
+    5CwJrhV9DaLncybk2vHbvt62SfwDfqMmPHVbo83u3iPkSDkc,
+    "0xa804040000...")
 asRecovered tx: https://westend.subscan.io/extrinsic/...
 ```
 {% endtab %}
@@ -647,7 +671,7 @@ const main = async () => {
   // 5. Close & Remove recovery config
   const closeHash = await api.tx.utility
     .batch(transactions)
-    .signAndSend(Alice, { tip: 10000000000 } );
+    .signAndSend(Alice, { nonce: -1 } );
   console.log(`Required values  : .batch([transactions])`);     
   console.log(`Submitted values : .batch(${JSON.stringify(transactions, null, 2)})`);
   console.log(`batch() tx: https://westend.subscan.io/extrinsic/${closeHash}`);  
@@ -655,7 +679,7 @@ const main = async () => {
   // 6. Refund the Faucet
   const txHash = await api.tx.balances
     .transfer(figmentFaucet, AMOUNT_TO_SEND)
-    .signAndSend(Alice, { tip: 10000000000 });
+    .signAndSend(Alice, { nonce: -1 });
   console.log(`transfer() tx: https://westend.subscan.io/extrinsic/${txHash}`);
 
 };
@@ -665,7 +689,15 @@ main().catch((err) => { console.error(err) }).finally(() => process.exit());
 {% endtab %}
 {% endtabs %}
 
-We will clean up the recovery configuration by first calling `closeRecovery()` and then `removeRecovery()` . This will refund the deposit we placed earlier to Alice, then send the WND tokens back to the Figment Faucet so that we are not unnecessarily tying up tokens. It must be understood that `removeRecovery()` can only be called once `closeRecovery()` __has been called on any active recovery requests_._ 
+We will clean up the recovery configuration by first calling `closeRecovery()` and then `removeRecovery()` . This will refund the deposit we placed earlier to Alice, then send the WND tokens back to the Figment Faucet so that we are not unnecessarily tying up tokens. It must be understood that `removeRecovery()` can only be called once `closeRecovery()` __has been called on any active recovery requests_._   
+Regarding `signAndSend(Alice, { nonce: -1 })` , when sending multiple API calls signed by the same account, we must set the nonce directly to avoid an error about transaction priority.
+
+{% hint style="warning" %}
+_**Before running this code:**_  
+Check the available balance of the Alice account on SubScan. After the `recoveryDeposit` and the recovery configuration deposit have been recouped, there should be approximately 11-12 WND available to return to the faucet. If the Reserved balance of Alice is above the 1 WND required for the proxy account, then the other deposits have not been processed. We would therefore need to alter `AMOUNT-TO-SEND` so that the transfer is successful.
+
+We only need to return the available balance from our Alice account when we are done with the tutorial. If further testing of social recovery is necessary, do not proceed with this step. 
+{% endhint %}
 
 Run `node remove_recovery.js` :
 
@@ -673,14 +705,21 @@ Run `node remove_recovery.js` :
 {% tab title="Output of /polkadot\_sr/remove\_recovery.js" %}
 ```php
 Required values  : .batch([transactions])
-Submitted values : .batch(
+Submitted values : .batch([
+  "0x8c041206a806dbe17a11f61c09bff38ef9a78cdd1fde311ff8ee09ef241a95052903be66",
+  "0x0c041207"
+])
+batch() tx: https://westend.subscan.io/extrinsic/...
+transfer() tx: https://westend.subscan.io/extrinsic/...
 ```
 {% endtab %}
 {% endtabs %}
 
-## Conclusion
+The events for successful removal of the recovery configuration and refund of the deposits to the Alice account will look similar to this on SubScan :
 
-In this tutorial, we learned how to configure social recovery on Polkadot using functions like `createRecovery()` as well as the associated deposit fees. We learned how to use the `formatBalance()` helper function to display readable amounts. We covered how to create a Staking type proxy account, as well as batching multiple transactions.
+![](../../../.gitbook/assets/remove_events.png)
+
+Congratulations! In this tutorial, we learned how to configure social recovery on Polkadot using functions like `createRecovery()` as well as transferring the associated deposit fees. We learned how to use the `formatBalance()` helper function to display readable amounts. We covered how to create a Staking type proxy account, as well as batching multiple transactions.
 
 We are now empowered to protect important assets on Polkadot with an additional layer of security that involves our friends.
 
