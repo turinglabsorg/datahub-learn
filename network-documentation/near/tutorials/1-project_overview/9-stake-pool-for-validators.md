@@ -7,7 +7,7 @@ description: OysterPack SMART STAKE Pool Contract API Guide - For Validators
 In my last tutorial I introduced you to the **next generation** [OysterPack SMART STAKE Pool][1] contract as a getting
 started guide. In this tutorial, we'll be covering the rest of the contract APIs to help validators manage and operate
 the STAKE Pool contract. As a validator, it is fundamental to know your staking pool contract in depth because
-it is core to your validator business, and it impacts your bottom line.
+it is core to your validator business, and it impacts your bottom line. 
 
 > Even though the main target audience are validators, contract developers will also benefit. You will learn about OysterPack
 > SMART components and interfaces that you may leverage for your next contract to help you build smarter, faster, and better
