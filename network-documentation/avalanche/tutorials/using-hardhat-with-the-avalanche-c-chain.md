@@ -1,7 +1,8 @@
 ---
 description: Learn how to use Hardhat with the C-Chain
 ---
-# Using Hardhat with the Avalanche C-Chain <sub>Contributed By [BREATHE BINARY OÜ](https://github.com/breathebinary)</sub>
+# Using Hardhat with the Avalanche C-Chain 
+<sub>Contributed By [BREATHE BINARY OÜ](https://github.com/breathebinary)</sub>
 
 
 ## Introduction
@@ -12,6 +13,7 @@ description: Learn how to use Hardhat with the C-Chain
 
 Before we dig into the tutorial, let's check if you have the right environment:
 
+* Download and setup [Golang](https://golang.org/) \(1.15.10\)
 * Download the latest version of NodeJS \(12.x+\)
 * Downoad the latest version of [Avash](https://github.com/ava-labs/avash)
 
@@ -20,6 +22,47 @@ Before we dig into the tutorial, let's check if you have the right environment:
 [Avash](https://github.com/ava-labs/avash) is a temporary stateful shell execution environment used to deploy networks locally, manage their processes, and run network tests. It allows you to spin up private test network deployments with up to 15 AvalancheGo nodes out-of-the-box and supports automation of regular tasks via lua scripts. This enables rapid testing against a wide variety of configurations. The first time you use avash you'll need to [install and build it](https://github.com/ava-labs/avash#quick-setup). It's similar to [Hardhat Network](https://hardhat.org/hardhat-network/).
 
 After you're done with setting up avash as described in quick setup, you should be in a position to run Avalanche nodes on your machine using avash.
+
+Firstly, you need to add two files to your avash installation into the scripts directory.
+
+***scripts/config/staking\_node\_config.json***
+
+```
+{
+    "db-enabled": false,
+    "staking-enabled": true,
+    "log-level": "debug",
+    "coreth-config": {
+        "snowman-api-enabled": false,
+        "coreth-admin-api-enabled": false,
+        "net-api-enabled": true,
+        "rpc-gas-cap": 2500000000,
+        "rpc-tx-fee-cap": 100,
+        "eth-api-enabled": true,
+        "tx-pool-api-enabled": true,
+        "debug-api-enabled": true,
+        "web3-api-enabled": true,
+        "personal-api-enabled": true
+    }
+}
+```
+
+***scripts/five\_node\_staking\_with\_config.lua***
+
+```javascript
+cmds = {
+    "startnode node1 --config-file=scripts/config/staking_node_config.json --http-port=9650 --staking-port=9651 --bootstrap-ips= --staking-tls-cert-file=certs/keys1/staker.crt --staking-tls-key-file=certs/keys1/staker.key",
+    "startnode node2 --config-file=scripts/config/staking_node_config.json --http-port=9652 --staking-port=9653 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=certs/keys2/staker.crt --staking-tls-key-file=certs/keys2/staker.key",
+    "startnode node3 --config-file=scripts/config/staking_node_config.json --http-port=9654 --staking-port=9655 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=certs/keys3/staker.crt --staking-tls-key-file=certs/keys3/staker.key",
+    "startnode node4 --config-file=scripts/config/staking_node_config.json --http-port=9656 --staking-port=9657 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=certs/keys4/staker.crt --staking-tls-key-file=certs/keys4/staker.key",
+    "startnode node5 --config-file=scripts/config/staking_node_config.json --http-port=9658 --staking-port=9659 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=certs/keys5/staker.crt --staking-tls-key-file=certs/keys5/staker.key",
+}
+
+for key, cmd in ipairs(cmds) do
+    avash_call(cmd)
+end
+```
+
 
 To start a five node local Avalanche network, follow these steps:
 
@@ -34,7 +77,7 @@ If everything goes well, you must be looking at the avash prompt as shown below:
 avash>
 ```
 
-Now you need to run a script which will start a five node staking network on your machine.
+Now you need to run the script we just created above which will start a five node staking network on your machine.
 
 ```console
 runscript scripts/five_node_staking_with_config.lua
