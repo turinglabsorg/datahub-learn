@@ -59,6 +59,7 @@
     * [Making an e-Voting dApp on Avalanche Fuji network using Trufflesuite](network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle.md)
     * [Transfer AVAX tokens from the C chain of your AVAX wallet to an ETH address \(Metamask, for example\)](network-documentation/avalanche/tutorials/avax-c-chain-to-eth-address-transfer-tutorial.md)
     * [Transfer ERC-20 tokens from the C-chain of your AVAX wallet to an ETH address \(Metamask, for example](network-documentation/avalanche/tutorials/erc20-token-transfer-to-eth-address.md)
+    * [Create a chat application using Solidity & React](network-documentation/avalanche/tutorials/create-a-chat-application-using-solidity-and-react.md)
 * [💰 Celo](network-documentation/celo/README.md)
   * [✏ Celo 101](network-documentation/celo/celo-101.md)
   * [🎮 RPC & REST API](network-documentation/celo/rpc-and-rest-api/README.md)
