@@ -48,6 +48,10 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="transfer-avax-between-the-x-chain-and-c-chain.md" %}
 
+## Making an e-Voting dApp on Avalanche Fuji network using Trufflesuite
+
+{% page-ref page="making-evoting-dapp-on-avalanche-c-chain-using-truffle.md" %}
+
 ## Creating a Fixed-Cap Asset
 
 {% page-ref page="creating-a-fixed-cap-asset.md" %}
@@ -68,5 +72,11 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="deploy-pangolin-to-your-local-testnet-and-create-token-pair.md" %}
 
+## Transfer AVAX tokens from C-chain of your AVAX wallet to an ETH address
 
+{% page-ref page="avax-c-chain-to-eth-address-transfer-tutorial.md" %}
+
+## Transfer ERC-20 tokens from C-chain of your AVAX wallet to an ETH address
+
+{% page-ref page="erc20-token-transfer-to-eth-address.md" %}
 

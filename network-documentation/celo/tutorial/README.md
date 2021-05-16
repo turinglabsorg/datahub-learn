@@ -13,7 +13,7 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 [**Join our community today** ](https://discord.gg/fszyM7K)**if you want to interact with other builders and become a part of this growing ecosystem!**
 
 {% hint style="info" %}
-If you prefer going through the tutorial with videos, check out this CELO Learn Pathway Playlist **\(**[https://www.youtube.com/playlist?list=PLkgTdjgP1aUCmcXrTxyRReS5OSLXlqGzB](https://www.youtube.com/playlist?list=PLkgTdjgP1aUCmcXrTxyRReS5OSLXlqGzB)**\) created by our community member** Chris Wilson
+If you prefer going through the tutorial with videos, check out this [CELO Learn Pathway Playlist](https://www.youtube.com/playlist?list=PLkgTdjgP1aUCmcXrTxyRReS5OSLXlqGzB) **created by our community member** Chris Wilson
 {% endhint %}
 
 ## 1. Connect to a Celo node with DataHub

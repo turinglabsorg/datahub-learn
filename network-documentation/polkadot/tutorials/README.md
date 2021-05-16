@@ -32,3 +32,13 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="build-a-poe-decentralized-app.md" %}
 
+## Implement Social Recovery on Polkadot
+
+{% page-ref page="implement-social-recovery-on-polkadot.md" %}
+
+## Implement Multisig Accounts on Polkadot
+
+{% page-ref page="implement-multisig-accounts-on-polkadot.md" %}
+
+
+
