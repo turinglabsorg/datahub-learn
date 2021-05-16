@@ -228,7 +228,7 @@ The method must return the number of tokens that are not used/accepted by this c
 
 * `msg` - a string message that was passed with this transfer call.
 
-Returns the number of tokens that are used/accepted by this contract from the transferred amount.
+Returns the number of tokens that are not used/accepted by this contract from the transferred amount.
 
 **What purpose does msg serve?**
 
