@@ -35,7 +35,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 
 - [ ] I updated the `SUMMARY.md` file (FYI, It's needed only when you're creating a new file like submitting a new tutorial, pathway section)
 - [ ] I created one tutorial for this PR (one PR <=> one tutorial)
-- [ ] I checked and accept that my PR for new tutorial follwoing the [**Tutorial Guidelines**](https://learn.figment.io/other/tutorial-guidelines) of this project
+- [ ] I checked and accept that my PR for a new tutorial follows the [**Tutorial Guidelines**](https://learn.figment.io/other/tutorial-guidelines) of this project
 - [ ] I checked and read the contribution guide before making this PR [**HERE**](https://learn.figment.io/figment-learn/contribute)  
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
@@ -46,6 +46,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] New and existing unit tests pass locally with my changes
 
 # Other Information (Optional)
+
 *Please add any other information/details you would like to let us know related to your proposed changes and PR*
 
-Note - Above ponits marked with * are mandatory to fill :)
+Note - Above points marked with * are mandatory to fill :)
