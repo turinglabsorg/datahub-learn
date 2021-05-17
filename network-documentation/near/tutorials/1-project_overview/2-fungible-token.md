@@ -220,12 +220,7 @@ The method must return the number of tokens that are not used/accepted by this c
 **Arguments:**
 
 * `sender_id` - the NEAR account ID that initiated the transfer on the FT contract via `ft_transfer_call`
-* `amount` - the number of tokens that were transferred to this account as an unsigned integer in the token's base unit
-
-  ```text
-         in string representation
-  ```
-
+* `amount` - the number of tokens that were transferred to this account as an unsigned integer in the token's base unit, in string representation
 * `msg` - a string message that was passed with this transfer call.
 
 Returns the number of tokens that are used/accepted by this contract from the transferred amount.
