@@ -34,11 +34,7 @@ There are currently no rewards for completing the intro Pathway. Advanced Pathwa
 
 ## ![](../.gitbook/assets/tnear_icon_1.png) NEAR Pathway 
 
-NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands. Learn what makes it unique and build your first project.
-
-{% hint style="info" %}
-There are currently no rewards for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn.
-{% endhint %}
+NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands. Learn what makes it unique and build your first project to **earn $5 in NEAR**!
 
 **Get started with the NEAR Pathway by visiting the page below.** 
 
