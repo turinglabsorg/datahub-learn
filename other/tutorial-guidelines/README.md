@@ -15,19 +15,7 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * **Funding of accounts from faucets needs to be explained clearly** as to which account is being funded, from where and why.
 * **Display sample outputs** to help learners know what to expect, in the form of Terminal snippets or screenshots. Trim long outputs.
 * **Take an error-driven approach** where you bump into errors on purpose to teach learners how to debug them. Eg. If you need to fund an account to be able to deploy a contract, first try and deploy without funding, observe the error that is returned, then fix the error \(by funding the account\) and try again.
-* **Add potential errors and troubleshooting.** Of course, the tutorial shouldn't list all potential errors but the main important one. Like this 👇
-
-{% hint style="info" %}
-#### Not able to connect to the Avalanche Node and getting error on executing `node connect.js`
-
-Let's check for some common causes:
-
-* First, make sure you have `.env` file saved and it's in the correct format as given in the tutorial.
-* If you're getting an error message like `UnauthorizedError: { "message":"Invalid authentication credentials"` then make sure to replace the &lt;API\_KEY&gt; with your correct API key which you copied from your DataHub Dashboard. 
-* Make sure to have your `.env` file saved in your project root folder.
-* Make sure`NODE_URL` in .env file is correct
-* If still, you're experiencing the same issue, for help reach out to us on [Discord](https://discord.gg/fszyM7K) or [Forum](https://community.figemnt.io) 
-{% endhint %}
+* **Add potential errors and troubleshooting.** Of course, the tutorial shouldn't list all potential errors but the main important one.
 
 ## **Structure**
 
