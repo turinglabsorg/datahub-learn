@@ -72,7 +72,7 @@ Tezos is an open-source platform for assets and applications that can evolve by 
 
 **Get started with the Tezos Pathway by visiting the page below.** 
 
-\*\*\*\*
+{% page-ref page="../network-documentation/tezos/tezos-pathway.md" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
