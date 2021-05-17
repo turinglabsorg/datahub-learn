@@ -29,7 +29,7 @@
 * [🔭 Network Guide](network-documentation/network-guide.md)
 * [🏔  Avalanche](network-documentation/avalanche/README.md)
   * [✏ Avalanche 101](network-documentation/avalanche/avalanche-101.md)
-  * [🎮 RPC & REST API](network-documentation/avalanche/rpc-and-rest-api/README.md)
+  * [�� RPC & REST API](network-documentation/avalanche/rpc-and-rest-api/README.md)
     * [P-Chain API](network-documentation/avalanche/rpc-and-rest-api/platform-api.md)
     * [C-Chain \(EVM\) API](network-documentation/avalanche/rpc-and-rest-api/evm-api.md)
     * [X-Chain \(AVM\) API](network-documentation/avalanche/rpc-and-rest-api/avm-api.md)
