@@ -72,9 +72,9 @@ Feel free to add recommended projects and articles here which are related to thi
 
 ## About The **Author**
 
-_For example, It should like this -_ 
+_Keep it very short._
 
-This tutorial was created by \[Author's Full Name\], He/She is a \[Software Engineer/Student etc.\] at \[Name of Organization/University etc.\]. Feel free to get in touch with him/her/Author [**HERE**](https://community.figment.io) ****_\(embed the link to your Figment Forum Profile\)_ on Figment Forum for any queries and help related to the tutorial. Also, you can connect with \[Author's First Name\] on [GitHub](https://www.github.com)
+Link to Github profile + Figment Forum Profile \([**HERE**](https://community.figment.io)**\)**
 
 ## **References**
 
