@@ -18,7 +18,7 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * **Add potential errors and troubleshooting.** Of course, the tutorial shouldn't list all potential errors but the main important one. Like this 👇
 
 {% hint style="info" %}
-#### Not able to connect to the Avalanche Node and getting error on executing node connect.js
+#### Not able to connect to the Avalanche Node and getting error on executing `node connect.js`
 
 Let's check for some common causes:
 

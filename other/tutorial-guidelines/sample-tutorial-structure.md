@@ -46,7 +46,20 @@ Points to remember -
 * Add Code Blocks
 * Add Comments in Code Blocks
 * Text Content
-* Add Output Images, Error log etc.
+* Add Output Images
+* Add common errors and steps to troubleshoot the errors, _for example -_
+
+{% hint style="info" %}
+#### Not able to connect to the Avalanche Node and getting error on executing `node connect.js`
+
+Let's check for some common causes:
+
+* First, make sure you have `.env` file saved and it's in the correct format as given in the tutorial.
+* If you're getting an error message like `UnauthorizedError: { "message":"Invalid authentication credentials"` then make sure to replace the &lt;API\_KEY&gt; with your correct API key which you copied from your DataHub Dashboard. 
+* Make sure to have your `.env` file saved in your project root folder.
+* Make sure`NODE_URL` in .env file is correct
+* If still, you're experiencing the same issue, for help reach out to us on [Discord](https://discord.gg/fszyM7K) or [Forum](https://community.figemnt.io) 
+{% endhint %}
 
 ## **Conclusion**
 
