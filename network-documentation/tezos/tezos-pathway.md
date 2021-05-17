@@ -12,11 +12,11 @@ Tezos is an open-source platform for assets and applications that can evolve by 
 
 Once you are ready, get started by [**setting up an account on DataHub**](https://datahub.figment.io/sign_up?service=tezos) to put your skills to the test and follow-along the tutorials to start building on Tezos. Make sure to click on "Start" on the first tutorial before starting to code!
 
-
+![](../../.gitbook/assets/tezos1.png)
 
 Verify each tutorial as you complete them and make sure to click on "Submit to earn" when you are done with the five tutorials to access the completion form. 
 
-
+![](../../.gitbook/assets/tezos2.png)
 
 [**Learn more about DataHub**](https://learn.figment.io/guides/datahub-products)**.** 
 
