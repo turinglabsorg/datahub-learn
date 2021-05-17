@@ -66,19 +66,13 @@ There are currently no rewards for completing the intro Pathway. Advanced Pathwa
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
-## ![](../.gitbook/assets/oasis-1-.png)  Oasis Pathway 
+## ![](../.gitbook/assets/2011-3-.png) Tezos Pathway 
 
-Oasis Labs is a privacy-first cloud computing platform on blockchain technology. It is a new computing platform that enables cloud-scale, real-world applications with decentralized trust and privacy protection; in short, a privacy-first, high-performance cloud computing platform on blockchain.
+Tezos is an open-source platform for assets and applications that can evolve by upgrading itself. Stakeholders govern upgrades to the core protocol, including upgrades to the amendment process itself. ****It benefits from three main characteristics: self-amendment, on-chain governance, and decentralized innovation. ****Learn what makes it unique and build your first project to **earn $20 in XTZ**!
 
-{% hint style="info" %}
-[Subscribe now](https://datahub.figment.io/subscribe) and be the first to know when the Oasis Pathway will launch
-{% endhint %}
+**Get started with the Tezos Pathway by visiting the page below.** 
 
-## ![](../.gitbook/assets/mina_tokenmark_circle_primary_small.jpg) Mina Pathway 
+\*\*\*\*
 
-Mina is the first cryptocurrency protocol with a succinct blockchain. Mina can be accessed trustlessly from any device, including phones and browsers, and enables frictionless integration of cryptocurrency into applications for developers.
-
-{% hint style="info" %}
-[Subscribe now](https://datahub.figment.io/subscribe) and be the first to know when the Mina Pathway will launch.
-{% endhint %}
+#### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
