@@ -16,6 +16,7 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * **Display sample outputs** to help learners know what to expect, in the form of Terminal snippets or screenshots. Trim long outputs.
 * **Take an error-driven approach** where you bump into errors on purpose to teach learners how to debug them. Eg. If you need to fund an account to be able to deploy a contract, first try and deploy without funding, observe the error that is returned, then fix the error \(by funding the account\) and try again.
 * **Add potential errors and troubleshooting.** Of course, the tutorial shouldn't list all potential errors but the main important one.
+* **Use React or Vue** for the client side
 
 ## **Structure**
 
