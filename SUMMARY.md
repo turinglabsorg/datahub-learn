@@ -287,6 +287,7 @@
       * [3. Query a Tezos node using DataHub](network-documentation/tezos/tutorials/intro-pathway-tezos-basics/3.-query-a-tezos-node-using-datahub.md)
       * [4. Inject an operation into a Tezos node using DataHub](network-documentation/tezos/tutorials/intro-pathway-tezos-basics/4.-inject-an-operation-into-a-tezos-node-using-datahub.md)
       * [5. Working with LIGO Smart Contracts on Tezos](network-documentation/tezos/tutorials/intro-pathway-tezos-basics/5.-working-with-ligo-smart-contracts-on-tezos.md)
+      * [References](network-documentation/tezos/tutorials/intro-pathway-tezos-basics/references.md)
     * [Token Contracts](network-documentation/tezos/tutorials/token-contracts.md)
     * [Oracle Contracts](network-documentation/tezos/tutorials/oracle-contracts.md)
     * [Creating NFTs](network-documentation/tezos/tutorials/creating-nfts.md)
