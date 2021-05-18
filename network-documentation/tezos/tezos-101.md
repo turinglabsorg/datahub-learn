@@ -38,7 +38,10 @@ Turing-complete smart contract platforms like Tezos or Ethereum allow for arbitr
 
 ### **Transaction Fees**
 
-So far, this system is similar to the way Ethereum handles transaction. However, we differ in the way we handle fees. Ethereum allows arbitrarily long programs to execute by requiring a fee that increases linearly with the program's executing time. 
+Transaction costs in Tezos depend on gas consumption and storage usage. When you make a transaction, you pay two costs:
+
+* Fee that goes to the baker. It depends on the amount of gas consumed by your transaction.
+* Storage cost that gets burned. If your transaction increases the amount of data permanently stored in the blockchain, you have to pay for that. Storage cost is burned, i. e. nobody receives what you pay.
 
 ### **Transaction Speed & Finality**
 
