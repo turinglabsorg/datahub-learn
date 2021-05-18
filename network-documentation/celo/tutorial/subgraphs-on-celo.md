@@ -11,9 +11,7 @@ description: You will learn how to integrate The Graph Protocol in your Celo DAp
 This tutorial was created by Shardul Aeer, a full stack developer exploring the brave new world of Web3 and blockchain. Follow his journey on:
 
 * [GitHub](https://github.com/secretshardul)
-
 * [LinkedIn](https://www.linkedin.com/in/shardul-aeer-96084a172)
-
 * [Twitter](https://twitter.com/AeerShardul)
 
 ## 1. What is the Graph Protocol?
@@ -25,7 +23,6 @@ The Graph protocol lets you create GraphQL APIs called subgraphs for your smart 
 GraphQL is a query language for web APIs. Instead of having multiple dumb endpoints, we can have a smart GraphQL endpoint which:
 
 * Lets you view the API schema. Schemas are auto-generated, so say goodbye to writing swagger files.
-
 * Lets you fetch exactly what you want in a single query.
 
 {% embed url="http://www.youtube.com/watch?v=eIQh02xuVw4" caption="GraphQL in 100 seconds" %}
@@ -39,9 +36,7 @@ In contrast, you can directly query GraphQL from your app or command line.
 ## 2. How does it work?
 
 1. Blockchains store a permanent history of transactions. Graph protocol indexes the transactions for our contract, similar to how Google indexes the internet. We can query these transactions through a GraphQL schema.
-
 2. Smart contracts let us define and trigger events. For example, when we transfer ERC20 tokens to someone, a `transfer` event is triggered. Graph protocol listens to these events in real time and updates it's data. This way, we always get the latest data.
-
 3. Graph protocol is decentralized. We don't need to worry about API server going down.
 
 ## 3. Show me the code
@@ -49,16 +44,12 @@ In contrast, you can directly query GraphQL from your app or command line.
 **Resources:**
 
 1. [Source code](https://github.com/secretshardul/the-graph-celo)
-
 2. [Deployed subgraph](https://thegraph.com/explorer/subgraph/secretshardul/celo-subgraph-tutorial)
-
 3. [Deployed Celo contract](https://explorer.celo.org/address/0x56d04968f959ae609a32c8eadb8cd3db90490a7f/transactions)
-
 
 We will create a subgraph for a gravatar contract deployed on the Celo mainnet. This is a fork of the official Graph tutorial with modifications made for Celo.
 
 1. Visit the Graph Protocol website and sign in with Github.
-
 2. Go to your dashboard and click on **Add Subgraph**. Fill in the required details and click on **Create subgraph**.
 
    ![Create subgraph](../../../.gitbook/assets/celo-subgraph-01-dashboard-create-new.png)
@@ -104,7 +95,7 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
 
       You should get an output similar to
 
-        ```bash
+      ```bash
         ✔ Apply migrations
         ✔ Load subgraph from subgraph.yaml
         Compile data source: Gravity => build/Gravity/Gravity.wasm
@@ -128,15 +119,15 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
         Subgraph endpoints:
         Queries (HTTP):     https://api.thegraph.com/subgraphs/name/secretshardul/celo-subgraph-tutorial
         Subscriptions (WS): wss://api.thegraph.com/subgraphs/name/secretshardul/celo-subgraph-tutorial
-        ```
+      ```
 
 4. Refresh the page to see your deployed subgraph. It can take some hours for data to be synced, after which our queries will return the desired results.
 
-    ![Query explorer](../../../.gitbook/assets/celo-subgraph-03-query-explorer.png)
+   ![Query explorer](../../../.gitbook/assets/celo-subgraph-03-query-explorer.png)
 
 5. Time to run a GraphQL query. A default query is given which gets data of the first five gravatars. Press the run button. Here's the query again for reference.
 
-    ```graphql
+   ```graphql
     # Get details of first five gravatars
     {
         gravatars(first: 5) {
@@ -146,11 +137,11 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
             imageUrl
         }
     }
-    ```
+   ```
 
-    You will get a result similar to
+   You will get a result similar to
 
-    ```javascript
+   ```javascript
     {
         "data": {
             "gravatars": [
@@ -163,47 +154,41 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
             ]
         }
     }
-    ```
+   ```
 
-    **Note**: Wait for the syncing to complete, otherwise you will see an empty result.
+   **Note**: Wait for the syncing to complete, otherwise you will see an empty result.
 
 6. How to use subgraphs in our apps? I've created a Postman public workspace for demonstration.
-
    1. [Visit the Celo subgraph workspace](https://www.postman.com/cloudy-firefly-3880/workspace/the-graph-celo/request/9305744-4a75a867-c2b3-446b-be18-864c7e6550eb). You can try out the predefined queries by pressing the run button.
-
    2. Press the code button on the right side. Select the language of your choice to get the generated code. For example we get this snippet for cURL. Paste it in your terminal \(Mac or Linux\) to see the result.
 
-        **Postman generate code button**
+      **Postman generate code button**
 
-        ![Postman generate code button](../../../.gitbook/assets/celo-subgraph-04-postman-code-button.png)
+      ![Postman generate code button](../../../.gitbook/assets/celo-subgraph-04-postman-code-button.png)
 
-        **Postman generated code results**
+      **Postman generated code results**
 
-        ![Postman generated code results](../../../.gitbook/assets/celo-subgraph-05-postman-generated-code.png)
+      ![Postman generated code results](../../../.gitbook/assets/celo-subgraph-05-postman-generated-code.png)
 
-        ```bash
+      ```bash
         curl --location --request POST 'https://api.thegraph.com/subgraphs/name/secretshardul/the-graph-celo' \
             --header 'Content-Type: application/json' \
             --data-raw '{"query":"{\n  gravatars(first: 5) {\n    id\n    owner\n    displayName\n    imageUrl\n  }\n}\n","variables":{}}'
-        ```
+      ```
 
 ## 4. Explanation
 
 1. We have a predeployed contract `GravatarRegistry`.
-
    * Gravatar stands for 'globally recognized avatar'. They are profile pictures that are guaranteed to be unique. Did you know that your default avatars on GitHub and StackOverflow are actually gravatars?
-
    * This smart contract crates a registry for Gravatars. It has the following features:
 
      * Create new gravatar
-
      * View gravatars of other users
-
      * Update name and image of your gravatar
 
      **Source code:**
 
-     ```sol
+     ```text
      pragma solidity ^0.4.0;
 
      contract GravatarRegistry {
@@ -260,21 +245,14 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
      ```
 
      Note the events `NewGravatar` and `UpdatedGravatar` in the above code. The Graph protocol updates it's index with fresh data whenever events are fired.
-
 2. Look at [subgraph.yaml](https://github.com/secretshardul/the-graph-celo/blob/master/subgraph.yaml). **subgraph.yaml** is the starting point for creating subgraphs. It contains the following information:
-
    * Subgraph description and source code repository
-
    * GraphQL schema file location
-
    * Contract related data: contract name, network, address and ABIs
-
    * Events to listen to. We are listening to `NewGravatar(uint256,address,string,string)` and `UpdatedGravatar(uint256,address,string,string)` events.
-
    * **Event handlers**: Graph protocol reads the transaction data whenever a registered event is fired. This raw transaction data must be processed before it can be useful. Event handlers specify what data points must be read, and are responsible for populating this data into the GraphQL schema. Note the event handlers `handleNewGravatar` and `handleUpdatedGravatar`.
 
-
-   ```yml
+```text
    specVersion: 0.0.2
    description: Gravatar contract subgraph for Celo
    repository: https://github.com/secretshardul/the-graph-celo
@@ -302,9 +280,9 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
            - event: UpdatedGravatar(uint256,address,string,string)
            handler: handleUpdatedGravatar
        file: ./src/mapping.ts
-   ```
+```
 
-3. Look at the event handler code in [src/mapping.ts](https://github.com/secretshardul/the-graph-celo/blob/master/src/mapping.ts). Note how `owner`, `displayName` and `imageUrl` fields are updated and saved.
+1. Look at the event handler code in [src/mapping.ts](https://github.com/secretshardul/the-graph-celo/blob/master/src/mapping.ts). Note how `owner`, `displayName` and `imageUrl` fields are updated and saved.
 
    ```typescript
     import { NewGravatar, UpdatedGravatar } from '../generated/Gravity/Gravity'
@@ -333,7 +311,7 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
     }
    ```
 
-4. Look at [schema.graphql](https://github.com/secretshardul/the-graph-celo/blob/master/schema.graphql). Note that we had declared `Gravatar` as an entity in [subgraph.yaml](https://github.com/secretshardul/the-graph-celo/blob/master/subgraph.yaml). We define our entity `Gravatar` here using the `@entity` annotation.
+2. Look at [schema.graphql](https://github.com/secretshardul/the-graph-celo/blob/master/schema.graphql). Note that we had declared `Gravatar` as an entity in [subgraph.yaml](https://github.com/secretshardul/the-graph-celo/blob/master/subgraph.yaml). We define our entity `Gravatar` here using the `@entity` annotation.
 
    ```graphql
     type Gravatar @entity {
@@ -344,7 +322,7 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
     }
    ```
 
-5. Look at [migrations/3\_create\_gravatars.js](https://github.com/secretshardul/the-graph-celo/blob/master/migrations/3_create_gravatars.js). When this contract was created, we created a gravatar for Carl for demonstration purposes.
+3. Look at [migrations/3\_create\_gravatars.js](https://github.com/secretshardul/the-graph-celo/blob/master/migrations/3_create_gravatars.js). When this contract was created, we created a gravatar for Carl for demonstration purposes.
 
    ```javascript
     const GravatarRegistry = artifacts.require('./GravatarRegistry.sol')
@@ -362,15 +340,11 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
     }
    ```
 
-
 ## 5. Creating subgraphs for your own contracts
 
 1. Make changes to the contracts. You may want to edit or replace [Gravity.sol](https://github.com/secretshardul/the-graph-celo/blob/master/contracts/Gravity.sol) with your custom contract.
-
 2. Create a file `.env` which will contain environment variables. Look at [.env-template](https://github.com/secretshardul/the-graph-celo/blob/master/.env-template) for the required format. We need two variables:
-
    1. `DATAHUB_API_KEY`: Sign up for Datahub and pick Celo from the available protocols. Copy the API key and paste it here. Datahub provides private RPCs for popular blockchains, letting us create high performance apps. We get a free tier of 100k requests per day.
-
    2. `PRIVATE_KEY`: Private key of a Celo account. This is different from your Mnemonic. You will need real CELO tokens on this account since we are deploying to the mainnet.
 
       You can optionally look at [truffle.js](https://github.com/secretshardul/the-graph-celo/blob/master/truffle.js) to see how these parameters are used in code. This script is responsible for compiling our code and deploying it to Celo.
@@ -421,7 +395,6 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
        }
       }
       ```
-
 3. Run the deployment script. This will build your contract and deploy it on Celo mainnet. Ensure that you have Celo tokens on your address.
 
    ```bash
@@ -430,7 +403,7 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
 
    You should get a result similar to
 
-    ```sh
+   ```bash
     ✔ Apply migrations
     ✔ Load subgraph from subgraph.yaml
     Compile data source: Gravity => build/Gravity/Gravity.wasm
@@ -454,16 +427,12 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
     Subgraph endpoints:
     Queries (HTTP):     https://api.thegraph.com/subgraphs/name/secretshardul/celo-subgraph-tutorial
     Subscriptions (WS): wss://api.thegraph.com/subgraphs/name/secretshardul/celo-subgraph-tutorial
-    ```
+   ```
 
 4. Note the address of the deployed contract. Replace the address field in [subgraph.yaml](https://github.com/secretshardul/the-graph-celo/blob/master/subgraph.yaml) with this field.
-
 5. Depending on your contract, you may need to edit the [handler code](https://github.com/secretshardul/the-graph-celo/blob/master/src/mapping.ts) and [GraphQL schema](https://github.com/secretshardul/the-graph-celo/blob/master/schema.graphql). Here are some subgraph templates to help you out:
-
    * [ERC 20 Fungible Tokens](https://github.com/secretshardul/the-graph-celo/blob/master/schema.graphql)
-
    * [ERC 721 Non-Fungible Tokens\(NFTs\)](https://github.com/wighawag/eip721-subgraph)
-
 6. Generate Graph build files using
 
    ```bash
@@ -505,15 +474,12 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
 ## 5. Caveats and considerations
 
 1. Alfajores and Baklava testnets are currently unsupported by The Graph. Use Ropsten or Rinkeby for test purposes.
-
 2. Deployed subgraphs can't be renamed or deleted, although they can be updated.
-
 3. Subgraphs only support reads/queries. You can't send transactions to update the blockchain state.
 
 ## 6. Futher reading
 
 * [The Graph documentation](https://thegraph.com/docs/)
-
 * [graphql.org](https://graphql.org/)
 
 ## 7. Conclusion

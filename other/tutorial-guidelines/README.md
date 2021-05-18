@@ -30,7 +30,7 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * Include a **Conclusion** section that summarizes what was learned, reinforces key points and also congratulates the learner.
 * \(Optional\) Include a **What's Next** section pointing to good follow up tutorials or other resources \(projects, articles, etc\)
 * \(Optional\) Include an **About The** **Author** section at the end. Your bio should include your Github handle \(which will have your name, website, etc\) and a link to your [Figment Forum](https://community.figment.io) profile \(so users can contact/tag you on Forum for help and questions\).
-* Include a **References** section must be present if you have taken any help in writing this tutorial from other documents, GitHub repos and other tutorials. Credit sources by adding their name and a link to the document when possible \(if it is not a digital document, include an ISBN or other means of reference\).
+* **References** section must be present if you have taken any help in writing this tutorial from other documents, GitHub repos and other tutorials. Credit sources by adding their name and a link to the document when possible \(if it is not a digital document, include an ISBN or other means of reference\).
 
 ## **Style**
 
