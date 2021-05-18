@@ -738,7 +738,7 @@ npm start
 ```
 * Visit [http://localhost:3000](http://localhost:3000) to interact with the app.
 
-* Don't forget to setup Metamask with `Fuji testnet` and also fund the account with Fuji c-chain test tokens in order to vote. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask).
+* Don't forget to setup Metamask with `Fuji testnet` and also fund the account with Fuji c-chain test tokens for tx fees. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask).
 
 <br>
 
