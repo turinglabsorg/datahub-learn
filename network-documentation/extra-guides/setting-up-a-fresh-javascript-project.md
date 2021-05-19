@@ -8,7 +8,7 @@ description: >-
 
 ## Make sure Node.js is installed
 
-In a terminal window, type the command `node -v` to check the currently installed version of Node.js.
+Follow the official instructions on installing Node.js for your current operating system. Once the installation is complete, or if you already have Node.js installed, type the command `node -v` inside a terminal window \(bash or PowerShell\) to check the currently installed version of Node.js.
 
 Most modern JavaScript APIs will target Node.js v12+. Using a version manager such as [nvm](https://github.com/nvm-sh/nvm) or [fnm](https://github.com/Schniz/fnm) is strongly encouraged, as it allows developers to quickly switch between Node.js versions.
 
