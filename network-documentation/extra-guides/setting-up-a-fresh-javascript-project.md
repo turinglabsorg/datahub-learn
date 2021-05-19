@@ -25,9 +25,12 @@ npm install --save dotenv
 {% endtab %}
 {% endtabs %}
 
-This creates our project directory, the directory name can be changed to anything suitable - it does not need to remain `samplecode`. The `cd` command changes into the newly created directory \(making it the working directory\). Next we need to run a package manager like npm, with the `-y` flag to generate a default `package.json` . Next we will install the [dotenv](https://www.npmjs.com/package/dotenv) package.   
-  
-Assuming no errors during the installation of dotenv, the project directory will now contain these files and directories in the following structure :
+These commands accomplish the following :
+
+* `mkdir` creates our project directory, the directory name can be changed to anything suitable - it does not need to remain `samplecode`.
+*  The `cd` command changes into the newly created directory \(making it the working directory\).
+*  Run the node package manager - `npm` , optionally with the `-y` flag to skip the prompts and generate a default `package.json` .
+*  Install the ****[**dotenv**](https://www.npmjs.com/package/dotenv) package, which will allow us to access environmental variables in our code.   Assuming no errors during the installation of dotenv, the project directory will now contain these files and directories in the following structure :
 
 {% tabs %}
 {% tab title="Directory structure" %}
@@ -45,7 +48,7 @@ Assuming no errors during the installation of dotenv, the project directory will
 {% endtab %}
 {% endtabs %}
 
-Since we used the `--save` flag when installing, it will be much easier to see which dependencies are installed by looking inside the `package.json`.
+Since we used the `--save` flag when installing, it will be much easier to see which dependencies are installed by looking inside the `package.json` :
 
 ```text
 {
@@ -65,7 +68,9 @@ Since we used the `--save` flag when installing, it will be much easier to see w
 }
 ```
 
-* _**If we are choosing to use the more modern**_ ****[**ES6 `import` syntax**](https://www.digitalocean.com/community/tutorials/js-modules-es6)_,_ we will need to add a line to our `package.json` to prevent a`SyntaxError: Cannot use import statement outside a module` . The `import` keyword was introduced in Node.js v12, a language feature to simplify the use of modules. Alternatively, we could use an `.mjs` file extension for all of our files, however adding this line to `package.json` enables us to keep the `.js` file extension and saves a lot of  hassle with configuration : 
+For anybody unfamiliar with environment variables, refer to our guide on ****[**dotenv and .env**](dotenv-and-.env.md) at this point to understand the package and what it is used for.
+
+* _**If we are choosing to use the more modern**_ ****[**ES6 `import` syntax**](https://www.digitalocean.com/community/tutorials/js-modules-es6)_,_ when developing we will need to add a line to our `package.json` in order to prevent a`SyntaxError: Cannot use import statement outside a module` . The `import` keyword was introduced in Node.js v12, a language feature to simplify the use of modules. Alternatively, we could use an `.mjs` file extension for all of our JavaScript files, however adding this line to `package.json` enables us to keep the `.js` file extension and saves a lot of  hassle with configuration : 
 
 {% tabs %}
 {% tab title="Type or paste this key:value pair into package.json if using ES6 import syntax" %}
@@ -77,7 +82,7 @@ Since we used the `--save` flag when installing, it will be much easier to see w
 
 * _**If we are choosing to use the more common**_ **`require()`** _**syntax**_, then it is unnecessary to add this line to `package.json` . 
 
-With these steps completed, we now have a directory that is prepared to have other dependencies installed into it using `npm install` .
+With these steps completed, we now have a project directory that is prepared to have other dependencies installed into it using `npm install` . This basic setup is a sufficient start to be able to write further JavaScript code, the next step being to install whichever web3 dependencies we would like to learn about.
 
 ## References
 
