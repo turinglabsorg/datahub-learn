@@ -52,5 +52,5 @@ We also do not accept "Google phone numbers" or any online SMS number.
 
 {% page-ref page="tutorials/intro-pathway-tezos-basics/5.-working-with-ligo-smart-contracts-on-tezos.md" %}
 
-#### [Join our community today](https://discord.gg/PtkKz5) if you want to interact with other Avalanche builders and become a part of this growing ecosystem! <a id="join-our-community-today-if-you-want-to-interact-with-other-celo-builders-and-become-a-part-of-this-growing-ecosystem"></a>
+#### [Join our community today](https://discord.gg/PtkKz5) if you want to interact with other Tezos builders and become a part of this growing ecosystem! <a id="join-our-community-today-if-you-want-to-interact-with-other-celo-builders-and-become-a-part-of-this-growing-ecosystem"></a>
 
