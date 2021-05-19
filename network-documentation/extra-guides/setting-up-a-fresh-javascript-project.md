@@ -4,9 +4,9 @@ description: >-
   example JavaScript code
 ---
 
-# Setting up a fresh JavaScript Project
+# Setting up a fresh JavaScript Project with dotenv
 
-## Making sure Node.js is installed
+## Make sure Node.js is installed
 
 In a terminal window, type the command `node -v` to check the currently installed version of Node.js.
 

@@ -300,7 +300,7 @@
     * [5XX Retry Logic Best Practices - Ruby](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-ruby.md)
     * [5XX Retry Logic Best Practices - Go](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-go.md)
   * [Getting started with BrightID](network-documentation/extra-guides/getting-started-with-brightid.md)
-  * [Setting up a fresh JavaScript Project](network-documentation/extra-guides/setting-up-a-fresh-javascript-project.md)
+  * [Setting up a fresh JavaScript Project with dotenv](network-documentation/extra-guides/setting-up-a-fresh-javascript-project.md)
   * [dotenv and .env](network-documentation/extra-guides/dotenv-and-.env.md)
 
 ## 🤔 Other
