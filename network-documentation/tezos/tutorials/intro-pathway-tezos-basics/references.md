@@ -1,5 +1,7 @@
 ---
-description: References to documentation and tools for Tezos
+description: >-
+  References to documentation and tools for Tezos, including additional
+  JavaScript resources and educational blog posts.
 ---
 
 # References
@@ -14,9 +16,11 @@ description: References to documentation and tools for Tezos
 
 {% embed url="https://better-call.dev/florencenet/" caption="A great resource for Tezos developers" %}
 
-{% embed url="https://florence.tzstats.com/" caption="Explore blocks on Tezos" %}
+## Other JavaScript Resources
 
-The "Hey, what is "an asynchronous, anonymous arrow function expression" anyway?!" award goes to :
+{% embed url="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow\_functions" %}
 
-[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow\_functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+{% embed url="https://www.digitalocean.com/community/tutorials/js-modules-es6" %}
+
+
 
