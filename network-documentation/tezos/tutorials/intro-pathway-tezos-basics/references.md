@@ -16,6 +16,10 @@ description: >-
 
 {% embed url="https://better-call.dev/florencenet/" caption="A great resource for Tezos developers" %}
 
+{% embed url="https://tezosguides.com/wallet\_integration/basics/operations/" %}
+
+
+
 ## Other JavaScript Resources
 
 {% embed url="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow\_functions" %}
