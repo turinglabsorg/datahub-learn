@@ -47,7 +47,7 @@ Transaction costs in Tezos depend on gas consumption and storage usage. When you
 
 Currently, Tezos does around 30-40 transactions per second.
 
-In the current Tezos protocol, 30 confirmations \(~30 minutes\) may be considered a good rule of thumb for transaction to be considered final. Since Tezos uses a chain-based PoS consensus algorithm, the possibility of a chain re-organization remains after a transaction. Users must wait a number of confirmations before they can be overwhelmingly confident that a transaction will not be reversed.
+In the current Tezos protocol, 6 confirmations \(~30 minutes\) may be considered a good rule of thumb for transaction to be considered final. Since Tezos uses a chain-based PoS consensus algorithm, the possibility of a chain re-organization remains after a transaction. Users must wait a number of confirmations before they can be overwhelmingly confident that a transaction will not be reversed.
 
 ### **Languages supported**
 
@@ -65,5 +65,5 @@ Tezos does not currently support an EVM implementation.
 
 ### **Role of the XTZ token**
 
- XTZ, tez, or ꜩ  is the native currency of Tezos. XTZ is programmable money created by smart contract on the Tezos blockchain. ****It is used to pay on-chain fees and influence the network's governance. 
+ XTZ, tez, or ꜩ  is the native currency of Tezos. XTZ is programmable money on the Tezos blockchain. ****It is used to pay on-chain fees and influence the network's governance. 
 
