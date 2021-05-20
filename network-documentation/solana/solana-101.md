@@ -28,7 +28,7 @@ Solana offers a highly scalable platform for Web 3 applications which can now un
 ### **Transaction Fees**
 
 The network Cluster sets transaction fees based on recent processing history. Transactions currently include a fee field that indicates the maximum fee field a slot leader can charge for processing a transaction.  
-Transaction fees on Solana are estimated at $10 for a $1 million transaction.
+Transaction fees on Solana are estimated at $10 for 1 million transactions.
 
 ### **Transaction Speed & Finality**
 
