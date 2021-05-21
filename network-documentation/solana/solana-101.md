@@ -10,9 +10,9 @@ Solana is an open-source project implementing a new, high-performance, permissio
 
 ### **Why build on Solana?**
 
-Solana ensures composability between ecosystem projects by maintaining a single global state as the network scales. Solana’s blazing speed and low fees scale as the ecosystem grows without sacrificing censorship resistance or security. 
+Solana ensures composability between ecosystem projects by maintaining a single global state as the network scales. Solana’s blazing speed and low fees scale as the ecosystem grows without sacrificing censorship resistance or security.
 
-Here are the advantages of the Solana network: 
+Here are the advantages of the Solana network:
 
 1. **Code in your language:** Code in Rust, C, and C++. Flexible virtual machine integrations, with more on the way.
 2. **Avoid long wait times for your users:** Blazing fast speeds and no mempool. 400ms blocktimes and sub-second finality. Web 3.0 with Web 2.0 speed.
@@ -21,26 +21,26 @@ Here are the advantages of the Solana network:
 
 ### **What can you build on Solana?**
 
-Solana offers a highly scalable platform for Web 3 applications which can now unlock mainstream usage. There are already over 150 projects live on Solana, with a majority of DeFi projects, although  NFTs, social apps, and games are starting to launch on the network. 
+Solana offers a highly scalable platform for Web 3 applications which can now unlock mainstream usage. There are already over 150 projects live on Solana, with a majority of DeFi projects, although NFTs, social apps, and games are starting to launch on the network.
 
 ## **Network Specifications**
 
 ### **Transaction Fees**
 
 The network Cluster sets transaction fees based on recent processing history. Transactions currently include a fee field that indicates the maximum fee field a slot leader can charge for processing a transaction.  
-Transaction fees on Solana are estimated at $10 for a $1 million transaction.
+Transaction fees on Solana are estimated at $10 for 1 million transactions.
 
 ### **Transaction Speed & Finality**
 
-Solana’s built-in mechanism for synchronizing time across nodes helps the network support a theoretical peak capacity of 65,000 transactions per second  and block times at 400ms. This makes Solana one of the fastest production blockchain available, and 4,000 times faster than Ethereum. 
+Solana’s built-in mechanism for synchronizing time across nodes helps the network support a theoretical peak capacity of 65,000 transactions per second and block times at 400ms. This makes Solana one of the fastest production blockchain available, and 4,000 times faster than Ethereum.
 
 ### **Languages supported**
 
-Solana applications are built on Rust, but also support C and C++. 
+Solana applications are built on Rust, but also support C and C++.
 
 ### **EVM compatibility**
 
-Solana is not EVM compatible but it offers [a bidirectional token bridge](https://solana.com/wormhole) between Solana and Ethereum so projects can move tokenized assets across blockchains. 
+Solana is not EVM compatible but it offers [a bidirectional token bridge](https://solana.com/wormhole) between Solana and Ethereum so projects can move tokenized assets across blockchains.
 
 ### **Role of the SOL token**
 
@@ -48,6 +48,4 @@ There are two primary uses of the SOL token:
 
 1. The token is used to pay for the transaction fees in the network
 2. The token is used for staking to participate in the Proof of Stake consensus 
-
-
 
