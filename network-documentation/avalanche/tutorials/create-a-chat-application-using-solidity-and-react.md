@@ -33,8 +33,6 @@ We would maintain 2 collections in our database :-
 <br>
 
 Following is the solidity contract which we will deploy on the network.
-<details>
-<summary>Contract</summary>
 
 ```javascript
 pragma solidity >=0.7.0 <0.9.0;
@@ -152,7 +150,6 @@ contract Database {
 	}
 } 
 ```
-</details>
 <br>
 
 Deploy the above contract using the steps provided at
@@ -170,7 +167,7 @@ Now, we are going to create a react app and setup the frontend of the applicatio
 <br>
 
 Open the terminal and navigate to the directory where you intend to create your application.
-```text
+```cmd
 cd /path/to/directory
 ```
 
@@ -198,8 +195,6 @@ rm -v public/*
 ```
 
 Make a `index.html` file in `public` folder of current directory and put the following html code.
-<details>
-<summary>index.html</summary>
 
 ```html
 <!DOCTYPE html>
@@ -218,14 +213,11 @@ Make a `index.html` file in `public` folder of current directory and put the fol
 
 </html>
 ```
-</details>
 
 <br>
 
 Move out of the public folder and make a file named `Components.js` inside `src` folder and put the following code inside.
 <br>
-<details>
-<summary>Components.js</summary>
 
 ```javascript
 import React from "react"
@@ -330,15 +322,12 @@ export function NavBar(props){
 }
 ```
 
-</details>
 <br>
 
 Make a new file named `index.js` in the same folder `src` and paste the given code.
 > Note: Write down the `contract address` obtained earlier in the variable named `contractAddress` on line 12
 
 <br>
-<details>
-<summary>index.js</summary>
 
 ```javascript
 import React from "react";
@@ -568,13 +557,9 @@ ReactDom.render( <
     document.getElementById('root')
 );
 ```
-</details>
 <br>
 
 Make a new file named `abi.js` in the `src` folder. Export const variable named abi which stores the ABI you had generated earlier. Your abi.js file should look like this!
-
-<details>
-<summary>abi.js</summary>
 
 ```javascript
 export const abi = [
@@ -728,7 +713,6 @@ export const abi = [
 	}
 ]
 ```
-</details>
 
 <br>
 
