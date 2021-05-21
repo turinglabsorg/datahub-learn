@@ -8,22 +8,7 @@ description: Learn how to create, mint, and transfer NFTs on Avalanche.
 
 ## About the author  
 
-Hi, I'm Devendra, a passionate Blockchain Developer 🚀 from [India](https://en.wikipedia.org/wiki/India) with a strong interest in Open-Source.
-
-🌱 I’m working with [Ethereum](https://ethereum.org/en/) and [Avalanche](https://www.avalabs.org/) blockchain. I have built and deployed architecture for complex blockchain solutions. I have worked with DeFi offerings such as staking, farming, flashloans etc. [Blocklendr](https://blocklendr.herokuapp.com/home), [Eth Arbitrage](https://github.com/Devilla/eth-arbitrage).
-
-🥇 I have contributed to some of the big projects by firms like [Ava labs](https://github.com/ava-labs/avalanche-docs/graphs/contributors), [ENS domains](https://github.com/ensdomains/address-encoder/graphs/contributors),
-[Bancor Network](https://github.com/bancorprotocol/sdk/graphs/contributors) etc.
-
-Built decentralised exchanges (Dexs) and lending platforms similar to Uniswap and Aave.
-
-📫 How to reach me:
-
-Follow me on [Twitter](https://twitter.com/de_villa7) 🐦
-
-Shoot me a [mail](dev.yadav@muellners.org) 💌
-
-Ping me on [Telegram](https://t.me/Devilla7) ↗️
+[Devendra Yadav](https://github.com/devilla)
 
 ## Introduction
 
