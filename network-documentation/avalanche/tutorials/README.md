@@ -2,7 +2,7 @@
 description: See all tutorials currently available for Avalanche
 ---
 
-# 💡 Tutorials
+# �� Tutorials
 
 ## Time to learn
 

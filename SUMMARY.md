@@ -35,7 +35,7 @@
     * [X-Chain \(AVM\) API](network-documentation/avalanche/rpc-and-rest-api/avm-api.md)
     * [Info API](network-documentation/avalanche/rpc-and-rest-api/info-api.md)
   * [🗺 Avalanche Pathway](network-documentation/avalanche/avalanche-pathway.md)
-  * [💡 Tutorials](network-documentation/avalanche/tutorials/README.md)
+  * [�� Tutorials](network-documentation/avalanche/tutorials/README.md)
     * [Intro Pathway: Avalanche basics](network-documentation/avalanche/tutorials/pathway/README.md)
       * [1. Connect to an Avalanche node with DataHub](network-documentation/avalanche/tutorials/pathway/1.-connect-to-avalanche-node-with-datahub.md)
       * [2. Create your first Avalanche account](network-documentation/avalanche/tutorials/pathway/2.-create-your-first-avalanche-account.md)
