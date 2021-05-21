@@ -733,6 +733,23 @@ Congratulatons!! You've successfully developed a distributed chatting applicatio
 
 <br>
 
+## Troubleshooting
+<br>
+
+**Transaction Failure**
+
+* Check if your account has sufficient balance at [fuji block-explorer](https://testnet.avascan.info/). You can fund your address from the given [faucet](https://faucet.avax-test.network/) 
+
+* Make sure that you have selected the correct account on metamask if you have more than one account connected to the site.
+
+<br>
+
+**Application crash**
+
+Check if you have updated the `contractAddress` variable in `src/index.js` properly!
+
+<br>
+
 ## What's Next
 The current DApp has very limited functionalities and we can improve it by adding features like deleting messages, blocking users, creating group(s) and optimising the DApp interaction cost with possible methods like max chat limit or using event log for short messages.
 
