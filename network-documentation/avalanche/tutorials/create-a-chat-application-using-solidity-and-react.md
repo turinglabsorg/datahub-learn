@@ -159,6 +159,11 @@ Deploy the above contract using the steps provided at
 
 <br>
 
+> **Knowledge Point**
+><br>An Application Binary Interface (ABI) is a JSON object which stores the metadata about the methods of a contract like data type of input parameters, return data type & property of the method like payable, view, pure etc. You can learn more about the ABI from the [solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html)
+
+<br>
+
 ## Creating frontend using React
 <br>
 
