@@ -142,7 +142,9 @@ https://explorer.testnet.near.org/transactions/Yhrda9sutT4jhGMpwTuUZCZYm5vfH8RLC
 >
 > where LOG\_LEVEL -&gt; INFO \| WARN \| ERR
 
-The logs tell the story about what's happening during the deployment, which is illustrated in the below diagram: ![](../../../../.gitbook/assets/oysterpack-smart-stake-factory-deploy.png)
+The logs tell the story about what's happening during the deployment, which is illustrated in the below diagram: 
+
+![](../../../../.gitbook/assets/oysterpack-smart-stake-factory-deploy.png)
 
 #### Notes
 
@@ -153,7 +155,7 @@ The logs tell the story about what's happening during the deployment, which is i
 * The **STAKE Factory Contract** is designed to create and initialize the STAKE Pool contract using NEAR's batch transaction feature. This guarantees that either all actions in the batch transaction succeed or fail atomically. If the batch transaction fails for any reason, the factory contract is designed to refund the attached deposit.
 * In the above NEAR CLI example, the owner account was specified implicitly using the predecessor account. However note that the factory deploy function supports an optional `owner` argument that can be used to specify the owner account explicitly. 
 * Fees are specified in basis points \([BPS](https://www.investopedia.com/terms/b/basispoint.asp)\). An easy way to remember the unit conversion is 100 BPS = 1%. In the above example, the staking fee is 0.01%, and the earnings fee is 0.5%. At least one of the fees must be non-zero and the max fee is currently hard coded to be 1000 BPS \(10%\). Fees are configurable and can be changed after the STAKE pool is deployed by accounts that have the operator permission.
-* The **STAKE Pool Contract** implements the NEAR standard \[fungible token\]\[9\] interfaces for the provided STAKE token.
+* The **STAKE Pool Contract** implements the NEAR standard [fungible token][9] interfaces for the provided STAKE token.
 
 ### How to operate the STAKE pool contract
 
@@ -451,5 +453,5 @@ The focus will be providing the validators with more in-depth tutorials and work
 
 ![](../../../../.gitbook/assets/oysterpack-smart-field-of-dreams.jpeg)
 
-\[9\]: [https://nomicon.io/Standards/FungibleToken/README.html](https://nomicon.io/Standards/FungibleToken/README.html)
+[9]: https://nomicon.io/Standards/FungibleToken/README.html](https://nomicon.io/Standards/FungibleToken/README.html
 

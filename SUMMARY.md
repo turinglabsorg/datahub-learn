@@ -205,6 +205,7 @@
       * [Show me the Code: STAKE Account Storage NEP-145 Rust Implementation](network-documentation/near/tutorials/1-project_overview/6-stake-account-storage.md)
       * [It's Time to Put a STAKE in the Ground!](network-documentation/near/tutorials/1-project_overview/7-stake-vision.md)
       * [It's Time to Put a STAKE Pool in the Ground!](network-documentation/near/tutorials/1-project_overview/8-stake-pool-contract.md)
+      * [OysterPack SMART STAKE Pool API Guide for Validators](network-documentation/near/tutorials/1-project_overview/9-stake-pool-for-validators.md)
     * [Cross-contract calls](network-documentation/near/tutorials/cross-contract-calls.md)
     * [Simple AssemblyScript App](network-documentation/near/tutorials/simple-webassembly-script.md)
     * [Write an NFT contract & mint your NFT](network-documentation/near/tutorials/write-nft-contracts-in-rust.md)
