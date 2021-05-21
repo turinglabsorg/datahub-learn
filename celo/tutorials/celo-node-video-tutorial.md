@@ -21,10 +21,10 @@
   
   Using .env files for the important keys
   
-  Creating 
+  Creating multiple Celo accounts 
   
 ##   **Prerequisite** 
-you should have a basic understanding of VM and the bash programing language, also make sure you have some CELO/CUSD in your possesion. Here are the thing to install before getting started: 
+you should have a basic understanding of Virtual Mashines(VM), and the linux terminal, also make sure you have some CELO/CUSD in your possesion. Here are the thing to install before getting started: 
 
 * Install the Valora app on ios/android
 
@@ -60,7 +60,7 @@ you should have a basic understanding of VM and the bash programing language, al
     // make sure to enter the username you created were it says $YOURUSERNAME 
     
     -Restart the VM
-    // for these changes in group to set in yuo have to restart the VM
+    // for changes in group to set in you have to first restart the VM
     username@name:~$ id 
     
     //id allows you to see all the groups you are in 
@@ -147,7 +147,9 @@ you should have a basic understanding of VM and the bash programing language, al
    ![image](https://user-images.githubusercontent.com/80616939/118896884-7c194b80-b8c6-11eb-9fb8-87be4bcf1246.png)
        
     username@name:~$ curl -o celo.env https://gist.github.com/alchemydc/e28945f5059acd70969b39a50fd0f80a
-    // this script allows the .env file to be fully utilized     
+    // this script allows the Celo client to utilize the celo.env file
+    // it also stores important node information 
+    // notice the name(celo full-node) this is the name of the node witch is important to remember
     username@name:~$ chmod u+x start_celo.sh
     //chmod u+x grants only the owner of this file execution permissions 
     username@name:~$ pwd
@@ -158,6 +160,7 @@ you should have a basic understanding of VM and the bash programing language, al
     // the directory will be called celo-data-dir
     username@name:~$ mkdir celo-data-dir
     // mkdir makes a new directory 
+    
     username@name:~$ cd
     // use cd by itself to exit any current directorys
     username@name:~$ cd celo-data-dir
@@ -233,9 +236,9 @@ you should have a basic understanding of VM and the bash programing language, al
     
     username@name:~/ celo-data-dir$ cat ./start_celo.sh 
     // cat ./start_celo.sh will read you important node information 
-    -Find the name(geth), represented in the next command as $NAME
+    -Find the name of your node, represented in the next command as $NAME
     username@name:~/ celo-data-dir$ docker exec -it $NAME geth attach
-    username@name:~/ celo-data-dir$ exit
+    -exit
     username@name:~/ celo-data-dir$ celocli account:unlock $PUBLIC ADDRESS
     -enter password 
     
@@ -268,4 +271,4 @@ After completing all the vital steps the fullnode and light client are ready to 
 #
    **About the Author** 
    
-This tutorial was put together by Aidan Dedecker. Here is my git hub page: https://github.com/Aidandedecker/Aidandedecker. here is my figment forum profile https://community.figment.io/u/aidanbdedecker/summary.
+This tutorial was put together by Aidan Dedecker. Here is my git hub page: https://github.com/Aidandedecker/Aidandedecker. here is my figment forum profile: https://community.figment.io/u/aidanbdedecker/summary.
