@@ -14,6 +14,43 @@ Today we will build a distributed chat application on Avalanche's Fuji test-netw
 <br><br>
 
 ## Developing smart contract 
+
+The basic functionality that an application should provide to classify as a chatting application is that the users should have the ability to connect with others and then share messages with them. So to accomplish this we will divide our contract into three parts :- Account creation, Adding new friends and finally sending messages to their friends.
+
+<br>
+
+### Account creation
+
+We will define 3 methods `checkUserExists()`, `createAccount()` & `getUsername()` for the task. 
+
+* The first method as the name suggests is used to check if an user is registered with our application or not; which will be called in the `createAccount()` method to make sure duplicate user are not created and it will also be called later from other methods to check the user existence.
+
+* The second method registers _new user_ on the platform and finally the last method will return the username of the user if it exists.
+
+<br>
+
+### Adding new friend
+
+Here too we will divide the task into 3 parts - `checkAlreadyFriends()`, `addFriend()` & `getMyFriendList()`.
+
+* The first method, actually named `_addFriend()`, checks whether two users are already friends with each other or not. This is needed to prevent duplicate channel between the same parties and will also be used to prevent a user from sending messages to other users unless they are friends.
+
+* The second method mark two users as friend if they both exists on the system and are already not friends with each other and finally the last method will return a list of all friends of a given user.
+
+<br>
+
+### Messaging
+
+The final part of our contract will enable the exchange of messages between the users. We will divide the task into 2 methods i.e. `sendMessage` & `readMessage`.
+
+* The  former method would allow an user to send message to another user if they both are registered on the application and are friends with each other. This will be achieved from the methods defined earlier (`checkUserExists` and `_alreadyFriends`) respectively.
+
+* The later method, actually named `getMyChatMessages()` , returns the chat history that has happend between the two users so far.
+
+<br>
+
+### Data Collections
+
 We will have three types of user-defined data types, namely - `user`, `friend` & `message`. 
 
 1. `user` will have properties - `name` (which stores the default username that the user wants to be addressed with) and second a list of their friends.
