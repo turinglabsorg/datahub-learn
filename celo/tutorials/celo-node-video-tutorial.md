@@ -46,8 +46,8 @@ you should have a basic understanding of Virtual Mashines(VM), and the linux ter
 * Now the Virtual Mashine is ready 
  
 ##   *Gaining sudo on the VM*
-   *sudo stands for super user, once you gain sudo you essentialy gain full control* 
-   *Code is entered into the terminal of the VM*  
+   *sudo stands for super user, once you gain sudo you essentialy gain full control.* 
+   *(Code is entered into the terminal of the VM)*  
     
     username@name:~$ sudo -s
     username@name:~$ su - 
@@ -133,7 +133,7 @@ you should have a basic understanding of Virtual Mashines(VM), and the linux ter
     # type exit after entering this script to get back to terminal 
     # this argument make sure that the celo.env file will utilize dependencys from the bash script    
          
-##   *Use Curl to insert 2 new github scripts, these scripts create 2 new files*
+##   *Use Curl to insert 2 github scripts, these will create 2 new files*
      
     username@name:~$ curl -o celo.env https://gist.githubusercontent.com/alchemydc/ce712f6f3caa7ec79f15f930ed5904ed/raw/385c65b1d3f760854258bfd6dd8cbd135710b78f/celo.env 
     # .env files are for storing and accesing enviromental variables, in this case creating variables for the public keys 
