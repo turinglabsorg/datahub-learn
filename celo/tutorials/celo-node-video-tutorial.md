@@ -55,33 +55,33 @@ you should have a basic understanding of Virtual Mashines(VM), and the linux ter
     
     username@name:~$ cat /etc/passwd
     username@name:~$ cat /etc/group | $YOURUSERNAME
-    // this to adds yourself to the sudo group 
+    # this to adds yourself to the sudo group 
     username@name:~$ usermod -aG sudo $YOURUSERNAME
-    // make sure to enter the username you created were it says $YOURUSERNAME 
+    # make sure to enter the username you created were it says $YOURUSERNAME 
     
     -Restart the VM
-    // for changes in group to set in you have to first restart the VM
+    # for changes in group to set in you have to first restart the VM
     username@name:~$ id 
     
-    //id allows you to see all the groups you are in 
-    //sudo is the group you are looking for  
+    # id allows you to see all the groups you are in 
+    # sudo is the group you are looking for  
    ![image](https://user-images.githubusercontent.com/80616939/118337789-bc955580-b4d1-11eb-886b-25af21a76f97.png)
 
 ##   *Installing dependencys onto the VM using sudo commands*   
    
     username@name:~$sudo apt update
     username@name:~$sudo apt upgrade
-    //these sudo comands are only posible once in the sudo group 
+    # these sudo comands are only posible once in the sudo group 
          
     username@name:~$sudo apt install docker.io
-    //docker will be used to run the celo application 
+    # docker will be used to run the celo application 
     
     username@name:~$sudo apt install curl
-    //curl will be used to insert git hub links 
+    # curl will be used to insert git hub links 
     
     username@name:~$sudo apt install vim
-    //vim is a tool used for editing files within the terminal  
-    //vim is difficult to learn, but can be much faster  
+    # vim is a tool used for editing files within the terminal  
+    # vim is difficult to learn, but can be much faster  
         
 ##  *Enabling copy and paste between your mashines*
          
@@ -89,107 +89,107 @@ you should have a basic understanding of Virtual Mashines(VM), and the linux ter
     username@name:~$ cd /media/
     username@name:/media$ ls
     username@name:/media$ cd cdrom
-    // the media directory is used for certain external programs 
+    # the media directory is used for certain external programs 
    
     username@name:/media/cdrom$ ls
     username@name:/media/cdrom$sudo bash VBoxLinuxAdditions.run
-    //make sure everything is capitalized correctly 
+    # make sure everything is capitalized correctly 
     -Restart the VM
-    //now bidirectional copy and past will work
+    # now bidirectional copy and past will work
  Insert Guest Additions:        
  ![image](https://user-images.githubusercontent.com/80616939/118760448-0ebadb80-b830-11eb-88fa-51e672a41d83.png)
 
 ##   *Creating the VM enviroment and installing the Celo client*
  
     username@name:~$ sudo apt install build-essential linux-headers-`uname-r`
-    //linux headers add vital functions with/out installing alot of unnecesary files 
+    # linux headers add vital functions with/out installing alot of unnecesary files 
          
     username@name:~$ sudo apt install open-vm-tools-desktop
-    // VM tools are not requiered but can be helpful
+    # VM tools are not requiered but can be helpful
     
-    //this github script installs important dependencys for using this node 
+    # this github script installs important dependencys for using this node 
     username@name:~$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
     username@name:~$ source ~/.bashrc
-    //source in files when first adding them or making changes 
+    # source in files when first adding them or making changes 
     username@name:~$ #!/bin/bash
-    // #!/bin/bash tells the terminal what language to interprate 
-    // #!/bin/python would interprate the python language 
+    # #!/bin/bash tells the terminal what language to interprate 
+    # #!/bin/python would interprate the python language 
     
     username@name:~$ nvm install 10
     username@name:~$ nvm use 10
-    //this installs and uses the latest Node Version Manager
+    # this installs and uses the latest Node Version Manager
     
     username@name:~$ npm install -g @celo/celocli
-    //install the celo application onto this client 
+    # install the celo application onto this client 
          
     username@name:~$ #!/bin/bash
-    //this tells the terminal to interprate the following script in bash 
+    # this tells the terminal to interprate the following script in bash 
     username@name:~$ set -x
     username@name:~$ if test -f celo.env; then
            . celo.env
      fi
     +test -f celo.env   
     
-    //type exit after entering this script to get back to terminal 
-    //this argument make sure that the celo.env file will utilize dependencys from the bash script    
+    # type exit after entering this script to get back to terminal 
+    # this argument make sure that the celo.env file will utilize dependencys from the bash script    
          
 ##   *Use Curl to insert 2 new github scripts, these scripts create 2 new files*
      
     username@name:~$ curl -o celo.env https://gist.githubusercontent.com/alchemydc/ce712f6f3caa7ec79f15f930ed5904ed/raw/385c65b1d3f760854258bfd6dd8cbd135710b78f/celo.env 
-    //.env files are for storing and accesing enviromental variables, in this case creating variables for the public keys 
-    // try inserting this curl scrip multiple times if it dosent work the first time 
+    # .env files are for storing and accesing enviromental variables, in this case creating variables for the public keys 
+    #  try inserting this curl scrip multiple times if it dosent work the first time 
    ![image](https://user-images.githubusercontent.com/80616939/118896605-d9f96380-b8c5-11eb-883e-18d3d4e94a25.png)
      
     username@name:~$ curl -o start_celo.sh
     https://gist.githubusercontent.com/alchemydc/e28945f5059acd70969b39a50fd0f80a/raw/0d15cceb89ea86ca46df94441c06ecd88a4e6635/start_celo.sh
-    // this creates a new file for running the light client and storing node information 
-    // it also utilizes docker to make it more efficient 
+    # this creates a new file for running the light client and storing node information 
+    # it also utilizes docker to make it more efficient 
    ![image](https://user-images.githubusercontent.com/80616939/118896884-7c194b80-b8c6-11eb-9fb8-87be4bcf1246.png)
        
     username@name:~$ curl -o celo.env https://gist.github.com/alchemydc/e28945f5059acd70969b39a50fd0f80a
-    // this script allows the Celo client to utilize the celo.env file
-    // it also stores important node information 
-    // notice the name(celo full-node) this is the name of the node witch is important to remember
+    # this script allows the Celo client to utilize the celo.env file
+    # it also stores important node information 
+    # notice the name(celo full-node) this is the name of the node witch is important to remember
     username@name:~$ chmod u+x start_celo.sh
-    //chmod u+x grants only the owner of this file execution permissions 
+    # chmod u+x grants only the owner of this file execution permissions 
     username@name:~$ pwd
-    // pwd prints your current directorys 
+    # pwd prints your current directorys 
   to learn more about these .env files check out this guide:https://learn.figment.io/network-documentation/extra-guides/dotenv-and-.env 
  
 ##   *To access these files easily move them into a new directory  CALLED; celo-data-dir*
-    // the directory will be called celo-data-dir
+    # the directory will be called celo-data-dir
     username@name:~$ mkdir celo-data-dir
-    // mkdir makes a new directory 
+    # mkdir makes a new directory 
     
     username@name:~$ cd
-    // use cd by itself to exit any current directorys
+    # use cd by itself to exit any current directorys
     username@name:~$ cd celo-data-dir
-    // use cd by itself to exit any current directorys 
+    # use cd by itself to exit any current directorys 
     
     username@name:~/ celo-data-dir$ mv ../celo.env .
-    // mv moves the file into the directory  
+    # mv moves the file into the directory  
     username@name:~/ celo-data-dir$ mv ../start_celo.sh .
     
     username@name:~$ celo-data-dir$ source celo.env
-    // source in both the files so they are up to date 
+    # source in both the files so they are up to date 
     username@name:~$ celo-data-dir$ source start_celo.sh
-    // now these files can be utilized while in the celo-data-dir 
+    # now these files can be utilized while in the celo-data-dir 
   ![image](https://user-images.githubusercontent.com/80616939/118896499-9a327c00-b8c5-11eb-8e0d-f9b8c4afec89.png)
    ## *Create the Node, while in the celo-data-dir while*
     
     username@name:~/ celo-data-dir$ sudo usermod -aG docker $YOURNAME
     -Restart the VM
-    // after joining a new group always restart the VM. 
-    // after making big changes to the VM it is a good idea to restart it 
+    # after joining a new group always restart the VM. 
+    # after making big changes to the VM it is a good idea to restart it 
     
     username@name:~/ celo-data-dir$ id (check if you have joined the docker group)
     username@name:~/ celo-data-dir$ cd celo-data-dir
-    //now you are using the celo-data-dir 
+    # now you are using the celo-data-dir 
     
     username@name:~/ celo-data-dir$ source celo.env
     username@name:~/ celo-data-dir$ cat celo.env
     username@name:~/ celo-data-dir$ docker run -v $PWD:/root/.celo --rm -it $CELO_IMAGE account new (this comand creates your new node)
-    //this comand creates your new node account
+    # this comand creates your new node account
    Copy the public address key so you can paste it into celo.env using vim
     
     username@name:~/ celo-data-dir$ vim celo.env
@@ -202,7 +202,7 @@ you should have a basic understanding of Virtual Mashines(VM), and the linux ter
  exit vim by pressing : than typing wq enter 
 
     username@name:~/ celo-data-dir$ source celo.env 
-    //every time you make a change to celo.env you must source it in
+    # every time you make a change to celo.env you must source it in
     
   find celo.env in Files under celo-data-dir. Their you can edit it to add more accounts, and address.
   
@@ -217,13 +217,13 @@ you should have a basic understanding of Virtual Mashines(VM), and the linux ter
     username@name:~/ celo-data-dir$ ./start_celo.sh (this is the new comand to start the light client)
     -Create new window in terminal while light client is running to enter the following comands 
     username@name:~/ celo-data-dir$ celocli node:synced 
-    //if true your light client is synced with the node and running properly
+    # if true your light client is synced with the node and running properly
     
     username@name:~/ celo-data-dir$ celocli account:balance $ACCOUNT
-    // this shows the ballance of a given celo account number 
-    // where it says $ACCOUNT enter the name that is in celo.env or the public address  
+    # this shows the ballance of a given celo account number 
+    # where it says $ACCOUNT enter the name that is in celo.env or the public address  
     username@name:~/ celo-data-dir$ docker stop geth
-    //this stops the light client  
+    # this stops the light client  
 ![image](https://user-images.githubusercontent.com/80616939/118338503-8eb11080-b4d3-11eb-99a3-11417cf79b32.png)
 
 ##   *Sending Celo to and from the node*
@@ -235,7 +235,7 @@ you should have a basic understanding of Virtual Mashines(VM), and the linux ter
    make sure both are in the celo-data-dir 
     
     username@name:~/ celo-data-dir$ cat ./start_celo.sh 
-    // cat ./start_celo.sh will read you important node information 
+    # cat ./start_celo.sh will read you important node information 
     -Find the name of your node, represented in the next command as $NAME
     username@name:~/ celo-data-dir$ docker exec -it $NAME geth attach
     -exit
@@ -243,27 +243,27 @@ you should have a basic understanding of Virtual Mashines(VM), and the linux ter
     -enter password 
     
     username@name:~/ celo-data-dir$ celocli transfer:dollars --from $NODE_ADDRESS --to $PHONE_ADDRESS --value=1e16 (this will send the CUSD from this node to another address         1e16=0.01CUSD) 
-    //before you can send CUSD be sure to have CELO native in the account for the gas fee
-    //this will send the CUSD from this node to another address 
-    //1e16 = 0.01CUSD, 1e15 = 0.1CUSD, 1e14 = 1.0CUSD
+    # before you can send CUSD be sure to have CELO native in the account for the gas fee
+    # this will send the CUSD from this node to another address 
+    # 1e16 = 0.01CUSD, 1e15 = 0.1CUSD, 1e14 = 1.0CUSD
  ![image](https://user-images.githubusercontent.com/80616939/118338915-9c1aca80-b4d4-11eb-87b6-7970949923aa.png)
  
  ##  *Improving the resolution of the VM (Highly recommended)* 
    
     username@name:~$ sudo apt update && sudo apt upgrade
-    // this makes sure your system is up to date 
+    # this makes sure your system is up to date 
     
     username@name:~$ sudo apt install build-essential linux-headers-`uname -r`
-    // these linux headers can be built more than once 
+    # these linux headers can be built more than once 
    
     -click "insert vm guest additions CD" under devises in the top left corner
     -cancel 
     
     username@name:~$ cd /media/cdrom
     username@name:~$ sudo sh VBoxLinuxAdditions.run
-    // this Linux virtual box program improves the resolution of the VM 
+    # this Linux virtual box program improves the resolution of the VM 
     -Restart the VM 
-    //now you can strech the screen from the corners and the resolution will change 
+    # now you can strech the screen from the corners and the resolution will change 
     
 ## *Conclusion*
 
