@@ -4,11 +4,22 @@ description: Learn how to create, mint, and transfer NFTs on Avalanche.
 
 # Create NFTs with the Avalanche Wallet
 
-[**The original tutorial can be found in the AVA Labs documentation here**](https://docs.avax.network/build/tutorials/smart-digital-assets/wallet-nft-studio).
-
 ## About the author  
 
 [Devendra Yadav](https://github.com/devilla)
+
+## Prerequisites
+
+ For your information,
+ You can use a sticky pad or a notepad to save your keyphrase, for this exercise.
+ Before creating NFT's in the avalanche wallet, you need to prepare some images for uploading them to the avalanche wallet. 
+to learn more about the avalanche, please visit-(https://docs.avax.network/)
+
+## References
+
+The author of the original source and the original documentation can be found in the given link- 
+[**The original tutorial can be found in the AVA Labs documentation here**](https://docs.avax.network/build/tutorials/smart-digital-assets/wallet-nft-studio).
+
 
 ## Introduction
 
