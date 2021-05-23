@@ -2,7 +2,7 @@
 description: Learn what Avalanche APIs are available via DataHub and how to use them
 ---
 
-# 🎮 RPC & REST API
+# �� RPC & REST API
 
 ## Time to play
 

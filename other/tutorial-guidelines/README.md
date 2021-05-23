@@ -4,7 +4,7 @@ description: Some do's and dont's on hwo to write a tutorial for Figment Learn
 
 # 👀 Tutorial Guidelines
 
-So you've decided to write a tutorial for Figment Learn? We're excited to have you among our contributors! Make sure you read the guidelines below to make sure your contributions follows what other tutorials are doing.
+So you've decided to write a tutorial for Figment Learn? We're excited to have you among our contributors! Make sure you read the guidelines below to make sure your contributions follow what other tutorials are doing.
 
 When you are ready to submit it, [**open a PR on Github**](https://github.com/figment-networks/datahub-learn).
 
@@ -14,8 +14,12 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * **Include any potential walkthrough video** in the PR by uploading it to Google Drive
 * **Funding of accounts from faucets needs to be explained clearly** as to which account is being funded, from where and why.
 * **Display sample outputs** to help learners know what to expect, in the form of Terminal snippets or screenshots. Trim long outputs.
-* **Take an error driven approach** where you bump into errors on purpose to teach learners how to debug them. Eg. If you need to fund an account to be able to deploy a contract, first try and deploy without funding, observe the error that is returned, then fix the error \(by funding the account\) and try again.
-* **Add potential errors and troubleshooting.** Of course, the tutorial shouldn't list all potential errors but the main important one \(eg. "if you get _`<paste_error_here>`,_ make sure you copied the MNEMONIC to your `.env` file"\)
+* **Take an error-driven approach** where you bump into errors on purpose to teach learners how to debug them. Eg. If you need to fund an account to be able to deploy a contract, first try and deploy without funding, observe the error that is returned, then fix the error \(by funding the account\) and try again.
+* **Add potential errors and troubleshooting.** Of course, the tutorial shouldn't list all potential errors but the main important one.
+* **Use React or Vue** for the client-side.
+* **Before making the PR run the code by yourself first** to avoid any future unknown errors and to make sure it works as expected. 
+* **Provide** pictures/screenshots where needed.
+* **Avoid Including external/cross-links** to different sources in between the tutorials. 
 
 ## **Structure**
 
@@ -24,9 +28,9 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * Include **Prerequisites**: any prior knowledge needed or existing tutorials that need to be completed first, any tokens needed
 * Include **Requirements**: any technology that needs to be installed **prior** to starting the tutorial and that the tutorial will not cover \(`Metamask`, `node`, `truffle`, etc\). Do not list packages that will be installed in the tutorial \(`dotenv`\).
 * Include a **Conclusion** section that summarizes what was learned, reinforces key points and also congratulates the learner.
-* \(Optional\) \*\*\*\*\*\*Include a **What's Next** section pointing to good follow up tutorials or other resources \(projects, articles, etc\)
+* \(Optional\) Include a **What's Next** section pointing to good follow up tutorials or other resources \(projects, articles, etc\)
 * \(Optional\) Include an **About The** **Author** section at the end. Your bio should include your Github handle \(which will have your name, website, etc\) and a link to your [Figment Forum](https://community.figment.io) profile \(so users can contact/tag you on Forum for help and questions\).
-* Include a **References** section must be present if you have taken any help in writing this tutorial from other documents, GitHub repos and other tutorials. Credit sources by adding their name and a link to the document when possible \(if it is not a digital document, include an ISBN or other means of reference\).
+* **References** section must be present if you have taken any help in writing this tutorial from other documents, GitHub repos and other tutorials. Credit sources by adding their name and a link to the document when possible \(if it is not a digital document, include an ISBN or other means of reference\).
 
 ## **Style**
 
@@ -46,20 +50,9 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * If you use `npm install` use the `--save` flag
 * If you mention `.env` and `.gitignore` during the tutorial setup, you can reference the Guides [document](https://learn.figment.io/network-documentation/extra-guides/dotenv-and-.env) we wrote on this.
 
-## **Do’s and Don'ts while creating Tutorials**
+## Sample Tutorial
 
-### ✅Do’s -
-
-* Ideally, each subsection feels rewarding and has a concise output.
-* Provide regular checkpoints.
-* Run the code by yourself first to avoid any future unknown errors and to make sure it works as expected. 
-* Provide pictures/screenshots where needed.
-
-### ❌Don’ts -
-
-* Including external/cross links to different sources in between the tutorials. 
-
-Please check Sample Tutorial Structure on the next page.
+**Please check Sample Tutorial Structure on the next page** 📑
 
 {% page-ref page="sample-tutorial-structure.md" %}
 

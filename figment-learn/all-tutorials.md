@@ -72,7 +72,7 @@ Terra is a price-stable cryptocurrency that will power the next-generation payme
 
 **Get Started with** [**Terra DataHub today!** ](https://figment.io/datahub/terra/)\*\*\*\*
 
-## \*\*\*\*![](../.gitbook/assets/2011.png) **Tezos Tutorials**
+## \*\*\*\*![](../.gitbook/assets/2011%20%281%29.png) **Tezos Tutorials**
 
 Tezos is a secure, smart contract blockchain platform that uses its built-in governance mechanism for protocol upgrades. 
 

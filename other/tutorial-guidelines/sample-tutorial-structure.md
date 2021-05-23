@@ -46,7 +46,20 @@ Points to remember -
 * Add Code Blocks
 * Add Comments in Code Blocks
 * Text Content
-* Add Output Images, Error log etc.
+* Add Output Images
+* Add common errors and steps to troubleshoot the errors, _for example -_
+
+{% hint style="info" %}
+#### Not able to connect to the Avalanche Node and getting error on executing `node connect.js`
+
+Let's check for some common causes:
+
+* First, make sure you have `.env` file saved and it's in the correct format as given in the tutorial.
+* If you're getting an error message like `UnauthorizedError: { "message":"Invalid authentication credentials"` then make sure to replace the &lt;API\_KEY&gt; with your correct API key which you copied from your DataHub Dashboard. 
+* Make sure to have your `.env` file saved in your project root folder.
+* Make sure`NODE_URL` in .env file is correct
+* If still, you're experiencing the same issue, for help reach out to us on [Discord](https://discord.gg/fszyM7K) or [Forum](https://community.figemnt.io) 
+{% endhint %}
 
 ## **Conclusion**
 
@@ -59,9 +72,9 @@ Feel free to add recommended projects and articles here which are related to thi
 
 ## About The **Author**
 
-_For example, It should like this -_ 
+_Keep it very short._
 
-This tutorial was created by \[Author's Full Name\], He/She is a \[Software Engineer/Student etc.\] at \[Name of Organization/University etc.\]. Feel free to get in touch with him/her/Author [**HERE**](https://community.figment.io) ****_\(embed the link to your Figment Forum Profile\)_ on Figment Forum for any queries and help related to the tutorial. Also, you can connect with \[Author's First Name\] on [GitHub](https://www.github.com)
+Link to Github profile + Figment Forum Profile \([**HERE**](https://community.figment.io)**\)**
 
 ## **References**
 

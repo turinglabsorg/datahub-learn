@@ -86,7 +86,7 @@ Terra is a blockchain protocol that supports stable programmable payments and op
 
 {% page-ref page="terra/" %}
 
-## ![](../.gitbook/assets/2011.png) Tezos 
+## ![](../.gitbook/assets/2011%20%281%29.png) Tezos 
 
 Tezos is a secure, smart contract blockchain platform that uses its built-in governance mechanism for protocol upgrades. Tezos is one of the first blockchain platforms to introduce a formal on-chain governance process. 
 
