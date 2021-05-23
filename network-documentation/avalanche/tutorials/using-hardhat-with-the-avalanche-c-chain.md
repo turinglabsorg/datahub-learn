@@ -2,98 +2,25 @@
 description: Learn how to use Hardhat with the C-Chain
 ---
 # Using Hardhat with the Avalanche C-Chain 
-<sub>Contributed By [BREATHE BINARY OÜ](https://github.com/breathebinary)</sub>
 
 
 ## Introduction
 
-[Hardhat](https://hardhat.org) is a development environment to compile, deploy, test, and debug your Ethereum software. It helps developers manage and automate the recurring tasks that are inherent to the process of building smart contracts and dApps, as well as easily introducing more functionality around this workflow. This means compiling, running and testing smart contracts at the very core. This tutorial illustrates how Hardhat can be used with Avalanche's C-Chain, which is an instance of the EVM.
+[Hardhat](https://hardhat.org) is a suite of tools which together provides us with a development environment that helps developers to easily manage and automate the tasks around building smart contracts and dApps. It is very similar to [Truffle](https://www.trufflesuite.com/) in this regard. Hardhat could be used to compile, deploy, test and debug smart contracts. In this tutorial, we learn how Hardhat can be used with Avalanche C-Chain. Avalanche C-Chain is an instance of the EVM (Ethereum Virtual Machine).
 
 ## Prerequisites
 
-Before we dig into the tutorial, let's check if you have the right environment:
+Please make sure that you have completed the tutorials:
 
-* Download and setup [Golang](https://golang.org/) \(1.15.10\)
-* Download the latest version of NodeJS \(12.x+\)
-* Downoad the latest version of [Avash](https://github.com/ava-labs/avash)
+* [Avash Installation](https://learn.figment.io/network-documentation/avalanche/tutorials/local-avalanche-network-using-avash.md)
 
-## Setup a local Avalanche network using Avash
+## Requirements
 
-[Avash](https://github.com/ava-labs/avash) is a temporary stateful shell execution environment used to deploy networks locally, manage their processes, and run network tests. It allows you to spin up private test network deployments with up to 15 AvalancheGo nodes out-of-the-box and supports automation of regular tasks via lua scripts. This enables rapid testing against a wide variety of configurations. The first time you use avash you'll need to [install and build it](https://github.com/ava-labs/avash#quick-setup). It's similar to [Hardhat Network](https://hardhat.org/hardhat-network/).
+For the smooth completion of this tutorial, we need the following softwares to be already present on your system:
 
-After you're done with setting up avash as described in quick setup, you should be in a position to run Avalanche nodes on your machine using avash.
+* [NodeJS](https://nodejs.org/) \(12.x+\)
 
-Firstly, you need to add two files to your avash installation into the scripts directory.
-
-***scripts/config/staking\_node\_config.json***
-
-```
-{
-    "db-enabled": false,
-    "staking-enabled": true,
-    "log-level": "debug",
-    "coreth-config": {
-        "snowman-api-enabled": false,
-        "coreth-admin-api-enabled": false,
-        "net-api-enabled": true,
-        "rpc-gas-cap": 2500000000,
-        "rpc-tx-fee-cap": 100,
-        "eth-api-enabled": true,
-        "tx-pool-api-enabled": true,
-        "debug-api-enabled": true,
-        "web3-api-enabled": true,
-        "personal-api-enabled": true
-    }
-}
-```
-
-***scripts/five\_node\_staking\_with\_config.lua***
-
-```javascript
-cmds = {
-    "startnode node1 --config-file=scripts/config/staking_node_config.json --http-port=9650 --staking-port=9651 --bootstrap-ips= --staking-tls-cert-file=certs/keys1/staker.crt --staking-tls-key-file=certs/keys1/staker.key",
-    "startnode node2 --config-file=scripts/config/staking_node_config.json --http-port=9652 --staking-port=9653 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=certs/keys2/staker.crt --staking-tls-key-file=certs/keys2/staker.key",
-    "startnode node3 --config-file=scripts/config/staking_node_config.json --http-port=9654 --staking-port=9655 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=certs/keys3/staker.crt --staking-tls-key-file=certs/keys3/staker.key",
-    "startnode node4 --config-file=scripts/config/staking_node_config.json --http-port=9656 --staking-port=9657 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=certs/keys4/staker.crt --staking-tls-key-file=certs/keys4/staker.key",
-    "startnode node5 --config-file=scripts/config/staking_node_config.json --http-port=9658 --staking-port=9659 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=certs/keys5/staker.crt --staking-tls-key-file=certs/keys5/staker.key",
-}
-
-for key, cmd in ipairs(cmds) do
-    avash_call(cmd)
-end
-```
-
-
-To start a five node local Avalanche network, follow these steps:
-
-```console
-cd $GOPATH/src/github.com/ava-labs/avash
-$ ./avash
-```
-
-If everything goes well, you must be looking at the avash prompt as shown below:
-
-```console
-avash>
-```
-
-Now you need to run the script we just created above which will start a five node staking network on your machine.
-
-```console
-runscript scripts/five_node_staking_with_config.lua
-```
-
-If the nodes started successfully, the console should look similar to what you see below:
-
-```console
-avash> runscript scripts/five_node_staking_with_config.lua
-RunScript: Running scripts/five_node_staking_with_config.lua
-RunScript: Successfully ran scripts/five_node_staking_with_config.lua
-```
-
-Viola! A five node Avalanche network is running on your machine. Keep the avash terminal running for now. To stop these nodes and exit avash after you're done with this tutorial,type `exit` into the avash prompt and hit enter.
-
-## Creating Hardhat project
+## Creating a Hardhat project
 
 The first step is to create a directory for your project where you will initialize the new Hardhat project. You can do this using the following command:
 
@@ -258,14 +185,12 @@ To compile the Storage.sol smart-contract we just added to our project, use the 
 npx hardhat compile
 ```
 
-If the smart-contract was successfully compiled, you should see something like this in the console:
+After the successful execution of the command, the smart-contract should now be compiled, and you should see something like this in the console:
 
 ```text
 Compiling 1 file with 0.7.3
 Compilation finished successfully
 ```
-
-If you managed to get this far without any errors, you've successfully compiled the smart-contract using hardhat!
 
 ## Using hardhat console
 
@@ -360,12 +285,25 @@ let i = await storage.retrieve();
 console.log(i.toNumber());
 ```
 
-If everything went on smoothly, you should see 333 printed back to the console.
+You should now see 333 printed back to the console.
 
-Congratulations, you have successfully deployed and interacted with our smart-contract using hardhat!
-
-## Summary
+## Conclusion
 
 In this tutorial, we've successfully launched a local Avalanche network using avash,  and created a hardhat project. Within the hardhat project, we managed to add a new smart-contract, compile it using hardhat and finally deployed the contract and interacted with it using hardhat console.
 
+Congratulations on making it to the end of this tutorial!
+
+> “No great thing is created suddenly, any more than a bunch of grapes or a fig. 
+> If you tell me that you desire a fig, I answer that there must be time. Let it
+> first blossom, then bear fruit, then ripen.”
+>
+> -- <cite>Epictetus</cite>
+
+So, keep learning and keep building and I'm sure you're on your way to building something great! Good luck!
+
+
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can join [**our community**](https://discord.gg/fszyM7K) today!
+
+## About the author
+
+This tutorial is authored by **Kevin Madhu** who is currently working as a Technical Architect in [BREATHE BINARY OÜ](https://github.com/breathebinary). **BREATHE BINARY** is an Estonian based software company which specializes in building amazing Web2 and Web3 applications. DeFi and dApps in general are a newfound passion for the author and so feel free to reach out to him on his [Linkedin](https://www.linkedin.com/in/kevin-madhu/) for any queries regarding this tutorial or anything related to blockchain or technology in general.
