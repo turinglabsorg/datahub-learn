@@ -217,13 +217,17 @@ Next comes our lua script itself:
 
 ***five\_node\_staking\_with\_config.lua***
 
+{% hint style="info" %}
+You have to explore and find out the actual version of avash that was installed on your machine and replace all occurrences of **avash@v1.1.4** with **avash@v{your_version}** in the configuration file below.
+{% endhint %}
+
 ```javascript
 cmds = {
-    "startnode node1 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9650 --staking-port=9651 --bootstrap-ips=",
-    "startnode node2 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9652 --staking-port=9653 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg",
-    "startnode node3 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9654 --staking-port=9655 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg",
-    "startnode node4 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9656 --staking-port=9657 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg",
-    "startnode node5 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9658 --staking-port=9659 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg",
+    "startnode node1 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9650 --staking-port=9651 --bootstrap-ips= --staking-tls-cert-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys1/staker.crt --staking-tls-key-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys1/staker.key",
+    "startnode node2 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9652 --staking-port=9653 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys2/staker.crt --staking-tls-key-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys2/staker.key",
+    "startnode node3 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9654 --staking-port=9655 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys3/staker.crt --staking-tls-key-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys3/staker.key",
+    "startnode node4 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9656 --staking-port=9657 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys4/staker.crt --staking-tls-key-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys4/staker.key",
+    "startnode node5 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9658 --staking-port=9659 --bootstrap-ips=127.0.0.1:9651 --bootstrap-ids=NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg --staking-tls-cert-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys5/staker.crt --staking-tls-key-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys5/staker.key",
 }
 
 for key, cmd in ipairs(cmds) do
