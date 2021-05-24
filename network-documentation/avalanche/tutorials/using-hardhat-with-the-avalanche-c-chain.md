@@ -246,13 +246,25 @@ Now, we're ready to deploy our smart-contract and to interact with it!
 
 ## Deploying smart-contracts using hardhat console
 
+To deploy our smart-contract and to interact with it, we're gonna be using an interactive JavaScript console provided by hardhat, which is called hardhat console. Hardhat console is geared more towards providing us with a quick local development and testing environment.
+
 To fire up hardhat console, we use:
 
 ```
 npx hardhat console
 ```
 
-Inorder to get Storage.sol smart-contract, we use:
+We'll be greeted with a interactive console environment that looks like this:
+
+```text
+Welcome to Node.js v14.16.1.
+Type ".help" for more information.
+> 
+```
+
+Now we go on and type in the following snippets of code to deploy and interact with our Storage smart-contract. After you input each line of code, press enter to execute the same.
+
+Inorder to get an instance of Storage.sol smart-contract, we type in:
 
 ```javascript
 const Storage = await hre.ethers.getContractFactory("Storage");
