@@ -247,7 +247,7 @@ Now, we're ready to deploy our smart-contract and to interact with it!
 To deploy our smart-contract and to interact with it, we're gonna be using an interactive JavaScript console provided by hardhat, which is called hardhat console. Hardhat console is geared more towards providing us with quick local development and testing environment.
 
 {% hint style="info" %}
-Make sure that the Lua script we created earlier in the `Avash Installation` tutorial (listed under `Prerequisites`) is running inside Avash console as mentioned in the `Setup a local Avalanche network using Avash` section of the tutorial. This creates the temporary local blockchain hardhat console will be connected to.
+Make sure that the Lua script we created earlier in the `Avash Installation` tutorial (listed under `Prerequisites`) is running inside the Avash console as mentioned in the `Setup a local Avalanche network using Avash` section of the tutorial. This creates the temporary local blockchain hardhat console will be connected to.
 {% endhint %}
 
 To fire up the hardhat console, we use:
@@ -272,10 +272,22 @@ Inorder to get an instance of Storage.sol smart-contract, we type in:
 const Storage = await hre.ethers.getContractFactory("Storage");
 ```
 
+This returns:
+
+```text
+undefined
+```
+
 Now we go on to deploy the Storage contract we just retrieved, using:
 
 ```
 const storage = await Storage.deploy();
+```
+
+Again, this returns:
+
+```text
+undefined
 ```
 
 Before we start interacting with the smart-contract, we wait for the contract to be deployed successfully using:
@@ -284,12 +296,68 @@ Before we start interacting with the smart-contract, we wait for the contract to
 await storage.deployed();
 ```
 
+This returns a very big chunk of output, which is the internal representation of the smart-contract in JavaScript (truncated for brevity):
+
+```text
+ref *1> Contract {
+  interface: Interface {
+    fragments: [ [FunctionFragment], [FunctionFragment] ],
+    _abiCoder: AbiCoder { coerceFunc: null },
+    functions: {
+      'retrieve()': [FunctionFragment],
+      'store(uint256)': [FunctionFragment]
+    },
+    errors: {},
+    events: {},
+    structs: {},
+    deploy: ConstructorFragment {
+      name: null,
+      type: 'constructor',
+      inputs: [],
+      payable: false,
+      stateMutability: 'nonpayable',
+      gas: null,
+      _isFragment: true
+    },
+    _isInterface: true
+  },
+...
+...
+```
+
 ## Interacting with smart-contracts using hardhat console
 
 To store our favorite magical number into the blockchain, we call the store function of the deployed contract:
 
 ```javascript
 await storage.store(333);
+```
+
+This returns the representation of the Javascript representation of the transaction details of writing to the blockchain:
+
+```
+{
+  hash: '0xaae491304254fce18fc3ff77f5891feef69035d05eb93c6b542823f948426ac4',
+  type: 0,
+  accessList: null,
+  blockHash: null,
+  blockNumber: null,
+  transactionIndex: null,
+  confirmations: 0,
+  from: '0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC',
+  gasPrice: BigNumber { _hex: '0x34630b8a00', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0xaa26', _isBigNumber: true },
+  to: '0x4Ac1d98D9cEF99EC6546dEd4Bd550b0b287aaD6D',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  nonce: 5,
+  data: '0x6057361d000000000000000000000000000000000000000000000000000000000000014d',
+  r: '0x2be3e63b57eb1dd045361317e5380af910527a03b8e00cbde6226350d908d698',
+  s: '0x6c45b5adabfd6cabde520a8f4a649b639f59e1e9fe3234713bb8152515bcf9d0',
+  v: 86259,
+  creates: null,
+  chainId: 43112,
+  wait: [Function (anonymous)]
+}
 ```
 
 Now, we're all set to read the number we just stored into our contract and print it out, using:
