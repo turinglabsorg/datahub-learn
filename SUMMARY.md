@@ -58,6 +58,7 @@
     * [Create NFTs with the Avalanche Wallet](network-documentation/avalanche/tutorials/create-nfts-with-the-avalanche-wallet.md)
     * [Making an e-Voting dApp on Avalanche Fuji network using Trufflesuite](network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle.md)
     * [Making an advanced e-Voting dApp on Avalanche Fuji network using Trufflesuite](network-documentation/avalanche/tutorials/making-advanced-e-voting-dapp-avalanche-fuji-using-trufle.md)
+    * [Making an advanced e-Voting dApp using Avalanche Fuji, Trufflesuite and ReactJS](network-documentation/avalanche/tutorials/advanced-evoting-avalanche-reactjs.md)
     * [Transfer AVAX tokens from the C chain of your AVAX wallet to an ETH address \(Metamask, for example\)](network-documentation/avalanche/tutorials/avax-c-chain-to-eth-address-transfer-tutorial.md)
     * [Transfer ERC-20 tokens from the C-chain of your AVAX wallet to an ETH address \(Metamask, for example](network-documentation/avalanche/tutorials/erc20-token-transfer-to-eth-address.md)
 * [💰 Celo](network-documentation/celo/README.md)
