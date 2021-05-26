@@ -957,8 +957,7 @@ You have successfully built a full fledged `dApp` and deployed the smart contrac
 The dapp which we built just now is a somehow advanced e-voting application, as now we can make new elections, give them title and description, vote them separately. But I would recommend you to add few more interesting features to it, like having start and end date for election, declaring winner after the election has ended and many more like that.
 
 ## About the author
-
-This tutorial was created by [Raj Ranjan](https://github.com/rajranjan0608), You can get in touch with author on Figment Forum and on GitHub
+This tutorial was created by [Raj Ranjan](https://www.linkedin.com/in/iamrajranjan), You can get in touch with the author on [Figment Forum](https://community.figment.io/u/rranjan01234/) and on [GitHub](https://github.com/rajranjan0608)
 
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://discord.gg/fszyM7K)!
 
