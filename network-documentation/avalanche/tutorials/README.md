@@ -2,7 +2,7 @@
 description: See all tutorials currently available for Avalanche
 ---
 
-# �� Tutorials
+# 💡 Tutorials
 
 ## Time to learn
 
@@ -51,6 +51,10 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 ## Making an e-Voting dApp on Avalanche Fuji network using Trufflesuite
 
 {% page-ref page="making-evoting-dapp-on-avalanche-c-chain-using-truffle.md" %}
+
+## Making an advanced e-Voting dApp on Avalanche Fuji network using Trufflesuite
+
+{% page-ref page="making-advanced-e-voting-dapp-avalanche-fuji-using-trufle.md" %}
 
 ## Creating a Fixed-Cap Asset
 
