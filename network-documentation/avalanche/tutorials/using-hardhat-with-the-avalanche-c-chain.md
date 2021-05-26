@@ -246,6 +246,10 @@ Now, we're ready to deploy our smart-contract and to interact with it!
 
 To deploy our smart-contract and to interact with it, we're gonna be using an interactive JavaScript console provided by hardhat, which is called hardhat console. Hardhat console is geared more towards providing us with quick local development and testing environment.
 
+{% hint style="info" %}
+Make sure that the Lua script we created earlier in the `Avash Installation` tutorial (listed under ``Prerequisites`) is running inside Avash console as mentioned in the `Setup a local Avalanche network using Avash` section of the tutorial. This creates the temporary local blockchain hardhat console will be connected to.
+{% endhint %}
+
 To fire up the hardhat console, we use:
 
 ```
