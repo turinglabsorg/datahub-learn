@@ -278,6 +278,18 @@ This returns:
 undefined
 ```
 
+Here, `undefined` being printed does not mean that the instruction we executed has failed. Instead, it's `undefined` because we stored the return value into the Storage constant and there's nothing to be printed out into the console. In fact, we could verify that the command executed successfully by logging the contents of the Storage constant:
+
+```javascript
+console.log(Storage)
+```
+
+{% hint style="info" %}
+What you see below is a Javascript representation of the compiled smart-contract - it's not necessary that you understand everything you see in the logged output. We print it out to demonstrate that the instruction was executed successfully.
+{% endhint %}
+
+![](../../../.gitbook/assets/storage-console-log.png)
+
 Now we go on to deploy the Storage contract we just retrieved, using:
 
 ```
