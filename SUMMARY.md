@@ -107,6 +107,7 @@
       * [3. Interacting with the Crowdfunding Smart Contracts](network-documentation/celo/tutorial/celo-crowdfunding-project-tutorial/3.interacting.md)
     * [How to create a ERC1155 NFT in Celo Network with Hardhat](network-documentation/celo/tutorial/celo-hardhat-deploy-and-nft-app.md)
     * [How to customize an Ethereum smart contract for the Celo network](network-documentation/celo/tutorial/celo-contract-from-ethereum.md)
+    * [Distributed File Manager (DFM) using Celo, IPFS and ReactJS](network-documentation/celo/tutorial/distributed-file-manager-using-ipfs-celo-reactjs.md)
   * [💼 CELO Wallet](network-documentation/celo/celo-wallet.md)
 * [🌌 Cosmos](network-documentation/cosmos/README.md)
   * [✏ Cosmos 101](network-documentation/cosmos/cosmos-101.md)
