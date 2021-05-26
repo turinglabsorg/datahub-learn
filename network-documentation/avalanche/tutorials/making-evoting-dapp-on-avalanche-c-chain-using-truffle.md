@@ -6,8 +6,7 @@ description: Learn how to use Truffle with the C-Chain
 
 ## Introduction
 
-Today we will be learning how to code a decentralized application on Avalanche's Fuji network from scratch. It would be a simple dapp, in which we will be holding an election between the candidates. And users like you and me will be going to vote them. So, to vote easily and efficiently using the browser, we would also be writing client-side application to interact with the blockchain. For developing this dapplication we would be using Trufflesuite.
-[Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
+Today we will be learning how to code a decentralized application on Avalanche's Fuji network from scratch. It would be a simple dapp, in which we will be holding an election between the candidates. And users like you and me will be going to vote them. So, to vote easily and efficiently using the browser, we would also be writing client-side application to interact with the blockchain. For developing this dapplication we would be using Trufflesuite. [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
 
 ## Prerequisites
 
@@ -35,13 +34,14 @@ Create and enter a new directory named `evoting`:
 ```javascript
 mkdir evoting && cd evoting
 ```
+
 Initialize your working directory using `npm` for making your project more organised.
 
 ```text
 npm init
 ```
 
-This command would prompt the user to enter the details about the project like `name`, `description`, `author` etc. You may either enter details as directed and press enter, or directly move ahead by hitting enter (it will take default values). You may use the command `npm init -y`, to skip all prompts at once.
+This command would prompt the user to enter the details about the project like `name`, `description`, `author` etc. You may either enter details as directed and press enter, or directly move ahead by hitting enter \(it will take default values\). You may use the command `npm init -y`, to skip all prompts at once.
 
 Use `npm` to install other dependencies
 
@@ -107,7 +107,7 @@ APIKEY=<your-api-key>
 
 ## Add Election.sol
 
-> **References** : This tutorial has been made by taking reference from [Dapp University](https://github.com/dappuniversity/election). 
+> **References** : This tutorial has been made by taking reference from [Dapp University](https://github.com/dappuniversity/election).
 
 In the `contracts` directory add a new file called `Election.sol` and add the following block of code:
 
@@ -170,17 +170,15 @@ contract Election {
   //Storing candidates in a map
   mapping(uint => Candidate) public candidates;
 ```
-<br>
 
-2. **Voter details** - In an election, a voter should not vote more than once. So, we are storing the voters' addresses in the mapping between voter's address and a boolean representing wether they have voted or not. 
+1. **Voter details** - In an election, a voter should not vote more than once. So, we are storing the voters' addresses in the mapping between voter's address and a boolean representing wether they have voted or not. 
 
 ```javascript
   //Storing address of those voters who already voted
   mapping(address => bool) public voters;
 ```
-<br>
 
-3. **Adding candidates** - The candidates are added in an election (smart contract) using the function `addCandidate()`.
+1. **Adding candidates** - The candidates are added in an election \(smart contract\) using the function `addCandidate()`.
 
 ```javascript
   //Adding 2 candidates during the deployment of contract
@@ -196,7 +194,7 @@ contract Election {
   }
 ```
 
-4. **Voting the candidates** - We made a vote() function. It takes candidateId as an argument and increments vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking `boolean` accross the `voters` mapping and `candidateId` should be a valid one, i.e. `1 <= candidateId <= candiatesCount`.
+1. **Voting the candidates** - We made a vote\(\) function. It takes candidateId as an argument and increments vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking `boolean` accross the `voters` mapping and `candidateId` should be a valid one, i.e. `1 <= candidateId <= candiatesCount`.
 
 ```javascript
   //Public vote function for voting a candidate
@@ -218,7 +216,7 @@ const Election = artifacts.require("./Election.sol");
 module.exports = function (deployer) {
   deployer.deploy(Election);
 };
-``` 
+```
 
 ## Compile Contracts with Truffle
 
@@ -239,11 +237,10 @@ Compiling your contracts...
 > Compiled successfully using:
    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 ```
-<br>
 
-> **Note** : There might be an error `Error: Cannot find module 'pify'`, if the `pify` module is not installed automatically while installing `truffle`. So, this issue can be resolved by separately installing `pify`, using the command below 
+> **Note** : There might be an error `Error: Cannot find module 'pify'`, if the `pify` module is not installed automatically while installing `truffle`. So, this issue can be resolved by separately installing `pify`, using the command below
 
-```
+```text
 npm install pify --save
 ```
 
@@ -253,7 +250,7 @@ When deploying smart contracts to the C-Chain, it will require some deployment c
 
 ### Fund your account
 
-Fund your account using the the faucet link https://faucet.avax-test.network/ and pasting your Fuji's C-Chain address in the input field. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Here `nAVAX` refers to nano AVAX, which is one-billionth of an AVAX token. Minimum AVAX required for deployment, will vary from contract to contract, depending upon what variables and data structures our contract is using. Though faucet will give you enough `AVAX` to deploy and transact mulptiple times on Avalanche's Fuji network.
+Fund your account using the the faucet link [https://faucet.avax-test.network/](https://faucet.avax-test.network/) and pasting your Fuji's C-Chain address in the input field. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Here `nAVAX` refers to nano AVAX, which is one-billionth of an AVAX token. Minimum AVAX required for deployment, will vary from contract to contract, depending upon what variables and data structures our contract is using. Though faucet will give you enough `AVAX` to deploy and transact mulptiple times on Avalanche's Fuji network.
 
 ## Run Migrations
 
@@ -595,6 +592,7 @@ You have successfully built a full fledged `dApp` and deployed the smart contrac
 The dapp which we built just now is a very simple e-voting application, where for every new election, we need to update the smart contract with new candidates and deploy it on the Avalanche network. So, in order make it more scalable and sophisticated, we would adding more features like creating custom elections, adding new candidates, setting up starting and ending dates for each election and much more in the upcoming tutorials.
 
 ## About the author
+
 This tutorial was created by [Raj Ranjan](https://www.linkedin.com/in/iamrajranjan), You can get in touch with the author on [Figment Forum](https://community.figment.io/u/rranjan01234/) and on [GitHub](https://github.com/rajranjan0608)
 
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://discord.gg/fszyM7K)!

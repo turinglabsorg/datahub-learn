@@ -8,7 +8,7 @@ description: Learn how to use Truffle with the C-Chain
 
 In the last tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), we have learnt how to deploy a smart contract on Avalanche's Fuji C-Chain using Trufflesuite. Along with that we have also coded the client-side application, to easily interact with smart contracts.
 
-Today, in this tutorial, we will be building a more advanced e-voting `dApplication`, in which we will not only interact with pre-deployed smart contracts, but will also deploy the contracts in runtime, and would interact with them using their contract address. For developing this dApplication we would be using Trufflesuite framework. 
+Today, in this tutorial, we will be building a more advanced e-voting `dApplication`, in which we will not only interact with pre-deployed smart contracts, but will also deploy the contracts in runtime, and would interact with them using their contract address. For developing this dApplication we would be using Trufflesuite framework.
 
 For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
 
@@ -44,7 +44,8 @@ First initialize the folder with `npm` for, in order to have organise the projec
 ```text
 npm init
 ```
-This command would prompt the user to enter the details about the project like `name`, `description`, `author` etc. You may either enter details as directed and press enter, or directly move ahead by hitting enter (it will take default values).
+
+This command would prompt the user to enter the details about the project like `name`, `description`, `author` etc. You may either enter details as directed and press enter, or directly move ahead by hitting enter \(it will take default values\).
 
 Now use `npm` to install other dependencies
 
@@ -115,7 +116,7 @@ APIKEY=<your-api-key>
 
 ## Add Election.sol
 
-> **References** : Few parts of this tutorial has been made by taking reference from [Dapp University](https://github.com/dappuniversity/election). 
+> **References** : Few parts of this tutorial has been made by taking reference from [Dapp University](https://github.com/dappuniversity/election).
 
 In the `contracts` directory add a new file called `Election.sol` and add the following block of code:
 
@@ -127,7 +128,7 @@ contract Election {
   //Election details will be stored in these variables
   string public name;
   string public description;
-  
+
   //Structure of candidate standing in the election
   struct Candidate {
     uint id;
@@ -174,7 +175,7 @@ contract Election {
 
 ### Let's understand this smart contract
 
-The code for smart contract is everything within `contract Election {  }`.
+The code for smart contract is everything within `contract Election { }`.
 
 1. **Basic details about election** - This block of code would be storing basic details of each `Election` contract. Details include `name` and `description`.
 
@@ -183,9 +184,8 @@ The code for smart contract is everything within `contract Election {  }`.
   string public name;
   string public description;
 ```
-<br>
 
-2. **Storing candidate details** - Candidate details would be stored in a mapping between an unsigned integer to the `Candidate` structure. `Candidate` structure would consists of data like `id`, `name` (candidate's name) and `voteCount` (number of times they are voted).
+1. **Storing candidate details** - Candidate details would be stored in a mapping between an unsigned integer to the `Candidate` structure. `Candidate` structure would consists of data like `id`, `name` \(candidate's name\) and `voteCount` \(number of times they are voted\).
 
 ```javascript
   //Structure of candidate standing in the election
@@ -198,9 +198,8 @@ The code for smart contract is everything within `contract Election {  }`.
   //Storing candidates in a map
   mapping(uint => Candidate) public candidates;
 ```
-<br>
 
-3. **Storing details of voters which have already voted and number of candidates** - `voters` is a mapping between the address of voter and a boolean. In Solidity, the default boolean value is `false`, so if the returned value of `voters(address)` is `false` we can understand that the voters is voting for the first time in this election, and vice-versa for `true`.
+1. **Storing details of voters which have already voted and number of candidates** - `voters` is a mapping between the address of voter and a boolean. In Solidity, the default boolean value is `false`, so if the returned value of `voters(address)` is `false` we can understand that the voters is voting for the first time in this election, and vice-versa for `true`.
 
 ```javascript
   //Storing address of those voters who already voted
@@ -209,9 +208,8 @@ The code for smart contract is everything within `contract Election {  }`.
   //Number of candidates in standing in the election
   uint public candidatesCount = 0;
 ```
-<br>
 
-4. **Constructor call and adding candidates to the election** - When a smart contract is deployed on a network, the first thing to be called is a `constructor()` function. Whatever we want to initialize in a smart contract, we do it inside the `constructor()` function. Like here, we will be adding a name, description, and candidates to the election. Here, `addCandidate()` is a private function, so that, it cannot be called publicly. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
+1. **Constructor call and adding candidates to the election** - When a smart contract is deployed on a network, the first thing to be called is a `constructor()` function. Whatever we want to initialize in a smart contract, we do it inside the `constructor()` function. Like here, we will be adding a name, description, and candidates to the election. Here, `addCandidate()` is a private function, so that, it cannot be called publicly. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
 
 ```javascript
   //Setting of variables and data, during the creation of election contract
@@ -230,9 +228,8 @@ The code for smart contract is everything within `contract Election {  }`.
     candidatesCount ++;
   }
 ```
-<br>
 
-5. **Voting candidates in an election** - We made a `vote()` function. It takes `candidateId` as an argument and increments vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking boolean accross the `voters` mapping and `candidateId` should be a valid one, i.e. `0 <= candidateId < candiatesCount`.
+1. **Voting candidates in an election** - We made a `vote()` function. It takes `candidateId` as an argument and increments vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking boolean accross the `voters` mapping and `candidateId` should be a valid one, i.e. `0 <= candidateId < candiatesCount`.
 
 ```javascript
   //Public vote function for voting a candidate
@@ -243,7 +240,6 @@ The code for smart contract is everything within `contract Election {  }`.
     candidates[_candidate].voteCount++;
   }
 ```
-<br>
 
 ## Add MainContract.sol
 
@@ -266,6 +262,7 @@ contract MainContract {
     }
 }
 ```
+
 `MainContract.sol` is the main entry point of our e-voting DApp. It will maintain the number of election contracts deployed, their address on the network and will also help in deploying them. We have also imported `Election.sol` contract, for using it in the `MainContract`.
 
 1. Here `electionId` is used for assigning ID's to each each election that a user creates and is incremented for using it while creating the next election. Also, `Elections` is a public mapping between `electionId` and address of the deployed election contract.
@@ -274,9 +271,8 @@ contract MainContract {
     uint public electionId = 0;
     mapping (uint => address) public Elections;
 ```
-<br>
 
-2. We have made a `createElection()` function which will be used to deploy our `Election` smart contract. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
+1. We have made a `createElection()` function which will be used to deploy our `Election` smart contract. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
 
 ```javascript
     function createElection (string[] memory _nda, string[] memory _candidates) public {
@@ -285,6 +281,7 @@ contract MainContract {
         electionId++;
     }
 ```
+
 Here you can see that, new `Election` contract is deployed on the network using the `new` keyword. And address for the deployed smart contract is stored in the `Elections` mapping. Once the election contract is deployed successfully, `electionId` is incremented.
 
 ## Add new migration
@@ -296,7 +293,7 @@ const MainContract = artifacts.require("MainContract");
 const Election = artifacts.require("Election");
 
 module.exports = function(deployer) {
-	deployer.deploy(MainContract);
+    deployer.deploy(MainContract);
 };
 ```
 
@@ -324,14 +321,11 @@ Compiling your contracts...
    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 ```
 
-<br>
+> **Note** : There might be an error `Error: Cannot find module 'pify'`, if the `pify` module is not installed automatically while installing `truffle`. So, this issue can be resolved by separately installing `pify`, using the command below
 
-> **Note** : There might be an error `Error: Cannot find module 'pify'`, if the `pify` module is not installed automatically while installing `truffle`. So, this issue can be resolved by separately installing `pify`, using the command below 
-
-```
+```text
 npm install pify --save
 ```
-
 
 Compiling the smart contracts would create `.json` file in the `build/contracts` directory. It stores `ABI` and other necessary metadata. `ABI` refers to Application Binary Interface, which is basically a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) in order to learn more.
 
@@ -353,7 +347,7 @@ truffle migrate --network fuji
 
 This might take a while depending upon your internet connection or traffic on the network.
 
-Note - For development purpose, we may deploy our contracts on local network, by running Ganache (Truffle's local blockchain simulation) and using the command 
+Note - For development purpose, we may deploy our contracts on local network, by running Ganache \(Truffle's local blockchain simulation\) and using the command
 
 ```bash
 truffle migrate --network development
@@ -483,7 +477,7 @@ app.listen(process.env.PORT || 3000, () => {
 
 * Now make new file `index.html` and put the following code inside the file. Everything is well commented, for making you understand
 
-```html
+```markup
 <!DOCTYPE html>
 
 <html lang="en">
@@ -499,7 +493,7 @@ app.listen(process.env.PORT || 3000, () => {
     <center id="newElectionButton">
       <div onclick="toggleNewElectionForm()">
         <img src="https://img.icons8.com/color/48/000000/plus-math.png"/><br>
-        
+
         <font size = 2>
           <b>New Election</b>
         </font>
@@ -538,7 +532,7 @@ app.listen(process.env.PORT || 3000, () => {
         <input type="submit" class="btn btn-primary">
       </form>
     </div>
-    
+
     <!-- List of elections on the network will appear here -->
     <div id="electionContainer" class="card">
       <!-- Account address will be rendered here -->
@@ -553,7 +547,7 @@ app.listen(process.env.PORT || 3000, () => {
       <span>
         <img onclick="ElectionData.get()" src="https://img.icons8.com/color/50/000000/synchronize.png"/>
       </span>
-      
+
       <br><br>
 
       <!-- Election data will appear here -->
@@ -576,7 +570,7 @@ app.listen(process.env.PORT || 3000, () => {
 
   <!--jQuery CDN-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  
+
   <!--web3 module for interacting with blockchain-->
   <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
 
@@ -702,106 +696,105 @@ async function submitNewElection() {
 ```
 
 * We will be interacting with smart contracts using their ABIs. The `ABI` for `MainContract` and `Election` would be available on `/mainContractJSON` and `/electionJSON` respectively.
-
 * For interaction purpose, there will be 3 modules, viz. `loadBlockchain.js`, `Election.js` and `loadElection.js`. Please refer to the below image to learn about the use of each file.
 
 ![dapp-truffle](https://i.imgur.com/huyZOYB.png)
 
-  * loadBlockchain.js (Default) - This would load `web3`, `account details` and `MainContract`'s javascript equivalent. Now create `loadBlockchain.js` file in the `src ` directory and put the following code in that.
+* loadBlockchain.js \(Default\) - This would load `web3`, `account details` and `MainContract`'s javascript equivalent. Now create `loadBlockchain.js` file in the `src` directory and put the following code in that.
 
   ```javascript
   import {ElectionData} from './loadElections.js';
 
   //Default would contain all the necessary functions for interaction
   export var Default = {
-      loading: false,
-      contracts: {},
-    
-      //Main function to be called first
-      load: async () => {
-        await Default.loadWeb3();
-        await Default.loadAccount(); 
-        await Default.loadMainContract();
-        await ElectionData.get();
-        await Default.render();
-      },
-    
-      //Loading web3 on the browser
-      loadWeb3: async () => {
-        if(typeof web3 !== 'undefined') {
-          web3 = new Web3(web3.currentProvider);
-          Default.web3Provider = web3.currentProvider;
-        } else {
-          window.alert("Please connect to Metamask");
-        }
-    
-        if(window.ethereum) {
-          window.web3 = new Web3(ethereum);
-          try {
-            await ethereum.enable();
-          }catch (error) {
-            console.log(error);
-          }
-        }else if(window.web3) {
-          Default.web3Provider = web3.currentProvider;
-          window.web3 = new Web3(web3.currentProvider);
-        }else{
-          console.log('Non-Ethereum Browser detected');
-        }
-      },
-    
-      //This function would load account from Metamask to our dDefault
-      loadAccount: async() => {
-        await web3.eth.getAccounts().then((result)=>{
-          Default.account = result[0];
-        });
-      },
-    
-      //This function would help in loading contract to Default.MainContract
-      loadMainContract: async () => {
-        //Static pre-deployed contracts should be handled like this
-        const MainContract = await $.getJSON('/mainContractJSON');
-        Default.contracts.MainContract = TruffleContract(MainContract);
-        Default.contracts.MainContract.setProvider(Default.web3Provider);
-        Default.MainContract = await Default.contracts.MainContract.deployed();
-      },
-    
-      //This function will be called after the browser is ready for blockchain interaction
-      render: async() => {
-        if(Default.loading) {
-          return;
-        }
-        Default.setLoading(true);
-        $('#account').html(Default.account);
-        Default.setLoading(false);
-      },
-    
-      //This will facilitate loading feature according to the blockchain data
-      setLoading: (boolean) => {
-        Default.loading = boolean;
-        const loader = $('#loader');
-        const content = $('#content');
-        if(boolean) {
-          loader.show();
-          content.hide();
-        }else {
-          loader.hide();
-          content.show();
-        }
+    loading: false,
+    contracts: {},
+
+    //Main function to be called first
+    load: async () => {
+      await Default.loadWeb3();
+      await Default.loadAccount(); 
+      await Default.loadMainContract();
+      await ElectionData.get();
+      await Default.render();
+    },
+
+    //Loading web3 on the browser
+    loadWeb3: async () => {
+      if(typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+        Default.web3Provider = web3.currentProvider;
+      } else {
+        window.alert("Please connect to Metamask");
       }
+
+      if(window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+          await ethereum.enable();
+        }catch (error) {
+          console.log(error);
+        }
+      }else if(window.web3) {
+        Default.web3Provider = web3.currentProvider;
+        window.web3 = new Web3(web3.currentProvider);
+      }else{
+        console.log('Non-Ethereum Browser detected');
+      }
+    },
+
+    //This function would load account from Metamask to our dDefault
+    loadAccount: async() => {
+      await web3.eth.getAccounts().then((result)=>{
+        Default.account = result[0];
+      });
+    },
+
+    //This function would help in loading contract to Default.MainContract
+    loadMainContract: async () => {
+      //Static pre-deployed contracts should be handled like this
+      const MainContract = await $.getJSON('/mainContractJSON');
+      Default.contracts.MainContract = TruffleContract(MainContract);
+      Default.contracts.MainContract.setProvider(Default.web3Provider);
+      Default.MainContract = await Default.contracts.MainContract.deployed();
+    },
+
+    //This function will be called after the browser is ready for blockchain interaction
+    render: async() => {
+      if(Default.loading) {
+        return;
+      }
+      Default.setLoading(true);
+      $('#account').html(Default.account);
+      Default.setLoading(false);
+    },
+
+    //This will facilitate loading feature according to the blockchain data
+    setLoading: (boolean) => {
+      Default.loading = boolean;
+      const loader = $('#loader');
+      const content = $('#content');
+      if(boolean) {
+        loader.show();
+        content.hide();
+      }else {
+        loader.hide();
+        content.show();
+      }
+    }
   };
-    
+
   //Driver function to initiate the blockchain interaction
   $(() => {
-      window.addEventListener('load', ()=>{
-          Default.load();
-      });
+    window.addEventListener('load', ()=>{
+        Default.load();
+    });
   });
-    
+
   window.Default = Default;
   ```
-  
-  * Election.js (Election) - This would be a `Election` class, for maintaining separate states for each election (corresponding to electionId). We would interact with every election by creating an object of `Election` class. Its `constructor()` function would load `Election` contract's javascript equivalent. Now create `Election.js` file in the `src ` directory and put the following code in that.
+
+* Election.js \(Election\) - This would be a `Election` class, for maintaining separate states for each election \(corresponding to electionId\). We would interact with every election by creating an object of `Election` class. Its `constructor()` function would load `Election` contract's javascript equivalent. Now create `Election.js` file in the `src` directory and put the following code in that.
 
   ```javascript
   import {Default} from './loadBlockchain.js';
@@ -809,126 +802,126 @@ async function submitNewElection() {
 
   //Election class for maintaining separate states for each election contract
   export class Election {
-    constructor(address) {
-      this.address = address;
-    }
-    
-    init = async () => {
-      await this.loadElectionContract();
-    }
+  constructor(address) {
+    this.address = address;
+  }
 
-    //Loading election contract's javascript equivalent in the this.election variable
-    loadElectionContract = async () => {
-      //Dynamic contracts whose address is not known should be handled like this
-      var electionABI = await $.getJSON('/electionJSON');
-      this.election = await new web3.eth.Contract(electionABI, this.address);
-      await this.election.setProvider(web3.currentProvider);
-    }
+  init = async () => {
+    await this.loadElectionContract();
+  }
 
-    //Get details of the election
-    getDetails = async () => {
-      var details = {};
+  //Loading election contract's javascript equivalent in the this.election variable
+  loadElectionContract = async () => {
+    //Dynamic contracts whose address is not known should be handled like this
+    var electionABI = await $.getJSON('/electionJSON');
+    this.election = await new web3.eth.Contract(electionABI, this.address);
+    await this.election.setProvider(web3.currentProvider);
+  }
 
-      //Fetching details from blockchain and storing it in details object
-      details.candidates      = [];
-      details.address         = this.address;
-      details.candidatesCount = await this.election.methods.candidatesCount().call()
-      details.name            = await this.election.methods.name().call();
-      details.description     = await this.election.methods.description().call();
-      details.hasVoted        = await this.election.methods.voters(Default.account).call();
+  //Get details of the election
+  getDetails = async () => {
+    var details = {};
 
-      //Fetching candidate details along with their vote count
-      for(var i = 0; i < details.candidatesCount; i++) {
-          var candidate = await this.election.methods.candidates(i).call()
+    //Fetching details from blockchain and storing it in details object
+    details.candidates      = [];
+    details.address         = this.address;
+    details.candidatesCount = await this.election.methods.candidatesCount().call()
+    details.name            = await this.election.methods.name().call();
+    details.description     = await this.election.methods.description().call();
+    details.hasVoted        = await this.election.methods.voters(Default.account).call();
 
-          details.candidates.push({
-              name: candidate.name,
-              voteCount: candidate.voteCount
-          });
-      }
+    //Fetching candidate details along with their vote count
+    for(var i = 0; i < details.candidatesCount; i++) {
+        var candidate = await this.election.methods.candidates(i).call()
 
-      return details;
+        details.candidates.push({
+            name: candidate.name,
+            voteCount: candidate.voteCount
+        });
     }
 
-    //This function will call vote() on Fuji testnet
-    castVote = async (candidateId) => {
-      await this.election.methods.vote(candidateId).send({ from: Default.account });
-      await ElectionData.get();
-    }
+    return details;
+  }
+
+  //This function will call vote() on Fuji testnet
+  castVote = async (candidateId) => {
+    await this.election.methods.vote(candidateId).send({ from: Default.account });
+    await ElectionData.get();
+  }
   }
   ```
 
-  * loadElection.js (ElectionData) - This would create `Election` object for each available `deployed` elections and load election data on the UI. Now create `loadBlockchain.js` file in the `src ` directory and put the following code in that.
+* loadElection.js \(ElectionData\) - This would create `Election` object for each available `deployed` elections and load election data on the UI. Now create `loadBlockchain.js` file in the `src` directory and put the following code in that.
 
   ```javascript
   import {Default} from './loadBlockchain.js';
   import {Election} from './Election.js';
 
   export var ElectionData = {
-      //get() is a loader function, to run loadElections() function.
-      get: async () => {
-          await ElectionData.loadElections();
-          await ElectionData.loadElectionDetails();
-      },
+    //get() is a loader function, to run loadElections() function.
+    get: async () => {
+        await ElectionData.loadElections();
+        await ElectionData.loadElectionDetails();
+    },
 
-      //Loading deployed election contracts in Default.election array
-      loadElections: async () => {
-          ElectionData.elections = [];
-          ElectionData.electionCount = await Default.MainContract.electionId();
-          for(var i = 0; i < ElectionData.electionCount; i++) {
-              var electionAdress = await Default.MainContract.Elections(i);
-              var election = await new Election(electionAdress);
-              await election.init();
-              ElectionData.elections.push(election);
-          }
-          
-      },
+    //Loading deployed election contracts in Default.election array
+    loadElections: async () => {
+        ElectionData.elections = [];
+        ElectionData.electionCount = await Default.MainContract.electionId();
+        for(var i = 0; i < ElectionData.electionCount; i++) {
+            var electionAdress = await Default.MainContract.Elections(i);
+            var election = await new Election(electionAdress);
+            await election.init();
+            ElectionData.elections.push(election);
+        }
 
-      //This function will update the page with election details
-      loadElectionDetails: async () => {
-          $('#electionDetails').html("");
-          for(var i = 0; i < ElectionData.electionCount; i++) {
-              var details = await ElectionData.elections[i].getDetails();
-              var votingForm;
-              //Showing voting forms to only non-voted elections
-              if(details.hasVoted) {
-                  votingForm = `<td>
-                                  <font size = 2 color = 'green'><b>Voted</b></font>
-                                </td>`
-              } else {
-                  votingForm = `<td>
-                                  <span>
-                                    <input type='radio' name=${details.address} id="${details.address}0" onclick="ElectionData.elections[${i}].castVote(0)"> 
-                                    <label for="${details.address}0"> ${details.candidates[0].name}</label>
-                            </span> <br>
-                                  <span>
-                                    <input type='radio' name=${details.address} id="${details.address}1" onclick="ElectionData.elections[${i}].castVote(1)"> 
-                                    <label for="${details.address}1"> ${details.candidates[1].name}</label>
-                            </span>
-                                </td>`
-              }
-              var electionComponent = `<tr>
-                                          <td>${i}</td>
-                                          <td>${details.name}</td>
-                                          <td>
-                                              ${details.description}<br>
-                                              <font size = 2 class='text-muted'>
-                                                  ${details.address}<br>
-                                                  <b>${details.candidates[0].name} (${details.candidates[0].voteCount})</b> vs
-                                                  <b>${details.candidates[1].name} (${details.candidates[1].voteCount})</b>
-                                              </font>
-                                          </td>
-                                          ${votingForm}
-                                      </tr>`
-              $('#electionDetails').append(electionComponent);
-          }
-      },
+    },
 
-      //Function to create (deploy) election on the network
-      createElection: async (details, candidates) => {
-          await Default.MainContract.createElection(details, candidates, {from: Default.account});
-          ElectionData.get();
-      }
+    //This function will update the page with election details
+    loadElectionDetails: async () => {
+        $('#electionDetails').html("");
+        for(var i = 0; i < ElectionData.electionCount; i++) {
+            var details = await ElectionData.elections[i].getDetails();
+            var votingForm;
+            //Showing voting forms to only non-voted elections
+            if(details.hasVoted) {
+                votingForm = `<td>
+                                <font size = 2 color = 'green'><b>Voted</b></font>
+                              </td>`
+            } else {
+                votingForm = `<td>
+                                <span>
+                                  <input type='radio' name=${details.address} id="${details.address}0" onclick="ElectionData.elections[${i}].castVote(0)"> 
+                                  <label for="${details.address}0"> ${details.candidates[0].name}</label>
+                          </span> <br>
+                                <span>
+                                  <input type='radio' name=${details.address} id="${details.address}1" onclick="ElectionData.elections[${i}].castVote(1)"> 
+                                  <label for="${details.address}1"> ${details.candidates[1].name}</label>
+                          </span>
+                              </td>`
+            }
+            var electionComponent = `<tr>
+                                        <td>${i}</td>
+                                        <td>${details.name}</td>
+                                        <td>
+                                            ${details.description}<br>
+                                            <font size = 2 class='text-muted'>
+                                                ${details.address}<br>
+                                                <b>${details.candidates[0].name} (${details.candidates[0].voteCount})</b> vs
+                                                <b>${details.candidates[1].name} (${details.candidates[1].voteCount})</b>
+                                            </font>
+                                        </td>
+                                        ${votingForm}
+                                    </tr>`
+            $('#electionDetails').append(electionComponent);
+        }
+    },
+
+    //Function to create (deploy) election on the network
+    createElection: async (details, candidates) => {
+        await Default.MainContract.createElection(details, candidates, {from: Default.account});
+        ElectionData.get();
+    }
   }  
 
   window.ElectionData = ElectionData;
@@ -943,10 +936,7 @@ async function submitNewElection() {
 * Visit [http://localhost:3000](http://localhost:3000) to interact with built dApp.
 * Don't forget to setup Metamask with `Fuji` testnet and also fund the account with Fuji c-chain test tokens in order to vote. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask). You may change address in the Metamask wallet and fund them in order to vote again.
 
-
-<p align="center" style="margin: 30px;">
-  <img src="https://i.imgur.com/nfdnbwz.gif">
-</p>
+![](https://i.imgur.com/nfdnbwz.gif)
 
 ## Congratulations!
 
@@ -957,6 +947,7 @@ You have successfully built a full fledged `dApp` and deployed the smart contrac
 The dapp which we built just now is a somehow advanced e-voting application, as now we can make new elections, give them title and description, vote them separately. But I would recommend you to add few more interesting features to it, like having start and end date for election, declaring winner after the election has ended and many more like that.
 
 ## About the author
+
 This tutorial was created by [Raj Ranjan](https://www.linkedin.com/in/iamrajranjan), You can get in touch with the author on [Figment Forum](https://community.figment.io/u/rranjan01234/) and on [GitHub](https://github.com/rajranjan0608)
 
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://discord.gg/fszyM7K)!
