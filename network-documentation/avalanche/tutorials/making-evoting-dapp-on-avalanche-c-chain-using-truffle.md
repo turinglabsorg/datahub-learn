@@ -595,7 +595,7 @@ You have successfully built a full fledged `dApp` and deployed the smart contrac
 The dapp which we built just now is a very simple e-voting application, where for every new election, we need to update the smart contract with new candidates and deploy it on the Avalanche network. So, in order make it more scalable and sophisticated, we would adding more features like creating custom elections, adding new candidates, setting up starting and ending dates for each election and much more in the upcoming tutorials.
 
 ## About the author
-This tutorial was created by [Raj Ranjan](https://github.com/rajranjan0608), You can get in touch with author on Figment Forum and on GitHub
+This tutorial was created by [Raj Ranjan](https://www.linkedin.com/in/iamrajranjan), You can get in touch with the author on [Figment Forum](https://community.figment.io/u/rranjan01234/) and on [GitHub](https://github.com/rajranjan0608)
 
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://discord.gg/fszyM7K)!
 
