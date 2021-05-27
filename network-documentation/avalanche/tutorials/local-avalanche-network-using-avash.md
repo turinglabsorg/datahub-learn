@@ -8,6 +8,8 @@ description: Learn how to setup a local Avalanche network using Avash
 
 [Avash](https://github.com/ava-labs/avash) is a temporary stateful shell client which could be used for various purposes like deploying local Avalanche networks, managing their processes, and for running network tests. But, once we exit from Avash, all these get wiped off. This provides us with the opportunity to play around and experiment with the Avalanche networks on our local system without really connecting to real networks on the internet. Avash also provides us with the ability to write scripts using Lua which enables us to automate the creation of such networks and their configuration. In this tutorial, we're going to install a copy of Avash on our machine and create a Lua script that could be used to fire up a 5 node staking network.
 
+[Lua](http://www.lua.org/) is highly portable scripting language which could be easily embedded into other applications especially because of it's fast language engine with small footprint. Lua is being used as the scripting language within Avash.
+
 ## Requirements
 
 For the smooth completion of this tutorial, we need the following software to be already present on your system:
