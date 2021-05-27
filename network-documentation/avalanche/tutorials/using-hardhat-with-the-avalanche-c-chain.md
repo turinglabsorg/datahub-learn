@@ -25,10 +25,11 @@ For the smooth completion of this tutorial, we need the following software to be
 The first step is to create a directory for your project where you will initialize our new Hardhat project. You can do this using the following command:
 
 ```bash
+mkdir avalanche-hardhat-tutorial && cd avalanche-hardhat-tutorial
 npm init -y
 ```
 
-As a result, you will see a new file package.json created in the current directory:
+As a result, you must see a newly created directory named `avalanche-hardhat-tutorial` with a file `package.json` inside it:
 
 ```text
 {
