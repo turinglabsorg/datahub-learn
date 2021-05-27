@@ -33,7 +33,7 @@ We will define 3 methods `checkUserExists()`, `createAccount()` & `getUsername()
 
 Here too we will divide the task into 3 parts - `checkAlreadyFriends()`, `addFriend()` & `getMyFriendList()`.
 
-* The first method, actually named `_addFriend()`, checks whether two users are already friends with each other or not. This is needed to prevent duplicate channel between the same parties and will also be used to prevent a user from sending messages to other users unless they are friends.
+* The first method, actually named `_alreadyFriends()`, checks whether two users are already friends with each other or not. This is needed to prevent duplicate channel between the same parties and will also be used to prevent a user from sending messages to other users unless they are friends.
 
 * The second method mark two users as friend if they both exists on the system and are already not friends with each other and finally the last method will return a list of all friends of a given user.
 
@@ -191,8 +191,7 @@ contract Database {
 
 Deploy the above contract using the steps provided at
 [*Deploy a Smart Contract on Avalanche using Remix and MetaMask*](https://learn.figment.io/network-documentation/avalanche/tutorials/deploy-a-smart-contract-on-avalanche-using-remix-and-metamask). 
-
->Note down the `contract address` and `ABI` generated in the above tutorial. They will be required in further steps.
+Note down the `contract address` and `ABI` generated in the above tutorial. They will be required in further steps.
 
 <br>
 
@@ -569,7 +568,7 @@ export function App(props) {
                            {Messages}
                         </div>
                         {/*The form with send button and message input feilds*/}
-                        <div className="SendMessage"  style={{ borderTop:"2px solid black",position:"relative"bottom:"0px",padding:"10px 45px 0 45px",margin:"0 95px 0 0",
+                        <div className="SendMessage"  style={{ borderTop:"2px solid black",position:"relative",bottom:"0px",padding:"10px 45px 0 45px",margin:"0 95px 0 0",
                         width:"97%"}}>
                             <Form>
                                 <Form.Row className="align-items-center">
@@ -601,7 +600,7 @@ ReactDom.render( <
 ```
 <br>
 
-Make a new file named `abi.js` in the `src` folder. Export const variable named abi which stores the ABI you had generated earlier. Your abi.js file should look like this!
+Make a new file named `abi.js` in the `src` folder. Export const variable named abi which stores the ABI you had generated earlier. Add your ABI after `export const abi = `. Your abi.js file should look like this!
 
 ```javascript
 export const abi = [
@@ -799,4 +798,4 @@ The current DApp has very limited functionalities and we can improve it by addin
 
 ## About the Author(s)
 
-The tutorial was created by [Nimish Agrawal](https://github.com/realnimish) & [Sayan Kar](https://github.com/SayanKar). They are currently undergraduate students pursuing B.Tech in CSE [2018-2022] from Indian Institute of Information Technology, Guwahati. They both are highly passionate about the Blockchain Technology and are continuosly striving to learn more about the emerging protocols in the space and contribute to the community with their experience. You can reach out to them on [Figment Forum](https://community.figment.io/u/nimishagrawal100.in/) or on LinkedIn [@Nimish Agrawal](https://www.linkedin.com/in/realnimish) and [@Sayan Kar](https://www.linkedin.com/in/sayan-kar-). 
+The tutorial was created by [Nimish Agrawal](https://github.com/realnimish) & [Sayan Kar](https://github.com/SayanKar). You can reach out to them on [Figment Forum](https://community.figment.io/u/nimishagrawal100.in/) or on LinkedIn [@Nimish Agrawal](https://www.linkedin.com/in/realnimish) and [@Sayan Kar](https://www.linkedin.com/in/sayan-kar-).    
