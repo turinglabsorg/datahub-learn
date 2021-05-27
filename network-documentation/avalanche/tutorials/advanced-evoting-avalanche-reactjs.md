@@ -1,16 +1,18 @@
-﻿# Advanced e-voting DApp using Avalanche Fuji C-chain, Trufflesuite and ReactJS
+# Advanced e-voting DApp using Avalanche Fuji C-chain, Trufflesuite and ReactJS
 
 ## Introduction
 
-In the last tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), we have learnt how to deploy a smart contract on Avalanche's Fuji C-Chain using Trufflesuite. Along with that we have also coded the client-side application, to easily interact with smart contracts.
+In the last tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), we have learnt how to deploy a smart contract on Avalanche's Fuji C-Chain using Trufflesuite. Along with that, we have also coded the client-side application, to easily interact with smart contracts.
 
-Today, in this tutorial, we will be building a more advanced e-voting `dApplication`, in which we will not only interact with pre-deployed smart contracts, but will also deploy the contracts in runtime, and would interact with them using their contract address. This time we will be using ReactJS for building the client side of this dapp and Trufflesuite framework for deployment purpose. 
+Today, in this tutorial, we will be building a more advanced e-voting `dApplication`, in which we will not only interact with pre-deployed smart contracts, but will also deploy the contracts in runtime, and would interact with them using their contract address. This time we will be using ReactJS for building the client-side of this dapp and Trufflesuite framework for deployment purpose. 
 
 For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
 
 ## Prerequisites
 
-You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service=avalanche) account and are familiar with [Avalanche's architecture](https://docs.avax.network/learn/platform-overview). Along with that, you've have followed the tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), though for the sake of completeness, we will be covering everything from start.
+* You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service=avalanche) account.
+* You are familiar with [Avalanche's architecture](https://docs.avax.network/learn/platform-overview). 
+* You have followed the tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), though for the sake of completeness, we will be covering everything from start.
 
 ## Requirements
 
@@ -21,7 +23,7 @@ You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service
 * `dotenv`, `web3`, `@truffle/contract`, `@truffle/hdwallet-provider`, `rimble-ui` and `react-dom-router` (instructions to install these will be added later)
 
 ## Initializing the working directory
-Our application is a website whose client side is made using **ReactJS** and for developing our smart-contracts on the **Avalanche** network we will be using **Trufflesuite**, which would help us in compiling and deploying contracts to the network. Therefore, we need to setup our working directory according to ReactJS and Trufflesuite, for making our development process smooth.
+Our application is a website whose client-side is made using **ReactJS** and for developing our smart contracts on the **Avalanche** network we will be using **Trufflesuite**, which would help us in compiling and deploying contracts to the network. Therefore, we need to set up our working directory according to ReactJS and Trufflesuite, for making our development process smooth.
 
 Open the terminal and navigate to the directory where you intend to create your application.
 ```bash
@@ -52,6 +54,10 @@ Now remove the contents of `src` and `public` folder, in order to make our own.
 rm src/*
 rm public/*
 ```
+Initially i.e. after running the above commands, your project structure would look like the image shown below.
+
+![](https://imgur.com/5wsEyQr.png)
+
 Make a `index.html` file in `public` folder of current directory and put the following `HTML` code.
 ```html
 <!DOCTYPE html>
@@ -124,14 +130,17 @@ ReactDOM.render(
 	document.getElementById('root')
 );
 ```
+React project setup is now complete and your folder structure should look like this.
+
+![](https://imgur.com/OX2aCdw.png)
 
 ### **Setting up the Truffle project**
 
-Run the following command in `src`  directory, to create a boilerplate for the `Truffle` project. This will setup our Truffle initial project structure. Smart contracts will be stored in the `contracts` folder, deployment functions for migrating smart contracts to the network will be stored in the `migrations` folder. And `build/contracts` folder would contain information about the deployed contract, ABI etc.
+Run the following command in the `src`  directory, to create a boilerplate for the `Truffle` project. This will set up Truffle's initial project structure. Smart contracts will be stored in the `contracts` folder, deployment functions for migrating smart contracts to the network will be stored in the `migrations` folder. And `build/contracts` folder would contain information about the deployed contract, ABI etc.
 ```bash
 truffle init
 ```
-Now update the `truffle-config.js` file, with the following code to deploy the smart contract on the `Avalanche's Fuji` network. This file would help us in connecting to the remote node of `Datahub` Avalanche network and hence would be using your Datahub's Avlanche API key along with your Avalanche wallet's mnemonic for deploying the contract on the network.
+Now update the `truffle-config.js` file, with the following code to deploy the smart contract on the `Avalanche's Fuji` network. This file would help us in connecting to the remote node of the `Datahub` Avalanche network and hence would be using your Datahub's Avalanche API key along with your Avalanche wallet's mnemonic for deploying the contract on the network.
 ```javascript
 require('dotenv').config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
@@ -172,7 +181,8 @@ Note that we're setting the `gasPrice` and `gas` to the appropriate values for t
 
 ### **Add .env file**
 
-* First of all, we need to create an account on Avalanche network. Please visit [Avalanche Wallet](https://wallet.avax.network/) to create your account and save your mnemonics in the .env file.
+* First of all, create a `.env` file in the `src` directory. Please take a note that dot (.) is necessary for the `.env` file name.
+* Now we need to create an account on the Avalanche wallet. Please visit [Avalanche Wallet](https://wallet.avax.network/) to create your account and save your mnemonics in the .env file.
 * Now copy your Datahub's Avalanche Fuji testnet API key in the .env file as shown below.
 * Never share or commit your `.env` file. It contains your credentials like `mnemonics` and `API` key. Therefore, it is advised to add `.env` to your `.gitignore` file.
 
@@ -180,6 +190,9 @@ Note that we're setting the `gasPrice` and `gas` to the appropriate values for t
 MNEMONIC="<avalanche-wallet-mnemonic>"
 APIKEY=<your-api-key>
 ```
+Truffle project setup is now complete and your folder structure should look like this.
+
+![](https://imgur.com/9KxTgdH.png)
 
 ### **Add Election.sol**
 
@@ -236,7 +249,7 @@ contract Election {
 }
 ```
 
-`Election` is a solidity smart contract which lets us view the name, description, about the candidates standing in an election and voting them. In this DApp, we will be accessing these runtime deployed election smart contracts using their `address` and `ABI`. This smart contract will be deployed to the blockchain, each time we create a new election.
+`Election` is a solidity smart contract that lets us view the name, description, about the candidates standing in an election and voting them. In this DApp, we will be accessing these runtime deployed election smart contracts using their `address` and `ABI`. This smart contract will be deployed to the blockchain, each time we create a new election.
 
 ### **Let's understand this smart contract**
 
@@ -251,7 +264,7 @@ The code for smart contract is everything within `contract Election {  }`.
 ```
 <br>
 
-2. **Storing candidate details** - Candidate details would be stored in a mapping between an unsigned integer to the `Candidate` structure. `Candidate` structure would consists of data like `id`, `name` (candidate's name) and `voteCount` (number of times they are voted).
+2. **Storing candidate details** - Candidate details would be stored in mapping between an unsigned integer to the `Candidate` structure. `Candidate` structure would consist of data like `id`, `name` (candidate's name) and `voteCount` (number of times they are voted).
 
 ```javascript
   //Structure of candidate standing in the election
@@ -266,7 +279,7 @@ The code for smart contract is everything within `contract Election {  }`.
 ```
 <br>
 
-3. **Storing details of voters which have already voted and number of candidates** - `voters` is a mapping between the address of voter and a boolean. In Solidity, the default boolean value is `false`, so if the returned value of `voters(address)` is `false` we can understand that the voters is voting for the first time in this election, and vice-versa for `true`.
+3. **Storing details of voters who have already voted and the number of candidates** - `voters` is a mapping between the address of the voter and a boolean. In Solidity, the default boolean value is `false`, so if the returned value of `voters(address)` is `false` we can understand that the voters are voting for the first time in this election, and vice-versa for `true`.
 
 ```javascript
   //Storing address of those voters who already voted
@@ -298,7 +311,7 @@ The code for smart contract is everything within `contract Election {  }`.
 ```
 <br>
 
-5. **Voting candidates in an election** - We made a `vote()` function. It takes `candidateId` as an argument and increments vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking boolean accross the `voters` mapping and `candidateId` should be a valid one, i.e. `0 <= candidateId < candiatesCount`.
+5. **Voting candidates in an election** - We made a `vote()` function. It takes `candidateId` as an argument and increments the vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking boolean across the `voters` mapping and `candidateId` should be a valid one, i.e. `0 <= candidateId < candiatesCount`.
 
 ```javascript
   //Public vote function for voting a candidate
@@ -332,9 +345,9 @@ contract MainContract {
     }
 }
 ```
-`MainContract.sol` is the main entry point of our e-voting DApp. It will maintain the number of election contracts deployed, their address on the network and will also help in deploying them. We have also imported `Election.sol` contract, for using it in the `MainContract`.
+`MainContract.sol` is the main entry point of our e-voting DApp. It will maintain the number of election contracts deployed, their address on the network and will also help in deploying them. We have also imported the `Election.sol` contract, for using it in the `MainContract`.
 
-1. Here `electionId` is used for assigning ID's to each each election that a user creates and is incremented for using it while creating the next election. Also, `Elections` is a public mapping between `electionId` and address of the deployed election contract.
+1. Here `electionId` is used for assigning ID's to each election that a user creates and is incremented for using it while creating the next election. Also, `Elections` is a public mapping between `electionId` and the address of the deployed election contract.
 
 ```javascript
     uint public electionId = 0;
@@ -351,7 +364,7 @@ contract MainContract {
         electionId++;
     }
 ```
-Here you can see that, new `Election` contract is deployed on the network using the `new` keyword. And address for the deployed smart contract is stored in the `Elections` mapping. Once the election contract is deployed successfully, `electionId` is incremented.
+Here you can see that new `Election` contract is deployed on the network using the `new` keyword. And the address for the deployed smart contract is stored in the `Elections` mapping. Once the election contract is deployed successfully, `electionId` is incremented.
 
 ### **Add new migration**
 
@@ -366,7 +379,7 @@ module.exports = function(deployer) {
 };
 ```
 
-Here, you can see that, we are only deploying `MainContract` smart contract, because `Election` contract will be deployed by the `MainContract` itself during the runtime, using the function `createElection()`.
+Here, you can see that, we are only deploying the `MainContract` smart contract, because the `Election` contract will be deployed by the `MainContract` itself during the runtime, using the function `createElection()`.
 
 ### **Compile Contracts with Truffle**
 
@@ -390,7 +403,7 @@ Compiling your contracts...
    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 ```
 
-Compiling the smart contracts would create `.json` file in the `build/contracts` directory. It stores `ABI` and other necessary metadata. `ABI` refers to Application Binary Interface, which is basically a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) in order to learn more.
+Compiling the smart contracts would create a `.json` file in the `build/contracts` directory. It stores `ABI` and other necessary metadata. `ABI` refers to Application Binary Interface, which is a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) to learn more.
 
 ### **Fund the account and run migrations on the C-Chain**
 
@@ -398,7 +411,7 @@ When deploying smart contracts to the C-Chain, it will require some deployment c
 
 #### **Fund your account**
 
-Fund your account using the the faucet link [https://faucet.avax-test.network/](https://faucet.avax-test.network/) and pasting your Fuji's C-Chain address in the input field. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Though funding through faucet would give you enough `AVAX` to run multiple deployments and transactions on the network.
+Fund your account using the faucet link [https://faucet.avax-test.network/](https://faucet.avax-test.network/) and pasting your Fuji's C-Chain address in the input field. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Here `nAVAX` refers nano-AVAX i.e. billionth of an `AVAX` or simply 1 `nAVAX` = (1/1000,000,000) `AVAX`. Though funding through faucet would give you enough `AVAX` to run multiple deployments and transactions on the network.
 
 ### **Run Migrations**
 
@@ -410,13 +423,13 @@ truffle migrate --network fuji
 
 This might take a while depending upon your internet connection or traffic on the network.
 
-Note - For development purpose, we may deploy our contracts on local network, by running Ganache (Truffle's local blockchain simulation) and using the command 
+Note - For development purpose, we may deploy our contracts on the local network, by running Ganache (Truffle's local blockchain simulation) and using the command 
 
 ```bash
 truffle migrate --network development
 ```
 
-On successfull execution of this command, you should see:
+On successful execution of this command, you should see:
 
 ```javascript
 Starting migrations...
@@ -499,11 +512,11 @@ Error:  *** Deployment Failed ***
       + Using an adequately funded account
 ```
 
-The information and ABI of the deployed contract is present in the `/build/contract` directory as `Election.json`. Inforamation like contract address, network info etc. could be found here.
+The information and ABI of the deployed contract are present in the `/build/contract` directory as `Election.json`. Information like contract address, network info etc. could be found here.
 
 ### **Building user interface for interacting with the blockchain**
 
-* We have already setup our `React` project directory. Main files for the client side to interact with blockchain is present in the `src` folder.
+* We have already set up our `React` project directory. Main files for the client-side to interact with blockchain is present in the `src` folder.
 
 * So go to the `src` directory using the command `cd src`
 
@@ -545,7 +558,7 @@ export class GetAccount extends React.Component {
 }
 ```
 
-* **Upading `App.js`** - `App.js` is the entry point of any React application. Therefore we need to update `App.js` regularly with the components which we want to show in our application. As we move further and build components, we will also update `App.js`.
+* **Updating `App.js`** - `App.js` is the entry point of any React application. Therefore we need to update `App.js` regularly with the components which we want to show in our application. As we move further and build components, we will also update `App.js`.
 
 So, now add the following line under the `//Importing...` section of `App.js` to import `BlockchainUtil.js` module.
 ```javascript
@@ -573,7 +586,7 @@ this.setState({mainInstance: this.mainInstance});
 
 <br>
 
-* Now let's make a component which will create new elections using our deployed smart contract. So, make a file named `CreateElection.js` in the `src` directory and put the following code inside it. The code is well-commented to make you understand the important parts.
+* Now let's make a component that will create new elections using our deployed smart contract. So, make a file named `CreateElection.js` in the `src` directory and put the following code inside it. The code is well-commented to make you understand the important parts.
 
 ```javascript
 import React, { Component } from 'react';
@@ -717,7 +730,7 @@ export default CreateElection;
 ```
 <br>
 
-Make a file named `Active.js` in the `src` directory which will display the list of all deployed (active) elections on the website. In the file, put the following code inside the file. Please refer to the comments above each block or function in order to understand.
+Make a file named `Active.js` in the `src` directory which will display the list of all deployed (active) elections on the website. In the file, put the following code inside the file. Please refer to the comments above each block or function to understand.
 
 ```javascript
 import React, { Component } from 'react';
@@ -879,7 +892,7 @@ export default Active;
 ```
 <br>
 
-In the above component, i.e. `Active.js` we have used a component called `VoteModal` which will be used to open up a modal containing candidate details and a button to cast the vote to the selected candidate. Now we will make this component, by creating a file named `VoteModal.js` inside the `src` directory. Once created, put the following code inside it. This component is simple and the important parts of the code has been explained through comments.
+In the above component, i.e. `Active.js` we have used a component called `VoteModal` which will be used to open up a modal containing candidate details and a button to cast the vote to the selected candidate. Now we will make this component, by creating a file named `VoteModal.js` inside the `src` directory. Once created, put the following code inside it. This component is simple and the important parts of the code have been explained through comments.
 
 ```javascript
 import React, { useState } from 'react';
@@ -1001,27 +1014,29 @@ import contractJson from './build/contracts/MainContract.json';
 ```javascript
 //For routing through the react application
 <Router>
-  //Navbar
+  {/*Navbar*/}
   <nav className="navbar navbar-dark shadow" style={{backgroundColor: "#1b2021", height: "60px", color: "white", marginBottom: "50px"}}>
-    //Link to Active election page (nav-header)
+    { /*Link to Active election page (nav-header) */}
     <Link to = "/active"><b style = {{cursor: "pointer", color: "white"}}>Avalanche Elections</b></Link>
 
-    //Account address on the right side of the navbar
+    { /* Account address on the right side of the navbar  */}
     <span style={{float: "right"}}>{this.state.account}</span>
   </nav>
 
-  //Route to CreateElection page
+  { /* Route to CreateElection page  */}
   {<Route path="/createElection" exact component={() => <CreateElection account={this.state.account}/>}/>}
 
-  //Route to Active election page
+  { /* Route to Active election page  */}
   {<Route path="/active" exact component={() => <Active account={this.state.account}/>}/>}
 </Router>
 ```
 
 > We have used few other dependencies which we didn't install earlier. So, run the following command in the terminal of your project directory.
 ```bash
-npm install rimble-ui react-router-dom --save
+npm install rimble-ui react-router-dom --save --force
 ```
+
+> Rimble UI library comes with a peer dependency of `react@16.9.0` which is not the latest version of React that we are using i.e. `react@17.0.2`. Running the `npm install` command without the `--force` tag would cause an `unable to resolve dependency tree` conflict. Thus, the `--force` tag is used to override any type of conflicts and proceeds with the installation anyway. Another way to resolve this conflict is by using the `--legacy-peer-deps` tag instead, but this would ignore all peer dependencies which we do not require, as the conflict is only between `react` and `rimble-ui`.
 
 * Now go to the `root` directory of the project, i.e. `advanced-evoting` directory, and run the command `npm start`. The ReactJS server would start automatically.
 <br>
@@ -1029,23 +1044,23 @@ npm install rimble-ui react-router-dom --save
 * Visit [http://localhost:3000](http://localhost:3000) to interact with built dApp.
 <br>
 
-* Don't forget to setup Metamask with `Fuji` testnet and also fund the account with Fuji c-chain test tokens in order to vote. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask). You may change address in the Metamask wallet and fund them in order to vote again.
+* Don't forget to set up Metamask with `Fuji` testnet and also fund the account with Fuji c-chain test tokens to vote. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask). You may change address in the Metamask wallet and fund them to vote again.
 <br>
 
 <center>
   <img src="https://imgur.com/bjdWr35.gif"/>
 </center>
 
-## Congratulations!
+## Conclusion
 
-You have successfully built a full fledged `dApp` and deployed the smart contract on `Fuji` test network using `Trufflesuite`. Along with that, we have also built the client side application for interacting with the network.
+You have successfully built a full-fledged e-voting `dApp` with advanced features like creating custom elections, voting in them and deployed the smart contract on the `Fuji` test network using `Trufflesuite`. Along with that, we have also built the client-side application using ReactJS for interacting with the network. From this tutorial, you have learnt not only how to make make and deploy smart contracts but also how to integrate ReactJS with the blockchain using Trufflesuite.
 
 ## What's next?
 
-The dapp which we built just now is a somehow advanced e-voting application, as now we can make new elections, give them title and description, vote them separately. But I would recommend you to add few more interesting features to it, like having start and end date for election, declaring winner after the election has ended and many more like that.
+The dapp which we built just now is a somehow advanced e-voting application, as now we can make new elections, give the title and description, vote them separately. But I would recommend you add few more interesting features to it, like having a start and end date for an election, declaring the winner after the election has ended and many more like that.
 
 ## About the author
 
-This tutorial was created by [Raj Ranjan](https://www.linkedin.com/in/iamrajranjan), You can get in touch with the author on [Figment Forum](https://community.figment.io/u/rranjan01234/) and on [GitHub](https://github.com/rajranjan0608)
+This tutorial was created by [Raj Ranjan](https://www.linkedin.com/in/iamrajranjan), You can get in touch with the author on [Figment Forum](https://community.figment.io/u/rranjan01234/) and [GitHub](https://github.com/rajranjan0608)
 
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://discord.gg/fszyM7K)!
