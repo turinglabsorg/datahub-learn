@@ -583,9 +583,9 @@ window.App = App;
 
 ![](https://j.gifs.com/A6qrxj.gif)
 
-## Congratulations!
+## Conclusion 
 
-You have successfully built a full fledged `dApp` and deployed the smart contract on `Fuji` test network using `Trufflesuite`. Along with that, we have also built the client side application for interacting with the network.
+Congratulations! You have successfully built a full fledged `dApp` and deployed the smart contract on `Fuji` test network using `Trufflesuite`. Along with that, we have also built the client side application for interacting with the network.
 
 ## What's next?
 
