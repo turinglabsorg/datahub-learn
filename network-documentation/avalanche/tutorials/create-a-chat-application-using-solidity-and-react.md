@@ -414,21 +414,25 @@ export function App(props) {
         if(res===true){
             provider = new ethers.providers.Web3Provider(window.ethereum);
             signer = provider.getSigner();
-            const mycontract = new ethers.Contract(contractAddress, contractABI, signer);
-            setMyContract(mycontract);
-            const address = await signer.getAddress();             
-            let present = await mycontract.checkUserExists(address);
-            let username;
-            if(present)
-                username = await mycontract.getUsername(address);
-            else{
-                username = prompt('Enter a username','Guest'); 
-                if(username==='') username = 'Guest';
-                await mycontract.createAccount(username);
-            }
-            setMyName(username);
-            setMyPublicKey(address);
-            setShowConnectButton("none");
+            try{
+				const mycontract = new ethers.Contract(contractAddress, contractABI, signer);
+				setMyContract(mycontract);
+				const address = await signer.getAddress();             
+				let present = await mycontract.checkUserExists(address);
+				let username;
+				if(present)
+					username = await mycontract.getUsername(address);
+				else{
+					username = prompt('Enter a username','Guest'); 
+					if(username==='') username = 'Guest';
+					await mycontract.createAccount(username);
+				}
+				setMyName(username);
+				setMyPublicKey(address);		
+				setShowConnectButton("none");
+			} catch(err){
+				alert("You might not have set the contractAddress properly! Please check...")
+			}
         }
         else{
             alert("Couldn't connect to metamask");
@@ -450,9 +454,22 @@ export function App(props) {
     // Add a friend to the users Friends List
     async function AddChat(name,publicKey){
         /* Add a friend */
-        await myContract.addFriend(publicKey, name);
-        const frnd = {"name":name,"publicKey":publicKey};
-        setFriends(friends.concat(frnd));
+        try{
+			let present = await myContract.checkUserExists(publicKey);
+			if(!present) {
+				alert("Given address not found: Ask him to join the app :)")
+				return;
+			}
+			try{
+				await myContract.addFriend(publicKey, name)
+				const frnd = {"name":name,"publicKey":publicKey};
+				setFriends(friends.concat(frnd));
+			}catch(err){
+				alert("Friend already Added! You can't be friend with the same person twice ;P");
+			}
+		} catch(err) {
+			alert("Invalid address!")
+		}
     }
 
     //Sends messsage to a User 
@@ -570,7 +587,11 @@ export function App(props) {
                         {/*The form with send button and message input feilds*/}
                         <div className="SendMessage"  style={{ borderTop:"2px solid black",position:"relative",bottom:"0px",padding:"10px 45px 0 45px",margin:"0 95px 0 0",
                         width:"97%"}}>
-                            <Form>
+                            <Form onSubmit={ (e) => {
+			                	e.preventDefault();
+			                	sendMessage(document.getElementById('messageData').value);
+			                	document.getElementById('messageData').value = "";
+			                }}>
                                 <Form.Row className="align-items-center">
                                     <Col xs={9}>
                                         <Form.Control id="messageData" className="mb-2"  placeholder="Send Message"/>
