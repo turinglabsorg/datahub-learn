@@ -348,10 +348,6 @@ So, keep learning and keep building and I'm sure you're on your way to building 
 
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can join [**our community**](https://discord.gg/fszyM7K) today!
 
-## About the author
-
-This tutorial is authored by **Kevin Madhu** who is currently working as a Technical Architect in [BREATHE BINARY OÜ](https://github.com/breathebinary). **BREATHE BINARY** is an Estonian-based software company that specializes in building amazing Web2 and Web3 applications. DeFi and dApps in general are a newfound passion for the author and so feel free to reach out to him on his [Figment Forum Profile](https://community.figment.io/u/kevin) for any queries regarding this tutorial or anything related to blockchain or technology in general.
-
 ## References
 
 * [Avalanchego Readme](https://github.com/ava-labs/avalanchego/blob/master/README.md)
