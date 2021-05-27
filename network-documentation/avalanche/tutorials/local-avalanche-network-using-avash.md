@@ -27,7 +27,7 @@ To begin with, we need to know the actual version of golang which has been insta
 go version
 ```
 
-For go versions < 1.16:
+#### For go versions < 1.16:
 
 ```bash
 go get -v -d github.com/ava-labs/avalanchego/...
@@ -35,7 +35,7 @@ go get -v -d github.com/ava-labs/avalanchego/...
 
 Since go 1.16, the module-aware mode is enabled by default, and this along with many other things, means that when we execute "go get ...", the project gets downloaded to $GOPATH/pkg/mod and the permissions on this directory are very tight that we won't be able to execute scripts/build.sh for building AvalancheGo and so we turn this mode off for our installation of AvalancheGo. I hope to resolve this incompatibility between versions in the future, but for now, we've to take care of this ourselves.
 
-For go versions >= 1.16:
+#### For go versions >= 1.16:
 
 ```bash
 GO111MODULE=off go get -v -d github.com/ava-labs/avalanchego/...
@@ -92,7 +92,9 @@ GO111MODULE=on go get github.com/ava-labs/avash
 
 Now we have the code for Avash downloaded onto our machines at this point. Again we have some differences in behavior based on golang versions being used.
 
-For go versions >= 1.16, the Avash code already gets built and you can find the binary available at $GOPATH/bin directory. To verify this, try:
+#### For go versions >= 1.16:
+
+In this case, the Avash code gets automatically built after being downloaded and you can find the binary available at $GOPATH/bin directory. To verify this, try:
 
 ```bash
 cd $GOPATH/bin
@@ -100,6 +102,8 @@ cd $GOPATH/bin
 ```
 
 You must be greeted with the Avash console. Feel free to skip to the end of this section where the Avash console is shown.
+
+#### For go versions < 1.16:
 
 However, for those who're using go versions < 1.16, you have to manually build the Avash source:
 
