@@ -1002,7 +1002,7 @@ Now we need to update our `App.js` file with all the components that we have mad
 
 ```javascript
 //1. Importing other modules
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import CreateElection from "./CreateElection"
 import Active from "./Active";
 import contractJson from './build/contracts/MainContract.json';
@@ -1014,6 +1014,11 @@ import contractJson from './build/contracts/MainContract.json';
 ```javascript
 //For routing through the react application
 <Router>
+  {/*Default route to Active component*/}
+  <Route path="/" exact>
+    <Redirect to="/active"/>
+  </Route>
+
   {/*Navbar*/}
   <nav className="navbar navbar-dark shadow" style={{backgroundColor: "#1b2021", height: "60px", color: "white", marginBottom: "50px"}}>
     { /*Link to Active election page (nav-header) */}
