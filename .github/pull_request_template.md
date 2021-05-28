@@ -9,4 +9,5 @@ In particular:
 - [ ] I thoroughlly explained the code I wrote, with inline code comments and text explanations
 - [ ] I ran a linter and a prettifier to format my code blocks.
 - [ ] I have ran the code and it works.
+- [ ] I proof read for spelling and grammar mistakes. 
 - [ ] My tutorial follows the [template structure](Structure)
