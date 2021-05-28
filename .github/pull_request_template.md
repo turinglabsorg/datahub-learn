@@ -6,8 +6,8 @@ Before you hit "Create Pull Request" make sure you have read the [Tutorial Contr
 
 In particular:
 
-- [ ] I thoroughlly explained the code I wrote, with inline code comments and text explanations
-- [ ] I ran a linter and a prettifier to format my code blocks.
-- [ ] I have ran the code and it works.
-- [ ] I proof read for spelling and grammar mistakes. 
-- [ ] My tutorial follows the [template structure](Structure)
+- [ ] I've followed the [template structure](Structure).
+- [ ] I've proofread the tutorial for spelling and grammar mistakes.
+- [ ] I've ran a linter & prettifier to format my code blocks.
+- [ ] I've thoroughlly explained the code, with inline code comments and text explanations.
+- [ ] I've ran the tutorial and the code works.
