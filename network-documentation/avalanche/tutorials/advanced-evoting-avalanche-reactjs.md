@@ -1,29 +1,27 @@
-# Advanced e-voting DApp using Avalanche Fuji C-chain, Trufflesuite and ReactJS
+# Voting dApp on Avalanche using ReactJS
 
 ## Introduction
 
-In the last tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), we have learnt how to deploy a smart contract on Avalanche's Fuji C-Chain using Trufflesuite. Along with that, we have also coded the client-side application, to easily interact with smart contracts.
+In the tutorial [Making advanced e-voting dApp](https://learn.figment.io/network-documentation/avalanche/tutorials/making-advanced-e-voting-dapp-avalanche-fuji-using-trufle) we have learnt to build smart contracts, deploy them on Avalanche and interact with them using jQuery.
 
-Today, in this tutorial, we will be building a more advanced e-voting `dApplication`, in which we will not only interact with pre-deployed smart contracts, but will also deploy the contracts in runtime, and would interact with them using their contract address. This time we will be using ReactJS for building the client-side of this dapp and Trufflesuite framework for deployment purpose. 
+Today, we will be building our application using **ReactJS** for the frontend. This would increase the efficiency of our application in rendering data from the blockchain and would also be developer friendly. For smart contracts **Solidity** will be used and will be deployed on **Avalanche** using the **Trufflesuite**.
 
 For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
 
 ## Prerequisites
 
 * You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service=avalanche) account.
-* You are familiar with [Avalanche's architecture](https://docs.avax.network/learn/platform-overview). 
-* You have followed the tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), though for the sake of completeness, we will be covering everything from start.
+* Basic familarity with [Avalanche's architecture](https://docs.avax.network/learn/platform-overview) and smart ccontracts.
+* Basic familarity with [ReactJS](https://reactjs.org)
 
 ## Requirements
 
 * [NodeJS](https://nodejs.org/en) v8.9.4 or later.
-* [ReactJS](https://reactjs.org/)
 * Truffle, which you can install with `npm install -g truffle`
 * Metamask extension added to the browser, which you can add from [here](https://metamask.io/download.html)
-* `dotenv`, `web3`, `@truffle/contract`, `@truffle/hdwallet-provider`, `rimble-ui` and `react-dom-router` (instructions to install these will be added later)
 
 ## Initializing the working directory
-Our application is a website whose client-side is made using **ReactJS** and for developing our smart contracts on the **Avalanche** network we will be using **Trufflesuite**, which would help us in compiling and deploying contracts to the network. Therefore, we need to set up our working directory according to ReactJS and Trufflesuite, for making our development process smooth.
+Our application's client-side is made using **ReactJS**. Smart contracts will be made using **Solidity** language and will be deployed on the **Avalanche** network with the **Trufflesuite**. Therefore, we need to set up our working directory according to ReactJS and Trufflesuite, for making our development process smoother.
 
 Open the terminal and navigate to the directory where you intend to create your application.
 ```bash
@@ -40,23 +38,26 @@ npm install -g create-react-app
 
 Create a new react app
 ```bash
-create-react-app advanced-evoting
+create-react-app evoting-avalanche-react
 ```
 
 Move to the newly created directory and install the basic dependencies.
 ```bash
-cd advanced-evoting
-npm install dotenv web3 @truffle/contract @truffle/hdwallet-provider --save
+cd evoting-avalanche-react
+npm install --save dotenv web3 @truffle/contract @truffle/hdwallet-provider
 ```
+As you can see from the image below, there are lots of files in our project. To clear the clutter, let us first remove the unwanted files from `src` and `public` directory.
 
-Now remove the contents of `src` and `public` folder, in order to make our own.
+![](https://imgur.com/FZedHDx.png)
+
+Remove the contents of `src` and `public` folder.
 ```bash
 rm src/*
 rm public/*
 ```
-Initially i.e. after running the above commands, your project structure would look like the image shown below.
+After running the above commands, your project structure would look like the image shown below.
 
-![](https://imgur.com/5wsEyQr.png)
+![](https://imgur.com/VJqCUOf.png)
 
 Make a `index.html` file in `public` folder of current directory and put the following `HTML` code.
 ```html
@@ -102,13 +103,13 @@ class  App  extends  React.Component {
 
 		//3. Load Account
 
-    //4. Load Smart-Contract instance
+    		//4. Load Smart-Contract instance
 	}
 
 	render() {
 		return (
-      <div>
-
+      			<div>
+				Avalanche evoting application
 			</div>
 		)
 	}
@@ -132,26 +133,33 @@ ReactDOM.render(
 ```
 React project setup is now complete and your folder structure should look like this.
 
-![](https://imgur.com/OX2aCdw.png)
+![](https://imgur.com/tpWEkdP.png)
 
 ### **Setting up the Truffle project**
 
-Run the following command in the `src`  directory, to create a boilerplate for the `Truffle` project. This will set up Truffle's initial project structure. Smart contracts will be stored in the `contracts` folder, deployment functions for migrating smart contracts to the network will be stored in the `migrations` folder. And `build/contracts` folder would contain information about the deployed contract, ABI etc.
+Run the following command in the `root`  directory, to create a boilerplate for the `Truffle` project. This will set up Truffle's initial project structure. Smart contracts will be stored in the `contracts` folder, deployment functions for migrating smart contracts to the network will be stored in the `migrations` folder. By default, `/build/contracts` folder would contain information about the compiled and deployed contract, ABI etc in the `.json` format and these files are known as `artifiacts`.
 ```bash
 truffle init
 ```
+There is also 1 **config** file created by the above command, which is, **truffle-config.js**. In this file, there is a lot of information regarding how to deploy contracts, how to choose a network to deploy them, and many others. Therefore, we should preserve this file for reference. So, use the below command to make a copy of this file. This would create a copy named `truffle-config-default.js`.
+```bash
+cp truffle-config.js truffle-config-default.js
+```
+
 Now update the `truffle-config.js` file, with the following code to deploy the smart contract on the `Avalanche's Fuji` network. This file would help us in connecting to the remote node of the `Datahub` Avalanche network and hence would be using your Datahub's Avalanche API key along with your Avalanche wallet's mnemonic for deploying the contract on the network.
+
 ```javascript
 require('dotenv').config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 //Account credentials from which our contract will be deployed
-const mnemonic = process.env.MNEMONIC;
+const MNEMONIC = process.env.MNEMONIC;
 
 //API key of your Datahub account for Avalanche Fuji test network
-const APIKEY = process.env.APIKEY;
+const DATAHUB_API_KEY = process.env.DATAHUB_API_KEY;
 
 module.exports = {
+  contracts_build_directory: './src/build/contracts',
   networks: {
     development: {
       host: "127.0.0.1",
@@ -160,7 +168,7 @@ module.exports = {
     },
     fuji: {
       provider: function() {
-        return new HDWalletProvider({mnemonic, providerOrUrl: `https://avalanche--fuji--rpc.datahub.figment.io/apikey/${APIKEY}/ext/bc/C/rpc`})
+        return new HDWalletProvider({mnemonic: MNEMONIC, providerOrUrl: `https://avalanche--fuji--rpc.datahub.figment.io/apikey/${DATAHUB_API_KEY}/ext/bc/C/rpc`})
       },
       network_id: "*",
       gas: 3000000,
@@ -177,28 +185,48 @@ module.exports = {
 }
 ```
 
-Note that we're setting the `gasPrice` and `gas` to the appropriate values for the Avalanche C-Chain.
+Note that we're setting the `gasPrice` and `gas` to the appropriate values for the Avalanche C-Chain. Here, you can see that, we have used `contracts_build_directory` to change defaut location of `artificats` from `root` directory to the `src` folder. This is because, React cannot access files which are present outside the `src` folder.
+
+### **Get Avalanche credentials**
+For deploying smart contracts we need two things viz. A node connected to the **Avalanche** network and an account with few **AVAX**. The good news is, **Datahub** provides a remote node, which is already connected to the network. But in order get access to the node through **RPC** (Remote Procedural Call), we need an API key. So head towards your [Datahub](https://datahub.figment.io/services/avalanche) Avalanche dashboard. Here you can see your Avalanche specific API key.
+
+![](https://imgur.com/60J8ZZ7.png)
+
+Now we need an **Avalanche** wallet, where we would keep our funds, required for all the transactions on the network. So, visit [here](https://wallet.avax.network) and create an account. Save the **mnemonic** in a secure place (we would need it later). Instructions to add funds will be provided later in the tutorial.
 
 ### **Add .env file**
 
-* First of all, create a `.env` file in the `src` directory. Please take a note that dot (.) is necessary for the `.env` file name.
-* Now we need to create an account on the Avalanche wallet. Please visit [Avalanche Wallet](https://wallet.avax.network/) to create your account and save your mnemonics in the .env file.
-* Now copy your Datahub's Avalanche Fuji testnet API key in the .env file as shown below.
-* Never share or commit your `.env` file. It contains your credentials like `mnemonics` and `API` key. Therefore, it is advised to add `.env` to your `.gitignore` file.
+Create a `.env` file in the `root` folder. Please take a note that dot (.) is necessary for the `.env` file name. Now copy your Datahub's Avalanche API key and the Avalanche wallet's mnemonic in the .env file as shown below. In the .env file, **MNEMONIC** should be enclosed within double-quotes (" ").
 
 ```javascript
 MNEMONIC="<avalanche-wallet-mnemonic>"
-APIKEY=<your-api-key>
+DATAHUB_API_KEY=<your-api-key>
 ```
-Truffle project setup is now complete and your folder structure should look like this.
 
-![](https://imgur.com/9KxTgdH.png)
+> Never share or commit your `.env` file. It contains your credentials like `mnemonics` and `API` key. Therefore, it is advised to add `.env` to your `.gitignore` file.
 
-### **Add Election.sol**
+Our project setup is now complete and the folder structure should look like this.
 
-In the `contracts` directory add a new file called `Election.sol` and add the following block of code:
+![](https://imgur.com/c3eIXvW.png)
 
-```javascript
+To confirm that we are on the same page, run the following command in the `root` folder.
+
+```bash
+npm start
+```
+It might take few seconds, to show an output as in the image below.
+
+![](https://imgur.com/H71jTjS.png)
+
+Now go to your browser, and visit the URL - http://localhost:3000 If your followed the above steps, you would see the page as shown below.
+
+![](https://imgur.com/1FAOfLv.png)
+
+### **Create Election smart contract**
+
+In the `contracts` directory add a new file called `Election.sol`, where `.sol` stands for **Solidity** and add the following block of code:
+
+```solidity
 pragma solidity >=0.4.21 <0.6.0;
 pragma experimental ABIEncoderV2;
 
@@ -255,80 +283,80 @@ contract Election {
 
 The code for smart contract is everything within `contract Election {  }`.
 
-1. **Basic details about election** - This block of code would be storing basic details of each `Election` contract. Details include `name` and `description`.
+**Basic fields about election** - This block of code would be storing basic fields of each `Election` contract. Fields include `name` and `description`.
 
-```javascript
-  //Election details will be stored in these variables
-  string public name;
-  string public description;
+```solidity
+//Election details will be stored in these variables
+string public name;
+string public description;
 ```
 <br>
 
-2. **Storing candidate details** - Candidate details would be stored in mapping between an unsigned integer to the `Candidate` structure. `Candidate` structure would consist of data like `id`, `name` (candidate's name) and `voteCount` (number of times they are voted).
+**Storing candidate details** - Candidate details would be stored in mapping between an unsigned integer to the `Candidate` structure. `Candidate` structure would consist of fields like `id`, `name` (candidate's name) and `voteCount` (number of times they are voted).
 
-```javascript
-  //Structure of candidate standing in the election
-  struct Candidate {
-    uint id;
-    string name;
-    uint voteCount;
+```solidity
+//Structure of candidate standing in the election
+struct Candidate {
+  uint id;
+  string name;
+  uint voteCount;
+}
+
+//Storing candidates in a map
+mapping(uint => Candidate) public candidates;
+```
+<br>
+
+**Storing address of voters who have already voted and the number of candidates** - `voters` is a mapping between the address of the voter and a boolean. In Solidity, the default boolean value is `false`, so if the returned value of `voters(address)` is `false` we can understand that the voters are voting for the first time in this election, and vice-versa for `true`.
+
+```solidity
+//Storing address of those voters who already voted
+mapping(address => bool) public voters;
+
+//Number of candidates in standing in the election
+uint public candidatesCount = 0;
+```
+<br>
+
+**Constructor call and adding candidates to the election** - When a smart contract is deployed on a network, the first thing to be called is a `constructor()` function. Whatever we want to initialize in a smart contract, we do it inside the `constructor()` function. Like here, we will be adding a name, description, and candidates to the election. Here, `addCandidate()` is a private function, so that, it cannot be called publicly. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
+
+```solidity
+//Setting of variables and data, during the creation of election contract
+constructor (string[] memory _nda, string[] memory _candidates) public {
+  require(_candidates.length > 0, "There should be atleast 1 candidate.");
+  name = _nda[0];
+  description = _nda[1];
+  for(uint i = 0; i < _candidates.length; i++) {
+    addCandidate(_candidates[i]);
   }
+}
 
-  //Storing candidates in a map
-  mapping(uint => Candidate) public candidates;
+//Private function to add a candidate
+function addCandidate (string memory _name) private {
+  candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+  candidatesCount ++;
+}
 ```
 <br>
 
-3. **Storing details of voters who have already voted and the number of candidates** - `voters` is a mapping between the address of the voter and a boolean. In Solidity, the default boolean value is `false`, so if the returned value of `voters(address)` is `false` we can understand that the voters are voting for the first time in this election, and vice-versa for `true`.
+**Voting candidates in an election** - We made a `vote()` function. It takes `candidateId` as an argument and increments the vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking boolean across the `voters` mapping and `candidateId` should be a valid one, i.e. `0 <= candidateId < candiatesCount`.
 
-```javascript
-  //Storing address of those voters who already voted
-  mapping(address => bool) public voters;
-
-  //Number of candidates in standing in the election
-  uint public candidatesCount = 0;
+```solidity
+//Public vote function for voting a candidate
+function vote (uint _candidate) public {
+  require(!voters[msg.sender], "Voter has already Voted!");
+  require(_candidate < candidatesCount && _candidate >= 0, "Invalid candidate to Vote!");
+  voters[msg.sender] = true;
+  candidates[_candidate].voteCount++;
+}
 ```
 <br>
 
-4. **Constructor call and adding candidates to the election** - When a smart contract is deployed on a network, the first thing to be called is a `constructor()` function. Whatever we want to initialize in a smart contract, we do it inside the `constructor()` function. Like here, we will be adding a name, description, and candidates to the election. Here, `addCandidate()` is a private function, so that, it cannot be called publicly. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
-
-```javascript
-  //Setting of variables and data, during the creation of election contract
-  constructor (string[] memory _nda, string[] memory _candidates) public {
-    require(_candidates.length > 0, "There should be atleast 1 candidate.");
-    name = _nda[0];
-    description = _nda[1];
-    for(uint i = 0; i < _candidates.length; i++) {
-      addCandidate(_candidates[i]);
-    }
-  }
-
-  //Private function to add a candidate
-  function addCandidate (string memory _name) private {
-    candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
-    candidatesCount ++;
-  }
-```
-<br>
-
-5. **Voting candidates in an election** - We made a `vote()` function. It takes `candidateId` as an argument and increments the vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking boolean across the `voters` mapping and `candidateId` should be a valid one, i.e. `0 <= candidateId < candiatesCount`.
-
-```javascript
-  //Public vote function for voting a candidate
-  function vote (uint _candidate) public {
-    require(!voters[msg.sender], "Voter has already Voted!");
-    require(_candidate < candidatesCount && _candidate >= 0, "Invalid candidate to Vote!");
-    voters[msg.sender] = true;
-    candidates[_candidate].voteCount++;
-  }
-```
-<br>
-
-### **Add MainContract.sol**
+### **Create MainContract smart contract**
 
 In the `contracts` directory add a new file called `MainContract.sol` and add the following block of code:
 
-```javascript
+```solidity
 pragma solidity >=0.4.21 <0.6.0;
 pragma experimental ABIEncoderV2;
 
@@ -345,34 +373,33 @@ contract MainContract {
     }
 }
 ```
-`MainContract.sol` is the main entry point of our e-voting DApp. It will maintain the number of election contracts deployed, their address on the network and will also help in deploying them. We have also imported the `Election.sol` contract, for using it in the `MainContract`.
+`MainContract.sol` is the main entry point of our e-voting DApp because anyone who want to create a new election, would need to call the `createElection()` function of this contract. It will maintain the number of election contracts deployed, their address on the network and will also help in deploying them. We have also imported the `Election.sol` contract, for using it in the `MainContract`.
 
-1. Here `electionId` is used for assigning ID's to each election that a user creates and is incremented for using it while creating the next election. Also, `Elections` is a public mapping between `electionId` and the address of the deployed election contract.
+Here `electionId` is used for assigning ID's to each election that a user creates and is incremented for using it while creating the next election. Also, `Elections` is a public mapping between `electionId` and the address of the deployed election contract.
 
-```javascript
-    uint public electionId = 0;
-    mapping (uint => address) public Elections;
+```solidity
+uint public electionId = 0;
+mapping (uint => address) public Elections;
 ```
 <br>
 
-2. We have made a `createElection()` function which will be used to deploy our `Election` smart contract. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
+We have made a `createElection()` function which will be used to deploy our `Election` smart contract. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
 
-```javascript
-    function createElection (string[] memory _nda, string[] memory _candidates) public {
-        Election election = new Election(_nda, _candidates);
-        Elections[electionId] = address(election);
-        electionId++;
-    }
+```solidity
+function createElection (string[] memory _nda, string[] memory _candidates) public {
+  Election election = new Election(_nda, _candidates);
+  Elections[electionId] = address(election);
+  electionId++;
+}
 ```
-Here you can see that new `Election` contract is deployed on the network using the `new` keyword. And the address for the deployed smart contract is stored in the `Elections` mapping. Once the election contract is deployed successfully, `electionId` is incremented.
+Here you can see that new `Election` contract is deployed on the network using the `new` keyword. `new` keyword deploys the contract, initialized the contract's variables, runs the constructor() function and returns the **address** of the newly deployed contract to the caller. Then the address is stored in the `Elections` mapping. Once the election contract is deployed successfully, `electionId` is incremented.
 
-### **Add new migration**
+### **Create a file for migrating smart contracts**
 
 Create a new file in the `migrations` directory named `2_deploy_contracts.js`, and add the following block of code. This handles deploying the `MainContract` and `Election` smart contract to the blockchain.
 
-```javascript
+```solidity
 const MainContract = artifacts.require("MainContract");
-const Election = artifacts.require("Election");
 
 module.exports = function(deployer) {
 	deployer.deploy(MainContract);
@@ -383,7 +410,7 @@ Here, you can see that, we are only deploying the `MainContract` smart contract,
 
 ### **Compile Contracts with Truffle**
 
-Any time you make a change to `.sol` files, you need to run `truffle compile`.
+Any time you want deploy smart contracts, and you have made changes in them, you need to run `truffle compile`.
 
 ```text
 truffle compile
@@ -403,7 +430,9 @@ Compiling your contracts...
    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 ```
 
-Compiling the smart contracts would create a `.json` file in the `build/contracts` directory. It stores `ABI` and other necessary metadata. `ABI` refers to Application Binary Interface, which is a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) to learn more.
+Compiling the smart contracts would create a `.json` file in the `/src/build/contracts` directory. It stores `ABI` and other necessary metadata. 
+
+> `ABI` refers to Application Binary Interface, which is a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) to learn more.
 
 ### **Fund the account and run migrations on the C-Chain**
 
@@ -411,13 +440,17 @@ When deploying smart contracts to the C-Chain, it will require some deployment c
 
 #### **Fund your account**
 
-Fund your account using the faucet link [https://faucet.avax-test.network/](https://faucet.avax-test.network/) and pasting your Fuji's C-Chain address in the input field. You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Here `nAVAX` refers nano-AVAX i.e. billionth of an `AVAX` or simply 1 `nAVAX` = (1/1000,000,000) `AVAX`. Though funding through faucet would give you enough `AVAX` to run multiple deployments and transactions on the network.
+We need funds in C-Chain address, as smart contracts are deployed on C-Chain i.e. contract-Chain. This address can easily be found on the [Avalanche Wallet](https://wallet.avax.network) dashboard. Avalanche network has 3 chains viz. X-Chain, P-Chain and C-Chain. The address of all these chains can be found by switching tabs at the bottom of the division, where there is a QR code. So, switch to C-Chain, and copy the address. Now fund your account using the faucet link [here](https://faucet.avax-test.network/) and paste your C-Chain address in the input field. Refer to the below image, to identify the address section.
+
+![](https://imgur.com/N0YQq1L.png)
+
+> You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Here `nAVAX` refers nano-AVAX i.e. billionth of an `AVAX` or simply 1 `nAVAX` = (1/1000,000,000) `AVAX`. Though funding through faucet would give you enough `AVAX` to run multiple deployments and transactions on the network.
 
 ### **Run Migrations**
 
 Now everything is in place to run migrations and deploy the `MainContract`:
 
-```javascript
+```bash
 truffle migrate --network fuji
 ```
 
