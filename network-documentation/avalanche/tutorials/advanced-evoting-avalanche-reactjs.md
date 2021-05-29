@@ -6,7 +6,7 @@ In the tutorial [Making advanced e-voting dApp](https://learn.figment.io/network
 
 Today, we will be building our application using **ReactJS** for the frontend. This would increase the efficiency of our application in rendering data from the blockchain and would also be developer friendly. For smart contracts **Solidity** will be used and will be deployed on **Avalanche** using the **Trufflesuite**.
 
-For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
+For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications dApp on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
 
 ## Prerequisites
 
@@ -16,8 +16,8 @@ For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit
 
 ## Requirements
 
-* [NodeJS](https://nodejs.org/en) v8.9.4 or later.
-* Truffle, which you can install with `npm install -g truffle`
+* [NodeJS](https://nodejs.org/en). You’ll need to have Node >= 10.16 and npm >= 5.6 on your machine.
+* [Truffle](https://www.trufflesuite.com/truffle), which you can install with `npm install -g truffle`
 * Metamask extension added to the browser, which you can add from [here](https://metamask.io/download.html)
 
 ## Initializing the working directory
@@ -30,15 +30,9 @@ cd /path/to/directory
 
 ### **Setting up the ReactJS project**
 
-Use `npm` to install create-react-app 
-
+Create a new react app using npx. npx is a npm package runner (x probably stands for eXecute). The typical use is to download and run a package temporarily or for trials.
 ```bash
-npm install -g create-react-app
-```
-
-Create a new react app
-```bash
-create-react-app evoting-avalanche-react
+npx create-react-app evoting-avalanche-react
 ```
 
 Move to the newly created directory and install the basic dependencies.
@@ -46,9 +40,7 @@ Move to the newly created directory and install the basic dependencies.
 cd evoting-avalanche-react
 npm install --save dotenv web3 @truffle/contract @truffle/hdwallet-provider
 ```
-As you can see from the image below, there are lots of files in our project. To clear the clutter, let us first remove the unwanted files from `src` and `public` directory.
-
-![](https://imgur.com/FZedHDx.png)
+Have a look at the project structure. As you can see, there are lots of files in our project. To clear the clutter, let us first remove the unwanted files from `src` and `public` directory.
 
 Remove the contents of `src` and `public` folder.
 ```bash
@@ -82,7 +74,7 @@ Move out of the public folder and make a file named `App.js` inside `src` folder
 ```javascript
 import  React  from  'react';
 
-//1. Importing other modules
+// 1. Importing other modules
 
 class  App  extends  React.Component {
 	constructor(props) {
@@ -99,11 +91,11 @@ class  App  extends  React.Component {
 	}
 
 	async  init() {
-		//2. Load web3
+		// 2. Load web3
 
-		//3. Load Account
+		// 3. Load Account
 
-    		//4. Load Smart-Contract instance
+    		// 4. Load Smart-Contract instance
 	}
 
 	render() {
@@ -152,10 +144,10 @@ Now update the `truffle-config.js` file, with the following code to deploy the s
 require('dotenv').config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
-//Account credentials from which our contract will be deployed
+// Account credentials from which our contract will be deployed
 const MNEMONIC = process.env.MNEMONIC;
 
-//API key of your Datahub account for Avalanche Fuji test network
+// API key of your Datahub account for Avalanche Fuji test network
 const DATAHUB_API_KEY = process.env.DATAHUB_API_KEY;
 
 module.exports = {
@@ -203,7 +195,7 @@ MNEMONIC="<avalanche-wallet-mnemonic>"
 DATAHUB_API_KEY=<your-api-key>
 ```
 
-> Never share or commit your `.env` file. It contains your credentials like `mnemonics` and `API` key. Therefore, it is advised to add `.env` to your `.gitignore` file.
+{% hint style="warning" %} Never share or commit your `.env` file. It contains your credentials like `mnemonics` and `API` key. Therefore, it is advised to add `.env` to your `.gitignore` file. {% endhint %}
 
 Our project setup is now complete and the folder structure should look like this.
 
@@ -231,27 +223,27 @@ pragma solidity >=0.4.21 <0.6.0;
 pragma experimental ABIEncoderV2;
 
 contract Election {
-  //Election details will be stored in these variables
+  // Election details will be stored in these variables
   string public name;
   string public description;
   
-  //Structure of candidate standing in the election
+  // Structure of candidate standing in the election
   struct Candidate {
     uint id;
     string name;
     uint voteCount;
   }
 
-  //Storing candidates in a map
+  // Storing candidates in a map
   mapping(uint => Candidate) public candidates;
 
-  //Storing address of those voters who already voted
+  // Storing address of those voters who already voted
   mapping(address => bool) public voters;
 
-  //Number of candidates in standing in the election
+  // Number of candidates in standing in the election
   uint public candidatesCount = 0;
 
-  //Setting of variables and data, during the creation of election contract
+  // Setting of variables and data, during the creation of election contract
   constructor (string[] memory _nda, string[] memory _candidates) public {
     require(_candidates.length > 0, "There should be atleast 1 candidate.");
     name = _nda[0];
@@ -261,13 +253,13 @@ contract Election {
     }
   }
 
-  //Private function to add a candidate
+  // Private function to add a candidate
   function addCandidate (string memory _name) private {
     candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
     candidatesCount ++;
   }
 
-  //Public vote function for voting a candidate
+  // Public vote function for voting a candidate
   function vote (uint _candidate) public {
     require(!voters[msg.sender], "Voter has already Voted!");
     require(_candidate < candidatesCount && _candidate >= 0, "Invalid candidate to Vote!");
@@ -277,7 +269,7 @@ contract Election {
 }
 ```
 
-`Election` is a solidity smart contract that lets us view the name, description, about the candidates standing in an election and voting them. In this DApp, we will be accessing these runtime deployed election smart contracts using their `address` and `ABI`. This smart contract will be deployed to the blockchain, each time we create a new election.
+`Election` is a solidity smart contract that lets us view the name, description, about the candidates standing in an election and voting them. In this dApp, we will be accessing these runtime deployed election smart contracts using their `address` and `ABI`. This smart contract will be deployed to the blockchain, each time we create a new election.
 
 ### **Let's understand this smart contract**
 
@@ -286,7 +278,7 @@ The code for smart contract is everything within `contract Election {  }`.
 **Basic fields about election** - This block of code would be storing basic fields of each `Election` contract. Fields include `name` and `description`.
 
 ```solidity
-//Election details will be stored in these variables
+// Election details will be stored in these variables
 string public name;
 string public description;
 ```
@@ -295,14 +287,14 @@ string public description;
 **Storing candidate details** - Candidate details would be stored in mapping between an unsigned integer to the `Candidate` structure. `Candidate` structure would consist of fields like `id`, `name` (candidate's name) and `voteCount` (number of times they are voted).
 
 ```solidity
-//Structure of candidate standing in the election
+// Structure of candidate standing in the election
 struct Candidate {
   uint id;
   string name;
   uint voteCount;
 }
 
-//Storing candidates in a map
+// Storing candidates in a map
 mapping(uint => Candidate) public candidates;
 ```
 <br>
@@ -310,10 +302,10 @@ mapping(uint => Candidate) public candidates;
 **Storing address of voters who have already voted and the number of candidates** - `voters` is a mapping between the address of the voter and a boolean. In Solidity, the default boolean value is `false`, so if the returned value of `voters(address)` is `false` we can understand that the voters are voting for the first time in this election, and vice-versa for `true`.
 
 ```solidity
-//Storing address of those voters who already voted
+// Storing address of those voters who already voted
 mapping(address => bool) public voters;
 
-//Number of candidates in standing in the election
+// Number of candidates in standing in the election
 uint public candidatesCount = 0;
 ```
 <br>
@@ -321,7 +313,7 @@ uint public candidatesCount = 0;
 **Constructor call and adding candidates to the election** - When a smart contract is deployed on a network, the first thing to be called is a `constructor()` function. Whatever we want to initialize in a smart contract, we do it inside the `constructor()` function. Like here, we will be adding a name, description, and candidates to the election. Here, `addCandidate()` is a private function, so that, it cannot be called publicly. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
 
 ```solidity
-//Setting of variables and data, during the creation of election contract
+// Setting of variables and data, during the creation of election contract
 constructor (string[] memory _nda, string[] memory _candidates) public {
   require(_candidates.length > 0, "There should be atleast 1 candidate.");
   name = _nda[0];
@@ -331,7 +323,7 @@ constructor (string[] memory _nda, string[] memory _candidates) public {
   }
 }
 
-//Private function to add a candidate
+// Private function to add a candidate
 function addCandidate (string memory _name) private {
   candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
   candidatesCount ++;
@@ -342,7 +334,7 @@ function addCandidate (string memory _name) private {
 **Voting candidates in an election** - We made a `vote()` function. It takes `candidateId` as an argument and increments the vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking boolean across the `voters` mapping and `candidateId` should be a valid one, i.e. `0 <= candidateId < candiatesCount`.
 
 ```solidity
-//Public vote function for voting a candidate
+// Public vote function for voting a candidate
 function vote (uint _candidate) public {
   require(!voters[msg.sender], "Voter has already Voted!");
   require(_candidate < candidatesCount && _candidate >= 0, "Invalid candidate to Vote!");
@@ -373,7 +365,7 @@ contract MainContract {
     }
 }
 ```
-`MainContract.sol` is the main entry point of our e-voting DApp because anyone who want to create a new election, would need to call the `createElection()` function of this contract. It will maintain the number of election contracts deployed, their address on the network and will also help in deploying them. We have also imported the `Election.sol` contract, for using it in the `MainContract`.
+`MainContract.sol` is the main entry point of our e-voting dApp because anyone who want to create a new election, would need to call the `createElection()` function of this contract. It will maintain the number of election contracts deployed, their address on the network and will also help in deploying them. We have also imported the `Election.sol` contract, for using it in the `MainContract`.
 
 Here `electionId` is used for assigning ID's to each election that a user creates and is incremented for using it while creating the next election. Also, `Elections` is a public mapping between `electionId` and the address of the deployed election contract.
 
@@ -412,7 +404,7 @@ Here, you can see that, we are only deploying the `MainContract` smart contract,
 
 Any time you want deploy smart contracts, and you have made changes in them, you need to run `truffle compile`.
 
-```text
+```bash
 truffle compile
 ```
 
@@ -425,18 +417,18 @@ Compiling your contracts...
 > Compiling ./contracts/MainContract.sol
 > Compiling ./contracts/Migrations.sol
 
-> Artifacts written to /home/guest/blockchain/advanced-evoting/build/contracts
+> Artifacts written to /home/guest/blockchain/evoting-avalanche-react/build/contracts
 > Compiled successfully using:
    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 ```
 
 Compiling the smart contracts would create a `.json` file in the `/src/build/contracts` directory. It stores `ABI` and other necessary metadata. 
 
-> `ABI` refers to Application Binary Interface, which is a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) to learn more.
+{% hint style="info" %} `ABI` refers to Application Binary Interface, which is a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) to learn more. {% endhint %}
 
 ### **Fund the account and run migrations on the C-Chain**
 
-When deploying smart contracts to the C-Chain, it will require some deployment cost. As you can see inside `truffle-config.js`, HDWallet Provider will help us in deploying on Fuji C-chain and deployment cost will be managed by account whose mnemonic has been stored in the `.env` file. Therefore we need to fund the account.
+When deploying smart contracts to the C-Chain, it will require some deployment cost. As you can see inside `truffle-config.js`, HDWallet Provider will help us in deploying on Fuji C-chain and deployment cost will be managed by the account whose mnemonic has been stored in the `.env` file. Therefore we need to fund the account.
 
 #### **Fund your account**
 
@@ -444,7 +436,7 @@ We need funds in C-Chain address, as smart contracts are deployed on C-Chain i.e
 
 ![](https://imgur.com/N0YQq1L.png)
 
-> You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Here `nAVAX` refers nano-AVAX i.e. billionth of an `AVAX` or simply 1 `nAVAX` = (1/1000,000,000) `AVAX`. Though funding through faucet would give you enough `AVAX` to run multiple deployments and transactions on the network.
+{% hint style="info" %} You'll need to send at least `135422040` nAVAX to the account to cover the cost of contract deployments. Here `nAVAX` refers nano-AVAX i.e. billionth of an `AVAX` or simply 1 `nAVAX` = (1/1000,000,000) `AVAX`. Though funding through faucet would give you enough `AVAX` to run multiple deployments and transactions on the network. {% endhint %}
 
 ### **Run Migrations**
 
@@ -565,7 +557,7 @@ export class GetWeb3 extends React.Component {
         let web3 = window.web3;
 
         if (typeof web3 !== 'undefined') {
-            //Setup Web3 Provider
+            // Setup Web3 Provider
             this.web3Provider = web3.currentProvider;  
             this.web3 = new Web3(web3.currentProvider);  
             return this.web3;
@@ -577,7 +569,7 @@ export class GetWeb3 extends React.Component {
 
 export class GetContract extends React.Component {
     async getContract(web3, contractJson) {
-        //Setup Contract
+        // Setup Contract
         this.contract = await TruffleContract(contractJson);
         this.contract.setProvider(web3.currentProvider);
         return await this.contract.deployed();
@@ -595,23 +587,23 @@ export class GetAccount extends React.Component {
 
 So, now add the following line under the `//Importing...` section of `App.js` to import `BlockchainUtil.js` module.
 ```javascript
-//1. Importing other modules
+// 1. Importing other modules
 import {GetWeb3, GetContract, GetAccount} from './BlockchainUtil';
 ```
 
 And put the following block of code inside the `init()` function of `App.js`.
 ```javascript
-//2. Load web3
+// 2. Load web3
 const Web3 = new GetWeb3();
 this.web3 = await Web3.getWeb3();
 this.setState({web3: this.web3});
 
-//3. Load Account
+// 3. Load Account
 const Account = new GetAccount();
 this.account = await Account.getAccount(this.web3);
 this.setState({account: this.account[0]});
 
-//4. Load Contract
+// 4. Load Contract
 const Contract = new GetContract();
 this.mainInstance = await Contract.getContract(this.web3, contractJson);
 this.setState({mainInstance: this.mainInstance});
@@ -633,7 +625,7 @@ class CreateElection extends Component {
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
-        //These state variables would maintain inputs of the form
+        // These state variables would maintain inputs of the form
         this.state = {
             electionname: '',
             description: '',
@@ -644,7 +636,7 @@ class CreateElection extends Component {
     //To store App.js instance
     app = null;
 
-    //Connect application with Metamask and create smart-contract's instance
+    // Connect application with Metamask and create smart-contract's instance
     async init() {
         this.app = new App();
         await this.app.init();      
@@ -666,11 +658,11 @@ class CreateElection extends Component {
         });
     }
 
-    //Function to be called when the form is submitted
+    // Function to be called when the form is submitted
     async onSubmit(e) {
         e.preventDefault();
 
-        //Structuring Election details from the form before submitting transaction to the smart-contract
+        // Structuring Election details from the form before submitting transaction to the smart-contract
         const electionDetails = {
             electionname: this.state.electionname,
             description: this.state.description,
@@ -685,7 +677,7 @@ class CreateElection extends Component {
             i++;
         };
 
-        //Making transaction to the MainContract instance, for creating a new election
+        // Making transaction to the MainContract instance, for creating a new election
         await this.app.mainInstance.createElection([electionDetails.electionname, electionDetails.description], electionDetails.candidates, {from: this.app.account[0]})
     
         window.location = '/active';
@@ -774,7 +766,7 @@ import App from './App';
 import ElectionJSON from './build/contracts/Election.json';
 import VoteModal from './VoteModal';
 
-//Election component for organising election details
+// Election component for organising election details
 var Election = props => (
     <tr>
         <td>{props.election.electionId}</td>
@@ -791,7 +783,7 @@ var Election = props => (
             {
                 (!props.election.hasVoted) 
             ? 
-                //Vote Modal would be mounted if the user has not voted
+                // Vote Modal would be mounted if the user has not voted
                 <VoteModal election = {props.election} candidates = {props.candidates}/> 
             :
                 <font size = "2" color = "green"> You have voted!</font>
@@ -800,14 +792,14 @@ var Election = props => (
     </tr>
 )
 
-//Candidate component for organising candidate details of each candidate
+// Candidate component for organising candidate details of each candidate
 var Candidates = props => (
     <font size = "2">
         <b>{props.name}</b> ({props.voteCount}) <br/>
     </font>
 )
 
-//Active component would fetch and display all the the elections deployed by the MainContract.sol
+// Active component would fetch and display all the the elections deployed by the MainContract.sol
 class Active extends Component {
     constructor(props) {
         super(props);
@@ -817,10 +809,10 @@ class Active extends Component {
         }
     }
 
-    //To store App.js instance
+    // To store App.js instance
     app = null
     
-    //Connect application with Metamask and create smart-contract's instance
+    // Connect application with Metamask and create smart-contract's instance
     async init() {
         this.app = new App();
         await this.app.init();
@@ -836,39 +828,39 @@ class Active extends Component {
     loadData = async () => {
         this.setState({loading: true})
         
-        //electionId maps to total elections created
+        // electionId maps to total elections created
         var eCount = await this.app.mainInstance.electionId();
         var elections = [], electionDetails = [], electionComponents = [];
         
-        //Election details of every election created by MainContract
+        // Election details of every election created by MainContract
         for(var i = 0; i < eCount; i++) {
             elections[i] = await this.app.mainInstance.Elections(i);
             var election = await new this.app.web3.eth.Contract(ElectionJSON.abi, elections[i]);
             
             electionDetails[i] = [];
 
-            //account address of the voter
+            // account address of the voter
             electionDetails[i].account = this.app.account[0];
             
-            //each contract's instance
+            // each contract's instance
             electionDetails[i].contractInstance = election;
             
-            //address of each election contract
+            // address of each election contract
             electionDetails[i].electionAddress = elections[i];
             
-            //boolean indicating wether the contract address has voted or not
+            // boolean indicating wether the contract address has voted or not
             electionDetails[i].hasVoted = await election.methods.voters(this.app.account[0]).call();
             
-            //name of the election
+            // name of the election
             electionDetails[i].electionName = await election.methods.name().call();
             
-            //description of the election
+            // description of the election
             electionDetails[i].electionDescription = await election.methods.description().call();
             
-            //election id
+            // election id
             electionDetails[i].electionId = i;
             
-            //Organising candidates into components
+            // Organising candidates into components
             var candidatesCount = await election.methods.candidatesCount().call();
             var candidates = [], candidateComponents = [];
             candidates[i] = []; 
@@ -879,7 +871,7 @@ class Active extends Component {
                 candidateComponents[i].push(<Candidates name = {candidates[i][j][1]} voteCount = {candidates[i][j][2]}/>)
             }
             
-            //Saving the electionDetails in the form of a component
+            // Saving the electionDetails in the form of a component
             electionComponents[i] = <Election election = {electionDetails[i]} candidates = {candidates[i]} candidateComponent = {candidateComponents[i]}/>
         }
 
@@ -891,7 +883,7 @@ class Active extends Component {
 
     render() {
         return(
-            //Simple container to store table with election data
+            // Simple container to store table with election data
             <div className = "container" style = {{}}>
                 <div style = {{float: "right", marginBottom: "10px"}}>
                     <img style = {{width: "25px", marginRight: "20px", cursor: "pointer"}} onClick = {this.loadData} src="https://img.icons8.com/color/50/000000/synchronize.png"/>
@@ -931,13 +923,13 @@ In the above component, i.e. `Active.js` we have used a component called `VoteMo
 import React, { useState } from 'react';
 import { Box, Flex, Modal, Button, Text, Card, Radio, Field, Loader} from "rimble-ui";
 
-//Data like election and candidate details will be passed in the props by Active.js (parent)
+// Data like election and candidate details will be passed in the props by Active.js (parent)
 function VoteModal(props) {
-    //These are React Hooks and are used only for UX like opening and closing of Voting Modal and loaders
+    // These are React Hooks and are used only for UX like opening and closing of Voting Modal and loaders
     const [isOpen, setIsOpen] = useState(false);
     const [loading, isLoading] = useState(false);
 
-    //This Hook will be used to maintain the selected candidate ID by a voter
+    // This Hook will be used to maintain the selected candidate ID by a voter
     const [cid, changeCid] = useState(0);
   
     const closeModal = e => {
@@ -954,7 +946,7 @@ function VoteModal(props) {
       changeCid(e.target.value);
     }
 
-    //vote() function would be used to transact a vote
+    // vote() function would be used to transact a vote
     const vote = async (eid) => {
       isLoading(true);
       await props.election.contractInstance.methods.vote(cid).send({from: props.election.account});
@@ -1034,7 +1026,7 @@ Now we need to update our `App.js` file with all the components that we have mad
 * **Import Modules** - First import all the modules and components into the `App.js` file by appending the following code under the `//1 Importing...` section.
 
 ```javascript
-//1. Importing other modules
+// 1. Importing other modules
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import CreateElection from "./CreateElection"
 import Active from "./Active";
@@ -1042,29 +1034,29 @@ import contractJson from './build/contracts/MainContract.json';
 ```
 <br>
 
-* **Load components** - Inside the `<div>` tag of `return()` function, add the the code for following components.
+* **Load components** - Inside the `<div>` tag of `return()` function, replace the sample text with the the code of the following components.
 
 ```javascript
-//For routing through the react application
+// For routing through the react application
 <Router>
-  {/*Default route to Active component*/}
+  {/* Default route to Active component */}
   <Route path="/" exact>
     <Redirect to="/active"/>
   </Route>
 
-  {/*Navbar*/}
+  {/* Navbar */}
   <nav className="navbar navbar-dark shadow" style={{backgroundColor: "#1b2021", height: "60px", color: "white", marginBottom: "50px"}}>
-    { /*Link to Active election page (nav-header) */}
+    {/* Link to Active election page (nav-header) */}
     <Link to = "/active"><b style = {{cursor: "pointer", color: "white"}}>Avalanche Elections</b></Link>
 
-    { /* Account address on the right side of the navbar  */}
+    {/* Account address on the right side of the navbar  */}
     <span style={{float: "right"}}>{this.state.account}</span>
   </nav>
 
-  { /* Route to CreateElection page  */}
+  {/* Route to CreateElection page */}
   {<Route path="/createElection" exact component={() => <CreateElection account={this.state.account}/>}/>}
 
-  { /* Route to Active election page  */}
+  {/* Route to Active election page */}
   {<Route path="/active" exact component={() => <Active account={this.state.account}/>}/>}
 </Router>
 ```
@@ -1091,11 +1083,11 @@ npm install rimble-ui react-router-dom --save --force
 
 ## Conclusion
 
-You have successfully built a full-fledged e-voting `dApp` with advanced features like creating custom elections, voting in them and deployed the smart contract on the `Fuji` test network using `Trufflesuite`. Along with that, we have also built the client-side application using ReactJS for interacting with the network. From this tutorial, you have learnt not only how to make make and deploy smart contracts but also how to integrate ReactJS with the blockchain using Trufflesuite.
+You have successfully built a full-fledged e-voting dApp with advanced features like creating custom elections, voting in them and deployed the smart contract on the `Fuji` test network using `Trufflesuite`. Along with that, we have also built the client-side application using ReactJS for interacting with the network. From this tutorial, you have learnt not only how to make make and deploy smart contracts but also how to integrate ReactJS with the blockchain using Trufflesuite.
 
 ## What's next?
 
-The dapp which we built just now is a somehow advanced e-voting application, as now we can make new elections, give the title and description, vote them separately. But I would recommend you add few more interesting features to it, like having a start and end date for an election, declaring the winner after the election has ended and many more like that.
+The dApp which we built just now is a somehow advanced e-voting application, as now we can make new elections, give the title and description, vote them separately. But I would recommend you add few more interesting features to it, like having a start and end date for an election, declaring the winner after the election has ended and many more like that.
 
 ## About the author
 
