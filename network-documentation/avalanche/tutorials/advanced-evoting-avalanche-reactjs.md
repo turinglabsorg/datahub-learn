@@ -1063,10 +1063,10 @@ import contractJson from './build/contracts/MainContract.json';
 
 > We have used few other dependencies which we didn't install earlier. So, run the following command in the terminal of your project directory.
 ```bash
-npm install rimble-ui react-router-dom --save --force
+npm install --save rimble-ui react-router-dom --force
 ```
 
-> Rimble UI library comes with a peer dependency of `react@16.9.0` which is not the latest version of React that we are using i.e. `react@17.0.2`. Running the `npm install` command without the `--force` tag would cause an `unable to resolve dependency tree` conflict. Thus, the `--force` tag is used to override any type of conflicts and proceeds with the installation anyway. Another way to resolve this conflict is by using the `--legacy-peer-deps` tag instead, but this would ignore all peer dependencies which we do not require, as the conflict is only between `react` and `rimble-ui`.
+{% hint style="info" %} Rimble UI library comes with a peer dependency of `react@16.9.0` which is not the latest version of React that we are using i.e. `react@17.0.2`. Running the `npm install` command without the `--force` tag would cause an `unable to resolve dependency tree` conflict. Thus, the `--force` tag is used to override any type of conflicts and proceeds with the installation anyway. Another way to resolve this conflict is by using the `--legacy-peer-deps` tag instead, but this would ignore all peer dependencies which we do not require, as the conflict is only between `react` and `rimble-ui`. {% endhint %}
 
 * Now go to the `root` directory of the project, i.e. `advanced-evoting` directory, and run the command `npm start`. The ReactJS server would start automatically.
 <br>
