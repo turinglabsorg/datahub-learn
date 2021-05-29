@@ -1,53 +1,44 @@
-﻿# Distributed File Manager (DFM) using IPFS, Celo and ReactJS
+# Distributed File Manager (DFM) using IPFS, Celo and ReactJS
 
 ## Introduction
 
-In this tutorial we will be making a `Distributed File Manager` using the `IPFS` protocol for storing our files, `Celo` network for storing the file references of each address to their uploaded files and `ReactJS` for building the client side application. For compiling and deploying our smart contracts, we will be using **Truffle Suite**.
+In this tutorial we will be making a **Distributed File Manager** using the **IPFS** protocol for storing our files, **Celo** network for storing the file references of each address to their uploaded files and **ReactJS** for building the client side application. For compiling and deploying our smart contracts, we will be using **Truffle Suite**.
 
-For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Celo network, which is an instance of the EVM.
+For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications dApps on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Celo network, which is an instance of the EVM.
 
 ## Prerequisites
 
-You are familiar with [Celo's architecture](https://docs.celo.org/) and knows about what a blockchain and smart contract is. Basic familarity with ReactJS and Solidity language, would help in better understanding of this tutorial.
+* Basic familarity with [Celo's architecture](https://docs.celo.org/) and smart ccontracts.
+* Basic familarity with [ReactJS](https://reactjs.org)
 
 ## Requirements
 
-* [NodeJS](https://nodejs.org/en) v8.9.4 or later.
-* Truffle, which you can install with `npm install -g truffle`
+* [NodeJS](https://nodejs.org/en). You’ll need to have Node >= 10.16 and npm >= 5.6 on your machine.
+* [Truffle](https://www.trufflesuite.com/truffle), which you can install with `npm install -g truffle`
 * Metamask extension added to the browser, which you can add from [here](https://metamask.io/download.html)
 
 ## Initializing the working directory
-Our application is a website whose client side is made using **ReactJS** and for developing our smart-contracts for the **Celo** network we will be using **Trufflesuite**, which would help us in compiling and deploying contracts to the network. Therefore, we need to setup our working directory according to ReactJS and Trufflesuite, for making our development process smooth.
-
-Open the terminal and navigate to the directory where you intend to create your application.
+Create a new react app using npx. npx is a npm package runner (x probably stands for eXecute). The typical use is to download and run a package temporarily or for trials.
 ```bash
-cd /path/to/directory
-```
-
-### **Setting up the ReactJS project**
-
-Use `npm` to install create-react-app 
-
-```bash
-npm install -g create-react-app
-```
-
-Create a new react app
-```bash
-create-react-app celo-dfm
+npx create-react-app dfm-celo-react
 ```
 
 Move to the newly created directory and install the basic dependencies.
 ```bash
-cd celo-dfm
-npm install web3 ethers @truffle/contract @celo/contractkit --save
+cd dfm-celo-react
+npm install --save web3 ethers @truffle/contract @celo/contractkit
 ```
+Have a look at the project structure. As you can see, there are lots of files in our project. To clear the clutter, let us first remove the unwanted files from `src` and `public` directory.
 
-Now remove the contents of `src` and `public` folder, in order to make our own.
+Remove the contents of `src` and `public` folder.
 ```bash
 rm src/*
 rm public/*
 ```
+After running the above commands, your project structure would look like the image shown below.
+
+![](https://imgur.com/gyDzKtJ.png)
+
 Make a `index.html` file in `public` folder of current directory and put the following `HTML` code.
 ```html
 <!DOCTYPE html>
@@ -56,7 +47,6 @@ Make a `index.html` file in `public` folder of current directory and put the fol
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
     <title>Distributed File Manager</title>
 </head>
 
@@ -72,7 +62,7 @@ Move out of the public folder and make a file named `App.js` inside `src` folder
 ```javascript
 import  React  from  'react';
 
-//1. Importing other modules
+// 1. Importing other modules
 
 class  App  extends  React.Component {
 	constructor(props) {
@@ -89,21 +79,22 @@ class  App  extends  React.Component {
 	}
 
 	async  init() {
-		//2. Load web3
+		// 2. Load web3
 
-		//3. Load Account
+		// 3. Load Account
 
-		//4. Load Smart-Contract instance
+		// 4. Load Smart-Contract instance
 	}
 
 	render() {
 		return (
 			<div>
-				//5. Navbar
+				Distributed File Manager
+				// 5. Navbar
 				
-				//6. IPFS Viewer component
+				// 6. IPFS Viewer component
 
-				//7. IPFS Uploader component
+				// 7. IPFS Uploader component
 			</div>
 
 		)
@@ -127,13 +118,22 @@ ReactDOM.render(
 );
 ```
 
+React project setup is now complete and your folder structure should look like this.
+
+![](https://imgur.com/G29oiUW.png)
+
 ### **Setting up the Truffle project**
 
-Run the following command in `src`  directory, to create a boilerplate for the `Truffle` project. This will setup our Truffle initial project structure. Smart contracts will be stored in the `contracts` folder, deployment functions for migrating smart contracts to the network will be stored in the `migrations` folder. And `build/contracts` folder would contain information about the deployed contract, ABI etc.
+Run the following command in the `root`  directory, to create a boilerplate for the `Truffle` project. This will set up Truffle's initial project structure. Smart contracts will be stored in the `contracts` folder, deployment functions for migrating smart contracts to the network will be stored in the `migrations` folder. By default, `/build/contracts` folder would contain information about the compiled and deployed contract, ABI etc in the `.json` format and these files are known as `artifiacts`.
 ```bash
 truffle init
 ```
-Now update the `truffle-config.js` file, with the following code to deploy the smart contract on the `Celo` network. This file would help us in connecting to the remote node of Celo Alfajores network and hence would be using your Celo account's mnemonic for deploying the contract on the network.
+There is also 1 **config** file created by the above command, which is, **truffle-config.js**. In this file, there is a lot of information regarding how to deploy contracts, how to choose a network to deploy them, and many others. Therefore, we should preserve this file for reference. So, use the below command to make a copy of this file. This would create a copy named `truffle-config-default.js`.
+```bash
+cp truffle-config.js truffle-config-default.js
+```
+Now update the `truffle-config.js` file, with the following code to deploy the smart contract on the `Celo's Alfajores` network. This file would help us in connecting to the remote node of Celo Alfajores network and hence would be using your Celo account's mnemonic for deploying the contract on the network.
+
 ```javascript
 const Web3 = require('web3');
 const ethers = require('ethers');
@@ -161,6 +161,7 @@ async function awaitWrapper(){
 awaitWrapper();
 
 module.exports = {
+  contracts_build_directory: './src/build/contracts'
   networks: {
     development: {
       host: "127.0.0.1",
@@ -180,24 +181,57 @@ module.exports = {
   }
 }
 ```
+Here, you can see that, we have used `contracts_build_directory` to change defaut location of `artificats` from `root` directory to the `src` folder. This is because, React cannot access files which are present outside the `src` folder.
 
-### **Add `FileManager.sol`**
+### **Get Celo credentials**
+For deploying smart contracts we need two things viz. A node connected to the **Celo** network and an account with few **CELO**. The good news is, **Celo** provides a remote node, which is already connected to the network. Its RPC url is https://alfajores-forno.celo-testnet.org and all our blockchain requests would go there, and this node would make transactions on the **Celo** network.
+
+Now we need a **Celo** wallet, where we would keep our funds, required for all the transactions on the network. So, visit [here](https://celowallet.app/) and create an account. While creating your account you will see your public key and mnemonic. This public address will be required to transfer funds. Also, save the **mnemonic** in a secure place (we would need it later). Instructions to add funds will be provided later in the tutorial.
+
+### **Add .env file**
+
+Create a `.env` file in the `root` folder. Please take a note that dot (.) is necessary for the `.env` file name. Now copy your Celo wallet's mnemonic in the .env file as shown below. In the .env file, **MNEMONIC** should be enclosed within double-quotes (" ").
+
+```javascript
+MNEMONIC="<avalanche-wallet-mnemonic>"
+```
+
+{% hint style="warning" %} Never share or commit your `.env` file. It contains your credentials like `mnemonics`. Therefore, it is advised to add `.env` to your `.gitignore` file. {% endhint %}
+
+Our project setup is now complete and the folder structure should look like this.
+
+![](https://imgur.com/eRatMMO.png)
+
+To confirm that we are on the same page, run the following command in the `root` folder.
+
+```bash
+npm start
+```
+It might take few seconds, to show an output as in the image below.
+
+![](https://imgur.com/VV0park.png)
+
+Now go to your browser, and visit the URL - http://localhost:3000 If your followed the above steps, you would see the page as shown below. Background theme of the website id dark, so you have to look carefully for text in black color.
+
+![](https://imgur.com/hVr1ElD.png)
+
+### **Create `FileManager.sol` smart contract**
 
 In the `contracts` directory add a new file called `FileManager.sol` and add the following block of code:
 
-```javascript
+```solidity
 pragma solidity >=0.4.21 <0.6.0;
 pragma experimental ABIEncoderV2;
 
 contract FileManager {
-	//Structure of each File
+	// Structure of each File
 	struct File {
 		string fileName;
 		string fileType;
 		string cid;
 	}
 
-	//Mapping of each user's address with the array of files they are storing
+	// Mapping of each user's address with the array of files they are storing
 	mapping(address => File[]) files;
 
 	function addFile(string[] memory _fileInfo, string  memory _cid) public {
@@ -212,49 +246,49 @@ contract FileManager {
 
 `FileManager` is a solidity smart contract which lets us store and view the meta details of file which we upload on the `IPFS` network. IPFS uses content addressing rather than location addressing. In order to identify files on the network, IPFS uses a cryptographic hash for each file. This hash is known as `content identifier` or `cid`. Whatever the size of the file, the length of this hash would be same, and is enough to identify every file uniquely. After uploading the file to IPFS, we get a `cid` which acts as a reference to that file on the network, and we store this `cid` on the Celo blockchain.
 
-For example, let us say, we upload an image file named `dark-forest.jpg` on IPFS. Now IPFS protocol would generate a unique hash, called as `cid` or `contend id` which will reference this file on the network. A `cid` would look something like this `QmVwyUH96NeQPwLN5jDkgNxM41xGCB1EVjnBYX7NoWWmKH`. So this file can be accessed using any IPFS provider like **Infura** like this `https://ipfs.infura.io/ipfs/QmVwyUH96NeQPwLN5jDkgNxM41xGCB1EVjnBYX7NoWWmKH`. If we upload the same file again, then it would generate the same hash and there would be no redundancy.
+For example, let us say, we upload an image file named `dark-forest.jpg` on IPFS. Now IPFS protocol would generate a unique hash, called as `cid` or `contend id` which will reference this file on the network. A `cid` would look something like this `QmVwyUH96NeQPwLN5jDkgNxM41xGCB1EVjnBYX7NoWWmKH`. So this file can be accessed using any IPFS provider like **Infura** like this https://ipfs.infura.io/ipfs/QmVwyUH96NeQPwLN5jDkgNxM41xGCB1EVjnBYX7NoWWmKH. If we upload the same file again, then it would generate the same hash and there would be no redundancy.
 
 ### **Let's understand this smart contract**
 
 The code for smart contract is everything within `contract FileManager {  }`.
 
-1. **Basic structure about Files** - `File` is a struct which is basically a skeleton to store the details of each file. We are having three attributes of each file viz. `fileName`, `fileType` i.e. wether it is image, audio, video or an application and finally `cid`. Here, `files` is a mapping between the owner (address) of the files and the array of those `File` structures which they uploaded.
+**Basic structure about Files** - `File` is a struct which is basically a skeleton to store the details of each file. We are having three attributes of each file viz. `fileName`, `fileType` i.e. wether it is image, audio, video or an application and finally `cid`. Here, `files` is a mapping between the owner (address) of the files and the array of those `File` structures which they uploaded.
 
-```javascript
-	//Structure of each File
-	struct  File {
-		string fileName;
-		string fileType;
-		string cid;
-	}
+```solidity
+// Structure of each File
+struct  File {
+	string fileName;
+	string fileType;
+	string cid;
+}
 
-	//Mapping of each user's address with the array of files they are storing
-	mapping(address => File[]) files;
+// Mapping of each user's address with the array of files they are storing
+mapping(address => File[]) files;
 ```
 <br>
 
-2. **Adding files** - `addFile()` function is used to add details of file to the array of `File` structures corresponding to each address. `files[msg.sender]` refers to the array of file structures, belonging to the caller of this function i.e. address `msg.sender`. Function's arguments are `_fileInfo[]` which is array of 2 parameters (file name and file type respectively) and second argument is `cid` which is the content id for the uploaded file.
+**Adding files** - `addFile()` function is used to add details of file to the array of `File` structures corresponding to each address. `files[msg.sender]` refers to the array of file structures, belonging to the caller of this function i.e. address `msg.sender`. Function's arguments are `_fileInfo[]` which is array of 2 parameters (file name and file type respectively) and second argument is `cid` which is the content id for the uploaded file.
 
-```javascript
-	function  addFile(string[] memory _fileInfo, string  memory _cid) public {
-		files[msg.sender].push(File(_fileInfo[0], _fileInfo[1], _cid));
-	}
+```solidity
+function  addFile(string[] memory _fileInfo, string  memory _cid) public {
+	files[msg.sender].push(File(_fileInfo[0], _fileInfo[1], _cid));
+}
 ```
 <br>
 
-3. **Viewing stored files** - `getFiles()` is a function which returns the array of file structures corresponding to the account address. It return the details of all the files as an array that is being uploaded by the address (passed in the argument of this function) on IPFS network.
+**Viewing stored files** - `getFiles()` is a function which returns the array of file structures corresponding to the account address. It return the details of all the files as an array that is being uploaded by the address (passed in the argument of this function) on IPFS network.
 
-```javascript
-	function  getFiles(address _account) public  view  returns (File[] memory) {
-		return files[_account];
-	}
+```solidity
+function  getFiles(address _account) public  view  returns (File[] memory) {
+	return files[_account];
+}
 ```
 
-### **Add new migration**
+### **Make a new file for migrating smart contracts**
 
 Create a new file in the `migrations` directory named `2_deploy_contracts.js`, and add the following block of code. This handles deploying the `FileManager` smart contract to the blockchain.
 
-```javascript
+```solidity
 const FileManager = artifacts.require("FileManager");
 
 module.exports = function(deployer) {
@@ -263,9 +297,9 @@ module.exports = function(deployer) {
 ```
 ### **Compile Contracts with Truffle**
 
-Any time you make a change to `.sol` files, you need to run `truffle compile`.
+Any time you want deploy smart contracts, and you have made changes in them, you need to run `truffle compile`.
 
-```text
+```bash
 truffle compile
 ```
 
@@ -277,20 +311,21 @@ Compiling your contracts...
 > Compiling ./contracts/FileManager.sol
 > Compiling ./contracts/Migrations.sol
 
-> Artifacts written to /home/guest/blockchain/dfm/build/contracts
+> Artifacts written to /home/guest/blockchain/dfm-celo-react/src/build/contracts
 > Compiled successfully using:
    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 ```
 <br>
 
-> **Note** : There might be an error `Error: Cannot find module 'pify'`, if the `pify` module is not installed automatically while installing `truffle`. So, this issue can be resolved by separately installing `pify`, using the command below 
+{% hint style="warning" %} There might be an error `Error: Cannot find module 'pify'`, if the `pify` module is not installed automatically while installing `truffle`. So, this issue can be resolved by separately installing `pify`, using the command below  {% endhint %}
 
 ```
 npm install pify --save
 ```
 
+Compiling the smart contracts would create `.json` file in the `src/build/contracts` directory. It stores `ABI` and other necessary metadata. 
 
-Compiling the smart contracts would create `.json` file in the `build/contracts` directory. It stores `ABI` and other necessary metadata. `ABI` refers to Application Binary Interface, which is basically a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) in order to learn more.
+{% hint style="info" %} `ABI` refers to Application Binary Interface, which is a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) to learn more. {% endhint %}
 
 ### **Fund the account and run migrations on the Celo's Alfjores test network.**
 
@@ -422,12 +457,12 @@ import  React  from  'react';
 import  Web3  from  'web3'
 import  TruffleContract  from  '@truffle/contract';
 
-//For connecting our web application with Metamask Web3 Provider
+// For connecting our web application with Metamask Web3 Provider
 export  class  GetWeb3  extends  React.Component {
 	async  getWeb3() {
 		let  web3 = window.web3;
 		if (typeof  web3 !== 'undefined') {
-			//Setup Web3 Provider
+			// Setup Web3 Provider
 			this.web3Provider = web3.currentProvider;
 			this.web3 = new  Web3(web3.currentProvider);
 			return  this.web3;
@@ -437,17 +472,17 @@ export  class  GetWeb3  extends  React.Component {
 	}
 }
 
-//For getting our Smart-Contract's instance to interact with it using javascript
+// For getting our Smart-Contract's instance to interact with it using javascript
 export  class  GetContract  extends  React.Component {
 	async  getContract(web3, contractJson) {
-		//Setup Contract
+		// Setup Contract
 		this.contract = await  TruffleContract(contractJson);
 		this.contract.setProvider(web3.currentProvider);
 		return  await  this.contract.deployed();
 	}
 }
 
-//For getting our account address from the Metamask
+// For getting our account address from the Metamask
 export  class  GetAccount  extends  React.Component {
 	async  getAccount(web3) {
 		return  await  web3.eth.getAccounts();
@@ -557,26 +592,28 @@ export  default  IPFSUploader;
 ```
 
 Let's understand this component block by block.
-* **`IPFS Client`** - First we need to make a connection to IPFS client using the `ipfs-http-client` module. This has to be done by some IPFS provider like `Infura`. So, the following line would create an IPFS client - 
+
+**`IPFS Client`** - First we need to make a connection to IPFS client using the `ipfs-http-client` module. This has to be done by some IPFS provider like `Infura`. So, the following line would create an IPFS client - 
 ```javascript
 const  ipfs = create({ host:  'ipfs.infura.io', port:  5001, protocol:  'https' })
 ```
 <br>
 
-* **`state`** - **IPFSUploader** component will maintain a state of file properties like `fileName`, `fileType`, `buffer` of each file, `account` address and `cid` of the uploaded file. These state variables will be updated whenever there is a change in input field of file type.
+**`state`** - **IPFSUploader** component will maintain a state of file properties like `fileName`, `fileType`, `buffer` of each file, `account` address and `cid` of the uploaded file. These state variables will be updated whenever there is a change in input field of file type.
 
 <br>
 
-* **`captureFile()`** - This function will be called whenever there is an `onChange` event in the input field. This will update the state with necessary file information. In this function we will be having a `Compressor` instance which will compress the file of `image` type.
+**`captureFile()`** - This function will be called whenever there is an `onChange` event in the input field. This will update the state with necessary file information. In this function we will be having a `Compressor` instance which will compress the file of `image` type.
 
 <br>
 
-* **`onSubmit()`** - This function would be called when the user will submit the form containing the file as an input. This function would first invoke the `add()` function of the IPFS client and upload the `buffer` of this file which was previously stored in the `state` of this component. Once the file is uploaded, it will return a `cid`. After that, we will add these file informations along with `cid` to the smart contract using the `addFile()` contract function.
+**`onSubmit()`** - This function would be called when the user will submit the form containing the file as an input. This function would first invoke the `add()` function of the IPFS client and upload the `buffer` of this file which was previously stored in the `state` of this component. Once the file is uploaded, it will return a `cid`. After that, we will add these file informations along with `cid` to the smart contract using the `addFile()` contract function.
 
-> Since we have used new libraries like `compressorjs`, `ipfs-http-client` and `rimble-ui` which we did not install previously, therefore please install these libraries using the below command. 
-> ```bash
-> npm install ipfs-http-client compressorjs rimble-ui --save
->  ```
+Since we have used new libraries like `compressorjs`, `ipfs-http-client` and `rimble-ui` which we did not install previously, therefore please install these libraries using the below command. 
+```bash
+npm install --save ipfs-http-client compressorjs rimble-ui
+```
+{% hint style="info" %} Rimble UI library comes with a peer dependency of `react@16.9.0` which is not the latest version of React that we are using i.e. `react@17.0.2`. Running the `npm install` command without the `--force` tag would cause an `unable to resolve dependency tree` conflict. Thus, the `--force` tag is used to override any type of conflicts and proceeds with the installation anyway. Another way to resolve this conflict is by using the `--legacy-peer-deps` tag instead, but this would ignore all peer dependencies which we do not require, as the conflict is only between `react` and `rimble-ui`. {% endhint %}
 
 <br>
 
@@ -781,23 +818,23 @@ export default IPFSViewer;
 ```
 Let's understand the above component block by block.
 
-* **`state`** - The state of this component would contain array of different types of files like `imageFiles`, `audioFiles` etc.
+**`state`** - The state of this component would contain array of different types of files like `imageFiles`, `audioFiles` etc.
 
 <br>
 
-* **`loadFiles()`** - This function would be called after the component is mounted and would load the state with all the files which are uploaded by the account address Using the `getFiles()` function of the smart contract, it can easily fetch all file informations from the blockchain. It will separate the different types of files like images, videos, audios etc. accordingly and update the state. 
+**`loadFiles()`** - This function would be called after the component is mounted and would load the state with all the files which are uploaded by the account address Using the `getFiles()` function of the smart contract, it can easily fetch all file informations from the blockchain. It will separate the different types of files like images, videos, audios etc. accordingly and update the state. 
 
 <br>
 
-* **`showImageFiles()`** - This function would return components with all image files composed with proper `img` tag, as an array, to the caller of this function.
+**`showImageFiles()`** - This function would return components with all image files composed with proper `img` tag, as an array, to the caller of this function.
 
 <br>
 
-* Similarly, there are different functions for each file type.
+Similarly, there are different functions for each file type.
 
 <br>
 
-* `IPFSViewerCSS.css` file has been imported to add few designs to the page like decreasing the width of the scroll bar, color changes etc. So, make a new file named `IPFSViewerCSS.css` and add the following code inside it.
+`IPFSViewerCSS.css` file has been imported to add few designs to the page like decreasing the width of the scroll bar, color changes etc. So, make a new file named `IPFSViewerCSS.css` and add the following code inside it.
 
 ```css
 .imageViewer::-webkit-scrollbar {
@@ -822,10 +859,10 @@ a {
 
 Now we need to update our `App.js` file with all the components that we have made so far.
 
-* **Import Modules** - First import all the modules and components into the `App.js` file by appending the following code under the `//1 Importing...` section.
+**Import Modules** - First import all the modules and components into the `App.js` file by appending the following code under the `//1 Importing...` section.
 
 ```javascript
-//1. Importing other modules
+// 1. Importing other modules
 import {GetWeb3, GetContract, GetAccount} from './BlockchainUtil';
 import IPFSUploader from './IPFSUploader';
 import IPFSViewer from './IPFSViewer';
@@ -834,59 +871,59 @@ import contractJson from './build/contracts/FileManager.json';
 ```
 <br>
 
-* **`Load Web3`** - Now put the following code under the `//2. Load web3...` section. This would set the state with web3 instance.
+**`Load Web3`** - Now put the following code under the `//2. Load web3...` section. This would set the state with web3 instance.
 
 ```javascript
-//1. Load web3
+// 1. Load web3
 const Web3 = new GetWeb3();
 this.web3 = await Web3.getWeb3();
 this.setState({web3: this.web3});
 ```
 <br>
 
-* **`Load Account`** - Put the following code under the `//3. Load Account...` section. This would set the state with Metamask wallet's first connected address.
+**`Load Account`** - Put the following code under the `//3. Load Account...` section. This would set the state with Metamask wallet's first connected address.
 
 ```javascript
-//2. Load Account
+// 2. Load Account
 const Account = new GetAccount();
 this.account = await Account.getAccount(this.web3);
 this.setState({account: this.account[0]});
 ```
 <br>
 
-* **`Load Smart contract`** - Put the following code under the `//4. Load smart...` section. This would set the state with deployed smart contract's instance for the contract's interaction using Javascript.
+**`Load Smart contract`** - Put the following code under the `//4. Load smart...` section. This would set the state with deployed smart contract's instance for the contract's interaction using Javascript.
 
 ```javascript
-//3. Load Contract
+// 3. Load Contract
 const Contract = new GetContract();
 this.contract = await Contract.getContract(this.web3, contractJson);
 this.setState({contract: this.contract});
 ```
 <br>
 
-* **Load components** - Inside the `<div>` tag of `return()` function, add the the code for following components.
+**Load components** - Inside the `<div>` tag of `return()` function, replace the exisiting text `Distributed File Manager` with the the code of the following components.
 
 ```jsx
-//5. Navbar
+{/* 5. Navbar */}
 <nav className="navbar navbar-dark shadow" style={{backgroundColor: "#1b2021", height: "60px", color: "white"}}>
   <b>Distributed File Manager</b>
   <span style={{float: "right"}}>{this.state.account}</span>
 </nav>
 
-//6. IPFS Viewer com  ponent
+{/* 6. IPFS Viewer com  ponent */}
 <IPFSViewer state = {this.state} />
 
-//7. IPFS Uploader component
+{/* 7. IPFS Uploader component */}
 <IPFSUploader state = {this.state} />
 ```
 
-* Now go to the `root` directory of the project, i.e. `dfm` directory, and run the command `npm start`. The ReactJS server would start automatically.
+Now go to the `root` directory of the project, i.e. `dfm` directory, and run the command `npm start`. The ReactJS server would start automatically.
 <br>
 
-* Visit [http://localhost:3000](http://localhost:3000) to interact with built dApp.
+Visit [http://localhost:3000](http://localhost:3000) to interact with built dApp.
 <br>
 
-* Don't forget to setup Metamask with `Celo` Alfajores testnet and also fund the account with Alfajores test tokens in order to upload files.
+Don't forget to setup Metamask with `Celo` Alfajores testnet and also fund the account with Alfajores test tokens in order to upload files.
 
 In the Metamask extension, add a custom RPC by clicking at the network dropdown in the center of the extension. Fill the details as shown in the below image.
 
@@ -898,22 +935,24 @@ In the Metamask extension, add a custom RPC by clicking at the network dropdown 
 
 <br>
 
-> Network Name - `Celo Alfajores` <br>
-  New RPC URL - `https://alfajores-forno.celo-testnet.org` <br>
-  Chain ID - `44787` <br>
-  Currency Symbol - `CELO` <br>
+| Info	          | Value                                    |
+| ----------------|------------------------------------------|
+| Network Name    | Celo Alfajores 			     |
+| New RPC URL     | https://alfajores-forno.celo-testnet.org |
+| Chain ID        | 44787 				     |
+| Currency Symbol | CELO 				     |
 
 <br>
 
-> If you find any difficulty in setting up the project, then feel free to clone this repository https://github.com/rajranjan0608/dfm, and follow the steps in the `README.md` file of this repo in order to run the application.
+{% hint style="info" %} If you find any difficulty in setting up the project, then feel free to clone this repository https://github.com/rajranjan0608/dfm, and follow the steps in the `README.md` file of this repo in order to run the application. {% endhint %}
 
 <p align="center" style="margin: 30px;">
   <img src = 'https://imgur.com/a6on3z4.gif'>
 </p>
 
-## Congratulations!
+## Conclusion
 
-You have successfully built a full fledged `dApp` and deployed the smart contract on `Celo` Alfajores test network using `Trufflesuite`. Along with that, we have also built the client side application for interacting with the network and uploading files on IPFS.
+Congratulations! You have successfully built a Distributed File Manager by deploying the smart contract on **Celo** Alfajores test network using **Trufflesuite** and connecting your client side made with **ReactJS**. Most interesting part is that, we have used **IPFS** protocol for uploading our files on the distributed network.
 
 ## What's next?
 
