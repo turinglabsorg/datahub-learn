@@ -1,19 +1,19 @@
 # Create a chat dApp using Solidity and ReactJS
 
 ## Introduction
-Today we will build a distributed chat application on Avalanche's Fuji test-network from scratch. The dApp will allow users to connect with other users and chat with them in real-time. We will develop our smart contract using Solidity which will be deployed on Avalanche's C-chain. It would have an easy-to-use UI developed using Reactjs. So Lets begin ...
+Today we will build a decentralized chat application on Avalanche's Fuji test-network from scratch. The dApp will allow users to connect with other users and chat with them. We will develop our smart contract using Solidity which will be deployed on Avalanche's C-chain. It would have an easy-to-use UI developed using Reactjs. So Lets begin ...
 
 ## Prerequisites
 * Basic familiarity with Reactjs and Solidity
 * Should've completed [Deploy a Smart Contract on Avalanche using Remix and MetaMask](https://learn.figment.io/network-documentation/avalanche/tutorials/deploy-a-smart-contract-on-avalanche-using-remix-and-metamask) tutorial
 
 ## Requirements
-* [Node](https://nodejs.org/en/download/releases/) v10.18.0 or later
+* [Node.js](https://nodejs.org/en/download/releases/) v10.18.0+
 * [Metamask extension](https://metamask.io/download.html) on your browser
 
 ## Implementing the smart contract 
 
-The basic functionality that an application should provide to classify as a chatting application is that the users should have the ability to connect with others and then share messages with them. So to accomplish this we will divide our contract into three parts :- Account creation, Adding new friends and finally sending messages to their friends.
+Our chat dApp needs the basic functionality allowing users to connect with and share messages with friends. To accomplish this, we will write the functions responsible for creating an account, adding friends and sending messages.
 
 ### Account creation
 
@@ -41,28 +41,30 @@ The final part of our contract will enable the exchange of messages between the 
 
 ### Data Collections
 
-We will have three types of user-defined data types, namely - `user`, `friend` & `message`. 
+We will have three types of user-defined data: `user`, `friend` and `message`. 
 
-1. `user` will have properties - `name` (which stores the default username that the user wants to be addressed with) and second a list of their friends.
+* `user` will have properties - `name` (which stores the default username that the user wants to be addressed with) and second a list of their friends.
 
-2. `friend` has two properties - `pubkey` which is the friends' avax address and the `name` user would like to refer them as.
+* `friend` has two properties - `pubkey` which is the friends' avax address and the `name` user would like to refer them as.
 
-3. `message` consists of three properties - the `sender`, `timestamp` & the text message `msg`.
+* `message` consists of three properties - the `sender`, `timestamp` & the text message `msg`.
 
 We would maintain 2 collections in our database :- 
 
-1. `userList` where all the users on the platform are mapped with their public address.
+* `userList` where all the users on the platform are mapped with their public address.
 
-2. `allMessages` which stores the messages in an ordered manner between the 2 users. As solidity doesn't allow user-defined keys in mapping, We would be using a workaround where we would hash the public key of the two users to obtain a unique value (practically).
+* `allMessages` which stores the messages in an ordered manner between the 2 users. As solidity doesn't allow user-defined keys in mapping, We would be using a workaround where we would hash the public key of the two users to obtain a unique value (practically).
 
 Following is the solidity contract which we will deploy on the network.
 
-```javascript
+```solidity
+// SPDX-License-Identifier: GPL-3.0
+
 pragma solidity >=0.7.0 <0.9.0;
 
 contract Database {
 	
-	// Stores the default name of a user and her friends info
+	// Stores the default name of an user and her friends info
 	struct user {
 		string name;
 		friend[] friendList;
@@ -86,39 +88,38 @@ contract Database {
 	// Collection of messages communicated in a channel between two users
 	mapping(bytes32 => message[]) allMessages; // key : Hash(user1,user2)
 	
-	/// It checks whether a user(identified by its public key)
-	/// has created an account on this application or not
+	// It checks whether a user(identified by its public key)
+	// has created an account on this application or not
 	function checkUserExists(address pubkey) public view returns(bool) {
-		// return keccak256(bytes(userList[pubkey].name)) != keccak256("");
 		return bytes(userList[pubkey].name).length > 0;
 	}
 	
-	/// Registers the caller(msg.sender) to our app with a non-empty username
+	// Registers the caller(msg.sender) to our app with a non-empty username
 	function createAccount(string calldata name) external {
-		require(checkUserExists(msg.sender)==false,"User already exists!");
-		require(bytes(name).length>0, "Username cannot be empty string"); 
+		require(checkUserExists(msg.sender)==false, "User already exists!");
+		require(bytes(name).length>0, "Username cannot be empty!"); 
 		userList[msg.sender].name = name;
 	}
 	
-	/// Returns the default name provided by an user
+	// Returns the default name provided by an user
 	function getUsername(address pubkey) external view returns(string memory) {
-		require(checkUserExists(pubkey), "Such user doesn't exists on our application!");
+		require(checkUserExists(pubkey), "User is not registered!");
 		return userList[pubkey].name;
 	}
 	
-	/// Adds new user as your friend with an associated nickname
+	// Adds new user as your friend with an associated nickname
 	function addFriend(address friend_key, string calldata name) external {
-		require(checkUserExists(msg.sender), "Create your account first!");
-		require(checkUserExists(friend_key), "Such user doesn't exists on our application!");
-		require(msg.sender!=friend_key, "You cannot add friend as yourself!");
-		require(_alreadyFriends(msg.sender,friend_key)==false, "The given users are already friends with each other");
+		require(checkUserExists(msg.sender), "Create an account first!");
+		require(checkUserExists(friend_key), "User is not registered!");
+		require(msg.sender!=friend_key, "Users cannot add themselves as friends!");
+		require(checkAlreadyFriends(msg.sender,friend_key)==false, "These users are already friends!");
 		
-		_addFriend(msg.sender,friend_key,name);
-		_addFriend(friend_key,msg.sender, userList[msg.sender].name);
+		_addFriend(msg.sender, friend_key, name);
+		_addFriend(friend_key, msg.sender, userList[msg.sender].name);
 	}
 	
-	/// Checks if two users are already friends or not
-	function _alreadyFriends(address pubkey1, address pubkey2) internal view returns(bool) {
+	// Checks if two users are already friends or not
+	function checkAlreadyFriends(address pubkey1, address pubkey2) internal view returns(bool) {
 		
 		if(userList[pubkey1].friendList.length > userList[pubkey2].friendList.length)
 		{
@@ -135,43 +136,43 @@ contract Database {
 		return false;
 	}
 	
-	/// @dev A helper function to update the friendList
-	function _addFriend(address me,address friend_key, string memory name) internal {
+	// A helper function to update the friendList
+	function _addFriend(address me, address friend_key, string memory name) internal {
 		friend memory newFriend = friend(friend_key,name);
 		userList[me].friendList.push(newFriend);
 	}
 	
-	/// Returns list of friends of the sender
+	// Returns list of friends of the sender
 	function getMyFriendList() external view returns(friend[] memory) {
 		return userList[msg.sender].friendList;
 	}
 	
-	/// @notice Returns a unique code for the channel created between the two users
-	/// @dev Hash(key1,key2) where key1 is lexiographically smaller than key2
+	// Returns a unique code for the channel created between the two users
+	// Hash(key1,key2) where key1 is lexicographically smaller than key2
 	function _getChatCode(address pubkey1, address pubkey2) internal pure returns(bytes32) {
 		if(pubkey1 < pubkey2)
 			return keccak256(abi.encodePacked(pubkey1, pubkey2));
 		else
-			return keccak256(abi.encodePacked(pubkey2,pubkey1));
+			return keccak256(abi.encodePacked(pubkey2, pubkey1));
 	}
 	
-	/// Sends a new message to a given friend
+	// Sends a new message to a given friend
 	function sendMessage(address friend_key, string calldata _msg) external {
-		require(checkUserExists(msg.sender), "Create your account first!");
-		require(checkUserExists(friend_key), "Such user does not exists on our application!");
-		require(_alreadyFriends(msg.sender,friend_key), "You are not friend with the given user");
+		require(checkUserExists(msg.sender), "Create an account first!");
+		require(checkUserExists(friend_key), "User is not registered!");
+		require(checkAlreadyFriends(msg.sender,friend_key), "You are not friends with the given user");
 		
-		bytes32 chatCode = _getChatCode(msg.sender,friend_key);
-		message memory newMsg = message(msg.sender,block.timestamp,_msg);
+		bytes32 chatCode = _getChatCode(msg.sender, friend_key);
+		message memory newMsg = message(msg.sender, block.timestamp, _msg);
 		allMessages[chatCode].push(newMsg);
 	}
 	
-	/// Returns all the chat messages communicated in a channel
-	function getMyChatMessages(address friend_key) external view returns(message[] memory) {
+	// Returns all the chat messages communicated in a channel
+	function readMessage(address friend_key) external view returns(message[] memory) {
 		bytes32 chatCode = _getChatCode(msg.sender, friend_key);
 		return allMessages[chatCode];
 	}
-} 
+}
 ```
 
 Deploy the above contract using the steps provided at
@@ -187,34 +188,34 @@ An Application Binary Interface (ABI) is a JSON object which stores the metadata
 Now, we are going to create a react app and setup the frontend of the application.
 
 Open the terminal and navigate to the directory where you intend to create your application.
-```cmd
+```bash
 cd /path/to/directory
 ```
 
 Now use `npm` to install create-react-app 
 
-```cmd
+```bash
 npm install -g create-react-app
 ```
 
 Create a new react app
-```cmd
-create-react-app avalanche-chatapp
+```bash
+create-react-app avalanche-chat-app
 ```
 
 Move to the newly created directory and install the given dependencies.
-```cmd
-cd avalanche-chatapp
+```bash
+cd avalanche-chat-app
 npm install --save ethers@5.1.4 react-bootstrap@1.5.2 bootstrap@4.6.0
 ```
 
 Now remove the contents of src and public folder
-```cmd
+```bash
 rm -v src/*
 rm -v public/*
 ```
 
-Make a `index.html` file in `public` folder of current directory and put the following html code.
+Create an `index.html` file in the `public` directory; and paste the following HTML:
 
 ```html
 <!DOCTYPE html>
@@ -224,7 +225,7 @@ Make a `index.html` file in `public` folder of current directory and put the fol
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Chat App</title>
+    <title>Chat dApp</title>
 </head>
 
 <body>
@@ -339,10 +340,10 @@ export function NavBar(props){
 }
 ```
 
-Make a new file named `index.js` in the same folder `src` and paste the given code.
+Create a new file named `index.js` in the same folder `src` and paste the given code.
 
 {% hint style="info" %}  
-Note: Write down the `contract address` obtained earlier in the variable named `contractAddress` on line 12  
+Note: Write down the contract address obtained in `Implementing the smart contract` section in the variable named `contractAddress` on line 12  
 {% endhint %}
 
 ```javascript
@@ -620,37 +621,6 @@ export const abi = [
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			}
-		],
-		"name": "createAccount",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "friend_key",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "_msg",
-				"type": "string"
-			}
-		],
-		"name": "sendMessage",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "pubkey",
 				"type": "address"
@@ -670,37 +640,14 @@ export const abi = [
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "friend_key",
-				"type": "address"
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
 			}
 		],
-		"name": "getMyChatMessages",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "sender",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "msg",
-						"type": "string"
-					}
-				],
-				"internalType": "struct Database.message[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
+		"name": "createAccount",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -746,12 +693,70 @@ export const abi = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "friend_key",
+				"type": "address"
+			}
+		],
+		"name": "readMessage",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "msg",
+						"type": "string"
+					}
+				],
+				"internalType": "struct Database.message[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "friend_key",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_msg",
+				"type": "string"
+			}
+		],
+		"name": "sendMessage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	}
 ]
 ```
 
+{% hint style="info" %}  
+An Application Binary Interface (ABI) is a JSON object which stores the metadata about the methods of a contract like data type of input parameters, return data type & property of the method like payable, view, pure etc. You can learn more about the ABI from the [solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html)  
+{% endhint %}
+
 Now its time to run our React app. Use the following command to start the React app.
-```cmd
+```bash
 npm start
 ```
 
@@ -762,7 +767,7 @@ npm start
 ![preview](https://github.com/realnimish/blockchain-chat-app/blob/main/public/UI.png?raw=true)
 
 ## Conclusion
-Congratulatons!! You've successfully developed a distributed chatting application deployed on Avalanche's Fuji network and have also created a UI via which you can interact with the dApp.
+Congratulations! We have successfully developed a decentralized chat application which can be deployed on Avalanche or other EVM-compatible blockchain. We also created a boilerplate React application to use as the frontend for our dApp.
 
 ## Troubleshooting
 
@@ -777,7 +782,7 @@ Congratulatons!! You've successfully developed a distributed chatting applicatio
 Check if you have updated the `contractAddress` variable in `src/index.js` properly!
 
 ## What's Next
-The current dApp has very limited functionalities and we can improve it by adding features like deleting messages, blocking users, creating group(s) and optimising the dApp interaction cost with possible methods like max chat limit or using event log for short messages.
+This dApp has very limited functionality. We can improve it by adding functions to delete messages, block users, or create groups of friends. We could also optimize the dApp interaction cost with functions to limit the maximum number of messages, or possibly using event log for short messages.
 
 ## About the Author(s)
 
