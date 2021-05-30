@@ -1,23 +1,19 @@
 # Learn how to create a chat application using Solidity & React
 
 ## Introduction
-Today we will build a distributed chat application on Avalanche's Fuji test-network from scratch. The DApp will allow users to connect with other users and chat with them in real-time. We will develop our smart contract using Solidity which will be deployed on Avalanche's C-chain. It would have an easy-to-use UI developed using Reactjs. So lets begin ...
-<br><br>
+Today we will build a distributed chat application on Avalanche's Fuji test-network from scratch. The DApp will allow users to connect with other users and chat with them in real-time. We will develop our smart contract using Solidity which will be deployed on Avalanche's C-chain. It would have an easy-to-use UI developed using Reactjs. So Lets begin ...
 
 ## Prerequisites
 * Basic familiarity with Reactjs and Solidity
 * Should've completed [Deploy a Smart Contract on Avalanche using Remix and MetaMask](https://learn.figment.io/network-documentation/avalanche/tutorials/deploy-a-smart-contract-on-avalanche-using-remix-and-metamask) tutorial
 
-## Requirenments
+## Requirements
 * Node v10.18.0 or later
 * [Metamask extension](https://metamask.io/download.html) on your browser
-<br><br>
 
 ## Developing smart contract 
 
 The basic functionality that an application should provide to classify as a chatting application is that the users should have the ability to connect with others and then share messages with them. So to accomplish this we will divide our contract into three parts :- Account creation, Adding new friends and finally sending messages to their friends.
-
-<br>
 
 ### Account creation
 
@@ -27,8 +23,6 @@ We will define 3 methods `checkUserExists()`, `createAccount()` & `getUsername()
 
 * The second method registers _new user_ on the platform and finally the last method will return the username of the user if it exists.
 
-<br>
-
 ### Adding new friend
 
 Here too we will divide the task into 3 parts - `checkAlreadyFriends()`, `addFriend()` & `getMyFriendList()`.
@@ -37,8 +31,6 @@ Here too we will divide the task into 3 parts - `checkAlreadyFriends()`, `addFri
 
 * The second method mark two users as friend if they both exists on the system and are already not friends with each other and finally the last method will return a list of all friends of a given user.
 
-<br>
-
 ### Messaging
 
 The final part of our contract will enable the exchange of messages between the users. We will divide the task into 2 methods i.e. `sendMessage` & `readMessage`.
@@ -46,8 +38,6 @@ The final part of our contract will enable the exchange of messages between the 
 * The  former method would allow an user to send message to another user if they both are registered on the application and are friends with each other. This will be achieved from the methods defined earlier (`checkUserExists` and `_alreadyFriends`) respectively.
 
 * The later method, actually named `getMyChatMessages()` , returns the chat history that has happend between the two users so far.
-
-<br>
 
 ### Data Collections
 
@@ -59,15 +49,11 @@ We will have three types of user-defined data types, namely - `user`, `friend` &
 
 3. `message` consists of three properties - the `sender`, `timestamp` & the text message `msg`.
 
-<br>
-
 We would maintain 2 collections in our database :- 
 
 1. `userList` where all the users on the platform are mapped with their public address.
 
 2. `allMessages` which stores the messages in an ordered manner between the 2 users. As solidity doesn't allow user-defined keys in mapping, We would be using a workaround where we would hash the public key of the two users to obtain a unique value (practically).
-
-<br>
 
 Following is the solidity contract which we will deploy on the network.
 
@@ -187,25 +173,17 @@ contract Database {
 	}
 } 
 ```
-<br>
 
 Deploy the above contract using the steps provided at
 [*Deploy a Smart Contract on Avalanche using Remix and MetaMask*](https://learn.figment.io/network-documentation/avalanche/tutorials/deploy-a-smart-contract-on-avalanche-using-remix-and-metamask). 
 Note down the `contract address` and `ABI` generated in the above tutorial. They will be required in further steps.
 
-<br>
-
 > **Knowledge Point**
 ><br>An Application Binary Interface (ABI) is a JSON object which stores the metadata about the methods of a contract like data type of input parameters, return data type & property of the method like payable, view, pure etc. You can learn more about the ABI from the [solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html)
 
-<br>
-
 ## Creating frontend using React
-<br>
 
 Now, we are going to create a react app and setup the frontend of the application.
-
-<br>
 
 Open the terminal and navigate to the directory where you intend to create your application.
 ```cmd
@@ -255,10 +233,7 @@ Make a `index.html` file in `public` folder of current directory and put the fol
 </html>
 ```
 
-<br>
-
 Move out of the public folder and make a file named `Components.js` inside `src` folder and put the following code inside.
-<br>
 
 ```javascript
 import React from "react"
@@ -363,12 +338,8 @@ export function NavBar(props){
 }
 ```
 
-<br>
-
 Make a new file named `index.js` in the same folder `src` and paste the given code.
 > Note: Write down the `contract address` obtained earlier in the variable named `contractAddress` on line 12
-
-<br>
 
 ```javascript
 import React from "react";
@@ -619,7 +590,6 @@ ReactDom.render( <
     document.getElementById('root')
 );
 ```
-<br>
 
 Make a new file named `abi.js` in the `src` folder. Export const variable named abi which stores the ABI you had generated earlier. Add your ABI after `export const abi = `. Your abi.js file should look like this!
 
@@ -776,27 +746,21 @@ export const abi = [
 ]
 ```
 
-<br>
-
 Now its time to run our React app. Use the following command to start the React app.
 ```cmd
 npm start
 ```
+
 * Visit [http://localhost:3000](http://localhost:3000) to interact with the app.
 
 * Don't forget to setup Metamask with `Fuji testnet` and also fund the account with Fuji c-chain test tokens for tx fees. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask).
-
-<br>
 
 ![preview](https://github.com/realnimish/blockchain-chat-app/blob/main/public/UI.png?raw=true)
 
 ## Conclusion
 Congratulatons!! You've successfully developed a distributed chatting application deployed on Avalanche's Fuji network and have also created a UI via which you can interact with the DApp.
 
-<br>
-
 ## Troubleshooting
-<br>
 
 **Transaction Failure**
 
@@ -804,19 +768,13 @@ Congratulatons!! You've successfully developed a distributed chatting applicatio
 
 * Make sure that you have selected the correct account on metamask if you have more than one account connected to the site.
 
-<br>
-
 **Application crash**
 
 Check if you have updated the `contractAddress` variable in `src/index.js` properly!
 
-<br>
-
 ## What's Next
 The current DApp has very limited functionalities and we can improve it by adding features like deleting messages, blocking users, creating group(s) and optimising the DApp interaction cost with possible methods like max chat limit or using event log for short messages.
 
-<br>
-
 ## About the Author(s)
 
-The tutorial was created by [Nimish Agrawal](https://github.com/realnimish) & [Sayan Kar](https://github.com/SayanKar). You can reach out to them on [Figment Forum](https://community.figment.io/u/nimishagrawal100.in/) or on LinkedIn [@Nimish Agrawal](https://www.linkedin.com/in/realnimish) and [@Sayan Kar](https://www.linkedin.com/in/sayan-kar-).    
+The tutorial was created by [Nimish Agrawal](https://github.com/realnimish) & [Sayan Kar](https://github.com/SayanKar). You can reach out to them on [Figment Forum](https://community.figment.io/u/nimishagrawal100.in/) or on LinkedIn [@Nimish Agrawal](https://www.linkedin.com/in/realnimish) and [@Sayan Kar](https://www.linkedin.com/in/sayan-kar-).
