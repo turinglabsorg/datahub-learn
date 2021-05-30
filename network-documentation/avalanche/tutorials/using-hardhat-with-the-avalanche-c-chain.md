@@ -6,7 +6,9 @@ description: Learn how to use Hardhat with the Avalanche C-Chain
 
 ## Introduction
 
-[Hardhat](https://hardhat.org) is a suite of tools that together provides us with a development environment that helps developers to easily manage and automate the tasks around building smart contracts and dApps. It is very similar to [Truffle](https://www.trufflesuite.com/) in this regard. Hardhat could be used to compile, deploy, test, and debug smart contracts. In this tutorial, we learn how Hardhat can be used with Avalanche C-Chain. Avalanche C-Chain is an instance of the EVM (Ethereum Virtual Machine).
+[Hardhat](https://hardhat.org) is a suite of tools that together provides us with a development environment that helps developers to easily manage and automate the tasks around building smart contracts and dApps. Hardhat could be used to compile, deploy, test, and debug smart contracts. It is very similar to [Truffle](https://www.trufflesuite.com/) in this regard. But, what differentiates Hardhat from Truffle is that it provides developers with a seamless experience developing and debugging complex Solidity smart contracts with the help of powerful extensibility of the ecosystem with the help of a rich collection of plugins as well as by providing many tools like Hardhat Network, Hardhat Runner, etc.
+
+In this tutorial, we learn how Hardhat can be used with Avalanche C-Chain. Avalanche C-Chain is an instance of the EVM (Ethereum Virtual Machine). Being an instance of the EVM makes the Avalanche C-Chain very attractive as it could instantly be home to the millions of smart contract projects already written Solidity.
 
 ## Prerequisites
 
