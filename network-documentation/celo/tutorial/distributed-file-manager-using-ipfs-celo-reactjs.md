@@ -8,7 +8,7 @@ For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit
 
 ## Prerequisites
 
-* Basic familarity with [Celo's architecture](https://docs.celo.org/) and smart ccontracts.
+* Basic familarity with [Celo's architecture](https://docs.celo.org/) and smart contracts.
 * Basic familarity with [ReactJS](https://reactjs.org)
 
 ## Requirements
@@ -18,6 +18,15 @@ For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit
 * Metamask extension added to the browser, which you can add from [here](https://metamask.io/download.html)
 
 ## Initializing the working directory
+
+Our application's client-side is made using **ReactJS**. Smart contracts will be made using **Solidity** language and will be deployed on the **Celo** network with **Trufflesuite**. Therefore, we need to set up our working directory according to ReactJS and Trufflesuite, for making our development process smoother.
+
+Open the terminal and navigate to the directory where you intend to create your application.
+```bash
+cd /path/to/directory
+```
+
+### **Setting up the ReactJS project**
 Create a new react app using npx. npx is a npm package runner (x probably stands for eXecute). The typical use is to download and run a package temporarily or for trials.
 ```bash
 npx create-react-app dfm-celo-react
@@ -90,11 +99,11 @@ class  App  extends  React.Component {
 		return (
 			<div>
 				Distributed File Manager
-				// 5. Navbar
+				{/* 5. Navbar */}
 				
-				// 6. IPFS Viewer component
+				{/* 6. IPFS Viewer component */}
 
-				// 7. IPFS Uploader component
+				{/* 7. IPFS Uploader component */}
 			</div>
 
 		)
@@ -211,7 +220,7 @@ It might take few seconds, to show an output as in the image below.
 
 ![](https://imgur.com/VV0park.png)
 
-Now go to your browser, and visit the URL - http://localhost:3000 If your followed the above steps, you would see the page as shown below. Background theme of the website id dark, so you have to look carefully for text in black color.
+Now go to your browser, and visit the URL - http://localhost:3000 If your followed the above steps, you would see the page as shown below. Background theme of the website is dark, so you have to look carefully for text in black color.
 
 ![](https://imgur.com/hVr1ElD.png)
 
@@ -265,7 +274,6 @@ struct  File {
 // Mapping of each user's address with the array of files they are storing
 mapping(address => File[]) files;
 ```
-<br>
 
 **Adding files** - `addFile()` function is used to add details of file to the array of `File` structures corresponding to each address. `files[msg.sender]` refers to the array of file structures, belonging to the caller of this function i.e. address `msg.sender`. Function's arguments are `_fileInfo[]` which is array of 2 parameters (file name and file type respectively) and second argument is `cid` which is the content id for the uploaded file.
 
@@ -274,7 +282,6 @@ function  addFile(string[] memory _fileInfo, string  memory _cid) public {
 	files[msg.sender].push(File(_fileInfo[0], _fileInfo[1], _cid));
 }
 ```
-<br>
 
 **Viewing stored files** - `getFiles()` is a function which returns the array of file structures corresponding to the account address. It return the details of all the files as an array that is being uploaded by the address (passed in the argument of this function) on IPFS network.
 
@@ -315,7 +322,6 @@ Compiling your contracts...
 > Compiled successfully using:
    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 ```
-<br>
 
 {% hint style="warning" %} There might be an error `Error: Cannot find module 'pify'`, if the `pify` module is not installed automatically while installing `truffle`. So, this issue can be resolved by separately installing `pify`, using the command below  {% endhint %}
 
@@ -442,7 +448,7 @@ Error:  *** Deployment Failed ***
       + Using an adequately funded account
 ```
 
-The information like contract address and ABI of the deployed contract is present in the `/build/contract` directory as `FileManager.json`.
+The information like contract address and ABI of the deployed contract is present in the `src/build/contract` directory as `FileManager.json`.
 
 ## Building user interface for interacting with the blockchain
 
@@ -491,8 +497,6 @@ export  class  GetAccount  extends  React.Component {
 ```
 
 * **Upading `App.js`** - `App.js` is the entry point of any React application. Therefore we need to update `App.js` regularly with the components which we want to show in our application. As we move further, build all components, we will also update `App.js` in the end.
-
-<br>
 
 * Now let's make a component which will upload the files from our system to the IPFS network. So, make a file named `IPFSUploader.js` in the `src` directory and put the following code inside it.
 
@@ -597,15 +601,10 @@ Let's understand this component block by block.
 ```javascript
 const  ipfs = create({ host:  'ipfs.infura.io', port:  5001, protocol:  'https' })
 ```
-<br>
 
 **`state`** - **IPFSUploader** component will maintain a state of file properties like `fileName`, `fileType`, `buffer` of each file, `account` address and `cid` of the uploaded file. These state variables will be updated whenever there is a change in input field of file type.
 
-<br>
-
 **`captureFile()`** - This function will be called whenever there is an `onChange` event in the input field. This will update the state with necessary file information. In this function we will be having a `Compressor` instance which will compress the file of `image` type.
-
-<br>
 
 **`onSubmit()`** - This function would be called when the user will submit the form containing the file as an input. This function would first invoke the `add()` function of the IPFS client and upload the `buffer` of this file which was previously stored in the `state` of this component. Once the file is uploaded, it will return a `cid`. After that, we will add these file informations along with `cid` to the smart contract using the `addFile()` contract function.
 
@@ -614,8 +613,6 @@ Since we have used new libraries like `compressorjs`, `ipfs-http-client` and `ri
 npm install --save ipfs-http-client compressorjs rimble-ui
 ```
 {% hint style="info" %} Rimble UI library comes with a peer dependency of `react@16.9.0` which is not the latest version of React that we are using i.e. `react@17.0.2`. Running the `npm install` command without the `--force` tag would cause an `unable to resolve dependency tree` conflict. Thus, the `--force` tag is used to override any type of conflicts and proceeds with the installation anyway. Another way to resolve this conflict is by using the `--legacy-peer-deps` tag instead, but this would ignore all peer dependencies which we do not require, as the conflict is only between `react` and `rimble-ui`. {% endhint %}
-
-<br>
 
 Now make a new file named `IPFSViewer.js`. This component would be used to fetch file information from the deployed smart contract and display it on the website. Add the following code inside it.
 
@@ -820,19 +817,11 @@ Let's understand the above component block by block.
 
 **`state`** - The state of this component would contain array of different types of files like `imageFiles`, `audioFiles` etc.
 
-<br>
-
 **`loadFiles()`** - This function would be called after the component is mounted and would load the state with all the files which are uploaded by the account address Using the `getFiles()` function of the smart contract, it can easily fetch all file informations from the blockchain. It will separate the different types of files like images, videos, audios etc. accordingly and update the state. 
-
-<br>
 
 **`showImageFiles()`** - This function would return components with all image files composed with proper `img` tag, as an array, to the caller of this function.
 
-<br>
-
 Similarly, there are different functions for each file type.
-
-<br>
 
 `IPFSViewerCSS.css` file has been imported to add few designs to the page like decreasing the width of the scroll bar, color changes etc. So, make a new file named `IPFSViewerCSS.css` and add the following code inside it.
 
@@ -855,7 +844,6 @@ a {
     color: white;
 }
 ```
-<br>
 
 Now we need to update our `App.js` file with all the components that we have made so far.
 
@@ -869,7 +857,6 @@ import IPFSViewer from './IPFSViewer';
 
 import contractJson from './build/contracts/FileManager.json';
 ```
-<br>
 
 **`Load Web3`** - Now put the following code under the `//2. Load web3...` section. This would set the state with web3 instance.
 
@@ -879,7 +866,6 @@ const Web3 = new GetWeb3();
 this.web3 = await Web3.getWeb3();
 this.setState({web3: this.web3});
 ```
-<br>
 
 **`Load Account`** - Put the following code under the `//3. Load Account...` section. This would set the state with Metamask wallet's first connected address.
 
@@ -889,7 +875,6 @@ const Account = new GetAccount();
 this.account = await Account.getAccount(this.web3);
 this.setState({account: this.account[0]});
 ```
-<br>
 
 **`Load Smart contract`** - Put the following code under the `//4. Load smart...` section. This would set the state with deployed smart contract's instance for the contract's interaction using Javascript.
 
@@ -899,7 +884,6 @@ const Contract = new GetContract();
 this.contract = await Contract.getContract(this.web3, contractJson);
 this.setState({contract: this.contract});
 ```
-<br>
 
 **Load components** - Inside the `<div>` tag of `return()` function, replace the exisiting text `Distributed File Manager` with the the code of the following components.
 
@@ -918,22 +902,16 @@ this.setState({contract: this.contract});
 ```
 
 Now go to the `root` directory of the project, i.e. `dfm` directory, and run the command `npm start`. The ReactJS server would start automatically.
-<br>
 
 Visit [http://localhost:3000](http://localhost:3000) to interact with built dApp.
-<br>
 
 Don't forget to setup Metamask with `Celo` Alfajores testnet and also fund the account with Alfajores test tokens in order to upload files.
 
 In the Metamask extension, add a custom RPC by clicking at the network dropdown in the center of the extension. Fill the details as shown in the below image.
 
-<br>
-
 <center>
     <img src = "https://i.imgur.com/3eFZpJn.png" style = "width: 250px;">
 </center>
-
-<br>
 
 | Info	          | Value                                    |
 | ----------------|------------------------------------------|
@@ -941,8 +919,6 @@ In the Metamask extension, add a custom RPC by clicking at the network dropdown 
 | New RPC URL     | https://alfajores-forno.celo-testnet.org |
 | Chain ID        | 44787 				     |
 | Currency Symbol | CELO 				     |
-
-<br>
 
 {% hint style="info" %} If you find any difficulty in setting up the project, then feel free to clone this repository https://github.com/rajranjan0608/dfm, and follow the steps in the `README.md` file of this repo in order to run the application. {% endhint %}
 
