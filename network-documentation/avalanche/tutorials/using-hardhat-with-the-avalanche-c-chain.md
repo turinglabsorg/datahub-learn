@@ -29,36 +29,36 @@ mkdir avalanche-hardhat-tutorial && cd avalanche-hardhat-tutorial
 npm init -y
 ```
 
-As a result, you must see a newly created directory named `avalanche-hardhat-tutorial` with a file `package.json` inside it:
+You should see a newly created directory named `avalanche-hardhat-tutorial` with a file `package.json` inside it:
 
-```text
+```json
 {
-"name": "avalanche-hardhat-tutorial",
-"version": "1.0.0",
-"description": "",
-"main": "index.js",
-"scripts": {
-"test": "echo \"Error: no test specified\" && exit 1"
-},
-"keywords": [],
-"author": "",
-"license": "ISC"
+  "name": "avalanche-hardhat-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
 ```
 
-Now we go on to install hardhat as one of our project dependencies with the following command:
+Now we go on to install Hardhat as one of our project dependencies with the following command:
 
 ```bash
 npm install --save-dev hardhat
 ```
 
-After the installation is done, type the following command to make the current directory a hardhat project:
+After the installation is done, type the following command to make the current directory a Hardhat project:
 
 ```bash
 npx hardhat
 ```
 
-You should be greeted with such a prompt by hardhat:
+You should be greeted with such a prompt by Hardhat:
 
 ```text
 888    888                      888 888               888
@@ -78,11 +78,11 @@ Create a sample project
 Quit
 ```
 
-Choose to create an empty hardhat.config.js and there you have it, your current directory is now a hardhat project!
+Choose to create an empty hardhat.config.js and there you have it, your current directory is now a Hardhat project!
 
-## Adding avash network configuration to hardhat
+## Adding Avash network configuration to Hardhat
 
-Now, inorder for our hardhat project to communicate with our local Avalanche network bootstrapped by avash, we need to provide hardhat with appropriate network configuration. For that, add the following properties to module.exports block of hardhat.config.js:
+Now, in order for our Hardhat project to communicate with our local Avalanche network bootstrapped by Avash, we need to provide Hardhat with appropriate network configuration. For that, add the following properties to module.exports block of hardhat.config.js:
 
 ```javascript
 defaultNetwork: "avash",
@@ -107,7 +107,7 @@ networks: {
 },
 ```
 
-Now, your hardhat configuration in hardhat.config.js should look something similar to this after the addition of the avash network configuration provided above:
+Now, your Hardhat configuration in hardhat.config.js should look something similar to this after the addition of the Avash network configuration provided above:
 
 ```javascript
 /**
@@ -138,7 +138,7 @@ module.exports = {
 };
 ```
 
-## Adding and compiling a smart-contract
+## Adding and compiling a smart contract
 
 Hardhat looks for contracts to compile within the `contracts` directory. So let's go ahead and create this directory:
 
@@ -180,29 +180,29 @@ contract Storage {
 
 `Storage` is a solidity smart contract that lets us write a number to the blockchain via the `store` function and then read the number back from the blockchain via the `retrieve` function.
 
-To compile the Storage.sol smart-contract we just added to our project, use the following command:
+To compile the Storage.sol smart contract we just added to our project, use the following command:
 
 ```bash
 npx hardhat compile
 ```
 
-After the successful execution of the command, the smart-contract should now be compiled, and you should see something like this in the console:
+After the successful execution of the command, the smart contract should now be compiled, and you should see something like this in the console:
 
 ```text
 Compiling 1 file with 0.7.3
 Compilation finished successfully
 ```
 
-## Using hardhat console
+## Using Hardhat console
 
-For the rest of the tutorial, we're going to use the hardhat console to deploy and interact with our smart-contract. To successfully use the hardhat console for our purposes, we need to install a couple of hardhat plugins, namely [`hardhat-ethers`](https://www.npmjs.com/package/@nomiclabs/hardhat-ethers) and [`hardhat-waffle`](https://www.npmjs.com/package/@nomiclabs/hardhat-waffle). Install them using the following commands:
+For the rest of the tutorial, we're going to use the Hardhat console to deploy and interact with our smart contract. To successfully use the Hardhat console for our purposes, we need to install a couple of Hardhat plugins, namely [`hardhat-ethers`](https://www.npmjs.com/package/@nomiclabs/hardhat-ethers) and [`hardhat-waffle`](https://www.npmjs.com/package/@nomiclabs/hardhat-waffle). Install them using the following commands:
 
 ```bash
 npm install --save-dev @nomiclabs/hardhat-ethers 'ethers@^5.0.0'
 npm install --save-dev @nomiclabs/hardhat-waffle 'ethereum-waffle@^3.0.0' @nomiclabs/hardhat-ethers 'ethers@^5.0.0'
 ```
 
-After these plugins are installed, we need to tell hardhat to use them by requiring `hardhat-waffle` at the beginning of the hardhat configuration file we created earlier:
+After these plugins are installed, we need to tell Hardhat to use them by requiring `hardhat-waffle` at the beginning of the Hardhat configuration file we created earlier:
 
 ```javascript
 require("@nomiclabs/hardhat-waffle");
@@ -241,17 +241,17 @@ module.exports = {
 };
 ```
 
-Now, we're ready to deploy our smart-contract and to interact with it!
+Now, we're ready to deploy our smart contract and interact with it!
 
-## Deploying smart-contracts using hardhat console
+## Deploying smart contracts using Hardhat console
 
-To deploy our smart-contract and to interact with it, we're gonna be using an interactive JavaScript console provided by hardhat, which is called hardhat console. Hardhat console is geared more towards providing us with quick local development and testing environment.
+To deploy our smart contract and to interact with it, we're gonna be using an interactive JavaScript console provided by Hardhat, which is called Hardhat console. Hardhat console is geared more towards providing us with quick local development and testing environment than writing scripts to do the same.
 
 {% hint style="info" %}
-Ensure that the local Avalanche network outlined in the `Setup a local Avalanche network using Avash` tutorial is running properly. Follow that other tutorial to completion, however do not exit the Avash console after running the Lua script. Leave it running & in a separate terminal window, follow these instructions.
+Ensure that the local Avalanche network outlined in the `Setup a local Avalanche network using Avash` tutorial is running properly. Follow that other tutorial to completion, however, do not exit the Avash console after running the Lua script. Leave it running & in a separate terminal window, follow these instructions.
 {% endhint %}
 
-To fire up the hardhat console, we use:
+To fire up the Hardhat console, we use:
 
 ```
 npx hardhat console
@@ -265,9 +265,9 @@ Type ".help" for more information.
 >
 ```
 
-Now we go on and type in the following snippets of code to deploy and interact with our Storage smart-contract. After you input each line of code, press "Enter" to execute the same.
+Now we go on and type in the following snippets of code to deploy and interact with our Storage smart contract. After you input each line of code, press "Enter" to execute the same.
 
-Inorder to get an instance of Storage.sol smart-contract, we type in:
+Inorder to get an instance of Storage.sol smart contract, we type in:
 
 ```javascript
 const Storage = await hre.ethers.getContractFactory("Storage");
@@ -279,14 +279,14 @@ This returns:
 undefined
 ```
 
-Here, `undefined` being printed does not mean that the instruction we executed has failed. Instead, it's `undefined` because we stored the return value into the Storage constant and there's nothing to be printed out into the console. In fact, we could verify that the command executed successfully by logging the contents of the Storage constant:
+Here, `undefined` being printed does not mean that the instruction we executed has failed. Instead, it's `undefined` because we stored the return value into the Storage constant and there's nothing to be printed out into the console. We could verify that the command executed successfully by logging the contents of the Storage constant:
 
 ```javascript
 console.log(Storage)
 ```
 
 {% hint style="info" %}
-What you see below is a Javascript representation of the compiled smart-contract - it's not necessary that you understand everything you see in the logged output. We print it out to demonstrate that the instruction was executed successfully.
+What you see below is a Javascript representation of the compiled smart contract - you don't need to understand everything you see in the logged output. We print it out to demonstrate that the instruction was executed successfully.
 {% endhint %}
 
 ![](../../../.gitbook/assets/storage-console-log.png)
@@ -303,13 +303,13 @@ Again, this returns:
 undefined
 ```
 
-Before we start interacting with the smart-contract, we wait for the contract to be deployed successfully using:
+Before we start interacting with the smart contract, we wait for the contract to be deployed successfully using:
 
 ```javascript
 await storage.deployed();
 ```
 
-This returns a very big chunk of output, which is the internal representation of the smart-contract in JavaScript (truncated for brevity):
+This returns a very big chunk of output, which is the internal representation of the smart contract in JavaScript (truncated for brevity):
 
 ```text
 ref *1> Contract {
@@ -338,7 +338,7 @@ ref *1> Contract {
 ...
 ```
 
-## Interacting with smart-contracts using hardhat console
+## Interacting with smart contracts using Hardhat console
 
 To store our favorite magical number into the blockchain, we call the store function of the deployed contract:
 
@@ -346,9 +346,9 @@ To store our favorite magical number into the blockchain, we call the store func
 await storage.store(333);
 ```
 
-This returns the representation of the Javascript representation of the transaction details of writing to the blockchain:
+This outputs the Javascript representation of the transaction details of writing to the blockchain:
 
-```
+```text
 {
   hash: '0xaae491304254fce18fc3ff77f5891feef69035d05eb93c6b542823f948426ac4',
   type: 0,
@@ -384,7 +384,7 @@ You should now see 333 printed back to the console.
 
 ## Conclusion
 
-In this tutorial, we've successfully created a hardhat project. Within the hardhat project, we managed to add a new smart-contract, compile it using hardhat, and finally deployed the contract and interacted with it using the hardhat console.
+In this tutorial, we've successfully created a Hardhat project. Within the Hardhat project, we managed to add a new smart contract, compile it using Hardhat, and finally deployed the contract and interacted with it using the Hardhat console.
 
 Congratulations on making it to the end of this tutorial!
 
