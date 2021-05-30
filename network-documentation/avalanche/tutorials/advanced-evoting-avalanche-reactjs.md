@@ -11,7 +11,7 @@ For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit
 ## Prerequisites
 
 * You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service=avalanche) account.
-* Basic familarity with [Avalanche's architecture](https://docs.avax.network/learn/platform-overview) and smart ccontracts.
+* Basic familarity with [Avalanche's architecture](https://docs.avax.network/learn/platform-overview) and smart contracts.
 * Basic familarity with [ReactJS](https://reactjs.org)
 
 ## Requirements
@@ -282,7 +282,6 @@ The code for smart contract is everything within `contract Election {  }`.
 string public name;
 string public description;
 ```
-<br>
 
 **Storing candidate details** - Candidate details would be stored in mapping between an unsigned integer to the `Candidate` structure. `Candidate` structure would consist of fields like `id`, `name` (candidate's name) and `voteCount` (number of times they are voted).
 
@@ -297,7 +296,6 @@ struct Candidate {
 // Storing candidates in a map
 mapping(uint => Candidate) public candidates;
 ```
-<br>
 
 **Storing address of voters who have already voted and the number of candidates** - `voters` is a mapping between the address of the voter and a boolean. In Solidity, the default boolean value is `false`, so if the returned value of `voters(address)` is `false` we can understand that the voters are voting for the first time in this election, and vice-versa for `true`.
 
@@ -308,7 +306,6 @@ mapping(address => bool) public voters;
 // Number of candidates in standing in the election
 uint public candidatesCount = 0;
 ```
-<br>
 
 **Constructor call and adding candidates to the election** - When a smart contract is deployed on a network, the first thing to be called is a `constructor()` function. Whatever we want to initialize in a smart contract, we do it inside the `constructor()` function. Like here, we will be adding a name, description, and candidates to the election. Here, `addCandidate()` is a private function, so that, it cannot be called publicly. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
 
@@ -329,7 +326,6 @@ function addCandidate (string memory _name) private {
   candidatesCount ++;
 }
 ```
-<br>
 
 **Voting candidates in an election** - We made a `vote()` function. It takes `candidateId` as an argument and increments the vote of the respective candidate. It requires two things, viz. voter should not have voted in the particular election by checking boolean across the `voters` mapping and `candidateId` should be a valid one, i.e. `0 <= candidateId < candiatesCount`.
 
@@ -342,7 +338,6 @@ function vote (uint _candidate) public {
   candidates[_candidate].voteCount++;
 }
 ```
-<br>
 
 ### **Create MainContract smart contract**
 
@@ -373,7 +368,6 @@ Here `electionId` is used for assigning ID's to each election that a user create
 uint public electionId = 0;
 mapping (uint => address) public Elections;
 ```
-<br>
 
 We have made a `createElection()` function which will be used to deploy our `Election` smart contract. This function takes `name` and `description` as a single array named `_nda` in the first argument and candidates' name as an array in the second argument.
 
@@ -537,7 +531,7 @@ Error:  *** Deployment Failed ***
       + Using an adequately funded account
 ```
 
-The information and ABI of the deployed contract are present in the `/build/contract` directory as `Election.json`. Information like contract address, network info etc. could be found here.
+The information and ABI of the deployed contract are present in the `src//build/contract` directory as `Election.json`. Information like contract address, network info etc. could be found here.
 
 ### **Building user interface for interacting with the blockchain**
 
@@ -609,8 +603,6 @@ this.mainInstance = await Contract.getContract(this.web3, contractJson);
 this.setState({mainInstance: this.mainInstance});
 ```
 
-<br>
-
 * Now let's make a component that will create new elections using our deployed smart contract. So, make a file named `CreateElection.js` in the `src` directory and put the following code inside it. The code is well-commented to make you understand the important parts.
 
 ```javascript
@@ -633,7 +625,7 @@ class CreateElection extends Component {
         }
     }
 
-    //To store App.js instance
+    // To store App.js instance
     app = null;
 
     // Connect application with Metamask and create smart-contract's instance
@@ -723,7 +715,7 @@ class CreateElection extends Component {
                                     />
                                 </td>
 
-                                <br /><label>Candidate 2</label>
+                                <br/><label>Candidate 2</label>
                                 <td>
                                     <input type = "text"
                                         required
@@ -753,7 +745,6 @@ class CreateElection extends Component {
 
 export default CreateElection;
 ```
-<br>
 
 Make a file named `Active.js` in the `src` directory which will display the list of all deployed (active) elections on the website. In the file, put the following code inside the file. Please refer to the comments above each block or function to understand.
 
@@ -915,7 +906,6 @@ class Active extends Component {
 
 export default Active;
 ```
-<br>
 
 In the above component, i.e. `Active.js` we have used a component called `VoteModal` which will be used to open up a modal containing candidate details and a button to cast the vote to the selected candidate. Now we will make this component, by creating a file named `VoteModal.js` inside the `src` directory. Once created, put the following code inside it. This component is simple and the important parts of the code have been explained through comments.
 
@@ -1019,7 +1009,6 @@ function VoteModal(props) {
 
   export default VoteModal;
 ```
-<br>
 
 Now we need to update our `App.js` file with all the components that we have made so far.
 
@@ -1032,7 +1021,6 @@ import CreateElection from "./CreateElection"
 import Active from "./Active";
 import contractJson from './build/contracts/MainContract.json';
 ```
-<br>
 
 * **Load components** - Inside the `<div>` tag of `return()` function, replace the sample text with the the code of the following components.
 
@@ -1069,13 +1057,10 @@ npm install --save rimble-ui react-router-dom --force
 {% hint style="info" %} Rimble UI library comes with a peer dependency of `react@16.9.0` which is not the latest version of React that we are using i.e. `react@17.0.2`. Running the `npm install` command without the `--force` tag would cause an `unable to resolve dependency tree` conflict. Thus, the `--force` tag is used to override any type of conflicts and proceeds with the installation anyway. Another way to resolve this conflict is by using the `--legacy-peer-deps` tag instead, but this would ignore all peer dependencies which we do not require, as the conflict is only between `react` and `rimble-ui`. {% endhint %}
 
 * Now go to the `root` directory of the project, i.e. `advanced-evoting` directory, and run the command `npm start`. The ReactJS server would start automatically.
-<br>
 
 * Visit [http://localhost:3000](http://localhost:3000) to interact with built dApp.
-<br>
 
 * Don't forget to set up Metamask with `Fuji` testnet and also fund the account with Fuji c-chain test tokens to vote. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask). You may change address in the Metamask wallet and fund them to vote again.
-<br>
 
 <center>
   <img src="https://imgur.com/bjdWr35.gif"/>
