@@ -17,6 +17,26 @@ For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit
 * [Truffle](https://www.trufflesuite.com/truffle), which you can install with `npm install -g truffle`
 * Metamask extension added to the browser, which you can add from [here](https://metamask.io/download.html)
 
+## Understanding the project
+From the title, **Distributed File Manager**, you have got an idea that it's about making a dApp that will allow us to upload and manage files in a so-called **distributed** fashion. But you might be wondering, that what is **IPFS** and how will our files be distributed!!! Nothing to worry about, just go through the text, and all your doubts will be resolved.
+
+#### **Decoding IPFS and how is it different?**
+**IPFS** which stands for InterPlanetary File System is a communication protocol to transfer hypermedia between the computers. Theoretically, it aims to make a file-sharing system that can communicate among the planets, but it's not achievable yet (who knows the future 😉). 
+
+Currently, we are dominated by the **client-server** model of communication which is following **HTTP** aka **Hypertext Transfer Protocol**. This means that, in between the communication between two devices, one has to be the server (which will serve or respond with data) and the other should be the client (which will receive or request data). The major problem with this client-server model is that the client would have to request data from the server, far away from it, even if the same data was previously received by its neighbour or was available somewhere closer. This would cause high latency (delay in receiving data) and low bandwidths (speed of data transfer).
+
+<center>
+	<img src="https://www.wowza.com/uploads/images/Server-based-vs-P2P-network.jpg"/>
+</center>
+
+**IPFS** is a relatively new protocol, which tries to resolve these issues. It follows the **peer-to-peer** model of communication, in which there could be a **n** number of servers responding to the client with the required data. Once the client has the data (even bits of data), it can choose to be a server. Every node connected to the network can act as a server if it has the required. Now you may ask, how multiple servers can send the same data to a client, isn't it inefficient? No, it isn't. Actually, each data is divided into bits with sufficient information to get joined later. So, these **n** servers send different bits of data rather than the same bit. Once all the bits are in place, it makes the whole file. With the arrival of every bit, the client can choose to be the server for that bit.
+
+<center>
+	<img src="https://imgur.com/J0sH52y.png"/>
+</center>
+
+**IPFS** is a large swarm of such nodes, which chose to serve data. We need IPFS clients to connect to those nodes and upload data. We can also connect to the network using the available javascript client libraries like `ipfs-http-client`. There are several providers like **Infura**, which provides an HTTP portal to view the files on the IPFS. More technical details are provided ahead in the tutorial.
+
 ## Initializing the working directory
 
 Our application's client-side is made using **ReactJS**. Smart contracts will be made using **Solidity** language and will be deployed on the **Celo** network with **Trufflesuite**. Therefore, we need to set up our working directory according to ReactJS and Trufflesuite, for making our development process smoother.
@@ -202,7 +222,7 @@ Now we need a **Celo** wallet, where we would keep our funds, required for all t
 Create a `.env` file in the `root` folder. Please take a note that dot (.) is necessary for the `.env` file name. Now copy your Celo wallet's mnemonic in the .env file as shown below. In the .env file, **MNEMONIC** should be enclosed within double-quotes (" ").
 
 ```javascript
-MNEMONIC="<avalanche-wallet-mnemonic>"
+MNEMONIC="<celo-wallet-mnemonic>"
 ```
 
 {% hint style="warning" %} Never share or commit your `.env` file. It contains your credentials like `mnemonics`. Therefore, it is advised to add `.env` to your `.gitignore` file. {% endhint %}
@@ -428,6 +448,15 @@ Summary
 > Total deployments:   2
 > Final cost:          0.0137302 ETH
 ```
+Deploying smart contracts is basically a transaction on the blockchain network. Therefore, in the above output you can see a **transaction hash** which starts with a `0x`. Using this transaction hash you can verify your transaction on the Celo's Alfajores network, using their blockchain explorer [here](https://alfajores-blockscout.celo-testnet.org/) by searching your transaction hash. You would see something like the image shown below.
+
+<center>
+	<img src = "https://imgur.com/QO6nk5E.png"/>
+</center>
+
+You may also view your deployed smart contracts using their contract address as provided in the above output of `truffle migrate`.
+
+### **Possible Errors and Troubleshooting**
 
 If you didn't create an account on the `CELO` you'll see this error:
 
@@ -438,14 +467,35 @@ Error: Expected parameter 'from' not passed to function.
 If you didn't fund the account, you'll see this error:
 
 ```javascript
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+Account address:  0xE23cBDb396b7BE479Dd3eD417B22D038DeB84E83
+CELO Balance: 0
+Balance too low to deploy contracts. Please fund your account here at https://celo.org/developers/faucet
+
+Starting migrations...
+======================
+> Network name:    'alfajores'
+> Network id:      44787
+> Block gas limit: 0 (0x0)
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+
 Error:  *** Deployment Failed ***
 
 "Migrations" could not deploy due to insufficient funds
-   * Account:  0x090172CD36e9f4906Af17B2C36D662E69f162282
+   * Account:  0xE23cBDb396b7BE479Dd3eD417B22D038DeB84E83
    * Balance:  0 wei
-   * Message:  sender doesn't have enough funds to send tx. The upfront cost is: 1410000000000000000 and the sender's account only has: 0
+   * Message:  insufficient funds for gas * price + value + gatewayFee
    * Try:
       + Using an adequately funded account
+      + If you are using a local Geth node, verify that your node is synced.
 ```
 
 The information like contract address and ABI of the deployed contract is present in the `src/build/contract` directory as `FileManager.json`.
