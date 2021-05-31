@@ -10,7 +10,7 @@ For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit
 
 ## Prerequisites
 
-* You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service=avalanche) account.
+* You've created an account on [DataHub](https://datahub.figment.io/sign_up?service=avalanche)
 * Basic familarity with [Avalanche's architecture](https://docs.avax.network/learn/platform-overview) and smart contracts.
 * Basic familarity with [ReactJS](https://reactjs.org)
 
