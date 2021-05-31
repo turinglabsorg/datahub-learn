@@ -220,7 +220,7 @@ module.exports = {
 };
 ```
 
-Now, we're ready to deploy our smart contract and interact with it!
+We're now ready to deploy our smart contract and interact with it!
 
 ## Deploying smart contracts using Hardhat console
 
