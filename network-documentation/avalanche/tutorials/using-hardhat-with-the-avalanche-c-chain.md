@@ -109,6 +109,14 @@ networks: {
 },
 ```
 
+* The network url we provided points to the url of the network launched by Avash.
+
+* The gas price of 225000000000 is the current gas price of the network - anything less than that, the transactions will fail stating that the transaction is underpriced.
+
+* 43112 is the id for the chain created by Avash in it's local Avalanche network. This is hardcoded in Avash.  
+
+* The list of accounts we provided above are some randonly generated addresses on the network. When it comes to Avash, unlike mainnet and fuji testnet, these addresses come loaded with lots AVAX and so we don't need to fund them.
+
 ## Adding and compiling a smart contract
 
 Hardhat looks for contracts to compile within the `contracts` directory. So let's go ahead and create this directory:
