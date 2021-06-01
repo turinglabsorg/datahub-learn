@@ -806,10 +806,15 @@ Congratulations! We have successfully developed a decentralized chat application
 
 * Check if your account has sufficient balance at [fuji block-explorer](https://cchain.explorer.avax-test.network/). You can fund your address from the given [faucet](https://faucet.avax-test.network/)
 
+![Zero balance preview](https://raw.githubusercontent.com/realnimish/blockchain-chat-app/main/public/zero_balance.jpeg)
+
 * Make sure that you have selected the correct account on metamask if you have more than one account connected to the site.
+
+![Multiple account preview](https://raw.githubusercontent.com/realnimish/blockchain-chat-app/main/public/multiple_accounts.jpeg)
 
 **Application crash**
 
+![Error](https://user-images.githubusercontent.com/44340561/119778345-05dba100-bee5-11eb-85b9-c9bd18ea4082.png)
 Check if you have updated the `contractAddress` variable in `src/index.js` properly!
 
 ## What's Next
