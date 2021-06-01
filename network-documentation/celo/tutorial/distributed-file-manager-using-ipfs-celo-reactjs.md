@@ -174,40 +174,40 @@ const web3 = new Web3(RPCURL);
 const kit = ContractKit.newKitFromWeb3(web3);
 
 async function awaitWrapper(){
-  let account = ethers.Wallet.fromMnemonic(process.env.MNEMONIC, "m/44'/52752'/0'/0/0")
-  let celoToken = await kit.contracts.getGoldToken();
+	let account = ethers.Wallet.fromMnemonic(process.env.MNEMONIC, "m/44'/52752'/0'/0/0")
+	let celoToken = await kit.contracts.getGoldToken();
 
-  let celoBalance = await celoToken.balanceOf(account.address);
-  console.log("Account address: ", account.address);
-  console.log(`CELO Balance: ${celoBalance / (10**18)}`);
-  
-  if(celoBalance / (10**18) < 0.4) {
-    console.log("Balance too low to deploy contracts. Please fund your account here at https://celo.org/developers/faucet\n");
-  }
-  kit.connection.addAccount(account.privateKey)
+	let celoBalance = await celoToken.balanceOf(account.address);
+	console.log("Account address: ", account.address);
+	console.log(`CELO Balance: ${celoBalance / (10**18)}`);
+
+	if(celoBalance / (10**18) < 0.4) {
+		console.log("Balance too low to deploy contracts. Please fund your account here at https://celo.org/developers/faucet\n");
+	}
+	kit.connection.addAccount(account.privateKey)
 }
 
 awaitWrapper();
 
 module.exports = {
-  contracts_build_directory: './src/build/contracts'
-  networks: {
-    development: {
-      host: "127.0.0.1",
-      port: 7545,
-      network_id: "*"
-    },
-    alfajores: {
-      provider: kit.connection.web3.currentProvider,
-      network_id: 44787
-    }
-  },
-  solc: {
-    optimizer: {
-      enabled: true,
-      runs: 200
-    }
-  }
+	contracts_build_directory: './src/build/contracts',
+	networks: {
+		development: {
+			host: "127.0.0.1",
+			port: 7545,
+			network_id: "*"
+		},
+		alfajores: {
+			provider: kit.connection.web3.currentProvider,
+			network_id: 44787
+		}
+	},
+	solc: {
+		optimizer: {
+			enabled: true,
+			runs: 200
+		}
+	}
 }
 ```
 Here, you can see that, we have used `contracts_build_directory` to change defaut location of `artificats` from `root` directory to the `src` folder. This is because, React cannot access files which are present outside the `src` folder.
@@ -244,7 +244,7 @@ Now go to your browser, and visit the URL - http://localhost:3000 If your follow
 
 ![](https://imgur.com/hVr1ElD.png)
 
-### **Create `FileManager.sol` smart contract**
+## **Create `FileManager.sol` smart contract**
 
 In the `contracts` directory add a new file called `FileManager.sol` and add the following block of code:
 
@@ -311,7 +311,7 @@ function  getFiles(address _account) public  view  returns (File[] memory) {
 }
 ```
 
-### **Make a new file for migrating smart contracts**
+## **Make a new file for migrating smart contracts**
 
 Create a new file in the `migrations` directory named `2_deploy_contracts.js`, and add the following block of code. This handles deploying the `FileManager` smart contract to the blockchain.
 
@@ -322,7 +322,7 @@ module.exports = function(deployer) {
 	deployer.deploy(FileManager);
 };
 ```
-### **Compile Contracts with Truffle**
+## **Compile Contracts with Truffle**
 
 Any time you want deploy smart contracts, and you have made changes in them, you need to run `truffle compile`.
 
@@ -353,11 +353,11 @@ Compiling the smart contracts would create `.json` file in the `src/build/contra
 
 {% hint style="info" %} `ABI` refers to Application Binary Interface, which is a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) to learn more. {% endhint %}
 
-### **Fund the account and run migrations on the Celo's Alfjores test network.**
+## **Fund the account and run migrations on the Celo's Alfjores test network.**
 
 When deploying smart contracts to the `Celo` network, it will require some deployment cost. As you can see inside `truffle-config.js`, `@celo/contractkit` will help us in deploying on Celo and deployment cost will be managed by account whose mnemonic has been stored in the `.env` file. Therefore we need to fund the account.
 
-#### **Fund your account**
+### **Fund your account**
 
 Fund your account using the the faucet link https://celo.org/developers/faucet and pasting your Celo's wallet address in the input field. You'll need to send at least `0.4 CELO`. Minimum CELO required for deployment, will vary from contract to contract, depending upon what variables and data structures our contract is using. Though funding through faucet would give you enough `CELO` to run multiple deployments and transactions on the network.
 
@@ -379,7 +379,7 @@ truffle migrate --network development
 
 On successfull execution of this command, you should see:
 
-```javascript
+```bash
 Compiling your contracts...
 ===========================
 > Everything is up to date, there is nothing to compile.
@@ -500,7 +500,7 @@ Error:  *** Deployment Failed ***
 
 The information like contract address and ABI of the deployed contract is present in the `src/build/contract` directory as `FileManager.json`.
 
-## Building user interface for interacting with the blockchain
+## Building the User Interface (UI)
 
 * We have already setup our `React` project directory. Main files for the client side to interact with blockchain is present in the `src` folder.
 
@@ -911,7 +911,7 @@ import contractJson from './build/contracts/FileManager.json';
 **`Load Web3`** - Now put the following code under the `//2. Load web3...` section. This would set the state with web3 instance.
 
 ```javascript
-// 1. Load web3
+// 2. Load web3
 const Web3 = new GetWeb3();
 this.web3 = await Web3.getWeb3();
 this.setState({web3: this.web3});
@@ -920,7 +920,7 @@ this.setState({web3: this.web3});
 **`Load Account`** - Put the following code under the `//3. Load Account...` section. This would set the state with Metamask wallet's first connected address.
 
 ```javascript
-// 2. Load Account
+// 3. Load Account
 const Account = new GetAccount();
 this.account = await Account.getAccount(this.web3);
 this.setState({account: this.account[0]});
@@ -929,7 +929,7 @@ this.setState({account: this.account[0]});
 **`Load Smart contract`** - Put the following code under the `//4. Load smart...` section. This would set the state with deployed smart contract's instance for the contract's interaction using Javascript.
 
 ```javascript
-// 3. Load Contract
+// 4. Load Contract
 const Contract = new GetContract();
 this.contract = await Contract.getContract(this.web3, contractJson);
 this.setState({contract: this.contract});
