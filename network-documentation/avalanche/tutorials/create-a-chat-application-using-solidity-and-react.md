@@ -785,15 +785,21 @@ Now its time to run our React app. Use the following command to start the React 
 npm start
 ```
 
+## Walk Through
+
 * Visit [http://localhost:3000](http://localhost:3000) to interact with the app.
 
-* Don't forget to setup Metamask with `Fuji testnet` and also fund the account with Fuji c-chain test tokens for tx fees. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask).
 
+* User registration and adding a new friend
 
-### Walk Through: User registration and adding a new friend
 ![preview](https://i.imgur.com/pyYXvZs.gif)
 
-### Walk Through: Chatting
+{% hint style="info" %}
+    Make sure your friend is also registered to the application while adding him as a friend.
+{% endhint %}
+
+* Chatting
+
 ![preview](https://i.imgur.com/LfkjLSK.gif)
 
 
