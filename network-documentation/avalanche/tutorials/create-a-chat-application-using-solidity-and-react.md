@@ -213,7 +213,7 @@ cd avalanche-chat-app
 npm install --save ethers@5.1.4 react-bootstrap@1.5.2 bootstrap@4.6.0
 ```
 
-Create an `index.html` file in the `public` directory, and paste the following HTML :
+Open `index.html` file in the `public` directory, and paste the following HTML :
 
 ```html
 <!DOCTYPE html>
@@ -608,7 +608,7 @@ export function App( props ) {
 
 <br>
 
-Make a File named `index.js` inside the `src` folder and paste the following code block inside:
+Open the file `index.js` inside the `src` folder and paste the following code block inside:
 
 ```javascript
 import React from "react";
@@ -785,7 +785,7 @@ Now its time to run our React app. Use the following command to start the React 
 npm start
 ```
 
-## Walk Through
+## Walkthrough
 
 * Visit [http://localhost:3000](http://localhost:3000) to interact with the app.
 
