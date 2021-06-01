@@ -239,7 +239,7 @@ cd avalanche-chat-app
 npm install --save ethers@5.1.4 react-bootstrap@1.5.2 bootstrap@4.6.0
 ```
 
-Create an `index.html` file in the `public` directory, and paste the following HTML :
+Open `index.html` file in the `public` directory, and paste the following HTML :
 
 ```html
 <!DOCTYPE html>
@@ -259,7 +259,7 @@ Create an `index.html` file in the `public` directory, and paste the following H
 </html>
 ```
 
-Move out of the public folder and create a new directory `components` inside `src` directory, where we will be keeping all our React components, using the following command :
+Move out of the public directory and create a new directory `components` inside `src` directory, where we will be keeping all our React components, using the following command :
 
 ```bash
 mkdir ./src/components
@@ -630,7 +630,7 @@ export function App( props ) {
 
 ```
 
-Make a File named `index.js` inside the `src` folder and paste the following code block inside:
+Open the `index.js` file inside the `src` directory and paste the following :
 
 ```javascript
 import React from "react";
@@ -643,7 +643,7 @@ ReactDom.render(
 );
 ```
 
-Create a new file named `abi.js` in the `src` folder. Export const variable named abi which stores the ABI you had generated earlier. Add your ABI after `export const abi = `. The `abi.js` file should look like this!
+Create a new file called `abi.js` in the `src` directory, and paste the following code :
 
 ```javascript
 export const abi = [
@@ -807,9 +807,21 @@ Now its time to run our React app. Use the following command to start the React 
 npm start
 ```
 
+## Walkthrough
+
 * Visit [http://localhost:3000](http://localhost:3000) to interact with the app.
 
-![preview](https://github.com/realnimish/blockchain-chat-app/blob/main/public/UI.png?raw=true)
+* User registration and adding a new friend
+
+![preview](https://i.imgur.com/pyYXvZs.gif)
+
+{% hint style="info" %}
+    Make sure your friend is also registered to the application while adding him as a friend.
+{% endhint %}
+
+* Chatting
+
+![preview](https://i.imgur.com/LfkjLSK.gif)
 
 ## Conclusion
 Congratulations! We have successfully developed a decentralized chat application which can be deployed on Avalanche or other EVM-compatible blockchain. We also created a boilerplate React application to use as the frontend for our dApp.
@@ -820,10 +832,15 @@ Congratulations! We have successfully developed a decentralized chat application
 
 * Check if your account has sufficient balance at [fuji block-explorer](https://cchain.explorer.avax-test.network/). You can fund your address from the given [faucet](https://faucet.avax-test.network/)
 
+![Zero balance preview](https://raw.githubusercontent.com/realnimish/blockchain-chat-app/main/public/zero_balance.jpeg)
+
 * Make sure that you have selected the correct account on metamask if you have more than one account connected to the site.
+
+![Multiple account preview](https://raw.githubusercontent.com/realnimish/blockchain-chat-app/main/public/multiple_accounts.jpeg)
 
 **Application crash**
 
+![Error](https://user-images.githubusercontent.com/44340561/119778345-05dba100-bee5-11eb-85b9-c9bd18ea4082.png)
 Check if you have updated the `contractAddress` variable in `src/index.js` properly!
 
 ## What's Next
