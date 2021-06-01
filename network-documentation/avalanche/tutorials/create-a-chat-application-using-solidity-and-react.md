@@ -60,7 +60,31 @@ We would maintain 2 collections in our database:
 
 * `allMessages` stores the messages. As Solidity does not allow user-defined keys in a mapping, we can instead hash the public keys of the two users. This value can then be stored in the mapping.
 
-Following is the Solidity code for the smart contract which we will deploy on the network.
+## Deploying the smart contract
+
+## Setting up Metamask
+
+Log in to MetaMask -> Click the Network drop-down -> Select Custom RPC
+
+![Metamask](https://gblobscdn.gitbook.com/assets%2F-MIVL6JKxnpiaciltfue%2F-MM1OJt2er1kalefd4bd%2F-MM1PMHVK808DUpeSuF4%2Fimage.png?alt=media&token=9b5898f1-57e0-4334-b40c-b18005e3be0e)
+
+**FUJI Testnet Settings:**
+
+* **Network Name**: Avalanche FUJI C-Chain
+* **New RPC URL**: [https://api.avax-test.network/ext/bc/C/rpc](https://api.avax-test.network/ext/bc/C/rpc)
+* **ChainID**: `43114`
+* **Symbol**: `C-AVAX`
+* **Explorer**: [https://cchain.explorer.avax-test.network](https://cchain.explorer.avax-test.network/)
+
+Fund your address from the given [faucet](https://faucet.avax-test.network/).
+
+## Deploy using Remix
+
+Open [Remix](https://remix.ethereum.org/) -> Select Solidity
+
+![remix-preview](https://gblobscdn.gitbook.com/assets%2F-MKmFQYgp3Usx3i-VLJU%2F-MLOuR33iyanZrmnCDTl%2F-MLOw5RJ5tNGvy2C90xN%2Fimage.png?alt=media&token=391f3978-7d53-4112-b45a-e89c3d6d783d)
+
+Create a `Database.sol` file in the Remix file explorer, and paste the following code :
 
 ```solidity
 // SPDX-License-Identifier: GPL-3.0
@@ -180,9 +204,11 @@ contract Database {
 }
 ```
 
-Deploy the above contract using the steps provided at
-[*Deploy a Smart Contract on Avalanche using Remix and MetaMask*](https://learn.figment.io/network-documentation/avalanche/tutorials/deploy-a-smart-contract-on-avalanche-using-remix-and-metamask).
-Note down the `contract address` and `ABI` generated in the above tutorial. They will be required in further steps.
+Navigate to Compile Tab and compile the `Database.sol` contract. Note down the `ABI` as it will be required in the next section.
+
+Navigate to Deploy Tab and open the “ENVIRONMENT” drop-down. Select "Injected Web3" (make sure Metamask is loaded) and click "Deploy" button. 
+
+Approve the transaction on Metamask pop-up interface. Once our contract is deployed successfully, Note down the `contract address`.
 
 {% hint style="info" %}  
 An Application Binary Interface (ABI) is a JSON object which stores the metadata about the methods of a contract like data type of input parameters, return data type & property of the method like payable, view, pure etc. You can learn more about the ABI from the [solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html)  
@@ -232,8 +258,6 @@ Create an `index.html` file in the `public` directory, and paste the following H
 
 </html>
 ```
-
-<br>
 
 Move out of the public folder and create a new directory `components` inside `src` directory, where we will be keeping all our React components, using the following command :
 
@@ -606,8 +630,6 @@ export function App( props ) {
 
 ```
 
-<br>
-
 Make a File named `index.js` inside the `src` folder and paste the following code block inside:
 
 ```javascript
@@ -787,9 +809,6 @@ npm start
 
 * Visit [http://localhost:3000](http://localhost:3000) to interact with the app.
 
-* Visit [http://localhost:3000](http://localhost:3000) to interact with the app.
-* Don't forget to setup Metamask with `Fuji testnet` and also fund the account with Fuji c-chain test tokens for tx fees. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask).
-
 ![preview](https://github.com/realnimish/blockchain-chat-app/blob/main/public/UI.png?raw=true)
 
 ## Conclusion
@@ -813,3 +832,7 @@ This dApp has very limited functionality. We can improve it by adding functions 
 ## About the Author(s)
 
 The tutorial was created by [Nimish Agrawal](https://github.com/realnimish) & [Sayan Kar](https://github.com/SayanKar). You can reach out to them on [Figment Forum](https://community.figment.io/u/nimishagrawal100.in/) or on LinkedIn [@Nimish Agrawal](https://www.linkedin.com/in/realnimish) and [@Sayan Kar](https://www.linkedin.com/in/sayan-kar-).
+
+## References
+
+- Smart contract deployment process - [Deploy a Smart Contract on Avalanche using Remix and MetaMask](https://docs.avax.network/build/tutorials/smart-contracts/deploy-a-smart-contract-on-avalanche-using-remix-and-metamask)
