@@ -787,10 +787,15 @@ npm start
 
 * Visit [http://localhost:3000](http://localhost:3000) to interact with the app.
 
-* Visit [http://localhost:3000](http://localhost:3000) to interact with the app.
 * Don't forget to setup Metamask with `Fuji testnet` and also fund the account with Fuji c-chain test tokens for tx fees. Please refer to this tutorial on [Connecting Datahub to Metamask](https://learn.figment.io/network-documentation/avalanche/tutorials/connect-datahub-to-metamask).
 
-![preview](https://github.com/realnimish/blockchain-chat-app/blob/main/public/UI.png?raw=true)
+
+### Walk Through: User registration and adding a new friend
+![preview](https://i.imgur.com/pyYXvZs.gif)
+
+### Walk Through: Chatting
+![preview](https://i.imgur.com/LfkjLSK.gif)
+
 
 ## Conclusion
 Congratulations! We have successfully developed a decentralized chat application which can be deployed on Avalanche or other EVM-compatible blockchain. We also created a boilerplate React application to use as the frontend for our dApp.
