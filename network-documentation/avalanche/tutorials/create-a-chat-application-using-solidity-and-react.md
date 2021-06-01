@@ -509,7 +509,7 @@ export function App( props ) {
                 nickname = item.name;
         });
         // Get messages
-        const data = await myContract.getMyChatMessages( friendsPublicKey );
+        const data = await myContract.readMessage( friendsPublicKey );
         data.forEach( ( item ) => {
             const timestamp = new Date( 1000*item[1].toNumber() ).toUTCString();
             messages.push({ "publicKey": item[0], "timeStamp": timestamp, "data": item[2] });
