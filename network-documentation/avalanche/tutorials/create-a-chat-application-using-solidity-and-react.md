@@ -18,42 +18,49 @@ Our chat dApp needs the basic functionality allowing users to connect with and s
 
 ### Account creation
 
-We will define 3 methods `checkUserExists()`, `createAccount()` & `getUsername()` for the task.
+We will define 3 functions:
 
-* The first method as the name suggests is used to check if an user is registered with our application or not; which will be called in the `createAccount()` method to make sure duplicate user are not created and it will also be called later from other methods to check the user existence.
-* The second method registers _new user_ on the platform and finally the last method will return the username of the user if it exists.
+* The `checkUserExists(pubkey)` function is used to check if a user is registered with our application or not. It will help make sure duplicate users are not created and it will also be called from other functions to check their existence.
+
+* The `createAccount(username)` function registers a new user on the platform with the provided username.
+    
+* The `getUsername(pubkey)` function will return the username of the given user if it exists.
 
 ### Adding new friend
 
-Here too we will divide the task into 3 parts - `checkAlreadyFriends()`, `addFriend()` & `getMyFriendList()`.
+Here also we will define 3 functions:
 
-* The first method, actually named `_alreadyFriends()`, checks whether two users are already friends with each other or not. This is needed to prevent duplicate channel between the same parties and will also be used to prevent a user from sending messages to other users unless they are friends.
-* The second method mark two users as friend if they both exists on the system and are already not friends with each other and finally the last method will return a list of all friends of a given user.
+* The `checkAlreadyFriends(pubkey1, pubkey2)` function checks whether two users are already friends with each other or not. This is needed to prevent duplicate channel between the same parties and will also be used to prevent a user from sending messages to other users unless they are friends.
+
+* The `addFriend(pubkey, name)` function mark the two users as friend if they both are registered on the platform and are already not friends with each other.
+
+* The `getMyFriendList()` function will return an array of friends of the given user.
 
 ### Messaging
 
-The final part of our contract will enable the exchange of messages between the users. We will divide the task into 2 methods i.e. `sendMessage` & `readMessage`.
+The final part of the Solidity contract will enable the exchange of messages between users. We will divide the task into two functions `sendMessage()` and `readMessage()`.
 
-* The  former method would allow an user to send message to another user if they both are registered on the application and are friends with each other. This will be achieved from the methods defined earlier (`checkUserExists` and `_alreadyFriends`) respectively.
-* The later method, actually named `getMyChatMessages()` , returns the chat history that has happend between the two users so far.
+* The `sendMessage()` function allows a user to send messages to another registered user (friend). This is done with `checkUserExists()` and `checkAlreadyFriends()`.
+
+* The `readMessage()` function returns the chat history that has happened between the two users so far.
 
 ### Data Collections
 
-We will have three types of user-defined data: `user`, `friend` and `message`. 
+We will have three types of user-defined data:
 
-* `user` will have properties - `name` (which stores the default username that the user wants to be addressed with) and second a list of their friends.
+* `user` will have the properties `name` which stores the username, and `friendList` which is an array of other users.
 
-* `friend` has two properties - `pubkey` which is the friends' avax address and the `name` user would like to refer them as.
+* `friend` will have the properties `pubkey` which is the friends' public address, and `name` which the user would like to refer them as.
 
-* `message` consists of three properties - the `sender`, `timestamp` & the text message `msg`.
+* `message` has three properties: `sender`, `timestamp` and `msg`, which is short for "message".
 
-We would maintain 2 collections in our database :-
+We would maintain 2 collections in our database:
 
 * `userList` where all the users on the platform are mapped with their public address.
 
-* `allMessages` which stores the messages in an ordered manner between the 2 users. As solidity doesn't allow user-defined keys in mapping, We would be using a workaround where we would hash the public key of the two users to obtain a unique value (practically).
+* `allMessages` stores the messages. As Solidity does not allow user-defined keys in a mapping, we can instead hash the public keys of the two users. This value can then be stored in the mapping.
 
-Following is the solidity contract which we will deploy on the network.
+Following is the Solidity code for the smart contract which we will deploy on the network.
 
 ```solidity
 // SPDX-License-Identifier: GPL-3.0
@@ -61,115 +68,115 @@ Following is the solidity contract which we will deploy on the network.
 pragma solidity >=0.7.0 <0.9.0;
 
 contract Database {
-	
-	// Stores the default name of an user and her friends info
-	struct user {
-		string name;
-		friend[] friendList;
-	}
+    
+    // Stores the default name of an user and her friends info
+    struct user {
+        string name;
+        friend[] friendList;
+    }
 
-	// Each friend is identified by its address and name assigned by the second party
-	struct friend {
-		address pubkey;
-		string name;
-	}
+    // Each friend is identified by its address and name assigned by the second party
+    struct friend {
+        address pubkey;
+        string name;
+    }
 
-	// message construct stores the single chat message and its metadata
-	struct message {
-		address sender;
-		uint256 timestamp;
-		string msg;
-	}
+    // message construct stores the single chat message and its metadata
+    struct message {
+        address sender;
+        uint256 timestamp;
+        string msg;
+    }
 
-	// Collection of users registered on the application
-	mapping(address => user) userList;
-	// Collection of messages communicated in a channel between two users
-	mapping(bytes32 => message[]) allMessages; // key : Hash(user1,user2)
-	
-	// It checks whether a user(identified by its public key)
-	// has created an account on this application or not
-	function checkUserExists(address pubkey) public view returns(bool) {
-		return bytes(userList[pubkey].name).length > 0;
-	}
-	
-	// Registers the caller(msg.sender) to our app with a non-empty username
-	function createAccount(string calldata name) external {
-		require(checkUserExists(msg.sender)==false, "User already exists!");
-		require(bytes(name).length>0, "Username cannot be empty!"); 
-		userList[msg.sender].name = name;
-	}
-	
-	// Returns the default name provided by an user
-	function getUsername(address pubkey) external view returns(string memory) {
-		require(checkUserExists(pubkey), "User is not registered!");
-		return userList[pubkey].name;
-	}
-	
-	// Adds new user as your friend with an associated nickname
-	function addFriend(address friend_key, string calldata name) external {
-		require(checkUserExists(msg.sender), "Create an account first!");
-		require(checkUserExists(friend_key), "User is not registered!");
-		require(msg.sender!=friend_key, "Users cannot add themselves as friends!");
-		require(checkAlreadyFriends(msg.sender,friend_key)==false, "These users are already friends!");
-		
-		_addFriend(msg.sender, friend_key, name);
-		_addFriend(friend_key, msg.sender, userList[msg.sender].name);
-	}
-	
-	// Checks if two users are already friends or not
-	function checkAlreadyFriends(address pubkey1, address pubkey2) internal view returns(bool) {
-		
-		if(userList[pubkey1].friendList.length > userList[pubkey2].friendList.length)
-		{
-			address tmp = pubkey1;
-			pubkey1 = pubkey2;
-			pubkey2 = tmp;
-		}
-	
-		for(uint i=0; i<userList[pubkey1].friendList.length; ++i)
-		{
-			if(userList[pubkey1].friendList[i].pubkey == pubkey2)
-				return true;
-		}
-		return false;
-	}
-	
-	// A helper function to update the friendList
-	function _addFriend(address me, address friend_key, string memory name) internal {
-		friend memory newFriend = friend(friend_key,name);
-		userList[me].friendList.push(newFriend);
-	}
-	
-	// Returns list of friends of the sender
-	function getMyFriendList() external view returns(friend[] memory) {
-		return userList[msg.sender].friendList;
-	}
-	
-	// Returns a unique code for the channel created between the two users
-	// Hash(key1,key2) where key1 is lexicographically smaller than key2
-	function _getChatCode(address pubkey1, address pubkey2) internal pure returns(bytes32) {
-		if(pubkey1 < pubkey2)
-			return keccak256(abi.encodePacked(pubkey1, pubkey2));
-		else
-			return keccak256(abi.encodePacked(pubkey2, pubkey1));
-	}
-	
-	// Sends a new message to a given friend
-	function sendMessage(address friend_key, string calldata _msg) external {
-		require(checkUserExists(msg.sender), "Create an account first!");
-		require(checkUserExists(friend_key), "User is not registered!");
-		require(checkAlreadyFriends(msg.sender,friend_key), "You are not friends with the given user");
-		
-		bytes32 chatCode = _getChatCode(msg.sender, friend_key);
-		message memory newMsg = message(msg.sender, block.timestamp, _msg);
-		allMessages[chatCode].push(newMsg);
-	}
-	
-	// Returns all the chat messages communicated in a channel
-	function readMessage(address friend_key) external view returns(message[] memory) {
-		bytes32 chatCode = _getChatCode(msg.sender, friend_key);
-		return allMessages[chatCode];
-	}
+    // Collection of users registered on the application
+    mapping(address => user) userList;
+    // Collection of messages communicated in a channel between two users
+    mapping(bytes32 => message[]) allMessages; // key : Hash(user1,user2)
+    
+    // It checks whether a user(identified by its public key)
+    // has created an account on this application or not
+    function checkUserExists(address pubkey) public view returns(bool) {
+        return bytes(userList[pubkey].name).length > 0;
+    }
+    
+    // Registers the caller(msg.sender) to our app with a non-empty username
+    function createAccount(string calldata name) external {
+        require(checkUserExists(msg.sender)==false, "User already exists!");
+        require(bytes(name).length>0, "Username cannot be empty!"); 
+        userList[msg.sender].name = name;
+    }
+    
+    // Returns the default name provided by an user
+    function getUsername(address pubkey) external view returns(string memory) {
+        require(checkUserExists(pubkey), "User is not registered!");
+        return userList[pubkey].name;
+    }
+    
+    // Adds new user as your friend with an associated nickname
+    function addFriend(address friend_key, string calldata name) external {
+        require(checkUserExists(msg.sender), "Create an account first!");
+        require(checkUserExists(friend_key), "User is not registered!");
+        require(msg.sender!=friend_key, "Users cannot add themselves as friends!");
+        require(checkAlreadyFriends(msg.sender,friend_key)==false, "These users are already friends!");
+        
+        _addFriend(msg.sender, friend_key, name);
+        _addFriend(friend_key, msg.sender, userList[msg.sender].name);
+    }
+    
+    // Checks if two users are already friends or not
+    function checkAlreadyFriends(address pubkey1, address pubkey2) internal view returns(bool) {
+        
+        if(userList[pubkey1].friendList.length > userList[pubkey2].friendList.length)
+        {
+            address tmp = pubkey1;
+            pubkey1 = pubkey2;
+            pubkey2 = tmp;
+        }
+    
+        for(uint i=0; i<userList[pubkey1].friendList.length; ++i)
+        {
+            if(userList[pubkey1].friendList[i].pubkey == pubkey2)
+                return true;
+        }
+        return false;
+    }
+    
+    // A helper function to update the friendList
+    function _addFriend(address me, address friend_key, string memory name) internal {
+        friend memory newFriend = friend(friend_key,name);
+        userList[me].friendList.push(newFriend);
+    }
+    
+    // Returns list of friends of the sender
+    function getMyFriendList() external view returns(friend[] memory) {
+        return userList[msg.sender].friendList;
+    }
+    
+    // Returns a unique code for the channel created between the two users
+    // Hash(key1,key2) where key1 is lexicographically smaller than key2
+    function _getChatCode(address pubkey1, address pubkey2) internal pure returns(bytes32) {
+        if(pubkey1 < pubkey2)
+            return keccak256(abi.encodePacked(pubkey1, pubkey2));
+        else
+            return keccak256(abi.encodePacked(pubkey2, pubkey1));
+    }
+    
+    // Sends a new message to a given friend
+    function sendMessage(address friend_key, string calldata _msg) external {
+        require(checkUserExists(msg.sender), "Create an account first!");
+        require(checkUserExists(friend_key), "User is not registered!");
+        require(checkAlreadyFriends(msg.sender,friend_key), "You are not friends with the given user");
+        
+        bytes32 chatCode = _getChatCode(msg.sender, friend_key);
+        message memory newMsg = message(msg.sender, block.timestamp, _msg);
+        allMessages[chatCode].push(newMsg);
+    }
+    
+    // Returns all the chat messages communicated in a channel
+    function readMessage(address friend_key) external view returns(message[] memory) {
+        bytes32 chatCode = _getChatCode(msg.sender, friend_key);
+        return allMessages[chatCode];
+    }
 }
 ```
 
@@ -185,18 +192,17 @@ An Application Binary Interface (ABI) is a JSON object which stores the metadata
 
 Now, we are going to create a react app and setup the frontend of the application.
 
-Open the terminal and navigate to the directory where you intend to create your application.
+Open a terminal and navigate to the directory where we will create the application.
 ```bash
 cd /path/to/directory
 ```
 
-Now use `npm` to install create-react-app
-
+Now use `npm` to install create-react-app. `-g` flag denotes that the package should be installed globally.
 ```bash
 npm install -g create-react-app
 ```
 
-Create a new react app
+Create a new react app.
 ```bash
 create-react-app avalanche-chat-app
 ```
@@ -207,13 +213,7 @@ cd avalanche-chat-app
 npm install --save ethers@5.1.4 react-bootstrap@1.5.2 bootstrap@4.6.0
 ```
 
-Now remove the contents of src and public folder
-```bash
-rm -v src/*
-rm -v public/*
-```
-
-Create an `index.html` file in the `public` directory; and paste the following HTML:
+Create an `index.html` file in the `public` directory, and paste the following HTML :
 
 ```html
 <!DOCTYPE html>
@@ -235,16 +235,14 @@ Create an `index.html` file in the `public` directory; and paste the following H
 
 <br>
 
-Move out of the public folder and make a new directory `components` inside `src` and move inside it using the following command:
+Move out of the public folder and create a new directory `components` inside `src` directory, where we will be keeping all our React components, using the following command :
 
 ```bash
 mkdir ./src/components
 cd ./src/components
 ```
 
-Here in this directory we will keep all the React components
-
-Now let's create the component having the navbar of our dApp. Create a file named `NavBar.jsx` and paste the following code block:
+Now let's create the component having the navbar of our dApp. Create a new file called `NavBar.jsx` and paste the following code :
 
 ```javascript
 import React from "react";
@@ -276,7 +274,7 @@ export function NavBar( props ){
 }
 ```
 
-All the contacts will have a card with contacts' name and public key. Create a new file `ChatCard.jsx` and paste the following code block:
+All the contacts will have a card with contacts' name and public key. Create a new file called `ChatCard.jsx` and paste the following code :
 
 ```javascript
 import React from "react";
@@ -298,7 +296,7 @@ export function ChatCard( props ){
 }
 ```
 
-Each message will be rendered by the Message component. This component will have the timestamp , senders' name and the message. Create a `Message.jsx` and paste the following javascript code:
+Each message will be rendered by the Message component. This component will have the timestamp , senders' name and the message. Create a new file called `Message.jsx` and paste the following javascript code :
 
 ```javascript
 import React from "react";
@@ -328,7 +326,7 @@ export function Message( props ){
 }
 ```
 
-To add a new contact we will make AddNewChat component. It will show a modal on clicking the NewChat button and ask for the contacts' details. Make a new file named `AddNewChat.jsx` and paste the following code block:
+To add a new contact we will make AddNewChat component. It will show a modal on clicking the NewChat button and ask for the contacts' details. Create a new file called `AddNewChat.jsx` and paste the following code :
 
 ```javascript
 import React from "react";
@@ -375,7 +373,7 @@ export function AddNewChat( props ){
 }
 ```
 
-Now lets create a file `Components.js` and export all the components together. Paste the following code block:
+Now lets create a new file called `Components.js` and export all the components together. Paste the following code :
 
 ```javascript
 export { NavBar } from "./NavBar";
@@ -384,12 +382,10 @@ export { Message } from "./Message";
 export { ChatCard } from "./ChatCard";
 ```
 
-Move out of the components directory to `src`. Make a new file named `App.jsx`in the same folder`src` and paste the given code.
-
-> Note: Write down the `contract address` obtained earlier in the variable named `contractAddress` on line 10
+Move out to the `src` directory and create a new file called `App.jsx` and paste the following code :
 
 {% hint style="info" %}  
-Note: Write down the contract address obtained in `Implementing the smart contract` section in the variable named `contractAddress` on line 12  
+Note: Write down the contract address obtained in `Implementing the smart contract` section in the variable named `contractAddress` on line 9  
 {% endhint %}
 
 ```javascript
@@ -401,7 +397,7 @@ import { ethers } from "ethers";
 import { abi } from "./abi";
 
 // Add the contract address inside the quotes
-const CONTRACT_ADDRESS = "0xb15D2A5D8fa88721FD1A930362bE0F61a9Fa472c"; 
+const CONTRACT_ADDRESS = ""; 
 
 export function App( props ) {  
     const [friends, setFriends] = useState(null);
@@ -803,7 +799,8 @@ Congratulations! We have successfully developed a decentralized chat application
 
 **Transaction Failure**
 
-* Check if your account has sufficient balance at [fuji block-explorer](https://testnet.avascan.info/). You can fund your address from the given [faucet](https://faucet.avax-test.network/)
+* Check if your account has sufficient balance at [fuji block-explorer](https://cchain.explorer.avax-test.network/). You can fund your address from the given [faucet](https://faucet.avax-test.network/)
+
 * Make sure that you have selected the correct account on metamask if you have more than one account connected to the site.
 
 **Application crash**
