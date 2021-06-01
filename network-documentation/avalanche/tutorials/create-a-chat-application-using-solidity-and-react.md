@@ -18,7 +18,7 @@ Our chat dApp needs the basic functionality allowing users to connect with and s
 
 ### Account creation
 
-We will define 3 functions:
+We will define 3 functions :
 
 * The `checkUserExists(pubkey)` function is used to check if a user is registered with our application or not. It will help make sure duplicate users are not created and it will also be called from other functions to check their existence.
 
@@ -28,7 +28,7 @@ We will define 3 functions:
 
 ### Adding new friend
 
-Here also we will define 3 functions:
+Here also we will define 3 functions :
 
 * The `checkAlreadyFriends(pubkey1, pubkey2)` function checks whether two users are already friends with each other or not. This is needed to prevent duplicate channel between the same parties and will also be used to prevent a user from sending messages to other users unless they are friends.
 
@@ -40,13 +40,13 @@ Here also we will define 3 functions:
 
 The final part of the Solidity contract will enable the exchange of messages between users. We will divide the task into two functions `sendMessage()` and `readMessage()`.
 
-* The `sendMessage()` function allows a user to send messages to another registered user (friend). This is done with `checkUserExists()` and `checkAlreadyFriends()`.
+* The `sendMessage()` function allows a user to send messages to another registered user (friend). This is done with `checkUserExists(pubkey)` and `checkAlreadyFriends(pubkey1, pubkey2)`.
 
 * The `readMessage()` function returns the chat history that has happened between the two users so far.
 
 ### Data Collections
 
-We will have three types of user-defined data:
+We will have three types of user-defined data :
 
 * `user` will have the properties `name` which stores the username, and `friendList` which is an array of other users.
 
@@ -320,7 +320,7 @@ export function ChatCard( props ){
 }
 ```
 
-Each message will be rendered by the Message component. This component will have the timestamp , senders' name and the message. Create a new file called `Message.jsx` and paste the following javascript code :
+Each message will be rendered by the Message component. This component will have the timestamp , senders' name and the message. Create a new file called `Message.jsx` and paste the following code :
 
 ```javascript
 import React from "react";
@@ -407,10 +407,6 @@ export { ChatCard } from "./ChatCard";
 ```
 
 Move out to the `src` directory and create a new file called `App.jsx` and paste the following code :
-
-{% hint style="info" %}  
-Note: Write down the contract address obtained in `Implementing the smart contract` section in the variable named `contractAddress` on line 9  
-{% endhint %}
 
 ```javascript
 import React from "react";
@@ -627,10 +623,13 @@ export function App( props ) {
         </Container>
     );
 }
-
 ```
 
-Open the `index.js` file inside the `src` directory and paste the following :
+{% hint style="info" %}  
+Note: Write down the contract address obtained from `Implementing the smart contract` section in the variable called `CONTRACT_ADDRESS` on line 9 of `App.jsx`.
+{% endhint %}
+
+Open the `index.js` file inside the `src` directory and paste the following code :
 
 ```javascript
 import React from "react";
@@ -815,11 +814,11 @@ npm start
 
 ![preview](https://i.imgur.com/pyYXvZs.gif)
 
-{% hint style="info" %}
-    Make sure your friend is also registered to the application while adding him as a friend.
+{% hint style="info" %}  
+Make sure your friend is also registered to the application while adding him as a friend.  
 {% endhint %}
 
-* Chatting
+* Chatting with friend
 
 ![preview](https://i.imgur.com/LfkjLSK.gif)
 
@@ -841,7 +840,7 @@ Congratulations! We have successfully developed a decentralized chat application
 **Application crash**
 
 ![Error](https://user-images.githubusercontent.com/44340561/119778345-05dba100-bee5-11eb-85b9-c9bd18ea4082.png)
-Check if you have updated the `contractAddress` variable in `src/index.js` properly!
+Check if you have updated the `CONTRACT_ADDRESS` variable in `src/index.js` properly!
 
 ## What's Next
 This dApp has very limited functionality. We can improve it by adding functions to delete messages, block users, or create groups of friends. We could also optimize the dApp interaction cost with functions to limit the maximum number of messages, or possibly using event log for short messages.
