@@ -23,9 +23,9 @@ Truffle Suite is a toolkit for launching decentralized applications (dApps) on E
 ## Initializing the working directory
 The client-side of our dApp is made using **ReactJS**. Smart contracts will be made using **Solidity** language and will be deployed on the **Avalanche** network with **Truffle Suite**. Therefore, we need to set up our working directory according to ReactJS and Truffle, to make the development process smoother.
 
-Open a terminal and navigate to the directory where we will create the application. Usually, this will be inside our user home directory but can be located wherever is practical.
+Open a terminal and navigate to the directory where we will create the application. Usually, this will be inside our user home directory but can be located wherever is practical. On most Linux distributions this will change into /home/ . On macOS it will be /Users/. On Windows the user directories are located in C:\Users<username>.
 ```bash
-cd /path/to/directory
+cd ~
 ```
 
 ### **Setting up the ReactJS project**
@@ -49,12 +49,11 @@ Open the file `index.html` file inside of the `public` directory and replace the
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Avalanche Elections</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
   </head>
-
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-  />
 
   <body>
     <div id="root"></div>
@@ -522,7 +521,8 @@ The information and ABI of the deployed contract are present in the `src/build/c
 
 * First, we will make few functions to connect our browser with the Avalanche network. These functions will be kept in a separate file named `BlockchainUtil.js`. 
 
-* Create the file `BlockchainUtil.js` inside of the project `src` directory and paste the following code:
+### Making a component to interact with blockchain
+Create the file `BlockchainUtil.js` inside of the project `src` directory and paste the following code:
 
 ```javascript
 import React from "react";
@@ -560,7 +560,8 @@ export class GetAccount extends React.Component {
 }
 ```
 
-* **Updating `App.js`** - `App.js` is the entry point of any React application. Therefore we need to update `App.js` regularly with the components which we want to show in our application. As we move further and build components, we will also update `App.js`.
+### Updating App.js
+`App.js` is the entry point of any React application. Therefore we need to update `App.js` regularly with the components which we want to show in our application. As we move further and build components, we will also update `App.js`.
 
 So, now add the following line under the `//Importing...` section of `App.js` to import `BlockchainUtil.js` module.
 ```javascript
@@ -586,7 +587,8 @@ this.mainInstance = await Contract.getContract(this.web3, contractJson);
 this.setState({mainInstance: this.mainInstance});
 ```
 
-* Now let's make a component that will create new elections using our deployed smart contract. Create the file `CreateElection.js` inside of the project `src` directory and paste the following code. The code is commented to draw attention to the important parts.
+### Making a component to deploy elections
+Now let's make a component that will create new elections using our deployed smart contract. Create the file `CreateElection.js` inside of the project `src` directory and paste the following code. The code is commented to draw attention to the important parts.
 
 ```javascript
 import React, { Component } from "react";
@@ -741,6 +743,8 @@ class CreateElection extends Component {
 
 export default CreateElection;
 ```
+
+### Making a component to list the deployed elections
 Create the file `Active.js` inside of the project `src` directory and paste the following code:
 
 ```javascript
@@ -886,7 +890,7 @@ class Active extends Component {
   render() {
     return (
       // Simple container to store table with election data
-      <div className="container" style={{}}>
+      <div className="container">
         <div style={{ float: "right", marginBottom: "10px" }}>
           <img
             style={{ width: "25px", marginRight: "20px", cursor: "pointer" }}
@@ -923,21 +927,12 @@ class Active extends Component {
 export default Active;
 ```
 
+### Making a component to vote in elections
 In the above component Active.js, we have used a component called VoteModal which contains the candidate details and a button to cast a vote. Now we will make this component available by creating a file named VoteModal.js inside the src directory. Once created, put the following code inside it:
 
 ```javascript
 import React, { useState } from "react";
-import {
-  Box,
-  Flex,
-  Modal,
-  Button,
-  Text,
-  Card,
-  Radio,
-  Field,
-  Loader,
-} from "rimble-ui";
+import { Box, Flex, Modal, Button, Text, Card, Radio, Field, Loader } from "rimble-ui";
 
 // Data like election and candidate details will be passed in the props by Active.js (parent)
 function VoteModal(props) {
@@ -1044,6 +1039,7 @@ function VoteModal(props) {
 
 export default VoteModal;
 ```
+### Integrating the built components with App.js
 
 Now we need to update our `App.js` file with all the components that we have made so far.
 
@@ -1093,11 +1089,11 @@ npm install --save rimble-ui react-router-dom --force
 
 Now go to the project root directory, i.e. `avalanche-voting` directory, and run the command `npm start`. The ReactJS server would start automatically.
 
-* Visit [http://localhost:3000](http://localhost:3000) to interact with built dApp.
+* Visit [http://localhost:3000](http://localhost:3000) in a browser to interact with the dApp frontend.
 
 * Don't forget to set up Metamask with Fuji testnet and also fund the account with Fuji C-Chain test tokens to vote. In the Metamask extension, add a custom RPC by clicking at the network dropdown in the centre of the extension. Fill in the details as shown in the below image.
 
-<img src = "https://imgur.com/qXR0hAx.png" style = "width: 250px;">
+![](https://imgur.com/qXR0hAx.png)
 
 | Info              | Value                                     |
 | ------------------|-------------------------------------------|
@@ -1107,11 +1103,11 @@ Now go to the project root directory, i.e. `avalanche-voting` directory, and run
 | Currency Symbol   | AVAX                        |
 | Block Explorer URL| https://cchain.explorer.avax-test.network |
 
-<img src="https://imgur.com/bjdWr35.gif"/>
-
 ## Conclusion
 
 You have successfully built a full-fledged e-voting dApp with advanced features like creating custom elections, voting in them and deployed the smart contract on the Fuji test network using Truffle Suite. Along with that, we have also built the client-side application using ReactJS for interacting with the network. From this tutorial, you have learnt not only how to make make and deploy smart contracts but also how to integrate ReactJS with the blockchain using Trufflesuite.
+
+![](https://imgur.com/bjdWr35.gif)
 
 ## What's next?
 
