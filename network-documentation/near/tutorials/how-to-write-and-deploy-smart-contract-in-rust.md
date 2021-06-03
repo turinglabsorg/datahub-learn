@@ -1,5 +1,5 @@
 
-# How to write and deploy a smart contract in Rust
+# Write and Deploy a Rust smart contract on NEAR
 
 ## Introduction
 
@@ -21,19 +21,32 @@ You should have following requirements installed:
 
 To setup our project, we need to add the WASM (WebAssembly) target to our toolchain. To add that we need to run the following command in the terminal:
 
-```sh
+```bash
 rustup target add wasm32-unknown-unknown
 ```
+The output in the terminal will be :
+```bash
+info: downloading component 'rust-std' for 'wasm32-unknown-unknown'
+info: installing component 'rust-std' for 'wasm32-unknown-unknown'
+info: using up to 500.0 MiB of RAM to unpack components 13.9 MiB /  13.9 MiB (100 %)  10.0 MiB/s in  1s ETA:  0s
+```
+If target is already added, then output in the terminal will be :
+```bash
+info: component 'rust-std' for target 'wasm32-unknown-unknown' is up to date
+````
 What is Rust toolchain? A toolchain is a specific version of the collection of programs needed to compile a Rust application.
 
-Why do we need to add the WASM target? Because to deploy our smart contract on NEAR, we need to compile it to WebAssembly (`.wasm` file). When we first install Rust, it downloads libraries for our host platform like Linux, Windows, etc. For compiling our Rust smart contract to WebAssembly, we need standard libraries for WebAssembly platform. The above command installs those standard libraries. You can read more about cross-compilation [HERE](https://rust-lang.github.io/rustup/cross-compilation.html)
+Why do we need to add the WASM target? To deploy our smart contract on NEAR, we need to compile it to WebAssembly (.wasm file). The rustup command above installs the standard libraries for the WebAssembly target triple (wasm32-unknown-unknown). Read more about cross-compilation [on the rustup docs](https://rust-lang.github.io/rustup/cross-compilation.html).
 
-Now, let’s create a folder called `key_value_storage`, go inside the folder and run following command in terminal:
-```sh
+Now, let’s create a directory called `key_value_storage`, then change into that directory and run the following command in the terminal:
+```bash
 cargo init
 ```
-This will create a basic Rust project for us. Now open `Cargo.toml`, clear all the content in it and add the following snippet:
-
+The output in the terminal will be :
+```sh
+Created binary (application) package
+```
+Open the default `Cargo.toml` file which was generated, remove the existing contents and paste the following :
 ```
 [package]
 name = "key_value_storage"
@@ -58,15 +71,15 @@ panic = "abort"
 # Opt into extra safety checks on arithmetic operations https://stackoverflow.com/a/64136471/249801
 overflow-checks = true
 ```
-Finally, change the name of file `main.rs` to `lib.rs` as it is a convention while writing smart contracts.
+Finally, change the name `main.rs` to `lib.rs` as we are not making a binary application, thus our smart contract code will be a library.
 
-We are all set now! You can use this as a template for any future project.
+We are all set now! This can be used as a template and a starting point for any future project.
 
-## Writing Smart contract
+## Writing the contract
 
-We will create a simple CRUD (Create, Read, Update, Delete) smart contract that utilizes on-chain storage offered by NEAR. You can read more about how on-chain storage works [here](https://docs.near.org/docs/concepts/storage-staking).
+We will create a simple Create, Read, Update, Delete ([CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)) backend in Rust that utilizes the on-chain storage offered by NEAR. More information about NEAR storage is available [in the NEAR docs](https://docs.near.org/docs/concepts/storage-staking).
 
-Now we can start by clearing all the code in `lib.rs` and the following code snippet:
+We can start by removing all the existing code in `lib.rs` and pasting in the following code snippet:
 
 ```rust
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
@@ -76,22 +89,31 @@ use near_sdk::collections::UnorderedMap;
 near_sdk::setup_alloc!();
 
 // 1. Main Struct
+
 // 2. Default Implementation
+
 // 3. Core Logic
+
 // 4. Tests
 ```
 
-First, we are importing items using `use`. Here items can be anyting like funcitons, struts, macros, etc. As we go through the tutorial, we will learn more about items we have imported now.
+At the top of the contract, we need to import a few code modules with the `use` [declaration](https://doc.rust-lang.org/reference/items/use-declarations.html#use-declarations). We will expand on these portions of the `near_sdk` below.
 
-Then, setting up global allocator from `wee_alloc` crate using `setup_alloc!` macro. Allocators are the way that programs in Rust obtain memory from the system at runtime. 
+Next, we setup the global allocator from the `wee_alloc` crate using the `setup_alloc!()` macro. Allocators are the way that programs in Rust obtain memory from the system at runtime & `wee_alloc` is a memory allocator designed for WebAssembly. It generates less than a kilobyte of uncompressed WebAssembly code. This macro is shorthand for the boilerplate code :
+
+```rust
+#[cfg(target_arch = "wasm32")]
+#[global_allocator]
+static ALLOC: near_sdk::wee_alloc::WeeAlloc<'_> = near_sdk::wee_alloc::WeeAlloc::INIT;
+```
 
 `wee_alloc` is a memory allocator designed for WebAssembly. It generates less than a kilobyte of uncompressed WebAssembly code.
 
-You should read more about [global allocator](https://doc.rust-lang.org/edition-guide/rust-2018/platform-and-target-support/global-allocators.html) and [wee_alloc](https://github.com/rustwasm/wee_alloc).
+You can read more about [global allocator](https://doc.rust-lang.org/edition-guide/rust-2018/platform-and-target-support/global-allocators.html) and [wee_alloc](https://github.com/rustwasm/wee_alloc).
 
 ### Main Struct
 
-While writing a smart contract, we are going to follow a pattern where we've one structure (`struct`) and an implementation (`impl`) associated with it. You see this pattern in most smart contracts. Add the following snippet below the comment `// 1. Main Struct`:
+While writing our smart contract, we will follow a pattern using one structure (`struct`) and an implementation (`impl`) associated with it. This is a pattern used in most Rust contracts on NEAR. Add the following snippet below the comment `// 1. Main Struct` in `lib.rs`:
 
 ```rust
 #[near_bindgen]
@@ -100,17 +122,17 @@ pub struct KeyValue {
     pairs: UnorderedMap<String, String>,
 }
 ```
-We have our main structure `KeyValue` which has one field `pairs`. `pairs` field have a type of `UnorderedMap` which we have imported from `near_sdk::collections`. [Unordered Map](docs.rs/near-sdk/3.1.0/near_sdk/collections/struct.UnorderedMap.html) is a data structure that utilizes underlying blockchain trie storage more efficiently.
+We have our main structure `KeyValue` which has one field `pairs`. `pairs` is of type `UnorderedMap` which we have imported from `near_sdk::collections`. [`UnorderedMap`](docs.rs/near-sdk/3.1.0/near_sdk/collections/struct.UnorderedMap.html) is a data structure that utilizes underlying blockchain trie storage more efficiently.
 
 `#[near_bindgen]` and `#[derive(BorshDeserialize, BorshSerialize)]` are attributes.
 
 What are attributes? A declarative tag that is used to convey information to runtime about the behaviors of various elements like classes, methods, structures, enumerators, assemblies, etc.
 
-We wrap our struct `KeyValue` in `#[near_bindgen]` and it generates a smart contract compatible with NEAR blockchain. The second attribute helps to serialization and de-serialization of the data.
+By adding the macro `#[near_bindgen]` we provide our struct `KeyValue` with generated boilerplate code to make it compatible with the NEAR blockchain. The second macro, `#[derive(BorshDeserialize, BorshSerialize)]` assists in the serialization and de-serialization of the data for sending it to or retreiving it from NEAR.
 
 ### Default Implementation
 
-Every type in Rust has a `Default` implementation but here we want provide our own default implementation for `keyValue` struct. Add following snippet below the comment `// 2. Default Implementation`:
+Every type in Rust has a `Default` implementation but here we want provide our own default implementation for `keyValue` struct. Add the following snippet below the comment `// 2. Default Implementation` in `lib.rs`:
 
 ```rust
 impl Default for KeyValue {
@@ -122,7 +144,9 @@ impl Default for KeyValue {
 }
 ```
 
-Now, let’s go step by step. First, we are creating a `Default` implementation for `KeyValue`. After that, we added the `default` method inside that implementation which returns `Self`. `Self` refers to the current type i.e. `KeyValue`. Lastly, we are returning `Self` with a new unordered map with ID `r` as a type to `pairs` field. While creating a new unordered map, we have to pass ID as `Vec<u8>` type so we are converting `b"r"` which byte string to `Vec<u8>` using `to_vec()` function. Prefix `b` is used to specify that we want byte array of the string. You can read about byte string literals [HERE](https://doc.rust-lang.org/reference/tokens.html#byte-string-literals)
+Now, let’s go step by step: 
+First, we are creating a `Default` implementation for `KeyValue`. After that, we added the `default` method inside that implementation which returns `Self`. `Self` refers to the current type, which is `KeyValue`. Lastly, we are returning `Self` with a new unordered map.
+While creating a new unordered map, we must pass the ID as `Vec<u8>` type so we are converting `b"r"` which is a byte string, to `Vec<u8>`, using the `to_vec()` function. The prefix `b` is used to specify that we want a byte array of the string. You can read about byte string literals [in the Rust docs.](https://doc.rust-lang.org/reference/tokens.html#byte-string-literals)
 
 ### Core Logic
 
@@ -155,19 +179,19 @@ We are using `&mut self` to borrow self mutably. You can learn more about borrow
 
 `k` and `v` are key-value which we are going to store. 
 
-`env::log(b"created or updated")` is used for logging.
+`env::log(b"created or updated")` is used for logging. Logs can be used for showing informative messages or warnings to user. Also, these logs help developer in development process.
 
-After that, we are calling the method `insert` on `self.pairs`. This will create key-value pair if not present already otherwise it will update the value associated with the given key.
+After that, we are calling the method `insert` on `self.pairs`. This will create a key-value pair if one is not present already otherwise it will update the value associated with the given key.
 
-The next two methods have the same working but instead of calling the `insert` method, we call `get` and `remove` methods on `self.pairs` to read and remove key-value pair respectively.
+The next two methods are quite similar but instead of calling the `insert` method, we call `get` and `remove` methods on self.pairs to read or remove the key-value pair.
 
 ## Testing Smart Contract
 
-Our smart contract is now complete. Let's write some unit tests.
+The code for this our CRUD smart contract is now complete. One of the nice features of Rust is that it allows inline unit tests. This means we can write our unit tests in the same source file as our contract, `lib.rs`!.
 
-Why should we write unit tests for a smart contract? Writing unit tests is a common pratice in software development. While writing smart contract, units tests are more important. As smart contracts are immutable and sometimes reponsible for managing large sums of money, writing unit tests is the only way to assure that smart contracts is secure and reliable.
+Why should we write unit tests for a smart contract? Unit testing is a common practice in software development. While writing smart contracts, units tests are important because smart contracts are often immutable and sometimes responsible for managing sums of money. Writing good unit tests is a key component of secure and reliable smart contract development.
 
-Add following snippet below the comment `// 4. Tests`:
+Copy and paste the following code below the comment `// 4. Tests` in `lib.rs` :
 
 ```rust
 #[cfg(not(target_arch = "wasm32"))]
@@ -198,14 +222,15 @@ mod tests {
         }
     }
 
-    // test 1
-    // test 2
+    // Test 1
+
+    // Test 2
 
 }
 ```
-Here we are setting our testing environment with various parameters. You can read about how to setup your testing environment [here](https://docs.rs/near-sdk/3.1.0/near_sdk/struct.VMContext.html).
+This is where we set up our testing environment with various parameters and a mocked blockchain. Read more about the Virtual Machine context and testing environment [in the NEAR-SDK docs](https://docs.rs/near-sdk/3.1.0/near_sdk/struct.VMContext.html).
 
-Let's write our first test for `create_update` and `read` methods. Add following snippet below the comment `// test 1`:
+Let's write our first test for the `create_update` and `read` methods. Paste the following snippet below the comment `// Test 1` in `lib.rs`:
 
 ```rust
 	#[test]
@@ -220,13 +245,13 @@ Let's write our first test for `create_update` and `read` methods. Add following
         );
     }
 ```
-First, we are creating a `context` variable by calling `get_context` function and passing it to `testing_env` macro which creates a testing environment with given parameters. Now, we have to create a `contract` variable which will use the contract that we have written. We can use this variable to call methods. 
+First, we are creating a `context` variable by calling the `get_context` function and passing it to the `testing_env!()` macro which creates a testing environment using the given parameters. Next, we have to create a mutable `contract` variable which will use the contract that we have just written. We can then use this `contract` variable to call our methods for testing.
 
-Now, let’s call the `create_update` method to set key-value pairs. The key will be `first_key` and the value will be `hello`. After creating pair, we want to check if the right values are stored in storage. For checking, we will use the `assert_eq!` macro. It expects 2 arguments: expected value and actual value.
+Now, let’s call the `create_update` method to set key-value pairs. The key will be `first_key` and the value will be `hello`. After creating pair, we want to check if the right values are stored in storage. For checking, we will use the `assert_eq!()` macro. It takes 2 arguments; the expected value and the actual value.
 
 We will pass the expected value to be `"hello".to_string()` and for actual value, we will call the read method with `first_key` as the argument. The read method returns the value of type `Option<String>` but the type of expected value is `String`. That's why we use `unwrap` to get the value of `String` type out of `Option<String>` type.
 
-Let's assume that key is not present in storage then `None` should be returned when we read that key. In next test we are going to test our assumtion. Add following snippet below the comment `// test 2`:
+For our second test, we will assume that key is not present in storage. In this case, `None` should be returned when we attempt to read the key. Add the following code below the comment `// Test 2`:
 
 ```rust
 	#[test]
@@ -238,14 +263,14 @@ Let's assume that key is not present in storage then `None` should be returned w
     }
 ```
 
-Just like the first test, we will create our testing environment and `contract` variable. But here contract variable is unmutable. As we are not going to change the `contract` variable. To check `None` is returned after accessing nonexistent key using `contract.read("first_key".to_string())`, we'll use `assert_eq`. 
+Just like in the first test, we will create our testing environment and `contract` variable. In this test however, the contract variable is immutable, as we are not going to change the `contract` variable. To check that None is returned after accessing a nonexistent key using `contract.read("first_key".to_string())`, we'll use `assert_eq!()`.
 
-Now, let’s test our code. Run following command in terminal:
-```javascript 
+Now, it is time to test our code. Run the following command in the terminal:
+```bash 
 cargo test -- --nocapture
 ```
-Tests will pass only if contract is working properly. As our smart contract is working properly we will see the following as the output:
-```javascript
+The tests will pass only if the contract is working properly. As our smart contract is working properly, we will see the following output:
+```bash
 Finished test [unoptimized + debuginfo] target(s) in 1m 05s
      Running target/debug/deps/key_value_storage-958f616e81cf3269
 
@@ -263,38 +288,48 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 ```
 ## Compiling Smart Contract
 
-As we have written and tested the smart contract, we will compile it for deployment. Run following command in terminal:
-```javascript
-// for linux and mac users
+Now that we have written and tested the Rust smart contract, we will compile it into WebAssembly for deployment on NEAR. Run the following command in the terminal (NOTE: Windows users will have to perform the two commands separately, `set` for the environment variables and then the `cargo build` command):
+```bash
+// Linux and macOS users can use these commands:
 env 'RUSTFLAGS=-C link-arg=-s' cargo build --target wasm32-unknown-unknown --release
 
-// for windows users 
+// Windows users can use these commands:
 set RUSTFLAGS=-C link-arg=-s
 cargo build --target wasm32-unknown-unknown --release
 ```
-You will see the following at the end of execution:
-```javascript
+The output from `cargo build` will be similar :
+```bash
 Compiling near-sdk v3.1.0
 Compiling key_value_storage v0.1.0 (/home/xqc/key_value_storage)
 Finished release [optimized] target(s) in 1m 00s
 ```
-We have generated optimized WASM file which we can deploy on NEAR testnet.
+We have now generated an optimized WebAssembly file which we can deploy on NEAR, for this tutorial we will deploy it to the NEAR testnet.
 
 ## Deploying Smart Contract
 
 First you have to login into your account using `near-cli`. Run 
-```javascript
+```bash
 near login
 ```
-This will redirect you to browser and then click on allow button. This will get your credentials in your machine. 
+This will redirect you to NEAR wallet requesting full access to your account. From here, select which account you would like an access key to
 
-Let's deploy our smart contract. Run following command in terminal:
-```javascript
+![Near Login](https://imgur.com/a/Xqu4zYc.jpg)
+
+After you click `allow`, you will be asked to confirm this authorization by entering the account name.
+![Near Login Confirmation](https://imgur.com/a/jBvcnvi.jpg)
+
+Once complete, you will now have your Access Key stored locally in a hidden directory called `.near-credentials`.
+This directory is located at the root of your HOME directory:
+- `~/.near-credentials` (MAC / Linux)
+- `C:\Users\YOUR_ACCOUNT\.near-credentials` (Windows)
+
+Now we can deploy our Rust smart contract to NEAR. Run the following command in the terminal:
+```bash
 near deploy --wasmFile target/wasm32-unknown-unknown/release/key_value_storage.wasm --accountId YOUR_ACCOUNT_HERE
 ```
 After the deployment is completed, you will see similar output in the terminal:
-```javascript
-xqc@RecycleBin:~/key_value_storage$ near deploy --wasmFile target/wasm32-unknown-unknown/release/key_value_storage.wasm --accountId 0xnik.testnetStarting deployment. Account id: 0xnik.testnet, node: https://rpc.testnet.near.org, helper: https://helper.testnet.near.org, file: target/wasm32-unknown-unknown/release/key_value_storage.wasm
+```bash
+Starting deployment. Account id: 0xnik.testnet, node: https://rpc.testnet.near.org, helper: https://helper.testnet.near.org, file: target/wasm32-unknown-unknown/release/key_value_storage.wasm
 Transaction Id E4uT8wV5uXSgsJpB73Uox27iPgXztWfL3b5gzxfA3fHo
 To see the transaction in the transaction explorer, please open this url in your browser
 https://explorer.testnet.near.org/transactions/E4uT8wV5uXSgsJpB73Uox27iPgXztWfL3b5gzxfA3fHo
@@ -304,16 +339,16 @@ Done deploying to 0xnik.testnet
 
 ## Interacting with Smart Contract
 
-Let's try to call smart contract from the terminal. 
+Now that we have deployed our contract, we can interact with it using the NEAR CLI.
 
 We'll create a key-value pair and then read it. 
 
-Create key-value pair:
-```javascript
+This command will create a key-value pair (replace `YOUR_ACCOUNT_HERE` with your account name, ex. `example.near`):
+```bash
 near call YOUR_ACCOUNT_HERE create_update '{"k": "first_key", "v" : "1"}' --accountId YOUR_ACCOUNT_HERE
 ```
-Output: 
-```javascript
+The output will be: 
+```bash
 Scheduling a call: 0xnik.testnet.create_update({"k": "first_key", "v" : "1"})
 Receipt: 6bCmuWuAbdiXWvPaTvidbJP4f3mSG4UVcE52g18ZWMq5
         Log [0xnik.testnet]: created or updated
@@ -322,14 +357,14 @@ To see the transaction in the transaction explorer, please open this URL in your
 https://explorer.testnet.near.org/transactions/AQWwThAtXWhU7HJsuD5bvi2FXHpnw5xbj5SEe94Q3MTp
 ''
 ```
-If you have to provide arguments to a function, then you have to add that argument as a JSON object.
+Function arguments must be provided inside of a JSON object: `create_update({"k": "first_key", "v" : "1"})` notice the `{ }` curled brackets inside of `create_update()`
 
 Now, we will read the value of the first key:
-```javascript
+```bash
 near call YOUR_ACCOUNT_HERE create_update '{"k": "first_key"}' --accountId YOUR_ACCOUNT_HERE
 ```
-Output:
-```javascript
+The output will be:
+```bash
 Scheduling a call: 0xnik.testnet.read({"k": "first_key"})
 Receipt: 8GJSpWV4Xf1JUh6YfPrHyDDUMwSx4X9214sLemym6vxa
         Log [0xnik.testnet]: read
@@ -339,11 +374,11 @@ https://explorer.testnet.near.org/transactions/2s6j2RPEppaA97nGtUtgQiw1x3qoSZQtw
 '1'
 ```
 Lastly, we will delete the key:
-```javascript
+```bash
 near call 0xnik.testnet delete '{"k": "first_key"}' --accountId 0xnik.testnet
 ```
-Output:
-```javascript
+The output will be:
+```bash
 Scheduling a call: 0xnik.testnet.delete({"k": "first_key"})
 Receipt: wp8YoFZC7CKUNty66VoYuaHMVej7UqcbLcK2FjpMZzk
         Log [0xnik.testnet]: delete
@@ -355,12 +390,6 @@ https://explorer.testnet.near.org/transactions/A4aDmpkfbEP8JwM5KspUiWe1zYnKgUnA5
 
 ## Conclusion
 
-In this tutorial, we have covered the following:
-- Basics knowledge of Rust programming 
-- Structuring the smart contract 
-- Use of few functions and macro offered by NEAR SDK
-- How to use on-chain storage
-- Testing of smart contract 
-- Deploying the smart contract
+In this tutorial, we have covered the basics of NEAR smart contract programming using Rust - including the structure of a Rust smart contract; the use of functions and macros offered by the NEAR SDK; how to use on-chain storage; unit testing of a Rust contract; compiling and deploying WebAssembly and finally interacting with deployed Rust contracts on the NEAR blockchain using the NEAR CLI.
 
 Thank you for following along with this tutorial, now take this knowledge and build amazing things on NEAR!
