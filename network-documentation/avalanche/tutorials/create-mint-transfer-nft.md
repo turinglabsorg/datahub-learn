@@ -15,9 +15,8 @@ This tutorial is based on the original one on the [Avalanche Documentation](http
 
 ## Introduction
 
-NFT is an interesting term nowadays, I first interacted with this creature when I was playing around on Avalanche wallet. These are `Collectibles` that you can create and share with each other. In more technical terms NFT collectible is called ERC721 token. Please refer below link to learn more about ERC-720/721 tokens
+NFT is an interesting term nowadays, in more technical terms NFT collectible is called ERC721 token. Please refer below link to learn more about ERC-721 tokens
 (https://ethereum.org/en/developers/docs/standards/tokens/erc-721/).
-Ethereum Request-It provides functionalities like to transfer tokens from one account to another, to get the current token balance of an account, to get the owner of a specific token and also the total supply of the token available on the network.
 It is basically a form of “art” that can be a picture, tweet, audio etc in broader perspective. A non-fungible token (NFT) is a unit of data on a digital ledger called blockchain, where each NFT represents something unique item, that can’t be interchanged.
 This enables many use cases that would be impossible with interchangeable tokens, like utility, proof of ownership and transaction history of a unique asset.
 
