@@ -1,23 +1,23 @@
 
 # Write and Deploy a Rust smart contract on NEAR
 
-## Introduction
+# Introduction
 
 In this tutorial, we are going to write and test a smart contract using Rust. Then we will deploy it to NEAR Testnet. 
 
 Why Rust? Rust is the preferred programming language for writing smart contracts on NEAR. Rust offers many features like memory safety, small runtime, etc. This allows us to write a smart contract that doesn’t have memory bugs and consumes less storage on the blockchain.
 
-## Prerequisite
+# Prerequisite
 
 Please make sure that you have completed [NEAR Intro Pathway](https://learn.figment.io/network-documentation/near/tutorials/intro-pathway-write-and-deploy-your-first-near-smart-contract). Pathway covers basics of NEAR development.
 
-## Requirements
+# Requirements
 You should have following requirements installed:
 - Rust (Installation [guide](https://www.rust-lang.org/tools/install) and if you want to learn more about Rust, check this guide [HERE](https://doc.rust-lang.org/book/))
 - NEAR CLI (Installation [guide](https://www.npmjs.com/package/near-cli))
 - NEAR Testnet account (If you don't have testnet account, check this guide [HERE](https://learn.figment.io/network-documentation/near/near-wallet))
 
-## Setup
+# Setup
 
 To setup our project, we need to add the WASM (WebAssembly) target to our toolchain. To add that we need to run the following command in the terminal:
 
@@ -75,7 +75,7 @@ Finally, change the name `main.rs` to `lib.rs` as we are not making a binary app
 
 We are all set now! This can be used as a template and a starting point for any future project.
 
-## Writing the contract
+# Writing The Contract
 
 We will create a simple Create, Read, Update, Delete ([CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)) backend in Rust that utilizes the on-chain storage offered by NEAR. More information about NEAR storage is available [in the NEAR docs](https://docs.near.org/docs/concepts/storage-staking).
 
@@ -99,7 +99,7 @@ near_sdk::setup_alloc!();
 
 At the top of the contract, we need to import a few code modules with the `use` [declaration](https://doc.rust-lang.org/reference/items/use-declarations.html#use-declarations). We will expand on these portions of the `near_sdk` below.
 
-Next, we setup the global allocator from the `wee_alloc` crate using the `setup_alloc!()` macro. Allocators are the way that programs in Rust obtain memory from the system at runtime & `wee_alloc` is a memory allocator designed for WebAssembly. It generates less than a kilobyte of uncompressed WebAssembly code. This macro is shorthand for the boilerplate code:
+Next, we setup the global allocator from the `wee_alloc` crate using the `setup_alloc!()` macro. Allocators are the way that programs in Rust obtain memory from the system at runtime. `wee_alloc` is a memory allocator designed for WebAssembly. It generates less than a kilobyte of uncompressed WebAssembly code. This macro is shorthand for the boilerplate code:
 
 ```rust
 #[cfg(target_arch = "wasm32")]
@@ -107,11 +107,9 @@ Next, we setup the global allocator from the `wee_alloc` crate using the `setup_
 static ALLOC: near_sdk::wee_alloc::WeeAlloc<'_> = near_sdk::wee_alloc::WeeAlloc::INIT;
 ```
 
-`wee_alloc` is a memory allocator designed for WebAssembly. It generates less than a kilobyte of uncompressed WebAssembly code.
-
 You can read more about [global allocator](https://doc.rust-lang.org/edition-guide/rust-2018/platform-and-target-support/global-allocators.html) and [wee_alloc](https://github.com/rustwasm/wee_alloc).
 
-### Main Struct
+## Main Struct
 
 While writing our smart contract, we will follow a pattern using one structure (`struct`) and an implementation (`impl`) associated with it. This is a pattern used in most Rust contracts on NEAR. Add the following snippet below the comment `// 1. Main Struct` in `lib.rs`:
 
@@ -130,7 +128,7 @@ What are attributes? A declarative tag that is used to convey information to run
 
 By adding the macro `#[near_bindgen]` we provide our struct `KeyValue` with generated boilerplate code to make it compatible with the NEAR blockchain. The second macro, `#[derive(BorshDeserialize, BorshSerialize)]` assists in the serialization and de-serialization of the data for sending it to or retreiving it from NEAR.
 
-### Default Implementation
+## Default Implementation
 
 Every type in Rust has a `Default` implementation but here we want provide our own default implementation for `keyValue` struct. Add the following snippet below the comment `// 2. Default Implementation` in `lib.rs`:
 
@@ -148,7 +146,7 @@ Now, let’s go step by step:
 First, we are creating a `Default` implementation for `KeyValue`. After that, we added the `default` method inside that implementation which returns `Self`. `Self` refers to the current type, which is `KeyValue`. Lastly, we are returning `Self` with a new unordered map.
 While creating a new unordered map, we must pass the ID as `Vec<u8>` type so we are converting `b"r"` which is a byte string, to `Vec<u8>`, using the `to_vec()` function. The prefix `b` is used to specify that we want a byte array of the string. You can read about byte string literals [in the Rust docs.](https://doc.rust-lang.org/reference/tokens.html#byte-string-literals)
 
-### Core Logic
+## Core Logic
 
 Now we are going to add methods to `KeyValue` struct. These methods are core logic for our smart contract. Add following snippet below the comment `// 3. Core Logic`:
 
@@ -185,7 +183,7 @@ After that, we are calling the method `insert` on `self.pairs`. This will create
 
 The next two methods are quite similar but instead of calling the `insert` method, we call `get` and `remove` methods on self.pairs to read or remove the key-value pair.
 
-## Testing Smart Contract
+# Testing Smart Contract
 
 The code for our CRUD smart contract is now complete. One of the nice features of Rust is that it allows inline unit tests. This means we can write our unit tests in the same source file as our contract, `lib.rs`!.
 
@@ -286,7 +284,7 @@ running 0 tests
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 ```
-## Compiling Smart Contract
+# Compiling Smart Contract
 
 Now that we have written and tested the Rust smart contract, we will compile it into WebAssembly for deployment on NEAR. Run the following command in the terminal (NOTE: Windows users will have to perform the two commands separately, `set` for the environment variables and then the `cargo build` command):
 ```bash
@@ -305,7 +303,7 @@ Finished release [optimized] target(s) in 1m 00s
 ```
 We have now generated an optimized WebAssembly file which we can deploy on NEAR, for this tutorial we will deploy it to the NEAR testnet.
 
-## Deploying Smart Contract
+# Deploying Smart Contract
 
 First you have to login into your account using `near-cli`. Run 
 ```bash
@@ -337,7 +335,7 @@ Done deploying to 0xnik.testnet
 ```
 🎉🎉 We have successfully deployed our first Rust smart contract.
 
-## Interacting with Smart Contract
+# Interacting with Smart Contract
 
 Now that we have deployed our contract, we can interact with it using the NEAR CLI.
 
@@ -388,8 +386,12 @@ https://explorer.testnet.near.org/transactions/A4aDmpkfbEP8JwM5KspUiWe1zYnKgUnA5
 ''
 ```
 
-## Conclusion
+# Conclusion
 
 In this tutorial, we have covered the basics of NEAR smart contract programming using Rust - including the structure of a Rust smart contract; the use of functions and macros offered by the NEAR SDK; how to use on-chain storage; unit testing of a Rust contract; compiling and deploying WebAssembly and finally interacting with deployed Rust contracts on the NEAR blockchain using the NEAR CLI.
 
 Thank you for following along with this tutorial, now take this knowledge and build amazing things on NEAR!
+
+# About The Author
+
+This tutorial was created by [Nikhil Bhintade](https://www.linkedin.com/in/nikbhintade). A crypto enthusiast who wants to document what he learned. You can get in touch with the author on [Figment Forum](https://community.figment.io/u/nikbhintade/) and on [Github](https://github.com/nikbhintade).
