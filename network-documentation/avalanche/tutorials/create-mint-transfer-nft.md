@@ -2,11 +2,11 @@
 description: Learn how to create, mint, and transfer NFTs on Avalanche.
 ---
 
-# Create, Mint and Transfer NFT with Avalanche Wallet
+# Create, Mint and Transfer NFTs with Avalanche Wallet
 
 ## Prerequisites
 
- In preparation for the tutorial, we will need to have some images on hand for testing the upload to Avalanche wallet. For more information on the Avalanche wallet, please refer to the documentation here "(https://docs.avax.network/)"
+ In preparation for the tutorial, we will need to have some images on hand for testing the upload to Avalanche wallet. For more information on the Avalanche wallet, please refer to the documentation [here](https://docs.avax.network/).
 
 ## References
 
@@ -15,8 +15,7 @@ This tutorial is based on the original one on the [Avalanche Documentation](http
 
 ## Introduction
 
-NFT is an interesting term nowadays, in more technical terms NFT collectible is called ERC721 token. Please refer below link to learn more about ERC-721 tokens
-(https://ethereum.org/en/developers/docs/standards/tokens/erc-721/).
+NFT is an interesting term nowadays, in more technical terms NFT collectible is called ERC721 token. Please refer below link to learn more about [ERC-721 token](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/).
 It is basically a form of “art” that can be a picture, tweet, audio etc in broader perspective. A non-fungible token (NFT) is a unit of data on a digital ledger called blockchain, where each NFT represents something unique item, that can’t be interchanged.
 This enables many use cases that would be impossible with interchangeable tokens, like utility, proof of ownership and transaction history of a unique asset.
 
@@ -31,7 +30,7 @@ Step 1- Go to [Avalanche wallet](wallet.avax.network) and click on create new wa
 ### Generate Key Phrase
 
  Step 2- Now, you will be directed to a new window "Generate key Phrase", where you will see a list of keycodes and need to save or capture the given set of 12-24 words somewhere safe.
-This list of code will help to access your account( do not share it with anyone)
+This list of code will help to access your account (do not share it with anyone)
 
 you will be directed to your key phrase window,
 
@@ -41,7 +40,7 @@ you will be directed to your key phrase window,
 
 ### Verify And Access Wallet
 
- Step 3- After Generating and capturing the list of codes, you will again need to verify the key-phrase( list of codes), where you have to fill in the blanks in order to access your account.
+ Step 3- After Generating and capturing the list of codes, you will again need to verify the key-phrase (list of codes), where you have to fill in the blanks in order to access your account.
 
 ![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/verify-key-phrase.png)
 
@@ -55,7 +54,7 @@ Balance, Assets, Wallet Address, Transaction & Transaction History (as shown in 
 ![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/avalanche-wallet.png)
 
 On the left sidebar, you will have other options too, like
-Send, Earn, Cross-chain, Studio, Activity, Manage keys, Advanced(as showm in image)
+Send, Earn, Cross-chain, Studio, Activity, Manage keys, Advanced (as showm in image)
 
 ### NFT Studio on Avalanche Wallet
 
