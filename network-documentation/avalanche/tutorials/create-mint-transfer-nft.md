@@ -6,25 +6,22 @@ description: Learn how to create, mint, and transfer NFTs on Avalanche.
 
 ## Prerequisites
 
- In preparation for the tutorial, we will need to have some images on hand for testing the upload to Avalanche wallet. For more information on the Avalanche wallet, please refer to the documentation here "(https://docs.avax.network/)
+ In preparation for the tutorial, we will need to have some images on hand for testing the upload to Avalanche wallet. For more information on the Avalanche wallet, please refer to the documentation here "(https://docs.avax.network/)"
 
 ## References
 
-This tutorial is based on the original one on the [Avalanche Documentation].
-(https://docs.avax.network/build/tutorials/smart-digital-assets/wallet-nft-studio).
+This tutorial is based on the original one on the [Avalanche Documentation](https://docs.avax.network/build/tutorials/smart-digital-assets/wallet-nft-studio).
 
 
 ## Introduction
 
 NFT is an interesting term nowadays, I first interacted with this creature when I was playing around on Avalanche wallet. These are `Collectibles` that you can create and share with each other. In more technical terms NFT collectible is called ERC721 token. Please refer below link to learn more about ERC-720/721 tokens
-(https://docs.avax.network/build/tutorials/smart-digital-assets/create-erc-20-token-on-avalanche-c-chain).
+(https://ethereum.org/en/developers/docs/standards/tokens/erc-721/).
 Ethereum Request-It provides functionalities like to transfer tokens from one account to another, to get the current token balance of an account, to get the owner of a specific token and also the total supply of the token available on the network.
 It is basically a form of “art” that can be a picture, tweet, audio etc in broader perspective. A non-fungible token (NFT) is a unit of data on a digital ledger called blockchain, where each NFT represents something unique item, that can’t be interchanged.
 This enables many use cases that would be impossible with interchangeable tokens, like utility, proof of ownership and transaction history of a unique asset.
 
 ## 1. Create NFTs
-
-[**The original tutorial can be found in the AVA Labs documentation here**](https://docs.avax.network/build/tutorials/smart-digital-assets/wallet-nft-studio).
 
 ### Create New Wallet
 
@@ -54,7 +51,7 @@ Now, you can access your account. Click access and you will be directed to the a
 ![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/access-wallet.png)
 
 In your avalanche wallet window, you will see-
-Balance, Assets, Wallet Address, Transaction & Transaction History(as shown in image)
+Balance, Assets, Wallet Address, Transaction & Transaction History (as shown in image)
 
 ![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/avalanche-wallet.png)
 
