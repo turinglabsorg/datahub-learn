@@ -24,29 +24,29 @@ To setup our project, we need to add the WASM (WebAssembly) target to our toolch
 ```bash
 rustup target add wasm32-unknown-unknown
 ```
-The output in the terminal will be :
+The output in the terminal will be:
 ```bash
 info: downloading component 'rust-std' for 'wasm32-unknown-unknown'
 info: installing component 'rust-std' for 'wasm32-unknown-unknown'
 info: using up to 500.0 MiB of RAM to unpack components 13.9 MiB /  13.9 MiB (100 %)  10.0 MiB/s in  1s ETA:  0s
 ```
-If target is already added, then output in the terminal will be :
+If target is already added, then output in the terminal will be:
 ```bash
 info: component 'rust-std' for target 'wasm32-unknown-unknown' is up to date
 ````
 What is Rust toolchain? A toolchain is a specific version of the collection of programs needed to compile a Rust application.
 
-Why do we need to add the WASM target? To deploy our smart contract on NEAR, we need to compile it to WebAssembly (.wasm file). The rustup command above installs the standard libraries for the WebAssembly target triple (wasm32-unknown-unknown). Read more about cross-compilation [on the rustup docs](https://rust-lang.github.io/rustup/cross-compilation.html).
+Why do we need to add the WASM target? To deploy our smart contract on NEAR, we need to compile it to WebAssembly (`.wasm` file). The `rustup` command above installs the standard libraries for the WebAssembly target triple (wasm32-unknown-unknown). Read more about cross-compilation [on the `rustup` docs](https://rust-lang.github.io/rustup/cross-compilation.html).
 
 Now, let’s create a directory called `key_value_storage`, then change into that directory and run the following command in the terminal:
 ```bash
 cargo init
 ```
-The output in the terminal will be :
-```sh
+The output in the terminal will be:
+```bash
 Created binary (application) package
 ```
-Open the default `Cargo.toml` file which was generated, remove the existing contents and paste the following :
+Open the default `Cargo.toml` file which was generated, remove the existing contents and paste the following:
 ```
 [package]
 name = "key_value_storage"
@@ -99,7 +99,7 @@ near_sdk::setup_alloc!();
 
 At the top of the contract, we need to import a few code modules with the `use` [declaration](https://doc.rust-lang.org/reference/items/use-declarations.html#use-declarations). We will expand on these portions of the `near_sdk` below.
 
-Next, we setup the global allocator from the `wee_alloc` crate using the `setup_alloc!()` macro. Allocators are the way that programs in Rust obtain memory from the system at runtime & `wee_alloc` is a memory allocator designed for WebAssembly. It generates less than a kilobyte of uncompressed WebAssembly code. This macro is shorthand for the boilerplate code :
+Next, we setup the global allocator from the `wee_alloc` crate using the `setup_alloc!()` macro. Allocators are the way that programs in Rust obtain memory from the system at runtime & `wee_alloc` is a memory allocator designed for WebAssembly. It generates less than a kilobyte of uncompressed WebAssembly code. This macro is shorthand for the boilerplate code:
 
 ```rust
 #[cfg(target_arch = "wasm32")]
@@ -179,7 +179,7 @@ We are using `&mut self` to borrow self mutably. You can learn more about borrow
 
 `k` and `v` are key-value which we are going to store. 
 
-`env::log(b"created or updated")` is used for logging. Logs can be used for showing informative messages or warnings to user. Also, these logs help developer in development process.
+`env::log(b"created or updated")` is used for logging. Logs can be used for showing informative messages or warnings to user. Also, these logs help developer in development process. You will see these logs in terminals when we will interact with smart contract in later part of the tutorial. You can also see the logs in developer console of your browser when you create a web app for your smart contract.
 
 After that, we are calling the method `insert` on `self.pairs`. This will create a key-value pair if one is not present already otherwise it will update the value associated with the given key.
 
@@ -187,7 +187,7 @@ The next two methods are quite similar but instead of calling the `insert` metho
 
 ## Testing Smart Contract
 
-The code for this our CRUD smart contract is now complete. One of the nice features of Rust is that it allows inline unit tests. This means we can write our unit tests in the same source file as our contract, `lib.rs`!.
+The code for our CRUD smart contract is now complete. One of the nice features of Rust is that it allows inline unit tests. This means we can write our unit tests in the same source file as our contract, `lib.rs`!.
 
 Why should we write unit tests for a smart contract? Unit testing is a common practice in software development. While writing smart contracts, units tests are important because smart contracts are often immutable and sometimes responsible for managing sums of money. Writing good unit tests is a key component of secure and reliable smart contract development.
 
@@ -297,7 +297,7 @@ env 'RUSTFLAGS=-C link-arg=-s' cargo build --target wasm32-unknown-unknown --rel
 set RUSTFLAGS=-C link-arg=-s
 cargo build --target wasm32-unknown-unknown --release
 ```
-The output from `cargo build` will be similar :
+The output from `cargo build` will be similar:
 ```bash
 Compiling near-sdk v3.1.0
 Compiling key_value_storage v0.1.0 (/home/xqc/key_value_storage)
@@ -323,7 +323,7 @@ This directory is located at the root of your HOME directory:
 - `~/.near-credentials` (MAC / Linux)
 - `C:\Users\YOUR_ACCOUNT\.near-credentials` (Windows)
 
-Now we can deploy our Rust smart contract to NEAR. Run the following command in the terminal:
+Now we can deploy our Rust smart contract to NEAR. Run the following command in the terminal (NOTE: replace `YOUR_ACCOUNT_HERE` with your account name, ex. `example.near`):
 ```bash
 near deploy --wasmFile target/wasm32-unknown-unknown/release/key_value_storage.wasm --accountId YOUR_ACCOUNT_HERE
 ```
@@ -343,7 +343,7 @@ Now that we have deployed our contract, we can interact with it using the NEAR C
 
 We'll create a key-value pair and then read it. 
 
-This command will create a key-value pair (replace `YOUR_ACCOUNT_HERE` with your account name, ex. `example.near`):
+This command will create a key-value pair:
 ```bash
 near call YOUR_ACCOUNT_HERE create_update '{"k": "first_key", "v" : "1"}' --accountId YOUR_ACCOUNT_HERE
 ```
@@ -357,7 +357,7 @@ To see the transaction in the transaction explorer, please open this URL in your
 https://explorer.testnet.near.org/transactions/AQWwThAtXWhU7HJsuD5bvi2FXHpnw5xbj5SEe94Q3MTp
 ''
 ```
-Function arguments must be provided inside of a JSON object: `create_update({"k": "first_key", "v" : "1"})` notice the `{ }` curled brackets inside of `create_update()`
+Function arguments must be provided as a JSON string after name of the method.
 
 Now, we will read the value of the first key:
 ```bash
