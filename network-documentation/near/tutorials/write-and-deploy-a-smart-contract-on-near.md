@@ -120,7 +120,8 @@ pub struct KeyValue {
     pairs: UnorderedMap<String, String>,
 }
 ```
-We have our main structure `KeyValue` which has one field `pairs`. `pairs` is of type `UnorderedMap` which we have imported from `near_sdk::collections`. [`UnorderedMap`](docs.rs/near-sdk/3.1.0/near_sdk/collections/struct.UnorderedMap.html) is a data structure that utilizes underlying blockchain trie storage more efficiently. `near_sdk::collections` offers few other ways to store data on-chain. More information about `collections` is available [in NEAR docs](https://docs.rs/near-sdk/3.1.0/near_sdk/collections/index.html)
+We have our main structure `KeyValue` which has one field `pairs`. `pairs` is of type `UnorderedMap` which we have imported from `near_sdk::collections`. [`UnorderedMap`](docs.rs/near-sdk/3.1.0/near_sdk/collections/struct.UnorderedMap.html) is a data structure that utilizes underlying blockchain trie storage more efficiently. `near_sdk::collections` offers few other ways to store data on-chain.
+To get a better overview of all the available ways storage can be used, check out [documentation](https://docs.rs/near-sdk/3.1.0/near_sdk/collections/index.html)  of `collections` module.
 
 `#[near_bindgen]` and `#[derive(BorshDeserialize, BorshSerialize)]` are attributes.
 
