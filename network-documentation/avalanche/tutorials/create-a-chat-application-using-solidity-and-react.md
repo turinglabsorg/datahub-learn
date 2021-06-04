@@ -62,7 +62,7 @@ We would maintain 2 collections in our database:
 
 ## Deploying the smart contract
 
-## Setting up Metamask
+### Setting up Metamask
 
 Log in to MetaMask -> Click the Network drop-down -> Select Custom RPC
 
@@ -78,7 +78,7 @@ Log in to MetaMask -> Click the Network drop-down -> Select Custom RPC
 
 Fund your address from the given [faucet](https://faucet.avax-test.network/).
 
-## Deploy using Remix
+### Deploy using Remix
 
 Open [Remix](https://remix.ethereum.org/) -> Select Solidity
 
@@ -827,7 +827,7 @@ Congratulations! We have successfully developed a decentralized chat application
 
 ## Troubleshooting
 
-**Transaction Failure**
+### Transaction Failure
 
 * Check if your account has sufficient balance at [fuji block-explorer](https://cchain.explorer.avax-test.network/). You can fund your address from the given [faucet](https://faucet.avax-test.network/)
 
@@ -837,7 +837,7 @@ Congratulations! We have successfully developed a decentralized chat application
 
 ![Multiple account preview](https://raw.githubusercontent.com/realnimish/blockchain-chat-app/main/public/multiple_accounts.jpeg)
 
-**Application crash**
+### Application crash
 
 ![Error](https://user-images.githubusercontent.com/44340561/119778345-05dba100-bee5-11eb-85b9-c9bd18ea4082.png)
 Check if you have updated the `CONTRACT_ADDRESS` variable in `src/index.js` properly!
