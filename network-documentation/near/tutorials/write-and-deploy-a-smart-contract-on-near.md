@@ -33,7 +33,7 @@ info: using up to 500.0 MiB of RAM to unpack components 13.9 MiB /  13.9 MiB (10
 If target is already added, then output in the terminal will be:
 ```bash
 info: component 'rust-std' for target 'wasm32-unknown-unknown' is up to date
-````
+```
 What is Rust toolchain? A toolchain is a specific version of the collection of programs needed to compile a Rust application.
 
 Why do we need to add the WASM target? To deploy our smart contract on NEAR, we need to compile it to WebAssembly (`.wasm` file). The `rustup` command above installs the standard libraries for the WebAssembly target triple (wasm32-unknown-unknown). Read more about cross-compilation [on the `rustup` docs](https://rust-lang.github.io/rustup/cross-compilation.html).
@@ -120,7 +120,7 @@ pub struct KeyValue {
     pairs: UnorderedMap<String, String>,
 }
 ```
-We have our main structure `KeyValue` which has one field `pairs`. `pairs` is of type `UnorderedMap` which we have imported from `near_sdk::collections`. [`UnorderedMap`](docs.rs/near-sdk/3.1.0/near_sdk/collections/struct.UnorderedMap.html) is a data structure that utilizes underlying blockchain trie storage more efficiently.
+We have our main structure `KeyValue` which has one field `pairs`. `pairs` is of type `UnorderedMap` which we have imported from `near_sdk::collections`. [`UnorderedMap`](docs.rs/near-sdk/3.1.0/near_sdk/collections/struct.UnorderedMap.html) is a data structure that utilizes underlying blockchain trie storage more efficiently. `near_sdk::collections` offers few other ways to store data on-chain. More information about `collections` is available [in NEAR docs](https://docs.rs/near-sdk/3.1.0/near_sdk/collections/index.html)
 
 `#[near_bindgen]` and `#[derive(BorshDeserialize, BorshSerialize)]` are attributes.
 
