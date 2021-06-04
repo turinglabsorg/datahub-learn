@@ -7,7 +7,7 @@ description: Learn how about common blockchain concepts from the perspective of 
 Polkadot allows blockchains and applications to come together and work with each other in parallel.
 To have a decentralized web, an internet of interoperable blockchains is key. **A sharded blockchain protocol.**
 
-## ![](../../../.gitbook/assets/polkadot-graphic.png) 
+  ## ![](../../../.gitbook/assets/polkadot-graphic.png) 
 
 Bitcoin gave us the first real concept of a money protocol; a blockchain that is now great at being a store 
 of value. Ethereum extended this idea to, well, almost anything - creating the next wave of new finance and 
@@ -67,9 +67,9 @@ contracts that run on the EVM.
 
 **Fun Fact [4]:** The co-founder and former CTO of Ethereum, Dr. Gavin James Wood, who is also the founder of the [Web 3 Foundation](https://web3.foundation/) and [Parity Technologies](https://www.parity.io/), is an inventor of the Solidity language and was the initial proposer in 2014.
 
-## ![](../../../.gitbook/assets/polkadot-substrate-ethereum.png) 
+  ## ![](../../../.gitbook/assets/polkadot-substrate-ethereum.png) 
 
-      Polkadot, Substrate & Ethereum [4]
+                                        Polkadot, Substrate & Ethereum [4]
 
 
 ### Advantages of Smart Contracts
@@ -102,14 +102,14 @@ to select validators, allowing them to participate in the consensus protocol. Th
 
 External chains can connect to the Relay chain as Parachains. A parachain is an individual blockchain that runs in parallel on the Polkadot network. As such, parachains can also be considered "parallelizable chains".
 
-## ![](../../../.gitbook/assets/one_parachain.png) 
-               One Parachain [5]
+  ## ![](../../../.gitbook/assets/one_parachain.png) 
+                                                One Parachain [5]
 
 
 Polkadot is considered to be a *layer-0 multi-chain network*, and Parachains run in parallel as individual *layer-1 blockchains*. For reference, *Bitcoin* and *Ethereum* are considered to be layer-1 blockchains. The parachain model allows for individual blockchains to achieve scalability at layer-1. 
 
-## ![](../../../.gitbook/assets/polkadot-relay-chain.png)
-        Parachains & The Relay Chain [3]
+  ## ![](../../../.gitbook/assets/polkadot-relay-chain.png)
+                                        Parachains & The Relay Chain [3]
 
 
 > A prominent issue in the Ethereum ecosystem is the ability to scale where a dependency is created on 
@@ -150,8 +150,8 @@ Parachain's participation on polkadot is auction-based and requires the parachai
 
 Parathreads are parachains that do not stay connected to the relay chain. Parathreads are essentially pay-as-you-go parachains and temporarily participate on the network on a per-block basis. 
 
-## ![](../../../.gitbook/assets/parathread-pool.png) 
-        Parathreads on the Relay Chain [2]
+  ## ![](../../../.gitbook/assets/parathread-pool.png) 
+                                          Parathreads on the Relay Chain [2]
 
 The main difference between parachains and parathreads is **economic**. A parachain auction happens every six months for securing a slot on the network. A fee auction happens every block for a parathread.
 
@@ -179,12 +179,10 @@ the EVM.
 
 --- 
 
-## ![](../../../.gitbook/assets/Parachains-Substrate-Polkadot-venn-diagram-1.png) 
-
-        Parachain-Substrate Comparison [1]
+  ## ![](../../../.gitbook/assets/Parachains-Substrate-Polkadot-venn-diagram-1.png) 
 
 > NOTE: Remember, Polkadot supports parachains that are not built on Substrate. 
-> Chains can also be built on Substrate and are not required to be deployed onto Polkadot.
+> Chains can also be built on Substrate and are not required to be deployed onto Polkadot [1].
 
 
 # **Conclusion**
