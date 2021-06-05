@@ -36,7 +36,7 @@ For the latest you may want to refer to {% page-ref page="intro-pathway-secret-b
 cargo generate --git https://github.com/baedrik/snip721-reference-impl --name my-snip721
 ```
 
-This git project is a reference implementation for tokens based on the [snip721 standard](https://github.com/SecretFoundation/SNIPs/blob/master/SNIP-721.md), which creates tokens that are losely based on [ERC-721](https://eips.ethereum.org/EIPS/eip-721) and are a superset of [CW-721](https://github.com/CosmWasm/cosmwasm-plus/blob/master/packages/cw721/README.md), making them compatible with the Etherem and Cosmos equivalents.
+This git project is a reference implementation for tokens based on the [snip721 standard](https://github.com/SecretFoundation/SNIPs/blob/master/SNIP-721.md), which creates tokens that are loosely based on [ERC-721](https://eips.ethereum.org/EIPS/eip-721) and are a superset of [CW-721](https://github.com/CosmWasm/cosmwasm-plus/blob/master/packages/cw721/README.md), making them compatible with the Ethereum and Cosmos equivalents.
 
 You can have a look at the generated files by stepping into the folder using:
 
@@ -44,7 +44,7 @@ You can have a look at the generated files by stepping into the folder using:
 cd my-snip721
 ```
 
-Most of the files in here should look very familiar from what you saw in part 5 of the secret pathway, with the main difference that the `scr` folder contains more files, due to the complextity of the contract
+Most of the files in here should look very familiar from what you saw in part 5 of the secret pathway, with the main difference that the `scr` folder contains more files, due to the complexity of the contract
 
 ```text
 Cargo.lock    Developing.md    LICENSE        Publishing.md    examples    schema        tests
@@ -185,7 +185,7 @@ Under the comment `// 2. Upload the contract wasm` add the following code snippe
 Similar to what you have seen before we first got the `codeId` from the upload receipt and then defined the `initMsg` to finally instantiated the contract.
 In this case the initMsg is more complex that for a simple counter and allows us to configure the secret NFT to our liking.
 
-Open up the `mgs.rs` file withing the `scr` folder of the contract code. You should see two struct: `InitMsg` and `InitConfig` in there, which describe the settings object we can pass to our contract on initialization. For most values a sensible default is predefined, giving the most privacy-preserving behaviour.
+Open up the `mgs.rs` file withing the `scr` folder of the contract code. You should see two struct: `InitMsg` and `InitConfig` in there, which describe the settings object we can pass to our contract on initialization. For most values a sensible default is predefined, giving the most privacy-preserving behavior.
 
 Lets have a look at the different fields and what part of the contract they control:
 
@@ -201,7 +201,6 @@ Lets have a look at the different fields and what part of the contract they cont
 | post_init_callback | [PostInitCallback (see below)](#postinitcallback)      | Information used to perform a callback message after initialization | yes      | nothing            |
 
 #### **InitConfig**
-
 
 | Name                          | Type | Description                                                         |Optional | Value If Omitted |
 |-------------------------------|------|---------------------------------------------------------------------|---------|------------------|
@@ -247,3 +246,18 @@ contract:  {
 }
 address:  'secret1dsv9t7s6nn73xy3n3gfa7akham4td447vwfd5m'
 ```
+
+After this executed successfully you can take the program you created in the first installment, change the contract address to the one of your contract and interact with it in the same way!
+
+{% page-ref page="create-your-first-secret-nft.md" %}
+
+
+## Wrap up
+
+Congratulations! We have made it to the end of the first installment of this Secret NFT series. We have covered a lot of information, and I feel you can really be proud of what you have achieved. Just to recap:
+
+* You created and compiled your very own secretNFT contract, based on snip721
+* You explored different parameters to configure the contract to your liking
+* You created an instance of your contract on the secret testnet, ready to be interacted with
+
+This is a solid foundation to play with and build upon!
