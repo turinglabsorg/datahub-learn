@@ -1,6 +1,6 @@
 
   
-  **How to set up a Celo full node on a VM**
+  **Run a Celo full node in a Virtual Machine**
 #
 ##  **Introduction**  
 Full nodes are a major part of the celo blockchain. A full node is a program that will help to write, and validate new changes in the network. Multiple full nodes work together, validating the blockchain in a decentralized way. This Virtual Machines job will be to create a full node, and run a light client monitoring the network.
@@ -11,16 +11,16 @@ this video is to help along with the writen tutorial
   
    [![SC2 Video](https://img.youtube.com/vi/89U866LwzBw/0.jpg)](http://www.youtube.com/watch?v=89U866LwzBw)
   
-##   **Prerequisite** 
+##   **Prerequisites** 
 * Have a basic understanding of Virtual Machines(VM), and the linux terminal.
 
-* Install the Valora app on ios/android
+* Install the Valora app on ios/android:https://valoraapp.com/
 
-* Download debian 10 64bit 
+* Download debian 10 64bit:https://www.debian.org/ 
 
-* Downlaod Oracle VM VirtualBox
+* Download Oracle VM:https://www.virtualbox.org/
  
-* Download Signal(for sending wallet addreses)on your pc and smart phone
+* Download Signal:https://www.signal.org/
 
 ##   *Setting up the Virtual Machine(Oracle VM)*
               
@@ -52,13 +52,15 @@ this video is to help along with the writen tutorial
     username@name:~$ id 
    check for sudo in the list of groups:
    
-   ![image](https://user-images.githubusercontent.com/80616939/118337789-bc955580-b4d1-11eb-886b-25af21a76f97.png)
+   ![image](https://user-images.githubusercontent.com/80616939/120870817-2f38a480-c557-11eb-9fd0-5be9e710af8d.png)
 
 ##   *Installing dependencies onto the VM using sudo commands*   
-   Curl will be used for inserting github scripts into the terminal. 
+   Curl will be used for inserting github scripts into the terminal.
+   
    Docker is a service used to deliver software packages. 
-   Vim is a tool used for editing files within the terminal.  
-   Vim can be alot to swallow, use this guide: https://www.linux.com/training-tutorials/vim-101-beginners-guide-vim/ 
+   
+   Vim is a tool used for editing files within the terminal.
+   Vim can be alot to swallow, here's a guide: https://www.linux.com/training-tutorials/vim-101-beginners-guide-vim/ 
    
     username@name:~$sudo apt update
     username@name:~$sudo apt upgrade
@@ -77,7 +79,7 @@ this video is to help along with the writen tutorial
     username@name:/media$ cd cdrom 
    
     username@name:/media/cdrom$ ls
-    username@name:/media/cdrom$sudo bash VBoxLinuxAdditions.run
+    username@name:/media/cdrom$ sudo bash VBoxLinuxAdditions.run
     
     -Restart the VM
    Insert Guest Additions looks like:
@@ -97,19 +99,18 @@ this video is to help along with the writen tutorial
    
     -Restart the VM 
 ##   *Create the VM enviroment, and install the Celo client*  
-   The following file adds vital functions for node.js, and installs dependencys. Source in the file after adding it. 
+   The following file adds vital functions for node.js, and installs nvm. Source in the file after adding it. 
    
     username@name:~$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
     username@name:~$ source ~/.bashrc  
-   install/use node.js version 10, and install the celo application onto this client.
-   #! is an interpreter directive commonly called a "shebang".
-   /bin/bash is the path to interprate in bash. 
-    
-    username@name:~$ #!/bin/bash 
+   Install/use node.js version 10, and install the celo application onto this client. 
+     
     username@name:~$ nvm install 10
     username@name:~$ nvm use 10
-    username@name:~$ npm install -g @celo/celocli 
-   the following argument makes sure that the celo.env file will utilize dependencys from node.js
+    username@name:~$ npm install -g @celo/celocli  
+   The following argument makes sure that the celo.env file will utilize dependencies from node.js.
+   "#!" is an interpreter directive commonly called a "shebang".
+   /bin/bash is the path to interprate in bash.  
    
     username@name:~$ #!/bin/bash 
     username@name:~$ set -x
@@ -126,25 +127,23 @@ this video is to help along with the writen tutorial
    This .env file is for storing and accesing enviromental variables. It will hold variables for the public keys. 
    curl uses the raw github code to instantly create the new file. Insert it again if it dosent work the first time.
    
-   ![image](https://user-images.githubusercontent.com/80616939/118896605-d9f96380-b8c5-11eb-883e-18d3d4e94a25.png)
+   ![image](https://user-images.githubusercontent.com/80616939/120844550-cb998180-c52c-11eb-9503-6accb0c6a7f5.png)
      
     username@name:~$ curl -o start_celo.sh https://gist.githubusercontent.com/alchemydc/e28945f5059acd70969b39a50fd0f80a/raw/0d15cceb89ea86ca46df94441c06ecd88a4e6635/start_celo.sh
     username@name:~$ source start_celo.sh
-   "curl" in a second file for running the light client and storing node information.
+   "curl" in a second file for running the light client, and containing node information.
    This file utilizes docker to make it more efficient. To learn more about .env files check out this guide:https://learn.figment.io/network-documentation/extra-guides/dotenv-and-.env.
    
-   ![image](https://user-images.githubusercontent.com/80616939/118896884-7c194b80-b8c6-11eb-9fb8-87be4bcf1246.png)
+   ![image](https://user-images.githubusercontent.com/80616939/120844824-33e86300-c52d-11eb-8b1f-db5e66ec76bb.png)
    
-   chmod u+x grants only the owner of this file execution permissions. 
-   pwd prints your current directorys. 
-  
-    username@name:~$ chmod u+x start_celo.sh
-    username@name:~$ pwd
-##   *To access these files easily move them into a new directory; celo-data-dir*
+##   *Move both these files into a new directory; celo-data-dir*
    The directory is called celo-data-dir.
    "mkdir" makes a new directory. "cd" will choose directory.
-   "mv" moves a file into the directory. Source in files often especialy after editing them.
+   "mv" moves a file into the directory. Source in files often, especialy after editing them.
    
+    username@name:~$ chmod u+x ./start_celo.sh 
+    username@name:~$ pwd
+    
     username@name:~$ mkdir celo-data-dir
     username@name:~$ cd
     username@name:~$ cd celo-data-dir
@@ -154,84 +153,85 @@ this video is to help along with the writen tutorial
     username@name:~/celo-data-dir$ source celo.env
     username@name:~/celo-data-dir$ source start_celo.sh
    ## *Create the Node, while in the celo-data-dir*
-    
+   Join the docker group using a terminal command. 
+   After joining a new group always restart the VM.  
+   Use id to check your groups, make sure docker is in the list of groups.
+   
     username@name:~/celo-data-dir$ sudo usermod -aG docker $YOURNAME
-    -Restart the VM
-   After joining a new group always restart the VM. 
-   Many changes to the VM require a restart. 
     
-    username@name:~/celo-data-dir$ id (check if you have joined the docker group)
+    -Restart the VM
+    
+    username@name:~/celo-data-dir$ id
+   After joining a new group always restart the VM.  
+   Use id to check your groups, look for docker in this list of groups.  
+    
     username@name:~/celo-data-dir$ cd celo-data-dir
-    username@name:~/celo-data-dir$ source celo.env
-    username@name:~/celo-data-dir$ cat celo.env
-    username@name:~/celo-data-dir$ docker run -v $PWD:/root/.celo --rm -it $CELO_IMAGE account new (this comand creates your new node)
-   This will creates your new node account.
-   find and Copy the public address key so you can paste it into celo.env using vim.
+    username@name:~/celo-data-dir$ docker run -v $PWD:/root/.celo --rm -it $CELO_IMAGE account new 
+   This creates your new node account using docker.
+   Copy the public address key that is provided than paste it into celo.env using vim.
     
     username@name:~/celo-data-dir$ vim celo.env
    ![image](https://user-images.githubusercontent.com/80616939/118758843-044b1280-b82d-11eb-88df-e83e5fb813f4.png)
  
    once in vim press "i" for insert mode.
-   delete YOUR_ACCOUNT_ADDRESS with Backspace.
+   Delete YOUR_ACCOUNT_ADDRESS with Backspace.
     
-   than paste in the address with "shift insert".  
+   then paste in the address with "shift insert".  
     
    exit vim by pressing ":", than typing "wq" "enter". 
 
     username@name:~/celo-data-dir$ source celo.env 
-   find celo.env in Files under celo-data-dir. Their you can edit it to add more accounts, and address.
-  
+   find celo.env, and ./start_celo.sh in your files. Their you can edit it to add more accounts, and address.
    remember to source celo.env after making changes.
+   Create NODE_ADDRESS and PHONE_ADDRESS:
   
-   this is what my celo.env file looks like:
-  
-   ![image](https://user-images.githubusercontent.com/80616939/118337560-498bdf00-b4d1-11eb-8aa3-41857f1079b1.png)
+   ![image](https://user-images.githubusercontent.com/80616939/120873442-585d3300-c55f-11eb-8629-cc709ee6f0dc.png)
  
   ## *Running the light client*
-   the new comand to start the light client is ./start_celo.sh.
+   The new comand to start the light client is ./start_celo.sh.
    
-   Docker stop geth will stop the light client 
+   use "cat ./start_celo.sh" to find the $NAME of your node. 
    
-    username@name:~/ celo-data-dir$ ./start_celo.sh 
+   "docker stop $NAME" will stop the light client 
+   
+   Use 2 terminal tabs. One that is runing the light client, and the second for all other comands.    
+   
+    username@name:~/celo-data-dir$ ./start_celo.sh 
     
-    -Create new window in terminal while light client is running to enter the following comands 
+    username@name:~/celo-data-dir$ celocli node:synced 
     
-    username@name:~/ celo-data-dir$ celocli node:synced 
+    -true = node is working 
     
-    -if true your light client is synced with the node and running properly
+    username@name:~/celo-data-dir$ celocli account:balance NODE_ADDRESS 
     
-    username@name:~/ celo-data-dir$ celocli account:balance $ACCOUNT
-    
-    -this shows the ballance of a given celo account number 
-    -where it says $ACCOUNT enter a variable name from celo.env or the public address
-    
-    username@name:~/ celo-data-dir$ docker stop geth
+    username@name:~/celo-data-dir$ docker stop $NAME
  
    ![image](https://user-images.githubusercontent.com/80616939/118338503-8eb11080-b4d3-11eb-99a3-11417cf79b32.png)
 
 ##   *Sending Celo to and from the node*
    
-   * Send both CUSD, and the CELO native token to your nodes public address 
+   Send both CUSD, and the CELO native token to your nodes public address 
    
-   * have 2 terminal windows open one for running the light client and the other for entering comands
+   Have 2 terminal windows open one for running the light client and the other for entering comands
    
-   * make sure both are in the celo-data-dir 
+   Make sure both are in the celo-data-dir 
 
-   * cat ./start_celo.sh will read you important node information. Find the name as this is used in the next command. 
+   cat ./start_celo.sh will read you important node information. Find the name as this is used in the next command. 
    
-    username@name:~/ celo-data-dir$ cat ./start_celo.sh 
+    username@name:~/celo-data-dir$ cat ./start_celo.sh 
  
-    username@name:~/ celo-data-dir$ docker exec -it $NAME geth attach
+    username@name:~/celo-data-dir$ docker exec -it $NAME geth attach
     
     -exit
     
-    username@name:~/ celo-data-dir$ celocli account:unlock $PUBLIC ADDRESS
+    username@name:~/celo-data-dir$ celocli account:unlock $THE_PUBLIC_ADDRESS
     
     -enter password 
     
-    username@name:~/ celo-data-dir$ celocli transfer:dollars --from $NODE_ADDRESS --to $PHONE_ADDRESS --value=1e16 (this will send the CUSD from this node to another address         1e16=0.01CUSD) 
+    username@name:~/celo-data-dir$ source celo.env 
+    username@name:~/celo-data-dir$ celocli transfer:dollars --from $NODE_ADDRESS --to $PHONE_ADDRESS --value=1e16
    before you can send CUSD be sure to have CELO native in the account for the gas fee.
-   this will send the CUSD from this node to another address. 
+   
    Understanding the unit of measurement: 1e16 = 0.01CUSD, 1e15 = 0.1CUSD, 1e14 = 1.0CUSD.
    ![image](https://user-images.githubusercontent.com/80616939/118338915-9c1aca80-b4d4-11eb-87b6-7970949923aa.png)
     
