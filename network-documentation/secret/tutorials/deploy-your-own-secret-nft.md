@@ -86,7 +86,7 @@ For uploading the compiled contract we will reuse the knowledge you gained durin
 
 ### Uploading the contract
 
-Start by creating a new file `deploy-nft.js` in the project directory and add the code below:
+Start by creating a new file `deploy-nft.js` in the root project directory and add the code below:
 
 ```javascript
 const {
@@ -100,8 +100,8 @@ require('dotenv').config();
 
 const customFees = {
   upload: {
-    amount: [{ amount: '2000000', denom: 'uscrt' }],
-    gas: '2000000',
+    amount: [{ amount: '4000000', denom: 'uscrt' }],
+    gas: '4000000',
   },
   init: {
     amount: [{ amount: '500000', denom: 'uscrt' }],
@@ -174,10 +174,18 @@ In the `deploy-ft.js` file under the comment `// 1. Initialize client` add the f
 Under the comment `// 2. Upload the contract wasm` add the following code snippet below:
 
 ```javascript
-  const wasm = fs.readFileSync('contract.wasm');
+  const wasm = fs.readFileSync('my-snip721/contract.wasm');
   console.log('Uploading contract');
   const uploadReceipt = await client.upload(wasm, {})
     .catch((err) => { throw new Error(`Could not upload contract: ${err}`); });
+    
+  // Get the code ID from the receipt
+  const { codeId } = uploadReceipt;
+```
+Make sure that, if you changed the name of the contract folder, you also change it accordingly in here:
+
+```javascript
+  const wasm = fs.readFileSync('my-snip721/contract.wasm');
 ```
 
 ### Instantiating the nft contract
@@ -239,12 +247,11 @@ If it went well, you should see something like this;
 ```bash
 Uploading contract
 contract:  {
-  contractAddress: 'secret1dsv9t7s6nn73xy3n3gfa7akham4td447vwfd5m',
+  contractAddress: 'secret1g0t7sggeh89k27xa2vux5rnpc3ly4a9c0u8724',
   logs: [ { msg_index: 0, log: '', events: [Array] } ],
-  transactionHash: 'E201BBC45316985C6FAED52BA02102734AA597EA9A54E5B4DD99B65D74AACBF2',
-  data: '6C1855FA1A9CFD1312338A13DF76D7EEEAB6D6BE'
-}
-address:  'secret1dsv9t7s6nn73xy3n3gfa7akham4td447vwfd5m'
+  transactionHash: 'F5E734014EA3108B071B3EA390E58FC41FA0DB28D1F49FE7A652C53E482AA0D9',
+  data: '43D7E82119B9CB6578DD53386A0E61C47E4AF4B8'
+} address: secret1g0t7sggeh89k27xa2vux5rnpc3ly4a9c0u8724
 ```
 
 After this executed successfully you can take the program you created in the first installment, change the contract address to the one of your contract and interact with it in the same way!
