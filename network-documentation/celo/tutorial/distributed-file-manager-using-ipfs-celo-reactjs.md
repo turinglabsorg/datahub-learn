@@ -158,7 +158,7 @@ const CELOAPI = process.env.CELOAPI;
 
 const DATAHUB_URL = `https://celo-alfajores--rpc.datahub.figment.io/apikey/${CELOAPI}/`;
 
-const web3 = new Web3(RPCURL);
+const web3 = new Web3(DATAHUB_URL);
 const kit = ContractKit.newKitFromWeb3(web3);
 
 async function awaitWrapper() {
