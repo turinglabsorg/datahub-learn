@@ -199,6 +199,46 @@ module.exports = {
 ```
 Here, you can see that we have used `contracts_build_directory` to change the default location of `artifacts` from the project root directory to the `src` folder. This is because React cannot access files that are present outside the `src` folder.
 
+In the above file, the line where we are fetching the account address from the wallet's mnemonic needs to be explained.
+```javascript
+let account = ethers.Wallet.fromMnemonic(MNEMONIC, "m/44'/52752'/0'/0/0");
+```
+Before the concept of **wallets** or more specifically **Hierarchical Deterministic (HD) Wallets**, there were standalone Private-Public key pairs. HD wallets on the other hand are a tree of these key pairs, in which one key pair can generate multiple child key pairs.
+
+In HD wallets, first, a random 128 - 256 bit number is generated, also known as **entropy** or the **root seed** or **private key**. This entropy is then appended with few bits of its checksum, to make the number of bits in entropy, a multiple of 11. Then this sequence of bits is divided into sections of 11 bits each. Each section represents the index of a word in a [list](https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt) of 2048 words. This sequence of words represents our wallet's **mnemonic**.
+
+{% hint style="info" %} Checksum is a few bits of the hash of data to detect errors that may have been introduced during its transmission or storage. Errors are verified by hashing the actual data and comparing it with its appended checksum. If the checksum matches with the hashed data then there is no error. {% endhint %}
+
+Then the root seed is passed to a one-way hash function to generate a 512-bit seed. The left 256 bits will make the **master private key** and the right 256 bits will make the **master chain code**. Chain codes are used to introduce randomness in the child keys. HD wallets use the **child key derivation (CKD)** function to derive children keys from parent keys. The child key derivation functions are based on a one-way hash function that combines:
+
+* A parent private or public key
+* A seed called a chain code (256 bits)
+* An index number (32 bits)
+
+![](https://imgur.com/8PPonH1.png)
+
+The index number can range from 0 to 2^32 - 1. Thus using a parent with a given private key and chain code we can generate 2^32 or around 4 Billion child key pairs. In a normal derivation, we use parent public key and chain code to generate children. But this could be vulnerable to security threats and hence we can make derivation hard by using the parent's private key instead of the public key for CKD. This process is known as **Hardened child key derivation**. And to distinguish it from normal derivation, we use different index numbers. For normal derivation index number is from 0 to 2^31 - 1 and for hardened derivation, it is from 2^31 to 2^32 - 1. Hardened index number start from 2 Billion which make it difficult to read, so we use i' to represent index 2^32 + i, where 0 <= i <= 2^32 - 1.
+
+![](https://imgur.com/8ABpbVt.png)
+
+Master keys along with master chain code can create child keys which can further create grandchild keys and so on. Each generation is known as a tree level. Keys in an HD wallet are identified using a **path** naming convention, with each level of the tree separated by a slash (/) character. Private keys derived from the master private key start with **m**. Public keys derived from the master public key start with **M**. An HD path `m/0` represents the 0th or first child private key derived from the master. Similarly, `m/3'/1` denotes the 2nd child private key of the 4th or (2^31 + 3)th hardened child derived from the master.
+
+![](https://imgur.com/kPLaT7W.png)
+
+There are various Bitcoin Improvement Proposals (BIP) that proposes the standard way of deriving paths. BIP0044 (44th proposal) specifies the structure as consisting of five predefined tree levels:
+
+`m / purpose' / coin_type' / account' / change / address_index`
+
+* **purpose** - Always set to 44'. 
+* **coin_type** - Specifies the type of cryptocurrency coin, allowing for multicurrency HD wallets where each currency has its subtree under the second level.
+* **account** - Allows users to subdivide their wallets into separate logical subaccounts, for accounting or organizational purposes.
+* **change** - It has 2 subtrees, one normal receiving address and the other for receiving change tokens which are reverted when you supplied more than the required transaction cost.
+* **address_index** - We can use all the 2 Billion child keys as our address, but this index would set the primary address for our wallet.
+
+Celo wallets like **celowallet.app** use the path `m/44'/52752'/0'/0/0` for its key derivation, since the coin type of Celo is **52752**. The list of different crypto coins can be found [here](https://github.com/satoshilabs/slips/blob/master/slip-0044.md). By default `ethers.Wallet.fromMnemonic()` function uses Ethereum's default path which has a coin type of **60**. That's why we need to manually set the path in this function. Using a different path would give a different address derived from the same mnemonic. So, if we want to use our manual paths, we should remember them, otherwise, we can't derive the address without a path.
+
+{% hint style="info" %} I would recommend you to read more about these keys, addresses and wallets on [O'Reilly](https://www.oreilly.com/library/view/mastering-bitcoin/9781491902639/ch04.html). {% endhint %}
+
 ### **Get Celo credentials**
 For deploying smart contracts we need two things: a node connected to the **Celo** network and an account with few **CELO** tokens. **Datahub** provides a Celo remote node, and to connect to the Datahub node, we need an API key. Visit [Celo Services Dashboard](https://datahub.figment.io/services/celo) on Datahub to get a Celo specific API key.
 
