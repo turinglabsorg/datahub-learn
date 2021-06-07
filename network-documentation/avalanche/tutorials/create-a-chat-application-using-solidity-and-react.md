@@ -1,7 +1,7 @@
 # Create a chat dApp using Solidity and ReactJS
 
 ## Introduction
-Today we will build a decentralized chat application on Avalanche's Fuji test-network from scratch. The dApp will allow users to connect with other users and chat with them. We will develop our smart contract using Solidity which will be deployed on Avalanche's C-chain. It would have an easy-to-use UI developed using Reactjs. So Lets begin ...
+Today we will build a decentralized chat application on Avalanche's Fuji test-network from scratch. The dApp will allow users to connect with other people and chat with them. We will develop our smart contract using Solidity which will be deployed on Avalanche's C-chain. We will have a basic, easy-to-use UI developed using ReactJS. So, let us begin!
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ We will define 3 functions :
     
 * The `getUsername(pubkey)` function will return the username of the given user if it exists.
 
-### Adding new friend
+### Adding friends
 
 Here also we will define 3 functions :
 
@@ -44,7 +44,7 @@ The final part of the Solidity contract will enable the exchange of messages bet
 
 * The `readMessage()` function returns the chat history that has happened between the two users so far.
 
-### Data Collections
+### User Data Collections
 
 We will have three types of user-defined data :
 
@@ -86,7 +86,7 @@ Open [Remix](https://remix.ethereum.org/) -> Select Solidity
 
 Create a `Database.sol` file in the Remix file explorer, and paste the following code :
 
-```solidity
+```javascript
 // SPDX-License-Identifier: GPL-3.0
 
 pragma solidity >=0.7.0 <0.9.0;
@@ -204,7 +204,7 @@ contract Database {
 }
 ```
 
-Navigate to Compile Tab and compile the `Database.sol` contract. Note down the `ABI` as it will be required in the next section.
+Navigate to the Solidity compiler Tab on the left side navigation bar and click the blue button to compile the `Database.sol` contract. Note down the `ABI` as it will be required in the next section.
 
 Navigate to Deploy Tab and open the “ENVIRONMENT” drop-down. Select "Injected Web3" (make sure Metamask is loaded) and click "Deploy" button. 
 
@@ -214,9 +214,9 @@ Approve the transaction on Metamask pop-up interface. Once our contract is deplo
 An Application Binary Interface (ABI) is a JSON object which stores the metadata about the methods of a contract like data type of input parameters, return data type & property of the method like payable, view, pure etc. You can learn more about the ABI from the [solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html)  
 {% endhint %}
 
-## Creating frontend using React
+## Creating a frontend in React
 
-Now, we are going to create a react app and setup the frontend of the application.
+Now, we are going to create a React app scaffold and set up the frontend of the application.
 
 Open a terminal and navigate to the directory where we will create the application.
 ```bash
