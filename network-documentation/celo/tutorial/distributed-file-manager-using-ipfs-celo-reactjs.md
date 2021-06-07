@@ -8,6 +8,7 @@ For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit
 
 ## Prerequisites
 
+* You've created an account on [DataHub](https://datahub.figment.io/sign_up?service=celo)
 * Basic familarity with [Celo's architecture](https://docs.celo.org/) and smart contracts.
 * Basic familarity with [ReactJS](https://reactjs.org)
 
@@ -154,11 +155,11 @@ const ContractKit = require("@celo/contractkit");
 require("dotenv").config();
 
 const MNEMONIC = process.env.MNEMONIC;
-const CELOAPI = process.env.CELOAPI;
+const DATAHUB_CELO_API = process.env.DATAHUB_CELO_API;
 
-const DATAHUB_URL = `https://celo-alfajores--rpc.datahub.figment.io/apikey/${CELOAPI}/`;
+const DATAHUB_API_URL = `https://celo-alfajores--rpc.datahub.figment.io/apikey/${DATAHUB_CELO_API}/`;
 
-const web3 = new Web3(DATAHUB_URL);
+const web3 = new Web3(DATAHUB_API_URL);
 const kit = ContractKit.newKitFromWeb3(web3);
 
 async function awaitWrapper() {
@@ -251,7 +252,7 @@ Now we need a **Celo** wallet, where we would keep our funds, required for all t
 Create a `.env` file in the project root folder. Please take a note that dot (.) is necessary for the `.env` file name. Now copy your Celo wallet's mnemonic in the .env file as shown below. In the .env file, **MNEMONIC** should be enclosed within double-quotes (" "). If you are facing any difficulty in setting up .env file then please refer to **Extra Guides** on [dotenv and .env](https://learn.figment.io/network-documentation/extra-guides/dotenv-and-.env).
 
 ```bash
-CELOAPI=<your_datahub_api>
+DATAHUB_CELO_API=<your_datahub_api>
 MNEMONIC="<celo-wallet-mnemonic>"
 ```
 
@@ -1082,16 +1083,16 @@ Visit [http://localhost:3000](http://localhost:3000) to interact with the built 
 
 Don't forget to set up Metamask with `Celo` Alfajores testnet and also fund the account with Alfajores test tokens to upload files.
 
-In the Metamask extension, add a custom RPC by clicking at the network dropdown in the centre of the extension. Fill in the details as shown in the below image.
+In the Metamask extension, add a custom RPC by clicking at the network dropdown in the centre of the extension. Fill in the details as shown in the below image. Put your Celo specific Datahub's API key against **New RPC URL** field in place of `YOUR_API_KEY`.
 
-![](https://i.imgur.com/3eFZpJn.png)
+![](https://imgur.com/jS6KflA.png)
 
-| Info            | Value                                    |
-| ----------------|------------------------------------------|
-| Network Name    | Celo Alfajores                           |
-| New RPC URL     | https://alfajores-forno.celo-testnet.org |
-| Chain ID        | 44787                                    |
-| Currency Symbol | CELO                                     |
+| Info            | Value                                                               |
+| ----------------|---------------------------------------------------------------------|
+| Network Name    | Celo Alfajores                                                      |
+| New RPC URL     | https://celo-alfajores--rpc.datahub.figment.io/apikey/YOUR_API_KEY/ |
+| Chain ID        | 44787                                                               |
+| Currency Symbol | CELO                                                                |
 
 {% hint style="info" %} If you find any difficulty in setting up the project, then feel free to clone this repository https://github.com/rajranjan0608/dfm, and follow the steps in the `README.md` file of this repo in order to run the application. {% endhint %}
 
