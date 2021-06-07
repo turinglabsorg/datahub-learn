@@ -2,22 +2,17 @@
 description: >-
   In this installment of the secretNFT series you will deploy your very own snip721 token contract and learn how to interact with it.
 ---
-
 # Deploy your very own secretNFT
-
-## About the Author
-
-This tutorial was created by [Florian Uhde](https://twitter.com/florianuhde), a software engineer and game developer with a passion for blockchain, creativity and systemic design.
 
 ## Introduction
 
 For a high level introduction to Non-Fungible-Tokens see the [first installment of this series](https://learn.figment.io/network-documentation/secret/tutorials/create-your-first-secret-nft). In this tutorial we will download and compile the [snip721 reference implementation](https://github.com/baedrik/snip721-reference-impl), deploy it onto the secret testnet and interact with the contract, minting your own secret NFTs. Contrary to the [previous tutorial](https://learn.figment.io/network-documentation/secret/tutorials/create-your-first-secret-nft) we will configure the contract ourself and learn about access-right management of secret contracts and tokens on the way.
 
-### Prerequisites
+## Prerequisites
 
 This tutorial assumes that you have completed the [Secret Learn Pathway](https://learn.figment.io/network-documentation/secret/secret-pathway) already, as we will be building upon that foundation of knowledge and skill. If you have not already done so, you would be wise to take the time to complete the Pathway. We will start with the same project folder as in section 5 of the Pathway.
 
-#### Requirements to successfully complete this tutorial
+### Requirements to successfully complete this tutorial
 
 * The latest version of NodeJS installed \(use of nvm, the node version manager, is _encouraged_ for web3 developers\)
 * A code editor like VSCode, Theia, Atom, _etc_.
@@ -182,13 +177,14 @@ Under the comment `// 2. Upload the contract wasm` add the following code snippe
   // Get the code ID from the receipt
   const { codeId } = uploadReceipt;
 ```
+
 Make sure that, if you changed the name of the contract folder, you also change it accordingly in here:
 
 ```javascript
   const wasm = fs.readFileSync('my-snip721/contract.wasm');
 ```
 
-### Instantiating the nft contract
+## Instantiating the nft contract
 
 Similar to what you have seen before we first got the `codeId` from the upload receipt and then defined the `initMsg` to finally instantiated the contract.
 In this case the initMsg is more complex that for a simple counter and allows us to configure the secret NFT to our liking.
@@ -258,7 +254,6 @@ After this executed successfully you can take the program you created in the fir
 
 {% page-ref page="create-your-first-secret-nft.md" %}
 
-
 ## Wrap up
 
 Congratulations! We have made it to the end of the first installment of this Secret NFT series. We have covered a lot of information, and I feel you can really be proud of what you have achieved. Just to recap:
@@ -268,3 +263,10 @@ Congratulations! We have made it to the end of the first installment of this Sec
 * You created an instance of your contract on the secret testnet, ready to be interacted with
 
 This is a solid foundation to play with and build upon!
+
+## About the Author
+
+This tutorial was created by [Florian Uhde](https://twitter.com/florianuhde), a software engineer and game developer with a passion for blockchain, creativity and systemic design.
+
+## References 
+snip721 Reference Implementation: https://github.com/baedrik/snip721-reference-impl

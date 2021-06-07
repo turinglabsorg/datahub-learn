@@ -255,6 +255,7 @@
     * [Developing your first secret contract](network-documentation/secret/tutorials/creating-a-secret-contract-from-scratch.md)
     * [Delegate to a Validator & Unbond Tokens](network-documentation/secret/tutorials/delegate-and-unbond-tokens.md)
     * [Create your first secret NFT](network-documentation/secret/tutorials/create-your-first-secret-nft.md)
+    * [Deploy your own secret NFT](network-documentation/secret/tutorials/deploy-your-own-secret-nft.md)
 * [🔋 Solana](network-documentation/solana/README.md)
   * [✏ Solana 101](network-documentation/solana/solana-101.md)
   * [🎮 RPC & REST API](network-documentation/solana/rpc-and-rest-api/README.md)
