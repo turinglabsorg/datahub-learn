@@ -1,22 +1,22 @@
 # Create a chat dApp using Solidity and ReactJS
 
-## Introduction
+# Introduction
 Today we will build a decentralized chat application on Avalanche's Fuji test-network from scratch. The dApp will allow users to connect with other users and chat with them. We will develop our smart contract using Solidity which will be deployed on Avalanche's C-chain. It would have an easy-to-use UI developed using Reactjs. So Lets begin ...
 
-## Prerequisites
+# Prerequisites
 
 * Basic familiarity with Reactjs and Solidity
 * Should've completed [Deploy a Smart Contract on Avalanche using Remix and MetaMask](https://learn.figment.io/network-documentation/avalanche/tutorials/deploy-a-smart-contract-on-avalanche-using-remix-and-metamask) tutorial
 
-## Requirements
+# Requirements
 * [Node.js](https://nodejs.org/en/download/releases/) v10.18.0+
 * [Metamask extension](https://metamask.io/download.html) on your browser
 
-## Implementing the smart contract 
+# Implementing the smart contract 
 
 Our chat dApp needs the basic functionality allowing users to connect with and share messages with friends. To accomplish this, we will write the functions responsible for creating an account, adding friends and sending messages.
 
-### Account creation
+## Account creation
 
 We will define 3 functions :
 
@@ -26,7 +26,7 @@ We will define 3 functions :
     
 * The `getUsername(pubkey)` function will return the username of the given user if it exists.
 
-### Adding new friend
+## Adding new friend
 
 Here also we will define 3 functions :
 
@@ -36,7 +36,7 @@ Here also we will define 3 functions :
 
 * The `getMyFriendList()` function will return an array of friends of the given user.
 
-### Messaging
+## Messaging
 
 The final part of the Solidity contract will enable the exchange of messages between users. We will divide the task into two functions `sendMessage()` and `readMessage()`.
 
@@ -44,7 +44,7 @@ The final part of the Solidity contract will enable the exchange of messages bet
 
 * The `readMessage()` function returns the chat history that has happened between the two users so far.
 
-### Data Collections
+## Data Collections
 
 We will have three types of user-defined data :
 
@@ -60,9 +60,9 @@ We would maintain 2 collections in our database:
 
 * `allMessages` stores the messages. As Solidity does not allow user-defined keys in a mapping, we can instead hash the public keys of the two users. This value can then be stored in the mapping.
 
-## Deploying the smart contract
+# Deploying the smart contract
 
-### Setting up Metamask
+## Setting up Metamask
 
 Log in to MetaMask -> Click the Network drop-down -> Select Custom RPC
 
@@ -78,7 +78,7 @@ Log in to MetaMask -> Click the Network drop-down -> Select Custom RPC
 
 Fund your address from the given [faucet](https://faucet.avax-test.network/).
 
-### Deploy using Remix
+## Deploy using Remix
 
 Open [Remix](https://remix.ethereum.org/) -> Select Solidity
 
@@ -214,7 +214,7 @@ Approve the transaction on Metamask pop-up interface. Once our contract is deplo
 An Application Binary Interface (ABI) is a JSON object which stores the metadata about the methods of a contract like data type of input parameters, return data type & property of the method like payable, view, pure etc. You can learn more about the ABI from the [solidity documentation](https://docs.soliditylang.org/en/latest/abi-spec.html)  
 {% endhint %}
 
-## Creating frontend using React
+# Creating frontend using React
 
 Now, we are going to create a react app and setup the frontend of the application.
 
@@ -806,7 +806,7 @@ Now its time to run our React app. Use the following command to start the React 
 npm start
 ```
 
-## Walkthrough
+# Walkthrough
 
 * Visit [http://localhost:3000](http://localhost:3000) to interact with the app.
 
@@ -822,12 +822,12 @@ Make sure your friend is also registered to the application while adding him as 
 
 ![preview](https://i.imgur.com/LfkjLSK.gif)
 
-## Conclusion
+# Conclusion
 Congratulations! We have successfully developed a decentralized chat application which can be deployed on Avalanche or other EVM-compatible blockchain. We also created a boilerplate React application to use as the frontend for our dApp.
 
-## Troubleshooting
+# Troubleshooting
 
-### Transaction Failure
+## Transaction Failure
 
 * Check if your account has sufficient balance at [fuji block-explorer](https://cchain.explorer.avax-test.network/). You can fund your address from the given [faucet](https://faucet.avax-test.network/)
 
@@ -837,18 +837,18 @@ Congratulations! We have successfully developed a decentralized chat application
 
 ![Multiple account preview](https://raw.githubusercontent.com/realnimish/blockchain-chat-app/main/public/multiple_accounts.jpeg)
 
-### Application crash
+## Application crash
 
 ![Error](https://user-images.githubusercontent.com/44340561/119778345-05dba100-bee5-11eb-85b9-c9bd18ea4082.png)
 Check if you have updated the `CONTRACT_ADDRESS` variable in `src/index.js` properly!
 
-## What's Next
+# What's Next
 This dApp has very limited functionality. We can improve it by adding functions to delete messages, block users, or create groups of friends. We could also optimize the dApp interaction cost with functions to limit the maximum number of messages, or possibly using event log for short messages.
 
-## About the Author(s)
+# About the Author(s)
 
 The tutorial was created by [Nimish Agrawal](https://github.com/realnimish) & [Sayan Kar](https://github.com/SayanKar). You can reach out to them on [Figment Forum](https://community.figment.io/u/nimishagrawal100.in/) or on LinkedIn [@Nimish Agrawal](https://www.linkedin.com/in/realnimish) and [@Sayan Kar](https://www.linkedin.com/in/sayan-kar-).
 
-## References
+# References
 
 - Smart contract deployment process - [Deploy a Smart Contract on Avalanche using Remix and MetaMask](https://docs.avax.network/build/tutorials/smart-contracts/deploy-a-smart-contract-on-avalanche-using-remix-and-metamask)
