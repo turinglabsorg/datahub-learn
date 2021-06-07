@@ -218,7 +218,7 @@ Then the root seed is passed to a one-way hash function to generate a 512-bit se
 
 ![](https://imgur.com/8PPonH1.png)
 
-The index number can range from 0 to 2^32 - 1. Thus using a parent with a given private key and chain code we can generate 2^32 or around 4 Billion child key pairs. In a normal derivation, we use parent public key and chain code to generate children. But this could be vulnerable to security threats and hence we can make derivation hard by using the parent's private key instead of the public key for CKD. This process is known as **Hardened child key derivation**. And to distinguish it from normal derivation, we use different index numbers. For normal derivation index number is from 0 to 2^31 - 1 and for hardened derivation, it is from 2^31 to 2^32 - 1. Hardened index number start from 2 Billion which make it difficult to read, so we use i' to represent index 2^32 + i, where 0 <= i <= 2^32 - 1.
+The index number can range from 0 to 2^32 - 1. Thus using a parent with a given private key and chain code we can generate 2^32 or around 4 Billion child key pairs. In a normal derivation, we use parent public key and chain code to generate children. But this could be vulnerable to security threats and hence we can make derivation hard by using the parent's private key instead of the public key for CKD. This process is known as **Hardened child key derivation**. And to distinguish it from normal derivation, we use different index numbers. For normal derivation index number is from 0 to 2^31 - 1 and for hardened derivation, it is from 2^31 to 2^32 - 1. Hardened index number start from 2 Billion which make it difficult to read, so we use i' to represent index 2^31 + i, where 0 <= i <= 2^32 - 1.
 
 ![](https://imgur.com/8ABpbVt.png)
 
@@ -234,7 +234,7 @@ There are various Bitcoin Improvement Proposals (BIP) that proposes the standard
 * **coin_type** - Specifies the type of cryptocurrency coin, allowing for multicurrency HD wallets where each currency has its subtree under the second level.
 * **account** - Allows users to subdivide their wallets into separate logical subaccounts, for accounting or organizational purposes.
 * **change** - It has 2 subtrees, one normal receiving address and the other for receiving change tokens which are reverted when you supplied more than the required transaction cost.
-* **address_index** - We can use all the 2 Billion child keys as our address, but this index would set the primary address for our wallet.
+* **address_index** - We can use all the 4 Billion child keys as our address, but this index would set the primary address for our wallet.
 
 Celo wallets like **celowallet.app** use the path `m/44'/52752'/0'/0/0` for its key derivation, since the coin type of Celo is **52752**. The list of different crypto coins along with their type can be found [here](https://github.com/satoshilabs/slips/blob/master/slip-0044.md). The coin types have nothing to do with the blockchain architecture and is chosen randomly. By default `ethers.Wallet.fromMnemonic()` function uses Ethereum's default path which has a coin type of **60**. That's why we need to manually set the path in this function. Using a different path would give a different address derived from the same mnemonic. So, if we want to use our manual paths, we should remember them, otherwise, we can't derive the address without a path.
 
