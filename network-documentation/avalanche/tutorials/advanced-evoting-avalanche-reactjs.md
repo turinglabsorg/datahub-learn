@@ -1,4 +1,4 @@
-# Voting dApp on Avalanche using ReactJS
+# Create a Voting dApp on Avalanche using ReactJS
 
 # Introduction
 
@@ -517,11 +517,9 @@ The information and ABI of the deployed contract are present in the `src/build/c
 
 # **Building the user interface**
 
-* We have already set up our `React` project directory. Main files for the client-side to interact with blockchain is present in the `src` folder.
+We have already set up our React project directory. The client-side files to interact with the Avalanche blockchain are present in the `src` directory. First, we will make a ReactJS component with of a couple of functions to connect our browser with the Avalanche network. These functions will be kept in a separate file named `BlockchainUtil.js`.
 
-* First, we will make few functions to connect our browser with the Avalanche network. These functions will be kept in a separate file named `BlockchainUtil.js`. 
-
-## Making a component to interact with blockchain
+## BlockchainUtils Component
 Create the file `BlockchainUtil.js` inside of the project `src` directory and paste the following code:
 
 ```javascript
@@ -561,7 +559,7 @@ export class GetAccount extends React.Component {
 ```
 
 ## Updating App.js
-`App.js` is the entry point of any React application. Therefore we need to update `App.js` regularly with the components which we want to show in our application. As we move further and build components, we will also update `App.js`.
+`App.js` is the entry point of our React application. Therefore, we will need to update `App.js` with the components which we want to show in our application. As we move ahead and build components, we will update `App.js` and import the components so that we can make use of their functionality.
 
 So, now add the following line under the `//Importing...` section of `App.js` to import `BlockchainUtil.js` module.
 ```javascript
@@ -587,7 +585,7 @@ this.mainInstance = await Contract.getContract(this.web3, contractJson);
 this.setState({mainInstance: this.mainInstance});
 ```
 
-## Making a component to deploy elections
+## CreateElection Component
 Now let's make a component that will create new elections using our deployed smart contract. Create the file `CreateElection.js` inside of the project `src` directory and paste the following code. The code is commented to draw attention to the important parts.
 
 ```javascript
@@ -744,8 +742,8 @@ class CreateElection extends Component {
 export default CreateElection;
 ```
 
-## Making a component to list the deployed elections
-Create the file `Active.js` inside of the project `src` directory and paste the following code:
+## ActiveElections Component
+Create the file `ActiveElections.js` inside of the project `src` directory and paste the following code:
 
 ```javascript
 import React, { Component } from "react";
@@ -794,8 +792,8 @@ var Candidates = (props) => (
   </font>
 );
 
-// Active component would fetch and display all the the elections deployed by the MainContract.sol
-class Active extends Component {
+// ActiveElections component would fetch and display all the the elections deployed by the MainContract.sol
+class ActiveElections extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -924,17 +922,17 @@ class Active extends Component {
   }
 }
 
-export default Active;
+export default ActiveElections;
 ```
 
-## Making a component to vote in elections
-In the above component Active.js, we have used a component called VoteModal which contains the candidate details and a button to cast a vote. Now we will make this component available by creating a file named VoteModal.js inside the src directory. Once created, put the following code inside it:
+## VoteModal Component
+In the above component ActiveElections.js, we have used a component called VoteModal which contains the candidate details and a button to cast a vote. Now we will make this component available by creating a file named VoteModal.js inside the src directory. Once created, put the following code inside it:
 
 ```javascript
 import React, { useState } from "react";
 import { Box, Flex, Modal, Button, Text, Card, Radio, Field, Loader } from "rimble-ui";
 
-// Data like election and candidate details will be passed in the props by Active.js (parent)
+// Data like election and candidate details will be passed in the props by ActiveElections.js (parent)
 function VoteModal(props) {
   // These are React Hooks and are used only for UX like opening and closing of Voting Modal and loaders
   const [isOpen, setIsOpen] = useState(false);
@@ -1039,7 +1037,7 @@ function VoteModal(props) {
 
 export default VoteModal;
 ```
-## Integrating the built components with App.js
+## Integrating Components into App.js
 
 Now we need to update our `App.js` file with all the components that we have made so far.
 
@@ -1049,7 +1047,7 @@ Now we need to update our `App.js` file with all the components that we have mad
 // 1. Importing other modules
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import CreateElection from "./CreateElection"
-import Active from "./Active";
+import ActiveElections from "./ActiveElections";
 import contractJson from './build/contracts/MainContract.json';
 ```
 
@@ -1058,7 +1056,7 @@ import contractJson from './build/contracts/MainContract.json';
 ```javascript
 // For routing through the react application
 <Router>
-  {/* Default route to Active component */}
+  {/* Default route to ActiveElections component */}
   <Route path="/" exact>
     <Redirect to="/active"/>
   </Route>
@@ -1076,7 +1074,7 @@ import contractJson from './build/contracts/MainContract.json';
   {<Route path="/createElection" exact component={() => <CreateElection account={this.state.account}/>}/>}
 
   {/* Route to Active election page */}
-  {<Route path="/active" exact component={() => <Active account={this.state.account}/>}/>}
+  {<Route path="/active" exact component={() => <ActiveElections account={this.state.account}/>}/>}
 </Router>
 ```
 
@@ -1087,11 +1085,9 @@ npm install --save rimble-ui react-router-dom --force
 
 {% hint style="info" %} Rimble UI library comes with a peer dependency of `react@16.9.0` which is not the latest version of React that we are using i.e. `react@17.0.2`. Running the `npm install` command without the `--force` tag would cause an `unable to resolve dependency tree` conflict. Thus, the `--force` tag is used to override any type of conflicts and proceeds with the installation anyway. Another way to resolve this conflict is by using the `--legacy-peer-deps` tag instead, but this would ignore all peer dependencies which we do not require, as the conflict is only between `react` and `rimble-ui`. {% endhint %}
 
-Now go to the project root directory, i.e. `avalanche-voting` directory, and run the command `npm start`. The ReactJS server would start automatically.
+Now go to the project root directory, i.e. `avalanche-voting` directory, and run the command `npm start`. The ReactJS server would start automatically. Visit [http://localhost:3000](http://localhost:3000) in a browser to interact with the dApp frontend.
 
-* Visit [http://localhost:3000](http://localhost:3000) in a browser to interact with the dApp frontend.
-
-* Don't forget to set up Metamask with Fuji testnet and also fund the account with Fuji C-Chain test tokens to vote. In the Metamask extension, add a custom RPC by clicking at the network dropdown in the centre of the extension. Fill in the details as shown in the below image. Put your Avlanche's specific Datahub's API key against **New RPC URL** field in place of `DATAHUB_API_KEY`
+Don't forget to set up Metamask with Fuji testnet and also fund the account with Fuji C-Chain test tokens to vote. In the Metamask extension, add a custom RPC by clicking at the network dropdown in the centre of the extension. Fill in the details as shown in the below image. Put your Avlanche's specific Datahub's API key against **New RPC URL** field in place of `DATAHUB_API_KEY`
 
 ![](https://imgur.com/NuhjUvF.png)
 
@@ -1099,7 +1095,7 @@ Now go to the project root directory, i.e. `avalanche-voting` directory, and run
 | ------------------|-------------------------------------------|
 | Network Name      | Avalanche Fuji                    |
 | New RPC URL       | https://avalanche--fuji--rpc.datahub.figment.io/apikey/DATAHUB_API_KEY/ext/bc/C/rpc|
-| Chain ID          | 44787                       |
+| Chain ID          | 43113                       |
 | Currency Symbol   | AVAX-C                        |
 | Block Explorer URL| https://cchain.explorer.avax-test.network |
 
