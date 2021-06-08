@@ -14,8 +14,8 @@ This tutorial assumes that you have completed the [Secret Learn Pathway](https:/
 
 ### Requirements to successfully complete this tutorial
 
-* The latest version of NodeJS installed \(use of nvm, the node version manager, is _encouraged_ for web3 developers\)
-* A code editor like VSCode, Theia, Atom, _etc_.
+* The latest version of [NodeJS](https://nodejs.org/en/) installed \(use of nvm, the node version manager, is _encouraged_ for web3 developers\)
+* A code editor like [VSCode](https://code.visualstudio.com/Download), Theia, Atom, _etc_.
 * Required JavaScript packages –
   * secretjs - for the Secret Network JavaScript API
   * dotenv - for working with environment variables
@@ -81,7 +81,10 @@ For uploading the compiled contract we will reuse the knowledge you gained durin
 
 ### Uploading the contract
 
-Start by creating a new file `deploy-nft.js` in the root project directory and add the code below:
+We are now switching back to the root directory and will start writing some node modules to manage our newly created contract using nodeJS.
+For this we will need the `secretjs` and `dotenv` package. If you haven't set it up by now I recommend a quick detour to the first step of the secret pathway to do so: {% page-ref page="intro-pathway-secret-basics/1.-connecting-to-a-secret-node-using-datahub.md" %}
+
+After setting everything up we start by creating a new file `deploy-nft.js` in the root project directory and add the code below:
 
 ```javascript
 const {
@@ -148,7 +151,7 @@ main().catch((err) => {
 });
 ```
 
-#### Initialize client
+### Initialize client
 
 In the `deploy-ft.js` file under the comment `// 1. Initialize client` add the following code snippet below:
 
@@ -193,7 +196,7 @@ Open up the `mgs.rs` file withing the `scr` folder of the contract code. You sho
 
 Lets have a look at the different fields and what part of the contract they control:
 
-#### **InitMsg**
+### **InitMsg**
 
 | Name               | Type                                                   | Description                                                         | Optional | Value If Omitted   |
 |--------------------|--------------------------------------------------------|---------------------------------------------------------------------|----------|--------------------|
@@ -204,7 +207,7 @@ Lets have a look at the different fields and what part of the contract they cont
 | config             | [Config (see below)](#config)                          | Privacy configuration for the contract                              | yes      | defined below      |
 | post_init_callback | [PostInitCallback (see below)](#postinitcallback)      | Information used to perform a callback message after initialization | yes      | nothing            |
 
-#### **InitConfig**
+### **InitConfig**
 
 | Name                          | Type | Description                                                         |Optional | Value If Omitted |
 |-------------------------------|------|---------------------------------------------------------------------|---------|------------------|
@@ -254,7 +257,7 @@ After this executed successfully you can take the program you created in the fir
 
 {% page-ref page="create-your-first-secret-nft.md" %}
 
-## Wrap up
+## Conclusion
 
 Congratulations! We have made it to the end of the first installment of this Secret NFT series. We have covered a lot of information, and I feel you can really be proud of what you have achieved. Just to recap:
 
@@ -267,6 +270,10 @@ This is a solid foundation to play with and build upon!
 ## About the Author
 
 This tutorial was created by [Florian Uhde](https://twitter.com/florianuhde), a software engineer and game developer with a passion for blockchain, creativity and systemic design.
+You can get in touch with the author on [Figment Forum](https://community.figment.io/u/floar) if you have any queries pertaining to the tutorial, secretNFTs, etc.
 
-## References 
-snip721 Reference Implementation: https://github.com/baedrik/snip721-reference-impl
+## References
+
+snip721 Reference Implementation: [Github Repo](https://github.com/baedrik/snip721-reference-impl)
+
+If you had any difficulties following this tutorial or simply want to discuss anything technical with us you can [join our community](https://discord.gg/fszyM7K) today!
