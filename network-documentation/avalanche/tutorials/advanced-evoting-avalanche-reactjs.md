@@ -1101,7 +1101,7 @@ Don't forget to set up Metamask with Fuji testnet and also fund the account with
 
 # Conclusion
 
-You have successfully built a full-fledged e-voting dApp with advanced features like creating custom elections, voting in them and deployed the smart contract on the Fuji test network using Truffle Suite. Along with that, we have also built the client-side application using ReactJS for interacting with the network. From this tutorial, you have learnt not only how to make make and deploy smart contracts but also how to integrate ReactJS with the blockchain using Trufflesuite.
+You have successfully built a full-fledged e-voting dApp with advanced features like creating custom elections, voting in them and deployed the smart contract on the Fuji test network using Truffle Suite. Along with that, we have also built the client-side application using ReactJS for interacting with the network. From this tutorial, you have learned not only how to make make and deploy smart contracts but also how to integrate ReactJS with the blockchain using Trufflesuite.
 
 ![](https://imgur.com/bjdWr35.gif)
 
