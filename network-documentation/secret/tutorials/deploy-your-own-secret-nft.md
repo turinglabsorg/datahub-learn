@@ -253,6 +253,20 @@ contract:  {
 } address: secret1g0t7sggeh89k27xa2vux5rnpc3ly4a9c0u8724
 ```
 
+{% hint style="info" %}
+
+#### Not able to deploy your contract and initalizing it using `deploy-ft.js`
+
+Let's check for some common causes:
+
+* First, make sure you have `.env` file saved and it's in the correct format as given in the tutorial.
+* If you're getting an error message like `UnauthorizedError: { "message":"Invalid authentication credentials"` then make sure to replace the &lt;API\_KEY&gt; with your correct API key which you copied from your DataHub Dashboard.
+* If you are getting `Error: Cannot find module 'secretjs'` make sure you installed the packages correctly using `npm install --save secretjs dotenv @iov/crypto`
+* If you see `Error: ENOENT: no such file or directory, open 'my-snip721/contract.wasm'` make sure that file path you are using in your deploy script points to the generated `contract.wasm`
+* If still, you're experiencing the same issue, for help reach out to us on [Discord](https://discord.gg/fszyM7K) or [Forum](https://community.figemnt.io)
+
+{% endhint %}
+
 After this executed successfully you can take the program you created in the first installment, change the contract address to the one of your contract and interact with it in the same way!
 
 {% page-ref page="create-your-first-secret-nft.md" %}
