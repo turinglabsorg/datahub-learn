@@ -19,9 +19,9 @@ This tutorial assumes that you have completed the [Secret Learn Pathway](https:/
 * The latest version of [NodeJS](https://nodejs.org/en/) installed \(use of nvm, the node version manager, is _encouraged_ for web3 developers\)
 * A code editor like [VSCode](https://code.visualstudio.com/Download), Theia, Atom, _etc_.
 * Required JavaScript packages –
-  * secretjs - for the Secret Network JavaScript API
-  * dotenv - for working with environment variables
-* Rust + docker toolchain to compile secret contracts
+  * [secretjs](https://www.npmjs.com/package/secretjs) - for the Secret Network JavaScript API
+  * [dotenv](https://www.npmjs.com/package/dotenv) - for working with environment variables
+* [Rust](https://rustup.rs) + [docker](https://docs.docker.com/get-docker/) toolchain to compile secret contracts
 
 For the latest you may want to refer to
 
