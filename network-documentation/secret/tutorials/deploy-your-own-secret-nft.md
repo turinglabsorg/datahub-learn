@@ -4,15 +4,15 @@ description: >-
 ---
 # Deploy your very own secretNFT
 
-## Introduction
+# Introduction
 
-For a high level introduction to Non-Fungible-Tokens see the [first installment of this series](https://learn.figment.io/network-documentation/secret/tutorials/create-your-first-secret-nft). In this tutorial we will download and compile the [snip721 reference implementation](https://github.com/baedrik/snip721-reference-impl), deploy it onto the secret testnet and interact with the contract, minting your own secret NFTs. Contrary to the [previous tutorial](https://learn.figment.io/network-documentation/secret/tutorials/create-your-first-secret-nft) we will configure the contract ourself and learn about access-right management of secret contracts and tokens on the way.
+For a high level introduction to Non-Fungible-Tokens see the [first installment of this series](https://learn.figment.io/network-documentation/secret/tutorials/create-your-first-secret-nft). In this tutorial we will download and compile the [snip721 reference implementation](https://github.com/baedrik/snip721-reference-impl), deploy it onto the secret testnet and interact with the contract, minting your own secret NFTs. Unlike the [previous tutorial](https://learn.figment.io/network-documentation/secret/tutorials/create-your-first-secret-nft) we will configure the contract ourselves and learn about access right management of secret contracts and tokens on the way.
 
-## Prerequisites
+# Prerequisites
 
 This tutorial assumes that you have completed the [Secret Learn Pathway](https://learn.figment.io/network-documentation/secret/secret-pathway) already, as we will be building upon that foundation of knowledge and skill. If you have not already done so, you would be wise to take the time to complete the Pathway. We will start with the same project folder as in section 5 of the Pathway.
 
-### Requirements to successfully complete this tutorial
+# Requirements
 
 * The latest version of [NodeJS](https://nodejs.org/en/) installed \(use of nvm, the node version manager, is _encouraged_ for web3 developers\)
 * A code editor like [VSCode](https://code.visualstudio.com/Download), Theia, Atom, _etc_.
@@ -21,36 +21,34 @@ This tutorial assumes that you have completed the [Secret Learn Pathway](https:/
   * dotenv - for working with environment variables
 * Rust + docker toolchain to compile secret contracts
 
-For the latest you may want to refer to {% page-ref page="intro-pathway-secret-basics/5.-writing-and-deploying-your-first-secret-contract.md" %} which will help you setting up everything from a developer side.
+For the latest you may want to refer to {% page-ref page="intro-pathway-secret-basics/5.-writing-and-deploying-your-first-secret-contract.md" %} which will help you setting up everything needed for developing on Secret.
 
-## Generate and compile the snip721 contract
+# Generate the contract
 
-### Generate the contract
-
-```text
+```bash
 cargo generate --git https://github.com/baedrik/snip721-reference-impl --name my-snip721
 ```
 
-This git project is a reference implementation for tokens based on the [snip721 standard](https://github.com/SecretFoundation/SNIPs/blob/master/SNIP-721.md), which creates tokens that are loosely based on [ERC-721](https://eips.ethereum.org/EIPS/eip-721) and are a superset of [CW-721](https://github.com/CosmWasm/cosmwasm-plus/blob/master/packages/cw721/README.md), making them compatible with the Ethereum and Cosmos equivalents.
+This git project is a reference implementation for tokens based on the [snip721 standard](https://github.com/SecretFoundation/SNIPs/blob/master/SNIP-721.md), which creates tokens that are loosely based on the [ERC-721](https://eips.ethereum.org/EIPS/eip-721) specification and are a superset of [CW-721](https://github.com/CosmWasm/cosmwasm-plus/blob/master/packages/cw721/README.md), making them compatible with both the Ethereum and Cosmos tokens.
 
 You can have a look at the generated files by stepping into the folder using:
 
-```text
-cd my-snip721
+```bash
+cd my-snip721 && ls
 ```
 
-Most of the files in here should look very familiar from what you saw in part 5 of the secret pathway, with the main difference that the `scr` folder contains more files, due to the complexity of the contract
+Most of the files in here should look very familiar from what you saw in part 5 of the Secret pathway, with the main difference that the `src` folder contains more files, due to the complexity of the contract
 
-```text
-Cargo.lock    Developing.md    LICENSE        Publishing.md    examples    schema        tests
-Cargo.toml    Importing.md    NOTICE        README.md    rustfmt.toml    src
+```bash
+Cargo.lock  Developing.md  LICENSE  Publishing.md  examples      schema  tests
+Cargo.toml  Importing.md   NOTICE   README.md      rustfmt.toml  src
 ```
 
-While we will keep most of the files as is during this tutorial we will visit some of the in the course of this tutorial to deepen your understanding what is happening behind the scenes. For now your goals is to compile the contract and upload it to the secret testnet.
+While we will keep most of the files as-is during this tutorial, we will alter some of them for the tutorial to deepen your understanding what is happening behind the scenes. For now the goal is to compile the contract and upload it to the Secret testnet.
 
-### Compile the contract
+# Compile the contract
 
-To achieve this use the following command to compile the smart contract which produces the wasm contract file.
+To compile the smart contract into a WebAssembly (.wasm) binary, run this command in the terminal:
 
 ```text
 cargo wasm
@@ -58,7 +56,7 @@ cargo wasm
 
 Before deploying or storing the contract on the testnet, you need to run the [secret contract optimizer](https://hub.docker.com/r/enigmampc/secret-contract-optimizer).
 
-#### Optimize compiled wasm
+# Optimize compiled wasm
 
 ```text
 docker run --rm -v "$(pwd)":/contract \
@@ -67,9 +65,9 @@ docker run --rm -v "$(pwd)":/contract \
   enigmampc/secret-contract-optimizer
 ```
 
-This will output an optimized build file, `contract.wasm.gz`, ready to be stored on the Secret Network.
+This will output an optimized build file, `contract.wasm.gz`, ready to be stored on the Secret Network. _Note that Windows users should replace the backslashes `\` in the command with carets `^` or optionally remove them and paste the command as a single line._
 
-While `secretcli` supports uploading the compressed file, we'll be using SecretJS which expects wasm, so lets unpack the optimized `contract.wasm`
+While `secretcli` supports uploading the compressed file, we'll be using SecretJS which expects the uncompressed WASM file, so lets unpack the optimized `contract.wasm` with this terminal command:
 
 ```bash
 gunzip contract.wasm.gz
@@ -79,39 +77,41 @@ You should be able to find a newly created file `contract.wasm` in the current d
 
 For uploading the compiled contract we will reuse the knowledge you gained during part 5 of the secret pathway.
 
-### Uploading the contract
+# Uploading the contract
 
-We are now switching back to the root directory and will start writing some node modules to manage our newly created contract using nodeJS.
-For this we will need the `secretjs` and `dotenv` package. If you haven't set it up by now I recommend a quick detour to the first step of the secret pathway to do so: {% page-ref page="intro-pathway-secret-basics/1.-connecting-to-a-secret-node-using-datahub.md" %}
+We are now switching back to the project root directory and will start writing some Javascript modules to manage our newly created contract. For this we will need the `secretjs` and `dotenv` packages. If you haven't set it up by now I recommend a quick detour to the first step of the secret pathway to do so: {% page-ref page="intro-pathway-secret-basics/1.-connecting-to-a-secret-node-using-datahub.md" %}
 
 After setting everything up we start by creating a new file `deploy-nft.js` in the root project directory and add the code below:
 
 ```javascript
 const {
-  EnigmaUtils, Secp256k1Pen, SigningCosmWasmClient, pubkeyToAddress, encodeSecp256k1Pubkey,
-} = require('secretjs');
-
-const fs = require('fs');
+  EnigmaUtils,
+  Secp256k1Pen,
+  SigningCosmWasmClient,
+  pubkeyToAddress,
+  encodeSecp256k1Pubkey,
+} = require("secretjs");
+const fs = require("fs");
 
 // Load environment variables
-require('dotenv').config();
+require("dotenv").config();
 
 const customFees = {
   upload: {
-    amount: [{ amount: '4000000', denom: 'uscrt' }],
-    gas: '4000000',
+    amount: [{ amount: "4000000", denom: "uscrt" }],
+    gas: "4000000",
   },
   init: {
-    amount: [{ amount: '500000', denom: 'uscrt' }],
-    gas: '500000',
+    amount: [{ amount: "500000", denom: "uscrt" }],
+    gas: "500000",
   },
   exec: {
-    amount: [{ amount: '500000', denom: 'uscrt' }],
-    gas: '500000',
+    amount: [{ amount: "500000", denom: "uscrt" }],
+    gas: "500000",
   },
   send: {
-    amount: [{ amount: '80000', denom: 'uscrt' }],
-    gas: '80000',
+    amount: [{ amount: "80000", denom: "uscrt" }],
+    gas: "80000",
   },
 };
 
@@ -123,27 +123,34 @@ const main = async () => {
 
   // A pen is the most basic tool you can think of for signing.
   // This wraps a single keypair and allows for signing.
-  const signingPen = await Secp256k1Pen.fromMnemonic(mnemonic)
-    .catch((err) => { throw new Error(`Could not get signing pen: ${err}`); });
+  const signingPen = await Secp256k1Pen.fromMnemonic(mnemonic).catch((err) => {
+    throw new Error(`Could not get signing pen: ${err}`);
+  });
 
   // Get the public key
   const pubkey = encodeSecp256k1Pubkey(signingPen.pubkey);
 
   // get the wallet address
-  const accAddress = pubkeyToAddress(pubkey, 'secret');
+  const accAddress = pubkeyToAddress(pubkey, "secret");
 
   // 1. Initialize client
 
   // 2. Upload the contract wasm
 
-  const initMsg = { 
   // 3. Create an instance of the NFT contract init msg
 
-   };
-  const contract = await client.instantiate(codeId, initMsg, `My Snip721${Math.ceil(Math.random() * 10000)}`)
-    .catch((err) => { throw new Error(`Could not instantiate contract: ${err}`); });
+  const initMsg = {};
+  const contract = await client
+    .instantiate(
+      codeId,
+      initMsg,
+      `My Snip721${Math.ceil(Math.random() * 10000)}`
+    )
+    .catch((err) => {
+      throw new Error(`Could not instantiate contract: ${err}`);
+    });
   const { contractAddress } = contract;
-  console.log('contract: ', contract, 'address:', contractAddress);
+  console.log("contract: ", contract, "address:", contractAddress);
 };
 
 main().catch((err) => {
@@ -151,9 +158,9 @@ main().catch((err) => {
 });
 ```
 
-### Initialize client
+# Initialize the client
 
-In the `deploy-ft.js` file under the comment `// 1. Initialize client` add the following code snippet below:
+In the `deploy-ft.js` file, under the comment `// 1. Initialize client` add the following code :
 
 ```javascript
   const txEncryptionSeed = EnigmaUtils.GenerateNewSeed();
@@ -167,9 +174,9 @@ In the `deploy-ft.js` file under the comment `// 1. Initialize client` add the f
   console.log(`Wallet address=${accAddress}`);
 ```
 
-#### Upload the contract wasm
+# Upload the contract wasm
 
-Under the comment `// 2. Upload the contract wasm` add the following code snippet below:
+Under the comment `// 2. Upload the contract wasm` add the following code :
 
 ```javascript
   const wasm = fs.readFileSync('my-snip721/contract.wasm');
@@ -181,18 +188,17 @@ Under the comment `// 2. Upload the contract wasm` add the following code snippe
   const { codeId } = uploadReceipt;
 ```
 
-Make sure that, if you changed the name of the contract folder, you also change it accordingly in here:
+Ensure that if you have changed the name of the contract folder, you also change it accordingly when passing it to `readFileSync()`:
 
 ```javascript
   const wasm = fs.readFileSync('my-snip721/contract.wasm');
 ```
 
-## Instantiating the nft contract
+# Instantiating the contract
 
-Similar to what you have seen before we first got the `codeId` from the upload receipt and then defined the `initMsg` to finally instantiated the contract.
-In this case the initMsg is more complex that for a simple counter and allows us to configure the secret NFT to our liking.
+Similar to what you have seen before, we first got the `codeId` from the upload receipt and then defined the `initMsg` to instantiate the contract. In this case the initMsg is more complex that for a simple counter and allows us to configure the secret NFT to our liking.
 
-Open up the `mgs.rs` file withing the `scr` folder of the contract code. You should see two struct: `InitMsg` and `InitConfig` in there, which describe the settings object we can pass to our contract on initialization. For most values a sensible default is predefined, giving the most privacy-preserving behavior.
+Open up the `msg.rs` file within the `src` folder of the contract code. You will see two structs: `InitMsg` and `InitConfig` in there, which describe the settings object we can pass to our contract on initialization. For most values a sensible default is predefined, giving the most privacy-preserving behavior.
 
 Lets have a look at the different fields and what part of the contract they control:
 
@@ -220,7 +226,7 @@ Lets have a look at the different fields and what part of the contract they cont
 | enable_burn                   | bool | This config value indicates whether burn functionality is enabled | yes      | false            |
 
 For this tutorial we will keep most of the default values and just change the name, symbol and the default ownership visibility of the token.
-Insert this piece of code below `// 3. Create an instance of the NFT contract init msg` and add some values for name and symbol, as well as some random string for the entropy
+Insert this piece of code below `// 3. Create an instance of the NFT contract init msg` and add some values for name and symbol, as well as some random string for the entropy. Remember to keep the strings enclosed within the single quotes.
 
 ```javascript
   /// name of token contract
@@ -237,11 +243,11 @@ Insert this piece of code below `// 3. Create an instance of the NFT contract in
 
 Let's run the code:
 
-```text
+```bash
 node deploy-nft.js
 ```
 
-If it went well, you should see something like this;
+If it went well, you should see similar output:
 
 ```bash
 Uploading contract
@@ -255,7 +261,7 @@ contract:  {
 
 {% hint style="info" %}
 
-#### Not able to deploy your contract and initializing it using `deploy-ft.js`
+#### Unable to deploy your contract after initializing it using `deploy-ft.js`
 
 Let's check for some common causes:
 
@@ -271,7 +277,7 @@ After this executed successfully you can take the program you created in the fir
 
 {% page-ref page="create-your-first-secret-nft.md" %}
 
-## Conclusion
+# Conclusion
 
 Congratulations! We have made it to the end of the first installment of this Secret NFT series. We have covered a lot of information, and I feel you can really be proud of what you have achieved. Just to recap:
 
