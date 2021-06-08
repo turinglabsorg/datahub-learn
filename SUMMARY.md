@@ -208,7 +208,7 @@
       * [It's Time to Put a STAKE Pool in the Ground!](network-documentation/near/tutorials/1-project_overview/8-stake-pool-contract.md)
       * [OysterPack SMART STAKE Pool API Guide for Validators](network-documentation/near/tutorials/1-project_overview/9-stake-pool-for-validators.md)
     * [Cross-contract calls](network-documentation/near/tutorials/cross-contract-calls.md)
-    * [How to write and deploy a smart contract in Rust](network-documentation/near/tutorials/how-to-write-and-deploy-a-smart-contract-in-rust.md)
+    * [How to write and deploy a smart contract in Rust](network-documentation/near/tutorials/write-and-deploy-a-smart-contract-on-near.md)
     * [Simple AssemblyScript App](network-documentation/near/tutorials/simple-webassembly-script.md)
     * [Write an NFT contract & mint your NFT](network-documentation/near/tutorials/write-nft-contracts-in-rust.md)
     * [Create an NFT marketplace](network-documentation/near/tutorials/nft-marketplace-in-assemblyscript.md)
