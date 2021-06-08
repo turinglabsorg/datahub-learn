@@ -255,7 +255,7 @@ contract:  {
 
 {% hint style="info" %}
 
-#### Not able to deploy your contract and initalizing it using `deploy-ft.js`
+#### Not able to deploy your contract and initializing it using `deploy-ft.js`
 
 Let's check for some common causes:
 
