@@ -1,27 +1,27 @@
 # Distributed File Manager (DFM) using IPFS, Celo and ReactJS
 
-## Introduction
+# Introduction
 
 In this tutorial we will be making a **Distributed File Manager** using the **IPFS** protocol for storing our files, **Celo** network for storing the file references of each address to their uploaded files and **ReactJS** for the frontend code. For compiling and deploying our smart contracts, we will be using **Truffle Suite**.
 
 For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications dApps on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with the Celo network, which is an instance of the EVM.
 
-## Prerequisites
+# Prerequisites
 
 * You've created an account on [DataHub](https://datahub.figment.io/sign_up?service=celo)
 * Basic familarity with [Celo's architecture](https://docs.celo.org/) and smart contracts.
 * Basic familarity with [ReactJS](https://reactjs.org)
 
-## Requirements
+# Requirements
 
 * [NodeJS](https://nodejs.org/en). You’ll need to have Node >= 10.16 and npm >= 5.6 on your machine.
 * [Truffle](https://www.trufflesuite.com/truffle), which you can install with `npm install -g truffle`
 * [Metamask](https://metamask.io) extension added to the browser, which must only be obtained from the official Metamask website : https://metamask.io. Do not download Metamask from an unofficial source.
 
-## Understanding the project
+# Understanding the project
 From the title, **Distributed File Manager**, you have got an idea that it's about making a dApp that will allow us to upload and manage files in a so-called **distributed** fashion. But you might be wondering, that what is **IPFS** and how will our files be distributed!!! Nothing to worry about, just go through the text, and all your doubts will be resolved.
 
-### **Decoding IPFS and how is it different?**
+## **Decoding IPFS and how is it different?**
 **IPFS** is an acronym that stands for **I**nter**P**lanetary **F**ile **S**ystem. It is a communication protocol and network for storing and sharing data. Theoretically, it aims to make a file-sharing system that can communicate among the planets, someday. Check out [Awesome IPFS](https://awesome.ipfs.io/) to learn more about projects built on IPFS.
 
 Currently, we are dominated by the **client-server** model of communication which is following **HTTP** aka **Hypertext Transfer Protocol**. This means that, in between the communication between two devices, one has to be the server (which will serve or respond with data) and the other should be the client (which will receive or request data). The major problem with this client-server model is that the client would have to request data from the server, far away from it, even if the same data was previously received by its neighbour or was available somewhere closer. This would cause high latency (delay in receiving data) and low bandwidths (speed of data transfer).
@@ -35,7 +35,7 @@ Sending data from multiple servers may seem inefficient, however, the protocol i
 
 **IPFS** is a large swarm of such nodes, which chose to serve data. We need IPFS clients to connect to those nodes and upload data. We can also connect to the network using the available javascript client libraries like `ipfs-http-client`. There are several providers like **Infura**, which provides an HTTP portal to view the files on the IPFS. More technical details are provided ahead in the tutorial.
 
-## Initializing the working directory
+# Initializing the working directory
 
 Our application's client-side is made using **ReactJS**. Smart contracts will be made using the **Solidity** language and will be deployed on the **Celo** network with **Trufflesuite**. Therefore, we need to set up our working directory according to ReactJS and Trufflesuite, for making our development process smoother.
 
@@ -44,7 +44,7 @@ Open a terminal and navigate to the directory where we will create the applicati
 cd ~
 ```
 
-### **Setting up the ReactJS project**
+## **Setting up the ReactJS project**
 Create a new react app using npx. npx is a npm package runner (x stands for eXecute). The typical use is to download and run a package temporarily or for trials. You can learn more about npx [here](https://www.npmjs.com/package/npx).
 ```bash
 npx create-react-app dfm-celo-react
@@ -134,7 +134,7 @@ ReactDOM.render(
 
 React project setup is now complete.
 
-### **Setting up the Truffle project**
+## **Setting up the Truffle project**
 
 Run the following command in the root directory, to create a boilerplate for the `Truffle` project.
 ```bash
@@ -240,14 +240,14 @@ Celo wallets like **celowallet.app** use the path `m/44'/52752'/0'/0/0` for its 
 
 {% hint style="info" %} I would recommend you to read more about these keys, addresses and wallets on [O'Reilly](https://www.oreilly.com/library/view/mastering-bitcoin/9781491902639/ch04.html). {% endhint %}
 
-### **Get Celo credentials**
+## **Get Celo credentials**
 For deploying smart contracts we need two things: a node connected to the **Celo** network and an account with few **CELO** tokens. **Datahub** provides a Celo remote node, and to connect to the Datahub node, we need an API key. Visit [Celo Services Dashboard](https://datahub.figment.io/services/celo) on Datahub to get a Celo specific API key.
 
 ![](https://imgur.com/60J8ZZ7.png)
 
 Now we need a **Celo** wallet, where we would keep our funds, required for all the transactions on the network. Visit the [Celo Wallet](https://celowallet.app/) and create an account. While creating your account you will see your public address and mnemonic. This public address will be required to transfer funds. Save the **mnemonic** in a secure place, we will need it later. Instructions to add funds will be provided later in the tutorial.
 
-### **Add .env file**
+## **Add .env file**
 
 Create a `.env` file in the project root folder. Please take a note that dot (.) is necessary for the `.env` file name. Now copy your Celo wallet's mnemonic in the .env file as shown below. In the .env file, **MNEMONIC** should be enclosed within double-quotes (" "). If you are facing any difficulty in setting up .env file then please refer to **Extra Guides** on [dotenv and .env](https://learn.figment.io/network-documentation/extra-guides/dotenv-and-.env).
 
@@ -273,7 +273,7 @@ In a web browser, visit the URL http://localhost:3000. If npm start has not enco
 
 ![](https://imgur.com/hVr1ElD.png)
 
-## Create the FileManager contract
+# Create the FileManager contract
 
 Create the file `FileManager.sol` (`.sol` stands for Solidity) inside of the `contracts` directory and paste the following code:
 
@@ -340,7 +340,7 @@ function getFiles(address _account) public  view  returns (File[] memory) {
 }
 ```
 
-## **Make a new file for migrating smart contracts**
+# **Make a new file for migrating smart contracts**
 
 Create a new file in the `migrations` directory named `2_deploy_contracts.js`, and add the following block of code. This handles deploying the `FileManager` smart contract to the blockchain.
 
@@ -351,7 +351,7 @@ module.exports = function (deployer) {
   deployer.deploy(FileManager);
 };
 ```
-## **Compile Contracts with Truffle**
+# **Compile Contracts with Truffle**
 
 If we have altered the code within our Solidity source files or made new ones (like `FileManager.sol`), we need to run `truffle compile` in the terminal, from inside the project root directory.
 
@@ -380,15 +380,15 @@ Compiling the smart contracts would create `.json` file in the `src/build/contra
 
 {% hint style="info" %} `ABI` refers to Application Binary Interface, which is a standard for interacting with the smart contracts from outside the blockchain as well as contract-to-contract interaction. Please refer to the Solidity's documentation about ABI's [here](https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#:~:text=The%20Contract%20Application%20Binary%20Interface,contract%2Dto%2Dcontract%20interaction.&text=This%20specification%20does%20not%20address,known%20only%20at%20run%2Dtime) to learn more. {% endhint %}
 
-## **Fund the account and run migrations on Celo's Alfjores test network.**
+# **Fund the account and run migrations on Celo's Alfjores test network.**
 
 When deploying smart contracts to the Celo network, it will require some deployment cost. As you can see inside `truffle-config.js`, `@celo/contractkit` will help us in deploying on Celo and deployment cost will be managed by an account whose mnemonic has been stored in the `.env` file. Therefore we need to fund the account.
 
-### **Fund your account**
+## **Fund your account**
 
 Fund your account using the faucet link https://celo.org/developers/faucet and pasting your Celo's wallet address in the input field. You'll need to send at least `0.4 CELO`. Minimum CELO required for deployment, will vary from contract to contract, depending upon what variables and data structures our contract is using. Though funding through faucet would give you enough `CELO` to run multiple deployments and transactions on the network.
 
-### **Run Migrations**
+## **Run Migrations**
 
 Now everything is in place to run migrations and deploy the `FileManager`:
 
@@ -481,7 +481,7 @@ Deploying smart contracts is a transaction on the blockchain network. Therefore,
 
 You may also view your deployed smart contracts using their contract address as provided in the above output of `truffle migrate`.
 
-### **Possible Errors and Troubleshooting**
+## **Possible Errors and Troubleshooting**
 
 If you have not created an account on `CELO`, you would see this error :
 
@@ -525,7 +525,7 @@ Error:  *** Deployment Failed ***
 
 The information like contract address and ABI of the deployed contract is present in the `src/build/contract` directory as `FileManager.json`.
 
-## Building the user interface
+# Building the user interface
 
 We have already set up our React project directory. The client-side files to interact with the Celo blockchain are present in the `src` folder. First, we will make a ReactJS component with of a couple of functions to connect our browser with the Avalanche network. These functions will be kept in a separate file named `BlockchainUtil.js`.
  
@@ -1098,15 +1098,15 @@ In the Metamask extension, add a custom RPC by clicking at the network dropdown 
 
 ![](https://imgur.com/a6on3z4.gif)
 
-## Conclusion
+# Conclusion
 
 Congratulations! You have successfully built a Distributed File Manager by deploying the smart contract on **Celo** Alfajores test network using **Trufflesuite** and connecting your client-side made with **ReactJS**. The most interesting part is that we have used the **IPFS** protocol for uploading our files on the distributed network.
 
-## What's next?
+# What's next?
 
 We have built a Distributed File Manager with basic upload and view features. I want to encourage you to make a more scalable and sophisticated application by adding few more features like encrypting files before uploading by using the receiver's public key or their account address. Or if you want to keep the file to yourself, you might encrypt the file using your account address. Learn more on how to encrypt files before uploading them to IPFS [here](https://mycoralhealth.medium.com/learn-to-securely-share-files-on-the-blockchain-with-ipfs-219ee47df54c).
 
-## About the author
+# About the author
 
 This tutorial was created by [Raj Ranjan](https://www.linkedin.com/in/iamrajranjan), You can get in touch with the author on [Figment Forum](https://community.figment.io/u/rranjan01234/) and [GitHub](https://github.com/rajranjan0608)
 
