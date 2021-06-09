@@ -971,9 +971,11 @@ Congratulations! We have successfully deployed a decentralized chat application 
 
 ### Application crash
 
-![Error](https://user-images.githubusercontent.com/44340561/119778345-05dba100-bee5-11eb-85b9-c9bd18ea4082.png) 
+ 
 
-Check if you have updated the `CONTRACT_ADDRESS` variable in `src/index.js` properly!
+![Error!](https://user-images.githubusercontent.com/44340561/119778345-05dba100-bee5-11eb-85b9-c9bd18ea4082.png)
+
+To resolve this error, doublecheck that you have updated the `CONTRACT_ADDRESS` variable in `src/index.js.`
 
 ## What's Next
 
