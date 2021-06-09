@@ -221,6 +221,7 @@
   * [💼 NEAR Wallet](network-documentation/near/near-wallet.md)
 * [🏝 Oasis](network-documentation/oasis/README.md)
   * [✏ Oasis 101](network-documentation/oasis/oasis-101.md)
+  * [👀 Resources](network-documentation/oasis/resources.md)
   * [🎮 RPC & REST API](network-documentation/oasis/rpc-and-rest-api/README.md)
     * [Oasis REST API](network-documentation/oasis/rpc-and-rest-api/oasis-rest-api.md)
 * [🍡 Polkadot](network-documentation/polkadot/README.md)
