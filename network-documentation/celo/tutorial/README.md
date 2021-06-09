@@ -48,7 +48,7 @@ If you prefer going through the tutorial with videos, check out this [CELO Learn
 
 {% page-ref page="hello-mobile-dapp.md" %}
 
-## Distributed File Manager (DFM) using Celo, IPFS and ReactJS
+## Distributed File Manager \(DFM\) using Celo, IPFS and ReactJS
 
 {% page-ref page="distributed-file-manager-using-ipfs-celo-reactjs.md" %}
 
