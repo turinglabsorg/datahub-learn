@@ -191,6 +191,7 @@
     * [Query Mina GraphQL API](network-documentation/mina/rpc-and-rest-api/query-mina-graphql-api.md)
 * [🌈 NEAR](network-documentation/near/README.md)
   * [✏ NEAR 101](network-documentation/near/near-101.md)
+  * [👀 Resources](network-documentation/near/resources.md)
   * [🎮 RPC & REST API](network-documentation/near/rpc-and-rest-api/README.md)
     * [NEAR RPC](network-documentation/near/rpc-and-rest-api/near-rpc.md)
   * [🎊 Enriched APIs](network-documentation/near/enriched-apis/README.md)
