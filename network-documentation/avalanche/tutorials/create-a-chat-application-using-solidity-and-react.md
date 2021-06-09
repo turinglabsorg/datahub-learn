@@ -541,7 +541,7 @@ export function App(props) {
     try {
       let present = await myContract.checkUserExists(publicKey);
       if (!present) {
-        alert("Given address not found: Ask him to join the app :)");
+        alert("Address not found: Ask them to join the app :)");
         return;
       }
       try {
@@ -550,7 +550,7 @@ export function App(props) {
         setFriends(friends.concat(frnd));
       } catch (err) {
         alert(
-          "Friend already Added! You can't be friend with the same person twice ;P"
+          "Friend already added! You can't be friends with the same person twice ;P"
         );
       }
     } catch (err) {
