@@ -961,7 +961,7 @@ export default ActiveElections;
 
 ### VoteModal Component
 
-In the above component ActiveElections.js, we have used a component called VoteModal which contains the candidate details and a button to cast a vote. Now we will make this component available by creating a file named VoteModal.js inside the src directory. Once created, put the following code inside it:
+In the above component `ActiveElections.js`, we have used a component called `VoteModal` which contains the candidate details and a button to cast a vote. Now we will make this component available by creating a file named `VoteModal.js` inside the `src` directory. Once created, put the following code inside it :
 
 ```javascript
 import React, { useState } from "react";
@@ -1077,7 +1077,7 @@ export default VoteModal;
 
 Now we need to update our `App.js` file with all the components that we have made so far.
 
-* **Import Modules** - First import all the modules and components into the `App.js` file by appending the following code under the `//1 Importing...` section.
+**Import Modules** - First import all the modules and components into the `App.js` file by appending the following code under the `// 1. Importing other modules` section.
 
 ```javascript
 // 1. Importing other modules
@@ -1087,7 +1087,7 @@ import ActiveElections from "./ActiveElections";
 import contractJson from './build/contracts/MainContract.json';
 ```
 
-* **Load components** - Inside the `<div>` tag of `return()` function in `App.js`, replace the sample text \(`Avalance evoting`\) with the the code of the following components.
+**Load components** - Inside the `<div>` tag of `return()` function in `App.js`, replace the sample text \(`Avalanche evoting`\) with the the code of the following components.
 
 ```javascript
 // For routing through the react application
@@ -1126,7 +1126,7 @@ Rimble UI library comes with a peer dependency of `react@16.9.0` which is not th
 
 Now go to the project root directory, i.e. `avalanche-voting` directory, and run the command `npm start`. The ReactJS server would start automatically. Visit [http://localhost:3000](http://localhost:3000) in a browser to interact with the dApp frontend.
 
-Don't forget to set up Metamask with Fuji testnet and also fund the account with Fuji C-Chain test tokens to vote. In the Metamask extension, add a custom RPC by clicking at the network dropdown in the centre of the extension. Fill in the details as shown in the below image. Put your Avlanche's specific Datahub's API key against **New RPC URL** field in place of `DATAHUB_API_KEY`
+Don't forget to set up Metamask with Fuji testnet and also fund the account with Fuji C-Chain test tokens to vote. In the Metamask extension, add a custom RPC by clicking at the network dropdown in the centre of the extension. Fill in the details as shown in the below image. Put your Avalanche's specific Datahub's API key against **New RPC URL** field in place of `DATAHUB_API_KEY`
 
 ![](https://imgur.com/NuhjUvF.png)
 
@@ -1140,7 +1140,7 @@ Don't forget to set up Metamask with Fuji testnet and also fund the account with
 
 ## Conclusion
 
-You have successfully built a full-fledged e-voting dApp with advanced features like creating custom elections, voting in them and deployed the smart contract on the Fuji test network using Truffle Suite. Along with that, we have also built the client-side application using ReactJS for interacting with the network. From this tutorial, you have learned not only how to make make and deploy smart contracts but also how to integrate ReactJS with the blockchain using Trufflesuite.
+You have successfully built a full-fledged e-voting dApp with advanced features like creating custom elections, voting in them and deployed the smart contract on the Fuji test network using Truffle Suite. Along with that, we have also built the client-side application using ReactJS for interacting with the network. From this tutorial, you have learned not only how to make make and deploy smart contracts but also how to integrate ReactJS with the blockchain using Truffle Suite.
 
 ![](https://imgur.com/bjdWr35.gif)
 
