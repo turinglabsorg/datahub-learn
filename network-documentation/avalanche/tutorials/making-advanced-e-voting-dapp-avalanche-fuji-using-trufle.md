@@ -25,23 +25,23 @@ You've created an [Avalanche DataHub](https://datahub.figment.io/sign_up?service
 
 ## Create truffle directory and install dependencies
 
-Open a new terminal tab ,so that, we can create a `advanced-evoting` directory and install some further dependencies.
+Open a new terminal so that we can create a `advanced-evoting` directory and install the package dependencies.
 
 First, navigate to the directory within which you intend to create your `advanced-evoting` working directory:
 
-```javascript
+```bash
 cd /path/to/directory
 ```
 
 Create and enter a new directory named `advanced-evoting`:
 
-```javascript
+```bash
 mkdir advanced-evoting && cd advanced-evoting
 ```
 
 First initialize the folder with `npm` for, in order to have organise the project.
 
-```text
+```bash
 npm init
 ```
 
@@ -49,13 +49,13 @@ This command would prompt the user to enter the details about the project like `
 
 Now use `npm` to install other dependencies
 
-```text
+```bash
 npm install express dotenv @truffle/hdwallet-provider --save
 ```
 
 Lastly, create a boilerplace truffle project:
 
-```text
+```bash
 truffle init
 ```
 
@@ -63,7 +63,7 @@ This will setup our initial project structure. Smart contracts will be stored in
 
 ## Update truffle-config.js
 
-One of the files created when you ran `truffle init` is `truffle-config.js`. Replace all of it with the following.
+One of the files created when you ran `truffle init` is `truffle-config.js`. Replace the existing contents of that file with the following code :
 
 ```javascript
 require('dotenv').config();
@@ -109,7 +109,7 @@ Note that we're setting the `gasPrice` and `gas` to the appropriate values for t
 * Now copy your Datahub's Avalanche Fuji testnet API key in the .env file as shown below.
 * Never share or commit your `.env` file. It contains your credentials like `mnemonics` and `API` key. Therefore, it is advised to add `.env` to your `.gitignore` file.
 
-```javascript
+```bash
 MNEMONIC="<avalanche-wallet-mnemonic>"
 APIKEY=<your-api-key>
 ```
