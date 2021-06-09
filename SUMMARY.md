@@ -63,6 +63,7 @@
     * [Transfer ERC-20 tokens from the C-chain of your AVAX wallet to an ETH address \(Metamask, for example](network-documentation/avalanche/tutorials/erc20-token-transfer-to-eth-address.md)
 * [💰 Celo](network-documentation/celo/README.md)
   * [✏ Celo 101](network-documentation/celo/celo-101.md)
+  * [👀 Resources](network-documentation/celo/resources.md)
   * [🎮 RPC & REST API](network-documentation/celo/rpc-and-rest-api/README.md)
     * [Web3](network-documentation/celo/rpc-and-rest-api/web3.md)
     * [Web3.eth](network-documentation/celo/rpc-and-rest-api/web3.eth.md)
