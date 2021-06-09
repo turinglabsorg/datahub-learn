@@ -760,7 +760,7 @@ export function App(props) {
 ```
 
 {% hint style="info" %}
-Insert the contract address obtained from the **Implementing the smart contract** section in the variable called **`CONTRACT_ADDRESS`** on line 9 of **`App.jsx`**.
+Insert the contract address obtained from the **Implementing the smart contract** section in the variable called **`CONTRACT_ADDRESS`** on line 14 of **`App.jsx`**.
 {% endhint %}
 
 Open the `index.js` file inside the `src` directory and paste the following code :
