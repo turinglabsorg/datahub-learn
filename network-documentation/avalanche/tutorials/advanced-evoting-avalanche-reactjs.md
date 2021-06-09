@@ -6,7 +6,7 @@ description: Learn how to create an Avalanche based dApp with a ReactJS frontend
 
 ## Introduction
 
-In the tutorial [Making advanced e-voting dApp](https://learn.figment.io/network-documentation/avalanche/tutorials/making-advanced-e-voting-dapp-avalanche-fuji-using-trufle) we have learnt to build smart contracts, deploy them on Avalanche and interact with them using jQuery.
+In the tutorial [Making advanced e-voting dApp](https://learn.figment.io/network-documentation/avalanche/tutorials/making-advanced-e-voting-dapp-avalanche-fuji-using-trufle) we have learned to build smart contracts, deploy them on Avalanche and interact with them using jQuery.
 
 We will generate [ReactJS](https://reactjs.org) boilerplate code using `create-react-app`, which we will modify for our dApp frontend. React is a good choice for efficient, developer-friendly blockchain interactions. For the backend, [Solidity](https://docs.soliditylang.org/en/v0.8.4/) smart contracts will be deployed to the [Avalanche](advanced-evoting-avalanche-reactjs.md) blockchain using [Truffle Suite](https://www.trufflesuite.com).
 
@@ -14,15 +14,15 @@ Truffle Suite is a toolkit for launching decentralized applications \(dApps\) on
 
 ## Prerequisites
 
-* You've created an account on [DataHub](https://datahub.figment.io/sign_up?service=avalanche)
+* You've created an account on [DataHub](https://datahub.figment.io/sign_up?service=avalanche).
 * Basic familiarity with [Avalanche's architecture](https://docs.avax.network/learn/platform-overview) and smart contracts.
-* Basic familiarity with [ReactJS](https://reactjs.org)
+* Basic familiarity with [ReactJS](https://reactjs.org).
 
 ## Requirements
 
 * [NodeJS](https://nodejs.org/en) &gt;= 10.16 and [npm](https://www.npmjs.com/) &gt;= 5.6 installed.
 * [Truffle](https://www.trufflesuite.com/truffle), which can be installed globally with `npm install -g truffle`
-* Metamask extension added to the browser, which must only be obtained from the official Metamask website : [https://metamask.io](https://metamask.io). Do not download Metamask from an unofficial source.
+* Metamask extension added to the browser, which must only be obtained from the official Metamask website : [https://metamask.io](https://metamask.io). **Do not download Metamask from an unofficial source**.
 
 ## Initializing the working directory
 

@@ -4,7 +4,7 @@ description: >-
   and the React framework.
 ---
 
-# Create a chat dApp using Solidity and ReactJS
+# Create a chat dApp on Avalanche using Solidity and ReactJS
 
 ## Create a chat dApp using Solidity and ReactJS
 
