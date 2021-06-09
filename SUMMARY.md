@@ -112,6 +112,7 @@
   * [💼 CELO Wallet](network-documentation/celo/celo-wallet.md)
 * [🌌 Cosmos](network-documentation/cosmos/README.md)
   * [✏ Cosmos 101](network-documentation/cosmos/cosmos-101.md)
+  * [👀 Resources](network-documentation/cosmos/resources.md)
   * [🎮 RPC & REST API](network-documentation/cosmos/rpc-and-rest-api/README.md)
     * [Tendermint RPC](network-documentation/cosmos/rpc-and-rest-api/tendermint-rpc.md)
     * [Cosmos LCD](network-documentation/cosmos/rpc-and-rest-api/cosmos-lcd.md)
