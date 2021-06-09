@@ -226,6 +226,7 @@
     * [Oasis REST API](network-documentation/oasis/rpc-and-rest-api/oasis-rest-api.md)
 * [🍡 Polkadot](network-documentation/polkadot/README.md)
   * [✏ Polkadot 101](network-documentation/polkadot/polkadot-101.md)
+  * [👀 Resources](network-documentation/polkadot/resources.md)
   * [🎮 RPC & REST API](network-documentation/polkadot/rpc-and-rest-api/README.md)
     * [Polkadot RPC](network-documentation/polkadot/rpc-and-rest-api/polkadot-rpc.md)
   * [🎊 Enriched APIs](network-documentation/polkadot/enriched-apis/README.md)
