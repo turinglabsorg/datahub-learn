@@ -164,6 +164,7 @@
     * [Miner Reputation System API](network-documentation/filecoin/rpc-and-rest-api/miner-reputation-system-api.md)
 * [⛽ Matic](network-documentation/matic/README.md)
   * [✏ Matic 101](network-documentation/matic/matic-101.md)
+  * [👀 Resources](network-documentation/matic/resources.md)
   * [🎮 RPC & REST API](network-documentation/matic/rpc-and-rest-api/README.md)
     * [Matic.js](network-documentation/matic/rpc-and-rest-api/matic.js-api.md)
     * [Web3](network-documentation/matic/rpc-and-rest-api/web3.md)
