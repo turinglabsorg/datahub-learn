@@ -4,10 +4,6 @@ description: Teaching how to Transfer AVAX native tokens from C chain to ETH add
 
 # Transfer AVAX tokens from the C chain of your AVAX wallet to an ETH address \(Metamask, for example\)
 
-## About the author
-
-This tutorial was created by [Seongwoo Oh](https://github.com/blackwidoq). He is a student and an Avalanche novice.
-
 ## Introduction
 
 In this tutorial, we are going to learn how to programmatically transfer native AVAX tokens from the C chain to an ETH wallet.
@@ -108,4 +104,8 @@ main().catch((err) => {
 That’s it! This tutorial has taught you how to transfer AVAX native tokens from the C chain to an ETH wallet. Also, this has shown how Avalanche blockchain C chain is compatible with the usual web3 library. This is a powerful aspect of the Avalanche blockchain, as it allows Ethereum developers to easily port their work over to the Avalanche side.
 
 Try transferring your Fuji AVAX tokens by running this script and see if it worked.
+
+## About the author
+
+This tutorial was created by [Seongwoo Oh](https://github.com/blackwidoq). He is a student and an Avalanche novice.
 
