@@ -1,3 +1,9 @@
+---
+description: >-
+  Learn how to deploy a distributed chat application on Avalanche using Solidity
+  and the React framework.
+---
+
 # Create a chat dApp using Solidity and ReactJS
 
 ## Introduction
