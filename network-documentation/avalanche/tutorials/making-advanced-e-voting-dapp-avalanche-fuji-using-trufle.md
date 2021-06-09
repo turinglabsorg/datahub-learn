@@ -8,9 +8,9 @@ description: Learn how to use Truffle with the C-Chain
 
 In the last tutorial on [Making a basic e-voting DApp on Avalanche's Fuji C-Chain](https://learn.figment.io/network-documentation/avalanche/tutorials/making-evoting-dapp-on-avalanche-c-chain-using-truffle), we have learnt how to deploy a smart contract on Avalanche's Fuji C-Chain using Trufflesuite. Along with that we have also coded the client-side application, to easily interact with smart contracts.
 
-Today, in this tutorial, we will be building a more advanced e-voting `dApplication`, in which we will not only interact with pre-deployed smart contracts, but will also deploy the contracts in runtime, and would interact with them using their contract address. For developing this dApplication we would be using Trufflesuite framework.
+Today, in this tutorial, we will be building a more advanced e-voting `dApp`, in which we will not only interact with pre-deployed smart contracts, but will also deploy the contracts in runtime, and would interact with them using their contract address. For developing this dApp we will use the Trufflesuite framework.
 
-For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dapps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM.
+For your information, [Truffle Suite](https://www.trufflesuite.com) is a toolkit for launching decentralized applications \(dApps\) on the EVM. With Truffle you can write and compile smart contracts, build artifacts, run migrations and interact with deployed contracts. This tutorial illustrates how Truffle can be used with Avalanche's C-Chain, which is an instance of the EVM \(Ethereum Virtual Machine\).
 
 ## Prerequisites
 
