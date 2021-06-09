@@ -185,6 +185,7 @@
     * [Using Metamask with Matic.js](network-documentation/matic/tutorials/untitled.md)
 * [📱 Mina](network-documentation/mina/README.md)
   * [✏ Mina 101](network-documentation/mina/mina-101.md)
+  * [👀 Resources](network-documentation/mina/resources.md)
   * [🎮 RPC & REST API](network-documentation/mina/rpc-and-rest-api/README.md)
     * [Indexer API Documentation](network-documentation/mina/rpc-and-rest-api/indexer-api-documentation.md)
     * [Query Mina GraphQL API](network-documentation/mina/rpc-and-rest-api/query-mina-graphql-api.md)
