@@ -163,6 +163,7 @@
     * [Create a transaction search widget](network-documentation/cosmos/tutorials/create-a-transaction-search-widget.md)
 * [💾 Filecoin](network-documentation/filecoin/README.md)
   * [✏️ Filecoin 101](network-documentation/filecoin/filecoin-101.md)
+  * [👀 Resources](network-documentation/filecoin/resources.md)
   * [🎮 RPC & REST API](network-documentation/filecoin/rpc-and-rest-api/README.md)
     * [Miner Reputation System API](network-documentation/filecoin/rpc-and-rest-api/miner-reputation-system-api.md)
 * [⛽ Matic](network-documentation/matic/README.md)
