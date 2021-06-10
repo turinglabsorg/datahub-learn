@@ -397,7 +397,7 @@ Function arguments must be provided as a JSON string after name of the method.
 Now, we will read the value of the first key:
 
 ```bash
-near call YOUR_ACCOUNT_HERE create_update '{"k": "first_key"}' --accountId YOUR_ACCOUNT_HERE
+near call YOUR_ACCOUNT_HERE read '{"k": "first_key"}' --accountId YOUR_ACCOUNT_HERE
 ```
 
 The output will be:
@@ -415,7 +415,7 @@ https://explorer.testnet.near.org/transactions/2s6j2RPEppaA97nGtUtgQiw1x3qoSZQtw
 Lastly, we will delete the key:
 
 ```bash
-near call 0xnik.testnet delete '{"k": "first_key"}' --accountId 0xnik.testnet
+near call YOUR_ACCOUNT_HERE delete '{"k": "first_key"}' --accountId YOUR_ACCOUNT_HERE
 ```
 
 The output will be:
