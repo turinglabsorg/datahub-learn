@@ -12,6 +12,10 @@ Don't forget that you can try them out [**via DataHub**](https://datahub.figment
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
+## Intro Pathway
+
+{% page-ref page="intro-pathway-secret-basics/" %}
+
 ## Developing your first Secret contract
 
 {% page-ref page="creating-a-secret-contract-from-scratch.md" %}
