@@ -274,6 +274,7 @@
   * [✏ Solana 101](network-documentation/solana/solana-101.md)
   * [👀 Resources](network-documentation/solana/resources.md)
   * [🎮 RPC & REST API](network-documentation/solana/rpc-and-rest-api/README.md)
+    * [Solana Pathway](network-documentation/solana/rpc-and-rest-api/solana-pathway.md)
     * [Solana RPC](network-documentation/solana/rpc-and-rest-api/solana-rpc/README.md)
       * [Subscription Websocket](network-documentation/solana/rpc-and-rest-api/solana-rpc/subscription-websocket.md)
   * [💡 Tutorials](network-documentation/solana/tutorials.md)
