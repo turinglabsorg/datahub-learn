@@ -1,11 +1,14 @@
 ---
-description: Learn how about common blockchain concepts from the perspective of Polkadot
+description: An entry point to learn about the advanced blockchain concepts of Polkadot
 ---
 
 # **Introduction** 
 
 Polkadot allows blockchains and applications to come together and work with each other in parallel.
 To have a decentralized web, an internet of interoperable blockchains is key. **A sharded blockchain protocol.**
+Polkadot considers itself to be a next-generation blockchain, or better yet, a foundational network layer 
+that will truly drive the "web 3.0 vision" to create a unified network of specialized, self-governed, optimal blockchains that work together via interoperability. Polkadot offers scalability through its shared model, where blockchains that used to operate in isolation can take advantage of the Polkadot architecture to have eliminate 
+bottlenecks and network traffic.
 
   ## ![](../../../.gitbook/assets/polkadot-graphic.png) 
 
@@ -13,7 +16,7 @@ Bitcoin gave us the first real concept of a money protocol; a blockchain that is
 of value. Ethereum extended this idea to, well, almost anything - creating the next wave of new finance and 
 allowing us to develop real-world applications on-chain through smart contracts. Polkadot aims to bring these blockchains together, along with many others, while supporting web 3.0 protocols and key blockchain features on-chain - acting as an infrastructure for infrastructures.
 
-This tutorial will outline key blockchain concepts through the eyes of Polkadot by creating distinctions and 
+This guide will outline key blockchain concepts through the eyes of Polkadot by creating distinctions and 
 drawing conclusions for each concept. Namely, the focus will be on smart contracts, parachains, parathreads, 
 and decentralized applications. The differences between common blockchain concepts within the Polkadot ecosystem 
 can be best understood by appreciating Polkadot's vision to act as a foundational layer for web 3.0 protocols and allows for arbitrary data (not just tokens) to be transferred across blockchains. 
@@ -25,12 +28,12 @@ This is done through *true interoperability*, *pooled security*, *heterogeneous 
 This tutorial aims to be beginner-friendly. Nonetheless, it is recommended that you are familiar with the 
 following:
 
-- A high-level understanding of Polkadot's architecture: 
-  [Video](https://www.youtube.com/watch?v=_-k0xkooSlA) on the official Polkadot YouTube Channel.
-- Getting Started with Polkadot on the official [Wiki](https://wiki.polkadot.network/docs/en/getting-started).
+- [Polkadot Behind the Code, Episode 1](https://www.youtube.com/watch?v=GcOKXAOh4Xw)
+- An understanding of Polkadot's architecture: [Polkadot: Are You Ready to Start Building?](https://www.youtube.com/watch?v=_-k0xkooSlA).
+- [Getting Started with Polkadot](https://wiki.polkadot.network/docs/en/getting-started).
   
 
-# **Common Blockchain Concepts in Polkadot**
+# **Introduction to Advanced Concepts in Polkadot**
 ## Polkadot and Smart Contracts
 ---
 A smart contract is a set of instructions (in the form of code) that are deployed on-chain. These instructions represent an agreement between parties that are presented as an executable computer program. The computer program 
@@ -202,12 +205,12 @@ Why not try building your first Substrate-based chain!
 
 # **About the Author**
 
-This tutorial guide was created by Danny Salman. You can reach out to Danny on [Figment Forum](salman.danny@hotmail.com) & on GitHub for any help & questions pertaining to Polkadot and this guide.
+This guide was created by Danny Salman. You can reach out to Danny on [Figment Forum](salman.danny@hotmail.com) & on GitHub for any help & questions pertaining to Polkadot and this guide.
 
 # **References**
 
-- [1] [A brief summary of everything Substrate and Polkadot](https://www.parity.io/a-brief-summary-of-everything-substrate-polkadot/)
-- [2] [Parathreads: Pay-as-you-go Parachains](https://polkadot.network/parathreads-parathreads-pay-as-you-go-parachains/)
-- [3] [Polkadot: The Foundation of a New Internet](https://medium.com/polkadot-network/polkadot-the-foundation-of-a-new-internet-e8800ec81c7)
-- [4] [Polkadot, Substrate and Ethereum](https://medium.com/polkadot-network/polkadot-substrate-and-ethereum-f0bf1ccbfd13)
-- [5] [Research at Web3 Foundation](https://research.web3.foundation/en/latest/polkadot/overview/1-polkadot-introduction.html?highlight=parachains)
+[1] [A brief summary of everything Substrate and Polkadot](https://www.parity.io/a-brief-summary-of-everything-substrate-polkadot/)
+[2] [Parathreads: Pay-as-you-go Parachains](https://polkadot.network/parathreads-parathreads-pay-as-you-go-parachains/)
+[3] [Polkadot: The Foundation of a New Internet](https://medium.com/polkadot-network/polkadot-the-foundation-of-a-new-internet-e8800ec81c7)
+[4] [Polkadot, Substrate and Ethereum](https://medium.com/polkadot-network/polkadot-substrate-and-ethereum-f0bf1ccbfd13)
+[5] [Research at Web3 Foundation](https://research.web3.foundation/en/latest/polkadot/overview/1-polkadot-introduction.html?highlight=parachains)
