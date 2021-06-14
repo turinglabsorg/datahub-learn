@@ -280,7 +280,7 @@
   * [💡 Tutorials](network-documentation/solana/tutorials/README.md)
     * [Intro Pathway: Solana basics](network-documentation/solana/tutorials/intro-pathway-solana-basics/README.md)
       * [👩‍💻 Setup](network-documentation/solana/tutorials/intro-pathway-solana-basics/setup.md)
-      * [1. Connect to the Devnet](network-documentation/solana/tutorials/intro-pathway-solana-basics/1.-connect-to-solana-devnet-using-datahub.md)
+      * [1. Connect to the Solana Devnet](network-documentation/solana/tutorials/intro-pathway-solana-basics/1.-connect-to-solana-devnet-using-datahub.md)
       * [2. Create a Keypair](network-documentation/solana/tutorials/intro-pathway-solana-basics/2.-create-your-first-solana-account.md)
       * [3. Fund the account with SOL](network-documentation/solana/tutorials/intro-pathway-solana-basics/3.-fund-the-account-with-sol.md)
       * [4. Check the account balance](network-documentation/solana/tutorials/intro-pathway-solana-basics/4.-check-the-account-balance.md)
