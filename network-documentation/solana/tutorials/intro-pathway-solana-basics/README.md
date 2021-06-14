@@ -18,11 +18,11 @@ Solana is an open-source project implementing a new, high-performance, permissio
 
 {% page-ref page="setup.md" %}
 
-### 💡 1. Connect to Solana Devnet using DataHub
+### 💡 1. Connect to Solana Devnet
 
 {% page-ref page="1.-connect-to-solana-devnet-using-datahub.md" %}
 
-### 💡 2. Create your first Solana Account \(Generate Keypair\)
+### 💡 2. Create a Keypair
 
 {% page-ref page="2.-create-your-first-solana-account.md" %}
 
