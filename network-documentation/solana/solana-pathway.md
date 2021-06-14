@@ -20,9 +20,11 @@ Solana is an open-source project implementing a new, high-performance, permissio
 
 Once you are ready, get started by [**setting up an account on DataHub**](https://datahub.figment.io/sign_up?service=solana) to put your skills to the test and follow along with the tutorials to start building on Solana. Make sure to click on "Start" on the first tutorial before starting to code!
 
-![Coming Soon!](../../.gitbook/assets/solana.jpg)
+![](../../.gitbook/assets/sol1.png)
 
 Verify each tutorial as you complete them and make sure to click on "Submit to earn" when you are done with the five tutorials to access the completion form. 
+
+![](../../.gitbook/assets/sol2.png)
 
 [**Learn more about DataHub**](https://learn.figment.io/guides/datahub-products)**.** 
 
