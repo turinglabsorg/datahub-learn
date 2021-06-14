@@ -22,8 +22,8 @@ Avalanche is a layer one protocol by Ava Labs that offers high-throughput, fast 
 
 Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users. Learn what makes it unique and build your first project! 
 
-{% hint style="info" %}
-There are currently no rewards for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn. 
+{% hint style="success" %}
+Celo Pathway is Active again
 {% endhint %}
 
 **Get started with the Celo Pathway by visiting the page below.** 
@@ -56,8 +56,8 @@ Learn what makes it unique and build your first project to **earn 1.1 DOTs**!
 
 Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps. Learn what makes it unique and build your first project.
 
-{% hint style="info" %}
-There are currently no rewards for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn.
+{% hint style="success" %}
+Secret Pathway is Active again
 {% endhint %}
 
 **Get started with the Secret Pathway by visiting the page below.** 
@@ -75,4 +75,14 @@ Tezos is an open-source platform for assets and applications that can evolve by 
 {% page-ref page="../network-documentation/tezos/tezos-pathway.md" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
+
+## ![](../.gitbook/assets/solana.png) Solana Pathway
+
+Solana is an open-source project implementing a new, high-performance, permissionless blockchain. From [Messari's Solana profile](https://messari.io/asset/solana/profile), its goal is to provide a platform that enables developers to create DApps without needing to design around performance bottlenecks. Learn what makes it unique and build your first project to **earn $20 in SOL**!
+
+**Get started with the Solana Pathway by visiting the page below.**
+
+{% page-ref page="../network-documentation/solana/solana-pathway.md" %}
+
+#### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem!
 
