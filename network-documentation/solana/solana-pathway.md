@@ -40,7 +40,7 @@ Make sure to use a browser that does not hide your IP address, we will deny subm
 We also do not accept "Google phone numbers" or any online SMS number.
 {% endhint %}
 
-### 👨‍💻 Setup
+### 💡 Setup
 
 {% page-ref page="tutorials/intro-pathway-solana-basics/setup.md" %}
 
