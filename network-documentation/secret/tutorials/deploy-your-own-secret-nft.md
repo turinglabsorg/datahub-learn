@@ -10,6 +10,8 @@ description: >-
 
 For a high level introduction to Non-Fungible-Tokens see the [first installment of this series](https://learn.figment.io/network-documentation/secret/tutorials/create-your-first-secret-nft). In this tutorial we will download and compile the [snip721 reference implementation](https://github.com/baedrik/snip721-reference-impl), deploy it onto the secret testnet and interact with the contract, minting your own secret NFTs. Unlike the [previous tutorial](https://learn.figment.io/network-documentation/secret/tutorials/create-your-first-secret-nft) we will configure the contract ourselves and learn about access right management of secret contracts and tokens on the way.
 
+{% embed url="https://youtu.be/jRuSOos9ig4" %}
+
 ## Prerequisites
 
 This tutorial assumes that you have completed the [Secret Learn Pathway](https://learn.figment.io/network-documentation/secret/secret-pathway) already, as we will be building upon that foundation of knowledge and skill. If you have not already done so, you would be wise to take the time to complete the Pathway. We will start with the same project folder as in section 5 of the Pathway.
@@ -292,11 +294,11 @@ Congratulations! We have made it to the end of the first installment of this Sec
 
 This is a solid foundation to play with and build upon!
 
-### About the Author
+## About the Author
 
 This tutorial was created by [Florian Uhde](https://twitter.com/florianuhde), a software engineer and game developer with a passion for blockchain, creativity and systemic design. You can get in touch with the author on [Figment Forum](https://community.figment.io/u/floar) if you have any queries pertaining to the tutorial, secretNFTs, etc.
 
-### References
+## References
 
 snip721 Reference Implementation: [Github Repo](https://github.com/baedrik/snip721-reference-impl)
 
