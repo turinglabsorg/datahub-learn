@@ -42,6 +42,8 @@ We also do not accept "Google phone numbers" or any online SMS number.
 
 ### 👨‍💻 Setup
 
+{% page-ref page="tutorials/intro-pathway-solana-basics/setup.md" %}
+
 ### 💡 1. Connect to Solana Devnet
 
 {% page-ref page="tutorials/intro-pathway-solana-basics/1.-connect-to-solana-devnet-using-datahub.md" %}
