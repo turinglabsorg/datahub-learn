@@ -8,11 +8,6 @@ description: Learn how to create, mint, and transfer NFTs on Avalanche.
 
  In preparation for the tutorial, we will need to have some images on hand for testing the upload to Avalanche wallet. For more information on the Avalanche wallet, please refer to the documentation [here](https://docs.avax.network/).
 
-## References
-
-This tutorial is based on the original one on the [Avalanche Documentation](https://docs.avax.network/build/tutorials/smart-digital-assets/wallet-nft-studio).
-
-
 ## Introduction
 
 NFT is an interesting term nowadays, in more technical terms NFT collectible is called ERC721 token. Please refer below link to learn more about [ERC-721 token](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/).
@@ -156,4 +151,6 @@ If you had any difficulties following this tutorial or simply want to discuss Av
 
 [Devendra Yadav](https://github.com/devilla)
 
-Made with ❤️ in [India](https://en.wikipedia.org/wiki/India).
+## References
+
+This tutorial is based on the official [Avalanche Documentation](https://docs.avax.network/build/tutorials/smart-digital-assets/wallet-nft-studio).
