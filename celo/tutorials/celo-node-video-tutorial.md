@@ -5,12 +5,13 @@
 ##  **Introduction**  
 Full nodes are a major part of the celo blockchain. A full node is a program that will help to write, and validate new changes in the network. Multiple full nodes work together, validating the blockchain in a decentralized way. This Virtual Machines job will be to create a full node, and run a light client monitoring the network.
    
-this video is to help along with the writen tutorial
+the videos are to help along with the writen tutorial
   
-#### *Right click this image to access the video:*
-  
-   [![SC2 Video](https://img.youtube.com/vi/89U866LwzBw/0.jpg)](http://www.youtube.com/watch?v=89U866LwzBw)
-  
+#### *Right click image to access the video:*
+  #### *video 1, Setting up the VM*
+   [![SC2 Video](https://img.youtube.com/vi/Cdqwzf-zfug/0.jpg)](http://www.youtube.com/watch?v=Cdqwzf-zfug)
+  #### *video 2, Building the fullnode*
+   [![SC2 Video](https://img.youtube.com/vi/tQVghp8aQZQ/0.jpg)](http://www.youtube.com/watch?v=tQVghp8aQZQ)
 ##   **Prerequisites** 
 * Have a basic understanding of Virtual Machines(VM), and the linux terminal.
 
@@ -43,7 +44,7 @@ this video is to help along with the writen tutorial
     -enter root password
     
     $ cat /etc/passwd
-    $ cat /etc/group | $YOURUSERNAME
+    $ cat /etc/group | grep $YOURUSERNAME
     $ usermod -aG sudo $YOURUSERNAME
     
     -enter the username you created were it says $YOURUSERNAME 
@@ -82,6 +83,8 @@ this video is to help along with the writen tutorial
     $ sudo bash VBoxLinuxAdditions.run
     
     -Restart the VM
+    
+    -enable Bidirectional copy/paste under devices in shared clipboard 
    Insert Guest Additions looks like:
    
  ![image](https://user-images.githubusercontent.com/80616939/118760448-0ebadb80-b830-11eb-88fa-51e672a41d83.png)
@@ -89,7 +92,7 @@ this video is to help along with the writen tutorial
    First make sure the VM is up to date, then build-essential linux-headers. Linux headers provide many vital functions without installing unnecessary files. VBoxLinuxAdditions provides the dynamic screen resolution.
    
     $ sudo apt update && sudo apt upgrade
-    username@name:~$ sudo apt install build-essential linux-headers-`uname -r'
+    $ sudo apt install build-essential linux-headers-`uname -r`
    
     -click "insert vm guest additions CD" under devices in the top left corner
     -click cancel 
@@ -98,7 +101,7 @@ this video is to help along with the writen tutorial
     $ sudo sh VBoxLinuxAdditions.run
    
     -Restart the VM 
-##   *Create the VM enviroment, and install the Celo client*  
+##   *Create the VM environment, and install the Celo client*  
    The following file adds vital functions for node.js, and installs nvm. Source in the file after adding it. 
    
     $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
@@ -108,7 +111,7 @@ this video is to help along with the writen tutorial
     $ nvm install 10
     $ nvm use 10
     $ npm install -g @celo/celocli  
-   The following argument makes sure that the celo.env file will utilize dependencies from node.js.
+   The following argument makes sure that the celo.env file will always be loaded in to the terminal.
    "#!" is an interpreter directive commonly called a "shebang".
    /bin/bash is the path to interpret in bash.  
    
