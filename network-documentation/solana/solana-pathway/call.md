@@ -2,7 +2,7 @@
 
 Now that we have deployed our program it's living on the blockchain \(at an address on the devnet cluster\) and is available to interact with. We interact with a program by sending a [transaction](https://docs.solana.com/developing/programming-model/transactions) where its address is the recipient. Once a transaction is submitted to the cluster, the Solana runtime will execute a program to process each of the [instructions](https://docs.solana.com/terminology#instruction) contained in the transaction, in order, and atomically.
 
-[Read more about Solana transaction and their anatomy](https://docs.solana.com/developing/programming-model/transactions)
+[Read more about Solana transactions and their anatomy](https://docs.solana.com/developing/programming-model/transactions).
 
 ## The challenge
 
@@ -91,10 +91,8 @@ const greet = async () => {
 * `sendAndConfirmTransaction()` takes 3 arguments: the `connection`, the `instruction` and the array of signers `[payerKeypair]` \(here we have only one signer, the payer\) `sendAndConfirmTransaction()` returns a JS Promise.
 * Once the promise is fulfilled:
   * we call `setGreetTxSignature(res)` to store the transaction signature \(`res` is the signature string according to the [docs](https://solana-labs.github.io/solana-web3.js/modules.html#sendandconfirmtransaction)\)
-  * we call `setGreetFetching(false)` to update the UI state: we hide the fetching spinner and show the success state \(using the signature above to build the explorer URL\).
+  * we call `setGreetFetching(false)` to update the UI state: We hide the fetching spinner and show the success state \(using the signature from `res` to build the explorer URL\).
   * we call `getGreetings()` which is defined in the same component. It will fetch the `greeterPublicKey` account data, de-serialize it and store its value in a React state variable to update the UI.
-
-
 
 Once this code is saved, click on "Check Program Info" to make sure that the program is deployed.
 
