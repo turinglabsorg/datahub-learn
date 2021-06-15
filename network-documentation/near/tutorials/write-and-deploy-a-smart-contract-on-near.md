@@ -419,11 +419,6 @@ Now, we will read the value of the first key:
 near view CONTRACT_ID read '{"k": "first_key"}' --accountId ACCOUNT_ID
 ```
 
-Note, as the `read` method doesn't mutate the state of our contract, we should use `view` 
-Doing like so, as the following advantages:
-- We do not have to pay any fees
-- Response occurs almost instantly
-
 The output will be:
 
 ```bash
