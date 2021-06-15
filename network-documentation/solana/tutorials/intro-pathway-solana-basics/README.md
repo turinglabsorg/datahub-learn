@@ -2,7 +2,7 @@
 description: Go from 0 to 1 by learning the basics of development on Solana Blockchain
 ---
 
-# Intro Pathway: Solana basics
+# Solana Pathway
 
 ## ![](../../../../.gitbook/assets/solana.png) Solana Pathway
 
