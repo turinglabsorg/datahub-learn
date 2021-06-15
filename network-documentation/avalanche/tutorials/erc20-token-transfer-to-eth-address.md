@@ -2,11 +2,7 @@
 description: Teaching how to Transfer ERC-20 tokens from C-chain to ETH address
 ---
 
-# Transfer ERC-20 tokens from the C-chain of your AVAX wallet to an ETH address \(Metamask, for example
-
-## About the author
-
-This tutorial was created by [Seongwoo Oh](https://github.com/blackwidoq). He is a student and an Avalanche novice.
+# Transfer ERC-20 tokens from the C-chain of your AVAX wallet to an ETH address
 
 ## Introduction
 
@@ -216,4 +212,8 @@ Remember that `ether` in `convrted_balance` above is just to massage the balance
 ## Wrapping Up
 
 That’s it! This tutorial has taught you how to transfer ERC-20 tokens from the C-chain to an ETH wallet. Remember that the C-chain uses the Ethereum Virtual Machine and is compatible with all of the key Ethereum tools.
+
+## About the author
+
+This tutorial was created by [Seongwoo Oh](https://github.com/blackwidoq). He is a student and an Avalanche novice.
 

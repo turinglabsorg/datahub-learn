@@ -7,6 +7,8 @@ description: >-
 
 # Sample Tutorial Structure
 
+## Sample Tutorial Structure
+
 ## Introduction
 
 Explain why this tutorial matter and what the context is, what we're going to build and learn in this tutorial.
@@ -16,7 +18,7 @@ Explain why this tutorial matter and what the context is, what we're going to bu
 
 _For example -_
 
-NEAR is a platform that allows anyone to create decentralized applications that can perform tasks without the need for a central entity. Building a Voting dApp is a good candidate for something that can showcase NEAR's power and potential_._ We're going to build a smart contract using solidity, front end with ReactJS and at the end, we will deploy our dApp on NEAR testnet. 
+NEAR is a platform that allows anyone to create decentralized applications that can perform tasks without the need for a central entity. Building a Voting dApp is a good candidate for something that can showcase NEAR's power and potential_._ We're going to build a smart contract using solidity, front end with ReactJS and at the end, we will deploy our dApp on NEAR testnet.
 
 ## **Prerequisites**
 
@@ -38,19 +40,19 @@ _For example -_
 
 \[ Embed Video here if you have any, It's optional \]
 
-#### Body of the Tutorial
+## Body of the Tutorial
 
-Points to remember - 
+Points to remember -
 
-* Keep subheadings in H2
-* Add Code Blocks
-* Add Comments in Code Blocks
-* Text Content
-* Add Output Images
+* Section headings like Introduction, etc. must all be H1, keep subheadings at H2. H3 can be used for sub-section headings, but be aware that H3 does not show on the GitBook table of contents
+* Add all relevant Code Blocks
+* Add necessary comments in Code Blocks
+* Add Text Content
+* Add Output Images or Code Blocks to reflect expected terminal output
 * Add common errors and steps to troubleshoot the errors, _for example -_
 
 {% hint style="info" %}
-#### Not able to connect to the Avalanche Node and getting error on executing `node connect.js`
+### Not able to connect to the Avalanche Node and getting error on executing `node connect.js`
 
 Let's check for some common causes:
 
@@ -67,7 +69,7 @@ The Section that summarizes what was learned, reinforces key points and also con
 
 ## What's Next? _\(Optional\)_
 
-Add if you're working on any other advanced tutorial, what can be done next after this tutorial.   
+Add if you're working on any other advanced tutorial, what can be done next after this tutorial.  
 Feel free to add recommended projects and articles here which are related to this tutorial
 
 ## About The **Author**

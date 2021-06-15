@@ -12,3 +12,7 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
+## Intro Pathway
+
+{% page-ref page="intro-pathway-solana-basics/" %}
+

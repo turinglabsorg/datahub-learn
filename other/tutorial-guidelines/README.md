@@ -37,9 +37,9 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * **Explain your code.** Don't just ask learners to blindly copy and paste
   * Function names, variables and constants must be consistent across the entire document.
   * Use of UI tabs to indicate a relative path & filename \[as in Polkadot tutorials\] \(?\) - similarly, use a UI tab to indicate a block of expected terminal output
+* **Use a linter & prettifier** before submitting your code. We recommend `eslint` for Javascript/React.
 * **Use Markdown properly** throughout the tutorial. You can refer to Gitbook's markdown guide [here](https://gitbookio.gitbooks.io/documentation/content/format/markdown.html).
 * **Select the appropriate language** for code blocks' syntax highlighting
-* **The code blocks should be formatted and indented** properly, according to the language's conventions.
 * **The code blocks should be well commented**. Comments should be short \(usually two or three lines max at a time\) and effective. If you more space to explain a piece of code, do it outside the code block.
 * **Writing Tone -** Learn Tutorials are written by community contributors for their peers. As such, we recommend creating a tone of inclusion and interaction throughout the tutorial. Use words like “we”, “us”, “our”, like “We have successfully deployed our contract”. When providing direct instructions feel free to use “you”, “your” etc. like _“Your file should look like this”_.
 

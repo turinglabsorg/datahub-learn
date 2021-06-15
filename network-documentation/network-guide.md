@@ -44,6 +44,10 @@ Filecoin is a peer-to-peer network that stores files, with built-in economic inc
 
 ## ![](../.gitbook/assets/matic_network.png) Matic
 
+Matic Network is a sidechain-based scaling solution for public blockchains. It is based on an adapted implementation of Plasma framework. Matic provides scalability while ensuring a superior user experience in a secured and decentralized manner. It has a working implementation for Ethereum. Matic intends to support other blockchains in the future which will enable it to provide interoperability features alongside offering scalability to existing public blockchains.
+
+{% page-ref page="matic/" %}
+
 ## ![](../.gitbook/assets/1_gc0dp8vfvm6bwwn51nuqew.png) Mina 
 
 Mina is the first cryptocurrency protocol with a succinct blockchain. Current cryptocurrencies like Bitcoin and Ethereum store hundreds of gigabytes of data, and as time goes on, their blockchains will only increase in size. With Mina, however, no matter how much the usage grows, the blockchain always stays the same size - about 22kb \(the size of a few tweets\). This means participants can quickly sync and verify the network.
