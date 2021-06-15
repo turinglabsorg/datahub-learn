@@ -19,7 +19,7 @@ Solana is an open-source project implementing a new, high-performance, permissio
 ## Let's get started!
 
 {% hint style="warning" %}
-We are currently no offering rewards for this pathway.
+We are currently not offering rewards for this pathway.
 {% endhint %}
 
 {% hint style="warning" %}
