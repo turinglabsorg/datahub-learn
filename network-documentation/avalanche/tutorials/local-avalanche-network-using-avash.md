@@ -4,20 +4,20 @@ description: Learn how to setup a local Avalanche network using Avash
 # Setting up a local Avalanche network using Avash
 
 
-## Introduction
+# Introduction
 
 [Avash](https://github.com/ava-labs/avash) is a temporary stateful shell client which could be used for various purposes like deploying local Avalanche networks, managing their processes, and for running network tests. But, once we exit from Avash, all these get wiped off. This provides us with the opportunity to play around and experiment with the Avalanche networks on our local system without really connecting to real networks on the internet. Avash also provides us with the ability to write scripts using Lua which enables us to automate the creation of such networks and their configuration. In this tutorial, we're going to install a copy of Avash on our machine and create a Lua script that could be used to fire up a 5 node staking network.
 
 [Lua](http://www.lua.org/) is highly portable scripting language which could be easily embedded into other applications especially because of it's fast language engine with small footprint. Lua is being used as the scripting language within Avash.
 
-## Requirements
+# Requirements
 
 For the smooth completion of this tutorial, we need the following software to be already present on your system:
 
 * [Golang](https://golang.org/) \(1.15.5+\)
 
 
-## AvalancheGo Installation
+# AvalancheGo Installation
 
 [AvalancheGo](https://github.com/ava-labs/avalanchego) is the official node implementation of the Avalanche network. Avash needs an executable of this node implementation present for its proper working. So, we need to install AvalancheGo before we try to run Avash.
 
@@ -58,7 +58,7 @@ If the build process fails, please make sure that the version of Golang installe
 
 After the build process is complete, you can find the AvalancheGo binary, named avalanchego, inside the build directory.
 
-## Avash Installation
+# Avash Installation
 
 Now we go onto install Avash. Unlike AvalancheGo, Avash needs the module-aware mode enabled for it to be successfully installed.
 
@@ -132,7 +132,7 @@ exit
 ```
 
 
-## Adding Lua scripts
+# Adding Lua scripts
 
 Now that we have a successful installation of Avash on our machine, we go ahead and add a Lua script that we'll use to fire up the Avalanche network.
 
@@ -241,7 +241,7 @@ avash_call(cmd)
 end
 ```
 
-## Setup a local Avalanche network using Avash
+# Setup a local Avalanche network using Avash
 
 In the last section, we've added the Lua script in the appropriate location, which we could now use to fire up from within Avash.
 
@@ -303,7 +303,7 @@ RunScript: Running ../../avash_scripts/five_node_staking_with_config.lua
 RunScript: Successfully ran ../../avash_scripts/five_node_staking_with_config.lua
 ```
 
-## Interacting with the local Avalanche network
+# Interacting with the local Avalanche network
 
 To interact with the running Avalanche network, open up a new terminal and type in the following command:
 
@@ -331,7 +331,7 @@ exit
 
 This closes the Avash terminal and with it, all the nodes started during its lifetime, essentially destroying the temporary local Avalanche network we fired up using the Lua script.
 
-## Conclusion
+# Conclusion
 
 In this tutorial, we've successfully managed to install Avash, create a Lua script that fires up a five-node staking network on your machine, and fire it up and interact with the network from the terminal.
 
@@ -348,7 +348,7 @@ So, keep learning and keep building and I'm sure you're on your way to building 
 
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can join [**our community**](https://discord.gg/fszyM7K) today!
 
-## References
+# References
 
 * [Avalanchego Readme](https://github.com/ava-labs/avalanchego/blob/master/README.md)
 * [Avash Documentation](https://docs.avax.network/build/tools/avash)
