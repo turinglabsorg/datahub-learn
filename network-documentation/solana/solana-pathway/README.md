@@ -16,9 +16,9 @@ Solana is an open-source project implementing a new, high-performance, permissio
 
 {% embed url="https://youtu.be/4dNuMXBjpr0" caption="Solana Core Concepts \(Community Video\)" %}
 
-## **🏁** Get started by signing up for DataHub <a id="get-started-by-signing-up-for-datahub"></a>
+## **🏁 Create an account on** Figment's DataHub <a id="get-started-by-signing-up-for-datahub"></a>
 
-Once you are ready, get started by [**setting up an account on DataHub**](https://datahub.figment.io/sign_up?service=solana) to put your skills to the test and follow along with the tutorials to start building on Solana. Make sure to click on "Start" on the first tutorial before starting to code!
+Get started by [**setting up an account on DataHub**](https://datahub.figment.io/sign_up?service=solana) ****and select Solana in the list of networks. As you complete steps here,  click on "Start" and "Verify" on the tutorials at the bottom of the page.
 
 ![](../../../.gitbook/assets/sol1.png)
 
