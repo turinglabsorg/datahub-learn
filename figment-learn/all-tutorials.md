@@ -32,21 +32,45 @@ Cosmos provides tools that make it easy to build a new, custom-designed blockcha
 
 **Get Started with** [**Cosmos DataHub today!** ](https://figment.io/datahub/cosmos/)\*\*\*\*
 
+## ![](../.gitbook/assets/matic_network.png) Matic Tutorials
+
+Matic Network is a sidechain-based scaling solution for public blockchains. It is based on an adapted implementation of Plasma framework. Matic provides scalability while ensuring a superior user experience in a secured and decentralized manner. 
+
+{% page-ref page="../network-documentation/matic/tutorials/" %}
+
+**Get Started with** [**Matic DataHub today!**](https://datahub.figment.io/sign_up?service=matic) ****
+
 ## \*\*\*\*![](../.gitbook/assets/tnear_icon_1.png) **NEAR Tutorials**
 
 NEAR is a decentralized application platform that is secure enough to manage high-value assets like money or identity and performant enough to make them useful for everyday people, putting the power of the Open Web in their hands.
 
 {% page-ref page="../network-documentation/near/tutorials/" %}
 
-**Get Started with** [**NEAR DataHub today!** ](https://figment.io/datahub/near/)\*\*\*\*
+**Get Started with** [**NEAR DataHub today!** ](https://datahub.figment.io/sign_up?service=near)\*\*\*\*
 
-## \*\*\*\*![](../.gitbook/assets/logo1.png) **Secret Tutorials** 
+## \*\*\*\*![](../.gitbook/assets/dot-circle-solid-default.svg) **Polkadot Tutorials**
+
+Polkadot provides unprecedented economic scalability by enabling a common set of validators to secure multiple blockchains. Polkadot is an open-source project founded by the [Web3 Foundation](https://web3.foundation/).
+
+{% page-ref page="../network-documentation/polkadot/tutorials/" %}
+
+**Get Started with** [**Polkadot DataHub today!** ](https://datahub.figment.io/sign_up?service=polkadot)\*\*\*\*
+
+## ![](../.gitbook/assets/logo1.png) **Secret Tutorials** 
 
 Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network.
 
 {% page-ref page="../network-documentation/secret/tutorials/" %}
 
 **Get Started with** [**Secret DataHub today!** ](https://datahub.figment.io/sign_up?service=secret)\*\*\*\*
+
+## ![](../.gitbook/assets/solana.png) Solana Tutorials
+
+Solana is an open-source project implementing a new, high-performance, permissionless blockchain.
+
+{% page-ref page="../network-documentation/solana/tutorials/" %}
+
+**Get Started with** [**Secret DataHub today!** ](https://datahub.figment.io/sign_up?service=solana)\*\*\*\*
 
 ## ![](../.gitbook/assets/rsz_terra-logo.jpg) Terra Tutorials 
 
@@ -56,7 +80,7 @@ Terra is a price-stable cryptocurrency that will power the next-generation payme
 
 **Get Started with** [**Terra DataHub today!** ](https://figment.io/datahub/terra/)\*\*\*\*
 
-## \*\*\*\*![](../.gitbook/assets/2011.png) **Tezos Tutorials**
+## \*\*\*\*![](../.gitbook/assets/2011%20%281%29.png) **Tezos Tutorials**
 
 Tezos is a secure, smart contract blockchain platform that uses its built-in governance mechanism for protocol upgrades. 
 
@@ -66,5 +90,5 @@ Tezos is a secure, smart contract blockchain platform that uses its built-in gov
 
 #### [Join our community today ](https://discord.gg/fszyM7K)if you want to interact with other builders and become a part of this growing ecosystem! 
 
-[**Subscribe**](https://datahub.figment.io/subscribe) to the Learn newsletter to be the first to know about new protocols launches, upcoming Pathways, and new tutorials! 
+[**Subscribe**](https://datahub.figment.io/subscribe) to the Learn newsletter to be the first to know about new protocol launches, upcoming Pathways, and new tutorials! 
 

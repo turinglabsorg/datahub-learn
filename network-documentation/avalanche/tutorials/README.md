@@ -52,6 +52,14 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="making-evoting-dapp-on-avalanche-c-chain-using-truffle.md" %}
 
+## Making an advanced e-Voting dApp on Avalanche Fuji network using Trufflesuite
+
+{% page-ref page="making-advanced-e-voting-dapp-avalanche-fuji-using-trufle.md" %}
+
+## Making an advanced e-Voting dApp using Avalanche Fuji, Trufflesuite and ReactJS
+
+{% page-ref page="advanced-evoting-avalanche-reactjs.md" %}
+
 ## Creating a Fixed-Cap Asset
 
 {% page-ref page="creating-a-fixed-cap-asset.md" %}

@@ -42,6 +42,12 @@ Filecoin is a peer-to-peer network that stores files, with built-in economic inc
 
 {% page-ref page="filecoin/" %}
 
+## ![](../.gitbook/assets/matic_network.png) Matic
+
+Matic Network is a sidechain-based scaling solution for public blockchains. It is based on an adapted implementation of Plasma framework. Matic provides scalability while ensuring a superior user experience in a secured and decentralized manner. It has a working implementation for Ethereum. Matic intends to support other blockchains in the future which will enable it to provide interoperability features alongside offering scalability to existing public blockchains.
+
+{% page-ref page="matic/" %}
+
 ## ![](../.gitbook/assets/1_gc0dp8vfvm6bwwn51nuqew.png) Mina 
 
 Mina is the first cryptocurrency protocol with a succinct blockchain. Current cryptocurrencies like Bitcoin and Ethereum store hundreds of gigabytes of data, and as time goes on, their blockchains will only increase in size. With Mina, however, no matter how much the usage grows, the blockchain always stays the same size - about 22kb \(the size of a few tweets\). This means participants can quickly sync and verify the network.
@@ -72,13 +78,19 @@ Secret Network is the first blockchain with privacy-preserving smart contracts. 
 
 {% page-ref page="secret/" %}
 
+## ![](../.gitbook/assets/solana-sol-logo-1-.png) Solana
+
+Solana is an open-source project implementing a new, high-performance, permissionless blockchain. It provides a platform that enables developers to create DApps without needing to design around performance bottlenecks.
+
+{% page-ref page="solana/" %}
+
 ## ![](../.gitbook/assets/rsz_terra-logo%20%281%29.jpg) Terra 
 
 Terra is a blockchain protocol that supports stable programmable payments and open financial infrastructure development. One part of Terra’s value contributions, payments, in essence, replaces the complicated payments value chain, including credit card networks, banks, and payment gateways with a single blockchain layer. 
 
 {% page-ref page="terra/" %}
 
-## ![](../.gitbook/assets/2011.png) Tezos 
+## ![](../.gitbook/assets/2011%20%281%29.png) Tezos 
 
 Tezos is a secure, smart contract blockchain platform that uses its built-in governance mechanism for protocol upgrades. Tezos is one of the first blockchain platforms to introduce a formal on-chain governance process. 
 
