@@ -110,7 +110,7 @@ The first thing we're going to do is compile the Rust program to prepare it for 
 Let's build the program by running the following command in your Terminal:
 
 ```rust
-$ npm run build:program-rust
+npm run build:program-rust
 ```
 
 {% hint style="warning" %}
@@ -133,15 +133,33 @@ Next we're going to deploy the program to the devnet cluster. The CLI provides a
 solana program deploy dist/program/helloworld.so
 ```
 
+## Potential issues deploying
+
+### Insufficient Funds
+
 The first time you run this, the CLI should error out because the account trying to deploy this program **does not have enough funds to spend**. You can fix this by going back a few steps in the React app to the "Fund" step and pasting in the input the public key that you see in the Terminal error. Click "Fund" a few times to get enough devnet tokens to be able to deploy the program
 
 ![](../../../.gitbook/assets/screen-shot-2021-06-14-at-8.20.30-pm.png)
+
+### custom program error 0x1
 
 If you see
 
 > Error: Deploying program failed: Error processing Instruction 1: custom program error: 0x1
 
 simply re-run the deploy command until it succeeds. If you run out of funds, go back to the "Fund" step and get more!
+
+### Program's authority X does not match authority provided Y
+
+This can be due to how your solana keypair was generated. Re-generate one by running
+
+```bash
+solana-keygen new --force
+```
+
+and go through the tutorial above again \(fund, build, deploy\)
+
+## After successfully deploying the program
 
 On success, the CLI will print the programId of the deployed contract.
 
