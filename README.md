@@ -18,7 +18,11 @@ Tutorials can be completed seamlessly with [**DataHub**](https://datahub.figment
 
 Learn Pathways are short curriculums that help developers understand which network is right for them and how to interact with Web 3 protocols at every step. As they complete the tutorials, developers earn protocol tokens offered by foundations to help align their interests with the network. 
 
-**Ongoing Pathway: Tezos \(NEW\)**  
+**Ongoing Pathway: Solana \(NEW\)**
+
+{% page-ref page="network-documentation/solana/solana-pathway.md" %}
+
+**Ongoing Pathway: Tezos**
 
 {% page-ref page="network-documentation/tezos/tezos-pathway.md" %}
 
@@ -29,6 +33,14 @@ Learn Pathways are short curriculums that help developers understand which netwo
 **Ongoing Pathway: Avalanche**
 
 {% page-ref page="network-documentation/avalanche/avalanche-pathway.md" %}
+
+**Ongoing Pathway: Celo**
+
+{% page-ref page="network-documentation/celo/celo-pathway.md" %}
+
+**Ongoing Pathway: Secret**
+
+{% page-ref page="network-documentation/secret/secret-pathway.md" %}
 
 **Ongoing Pathway: NEAR**
 

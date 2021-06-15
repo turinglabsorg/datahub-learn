@@ -64,6 +64,14 @@ Secret Network is the first blockchain with privacy-preserving smart contracts. 
 
 **Get Started with** [**Secret DataHub today!** ](https://datahub.figment.io/sign_up?service=secret)\*\*\*\*
 
+## ![](../.gitbook/assets/solana.png) Solana Tutorials
+
+Solana is an open-source project implementing a new, high-performance, permissionless blockchain.
+
+{% page-ref page="../network-documentation/solana/tutorials/" %}
+
+**Get Started with** [**Secret DataHub today!** ](https://datahub.figment.io/sign_up?service=solana)\*\*\*\*
+
 ## ![](../.gitbook/assets/rsz_terra-logo.jpg) Terra Tutorials 
 
 Terra is a price-stable cryptocurrency that will power the next-generation payment network. 
@@ -82,5 +90,5 @@ Tezos is a secure, smart contract blockchain platform that uses its built-in gov
 
 #### [Join our community today ](https://discord.gg/fszyM7K)if you want to interact with other builders and become a part of this growing ecosystem! 
 
-[**Subscribe**](https://datahub.figment.io/subscribe) to the Learn newsletter to be the first to know about new protocols launches, upcoming Pathways, and new tutorials! 
+[**Subscribe**](https://datahub.figment.io/subscribe) to the Learn newsletter to be the first to know about new protocol launches, upcoming Pathways, and new tutorials! 
 
