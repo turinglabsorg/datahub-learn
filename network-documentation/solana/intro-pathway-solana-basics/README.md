@@ -2,13 +2,13 @@
 description: Go from 0 to 1 by learning the basics of development on Solana Blockchain
 ---
 
-# Solana Pathway
+# 🗺 Solana Pathway
 
-## ![](../../../../.gitbook/assets/solana.png) Solana Pathway
+## ![](../../../.gitbook/assets/solana.png) Solana Pathway
 
 Solana is an open-source project implementing a new, high-performance, permissionless blockchain. The Solana Foundation is based in Geneva, Switzerland, and maintains the open-source project.
 
-#### Learn what makes it unique and build your first project to **earn $20 in SOL**! ![](../../../../.gitbook/assets/solana.png)
+#### Learn what makes it unique and build your first project to **earn $20 in SOL**! ![](../../../.gitbook/assets/solana.png)
 
 {% embed url="https://youtu.be/xiJEESddB5A" caption="Say Hello to Solana" %}
 

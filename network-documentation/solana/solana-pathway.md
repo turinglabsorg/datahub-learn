@@ -42,27 +42,27 @@ We also do not accept "Google phone numbers" or any online SMS number.
 
 ### 💡 Setup
 
-{% page-ref page="tutorials/intro-pathway-solana-basics/setup.md" %}
+{% page-ref page="intro-pathway-solana-basics/setup.md" %}
 
 ### 💡 1. Connect to Solana Devnet
 
-{% page-ref page="tutorials/intro-pathway-solana-basics/1.-connect-to-solana-devnet-using-datahub.md" %}
+{% page-ref page="intro-pathway-solana-basics/1.-connect-to-solana-devnet-using-datahub.md" %}
 
 ### 💡 2. Create a Keypair
 
-{% page-ref page="tutorials/intro-pathway-solana-basics/2.-create-your-first-solana-account.md" %}
+{% page-ref page="intro-pathway-solana-basics/2.-create-your-first-solana-account.md" %}
 
 ### 💡 3. Fund the account with SOL
 
-{% page-ref page="tutorials/intro-pathway-solana-basics/3.-fund-the-account-with-sol.md" %}
+{% page-ref page="intro-pathway-solana-basics/3.-fund-the-account-with-sol.md" %}
 
 ### 💡 4. Check the account balance
 
-{% page-ref page="tutorials/intro-pathway-solana-basics/4.-check-the-account-balance.md" %}
+{% page-ref page="intro-pathway-solana-basics/4.-check-the-account-balance.md" %}
 
 ### 💡 5. Transfer SOL tokens
 
-{% page-ref page="tutorials/intro-pathway-solana-basics/5.-transfer-sol-tokens.md" %}
+{% page-ref page="intro-pathway-solana-basics/5.-transfer-sol-tokens.md" %}
 
 ### 
 
