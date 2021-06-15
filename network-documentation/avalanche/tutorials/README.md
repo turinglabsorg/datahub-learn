@@ -92,5 +92,9 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="local-avalanche-network-using-avash.md" %}
 
+## Using Hardhat with the Avalanche C-Chain
+
+{% page-ref page="using-hardhat-with-the-avalanche-c-chain.md" %}
+
 
 

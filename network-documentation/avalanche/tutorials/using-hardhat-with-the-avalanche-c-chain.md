@@ -1,28 +1,30 @@
 ---
 description: Learn how to use Hardhat with the Avalanche C-Chain
 ---
+
 # Using Hardhat with the Avalanche C-Chain
 
+## Using Hardhat with the Avalanche C-Chain
 
-# Introduction
+## Introduction
 
 [Hardhat](https://hardhat.org) is a suite of tools that together provides us with a development environment that helps developers to easily manage and automate the tasks around building smart contracts and dApps. Hardhat could be used to compile, deploy, test, and debug smart contracts. It is very similar to [Truffle](https://www.trufflesuite.com/) in this regard. But, what differentiates Hardhat from Truffle is that it provides developers with a seamless experience developing and debugging complex Solidity smart contracts with the help of powerful extensibility of the ecosystem with the help of a rich collection of plugins as well as by providing many tools like Hardhat Network, Hardhat Runner, etc.
 
-In this tutorial, we learn how Hardhat can be used with Avalanche C-Chain. Avalanche C-Chain is an instance of the EVM (Ethereum Virtual Machine). Being an instance of the EVM makes the Avalanche C-Chain very attractive as it could instantly be home to the millions of smart contract projects already written in Solidity.
+In this tutorial, we learn how Hardhat can be used with Avalanche C-Chain. Avalanche C-Chain is an instance of the EVM \(Ethereum Virtual Machine\). Being an instance of the EVM makes the Avalanche C-Chain very attractive as it could instantly be home to the millions of smart contract projects already written in Solidity.
 
-# Prerequisites
+## Prerequisites
 
 Please make sure that you have completed the tutorials:
 
 * [Avash Installation](https://learn.figment.io/network-documentation/avalanche/tutorials/local-avalanche-network-using-avash.md)
 
-# Requirements
+## Requirements
 
 For the smooth completion of this tutorial, we need the following software to be already present on your system:
 
 * [NodeJS](https://nodejs.org/) \(12.x+\)
 
-# Creating a Hardhat project
+## Creating a Hardhat project
 
 The first step is to create a directory for your project where you will initialize our new Hardhat project. You can do this using the following command:
 
@@ -33,7 +35,7 @@ npm init -y
 
 You should see a newly created directory named `avalanche-hardhat-tutorial` with a file `package.json` inside it:
 
-```json
+```javascript
 {
   "name": "avalanche-hardhat-tutorial",
   "version": "1.0.0",
@@ -82,7 +84,7 @@ Quit
 
 Choose to create an empty hardhat.config.js and there you have it, your current directory is now a Hardhat project!
 
-# Adding Avash network configuration to Hardhat
+## Adding Avash network configuration to Hardhat
 
 Now, in order for our Hardhat project to communicate with our local Avalanche network bootstrapped by Avash, we need to provide Hardhat with appropriate network configuration. For that, add the following properties to module.exports block of hardhat.config.js:
 
@@ -110,14 +112,11 @@ networks: {
 ```
 
 * The network url we provided points to the url of the network launched by Avash.
-
 * The gas price of 225000000000 is the current gas price of the network - anything less than that, the transactions will fail stating that the transaction is underpriced.
-
 * 43112 is the id for the chain created by Avash in its local Avalanche network. This value is hardcoded in Avash.
-
 * The list of accounts we provided above are some randomly generated addresses on the network. When it comes to Avash, unlike mainnet and Fuji testnet, these developer addresses come loaded with lots AVAX and so we don't need to fund them from a faucet.
 
-# Adding and compiling a smart contract
+## Adding and compiling a smart contract
 
 Hardhat looks for contracts to compile within the `contracts` directory. So let's go ahead and create this directory:
 
@@ -172,7 +171,7 @@ Compiling 1 file with 0.7.3
 Compilation finished successfully
 ```
 
-# Using Hardhat console
+## Using Hardhat console
 
 For the rest of the tutorial, we're going to use the Hardhat console to deploy and interact with our smart contract. To successfully use the Hardhat console for our purposes, we need to install a couple of Hardhat plugins, namely [`hardhat-ethers`](https://www.npmjs.com/package/@nomiclabs/hardhat-ethers) and [`hardhat-waffle`](https://www.npmjs.com/package/@nomiclabs/hardhat-waffle). Install them using the following commands:
 
@@ -222,7 +221,7 @@ module.exports = {
 
 We're now ready to deploy our smart contract and interact with it!
 
-# Deploying smart contracts using Hardhat console
+## Deploying smart contracts using Hardhat console
 
 To deploy our smart contract and to interact with it, we're gonna be using an interactive JavaScript console provided by Hardhat, which is called Hardhat console. Hardhat console is geared more towards providing us with quick local development and testing environment than writing scripts to do the same.
 
@@ -232,7 +231,7 @@ Ensure that the local Avalanche network outlined in the `Setup a local Avalanche
 
 To fire up the Hardhat console, we use:
 
-```
+```text
 npx hardhat console
 ```
 
@@ -272,7 +271,7 @@ What you see below is a Javascript representation of the compiled smart contract
 
 Now we go on to deploy the Storage contract we just retrieved, using:
 
-```
+```text
 const storage = await Storage.deploy();
 ```
 
@@ -288,7 +287,7 @@ Before we start interacting with the smart contract, we wait for the contract to
 await storage.deployed();
 ```
 
-This returns a very big chunk of output, which is the internal representation of the smart contract in JavaScript (truncated for brevity):
+This returns a very big chunk of output, which is the internal representation of the smart contract in JavaScript \(truncated for brevity\):
 
 ```text
 ref *1> Contract {
@@ -317,7 +316,7 @@ ref *1> Contract {
 ...
 ```
 
-# Interacting with smart contracts using Hardhat console
+## Interacting with smart contracts using Hardhat console
 
 To store our favorite magical number into the blockchain, we call the store function of the deployed contract:
 
@@ -361,19 +360,17 @@ console.log(i.toNumber());
 
 You should now see 333 printed back to the console.
 
-# Conclusion
+## Conclusion
 
 In this tutorial, we've successfully created a Hardhat project. Within the Hardhat project, we managed to add a new smart contract, compile it using Hardhat, and finally deployed the contract and interacted with it using the Hardhat console.
 
 Congratulations on making it to the end of this tutorial!
 
-> “No great thing is created suddenly, any more than a bunch of grapes or a fig.
-> If you tell me that you desire a fig, I answer that there must be time. Let it
-> first blossom, then bear fruit, then ripen.”
+> “No great thing is created suddenly, any more than a bunch of grapes or a fig. If you tell me that you desire a fig, I answer that there must be time. Let it first blossom, then bear fruit, then ripen.”
 >
-> -- <cite>Epictetus</cite>
+> -- Epictetus
 
 So, keep learning and keep building and I'm sure you're on your way to building something great! Good luck!
 
-
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can join [**our community**](https://discord.gg/fszyM7K) today!
+
