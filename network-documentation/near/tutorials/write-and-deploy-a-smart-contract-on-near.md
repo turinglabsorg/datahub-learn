@@ -51,13 +51,13 @@ Why do we need to add the WASM target? To deploy our smart contract on NEAR, we 
 Now, let’s create a directory called `key_value_storage`, then change into that directory and run the following command in the terminal:
 
 ```bash
-cargo init
+cargo init --lib
 ```
 
 The output in the terminal will be:
 
 ```bash
-Created binary (application) package
+Created library package
 ```
 
 Open the default `Cargo.toml` file which was generated, remove the existing contents and paste the following:
@@ -86,8 +86,6 @@ panic = "abort"
 # Opt into extra safety checks on arithmetic operations https://stackoverflow.com/a/64136471/249801
 overflow-checks = true
 ```
-
-Finally, change the name `main.rs` to `lib.rs` as we are not making a binary application, thus our smart contract code will be a library.
 
 We are all set now! This can be used as a template and a starting point for any future project.
 
@@ -350,20 +348,41 @@ Once complete, you will now have your Access Key stored locally in a hidden dire
 * `~/.near-credentials` \(MAC / Linux\)
 * `C:\Users\YOUR_ACCOUNT\.near-credentials` \(Windows\)
 
+Next, giving a name to our contract sound like a great idea. To achieve it, we'll use `near-cli` to create a new account belonging to our master account. 
+
+```bash
+near create-account CONTRACT_NAME.ACCOUNT_ID --masterAcount ACCOUNT_ID --initialBalance 10
+```
+
+The output will be:
+
+```bash
+Saving key to '/home/xxx/.near-credentials/testnet/CONTRACT_NAME.ACCOUNT_ID.json'
+Account CONTRACT_NAME.ACCOUNT_ID.testnet for network "testnet" was created.
+```
+
+{% hint style="info" %}
+* For example, assuming your current *account_id* on near testnet is **fido.testnet** and you'd like to name the contract **dodo** then you'll end up creating the following new account_id **dodo.fido.testnet** which will stand for the *contract_id*. 
+* `--initialBalance` if omit default to **100 Near**.
+* Later on this tutorial, `CONTRACT_ID` will refer to `CONTRACT_NAME.ACCOUNT_ID`
+* More about near account [here](https://nomicon.io/DataStructures/Account.html)
+{% endhint %}
+
+
 Now we can deploy our Rust smart contract to NEAR. Run the following command in the terminal \(NOTE: replace `YOUR_ACCOUNT_HERE` with your account name, ex. `example.near`\):
 
 ```bash
-near deploy --wasmFile target/wasm32-unknown-unknown/release/key_value_storage.wasm --accountId YOUR_ACCOUNT_HERE
+near deploy --wasmFile target/wasm32-unknown-unknown/release/key_value_storage.wasm --accountId CONTRACT_ID
 ```
 
 After the deployment is completed, you will see similar output in the terminal:
 
 ```bash
-Starting deployment. Account id: 0xnik.testnet, node: https://rpc.testnet.near.org, helper: https://helper.testnet.near.org, file: target/wasm32-unknown-unknown/release/key_value_storage.wasm
+Starting deployment. Account id: CONTRACT_ID, node: https://rpc.testnet.near.org, helper: https://helper.testnet.near.org, file: target/wasm32-unknown-unknown/release/key_value_storage.wasm
 Transaction Id E4uT8wV5uXSgsJpB73Uox27iPgXztWfL3b5gzxfA3fHo
 To see the transaction in the transaction explorer, please open this url in your browser
 https://explorer.testnet.near.org/transactions/E4uT8wV5uXSgsJpB73Uox27iPgXztWfL3b5gzxfA3fHo
-Done deploying to 0xnik.testnet
+Done deploying to CONTRACT_ID
 ```
 
 🎉🎉 We have successfully deployed our first Rust smart contract.
@@ -377,15 +396,15 @@ We'll create a key-value pair and then read it.
 This command will create a key-value pair:
 
 ```bash
-near call YOUR_ACCOUNT_HERE create_update '{"k": "first_key", "v" : "1"}' --accountId YOUR_ACCOUNT_HERE
+near call CONTRACT_ID create_update '{"k": "first_key", "v" : "1"}' --accountId ACCOUNT_ID
 ```
 
 The output will be:
 
 ```bash
-Scheduling a call: 0xnik.testnet.create_update({"k": "first_key", "v" : "1"})
+Scheduling a call: CONTRACT_ID.create_update({"k": "first_key", "v" : "1"})
 Receipt: 6bCmuWuAbdiXWvPaTvidbJP4f3mSG4UVcE52g18ZWMq5
-        Log [0xnik.testnet]: created or updated
+        Log [CONTRACT_ID]: created or updated
 Transaction Id AQWwThAtXWhU7HJsuD5bvi2FXHpnw5xbj5SEe94Q3MTp
 To see the transaction in the transaction explorer, please open this URL in your browser
 https://explorer.testnet.near.org/transactions/AQWwThAtXWhU7HJsuD5bvi2FXHpnw5xbj5SEe94Q3MTp
@@ -397,33 +416,37 @@ Function arguments must be provided as a JSON string after name of the method.
 Now, we will read the value of the first key:
 
 ```bash
-near call YOUR_ACCOUNT_HERE read '{"k": "first_key"}' --accountId YOUR_ACCOUNT_HERE
+near view CONTRACT_ID read '{"k": "first_key"}' --accountId ACCOUNT_ID
 ```
 
 The output will be:
 
 ```bash
-Scheduling a call: 0xnik.testnet.read({"k": "first_key"})
-Receipt: 8GJSpWV4Xf1JUh6YfPrHyDDUMwSx4X9214sLemym6vxa
-        Log [0xnik.testnet]: read
-Transaction Id 2s6j2RPEppaA97nGtUtgQiw1x3qoSZQtwELSKbDFuwXo
-To see the transaction in the transaction explorer, please open this url in your browser
-https://explorer.testnet.near.org/transactions/2s6j2RPEppaA97nGtUtgQiw1x3qoSZQtwELSKbDFuwXo
+View call: CONTRACT_ID.read({"k": "first_key"})
+Log [CONTRACT_ID]: read
 '1'
 ```
+
+
+{% hint style="info" %}
+As the `read` method doesn't mutate the state of our contract, we should use `view` in place of `call`. Doing like so has the following advantages:
+- We do not have to pay any fees
+- Response to our query occurs almost immediatly
+{% endhint %}
+
 
 Lastly, we will delete the key:
 
 ```bash
-near call YOUR_ACCOUNT_HERE delete '{"k": "first_key"}' --accountId YOUR_ACCOUNT_HERE
+near call CONTRACT_ID delete '{"k": "first_key"}' --accountId ACCOUNT_ID
 ```
 
 The output will be:
 
 ```bash
-Scheduling a call: 0xnik.testnet.delete({"k": "first_key"})
+Scheduling a call: CONTRACT_ID.delete({"k": "first_key"})
 Receipt: wp8YoFZC7CKUNty66VoYuaHMVej7UqcbLcK2FjpMZzk
-        Log [0xnik.testnet]: delete
+        Log [CONTRACT_ID]: delete
 Transaction Id A4aDmpkfbEP8JwM5KspUiWe1zYnKgUnA5wosCiQBwour
 To see the transaction in the transaction explorer, please open this url in your browser
 https://explorer.testnet.near.org/transactions/A4aDmpkfbEP8JwM5KspUiWe1zYnKgUnA5wosCiQBwour
