@@ -18,9 +18,9 @@ For the smooth completion of this tutorial, we need the following software to be
 
 ## AvalancheGo Installation
 
-[AvalancheGo](https://github.com/ava-labs/avalanchego) is the official node implementation of the Avalanche network. Avash needs an executable of this node implementation present for its proper working. So, we need to install AvalancheGo before we try to run Avash.
+[AvalancheGo](https://github.com/ava-labs/avalanchego) is the official node implementation of the Avalanche network. Avash depends on an executable of this node implementation being present. So, we must install AvalancheGo before we attempt to run Avash.
 
-To begin with, we need to know the actual version of golang which has been installed on your system, with:
+To begin, look at the actual version of Golang which has been installed with the terminal command :
 
 ```bash
 go version
@@ -28,17 +28,26 @@ go version
 
 ### For go versions &lt; 1.16:
 
+If the version number reported by `go version` is _less_ than v1.16 :
+
+{% code title="Enter this command in a terminal" %}
 ```bash
 go get -v -d github.com/ava-labs/avalanchego/...
 ```
+{% endcode %}
 
-Since go 1.16, the module-aware mode is enabled by default, and this along with many other things, means that when we execute "go get ...", the project gets downloaded to $GOPATH/pkg/mod and the permissions on this directory are very tight that we won't be able to execute scripts/build.sh for building AvalancheGo and so we turn this mode off for our installation of AvalancheGo. I hope to resolve this incompatibility between versions in the future, but for now, we've to take care of this ourselves.
+Since go 1.16, the module-aware mode is enabled by default, and this along with many other things, means that when we execute `go get ...`, the project gets downloaded to `$GOPATH/pkg/mod` and the permissions on this directory are set such that we won't be able to execute `scripts/build.sh` for building AvalancheGo and so we must turn this mode off for our installation of AvalancheGo.  
+Hopefully this incompatibility between versions will be resolved in the future, but for now, we've got to take care of this ourselves.
 
 ### For go versions &gt;= 1.16:
 
+If the version number reported by `go version` is _greater than_ **or** _equal to_ v1.16 :
+
+{% code title="Enter this command in a terminal" %}
 ```bash
 GO111MODULE=off go get -v -d github.com/ava-labs/avalanchego/...
 ```
+{% endcode %}
 
 {% hint style="info" %}
 Make sure that the environment variable GOPATH is already set. Usually, it is located at ~/go.
@@ -46,10 +55,12 @@ Make sure that the environment variable GOPATH is already set. Usually, it is lo
 
 Now we change to the directory in which the project was downloaded and build it:
 
+{% code title="Enter these commands in a terminal" %}
 ```bash
 cd $GOPATH/src/github.com/ava-labs/avalanchego
 ./scripts/build.sh
 ```
+{% endcode %}
 
 {% hint style="info" %}
 If the build process fails, please make sure that the version of Golang installed on your machine is &gt; 1.15.5.
