@@ -14,7 +14,7 @@ Solana ensures composability between ecosystem projects by maintaining a single 
 
 Here are the advantages of the Solana network:
 
-1. **Code in your language:** Solana programs can be written in Rust, C or C++ and at the dApp layer you can use the Javascript or Rust SDKs \(written by Solana\) or any community-built ones \(Python, Java and C\#\). And you always have the option to use the JSON RPC API if their native language isn’t supported!
+1. **Code in your language:** Solana programs can be written in Rust, C or C++ and clients can use the Javascript or Rust SDKs \(written by Solana\) or the Python, Java or C\# \(written by the community\). And you always have the option to use the JSON RPC API if their native language isn’t supported!
 2. **Avoid long wait times for your users:** Blazing fast speeds and no mempool. 400ms blocktimes and sub-second finality. Web 3.0 with Web 2.0 speed.
 3. **Capital efficient as the ecosystem grows:** Solana scales thanks to Moore’s Law — there's no need to integrate with multiple shards or layer 2 solutions.
 4. **Enterprise-grade security:** Audited by a Fortune 500-preferred security firm. Iron-clad immutability for global scale.
