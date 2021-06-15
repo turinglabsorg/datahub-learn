@@ -14,5 +14,5 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 ## Solana Pathway
 
-{% page-ref page="intro-pathway-solana-basics/" %}
+{% page-ref page="solana-pathway/" %}
 
