@@ -168,5 +168,5 @@ Before we move to the next step we need to save two important variables
 
 ## Next
 
-So at this point, we've deployed our dummy smart contract to Solana's devnet cluster. We're finally ready for the big moment: interacting with the program by calling from the UI!
+So at this point, we've deployed our dummy smart contract to Solana's devnet cluster. We're finally ready for the big moment: Interacting with the program by calling its functionality from the UI!
 
