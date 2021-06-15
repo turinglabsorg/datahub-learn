@@ -348,7 +348,7 @@ Once complete, you will now have your Access Key stored locally in a hidden dire
 * `~/.near-credentials` \(MAC / Linux\)
 * `C:\Users\YOUR_ACCOUNT\.near-credentials` \(Windows\)
 
-Next, giving a name to our contract sound like a great idea. To achieve it, we'll use `near-cli` to create a new account belonging to our master account. 
+Next, giving a name to our contract sound like a great idea. To achieve it, we'll use `near-cli` to create a new account belonging to our master account.
 
 ```bash
 near create-account CONTRACT_NAME.ACCOUNT_ID --masterAcount ACCOUNT_ID --initialBalance 10
@@ -362,12 +362,11 @@ Account CONTRACT_NAME.ACCOUNT_ID.testnet for network "testnet" was created.
 ```
 
 {% hint style="info" %}
-* For example, assuming your current *account_id* on near testnet is **fido.testnet** and you'd like to name the contract **dodo** then you'll end up creating the following new account_id **dodo.fido.testnet** which will stand for the *contract_id*. 
+* For example, assuming your current _account\_id_ on near testnet is **fido.testnet** and you'd like to name the contract **dodo** then you'll end up creating the following new account\_id **dodo.fido.testnet** which will stand for the _contract\_id_. 
 * `--initialBalance` if omit default to **100 Near**.
 * Later on this tutorial, `CONTRACT_ID` will refer to `CONTRACT_NAME.ACCOUNT_ID`
 * More about near account [here](https://nomicon.io/DataStructures/Account.html)
 {% endhint %}
-
 
 Now we can deploy our Rust smart contract to NEAR. Run the following command in the terminal \(NOTE: replace `YOUR_ACCOUNT_HERE` with your account name, ex. `example.near`\):
 
@@ -427,13 +426,12 @@ Log [CONTRACT_ID]: read
 '1'
 ```
 
-
 {% hint style="info" %}
 As the `read` method doesn't mutate the state of our contract, we should use `view` in place of `call`. Doing like so has the following advantages:
-- We do not have to pay any fees
-- Response to our query occurs almost immediatly
-{% endhint %}
 
+* We do not have to pay any fees
+* Response to our query occurs almost immediatly
+{% endhint %}
 
 Lastly, we will delete the key:
 
