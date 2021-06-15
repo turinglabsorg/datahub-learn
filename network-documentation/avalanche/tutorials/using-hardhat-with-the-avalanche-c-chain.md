@@ -4,8 +4,6 @@ description: Learn how to use Hardhat with the Avalanche C-Chain
 
 # Using Hardhat with the Avalanche C-Chain
 
-## Using Hardhat with the Avalanche C-Chain
-
 ## Introduction
 
 [Hardhat](https://hardhat.org) is a suite of tools that together provides us with a development environment that assists developers to easily manage and automate common tasks around building smart contracts and dApps. Hardhat can be used to compile, deploy, test, and debug smart contracts. It is very similar to [Truffle](https://www.trufflesuite.com/) in this regard.
