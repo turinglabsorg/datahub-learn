@@ -283,7 +283,6 @@
     * [3. Fund the account with SOL](network-documentation/solana/intro-pathway-solana-basics/3.-fund-the-account-with-sol.md)
     * [4. Check the account balance](network-documentation/solana/intro-pathway-solana-basics/4.-check-the-account-balance.md)
     * [5. Transfer SOL tokens](network-documentation/solana/intro-pathway-solana-basics/5.-transfer-sol-tokens.md)
-  * [🗺 Solana Pathway](network-documentation/solana/solana-pathway.md)
   * [💡 Tutorials](network-documentation/solana/tutorials.md)
 * [🌍 Terra](network-documentation/terra/README.md)
   * [✏ Terra 101](network-documentation/terra/terra-101.md)

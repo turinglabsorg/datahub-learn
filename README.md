@@ -20,8 +20,6 @@ Learn Pathways are short curriculums that help developers understand which netwo
 
 **Ongoing Pathway: Solana \(NEW\)**
 
-{% page-ref page="network-documentation/solana/solana-pathway.md" %}
-
 **Ongoing Pathway: Tezos**
 
 {% page-ref page="network-documentation/tezos/tezos-pathway.md" %}

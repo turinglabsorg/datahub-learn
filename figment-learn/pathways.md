@@ -82,7 +82,5 @@ Solana is an open-source project implementing a new, high-performance, permissio
 
 **Get started with the Solana Pathway by visiting the page below.**
 
-{% page-ref page="../network-documentation/solana/solana-pathway.md" %}
-
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem!
 
