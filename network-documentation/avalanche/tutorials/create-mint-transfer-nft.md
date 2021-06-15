@@ -20,31 +20,31 @@ This enables many use cases that would be impossible with interchangeable tokens
 
 Go to [Avalanche Wallet](https://wallet.avax.network/) and click on create new wallet.
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/create-new-wallet.png)
+![](../../../.gitbook/assets/create-new-wallet.png)
 
 ### Generate Key Phrase
 
 Next, click the "Generate Key Phrase" button, which will display a list of 24 words that you will need to save in a secure location.
 This list of words is used to access your account, so do not share it with anyone!
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/generate-new-key.png)
+![](../../../.gitbook/assets/generate-new-key.png)
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/your-key-phrase.png)
+![](../../../.gitbook/assets/your-key-phrase.png)
 
 ### Verify And Access Wallet
 
 Once you have saved or written down the key words in a secure location, click the checkbox to enable the "Access Wallet" button. Clicking this button displays the Verify Mnemonic modal window. Complete the phrase to verify that you have the correct words.
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/verify-key-phrase.png)
+![](../../../.gitbook/assets/verify-key-phrase.png)
 
 Now, you can access your account. Click access and you will be directed to the account window.
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/access-wallet.png)
+![](../../../.gitbook/assets/access-wallet.png)
 
 In your avalanche wallet window, you will see-
 Balance, Assets, Wallet Address, Transaction & Transaction History (as shown in image).
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/avalanche-wallet.png)
+![](../../../.gitbook/assets/avalanche-wallet.png)
 
 On the left sidebar, you will have other options too, like
 Send, Earn, Cross-chain, Studio, Activity, Manage keys, Advanced (as showm in image).
@@ -67,11 +67,11 @@ Before minting, Go to the Studio tab as shown below- you will see a heading "Col
 * New family
 * Mint collectibles
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/avalanche-studio.PNG)
+![](../../../.gitbook/assets/avalanche-studio.PNG)
 
 Concerning the above image, go and click on Studio, where you have to create new family if you are a new user.
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/create-new-family-studio.png)
+![](../../../.gitbook/assets/create-new-family-studio.png)
 
 You can use the TxID to look up the transaction on the Avalanche block explorer. Besides the name and the ticker, you will need to enter a Number of Groups, which is how many distinct collectibles the newly created family will hold. Choose carefully, because once created the parameters of the collectible family cannot be changed.
 Besides the name and the ticker, you will need to enter **Number of Groups**, that is, how many distinct collectibles will the newly created family hold. Choose carefully, because once created, the parameters of the collectible family cannot be changed.
@@ -80,22 +80,22 @@ To create a new mint, provide a name, a code, and a number of groups. Note that 
 
 To give it a test, follow below steps:
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/change-network-to-fuji.png)
+![](../../../.gitbook/assets/change-network-to-fuji.png)
 
 Go to the AVAX faucet at https://faucet.avax-test.network/:
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/avax-faucet-testnet.PNG)
+![](../../../.gitbook/assets/avax-faucet-testnet.PNG)
 
 Paste the address of your wallet (which you can copy from the Avalanche wallet UI) into the textinput and pass the CAPTCHA to receive 2 AVAX tokens.
 
 Select the family we have just created. You will be presented with a form to fill out with the parameters of the new collectible:
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/mint-collectibles.png)
+![](../../../.gitbook/assets/mint-collectibles.png)
 
 Press **Back to Studio** to return, and we're ready to create our first collectibles. Press **Mint Collectible**.
 but if minting is not supported, then you need to create a new collectible family as shown below.
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/wallet-avax-network.png)
+![](../../../.gitbook/assets/wallet-avax-network.png)
 
 That is an NFT that has a Title, URL for the image, and a Description. Enter the required data, as well as the Quantity, which will determine how many copies of the collectible will be created. As before, enter the data carefully - you won't be able to change anything once collectibles are minted. You will see a preview of the data where you can check how your collectible will look.
 
@@ -111,11 +111,11 @@ After you enter and check the data, press **Mint** to create the collectible. Tr
 
 An overview of your collectibles is always visible at the top of the screen, along with your balances.
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/avalanche-balance.png)
+![](../../../.gitbook/assets/avalanche-balance.png)
 
 To see your collectibles in more detail, select **Portfolio** from the left-hand side menu. You will be presented with a screen showing all of your assets, with tokens selected by default. Change the selection to **Collectibles** by clicking the corresponding tab.
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/collectible-coin.png)
+![](../../../.gitbook/assets/collectible-coin.png)
 
 For each Generic collectible, a picture will be shown, along with the title, and the number indicating how many copies of the collectible are in your portfolio. Hovering over the collectible with your pointer will show the detailed description:
 
@@ -125,19 +125,19 @@ If you select a collectible by clicking on it, you will see which group it belon
 
 To send your collectible to someone, either click the **Send** button on the selected collectible in the Portfolio, or navigate to the **Send** tab on the left-hand side menu, and click **Add Collectible**:
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/send-nft-different-address.png)
+![](../../../.gitbook/assets/send-nft-different-address.png)
 
 You will be presented with a menu to select a collectible you wish to send.
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/pikachu-coin-wallet-address.png)
+![](../../../.gitbook/assets/pikachu-coin-wallet-address.png)
 
 You can send multiple collectibles in a single transaction. Clicking the label on the collectible will let you edit the number of copies you wish to send. You can send multiple families and collectible types in a single transaction.
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/send-nft-to-different-wallet.png)
+![](../../../.gitbook/assets/send-nft-to-different-wallet.png)
 
 When you have entered the destination address, and optionally entered the memo text, press **Confirm** to initiate the transaction.
 
-![](https://github.com/Devilla/datahub-learn/blob/master/.gitbook/assets/transaction-history.png)
+![](../../../.gitbook/assets/transaction-history.png)
 
 After pressing **Send Transaction** it will be published on the network, and the transaction fee will be deducted from your balance. Collectibles will be deposited into the destination address shortly after.
 
