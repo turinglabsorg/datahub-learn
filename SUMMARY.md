@@ -51,6 +51,7 @@
     * [Deploy a Smart Contract on Avalanche using Remix and MetaMask](network-documentation/avalanche/tutorials/deploy-a-smart-contract-on-avalanche-using-remix-and-metamask.md)
     * [Setting up a local Avalanche network using Avash](network-documentation/avalanche/tutorials/local-avalanche-network-using-avash.md)
     * [Using Truffle with the Avalanche C-Chain](network-documentation/avalanche/tutorials/using-truffle-with-the-avalanche-c-chain.md)
+    * [Using Hardhat with the Avalanche C-Chain](network-documentation/avalanche/tutorials/using-hardhat-with-the-avalanche-c-chain.md)
     * [Transfer AVAX between the X-Chain and P-Chain](network-documentation/avalanche/tutorials/transfer-avax-between-the-x-chain-and-p-chain.md)
     * [Transfer AVAX Between the X-Chain and C-Chain](network-documentation/avalanche/tutorials/transfer-avax-between-the-x-chain-and-c-chain.md)
     * [Creating A Fixed-Cap Asset](network-documentation/avalanche/tutorials/creating-a-fixed-cap-asset.md)
