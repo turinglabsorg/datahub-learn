@@ -119,5 +119,3 @@ Congratulations on completing the Solana Pathway! We hope you had a fun time and
 
 If you had any difficulty with this tutorial or simply want to discuss Solana with other developers, [join our community](https://community.figment.io) today, or [join us on Discord](https://discord.gg/EBveT5xs9D)!
 
-And don't forget to claim your SOL reward [at the bottom of this page](https://datahub.figment.io/services/solana).
-
