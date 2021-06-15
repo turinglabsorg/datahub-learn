@@ -30,11 +30,9 @@ go version
 
 If the version number reported by `go version` is _less_ than v1.16 :
 
-{% code title="Enter this command in a terminal" %}
 ```bash
 go get -v -d github.com/ava-labs/avalanchego/...
 ```
-{% endcode %}
 
 Since go 1.16, the module-aware mode is enabled by default, and this along with many other things, means that when we execute `go get ...`, the project gets downloaded to `$GOPATH/pkg/mod` and the permissions on this directory are set such that we won't be able to execute `scripts/build.sh` for building AvalancheGo and so we must turn this mode off for our installation of AvalancheGo.  
 Hopefully this incompatibility between versions will be resolved in the future, but for now, we've got to take care of this ourselves.
@@ -43,11 +41,9 @@ Hopefully this incompatibility between versions will be resolved in the future, 
 
 If the version number reported by `go version` is _greater than_ **or** _equal to_ v1.16 :
 
-{% code title="Enter this command in a terminal" %}
 ```bash
 GO111MODULE=off go get -v -d github.com/ava-labs/avalanchego/...
 ```
-{% endcode %}
 
 {% hint style="info" %}
 Make sure that the environment variable GOPATH is already set. Usually, it is located at ~/go.
@@ -55,18 +51,16 @@ Make sure that the environment variable GOPATH is already set. Usually, it is lo
 
 Now we change to the directory in which the project was downloaded and build it:
 
-{% code title="Enter these commands in a terminal" %}
 ```bash
 cd $GOPATH/src/github.com/ava-labs/avalanchego
 ./scripts/build.sh
 ```
-{% endcode %}
 
 {% hint style="info" %}
 If the build process fails, please make sure that the version of Golang installed on your machine is &gt; 1.15.5.
 {% endhint %}
 
-After the build process is complete, you can find the AvalancheGo binary, named avalanchego, inside the build directory.
+After the build process is complete, you can find the AvalancheGo binary, named `avalanchego`, inside the `build` directory.
 
 ## Avash Installation
 
@@ -76,7 +70,7 @@ Now we go onto install Avash. Unlike AvalancheGo, Avash needs the module-aware m
 go get github.com/ava-labs/avash
 ```
 
-If this command fails to execute with similar errors like below, that means we've to turn on the module-aware mode explicitly.
+If this command fails to execute with similar errors like below, that means we've got to turn on the module-aware mode explicitly.
 
 ```text
 cannot find package "github.com/decred/dcrd/dcrec/secp256k1/v3" in any of:
@@ -94,28 +88,17 @@ fatal: unable to access 'https://github.com/chzyer/readline/': gnutls_handshake(
 package github.com/chzyer/readline: exit status 128
 ```
 
-To continue, we use the same command as before but we pass in an extra environment variable to explicitly turn on module-aware mode:
+To continue, we use the same command as before but we pass in an extra environment variable to explicitly turn on module-aware mode :
 
 ```bash
 GO111MODULE=on go get github.com/ava-labs/avash
 ```
 
-Now we have the code for Avash downloaded onto our machines at this point. Again we have some differences in behavior based on golang versions being used.
-
-### For go versions &gt;= 1.16:
-
-In this case, the Avash code gets automatically built after being downloaded and you can find the binary available at $GOPATH/bin directory. To verify this, try:
-
-```bash
-cd $GOPATH/bin
-./avash
-```
-
-You must be greeted with the Avash console. Feel free to skip to the end of this section where the Avash console is shown.
+Now we have the source code for Avash downloaded onto our machines. Again, we have some differences in behaviour based which Golang version is being used.
 
 ### For go versions &lt; 1.16:
 
-However, for those who're using go versions &lt; 1.16, you have to manually build the Avash source:
+For those who're using go versions &lt; 1.16, you will have to manually build the Avash source:
 
 ```bash
 cd $GOPATH/src/github.com/ava-labs/avash
@@ -129,21 +112,32 @@ cd $GOPATH/bin
 ./avash
 ```
 
-You must be greeted with the Avash console:
+You will be greeted with the Avash console:
 
 ```text
 avash>
 ```
 
-And you've successfully installed and run Avash on your machine! To exit from Avash, type:
+Now you've successfully installed and run Avash on your machine! To exit from Avash, type `exit` into the console and press enter.
+
+### For go versions &gt;= 1.16:
+
+In this case, the Avash code gets automatically built after being downloaded and you can find the binary available at `$GOPATH/bin` directory. To verify this, try:
 
 ```bash
-exit
+cd $GOPATH/bin
+./avash
+```
+
+You will then be greeted with the Avash console:
+
+```text
+avash>
 ```
 
 ## Adding Lua scripts
 
-Now that we have a successful installation of Avash on our machine, we go ahead and add a Lua script that we'll use to fire up the Avalanche network.
+Now that we have a successful installation of Avash on our machine, we can add a Lua script that we'll use to start up a local Avalanche network.
 
 ### For go versions &lt; 1.16:
 
@@ -153,10 +147,10 @@ We need to add a configuration file and a Lua script to the `scripts` directory 
 cd $GOPATH/src/github.com/ava-labs/avash
 ```
 
-The configuration below will be used inside the Lua script to configure the nodes that we start up from within the script. The main difference in configuration between this node and the official five\_node\_staking.lua script is that for the nodes we fire up, we enable personal\_namespace in coreth which is currently disabled by default. This will be useful later on in other tutorials regarding smart-contracts using truffle, hardhat, waffle, etc.
+The configuration below will be used inside the Lua script when starting the nodes. The main difference in configuration between this node and the official `five_node_staking.lua` script is that for the nodes we run locally, we enable a personal namespace with "personal-api-enabled" in `coreth-config` which is normally disabled by default.   
+This will be useful later on in other tutorials regarding smart contracts using truffle, hardhat, waffle, etc.
 
-_**scripts/config/staking\_node\_config.json**_
-
+{% code title="scripts/config/staking\_node\_config.json" %}
 ```text
 {
   "db-enabled": false,
@@ -176,11 +170,11 @@ _**scripts/config/staking\_node\_config.json**_
   }
 }
 ```
+{% endcode %}
 
-Next comes our lua script itself:
+Next comes our Lua script itself:
 
-_**scripts/five\_node\_staking\_with\_config.lua**_
-
+{% code title="scripts/config/staking\_node\_config.json" %}
 ```javascript
 cmds = {
 "startnode node1 --config-file=scripts/config/staking_node_config.json --http-port=9650 --staking-port=9651 --bootstrap-ips= --staking-tls-cert-file=certs/keys1/staker.crt --staking-tls-key-file=certs/keys1/staker.key",
@@ -194,20 +188,20 @@ for key, cmd in ipairs(cmds) do
 avash_call(cmd)
 end
 ```
+{% endcode %}
 
 ### For go versions &gt;= 1.16:
 
-We need to add a configuration file and a Lua script to the `avash_scripts` directory inside of the home directory of the current user.
+For more recent versions of Golang, the workflow is slightly different. We need to add a configuration file and a Lua script to the `avash_scripts` directory inside of the home directory of the current user.
 
 ```text
 mkdir ~/avash_scripts
 cd ~/avash_scripts
 ```
 
-The configuration below will be used inside the Lua script to configure the nodes that we start up from within the script. The main difference in configuration between this node and the official five\_node\_staking.lua script is that for the nodes we fire up, we enable personal\_namespace in coreth which is currently disabled by default. This will be useful later on in other tutorials regarding smart-contracts using truffle, hardhat, waffle, etc.
+The configuration below will be used inside the Lua script when starting the nodes. The main difference in configuration between this node and the official `five_node_staking.lua` script is that for the nodes we run locally, we enable a personal namespace with "personal-api-enabled" in `coreth-config` which is normally disabled by default. 
 
-_**config/staking\_node\_config.json**_
-
+{% code title="config/staking\_node\_config.json" %}
 ```text
 {
   "db-enabled": false,
@@ -227,15 +221,16 @@ _**config/staking\_node\_config.json**_
   }
 }
 ```
+{% endcode %}
 
 Next comes our lua script itself:
 
-_**five\_node\_staking\_with\_config.lua**_
-
-{% hint style="info" %}
-You have to replace all occurrences of **avash@v1.1.4** in the configuration file below with the actual version of Avash that is installed on your machine - **avash@v{your\_version}**. Search and Replace functionality \(Ctrl+H in most programs\) is a good choice for this task.
+{% hint style="warning" %}
+You have to replace all occurrences of **avash@v1.1.4** in the file below with the actual version of Avash that is installed on your machine - **avash@v{your\_version}**. It occurs twice on each line, in the paths for `--staking-tls-cert-file` and `--staking-tls-key-file`   
+Search and Replace functionality is a good choice for this task \(Ctrl+F or ⌘-F in most text editors\).
 {% endhint %}
 
+{% code title="five\_node\_staking\_with\_config.lua" %}
 ```javascript
 cmds = {
 "startnode node1 --config-file=../../avash_scripts/config/staking_node_config.json --http-port=9650 --staking-port=9651 --bootstrap-ips= --staking-tls-cert-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys1/staker.crt --staking-tls-key-file=../pkg/mod/github.com/ava-labs/avash@v1.1.4/certs/keys1/staker.key",
@@ -249,10 +244,11 @@ for key, cmd in ipairs(cmds) do
 avash_call(cmd)
 end
 ```
+{% endcode %}
 
 ## Setup a local Avalanche network using Avash
 
-In the last section, we've added the Lua script in the appropriate location, which we could now use to fire up from within Avash.
+In the last section, we've added the Lua script in the appropriate location, which we can now use to fire up the nodes from the Avash console.
 
 ### For go versions &lt; 1.16:
 
@@ -269,13 +265,13 @@ You must be looking at the Avash prompt as shown below:
 avash>
 ```
 
-Now you need to run the script we created in the last section which will start a local five-node staking network on your machine.
+Now you need to run the script we created in the previous section, which will start a local five-node network on your machine.
 
 ```text
 runscript scripts/five_node_staking_with_config.lua
 ```
 
-The nodes must have now started successfully, and the console should look similar to what you see below:
+The nodes will start up successfully, and the console will display the output:
 
 ```text
 avash> runscript scripts/five_node_staking_with_config.lua
@@ -304,7 +300,7 @@ Now you need to run the script we created in the last section which will start a
 runscript ../../avash_scripts/five_node_staking_with_config.lua
 ```
 
-The nodes must have now started successfully, and the console should look similar to what you see below:
+The nodes will start up successfully, and the console will display the output:
 
 ```text
 avash> runscript ../../avash_scripts/five_node_staking_with_config.lua
@@ -316,6 +312,11 @@ RunScript: Successfully ran ../../avash_scripts/five_node_staking_with_config.lu
 
 To interact with the running Avalanche network, open up a new terminal and type in the following command:
 
+{% hint style="warning" %}
+Pasting this into a Windows terminal will cause an error because Windows does not use the backslash as a multiline separator.  
+Replace the `\` slashes with carets `^` if you plan on pasting this into a Windows terminal \(PowerShell or cmd.exe\).
+{% endhint %}
+
 ```bash
 curl --location --request POST 'http://localhost:9650/ext/info' \
 --header 'Content-Type: application/json' \
@@ -324,21 +325,15 @@ curl --location --request POST 'http://localhost:9650/ext/info' \
 
 This should return a response similar to what you can see below:
 
-{% hint style="info" %}
-Remember, do not close the Avash terminal window until you are done working with the local nodes. When the terminal is closed, the local Avalanche network gets destroyed along with it.
-{% endhint %}
-
 ```text
 {"jsonrpc":"2.0","result":{"blockchainID":"2eNy1mUFdmaxXNj1eQHUe7Np4gju9sJsEtWQ4MX3ToiNKuADed"},"id":1}
 ```
 
-When you're all done experimenting with the local Avalanche network we just fired up, to exit from Avash, type the following command in the Avash prompt:
+{% hint style="info" %}
+Remember, do not close the Avash terminal window until you are done working with the local nodes. When the terminal is closed, the local Avalanche network gets destroyed along with it.
+{% endhint %}
 
-```bash
-exit
-```
-
-This closes the Avash terminal and with it, all the nodes started during its lifetime, essentially destroying the temporary local Avalanche network we fired up using the Lua script.
+When you're all done experimenting with the local Avalanche network, type `exit` into the Avash console and press enter. This closes the Avash terminal and with it, all the nodes started during its lifetime, essentially destroying the temporary local Avalanche network we created using the Lua script.
 
 ## Conclusion
 
@@ -356,6 +351,6 @@ If you had any difficulties following this tutorial or simply want to discuss Av
 
 ## References
 
-* [Avalanchego Readme](https://github.com/ava-labs/avalanchego/blob/master/README.md)
+* [AvalancheGo Readme](https://github.com/ava-labs/avalanchego/blob/master/README.md)
 * [Avash Documentation](https://docs.avax.network/build/tools/avash)
 
