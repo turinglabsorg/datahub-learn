@@ -22,11 +22,9 @@ DataHub is Figment's node RPC service. We will route requests from our client to
 
 [**Create an account on DataHub**](https://datahub.figment.io/sign_up?service=solana) ****and select Solana in the list of networks. As you complete steps here,  click on "Start" and "Verify" on the tutorials at the bottom of the page.
 
-![](../../../.gitbook/assets/sol1.png)
+![](../../../.gitbook/assets/screen-shot-2021-06-15-at-11.51.37-am.png)
 
-Verify each tutorial as you complete them and make sure to click on "Submit to earn" when you are done with the five tutorials to access the completion form. 
-
-![](../../../.gitbook/assets/sol2.png)
+Once you've completed all tutorials and click "Submit to earn" to access the completion form. 
 
 ## Let's get started!
 

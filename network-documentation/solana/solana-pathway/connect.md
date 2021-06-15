@@ -45,10 +45,14 @@ const getConnection = () => {
 ```javascript
 const getConnection = () => {
   const url = getNodeRpcURL();
+  
+  // Create a connection
   const connection = new Connection(url);
-    
+  
+  // Get the API version
   connection.getVersion()
     .then(version => {
+      // and save it to the component's state  
       setVersion(version);
     })
     .catch(error => console.log(error))

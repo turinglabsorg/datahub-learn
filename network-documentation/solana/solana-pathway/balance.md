@@ -69,9 +69,9 @@ const getBalance = () => {
 In `src/components/Balance.jsx`, implement `getBalance` and store the balance in the state of the parent component `<App />` .
 {% endhint %}
 
-* We created a `PublicKey` from the input's value
-* We called `setBalance` with that address
-* On success, we set `balance` to that value, after using the `DECIMAL_OFFSET`
+* We create a `PublicKey` using the the input's value
+* We call `connection.getBalance` with that address
+* On success, we set `balance` \(using the react hook `setBalance`\) to that value, after using the `DECIMAL_OFFSET`
 
 Enter the address you just funded and click on "Check Balance". You should see:
 
