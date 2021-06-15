@@ -11,9 +11,12 @@ In `src/components/Call.jsx,`finish implementing the `greet()` function.
 
 **Need some help?** Here are a few hints
 
-    →  Read about [sendAndConfirmTransaction\(\)](https://solana-labs.github.io/solana-web3.js/modules.html#sendandconfirmtransaction)  
-    →  Read about [adding instructions to Transaction](https://solana-labs.github.io/solana-web3.js/classes/transaction.html#add)
+  →   [Read about extracting secret key from a bytes' array](https://solana-labs.github.io/solana-web3.js/classes/keypair.html#fromsecretkey)  
+  →   [Read about building transaction instruction](https://solana-labs.github.io/solana-web3.js/classes/transactioninstruction.html)  
+  →   [Read about sendAndConfirmTransaction](https://solana-labs.github.io/solana-web3.js/modules.html#sendandconfirmtransaction)
 {% endhint %}
+
+
 
 Take a few minutes to figure this out.
 
