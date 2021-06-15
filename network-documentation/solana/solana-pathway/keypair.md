@@ -5,9 +5,9 @@
 Like with most Web 3 protocols, transactions on Solana happen between _accounts_.  To create an account a client generates a _keypair_, which has a _publicKey_ \(or _address_, used to identify and lookup an account\) and a _secretKey_ used to sign transactions.
 
 {% hint style="warning" %}
-**`Account`is deprecated in the `@solana/web3.js` package** so you should use `Keypair` going forward. You might find some tutorials using ollder version of the package and the `Account` class but most of the times you can replace it with `Keypair`.
+**`Account`is deprecated in the `@solana/web3.js` package** so you should use `Keypair` going forward. You might find some tutorials using older version of the package and the `Account` class but most of the times you can replace it with `Keypair`.
 
-That being said, it's still ok to refer to a _keypair_ as an _account_ and we'll be doing this in this tutorial
+That being said, it's still OK to refer to a _keypair_ as an _account_ and we'll be doing this in this tutorial.
 {% endhint %}
 
 ## The challenge
