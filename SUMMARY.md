@@ -285,7 +285,6 @@
     * [5. Transfer SOL tokens](network-documentation/solana/solana-pathway/transfer.md)
     * [6. Deploy a program](network-documentation/solana/solana-pathway/deploy.md)
     * [7. Call a program](network-documentation/solana/solana-pathway/call.md)
-  * [💡 Tutorials](network-documentation/solana/tutorials.md)
 * [🌍 Terra](network-documentation/terra/README.md)
   * [✏ Terra 101](network-documentation/terra/terra-101.md)
   * [👀 Resources](network-documentation/terra/resources.md)

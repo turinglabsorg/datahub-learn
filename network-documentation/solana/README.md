@@ -24,5 +24,3 @@ Be sure to check out the[ **official Solana documentation**](https://docs.solana
 
 {% page-ref page="rpc-and-rest-api/" %}
 
-{% page-ref page="tutorials.md" %}
-
