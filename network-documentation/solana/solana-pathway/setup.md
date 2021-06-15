@@ -4,7 +4,7 @@ Start by cloning the repository and install the npm dependencies
 
 ```text
 git clone https://github.com/figment-networks/learn-solana-dapp.git
-cd create-solana-dapp
+cd learn-solana-dapp
 yarn
 ```
 
