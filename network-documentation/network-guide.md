@@ -78,7 +78,7 @@ Secret Network is the first blockchain with privacy-preserving smart contracts. 
 
 {% page-ref page="secret/" %}
 
-## ![](../.gitbook/assets/solana-sol-logo-1-.png) Solana
+## ![](../.gitbook/assets/solana%20%281%29.png) Solana
 
 Solana is an open-source project implementing a new, high-performance, permissionless blockchain. It provides a platform that enables developers to create DApps without needing to design around performance bottlenecks.
 
