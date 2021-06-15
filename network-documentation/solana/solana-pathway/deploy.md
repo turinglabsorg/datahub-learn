@@ -141,7 +141,7 @@ The first time you run this, the CLI should error out because the account trying
 
 ![](../../../.gitbook/assets/screen-shot-2021-06-14-at-8.20.30-pm.png)
 
-### custom program error 0x1
+### Custom program error 0x1
 
 If you see
 
