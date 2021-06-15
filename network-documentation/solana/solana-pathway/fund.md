@@ -77,7 +77,8 @@ const fund = () => {
 * We passed it to `requestAirdrop` together with the amount of lamports we want to fund.
 * On success we set `isFunded` to true
 
-Once you have the code above saved, paste the address you generated in the previous step \(you can always go back using the "Previous Step" button\) and paste it in the text input. Then click on "Fund this Address" and you should see:
+Once you have the code above saved, paste the address you generated in the previous step \(you can always go back using the "Previous Step" button\) and paste it in the text input.   
+Then click on "Fund this Address" and you should see:
 
 ![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.49.25-pm.png)
 

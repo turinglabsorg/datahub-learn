@@ -74,7 +74,7 @@ Once you have the code above saved, the webpage should automatically reload \(Re
 
 ![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.48.29-pm.png)
 
-Try and click on "Generate a Keypair" again. And again. And again! Every time it will generate a new one with virtually no risk that someone else creates the same as you. That's cause the domain of possible addresses is so vast that the probability of two identical addresses being generated is ridiculously small.
+Try and click on "Generate a Keypair" again. And again. And again! Every time it will generate a new one with virtually no risk that someone else creates the same one as you. That's cause the domain of possible addresses is so vast that the probability of two identical addresses being generated is ridiculously small.
 
 Copy and paste the address that was generated \(using the icon to the right of it\).
 

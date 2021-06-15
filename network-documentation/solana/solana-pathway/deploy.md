@@ -29,7 +29,7 @@ There is a `program` folder at the app's root. It contains the Rust program `src
 
 **It's a "dummy" program: all it does is increment a number every time it's called.**
 
-Let’s disect what each part does.
+Let’s dissect what each part does.
 
 ```rust
 use byteorder::{ByteOrder, LittleEndian};
