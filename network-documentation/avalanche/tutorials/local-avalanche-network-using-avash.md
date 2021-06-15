@@ -1,23 +1,24 @@
 ---
 description: Learn how to setup a local Avalanche network using Avash
 ---
-# Setting up a local Avalanche network using Avash
 
+# Setting up a local avalanche network using Avash
 
-# Introduction
+## Setting up a local Avalanche network using Avash
+
+## Introduction
 
 [Avash](https://github.com/ava-labs/avash) is a temporary stateful shell client which could be used for various purposes like deploying local Avalanche networks, managing their processes, and for running network tests. But, once we exit from Avash, all these get wiped off. This provides us with the opportunity to play around and experiment with the Avalanche networks on our local system without really connecting to real networks on the internet. Avash also provides us with the ability to write scripts using Lua which enables us to automate the creation of such networks and their configuration. In this tutorial, we're going to install a copy of Avash on our machine and create a Lua script that could be used to fire up a 5 node staking network.
 
 [Lua](http://www.lua.org/) is highly portable scripting language which could be easily embedded into other applications especially because of it's fast language engine with small footprint. Lua is being used as the scripting language within Avash.
 
-# Requirements
+## Requirements
 
 For the smooth completion of this tutorial, we need the following software to be already present on your system:
 
 * [Golang](https://golang.org/) \(1.15.5+\)
 
-
-# AvalancheGo Installation
+## AvalancheGo Installation
 
 [AvalancheGo](https://github.com/ava-labs/avalanchego) is the official node implementation of the Avalanche network. Avash needs an executable of this node implementation present for its proper working. So, we need to install AvalancheGo before we try to run Avash.
 
@@ -27,7 +28,7 @@ To begin with, we need to know the actual version of golang which has been insta
 go version
 ```
 
-#### For go versions < 1.16:
+### For go versions &lt; 1.16:
 
 ```bash
 go get -v -d github.com/ava-labs/avalanchego/...
@@ -35,7 +36,7 @@ go get -v -d github.com/ava-labs/avalanchego/...
 
 Since go 1.16, the module-aware mode is enabled by default, and this along with many other things, means that when we execute "go get ...", the project gets downloaded to $GOPATH/pkg/mod and the permissions on this directory are very tight that we won't be able to execute scripts/build.sh for building AvalancheGo and so we turn this mode off for our installation of AvalancheGo. I hope to resolve this incompatibility between versions in the future, but for now, we've to take care of this ourselves.
 
-#### For go versions >= 1.16:
+### For go versions &gt;= 1.16:
 
 ```bash
 GO111MODULE=off go get -v -d github.com/ava-labs/avalanchego/...
@@ -53,12 +54,12 @@ cd $GOPATH/src/github.com/ava-labs/avalanchego
 ```
 
 {% hint style="info" %}
-If the build process fails, please make sure that the version of Golang installed on your machine is > 1.15.5.
+If the build process fails, please make sure that the version of Golang installed on your machine is &gt; 1.15.5.
 {% endhint %}
 
 After the build process is complete, you can find the AvalancheGo binary, named avalanchego, inside the build directory.
 
-# Avash Installation
+## Avash Installation
 
 Now we go onto install Avash. Unlike AvalancheGo, Avash needs the module-aware mode enabled for it to be successfully installed.
 
@@ -92,7 +93,7 @@ GO111MODULE=on go get github.com/ava-labs/avash
 
 Now we have the code for Avash downloaded onto our machines at this point. Again we have some differences in behavior based on golang versions being used.
 
-#### For go versions >= 1.16:
+### For go versions &gt;= 1.16:
 
 In this case, the Avash code gets automatically built after being downloaded and you can find the binary available at $GOPATH/bin directory. To verify this, try:
 
@@ -103,9 +104,9 @@ cd $GOPATH/bin
 
 You must be greeted with the Avash console. Feel free to skip to the end of this section where the Avash console is shown.
 
-#### For go versions < 1.16:
+### For go versions &lt; 1.16:
 
-However, for those who're using go versions < 1.16, you have to manually build the Avash source:
+However, for those who're using go versions &lt; 1.16, you have to manually build the Avash source:
 
 ```bash
 cd $GOPATH/src/github.com/ava-labs/avash
@@ -121,7 +122,7 @@ cd $GOPATH/bin
 
 You must be greeted with the Avash console:
 
-```console
+```text
 avash>
 ```
 
@@ -131,24 +132,23 @@ And you've successfully installed and run Avash on your machine! To exit from Av
 exit
 ```
 
-
-# Adding Lua scripts
+## Adding Lua scripts
 
 Now that we have a successful installation of Avash on our machine, we go ahead and add a Lua script that we'll use to fire up the Avalanche network.
 
-#### For go versions < 1.16:
+### For go versions &lt; 1.16:
 
 We need to add a configuration file and a Lua script to the `scripts` directory inside the Avash installation.
 
-```
+```text
 cd $GOPATH/src/github.com/ava-labs/avash
 ```
 
-The configuration below will be used inside the Lua script to configure the nodes that we start up from within the script. The main difference in configuration between this node and the official five\_node\_staking.lua script is that for the nodes we fire up, we enable personal_namespace in coreth which is currently disabled by default. This will be useful later on in other tutorials regarding smart-contracts using truffle, hardhat, waffle, etc.
+The configuration below will be used inside the Lua script to configure the nodes that we start up from within the script. The main difference in configuration between this node and the official five\_node\_staking.lua script is that for the nodes we fire up, we enable personal\_namespace in coreth which is currently disabled by default. This will be useful later on in other tutorials regarding smart-contracts using truffle, hardhat, waffle, etc.
 
-***scripts/config/staking\_node\_config.json***
+_**scripts/config/staking\_node\_config.json**_
 
-```
+```text
 {
   "db-enabled": false,
   "staking-enabled": true,
@@ -170,7 +170,7 @@ The configuration below will be used inside the Lua script to configure the node
 
 Next comes our lua script itself:
 
-***scripts/five\_node\_staking\_with\_config.lua***
+_**scripts/five\_node\_staking\_with\_config.lua**_
 
 ```javascript
 cmds = {
@@ -186,20 +186,20 @@ avash_call(cmd)
 end
 ```
 
-#### For go versions >= 1.16:
+### For go versions &gt;= 1.16:
 
 We need to add a configuration file and a Lua script to the `avash_scripts` directory inside of the home directory of the current user.
 
-```
+```text
 mkdir ~/avash_scripts
 cd ~/avash_scripts
 ```
 
-The configuration below will be used inside the Lua script to configure the nodes that we start up from within the script. The main difference in configuration between this node and the official five\_node\_staking.lua script is that for the nodes we fire up, we enable personal_namespace in coreth which is currently disabled by default. This will be useful later on in other tutorials regarding smart-contracts using truffle, hardhat, waffle, etc.
+The configuration below will be used inside the Lua script to configure the nodes that we start up from within the script. The main difference in configuration between this node and the official five\_node\_staking.lua script is that for the nodes we fire up, we enable personal\_namespace in coreth which is currently disabled by default. This will be useful later on in other tutorials regarding smart-contracts using truffle, hardhat, waffle, etc.
 
-***config/staking\_node\_config.json***
+_**config/staking\_node\_config.json**_
 
-```
+```text
 {
   "db-enabled": false,
   "staking-enabled": true,
@@ -221,10 +221,10 @@ The configuration below will be used inside the Lua script to configure the node
 
 Next comes our lua script itself:
 
-***five\_node\_staking\_with\_config.lua***
+_**five\_node\_staking\_with\_config.lua**_
 
 {% hint style="info" %}
-You have to replace all occurrences of **avash@v1.1.4** in the configuration file below with the actual version of Avash that is installed on your machine - **avash@v{your_version}**. Search and Replace functionality (Ctrl+H in most programs) is a good choice for this task.
+You have to replace all occurrences of **avash@v1.1.4** in the configuration file below with the actual version of Avash that is installed on your machine - **avash@v{your\_version}**. Search and Replace functionality \(Ctrl+H in most programs\) is a good choice for this task.
 {% endhint %}
 
 ```javascript
@@ -241,69 +241,69 @@ avash_call(cmd)
 end
 ```
 
-# Setup a local Avalanche network using Avash
+## Setup a local Avalanche network using Avash
 
 In the last section, we've added the Lua script in the appropriate location, which we could now use to fire up from within Avash.
 
-#### For go versions < 1.16:
+### For go versions &lt; 1.16:
 
 To start a local five node Avalanche network, follow these steps:
 
-```console
+```text
 cd $GOPATH/src/github.com/ava-labs/avash
 $ ./avash
 ```
 
 You must be looking at the Avash prompt as shown below:
 
-```console
+```text
 avash>
 ```
 
 Now you need to run the script we created in the last section which will start a local five-node staking network on your machine.
 
-```console
+```text
 runscript scripts/five_node_staking_with_config.lua
 ```
 
 The nodes must have now started successfully, and the console should look similar to what you see below:
 
-```console
+```text
 avash> runscript scripts/five_node_staking_with_config.lua
 RunScript: Running scripts/five_node_staking_with_config.lua
 RunScript: Successfully ran scripts/five_node_staking_with_config.lua
 ```
 
-#### For go versions >= 1.16:
+### For go versions &gt;= 1.16:
 
-To start a local five-node  Avalanche network, follow these steps:
+To start a local five-node Avalanche network, follow these steps:
 
-```console
+```text
 cd $GOPATH/bin
 ./avash
 ```
 
 You must be looking at the Avash prompt as shown below:
 
-```console
+```text
 avash>
 ```
 
 Now you need to run the script we created in the last section which will start a local five-node staking network on your machine.
 
-```console
+```text
 runscript ../../avash_scripts/five_node_staking_with_config.lua
 ```
 
 The nodes must have now started successfully, and the console should look similar to what you see below:
 
-```console
+```text
 avash> runscript ../../avash_scripts/five_node_staking_with_config.lua
 RunScript: Running ../../avash_scripts/five_node_staking_with_config.lua
 RunScript: Successfully ran ../../avash_scripts/five_node_staking_with_config.lua
 ```
 
-# Interacting with the local Avalanche network
+## Interacting with the local Avalanche network
 
 To interact with the running Avalanche network, open up a new terminal and type in the following command:
 
@@ -331,24 +331,22 @@ exit
 
 This closes the Avash terminal and with it, all the nodes started during its lifetime, essentially destroying the temporary local Avalanche network we fired up using the Lua script.
 
-# Conclusion
+## Conclusion
 
 In this tutorial, we've successfully managed to install Avash, create a Lua script that fires up a five-node staking network on your machine, and fire it up and interact with the network from the terminal.
 
 Congratulations on making it to the end of this tutorial!
 
-> “No great thing is created suddenly, any more than a bunch of grapes or a fig.
-> If you tell me that you desire a fig, I answer that there must be time. Let it
-> first blossom, then bear fruit, then ripen.”
+> “No great thing is created suddenly, any more than a bunch of grapes or a fig. If you tell me that you desire a fig, I answer that there must be time. Let it first blossom, then bear fruit, then ripen.”
 >
-> -- <cite>Epictetus</cite>
+> -- Epictetus
 
 So, keep learning and keep building and I'm sure you're on your way to building something great! Good luck!
 
-
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can join [**our community**](https://discord.gg/fszyM7K) today!
 
-# References
+## References
 
 * [Avalanchego Readme](https://github.com/ava-labs/avalanchego/blob/master/README.md)
 * [Avash Documentation](https://docs.avax.network/build/tools/avash)
+

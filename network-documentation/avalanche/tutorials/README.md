@@ -88,3 +88,9 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="erc20-token-transfer-to-eth-address.md" %}
 
+## Setting up a local Avalanche network using Avash
+
+{% page-ref page="local-avalanche-network-using-avash.md" %}
+
+
+
