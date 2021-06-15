@@ -188,7 +188,7 @@ end
 
 #### For go versions >= 1.16:
 
-We need to add a configuration file and a Lua script to the avash_scripts directory inside the the home directory of the current user.
+We need to add a configuration file and a Lua script to the `avash_scripts` directory inside of the home directory of the current user.
 
 ```
 mkdir ~/avash_scripts
@@ -224,7 +224,7 @@ Next comes our lua script itself:
 ***five\_node\_staking\_with\_config.lua***
 
 {% hint style="info" %}
-You have to explore and find out the actual version of Avash that was installed on your machine and replace all occurrences of **avash@v1.1.4** with **avash@v{your_version}** in the configuration file below.
+You have to replace all occurrences of **avash@v1.1.4** in the configuration file below with the actual version of Avash that is installed on your machine - **avash@v{your_version}**. Search and Replace functionality (Ctrl+H in most programs) is a good choice for this task.
 {% endhint %}
 
 ```javascript
@@ -316,7 +316,7 @@ curl --location --request POST 'http://localhost:9650/ext/info' \
 This should return a response similar to what you can see below:
 
 {% hint style="info" %}
-Make sure that you haven't closed the Avash terminal because when it's closed the network gets destroyed along with it.
+Remember, do not close the Avash terminal window until you are done working with the local nodes. When the terminal is closed, the local Avalanche network gets destroyed along with it.
 {% endhint %}
 
 ```text
