@@ -11,7 +11,7 @@ So far we've been using Solana's JS API to interact with the blockchain. In this
 * Install the latest Rust stable from [https://rustup.rs/](https://rustup.rs/)
 * Install Solana v1.6.6 or later from [https://docs.solana.com/cli/install-solana-cli-tools](https://docs.solana.com/cli/install-solana-cli-tools)
 
-Set the CLI config url to the devnet cluster by running this command in your Terminal:
+Set the CLI config URL to the devnet cluster by running this command in your Terminal:
 
 ```text
 solana config set --url devnet
