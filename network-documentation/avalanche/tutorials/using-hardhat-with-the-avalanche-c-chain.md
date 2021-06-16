@@ -16,7 +16,7 @@ In this tutorial, we will learn how to use Hardhat with the Avalanche C-Chain. T
 
 Please make sure that you have completed the tutorials:
 
-* [Avash Installation](https://learn.figment.io/network-documentation/avalanche/tutorials/local-avalanche-network-using-avash.md)
+* [Avash Installation](https://learn.figment.io/network-documentation/avalanche/tutorials/local-avalanche-network-using-avash)
 
 ## Requirements
 
