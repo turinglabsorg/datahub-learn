@@ -78,9 +78,11 @@ Tezos is an open-source platform for assets and applications that can evolve by 
 
 ## ![](../.gitbook/assets/solana.png) Solana Pathway
 
-Solana is an open-source project implementing a new, high-performance, permissionless blockchain. From [Messari's Solana profile](https://messari.io/asset/solana/profile), its goal is to provide a platform that enables developers to create DApps without needing to design around performance bottlenecks. Learn what makes it unique and build your first project to **earn $20 in SOL**!
+Solana is an open-source project implementing a new, high-performance, permissionless blockchain. From [Messari's Solana profile](https://messari.io/asset/solana/profile), its goal is to provide a platform that enables developers to create DApps without needing to design around performance bottlenecks.
 
 **Get started with the Solana Pathway by visiting the page below.**
+
+{% page-ref page="../network-documentation/solana/solana-pathway/" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem!
 

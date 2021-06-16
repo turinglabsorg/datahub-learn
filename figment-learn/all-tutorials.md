@@ -68,6 +68,8 @@ Secret Network is the first blockchain with privacy-preserving smart contracts. 
 
 Solana is an open-source project implementing a new, high-performance, permissionless blockchain.
 
+{% page-ref page="../network-documentation/solana/solana-101.md" %}
+
 **Get Started with** [**Secret DataHub today!** ](https://datahub.figment.io/sign_up?service=solana)\*\*\*\*
 
 ## ![](../.gitbook/assets/rsz_terra-logo.jpg) Terra Tutorials 
