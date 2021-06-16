@@ -70,7 +70,7 @@ Solana is an open-source project implementing a new, high-performance, permissio
 
 {% page-ref page="../network-documentation/solana/solana-101.md" %}
 
-**Get Started with** [**Secret DataHub today!** ](https://datahub.figment.io/sign_up?service=solana)\*\*\*\*
+**Get Started with** [**Solana DataHub today!** ](https://datahub.figment.io/sign_up?service=solana)\*\*\*\*
 
 ## ![](../.gitbook/assets/rsz_terra-logo.jpg) Terra Tutorials 
 
