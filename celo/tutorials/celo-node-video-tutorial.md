@@ -35,19 +35,13 @@ Watch the videos and follow along with the writen tutorial.
 * Now the Virtual Machine is ready 
  
 ##   Gain sudo on the VM
-#### (Code is entered into the VM terminal)
-
-   The term "sudo" stands for super user. Once in the sudo group you have root access to the VM.   
-    
- ``` sudo -s ```
+   #### The term "sudo" stands for super user. Once in the sudo group you have root access to the VM. 
+   
+ #### (Code is entered into the VM terminal)
  
  ``` su -  ``` 
     
    - Root password
-    
- ``` cat /etc/passwd ```
- 
- ``` cat /etc/group | grep $YOURUSERNAME ```
  
  ``` usermod -aG sudo $YOURUSERNAME ```
      
@@ -55,17 +49,16 @@ Watch the videos and follow along with the writen tutorial.
     
  ``` id ```
  
-   - Find (sudo) in the list of groups:
+   - Find (sudo) in the list:
    
    ![image](https://user-images.githubusercontent.com/80616939/120870817-2f38a480-c557-11eb-9fd0-5be9e710af8d.png)
 
 ##   Install dependencies   
-   Curl will be used for inserting github scripts into the terminal.
+   #### Curl will be used for inserting github scripts into the terminal.
    
-   Docker is a service used to deliver software packages. 
+   #### Docker is a service used to deliver software packages. 
    
-   Vim is a tool used for editing files within the terminal.
-   Vim can be alot to swallow, here's a guide: https://www.linux.com/training-tutorials/vim-101-beginners-guide-vim/ 
+   #### Vim is a tool used for editing files within the terminal. Here's a guide on Vim: https://www.linux.com/training-tutorials/vim-101-beginners-guide-vim/ 
    
   ``` sudo apt update ```
   
@@ -78,7 +71,7 @@ Watch the videos and follow along with the writen tutorial.
   ``` sudo apt install vim ```
   
 ##  Enable bidirectional copy/paste 
-   Run an external program called VBoxLinuxAdditions, which enables bidirectional copy/paste.
+   #### Run an external program called VBoxLinuxAdditions, which enables bidirectional copy/paste.
    
    - Cursor over devices in the top left corner, and select: Insert Guest Additions CD Image 
     
@@ -98,7 +91,7 @@ Watch the videos and follow along with the writen tutorial.
    
  ![image](https://user-images.githubusercontent.com/80616939/118760448-0ebadb80-b830-11eb-88fa-51e672a41d83.png)
  ##  Improve the VM resolution  
-   Linux headers provide many vital functions without installing unnecessary files. VBoxLinuxAdditions provides the dynamic screen  resolution.
+   #### Linux headers provide many vital functions without installing unnecessary files. VBoxLinuxAdditions provides the dynamic screen  resolution.
   
   ``` sudo apt install build-essential linux-headers-`uname -r` ```
    
@@ -111,21 +104,21 @@ Watch the videos and follow along with the writen tutorial.
    
    - Restart the VM 
 ##   Create the environment, join Docker, and install the Celo client  
-   The following file adds vital functions for node.js, and installs nvm. Source in the file after adding it. 
+   #### The following file adds functionality to node.js, and installs nvm. Source in files after adding them. 
    
   ``` curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash ```
   
   ``` source ~/.bashrc ``` 
-  
-   Install/use node.js version 10, then install the celo application onto this client.  
+ # 
+   #### Install/use node.js version 10, then install the celo application onto this client.  
    
   ``` nvm install 10 ```
   
   ``` nvm use 10 ``` 
   
   ``` npm install -g @celo/celocli ``` 
-  
-   Join into the Docker group.
+  #
+   #### Next join into the Docker group.
   
   ``` sudo usermod -aG docker $YOURNAME ```
   
@@ -133,15 +126,15 @@ Watch the videos and follow along with the writen tutorial.
   
   ``` id ```
   
-   - Find (docker)   
-  
-   The interpreter directive, "#!" is called a "shebang". The following, "/bin/bash" is the path for this terminal to interpret in bash.  
+   - Check for (docker)   
+  # 
+   #### The interpreter directive, "#!" is called a "shebang". The path, "/bin/bash" sets the terminal to interpret in bash.  
    
   ``` #!/bin/bash ```
   
   ``` set -x ```
   
-   The following argument makes sure that the celo.env file will be loaded into the terminal. 
+   #### The following argument makes sure that the celo.env file will be loaded into the terminal. 
  
  ```
   if test -f celo.env; then 
@@ -151,33 +144,37 @@ Watch the videos and follow along with the writen tutorial.
  ```
    - Close this terminal     
 ##  Use Curl to create 2 new files
-   To learn about .env files check out this guide: https://learn.figment.io/network-documentation/extra-guides/dotenv-and-.env.
+   #### To learn about .env files check out this guide: https://learn.figment.io/network-documentation/extra-guides/dotenv-and-.env.
+   
+   #### Curl uses the raw github code, and instantly creates the new files.
+   
+ - This .env file is for storing and accessing sensitive environment variables. It will hold variables for the public keys. 
  
-  ``` curl -o celo.env https://gist.githubusercontent.com/alchemydc/ce712f6f3caa7ec79f15f930ed5904ed/raw/385c65b1d3f760854258bfd6dd8cbd135710b78f/celo.env ``` 
+  ``` 
+  curl -o celo.env https://gist.githubusercontent.com/alchemydc/ce712f6f3caa7ec79f15f930ed5904ed/raw/385c65b1d3f760854258bfd6dd8cbd135710b78f/celo.env 
+  ```
   
   ``` source celo.env ```
-  
-   This .env file is for storing and accessing sensitive environment variables. It will hold variables for the public keys. 
-   Curl uses this raw github code to instantly create a new file. Try Inserting it again if it dosent work the first time!
    
    ![image](https://user-images.githubusercontent.com/80616939/120844550-cb998180-c52c-11eb-9503-6accb0c6a7f5.png)
-     
-  ``` curl -o start_celo.sh https://gist.githubusercontent.com/alchemydc/e28945f5059acd70969b39a50fd0f80a/raw/0d15cceb89ea86ca46df94441c06ecd88a4e6635/start_celo.sh ```
+#
+ - The second file runs the light client, and contains information about the node. This file requires Docker.
+  ``` 
+  curl -o start_celo.sh https://gist.githubusercontent.com/alchemydc/e28945f5059acd70969b39a50fd0f80a/raw/0d15cceb89ea86ca46df94441c06ecd88a4e6635/start_celo.sh 
+  ```
   
   ``` source start_celo.sh ```
   
-   The second file runs the light client, and contains information about the node. This file requires Docker. 
-   
    ![image](https://user-images.githubusercontent.com/80616939/120844824-33e86300-c52d-11eb-8b1f-db5e66ec76bb.png)
    
 ##  Move these files into a new directory; celo-data-dir
-   This directory is called "celo-data-dir".
-   "mkdir" makes a new directory. "cd" choose the directory.
-   "mv" moves a file into the directory. Source in files often, especially after editing them.
+   - The directory will be called "celo-data-dir".
    
-  ``` chmod u+x ./start_celo.sh ``` 
-  
-  ``` pwd ```
+   - "mkdir" makes a new directory. 
+   
+   - "cd" choose the directory.
+   
+   - "mv" moves a file into the directory. 
     
   ``` mkdir celo-data-dir ```
   
@@ -192,7 +189,7 @@ Watch the videos and follow along with the writen tutorial.
   ``` source celo.env ```
   
   ``` source start_celo.sh ```
-  
+  - Source in files after making changes
 ## Create the Node, while in the celo-data-dir 
     
   ``` cd celo-data-dir ```
@@ -214,15 +211,13 @@ Watch the videos and follow along with the writen tutorial.
    - Exit vim by pressing ":", then typing "wq" "enter". 
 
   ``` source celo.env ```
-  
-   Remember to source celo.env after making changes.
  
  ## Running the light client
-   ``` ./start_celo.sh. ```Starts the light client.
+   ``` ./start_celo.sh. ```, Starts the light client.
    
-   ``` cat ./start_celo.sh ```Displays node information. 
+   ``` cat ./start_celo.sh ```, Displays node information. 
    
-   ``` docker stop geth ```Stops the light client. 
+   ``` docker stop geth ```, Stops the light client. 
    
    - Use 2 terminal tabs. One for starting the light client, and the second for all other commands.    
    
@@ -240,14 +235,12 @@ Watch the videos and follow along with the writen tutorial.
 
 ## Sending Celo to and from the node
    
-   Send both CUSD, and CELO native token to your node address. 
+   - Send both CUSD, and CELO native token to your node address. 
    
-   Have 2 terminal windows open. One is for running the light client, and the other for entering commands.
+   - Have 2 terminal windows open. One is for running the light client, and the other for entering commands.
    
-   Make sure both terminals are in the celo-data-dir. 
+   - Make sure both terminals are in the celo-data-dir. 
 
-  ``` cat ./start_celo.sh ```  
-   
   ``` cat ./start_celo.sh ```
  
   ``` docker exec -it geth geth attach ```
@@ -261,10 +254,9 @@ Watch the videos and follow along with the writen tutorial.
   ``` source celo.env ```
   
   ``` celocli transfer:dollars --from $NODE_ADDRESS --to $PHONE_ADDRESS --value=1e16 ```
-  
-   - Before sending CUSD, be sure to have CELO in the account for the gas fee.
    
-   Understanding this unit of measurement: 1e16 = 0.01CUSD, 1e15 = 0.1CUSD, 1e14 = 1.0CUSD.
+   #### Understanding this unit of measurement: 1e16 = 0.01CUSD, 1e15 = 0.1CUSD, 1e14 = 1.0CUSD.
+   
    ![image](https://user-images.githubusercontent.com/80616939/118338915-9c1aca80-b4d4-11eb-87b6-7970949923aa.png)
     
 ## Conclusion
