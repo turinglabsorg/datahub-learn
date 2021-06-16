@@ -38,7 +38,7 @@ Matic Network is a sidechain-based scaling solution for public blockchains. It i
 
 {% page-ref page="../network-documentation/matic/tutorials/" %}
 
-**Get Started with** [**Matic DataHub today!**](https://datahub.figment.io/sign_up?service=matic) ****
+**Get Started with** [**Matic DataHub today!**](https://figment.io/datahub/matic/) ****
 
 ## \*\*\*\*![](../.gitbook/assets/tnear_icon_1.png) **NEAR Tutorials**
 
@@ -46,7 +46,7 @@ NEAR is a decentralized application platform that is secure enough to manage hig
 
 {% page-ref page="../network-documentation/near/tutorials/" %}
 
-**Get Started with** [**NEAR DataHub today!** ](https://datahub.figment.io/sign_up?service=near)\*\*\*\*
+**Get Started with** [**NEAR DataHub today!** ](https://figment.io/datahub/near/)\*\*\*\*
 
 ## \*\*\*\*![](../.gitbook/assets/dot-circle-solid-default.svg) **Polkadot Tutorials**
 
@@ -54,7 +54,7 @@ Polkadot provides unprecedented economic scalability by enabling a common set of
 
 {% page-ref page="../network-documentation/polkadot/tutorials/" %}
 
-**Get Started with** [**Polkadot DataHub today!** ](https://datahub.figment.io/sign_up?service=polkadot)\*\*\*\*
+**Get Started with** [**Polkadot DataHub today!** ](https://figment.io/datahub/polkadot/)\*\*\*\*
 
 ## ![](../.gitbook/assets/logo1.png) **Secret Tutorials** 
 
@@ -62,7 +62,7 @@ Secret Network is the first blockchain with privacy-preserving smart contracts. 
 
 {% page-ref page="../network-documentation/secret/tutorials/" %}
 
-**Get Started with** [**Secret DataHub today!** ](https://datahub.figment.io/sign_up?service=secret)\*\*\*\*
+**Get Started with** [**Secret DataHub today!** ](https://figment.io/datahub/secret-network/)\*\*\*\*
 
 ## ![](../.gitbook/assets/solana.png) Solana Tutorials
 
@@ -70,7 +70,7 @@ Solana is an open-source project implementing a new, high-performance, permissio
 
 {% page-ref page="../network-documentation/solana/solana-101.md" %}
 
-**Get Started with** [**Solana DataHub today!** ](https://datahub.figment.io/sign_up?service=solana)\*\*\*\*
+**Get Started with** [**Solana DataHub today!** ](https://figment.io/datahub/solana/)\*\*\*\*
 
 ## ![](../.gitbook/assets/rsz_terra-logo.jpg) Terra Tutorials 
 
