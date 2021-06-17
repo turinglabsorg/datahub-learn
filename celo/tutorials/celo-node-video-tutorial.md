@@ -10,7 +10,7 @@ Watch the videos and follow along with the written tutorial.
   #### Video 1, Creating the VM
    [![SC2 Video](https://img.youtube.com/vi/Cdqwzf-zfug/0.jpg)](http://www.youtube.com/watch?v=Cdqwzf-zfug)
   #### Video 2, Building the fullnode
-   [![SC2 Video](https://img.youtube.com/vi/tQVghp8aQZQ/0.jpg)](http://www.youtube.com/watch?v=tQVghp8aQZQ)
+   [![SC2 Video](https://img.youtube.com/vi/l8qAISLJZq8/0.jpg)](http://www.youtube.com/watch?v=l8qAISLJZq8)
 #   Prerequisites 
 * Have a basic understanding of Virtual Machines(VM), and the Linux terminal.
 
@@ -207,6 +207,9 @@ source celo.env && source start_celo.sh
 `source celo.env`
  
  ## Running the light client
+ 
+`chmod u+x ./start_celo.sh`, Gives the user permision to start the light client. 
+
 `./start_celo.sh`, Starts the light client.
    
 `cat ./start_celo.sh`, Displays node information. 
