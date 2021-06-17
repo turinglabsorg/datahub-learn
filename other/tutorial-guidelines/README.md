@@ -20,6 +20,7 @@ When you are ready to submit it, [**open a PR on Github**](https://github.com/fi
 * **Before making the PR run the code by yourself first** to avoid any future unknown errors and to make sure it works as expected. 
 * **Provide** pictures/screenshots where needed.
 * **Avoid Including external/cross-links** to different sources in between the tutorials. 
+* **Image links** need to be in a relative path format: `![](../../../.gitbook/assets/image_filename.png)`
 
 ## **Structure**
 
