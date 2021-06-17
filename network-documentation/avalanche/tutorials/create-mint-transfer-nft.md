@@ -50,7 +50,7 @@ On the left sidebar are the other activity tabs: Send, Earn, Cross-chain, Studio
 
 ## NFT Studio on Avalanche Wallet
 
-To make experimenting with the creation and exchange of NFTs easier, the in-built **NFT Studio** in the [Avalanche Wallet](https://wallet.avax.network/), where you can use it to create NFTs as assets that we call Collectibles. Collectibles can be generic NFTs with a picture and a description, or custom NFTs with payloads containing JSON, custom URL, or UTF-8 data. You can create them using a simple point and click interface, enabling you to go from the idea of sending NFTs to your friends within minutes. No technical knowledge is required.
+To make experimenting with the creation and exchange of NFTs easier, the Avalanche Wallet has a built-in NFT Studio, where you can create NFTs as assets that Avalanche calls Collectibles. Collectibles can be generic NFTs with a picture and a description, or custom NFTs with payloads containing JSON, custom URL, or UTF-8 data. You can create them using a simple point and click interface, enabling you to go from concept to sending NFTs to your friends within minutes. No technical knowledge is required.
 
 To access the **NFT Studio**, log into your Avalanche Wallet, and on the left side select **Studio**:
 
