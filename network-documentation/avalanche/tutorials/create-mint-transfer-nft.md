@@ -143,8 +143,9 @@ Now, you should know how to create families of collectible NFTs, mint NFTs in gr
 
 If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://community.figment.io/) or  [**Join our discord channel**](https://discord.gg/fszyM7K)!
 
-## About the author 
-Hi, I'm Devendra, a passionate Blockchain Developer 🚀 from India with a strong interest in Open-Source. I’m currently building several open-source blockchain and crypto-related projects, for example, Cryptolend, Ethswap, Provably Fair, etc. to know more about my work, kindly visit my link on github.[Devendra Yadav](https://github.com/devilla)
+## About the author
+
+[Devendra Yadav](https://community.figment.io/u/dev.koold)
 
 ## References
 
