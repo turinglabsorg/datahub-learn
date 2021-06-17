@@ -99,9 +99,15 @@ Finally we get to the good stuff where we “borrow” the existing appAccount d
 
 The first thing we're going to do is compile the Rust program to prepare it for the CLI. To do this we're going to use a custom script that's in `package.json`:
 
-```rust
-"build:program-rust": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=dist/program"
+{% code title="package.json" %}
+```javascript
+scripts: {
+  ...
+  "build:program-rust": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=dist/program"
+  ...
+}
 ```
+{% endcode %}
 
 * `cargo` is Rust’s build system and package manager \([docs](https://doc.rust-lang.org/book/ch01-03-hello-cargo.html)\), like what `npm` is to Javascript.
 * `build-bpf` is the cargo command we're going to run to build/compile the program.
