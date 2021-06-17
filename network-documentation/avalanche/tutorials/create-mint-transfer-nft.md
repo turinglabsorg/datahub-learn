@@ -72,8 +72,7 @@ Click on Studio, where you can create a new family of collectibles if you have n
 
 ![](../../../.gitbook/assets/create-new-family-studio.png)
 
-You can use the TxID to look up the transaction on the Avalanche block explorer. Besides the name and the ticker, you will need to enter a Number of Groups, which is how many distinct collectibles the newly created family will hold. Choose carefully, because once created the parameters of the collectible family cannot be changed.
-Besides the name and the ticker, you will need to enter **Number of Groups**, that is, how many distinct collectibles will the newly created family hold. Choose carefully, because once created, the parameters of the collectible family cannot be changed.
+You can use the TxID to look up the transaction on the Avalanche block explorer. Besides the name and the ticker, you will need to enter a **Number of Groups**, which is how many distinct collectibles the newly created family will hold. Choose carefully, because once created the parameters of the collectible family cannot be changed.
 
 To create a new mint, provide a name, a code, and a number of groups. Note that a fee of 0.1 AVAX will be deducted from your balance to mint. For testing, you can use the Fuji testnet. You will need to switch networks in the Avalanche wallet UI. Once you are on the Fuji testnet, it is possible to get AVAX for testing from the official faucet.
 
