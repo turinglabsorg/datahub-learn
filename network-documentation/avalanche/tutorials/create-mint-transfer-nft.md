@@ -46,8 +46,7 @@ Balance, Assets, Wallet Address, Transaction & Transaction History (as shown in 
 
 ![](../../../.gitbook/assets/avalanche-wallet.png)
 
-On the left sidebar, you will have other options too, like
-Send, Earn, Cross-chain, Studio, Activity, Manage keys, Advanced (as showm in image).
+On the left sidebar are the other activity tabs: Send, Earn, Cross-chain, Studio, Activity, Manage keys and Advanced.
 
 ## NFT Studio on Avalanche Wallet
 
