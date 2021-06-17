@@ -62,7 +62,7 @@ There you will be asked to enter the name of your collectible family, as well as
 
 # Mint NFTs
 
-Before minting, Go to the Studio tab as shown below- you will see a heading "Collectibles", in which two sections are provided
+Before minting, Go to the Studio tab. Below the heading "Collectibles" are two sections, "New family" and "Mint collectibles".
 * New family
 * Mint collectibles
 
