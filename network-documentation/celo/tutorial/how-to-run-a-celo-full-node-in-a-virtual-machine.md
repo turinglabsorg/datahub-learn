@@ -7,10 +7,6 @@ Full nodes are a major part of the Celo blockchain. A full node is a constantly 
 
 Please watch the videos linked below and follow along with the written tutorial!
 
-**Video 2, Building the full node**
-
-[![SC2 Video](https://img.youtube.com/vi/l8qAISLJZq8/0.jpg)](http://www.youtube.com/watch?v=l8qAISLJZq8)
-
 ## Prerequisites
 
 * Have a basic understanding of Virtual Machines \(VM\), and the Linux terminal.
@@ -36,6 +32,10 @@ Please watch the videos linked below and follow along with the written tutorial!
 * Install the Grub bootloader onto the Virtual HARDDISK
 
 The installation of Debian is complete and the VM is now ready.
+
+**Video 2, Building the full node**
+
+[![SC2 Video](https://img.youtube.com/vi/l8qAISLJZq8/0.jpg)](http://www.youtube.com/watch?v=l8qAISLJZq8)
 
 ### Gain sudo on the VM
 
