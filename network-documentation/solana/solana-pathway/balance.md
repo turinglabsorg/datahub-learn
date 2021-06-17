@@ -54,8 +54,8 @@ const getBalance = () => {
     .catch((error) => {
       console.log(error);
       setBalance(null);
-    })
-
+    });
+}
 ```
 {% endcode %}
 {% endtab %}

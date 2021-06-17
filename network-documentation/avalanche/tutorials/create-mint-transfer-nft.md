@@ -1,18 +1,16 @@
 ---
-description: Learn how to create, mint, and transfer NFTs on Avalanche.
+description: 'Learn how to create, mint, and transfer NFTs on Avalanche.'
 ---
 
-# Create, Mint, and Transfer NFTs with Avalanche Wallet
+# Create, Mint and Transfer NFTs with the Avalanche Wallet
 
 ## Prerequisites
 
- In preparation for the tutorial, we will need to have some images on hand for testing the upload to Avalanche wallet. Please refer to the documentation for more information on the Avalanche wallet,[here](https://docs.avax.network/).
+In preparation for the tutorial, we will need to have some images on hand for testing the upload to Avalanche wallet. Please refer to the documentation for more information on the Avalanche wallet,[here](https://docs.avax.network/).
 
 ## Introduction
 
-NFT is an interesting term nowadays, in more technical terms NFT collectible is called ERC721 token. Please refer to the below link to learn more about [ERC-721 token](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/).
-It is a form of “art” that can be a picture, tweet, audio, etc in a broader perspective. A non-fungible token (NFT) is a unit of data on a digital ledger called blockchain, where each NFT represents something unique item, that can’t be interchanged.
-This enables many use cases that would be impossible with interchangeable tokens, like utility, proof of ownership, and a unique asset transaction history.
+NFT is an interesting term nowadays, in more technical terms NFT collectible is called ERC721 token. Please refer to the below link to learn more about [ERC-721 token](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/). It is a form of “art” that can be a picture, tweet, audio, etc in a broader perspective. A non-fungible token \(NFT\) is a unit of data on a digital ledger called blockchain, where each NFT represents something unique item, that can’t be interchanged. This enables many use cases that would be impossible with interchangeable tokens, like utility, proof of ownership, and a unique asset transaction history.
 
 ## Create NFTs
 
@@ -24,8 +22,7 @@ Go to [Avalanche Wallet](https://wallet.avax.network/) and click on create a new
 
 ### Generate Key Phrase
 
-Next, click the "Generate Key Phrase" button, which will display a list of 24 words that you will need to save in a secure location.
-This list of words is used to access your account, so do not share it with anyone!
+Next, click the "Generate Key Phrase" button, which will display a list of 24 words that you will need to save in a secure location. This list of words is used to access your account, so do not share it with anyone!
 
 ![](../../../.gitbook/assets/generate-new-key.png)
 
@@ -41,8 +38,7 @@ Now, you can access your account. Click access and you will be directed to the a
 
 ![](../../../.gitbook/assets/access-wallet.png)
 
-In your avalanche wallet window, you will see-
-Balance, Assets, Wallet Address, Transaction & Transaction History (as shown in image).
+In your avalanche wallet window, you will see- Balance, Assets, Wallet Address, Transaction & Transaction History \(as shown in image\).
 
 ![](../../../.gitbook/assets/avalanche-wallet.png)
 
@@ -82,14 +78,13 @@ Go to the AVAX faucet at [here](https://faucet.avax-test.network/)!
 
 ![](../../../.gitbook/assets/avax-faucet-testnet.PNG)
 
-Paste the address of your wallet (which you can copy from the Avalanche wallet UI) into the text input and pass the CAPTCHA to receive 2 AVAX tokens.
+Paste the address of your wallet \(which you can copy from the Avalanche wallet UI\) into the text input and pass the CAPTCHA to receive 2 AVAX tokens.
 
 Select the family we have just created. You will be presented with a form to fill out with the parameters of the new collectible:
 
 ![](../../../.gitbook/assets/mint-collectibles.png)
 
-Press **Back to Studio** to return, and we're ready to create our first collectibles. Press **Mint Collectible**.
-but if minting is not supported, then you need to create a new collectible family as shown below.
+Press **Back to Studio** to return, and we're ready to create our first collectibles. Press **Mint Collectible**. but if minting is not supported, then you need to create a new collectible family as shown below.
 
 ![](../../../.gitbook/assets/wallet-avax-network.png)
 
@@ -141,7 +136,7 @@ After pressing **Send Transaction** it will be published on the network, and the
 
 Now, you should know how to create families of collectible NFTs, mint NFTs in groups, and send them to other addresses. Have fun with it! If you would like to know the technical background of how NFTs work on the Avalanche network or would like to build products using NFTs, please check out this [Avalanche NFT tutorial](https://learn.figment.io/network-documentation/avalanche/tutorials/creating-an-nft-part-1)!.
 
-If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://community.figment.io/) or  [**Join our discord channel**](https://discord.gg/fszyM7K)!
+If you had any difficulties following this tutorial or simply want to discuss Avalanche tech with us you can [**join our community today**](https://community.figment.io/) or [**Join our discord channel**](https://discord.gg/fszyM7K)!
 
 ## About the author
 
@@ -150,3 +145,4 @@ If you had any difficulties following this tutorial or simply want to discuss Av
 ## References
 
 This tutorial is based on the official [Avalanche Documentation](https://docs.avax.network/build/tutorials/smart-digital-assets/wallet-nft-studio).
+
