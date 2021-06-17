@@ -68,7 +68,7 @@ Before minting, Go to the Studio tab. Below the heading "Collectibles" are two s
 
 ![](../../../.gitbook/assets/avalanche-studio.PNG)
 
-Concerning the above image, go and click on Studio, where you have to create new family if you are a new user.
+Click on Studio, where you can create a new family of collectibles if you have not yet done so.
 
 ![](../../../.gitbook/assets/create-new-family-studio.png)
 
