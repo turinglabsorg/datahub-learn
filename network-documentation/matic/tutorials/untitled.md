@@ -1,16 +1,16 @@
 ---
-description: Learn how to transfer tokens between Ethereum and Matic
+description: Learn how to transfer tokens between Ethereum and Polygon (Matic)
 ---
 
 # Using Metamask with Matic.js
 
-\*\*\*\*[**The original tutorial can be found on Matic's official documentation here.**](https://docs.matic.network/docs/develop/pos-using-metamask) ****
+\*\*\*\*[**The original tutorial can be found on Polygon (Matic)'s official documentation here.**](https://docs.matic.network/docs/develop/pos-using-metamask) ****
 
 ## What this tutorial covers
 
-This tutorial is a brief introduction on how to transfer tokens between Ethereum and Matic on PoS bridge using _**matic.js SDK and Metamask**_. Matic-Ethereum bridge provides a cross-chain channel using which users can transfer tokens from Ethereum to Matic and vice-versa. More details on using the bridge can be found [here](https://docs.matic.network/docs/develop/ethereum-matic/pos/getting-started). This **tutorial mainly focuses on using the bridge from a front end perspective**. We will be using Metamask for this purpose.
+This tutorial is a brief introduction on how to transfer tokens between Ethereum and Polygon (Matic) on PoS bridge using _**matic.js SDK and Metamask**_. Polygon (Matic)-Ethereum bridge provides a cross-chain channel using which users can transfer tokens from Ethereum to Polygon (Matic) and vice-versa. More details on using the bridge can be found [here](https://docs.matic.network/docs/develop/ethereum-matic/pos/getting-started). This **tutorial mainly focuses on using the bridge from a front end perspective**. We will be using Metamask for this purpose.
 
-The most important thing to be understood from this tutorial is the **proper usage of the web3 provider in the matic.js instance** we create. Whether using PoS or Plasma, certain actions need to be performed on Matic and some on Ethereum. Due to this reason, **different providers are required in different scenarios. Hence correctly setting the providers is very necessary.**
+The most important thing to be understood from this tutorial is the **proper usage of the web3 provider in the matic.js instance** we create. Whether using PoS or Plasma, certain actions need to be performed on Polygon (Matic) and some on Ethereum. Due to this reason, **different providers are required in different scenarios. Hence correctly setting the providers is very necessary.**
 
 1. An **example react app that demonstrates the usage of the Plasma and PoS bridge** can be found [here](https://github.com/maticnetwork/pos-plasma-tutorial) .
 2. Install the dependencies using `npm install` .
@@ -35,13 +35,13 @@ ETHEREUM_CHAINID: Chain ID of root chain
 
 * The configuration and key values for matic mainnet and mumbai testnet can be found here
   1. [Mumbai Testnet Config](https://static.matic.network/network/testnet/mumbai/index.json)
-  2. [Matic Mainnet Config](https://static.matic.network/network/mainnet/v1/index.json)
+  2. [Polygon (Matic) Mainnet Config](https://static.matic.network/network/mainnet/v1/index.json)
 
 1. Run the project using `npm start` .
 
 ## Example using PoS ERC20 Test Token
 
-> NOTE: For the mainnet, Ethereum is the root chain and Matic Mainnet is the child chain and for the testnet, Goerli is the root chain and Mumbai is the child chain. The values in config.json file should be set accordingly. Goerli and Mumbai networks are used as the root and child chain in this tutorial.
+> NOTE: For the mainnet, Ethereum is the root chain and Polygon (Matic) Mainnet is the child chain and for the testnet, Goerli is the root chain and Mumbai is the child chain. The values in config.json file should be set accordingly. Goerli and Mumbai networks are used as the root and child chain in this tutorial.
 
 > posClientParent\(\) and posClientChild is used to initialize the root and child chain matic.js object for PoS bridge. Code snippets mention below under each step can be found in the [tutorial](https://github.com/maticnetwork/pos-plasma-tutorial) repo as well.
 
@@ -64,13 +64,13 @@ During deposit of ERC20 tokens, the providers are specified as below
 
 `parentProvider: window.web3`
 
-> NOTE: Deposits from Ethereum to Matic happen using a state sync mechanism and takes about ~5-7 minutes. After waiting for this time interval, it is recommended to check the balance using web3.js/matic.js library or using Metamask. The explorer will show the balance only if at least one asset transfer has happened on the child chain. This [link](https://docs.matic.network/docs/develop/ethereum-matic/pos/deposit-withdraw-event-pos/) explains how to track the deposit events.
+> NOTE: Deposits from Ethereum to Polygon (Matic) happen using a state sync mechanism and takes about ~5-7 minutes. After waiting for this time interval, it is recommended to check the balance using web3.js/matic.js library or using Metamask. The explorer will show the balance only if at least one asset transfer has happened on the child chain. This [link](https://docs.matic.network/docs/develop/ethereum-matic/pos/deposit-withdraw-event-pos/) explains how to track the deposit events.
 
 ![](https://docs.matic.network/img/pos-using-metamask/deposit.png)
 
 ### Transfer
 
-Once deposited, the token can be transferred to any other account on the Matic chain.
+Once deposited, the token can be transferred to any other account on the Polygon (Matic) chain.
 
 During Transfer, only the `maticProvider` needs to be set as `window.web3`
 
@@ -123,5 +123,5 @@ await maticPoSClient.exitERC20(burnTxHash, {
 
 ![](https://docs.matic.network/img/pos-using-metamask/exit.png)
 
-If you had any difficulties following this tutorial or simply want to discuss Matic and DataHub tech with us you can [join our community](https://discord.gg/Chhuv5zHy3) today!
+If you had any difficulties following this tutorial or simply want to discuss Polygon (Matic) and DataHub tech with us you can [join our community](https://discord.gg/Chhuv5zHy3) today!
 

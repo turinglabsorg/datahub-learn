@@ -32,13 +32,13 @@ Cosmos provides tools that make it easy to build a new, custom-designed blockcha
 
 **Get Started with** [**Cosmos DataHub today!** ](https://figment.io/datahub/cosmos/)\*\*\*\*
 
-## ![](../.gitbook/assets/matic_network.png) Matic Tutorials
+## ![](../.gitbook/assets/matic_network.png) Polygon (Matic) Tutorials
 
-Matic Network is a sidechain-based scaling solution for public blockchains. It is based on an adapted implementation of Plasma framework. Matic provides scalability while ensuring a superior user experience in a secured and decentralized manner. 
+Polygon (Matic) Network is a sidechain-based scaling solution for public blockchains. It is based on an adapted implementation of Plasma framework. Polygon (Matic) provides scalability while ensuring a superior user experience in a secured and decentralized manner. 
 
 {% page-ref page="../network-documentation/matic/tutorials/" %}
 
-**Get Started with** [**Matic DataHub today!**](https://figment.io/datahub/matic/) ****
+**Get Started with** [**Polygon (Matic) DataHub today!**](https://figment.io/datahub/matic/) ****
 
 ## \*\*\*\*![](../.gitbook/assets/tnear_icon_1.png) **NEAR Tutorials**
 

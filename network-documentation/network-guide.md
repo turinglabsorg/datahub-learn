@@ -42,9 +42,9 @@ Filecoin is a peer-to-peer network that stores files, with built-in economic inc
 
 {% page-ref page="filecoin/" %}
 
-## ![](../.gitbook/assets/matic_network.png) Matic
+## ![](../.gitbook/assets/matic_network.png) Polygon (Matic)
 
-Matic Network is a sidechain-based scaling solution for public blockchains. It is based on an adapted implementation of Plasma framework. Matic provides scalability while ensuring a superior user experience in a secured and decentralized manner. It has a working implementation for Ethereum. Matic intends to support other blockchains in the future which will enable it to provide interoperability features alongside offering scalability to existing public blockchains.
+Polygon (Matic) Network is a sidechain-based scaling solution for public blockchains. It is based on an adapted implementation of Plasma framework. Polygon (Matic) provides scalability while ensuring a superior user experience in a secured and decentralized manner. It has a working implementation for Ethereum. Polygon (Matic) intends to support other blockchains in the future which will enable it to provide interoperability features alongside offering scalability to existing public blockchains.
 
 {% page-ref page="matic/" %}
 
