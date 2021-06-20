@@ -8,16 +8,16 @@ description: Learn how to contribute to the knowledge base and earn tokens
 
 Share to Earn is a program that supports people who create content for the Web 3 Knowledge Base. Through the program, community authors receive a personal payout in tokens and get to showcase their knowledge and skills to the community. The work of these community authors helps grow Figment Learn's library of Web 3 tutorials and benefits the entire ecosystem.
 
+## 💸 What is the payout structure?
+
+Authors are paid in the tokens of the protocol they write about, which allows us to align their incentives with the growth of the network's userbase. New tutorials are paid between $300 and $500 in token equivalent, while complex production-focused updates for existing tutorials are typically paid $100 in token equivalent. All payouts are at editorial discretion.
+
 * **Guides and documentation** \(eg. "Polkadot Blockchain Terms", "Solana Basic to Advanced Complete Guide"\): $100/$200
 * **Short tutorials** \(eg. “How to deploy a smart contract”\): $200/$300
 * **Larger, original tutorials** \(eg. full-stack dApp with front-end\): $300/$500
 * **Pathway** \(eg. A combination of 4-5 interconnected tutorials\): Get in touch with us!
 
-We reserve the right to pay more for exceptional contributions. All amounts paid in the protocol tokens.
-
-## 💸 What is the payout structure?
-
-Authors are paid in the tokens of the protocol they write about, which allows us to align their incentives with the growth of the network's userbase. New tutorials are paid between $300 and $500 in token equivalent, while complex production-focused updates for existing tutorials are typically paid $100 in token equivalent. All payouts are at editorial discretion.
+We reserve the right to pay more for exceptional contributions.
 
 ## 🧩 What is the publication process?
 
