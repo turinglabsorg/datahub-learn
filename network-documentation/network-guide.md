@@ -42,12 +42,6 @@ Filecoin is a peer-to-peer network that stores files, with built-in economic inc
 
 {% page-ref page="filecoin/" %}
 
-## ![](../.gitbook/assets/matic_network.png) Polygon \(Matic\)
-
-Polygon \(Matic\) Network is a sidechain-based scaling solution for public blockchains. It is based on an adapted implementation of Plasma framework. Polygon \(Matic\) provides scalability while ensuring a superior user experience in a secured and decentralized manner. It has a working implementation for Ethereum. Polygon \(Matic\) intends to support other blockchains in the future which will enable it to provide interoperability features alongside offering scalability to existing public blockchains.
-
-{% page-ref page="matic/" %}
-
 ## ![](../.gitbook/assets/1_gc0dp8vfvm6bwwn51nuqew.png) Mina
 
 Mina is the first cryptocurrency protocol with a succinct blockchain. Current cryptocurrencies like Bitcoin and Ethereum store hundreds of gigabytes of data, and as time goes on, their blockchains will only increase in size. With Mina, however, no matter how much the usage grows, the blockchain always stays the same size - about 22kb \(the size of a few tweets\). This means participants can quickly sync and verify the network.
@@ -72,6 +66,12 @@ Polkadot enables scalability by allowing specialized blockchains to communicate 
 
 {% page-ref page="polkadot/" %}
 
+## ![](https://firebasestorage.googleapis.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-MIVL6JKxnpiaciltfue%2F-M_Wa6Nm4vPre3PsT_uZ%2F-M_WabchOF3cOdzI5RD_%2Fmatic_network.png?alt=media&token=7398136b-95ec-4f5f-ab74-0ce3feff4310) Polygon \(Matic\) <a id="polygon-matic"></a>
+
+Polygon \(Matic\) Network is a sidechain-based scaling solution for public blockchains. It is based on an adapted implementation of Plasma framework. Polygon \(Matic\) provides scalability while ensuring a superior user experience in a secured and decentralized manner. It has a working implementation for Ethereum. Polygon intends to support other blockchains in the future which will enable it to provide interoperability features alongside offering scalability to existing public blockchains.
+
+{% page-ref page="matic/" %}
+
 ## ![](../.gitbook/assets/logo1.png) Secret
 
 Secret Network is the first blockchain with privacy-preserving smart contracts. That means applications built on Secret can utilize encrypted data without revealing it to anyone, even the nodes in the network. For the first time, Secret Network allows developers to build powerful, permissionless, privacy-preserving applications - Secret Apps.
@@ -95,4 +95,12 @@ Terra is a blockchain protocol that supports stable programmable payments and op
 Tezos is a secure, smart contract blockchain platform that uses its built-in governance mechanism for protocol upgrades. Tezos is one of the first blockchain platforms to introduce a formal on-chain governance process.
 
 {% page-ref page="tezos/" %}
+
+## Extra Guides
+
+For broader topics or for explanations which do not fit elsewhere, we provide these additional resources.
+
+{% page-ref page="extra-guides/" %}
+
+
 
