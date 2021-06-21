@@ -8,13 +8,13 @@ description: Learn how to call Matic.js methods
 
 ## **Overview**
 
-`maticjs` makes it easy for developers, who may not be deeply familiar with smart contract development, to interact with the various components of Polygon (Matic) Network.
+`maticjs` makes it easy for developers, who may not be deeply familiar with smart contract development, to interact with the various components of Polygon \(Matic\) Network.
 
-This library will help developers to move assets from Ethereum chain to Polygon (Matic) chain, and withdraw from Polygon (Matic) to Ethereum using fraud proofs.
+This library will help developers to move assets from Ethereum chain to Polygon \(Matic\) chain, and withdraw from Polygon \(Matic\) to Ethereum using fraud proofs.
 
-You can download the library by following [these steps](https://github.com/maticnetwork/matic.js#balanceOfERC20). 
+You can download the library by following [these steps](https://github.com/maticnetwork/matic.js#balanceOfERC20).
 
-## API 
+## API
 
 ### **new Matic\(options\)**
 
@@ -58,7 +58,7 @@ get balance of ERC20 `token` for `address`.
 
 This returns `balance`.
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic
@@ -83,7 +83,7 @@ get balance of ERC721 `token` for `address`.
 
 This returns `balance`.
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic
@@ -107,7 +107,7 @@ get ERC721 tokenId at `index` for `token` and for `address`.
 
 This returns matic `tokenId`.
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic
@@ -132,7 +132,7 @@ Deposit `options.value`
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic.depositEthers(amount, {
@@ -155,7 +155,7 @@ Approves given `amount` of `token` to `rootChainContract`.
   * `nonce` same as Ethereum `sendTransaction`
   * `value` contains ETH value. Same as Ethereum `sendTransaction`. This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic.approveERC20TokensForDeposit('0x718Ca123...', '1000000000000000000', {
@@ -177,7 +177,7 @@ Deposit given `amount` of `token` with user `user`.
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 const user = <your-address> or <any-account-address>
@@ -199,7 +199,7 @@ Deposit given `TokenID` of `token` with user `user`.
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic.safeDepositERC721Tokens('0x718Ca123...', '70000000000', {
@@ -222,7 +222,7 @@ Transfer given `amount` of `token` to `user`.
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```text
 const user = <your-address> or <any-account-address>
@@ -248,7 +248,7 @@ Transfer given `tokenId` of `token` to `user`.
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 const user = <your-address> or <any-account-address>
@@ -280,7 +280,7 @@ Off-chain signature generation for [transferWithSig](https://github.com/maticnet
 
   * `from`: owner of the token \(toSell\) 
 
-  **Example Output:** 
+  **Example Output:**
 
   ```text
   // sell order
@@ -325,7 +325,7 @@ Executes [transferWithSig](https://github.com/maticnetwork/contracts/blob/a9b772
 
 transfers `toSell.token` from `tokenOwner` to `orderFiller`
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 // sell order
@@ -369,7 +369,7 @@ Start withdraw process with given `amount` for `token`.
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic.startWithdraw('0x718Ca123...', '1000000000000000000', {
@@ -390,7 +390,7 @@ Start withdraw process with given `tokenId` for `token`.
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic.startWithdrawForNFT('0x718Ca123...', '1000000000000000000', {
@@ -409,7 +409,7 @@ Withdraw tokens on mainchain using `txId` from `startWithdraw` method after head
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic.withdraw('0xabcd...789', {
@@ -429,7 +429,7 @@ Withdraw tokens on mainchain using `txId` from `startWithdraw` method after head
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic.withdrawNFT('0xabcd...789', {
@@ -449,7 +449,7 @@ Call processExits after completion of challenge period, after that withdrawn fun
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 matic.processExits('0xabcd...789', {
@@ -510,7 +510,7 @@ Approves given `amount` of `rootToken` to POS Portal contract.
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 maticPOSClient.approveERC20ForDeposit('0x718Ca123...', '1000000000000000000', {
@@ -532,7 +532,7 @@ Deposit given `amount` of `rootToken` for `user` via POS Portal.
 
 The given amount must be [approved](https://github.com/maticnetwork/matic.js#pos-approveERC20ForDeposit) for deposit beforehand. This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 const user = <your-address> or <any-account-address>
@@ -546,7 +546,7 @@ maticPOSClient.depositERC20ForUser('0x718Ca123...', user, '1000000000000000000',
 
 **Description**
 
-Deposit given `amount` of ETH for `user` via POS Portal. ETH is an ERC20 token on Polygon (Matic) chain, follow ERC20 [burn](https://github.com/maticnetwork/matic.js#pos-burnERC20) and [exit](https://github.com/maticnetwork/matic.js#pos-exitERC20) to withdraw it.
+Deposit given `amount` of ETH for `user` via POS Portal. ETH is an ERC20 token on Polygon \(Matic\) chain, follow ERC20 [burn](https://github.com/maticnetwork/matic.js#pos-burnERC20) and [exit](https://github.com/maticnetwork/matic.js#pos-exitERC20) to withdraw it.
 
 * `user` must be valid account address
 * `amount` must be ETH amount in wei \(string, not in Number\)
@@ -555,7 +555,7 @@ Deposit given `amount` of ETH for `user` via POS Portal. ETH is an ERC20 token o
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 const user = <your-address> or <any-account-address>
@@ -578,7 +578,7 @@ Burn given `amount` of `childToken` to be exited from POS Portal.
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 maticPOSClient.burnERC20('0x718Ca123...', '1000000000000000000', {
@@ -597,7 +597,7 @@ Exit tokens from POS Portal. This can be called after checkpoint has been submit
 
 This returns `Promise` object, which will be fulfilled when transaction gets confirmed \(when receipt is generated\).
 
-**Example Output:** 
+**Example Output:**
 
 ```javascript
 maticPOSClient.exitERC20('0xabcd...789', {

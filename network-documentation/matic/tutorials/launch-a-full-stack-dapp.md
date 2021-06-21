@@ -4,11 +4,11 @@ description: Learn how to build a decentralized AirBnB on Polygon (Matic)
 
 # Launch a full stack DApp
 
-\*\*\*\* [**The original tutorial can be found on Polygon (Matic)'s official documentation here.**](https://docs.matic.network/docs/develop/full-stack-dapp-with-pos) \*\*\*\*
+\*\*\*\* [**The original tutorial can be found on Polygon \(Matic\)'s official documentation here.**](https://docs.matic.network/docs/develop/full-stack-dapp-with-pos) \*\*\*\*
 
 ## What this tutorial covers
 
-This tutorial is a brief introduction to Full Stack DApp deployed on Polygon (Matic) with Proof of Stake Security. As a DApp developer, to build on PoS security, the procedure is as simple as taking your smart contract and deploying it on Polygon (Matic). This is possible because of the account**-**based architecture enabling an EVM-compatible sidechain.
+This tutorial is a brief introduction to Full Stack DApp deployed on Polygon \(Matic\) with Proof of Stake Security. As a DApp developer, to build on PoS security, the procedure is as simple as taking your smart contract and deploying it on Polygon \(Matic\). This is possible because of the account**-**based architecture enabling an EVM-compatible sidechain.
 
 ## Building a Decentralized Airbnb
 
@@ -352,7 +352,7 @@ contract Airbnb {
 
 ![](https://docs.matic.network/img/solidity/remix-abi.png)
 
-* Select Javascript VM as the environment in the dropdown - this connects remix to a simple blockchain environment via your browser - we'll learn more about deploying on Polygon (Matic)'s test network in the next tutorial \[link\]
+* Select Javascript VM as the environment in the dropdown - this connects remix to a simple blockchain environment via your browser - we'll learn more about deploying on Polygon \(Matic\)'s test network in the next tutorial \[link\]
 
 ![](https://docs.matic.network/img/solidity/remix-contract-test-functions.png)
 
@@ -524,5 +524,5 @@ The Metamask popup displays the gas price for the transaction.
 
 After the transaction is confirmed, the property lives on the blockchain and since it is available to be booked, it is displayed on the homepage.
 
-If you had any difficulties following this tutorial or simply want to discuss Polygon (Matic) and DataHub tech with us you can [join our community](https://discord.gg/Chhuv5zHy3) today!
+If you had any difficulties following this tutorial or simply want to discuss Polygon \(Matic\) and DataHub tech with us you can [join our community](https://discord.gg/Chhuv5zHy3) today!
 
