@@ -46,7 +46,7 @@ NEAR is a decentralized application platform that is secure enough to manage hig
 
 {% page-ref page="../network-documentation/near/tutorials/" %}
 
-**Get Started with** [**NEAR on DataHub** ](https://figment.io/datahub/near/)**today!** 
+**Get Started with** [**NEAR DataHub today!** ](https://figment.io/datahub/near/)
 
 ## ![](../.gitbook/assets/dot-circle-solid-default.svg) **Polkadot Tutorials**
 
