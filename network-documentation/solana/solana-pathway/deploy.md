@@ -82,7 +82,7 @@ if account.try_data_len()? < mem::size_of::<u32>() {
 }
 ```
 
-Check to see if data is available to store a u32 integar.
+Check to see if data is available to store a u32 integer.
 
 ```rust
 let mut data = account.try_borrow_mut_data()?;
