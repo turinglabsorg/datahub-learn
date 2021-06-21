@@ -66,6 +66,12 @@ Secret Pathway is Active again
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
+## ![](https://firebasestorage.googleapis.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-MIVL6JKxnpiaciltfue%2F-Mc7lO7pzgced15e8VAT%2F-Mc7oUrVGuPMh2VaczUw%2Fsolana.png?alt=media&token=899b8cc1-d310-46ee-947a-c4c818c337ac) Solana Pathway <a id="solana-pathway"></a>
+
+Solana is an open-source project implementing a new, high-performance, permissionless blockchain. From [Messari's Solana profile](https://messari.io/asset/solana/profile), its goal is to provide a platform that enables developers to create DApps without needing to design around performance bottlenecks.
+
+{% page-ref page="../network-documentation/solana/solana-pathway/" %}
+
 ## ![](../.gitbook/assets/2011.png) Tezos Pathway 
 
 Tezos is an open-source platform for assets and applications that can evolve by upgrading itself. Stakeholders govern upgrades to the core protocol, including upgrades to the amendment process itself. ****It benefits from three main characteristics: self-amendment, on-chain governance, and decentralized innovation. ****Learn what makes it unique and build your first project to **earn $20 in XTZ**!
@@ -75,14 +81,4 @@ Tezos is an open-source platform for assets and applications that can evolve by 
 {% page-ref page="../network-documentation/tezos/tezos-pathway.md" %}
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
-
-## ![](../.gitbook/assets/solana.png) Solana Pathway
-
-Solana is an open-source project implementing a new, high-performance, permissionless blockchain. From [Messari's Solana profile](https://messari.io/asset/solana/profile), its goal is to provide a platform that enables developers to create DApps without needing to design around performance bottlenecks.
-
-**Get started with the Solana Pathway by visiting the page below.**
-
-{% page-ref page="../network-documentation/solana/solana-pathway/" %}
-
-#### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem!
 
