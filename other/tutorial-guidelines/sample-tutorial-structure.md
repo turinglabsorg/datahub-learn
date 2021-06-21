@@ -7,8 +7,6 @@ description: >-
 
 # Sample Tutorial Structure
 
-## Sample Tutorial Structure
-
 ## Introduction
 
 Explain why this tutorial matter and what the context is, what we're going to build and learn in this tutorial.
@@ -38,7 +36,7 @@ _For example -_
 * We'll need Metamask in this tutorial, install it from [HERE](https://metamask.io/)
 * Make sure to have NodeJS 12.0.1+ version installed
 
-\[ Embed Video here if you have any, It's optional \]
+\[ **OPTIONAL :** Embed any video content here if you have any \]
 
 ## Body of the Tutorial
 
