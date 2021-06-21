@@ -8,9 +8,9 @@ description: Learn how to call Matic.js methods
 
 ## **Overview**
 
-`maticjs` makes it easy for developers, who may not be deeply familiar with smart contract development, to interact with the various components of Matic Network.
+`maticjs` makes it easy for developers, who may not be deeply familiar with smart contract development, to interact with the various components of Polygon (Matic) Network.
 
-This library will help developers to move assets from Ethereum chain to Matic chain, and withdraw from Matic to Ethereum using fraud proofs.
+This library will help developers to move assets from Ethereum chain to Polygon (Matic) chain, and withdraw from Polygon (Matic) to Ethereum using fraud proofs.
 
 You can download the library by following [these steps](https://github.com/maticnetwork/matic.js#balanceOfERC20). 
 
@@ -546,7 +546,7 @@ maticPOSClient.depositERC20ForUser('0x718Ca123...', user, '1000000000000000000',
 
 **Description**
 
-Deposit given `amount` of ETH for `user` via POS Portal. ETH is an ERC20 token on Matic chain, follow ERC20 [burn](https://github.com/maticnetwork/matic.js#pos-burnERC20) and [exit](https://github.com/maticnetwork/matic.js#pos-exitERC20) to withdraw it.
+Deposit given `amount` of ETH for `user` via POS Portal. ETH is an ERC20 token on Polygon (Matic) chain, follow ERC20 [burn](https://github.com/maticnetwork/matic.js#pos-burnERC20) and [exit](https://github.com/maticnetwork/matic.js#pos-exitERC20) to withdraw it.
 
 * `user` must be valid account address
 * `amount` must be ETH amount in wei \(string, not in Number\)
