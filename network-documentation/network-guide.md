@@ -60,7 +60,7 @@ NEAR is a decentralized application platform that is secure enough to manage hig
 
 {% page-ref page="near/" %}
 
-## ![](../.gitbook/assets/output-onlinepngtools-3-.png) Oasis
+## ![](../.gitbook/assets/oasis-1-.png) Oasis
 
 The Oasis Network is the first privacy-enabled blockchain platform for open finance and a responsible data economy. Combined with its high throughput and secure architecture, the Oasis Network is able to power private, scalable DeFi, revolutionizing Open Finance and expanding it beyond traders and early adopters to a mass market.
 
