@@ -16,7 +16,12 @@ Join [**our community**](https://discord.gg/fszyM7K) today if you want to intera
 
 You will find dedicated channels for each network we support and we will make sure to assist with any questions you might have. You can also find your invite link inside your DataHub dashboard under the service table. 
 
+## Figment Learn Forum
+
+Join our ****[**community forum**](https://community.figment.io) to interact with other users, participate in our Learn platform and contribute to the future of web3 development!
+
 ## Email Support
 
-For more urgent inquiries, you can email us at datahub@figment.io and we will make sure to get back to you as soon as possible. 
+For more urgent inquiries involving DataHub, you can email us at `datahub@figment.io`   
+We will make sure to get back to you as soon as possible!
 

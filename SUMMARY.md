@@ -339,10 +339,10 @@
 
 ## 🤔 Other
 
-* [👀 Tutorial Guidelines](other/tutorial-guidelines/README.md)
-  * [Sample Tutorial Structure](other/tutorial-guidelines/sample-tutorial-structure.md)
 * [🧾 Glossary](other/glossary.md)
 * [🗳 Support](other/support.md)
+* [👀 Tutorial Guidelines](other/tutorial-guidelines/README.md)
+  * [Sample Tutorial Structure](other/tutorial-guidelines/sample-tutorial-structure.md)
 
 ## 🔗 Terms & Conditions
 
