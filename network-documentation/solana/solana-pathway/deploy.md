@@ -163,7 +163,7 @@ This can be due to how your solana keypair was generated. Re-generate one by run
 solana-keygen new --force
 ```
 
-and go through the tutorial above again \(fund, build, deploy\)
+Then go through the tutorial steps again \(fund, build, deploy\)
 
 ## After successfully deploying the program
 
@@ -187,8 +187,8 @@ Notice that the field `Executable` is now set to `Yes` because the address we're
 
 Before we move to the next step we need to save two important variables
 
-1. In your terminal run `cat ~/.config/solana/id.json` and copy its output. In `src/components/Call.jsx` assign it to the constant `PAYER_SECRET_KEY`. This is the Keypair information of the author of the program \(you!\). We will need to pass it to transactions we make to the program  to authenticate ourselves as the owner of the program.
-2. In the directory, find `dist/program/helloworld-keypair.json` and copy its content. In `Call.jsx` assign it to the constant `PROGRAM_SECRET_KEY`. This is the Keypair information of the  program itself. We will need it to generate the program's public key that will be used to call the program.
+1. In your terminal run `cat ~/.config/solana/id.json` and copy its output. In `src/components/Call.jsx` assign it to the constant `PAYER_SECRET_KEY`. This is the Keypair information of the author of the program \(you!\). We will need to pass it to transactions we make to the program  to authenticate ourselves as the owner of the program. 
+2. In the directory, find `dist/program/helloworld-keypair.json` and copy its contents. In `/src/components/Call.jsx` assign it to the constant `PROGRAM_SECRET_KEY`. This is the Keypair information of the program itself. We will need it to generate the program's public key that will be used to call the program.
 
 ## Next
 
