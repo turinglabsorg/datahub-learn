@@ -27,7 +27,7 @@ solana-keygen new
 
 There is a `program` folder at the app's root. It contains the Rust program `src/lib.rs` and some configuration files to help us compile and deploy it.
 
-**It's a "dummy" program: all it does is increment a number every time it's called.**
+**It's a simple program, all it does is increment a number every time it's called.**
 
 Let’s dissect what each part does.
 
