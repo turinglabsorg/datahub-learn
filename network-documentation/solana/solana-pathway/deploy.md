@@ -85,15 +85,16 @@ if account.try_data_len()? < mem::size_of::<u32>() {
 Check to see if data is available to store a u32 integer. 
 
 ```rust
-let mut data = account.try_borrow_mut_data()?;
-let mut num_greets = LittleEndian::read_u32(&data);
-num_greets += 1;
-LittleEndian::write_u32(&mut data[0..], num_greets);
-msg!("Hello!");
+let mut greeting_account = GreetingAccount::try_from_slice(&account.data.borrow())?;
+greeting_account.counter += 1;
+greeting_account.serialize(&mut &mut account.data.borrow_mut()[..])?;
+
+msg!("Greeted {} time(s)!", greeting_account.counter);
+
 Ok(())
 ```
 
-Finally we get to the good stuff where we “borrow” the existing appAccount data with the keywords `let mut`, increase the value of `num_greets` by one and write it back to storage.
+Finally we get to the good stuff where we “borrow” the existing account data, increase the value of `counter` by one and write it back to storage. We can show in the Program Log how many times the count has been incremented by using the `msg!()` macro.
 
 ## Building the program
 
