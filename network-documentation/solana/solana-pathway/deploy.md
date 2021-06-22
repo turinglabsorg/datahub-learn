@@ -50,7 +50,7 @@ pub struct GreetingAccount {
 entrypoint!(process_instruction);
 ```
 
-We start by doing some standard includes and declaring an entry point which will be the `process_instruction` function:
+We start by using the borsh crate \(borsh stands for _Binary Object Representation Serializer for Hashing_\), then doing some standard includes from the solana\_program crate, one of which is the macro we use next, to declare an entry point - the `process_instruction` function :
 
 ```rust
 pub fn process_instruction(
@@ -66,20 +66,6 @@ The program\_id is the public key where the contract is stored and the accountIn
     msg!("Hello World Rust program entrypoint");
     let accounts_iter = &mut accounts.iter();
     let account = next_account_info(accounts_iter)?;
-    
-    if account.owner != program_id {
-        msg!("Greeted account does not have the correct program id");
-        return Err(ProgramError::IncorrectProgramId);
-    }
-    
-    let mut greeting_account = GreetingAccount::try_from_slice(&account.data.borrow())?;
-    greeting_account.counter += 1;
-    greeting_account.serialize(&mut &mut account.data.borrow_mut()[..])?;
-
-    msg!("Greeted {} time(s)!", greeting_account.counter);
-
-    Ok(())
-}
 ```
 
 The return value `ProgramResult` is where the magic happens. We can print a message to the Program Log with the `msg!()` macro and then select the accountInfo by looping through using an iterator although in practice there is likely only one value.
@@ -94,15 +80,6 @@ if account.owner != program_id {
 Security check to see if the account owner has permission. If the account owner does not equal the `program_id` we will return an error.
 
 ```rust
-if account.try_data_len()? < mem::size_of::<u32>() {
-  msg!("Greeted account data length too small for u32");
-  return Err(ProgramError::InvalidAccountData);
-}
-```
-
-Check to see if data is available to store a u32 integer. 
-
-```rust
 let mut greeting_account = GreetingAccount::try_from_slice(&account.data.borrow())?;
 greeting_account.counter += 1;
 greeting_account.serialize(&mut &mut account.data.borrow_mut()[..])?;
@@ -112,7 +89,7 @@ msg!("Greeted {} time(s)!", greeting_account.counter);
 Ok(())
 ```
 
-Finally we get to the good stuff where we “borrow” the existing account data, increase the value of `counter` by one and write it back to storage. We can show in the Program Log how many times the count has been incremented by using the `msg!()` macro.
+Finally we get to the good stuff where we “borrow” the existing account data, increase the value of `counter` by one and write it back to storage. We can show in the Program Log how many times the count has been incremented by using the `msg!()` macro. 
 
 ## Testing the program
 
