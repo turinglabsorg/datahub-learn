@@ -32,7 +32,7 @@ There is a `program` folder at the app's root. It contains the Rust program `src
 Let’s dissect what each part does.
 
 ```rust
-use byteorder::{ByteOrder, LittleEndian};
+use borsh::{BorshDeserialize, BorshSerialize};
 use solana_program::{
     account_info::{next_account_info, AccountInfo},
     entrypoint,
@@ -41,7 +41,11 @@ use solana_program::{
     program_error::ProgramError,
     pubkey::Pubkey,
 };
-use std::mem;
+
+#[derive(BorshSerialize, BorshDeserialize, Debug)]
+pub struct GreetingAccount {
+    pub counter: u32,
+}
 
 entrypoint!(process_instruction);
 ```
