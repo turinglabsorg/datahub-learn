@@ -53,8 +53,8 @@ entrypoint!(process_instruction);
 We start by doing some standard includes and declaring an entry point which will be the `process_instruction` function:
 
 ```rust
-fn process_instruction(
-    program_id: &Pubkey,
+pub fn process_instruction(
+    program_id: &Pubkey, 
     accounts: &[AccountInfo],
     _instruction_data: &[u8],
 ```
@@ -63,9 +63,23 @@ The program\_id is the public key where the contract is stored and the accountIn
 
 ```rust
 ) -> ProgramResult {
-    msg!("Helloworld Rust program entrypoint");
+    msg!("Hello World Rust program entrypoint");
     let accounts_iter = &mut accounts.iter();
     let account = next_account_info(accounts_iter)?;
+    
+    if account.owner != program_id {
+        msg!("Greeted account does not have the correct program id");
+        return Err(ProgramError::IncorrectProgramId);
+    }
+    
+    let mut greeting_account = GreetingAccount::try_from_slice(&account.data.borrow())?;
+    greeting_account.counter += 1;
+    greeting_account.serialize(&mut &mut account.data.borrow_mut()[..])?;
+
+    msg!("Greeted {} time(s)!", greeting_account.counter);
+
+    Ok(())
+}
 ```
 
 The return value `ProgramResult` is where the magic happens. We can print a message to the Program Log with the `msg!()` macro and then select the accountInfo by looping through using an iterator although in practice there is likely only one value.
@@ -157,7 +171,7 @@ npm run build:program-rust
 This step can take 5 or 10 minutes!
 {% endhint %}
 
-If it's successful you should see a new folder in your app which contains the compiled contract: `hellow-world.so`.
+If it's successful you should see a new folder in your app which contains the compiled contract: `hello-world.so`.
 
 {% hint style="info" %}
 The `.so` extension does not stand for Solana! It stands for "shared object". The helloworld program we wrote is a Rust program compiled to Berkeley Packet Format \(BPF\) and stored as an Executable and Linkable Format \(ELF\) shared object.
