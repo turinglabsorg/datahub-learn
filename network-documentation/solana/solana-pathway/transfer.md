@@ -134,9 +134,9 @@ Click on the Solana Explorer link - it will take you straight to the transaction
 
 ![](../../../.gitbook/assets/screen-shot-2021-06-14-at-8.10.51-pm.png)
 
-It's very good practice to look over all the fields one by one to familiarize yourself with the structure of a transaction. This page features the transaction result \(`SUCCESS`\), status \(`FINALIZED`\), the amount sent, the `from` and `to` addresses, the block that included this transaction, the fee that was paid, etc
+It's very good practice to look over all the fields one by one to familiarize yourself with the structure of a transaction. This page features the transaction result \(`SUCCESS`\), status \(`FINALIZED`\), the amount sent, the `from` and `to` addresses, the block that included this transaction, the fee that was paid, etc.
 
 ## Next
 
-Next, we will look at how to deploy a program to the Solana cluster.
+Next, we will look at how to deploy a program written in the Rust language to the Solana cluster.
 
