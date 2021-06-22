@@ -46,7 +46,7 @@ use std::mem;
 entrypoint!(process_instruction);
 ```
 
-We start by doing some standard includes and declaring an entry point which will be the process\_instruction function:
+We start by doing some standard includes and declaring an entry point which will be the `process_instruction` function:
 
 ```rust
 fn process_instruction(
@@ -64,7 +64,7 @@ The program\_id is the public key where the contract is stored and the accountIn
     let account = next_account_info(accounts_iter)?;
 ```
 
-The ProgramResult is where the magic happens and we start by printing a fairly pointless message and then select the accountInfo by looping through although in practice there is likely only one.
+The return value `ProgramResult` is where the magic happens. We can print a message to the Program Log with the `msg!()` macro and then select the accountInfo by looping through using an iterator although in practice there is likely only one value.
 
 ```rust
 if account.owner != program_id {
@@ -73,7 +73,7 @@ if account.owner != program_id {
 }
 ```
 
-Security check to see if the account owner has permission.
+Security check to see if the account owner has permission. If the account owner does not equal the `program_id` we will return an error.
 
 ```rust
 if account.try_data_len()? < mem::size_of::<u32>() {
@@ -93,7 +93,7 @@ msg!("Hello!");
 Ok(())
 ```
 
-Finally we get to the good stuff where we “borrow” the existing appAccount data, increase that value by one and rewrite it back.
+Finally we get to the good stuff where we “borrow” the existing appAccount data with the keywords `let mut`, increase the value of `num_greets` by one and write it back to storage.
 
 ## Building the program
 
@@ -157,13 +157,13 @@ simply re-run the deploy command until it succeeds. If you run out of funds, go 
 
 ### Program's authority X does not match authority provided Y
 
-This can be due to how your solana keypair was generated. Re-generate one by running
+This can be due to how your Solana keypair was generated. You can generate a fresh one by running :
 
 ```bash
 solana-keygen new --force
 ```
 
-Then go through the tutorial steps again \(fund, build, deploy\)
+Then go through the tutorial steps again \(fund, build, deploy\).
 
 ## After successfully deploying the program
 
