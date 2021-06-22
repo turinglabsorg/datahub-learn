@@ -6,7 +6,7 @@ description: Enjoy our full suite of tutorials across our supported networks
 
 ## ![](../.gitbook/assets/vhhp1wl4_400x400-1-.jpg) Learn Tutorials
 
-### Follow along and build amazing apps on Web 3 protocols with the help of Learn Tutorials from community contributors!
+#### Follow along and build amazing apps on Web 3 protocols with the help of Learn Tutorials from community contributors!
 
 ## ![](../.gitbook/assets/avalanche_token_round-300x300.png) Avalanche Tutorials
 

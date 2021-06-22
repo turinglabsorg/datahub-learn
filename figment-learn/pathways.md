@@ -68,7 +68,7 @@ Secret Pathway is Active again
 
 ## ![](https://firebasestorage.googleapis.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-MIVL6JKxnpiaciltfue%2F-Mc7lO7pzgced15e8VAT%2F-Mc7oUrVGuPMh2VaczUw%2Fsolana.png?alt=media&token=899b8cc1-d310-46ee-947a-c4c818c337ac) Solana Pathway <a id="solana-pathway"></a>
 
-Solana is an open-source project implementing a new, high-performance, permissionless blockchain. From [Messari's Solana profile](https://messari.io/asset/solana/profile), its goal is to provide a platform that enables developers to create DApps without needing to design around performance bottlenecks.
+Solana is an open-source project implementing a new, high-performance, permissionless blockchain. From [Messari's Solana profile](https://messari.io/asset/solana/profile), its goal is to provide a platform that enables developers to create DApps without needing to design around performance bottlenecks. Learn what makes it unique and build your first project to **earn $20 in SOL**!
 
 {% page-ref page="../network-documentation/solana/solana-pathway/" %}
 
