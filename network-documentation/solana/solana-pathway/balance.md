@@ -70,8 +70,8 @@ In `src/components/Balance.jsx`, implement `getBalance` and store the balance in
 {% endhint %}
 
 * We create a `PublicKey` using the the input's value
-* We call `connection.getBalance` with that address
-* On success, we set `balance` \(using the react hook `setBalance`\) to that value, after using the `DECIMAL_OFFSET`
+* We call `connection.getBalance` with that `publicKey` \(address\)
+* On success, we set `balance` \(using the React hook `setBalance`\) to that value, dividing by the `DECIMAL_OFFSET`to display the balance appropriately
 
 Enter the address you just funded and click on "Check Balance". You should see:
 
