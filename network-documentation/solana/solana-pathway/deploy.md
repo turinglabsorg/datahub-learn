@@ -96,6 +96,35 @@ Ok(())
 
 Finally we get to the good stuff where we “borrow” the existing account data, increase the value of `counter` by one and write it back to storage. We can show in the Program Log how many times the count has been incremented by using the `msg!()` macro.
 
+## Testing the program
+
+To ensure that the program code passes any tests defined in the sourcefile, it is good to run the tests before performing the build and deploy. Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take a few minutes but future tests will occur much more rapidly once everything is compiled. The output from a successful `cargo test` will look like this :
+
+```bash
+running 1 test
+test test::test_sanity ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/lib.rs (target/debug/deps/lib-560d97a774ffe546)
+
+running 1 test
+[2021-06-22T16:43:02.687502000Z INFO  solana_program_test] "helloworld" program loaded as native code
+[2021-06-22T16:43:02.836044000Z DEBUG solana_runtime::message_processor] Program log: Hello World Rust program entrypoint
+[2021-06-22T16:43:02.836100000Z DEBUG solana_runtime::message_processor] Program log: Greeted 1 time(s)!
+[2021-06-22T16:43:03.039766000Z DEBUG solana_runtime::message_processor] Program log: Hello World Rust program entrypoint
+[2021-06-22T16:43:03.039812000Z DEBUG solana_runtime::message_processor] Program log: Greeted 2 time(s)!
+test test_helloworld ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.54s
+
+   Doc-tests helloworld
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00S
+```
+
 ## Building the program
 
 The first thing we're going to do is compile the Rust program to prepare it for the CLI. To do this we're going to use a custom script that's in `package.json`:
@@ -114,7 +143,7 @@ scripts: {
 * `build-bpf` is the cargo command we're going to run to build/compile the program.
 * We pass it a manifest file and the desired output
 
-Let's build the program by running the following command in your Terminal:
+Let's build the program by running the following command in your Terminal \(from the project root directory\):
 
 ```rust
 npm run build:program-rust
