@@ -16,8 +16,6 @@ In `src/components/Call.jsx,`finish implementing the `greet()` function.
   →   [Read about sendAndConfirmTransaction](https://solana-labs.github.io/solana-web3.js/modules.html#sendandconfirmtransaction)
 {% endhint %}
 
-
-
 Take a few minutes to figure this out.
 
 You can also ****[**join us on Discord**](https://discord.gg/fszyM7K) ****if you have questions.
@@ -103,7 +101,7 @@ Once this code is saved, click on "Check Program Info" to make sure that the pro
 
 Then click on "Send a greeting to the program". which will trigger the `greet` function we have analyzed above. If everything goes well, it should wait for the network's confirmation and upon success update the counter! The Greetings Counter will increment by 1 every time we click the button and wait for the transaction to be confirmed.
 
-It doesn't look like we're doing much but what we achieved is pretty cool. We have a client running in our browser interacting with a program deployed on the Solana devnet, which calls it to change \(and retrieves\) its internal state!
+It doesn't look like we're doing much but what we achieved is pretty cool. We have a client running in our browser interacting with a program deployed on the Solana devnet, which calls it to change \(and retrieve\) its internal state!
 
 ![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.54.41-pm.png)
 
