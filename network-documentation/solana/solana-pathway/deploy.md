@@ -82,7 +82,7 @@ if account.try_data_len()? < mem::size_of::<u32>() {
 }
 ```
 
-Check to see if data is available to store a u32 integer.
+Check to see if data is available to store a u32 integer. 
 
 ```rust
 let mut data = account.try_borrow_mut_data()?;
@@ -126,7 +126,7 @@ This step can take 5 or 10 minutes!
 If it's successful you should see a new folder in your app which contains the compiled contract: `hellow-world.so`.
 
 {% hint style="info" %}
-The `.so` extension does not stand for Solana! It stands for "shared object". The helloworld program we wrote is a Rust program compiled to Berkley Packet Format \(BPF\) and stored as an Executable and Linkable Format \(ELF\) shared object.
+The `.so` extension does not stand for Solana! It stands for "shared object". The helloworld program we wrote is a Rust program compiled to Berkeley Packet Format \(BPF\) and stored as an Executable and Linkable Format \(ELF\) shared object.
 
 You can read more about Solana Programs [here](https://docs.solana.com/developing/on-chain-programs/overview).
 {% endhint %}
