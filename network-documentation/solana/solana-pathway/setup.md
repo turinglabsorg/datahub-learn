@@ -20,7 +20,7 @@ With the API key in place, save the `.env.local` file and start the React interf
 yarn start
 ```
 
-Once the development server loads and compiles the application, your default browser should be redirected to `http://localhot:3000` :
+Once the development server loads and compiles the application, your default browser should be redirected to `http://localhost:3000` :
 
 ![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.47.58-pm.png)
 
