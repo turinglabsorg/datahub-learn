@@ -169,6 +169,21 @@ The `.so` extension does not stand for Solana! It stands for "shared object". Th
 You can read more about Solana Programs [here](https://docs.solana.com/developing/on-chain-programs/overview).
 {% endhint %}
 
+### Potential errors
+
+An error like `no such subcommand` indicates that there was an issue with the installation of the Solana CLI or that it is installed, but not in the PATH. So if you see this error and exit code 101 :
+
+```text
+$ cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=dist/program
+error: no such subcommand: `build-bpf`
+error Command failed with exit code 101.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+```
+
+Be sure to set your PATH according to your installed Solana release, such as :
+
+`PATH="~/.local/share/solana/install/active_release/bin:$PATH"`
+
 ## Deploying the program
 
 Next we're going to deploy the program to the devnet cluster. The CLI provides a very simple interface for this:
