@@ -68,7 +68,33 @@ pub fn process_instruction(
     _instruction_data: &[u8],
 ```
 
-The program\_id is the public key where the contract is stored and the accountInfo is the appAccount to say hello to.
+The `program_id` will be the public key where the contract is stored and the `AccountInfo` is the account to say hello to. Taking a quick detour out of the program code to peek at the `AccountInfo` struct,   
+we see that `accounts.owner` is also going to be a public key :
+
+```rust
+/// Account information
+#[derive(Clone)]
+pub struct AccountInfo<'a> {
+    /// Public key of the account
+    pub key: &'a Pubkey,
+    /// Was the transaction signed by this account's public key?
+    pub is_signer: bool,
+    /// Is the account writable?
+    pub is_writable: bool,
+    /// The lamports in the account.  Modifiable by programs.
+    pub lamports: Rc<RefCell<&'a mut u64>>,
+    /// The data held in this account.  Modifiable by programs.
+    pub data: Rc<RefCell<&'a mut [u8]>>,
+    /// Program that owns this account
+    pub owner: &'a Pubkey,
+    /// This account's data contains a loaded program (and is now read-only)
+    pub executable: bool,
+    /// The epoch at which this account will next owe rent
+    pub rent_epoch: Epoch,
+}
+```
+
+Back to the helloworld code :
 
 ```rust
 ) -> ProgramResult {
@@ -77,7 +103,10 @@ The program\_id is the public key where the contract is stored and the accountIn
     let account = next_account_info(accounts_iter)?;
 ```
 
-The return value `ProgramResult` is where the magic happens. We can print a message to the Program Log with the `msg!()` macro and then select the accountInfo by looping through using an iterator although in practice there is likely only one value.
+The return value `ProgramResult` is where the magic happens.  
+We can print messages to the Program Log with the `msg!()` macro. By looping through the `accounts` using an [iterator](https://doc.rust-lang.org/book/ch13-02-iterators.html), `accounts_iter` is taking a mutable reference of each value in `accounts`.   
+`next_account_info()` is going to return the next `AccountInfo` or a `NotEnoughAccountKeys` error.  
+Notice the `?` at the end, this is a shortcut expression for [error propagation](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#propagating-errors).
 
 ```rust
 if account.owner != program_id {
@@ -86,7 +115,7 @@ if account.owner != program_id {
 }
 ```
 
-Security check to see if the account owner has permission. If the account owner does not equal the `program_id` we will return an error.
+We will perform a security check to see if the account owner has permission. If the account owner does not equal the `program_id` we will return an error.
 
 ```rust
 let mut greeting_account = GreetingAccount::try_from_slice(&account.data.borrow())?;
@@ -96,9 +125,16 @@ greeting_account.serialize(&mut &mut account.data.borrow_mut()[..])?;
 msg!("Greeted {} time(s)!", greeting_account.counter);
 
 Ok(())
+}
 ```
 
-Finally we get to the good stuff where we “borrow” the existing account data, increase the value of `counter` by one and write it back to storage. We can show in the Program Log how many times the count has been incremented by using the `msg!()` macro. 
+Finally we get to the good stuff where we "borrow" the existing account data, increase the value of `counter` by one and write it back to storage.   
+  
+The `GreetingAccount` struct has only one field - `counter`. To be able to modify it, we need to borrow the reference to `account.data` with the `&`borrow operator. The `borrow()` function comes from the Rust core library, and exists to immutably borrow the wrapped value. 
+
+Incrementing the value by `1` is simple, using the addition assignment operator `+= 1` .
+
+We will serialize the changed value using the `serialize()` function from the borsh crate. This allows it to be sent back to Solana in the correct format. We can then show in the Program Log how many times the count has been incremented with the `msg!()` macro.
 
 ### Overview
 
@@ -160,9 +196,64 @@ pub fn process_instruction(
 Apple M1 users may encounter an issue here. This step is not a requirement, but testing programs before deployment is a good practice. Refer to the comments on this Pull Request for more information : [https://github.com/solana-labs/solana/pull/16346](https://github.com/solana-labs/solana/pull/16346)
 {% endhint %}
 
-To ensure that the program code passes any tests defined in the sourcefile, it is good to run the tests before building and deploying.  
+To ensure that the program code has no obvious bugs and passes any tests defined in the sourcefile, it is good to run the unit tests before building and deploying. Here is what the default unit test for this program looks like :
+
+```rust
+// Sanity tests
+#[cfg(test)]
+mod test {
+    use super::*;
+    use solana_program::clock::Epoch;
+    use std::mem;
+
+    #[test]
+    fn test_sanity() {
+        let program_id = Pubkey::default();
+        let key = Pubkey::default();
+        let mut lamports = 0;
+        let mut data = vec![0; mem::size_of::<u32>()];
+        let owner = Pubkey::default();
+        let account = AccountInfo::new(
+            &key,
+            false,
+            true,
+            &mut lamports,
+            &mut data,
+            &owner,
+            false,
+            Epoch::default(),
+        );
+        let instruction_data: Vec<u8> = Vec::new();
+
+        let accounts = vec![account];
+
+        assert_eq!(
+            GreetingAccount::try_from_slice(&accounts[0].data.borrow())
+                .unwrap()
+                .counter,
+            0
+        );
+        process_instruction(&program_id, &accounts, &instruction_data).unwrap();
+        assert_eq!(
+            GreetingAccount::try_from_slice(&accounts[0].data.borrow())
+                .unwrap()
+                .counter,
+            1
+        );
+        process_instruction(&program_id, &accounts, &instruction_data).unwrap();
+        assert_eq!(
+            GreetingAccount::try_from_slice(&accounts[0].data.borrow())
+                .unwrap()
+                .counter,
+            2
+        );
+    }
+}
+```
+
+Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take a few minutes but future tests will occur much more rapidly once everything is compiled.   
   
-Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take a few minutes but future tests will occur much more rapidly once everything is compiled. The output from a successful `cargo test` will look like this :
+The output from a successful `cargo test` will look like this \(timestamps have been removed\) :
 
 ```bash
 running 1 test
@@ -173,20 +264,14 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
      Running tests/lib.rs (target/debug/deps/lib-560d97a774ffe546)
 
 running 1 test
-[2021-06-22T16:43:02.687502000Z INFO  solana_program_test] "helloworld" program loaded as native code
-[2021-06-22T16:43:02.836044000Z DEBUG solana_runtime::message_processor] Program log: Hello World Rust program entrypoint
-[2021-06-22T16:43:02.836100000Z DEBUG solana_runtime::message_processor] Program log: Greeted 1 time(s)!
-[2021-06-22T16:43:03.039766000Z DEBUG solana_runtime::message_processor] Program log: Hello World Rust program entrypoint
-[2021-06-22T16:43:03.039812000Z DEBUG solana_runtime::message_processor] Program log: Greeted 2 time(s)!
+[ INFO  solana_program_test] "helloworld" program loaded as native code
+[ DEBUG solana_runtime::message_processor] Program log: Hello World Rust program entrypoint
+[ DEBUG solana_runtime::message_processor] Program log: Greeted 1 time(s)!
+[ DEBUG solana_runtime::message_processor] Program log: Hello World Rust program entrypoint
+[ DEBUG solana_runtime::message_processor] Program log: Greeted 2 time(s)!
 test test_helloworld ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.54s
-
-   Doc-tests helloworld
-
-running 0 tests
-
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00S
 ```
 
 ## Building the program
@@ -226,7 +311,7 @@ You can read more about Solana Programs [here](https://docs.solana.com/developin
 
 ### Potential errors
 
-An error like `no such subcommand` indicates that there was an issue with the installation of the Solana CLI or that it is installed, but not in the PATH. So if you see this error and exit code 101 :
+An error ``no such subcommand: `build-bpf``` indicates that there was an issue with the installation of the Solana CLI or that it is installed, but not in the PATH. So if you see this error and exit code 101 :
 
 ```text
 $ cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=dist/program
@@ -235,13 +320,13 @@ error Command failed with exit code 101.
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 ```
 
-Be sure to set your PATH according to your installed Solana release, such as :
+Be sure to set your PATH according to your Solana release \(`active_release`is a symbolic link\) :
 
 `PATH="~/.local/share/solana/install/active_release/bin:$PATH"`
 
 ## Deploying the program
 
-Next we're going to deploy the program to the devnet cluster. The CLI provides a very simple interface for this:
+Next we're going to deploy the program to the devnet cluster. The CLI provides a very simple interface for this :
 
 ```bash
 solana program deploy dist/program/helloworld.so
