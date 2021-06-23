@@ -30,5 +30,9 @@ Here's a collection of extra guides to support your learning experience. Let's m
 
 {% page-ref page="dotenv-and-.env.md" %}
 
+## Rust Learning Resources
+
+{% page-ref page="rust-learning-resources.md" %}
+
 
 
