@@ -19,7 +19,7 @@ In `src/components/Connect.jsx`, implement `getConnection` by creating a `Connec
 
 Take a few minutes to figure this out.
 
-You can also **\*\*\[**join us on Discord**\]\(**[https://discord.gg/fszyM7K](https://discord.gg/fszyM7K)**\) \*\***if you have questions.
+You can also[ **join us on Discord**](https://discord.gg/fszyM7K) if you have questions.
 
 Still not sure how to do this? No problem! The solution is below so you don't get stuck.
 
