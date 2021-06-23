@@ -40,6 +40,7 @@ The Rust Language Cheat Sheet has a good section of [Coding Guides](https://chea
 * [Crust of Rust](https://youtube.com/playlist?list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa) is a video series which makes intermediate Rust concepts understandable by diving into real examples and working code
 * An introduction to the Rust programming language through[ implementing a hashmap](https://youtu.be/DWNyZXUC1u4)
 * [Michael F. Bryan](https://adventures.michaelfbryan.com/tags/rust/)'s articles on Rust
+* Cheat sheet for [common types and what they convert into](https://upsuper.github.io/rust-cheatsheet/)
 
 ## Advanced
 
