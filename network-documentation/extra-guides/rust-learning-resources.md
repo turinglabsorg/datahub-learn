@@ -6,7 +6,9 @@ description: Get Beginner to Advanced Level Resources for Rust Programming Langu
 
 ![](../../.gitbook/assets/rust-programming-language.png)
 
-![](../../.gitbook/assets/rust-logo.png)[**Rust**](https://www.rust-lang.org/learn) is a multi-paradigm programming language designed for performance and safety, especially safe concurrency. Rust achieves memory safety without garbage collection, and reference counting is optional.   
+
+
+[**Rust**](https://www.rust-lang.org/learn) is a multi-paradigm programming language designed for performance and safety, especially safe concurrency. Rust achieves memory safety without garbage collection, and reference counting is optional.   
 The concrete syntax of Rust is similar to C and C++, with blocks of code delimited by curly brackets, and control flow keywords such as `if`, `else`, `while`, and `for`, although the specific syntax for defining functions is more similar to Pascal. Not all C or C++ keywords are implemented, however, and some Rust functions \(such as the use of the keyword `match` for pattern matching\) will be less familiar to those versed in these languages.  
   
 Rust is intended to be a language for highly concurrent and highly safe systems, which makes it a natural choice for blockchain programming - both in terms of writing protocols and smart contracts. 

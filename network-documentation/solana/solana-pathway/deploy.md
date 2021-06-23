@@ -23,6 +23,10 @@ If this is your first time using the Solana CLI, you will need to generate a new
 solana-keygen new
 ```
 
+{% hint style="info" %}
+
+{% endhint %}
+
 ## Understanding the hello-world program
 
 There is a `program` folder at the app's root. It contains the Rust program `src/lib.rs` and some configuration files to help us compile and deploy it.
