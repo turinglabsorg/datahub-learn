@@ -157,10 +157,12 @@ pub fn process_instruction(
 ## Testing the program
 
 {% hint style="warning" %}
-Apple M1 users may encounter an issue here. Refer to the comments on this Pull Request for more information : [https://github.com/solana-labs/solana/pull/16346](https://github.com/solana-labs/solana/pull/16346)
+Apple M1 users may encounter an issue here. This step is not a requirement, but testing programs before deployment is a good practice. Refer to the comments on this Pull Request for more information : [https://github.com/solana-labs/solana/pull/16346](https://github.com/solana-labs/solana/pull/16346)
 {% endhint %}
 
-To ensure that the program code passes any tests defined in the sourcefile, it is good to run the tests before performing the build and deploy. Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take a few minutes but future tests will occur much more rapidly once everything is compiled. The output from a successful `cargo test` will look like this :
+To ensure that the program code passes any tests defined in the sourcefile, it is good to run the tests before building and deploying.  
+  
+Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take a few minutes but future tests will occur much more rapidly once everything is compiled. The output from a successful `cargo test` will look like this :
 
 ```bash
 running 1 test
@@ -202,13 +204,12 @@ scripts: {
 {% endcode %}
 
 * `cargo` is Rust’s build system and package manager \([docs](https://doc.rust-lang.org/book/ch01-03-hello-cargo.html)\), like what `npm` is to Javascript.
-* `build-bpf` is the cargo command we're going to run to build/compile the program.
-* We pass it a manifest file and the desired output
+* `build-bpf` is the cargo command we're going to run to build/compile the program. This is installed with the Solana CLI. We pass it a manifest file and the desired output directory.
 
-Let's build the program by running the following command in your Terminal \(from the project root directory\):
+Let's build the program by running the following command in the terminal \(from the project root directory\):
 
-```rust
-npm run build:program-rust
+```text
+yarn run build:program-rust
 ```
 
 {% hint style="warning" %}
