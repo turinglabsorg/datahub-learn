@@ -457,7 +457,7 @@ In this tutorial, we have covered the basics of NEAR smart contract programming 
 
 Thank you for following along with this tutorial, now take this knowledge and build amazing things on NEAR!
 
-## About The Author
+## About the Author
 
 This tutorial was created by [Nikhil Bhintade](https://www.linkedin.com/in/nikbhintade). A crypto enthusiast who wants to document what he learned. You can get in touch with the author on [Figment Forum](https://community.figment.io/u/nikbhintade/) and on [Github](https://github.com/nikbhintade).
 
