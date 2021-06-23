@@ -8,9 +8,13 @@ description: >-
 
 ## Make sure Node.js is installed
 
-Follow the official instructions on installing Node.js for your current operating system. Once the installation is complete, or if you already have Node.js installed, type the command `node -v` inside a terminal window \(bash or PowerShell\) to check the currently installed version of Node.js.
+_If you are installing Node.js on WSL_, you can [follow this guide](https://docs.microsoft.com/en-ca/windows/dev-environment/javascript/nodejs-on-wsl). 
 
-Most modern JavaScript APIs will target Node.js v12+. Using a version manager such as [nvm](https://github.com/nvm-sh/nvm) or [fnm](https://github.com/Schniz/fnm) is strongly encouraged, as it allows developers to quickly switch between Node.js versions.
+Official releases of Node.js can be [downloaded from the official site](https://nodejs.org/en/download/).
+
+Once the installation is complete, or if you already have Node.js installed, type the command `node -v` inside a terminal window \(such as `bash`, `zsh`, `cmd.exe` or PowerShell\) to check the currently installed version.
+
+Most modern JavaScript APIs will target Node.js v12+. Using a version manager such as ****[**nvm**](https://github.com/nvm-sh/nvm) or [**fnm**](https://github.com/Schniz/fnm) is strongly encouraged, as it allows developers to quickly switch between Node.js versions as needed.
 
 ## Initialize the project directory
 
@@ -70,7 +74,7 @@ Since we used the `--save` flag when installing, it will be much easier to see w
 
 For anybody unfamiliar with environment variables, refer to our guide on ****[**dotenv and .env**](dotenv-and-.env.md) at this point to understand the package and what it is used for.
 
-* _**If we are choosing to use the more modern**_ ****[**ES6 `import` syntax**](https://www.digitalocean.com/community/tutorials/js-modules-es6)_,_ when developing we will need to add a line to our `package.json` in order to prevent a`SyntaxError: Cannot use import statement outside a module` . The `import` keyword was introduced in Node.js v12, a language feature to simplify the use of modules. Alternatively, we could use an `.mjs` file extension for all of our JavaScript files, however adding this line to `package.json` enables us to keep the `.js` file extension and saves a lot of  hassle with configuration : 
+* _**If we are choosing to use the more modern**_ ****[**ES6 `import` syntax**](https://www.digitalocean.com/community/tutorials/js-modules-es6)_,_ when developing we will need to add a line to our `package.json` in order to prevent a`SyntaxError: Cannot use import statement outside a module` .  The `import` keyword was introduced in Node.js v12, a language feature to simplify the use of modules. Alternatively, we could use an `.mjs` file extension for all of our JavaScript files, however adding this line to `package.json` enables us to keep the `.js` file extension and saves a lot of  hassle with configuration : 
 
 {% tabs %}
 {% tab title="Type or paste this key:value pair into package.json if using ES6 import syntax" %}
@@ -80,9 +84,10 @@ For anybody unfamiliar with environment variables, refer to our guide on ****[**
 {% endtab %}
 {% endtabs %}
 
-* _**If we are choosing to use the more common**_ **`require()`** _**syntax**_, then it is unnecessary to add this line to `package.json` . 
+* _**If we are choosing to use the older, slightly more common**_ **`require()`** _**syntax**_, then it is unnecessary to add this line to `package.json` . 
 
-With these steps completed, we now have a project directory that is prepared to have other dependencies installed into it using `npm install` . This basic setup is a sufficient start to be able to write further JavaScript code, the next step being to install whichever web3 dependencies we would like to learn about.
+With these steps completed, we now have a project directory that is prepared to have other dependencies installed into it using `npm install` or `yarn add` .  
+This basic setup is a sufficient start to be able to write and execute further JavaScript code using Node.js, the next step being to install whichever dependencies we would like to learn about. This is a good way to experiment and become familiar with particular JavaScript libraries.
 
 ## References
 

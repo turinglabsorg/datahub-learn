@@ -8,6 +8,15 @@ So far we've been using Solana's JS API to interact with the blockchain. In this
 
 ## Install Rust and configure the Solana CLI
 
+{% hint style="danger" %}
+There are known compatibility issues with Microsoft Windows and also Apple M1 products.
+
+Windows users need to install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) - then install Rust and the Solana CLI inside of WSL. It is also important to make sure the PATH includes the location of the Solana release, such as :  
+`PATH="/Users/username/.local/share/solana/install/active_release/bin:$PATH"`
+
+Users of Apple's Silicon \(M1\) may need to build from source. Refer to this GitHub PR for more information : [https://github.com/solana-labs/solana/pull/16346/](https://github.com/solana-labs/solana/pull/16346/)
+{% endhint %}
+
 * Install the latest Rust stable from [https://rustup.rs/](https://rustup.rs/)
 * Install Solana v1.6.6 or later from [https://docs.solana.com/cli/install-solana-cli-tools](https://docs.solana.com/cli/install-solana-cli-tools)
 
@@ -22,10 +31,6 @@ If this is your first time using the Solana CLI, you will need to generate a new
 ```text
 solana-keygen new
 ```
-
-{% hint style="info" %}
-
-{% endhint %}
 
 ## Understanding the hello-world program
 
