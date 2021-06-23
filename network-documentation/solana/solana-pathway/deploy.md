@@ -102,6 +102,10 @@ Finally we get to the good stuff where we “borrow” the existing account data
 
 ## Testing the program
 
+{% hint style="warning" %}
+Apple M1 users may encounter an issue here. Refer to the comments on this Pull Request for more information : [https://github.com/solana-labs/solana/pull/16346](https://github.com/solana-labs/solana/pull/16346)
+{% endhint %}
+
 To ensure that the program code passes any tests defined in the sourcefile, it is good to run the tests before performing the build and deploy. Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take a few minutes but future tests will occur much more rapidly once everything is compiled. The output from a successful `cargo test` will look like this :
 
 ```bash
