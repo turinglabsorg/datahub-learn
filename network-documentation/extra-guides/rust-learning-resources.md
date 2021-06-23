@@ -53,3 +53,15 @@ The Rust Language Cheat Sheet has a good section of [Coding Guides](https://chea
 * Writing a file system from scratch in Rust - [Check Here](https://blog.carlosgaldino.com/writing-a-file-system-from-scratch-in-rust.html)
 * [Good Practices](https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries/) for Writing Rust Libraries
 
+## Network Specific
+
+* Solana : [Developing with Rust](https://docs.solana.com/developing/on-chain-programs/developing-rust)
+  * Uses the `bpfel-unknown-unknown` target triple, compiles to Berkeley Packet Format `.so` 
+  * Check out the [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools)
+  * Learn more about [parameter de-serialization](https://docs.solana.com/developing/on-chain-programs/developing-rust#parameter-deserialization) & data types
+  * [Example programs](https://github.com/solana-labs/solana-program-library/tree/master/examples/rust) for further study 
+* NEAR : [Getting Started](https://docs.near.org/docs/develop/contracts/rust/intro#getting-started)
+  * Uses the `wasm32-unknown-unknown` target triple, compiles to WebAssembly `.wasm`
+  * Check out the[ NEAR CLI](https://docs.near.org/docs/tools/near-cli)
+  * Learn more about the [NEAR SDK](https://docs.near.org/docs/develop/contracts/rust/near-sdk-rs) \(see also: [docs.rs](https://docs.rs/near-sdk/3.1.0/near_sdk/)\)
+
