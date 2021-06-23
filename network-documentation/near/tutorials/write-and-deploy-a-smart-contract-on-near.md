@@ -89,7 +89,7 @@ overflow-checks = true
 
 We are all set now! This can be used as a template and a starting point for any future project.
 
-## Writing The Contract
+## Writing the contract
 
 We will create a simple Create, Read, Update, Delete \([CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)\) backend in Rust that utilizes the on-chain storage offered by NEAR. More information about NEAR storage is available [in the NEAR docs](https://docs.near.org/docs/concepts/storage-staking).
 
@@ -123,7 +123,7 @@ static ALLOC: near_sdk::wee_alloc::WeeAlloc<'_> = near_sdk::wee_alloc::WeeAlloc:
 
 You can read more about [global allocator](https://doc.rust-lang.org/edition-guide/rust-2018/platform-and-target-support/global-allocators.html) and [wee\_alloc](https://github.com/rustwasm/wee_alloc).
 
-### Main Struct
+### Main struct
 
 While writing our smart contract, we will follow a pattern using one structure \(`struct`\) and an implementation \(`impl`\) associated with it. This is a pattern used in most Rust contracts on NEAR. Add the following snippet below the comment `// 1. Main Struct` in `lib.rs`:
 
@@ -143,7 +143,7 @@ What are attributes? A declarative tag that is used to convey information to run
 
 By adding the macro `#[near_bindgen]` we provide our struct `KeyValue` with generated boilerplate code to make it compatible with the NEAR blockchain. The second macro, `#[derive(BorshDeserialize, BorshSerialize)]` assists in the serialization and de-serialization of the data for sending it to or retrieiving it from NEAR.
 
-### Default Implementation
+### Default implementation
 
 Every type in Rust has a `Default` implementation but here we want provide our own default implementation for `keyValue` struct. Add the following snippet below the comment `// 2. Default Implementation` in `lib.rs`:
 
@@ -159,7 +159,7 @@ impl Default for KeyValue {
 
 Now, let’s go step by step: First, we are creating a `Default` implementation for `KeyValue`. After that, we added the `default` method inside that implementation which returns `Self`. `Self` refers to the current type, which is `KeyValue`. Lastly, we are returning `Self` with a new unordered map. While creating a new unordered map, we must pass the ID as `Vec<u8>` type so we are converting `b"r"` which is a byte string, to `Vec<u8>`, using the `to_vec()` function. The prefix `b` is used to specify that we want a byte array of the string. You can read about byte string literals [in the Rust docs.](https://doc.rust-lang.org/reference/tokens.html#byte-string-literals)
 
-### Core Logic
+### Core logic
 
 Now we are going to add methods to `KeyValue` struct. These methods are core logic for our smart contract. Add following snippet below the comment `// 3. Core Logic`:
 
@@ -197,7 +197,7 @@ After that, we are calling the method `insert` on `self.pairs`. This will create
 
 The next two methods are quite similar but instead of calling the `insert` method, we call `get` and `remove` methods on self.pairs to read or remove the key-value pair.
 
-## Testing the Contract
+## Testing the contract
 
 The code for our CRUD smart contract is now complete. One of the nice features of Rust is that it allows inline unit tests. This means we can write our unit tests in the same source file as our contract, `lib.rs`!.
 
@@ -304,7 +304,7 @@ running 0 tests
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 ```
 
-## Compiling the Contract
+## Compiling the contract
 
 Now that we have written and tested the Rust smart contract, we will compile it into WebAssembly for deployment on NEAR. Run the following command in the terminal \(NOTE: Windows users will have to perform the two commands separately, `set` for the environment variables and then the `cargo build` command\):
 
@@ -327,7 +327,7 @@ Finished release [optimized] target(s) in 1m 00s
 
 We have now generated an optimized WebAssembly file which we can deploy on NEAR, for this tutorial we will deploy it to the NEAR testnet.
 
-## Deploying the Contract
+## Deploying the contract
 
 First you have to login into your account using `near-cli`. Run
 
@@ -386,7 +386,7 @@ Done deploying to CONTRACT_ID
 
 🎉🎉 We have successfully deployed our first Rust smart contract.
 
-## Interacting with Smart Contract
+## Interacting with the contract
 
 Now that we have deployed our contract, we can interact with it using the NEAR CLI.
 
