@@ -18,7 +18,7 @@ Avalanche is a layer one protocol by Ava Labs that offers high-throughput, fast 
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
-## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Celo Pathway
+## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29.png) Celo Pathway
 
 Celo’s aim is to empower anyone with a smartphone anywhere in the world to have access to financial services, send money to phone numbers, and pay merchants -- on a decentralized platform that is operated by a community of users. Learn what makes it unique and build your first project! 
 
@@ -76,7 +76,7 @@ Solana is an open-source project implementing a new, high-performance, permissio
 
 #### [Join our community today](https://discord.gg/fszyM7K) if you want to interact with other builders and become a part of this growing ecosystem! 
 
-## ![](../.gitbook/assets/2011.png) Tezos Pathway 
+## ![](../.gitbook/assets/2011%20%282%29%20%281%29.png) Tezos Pathway 
 
 Tezos is an open-source platform for assets and applications that can evolve by upgrading itself. Stakeholders govern upgrades to the core protocol, including upgrades to the amendment process itself. ****It benefits from three main characteristics: self-amendment, on-chain governance, and decentralized innovation. ****Learn what makes it unique and build your first project to **earn $20 in XTZ**!
 

@@ -13,13 +13,13 @@ In `src/components/Connect.jsx`, implement `getConnection` by creating a `Connec
 
 **Need some help?** Check out those two links
 
-   ****→  [Creating a `Connection` instance](https://solana-labs.github.io/solana-web3.js/classes/connection.html#constructor)  
-   →  ****[Getting the API's version](https://solana-labs.github.io/solana-web3.js/classes/connection.html#getversion)
+**→** [**Creating a `Connection` instance**](https://solana-labs.github.io/solana-web3.js/classes/connection.html#constructor)  
+**→** [Getting the API's version](https://solana-labs.github.io/solana-web3.js/classes/connection.html#getversion)
 {% endhint %}
 
 Take a few minutes to figure this out.
 
-You can also ****[**join us on Discord**](https://discord.gg/fszyM7K) ****if you have questions.
+You can also **\*\*\[**join us on Discord**\]\(**[https://discord.gg/fszyM7K](https://discord.gg/fszyM7K)**\) \*\***if you have questions.
 
 Still not sure how to do this? No problem! The solution is below so you don't get stuck.
 
@@ -31,7 +31,7 @@ Still not sure how to do this? No problem! The solution is below so you don't ge
 ```jsx
 const getConnection = () => {
   const url = getNodeRpcURL();
-  
+
   // Create a connection
   // Get the API version
   // and save it to the component's state
@@ -45,10 +45,10 @@ const getConnection = () => {
 ```javascript
 const getConnection = () => {
   const url = getNodeRpcURL();
-  
+
   // Create a connection
   const connection = new Connection(url);
-  
+
   // Get the API version
   connection.getVersion()
     .then(version => {

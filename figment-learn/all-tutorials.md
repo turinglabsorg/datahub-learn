@@ -16,7 +16,7 @@ Avalanche is a layer one protocol by AVA Labs that offers high-throughput, fast 
 
 **Get Started with** [**Avalanche on DataHub**](https://figment.io/datahub/avalanche/) **today!**
 
-## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Celo Tutorials
+## ![](../.gitbook/assets/37552875%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png) Celo Tutorials
 
 Celo is an open platform that makes financial tools accessible to anyone with a mobile phone.
 
@@ -64,7 +64,7 @@ Secret Network is the first blockchain with privacy-preserving smart contracts. 
 
 **Get Started with** [**Secret on DataHub**](https://figment.io/datahub/secret-network/) **today!**
 
-## ![](../.gitbook/assets/solana.png) Solana Tutorials
+## ![](../.gitbook/assets/solana%20%282%29.png) Solana Tutorials
 
 Solana is an open-source project implementing a new, high-performance, permissionless blockchain.
 
@@ -72,7 +72,7 @@ Solana is an open-source project implementing a new, high-performance, permissio
 
 **Get Started with** [**Solana on DataHub**](https://figment.io/datahub/solana/) **today!**
 
-## ![](../.gitbook/assets/rsz_terra-logo.jpg) Terra Tutorials
+## ![](../.gitbook/assets/rsz_terra-logo%20%282%29.jpg) Terra Tutorials
 
 Terra is a price-stable cryptocurrency that will power the next-generation payment network.
 
@@ -80,7 +80,7 @@ Terra is a price-stable cryptocurrency that will power the next-generation payme
 
 **Get Started with** [**Terra on DataHub**](https://figment.io/datahub/terra/) **today!**
 
-## ![](../.gitbook/assets/2011%20%281%29.png) **Tezos Tutorials**
+## ![](../.gitbook/assets/2011%20%282%29.png) **Tezos Tutorials**
 
 Tezos is a secure, smart contract blockchain platform that uses its built-in governance mechanism for protocol upgrades.
 
