@@ -14,7 +14,7 @@ So far we've been using Solana's JS API to interact with the blockchain. In this
 Set the CLI config URL to the devnet cluster by running this command in your Terminal:
 
 ```text
-solana config set --url devnet
+solana config set --url https://api.devnet.solana.com
 ```
 
 If this is your first time using the Solana CLI, you will need to generate a new keypair. It will be written to `~/.config/solana/id.json` and will be used every time you use the CLI. Run the following command in your Terminal:
