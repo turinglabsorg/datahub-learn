@@ -11,10 +11,10 @@ So far we've been using Solana's JS API to interact with the blockchain. In this
 {% hint style="danger" %}
 There are known compatibility issues with Microsoft Windows and also Apple M1 products.
 
-Windows users need to install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) - then install Rust and the Solana CLI inside of the WSL filesystem. It is also important to make sure your PATH includes the location of the Solana release you have installed, such as :  
+**Windows**: Users need to install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) - then install Rust and the Solana CLI inside of the WSL filesystem. It is also important to make sure your PATH includes the location of the Solana release you have installed, such as :  
 `PATH="~/.local/share/solana/install/active_release/bin:$PATH"`
 
-macOS users with M1 products may need to build from source. Refer to this GitHub PR for more information : [https://github.com/solana-labs/solana/pull/16346/](https://github.com/solana-labs/solana/pull/16346/)
+**macOS:** Users with M1 products may need to build from source. Refer to this GitHub PR for more information : [https://github.com/solana-labs/solana/pull/16346/](https://github.com/solana-labs/solana/pull/16346/)
 {% endhint %}
 
 * Install the latest Rust stable from [https://rustup.rs/](https://rustup.rs/)
@@ -309,7 +309,7 @@ The `.so` extension does not stand for Solana! It stands for "shared object". Th
 You can read more about Solana Programs [here](https://docs.solana.com/developing/on-chain-programs/overview).
 {% endhint %}
 
-### Potential errors
+## Potential issues deploying
 
 An error ``no such subcommand: `build-bpf``` indicates that there was an issue with the installation of the Solana CLI or that it is installed, but not in the PATH. So if you see this error and exit code 101 :
 
