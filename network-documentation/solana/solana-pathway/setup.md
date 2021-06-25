@@ -22,13 +22,12 @@ yarn start
 
 Once the development server loads and compiles the application, your default browser should be redirected to `http://localhost:3000` :
 
-![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.47.58-pm.png)
-
 {% hint style="warning" %}
-If the local development server has started, but a new browser window or tab has not opened, you can still do so manually by pasting \(or typing\) `http://localhost:3000` into the address bar of your browser.
+If the local development server has started, but a new browser window or tab has not opened, you can still do so manually by pasting \(or typing\) `http://localhost:3000` into the address bar of your browser. Once the app is running and you can view it in your browser, click on   
+"View step instructions" to see the challenge for step one, Connect to the Solana Devnet!
 {% endhint %}
 
-
+![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.47.58-pm.png)
 
 {% hint style="info" %}
 [**Join us on Discord**](https://discord.gg/fszyM7K) ****if you encounter any issues with the tutorial or have any questions!
