@@ -62,7 +62,17 @@ pub struct GreetingAccount {
 entrypoint!(process_instruction);
 ```
 
-We start by using the borsh crate \(borsh stands for _Binary Object Representation Serializer for Hashing_\), then doing some standard includes from the solana\_program crate, one of which is the macro we use next, to declare an entry point - the `process_instruction` function :
+[`use` declarations](https://doc.rust-lang.org/reference/items/use-declarations.html) are convenient shortcuts to other code. In this case, the serialize and de-serialize functions from the [borsh](https://borsh.io/) crate. borsh stands for _**B**inary **O**bject **R**epresentation **S**erializer for **H**ashing_.
+
+We also include portions of the `solana_program` crate;
+
+* A function to return the next `AccountInfo` as well as the  struct for `AccountInfo` ;
+*  The `entrypoint` macro and related `entrypoint::ProgramResult` ;
+*  The `msg` macro, for low-impact logging on the blockchain ;
+* `program_error::ProgramError` which allows on-chain programs to implement program-specific error types and see them returned by the Solana runtime. A program-specific error may be any type that is represented as or serialized to a u32 integer ;
+* The `pubkey::Pubkey` struct.
+
+Next, we declare an entry point - the `process_instruction` function :
 
 ```rust
 pub fn process_instruction(
@@ -71,8 +81,7 @@ pub fn process_instruction(
     _instruction_data: &[u8],
 ```
 
-The `program_id` will be the public key where the contract is stored and the `AccountInfo` is the account to say hello to. Taking a quick detour out of the program code to peek at the `AccountInfo` struct,   
-we see that `accounts.owner` is also going to be a public key :
+The `program_id` will be the public key where the contract is stored and the `AccountInfo` is the account to say hello to. Taking a quick detour out of the program code to peek at the `AccountInfo` struct which is defined in the Solana CLI source, we see that `accounts.owner` is also going to be a public key :
 
 ```rust
 /// Account information
