@@ -13,19 +13,17 @@ Please STOP and read the following information carefully:
 
 **Windows Users**: _The Rust BPF toolchain is not available for Windows._ This means the compilation step cannot be completed from a Windows commandline. You must install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) - then you will need to clone the `learn-solana-dapp` repository again and install [Rust](https://rustup.rs/) and the [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools), all inside of the WSL filesystem.  
   
-To access the WSL filesystem, run the command `wsl` from a `cmd.exe` or PowerShell terminal. It is also important to make sure your PATH includes the location of the Solana release you have installed, such as :  
-`PATH="~/.local/share/solana/install/active_release/bin:$PATH".`   
+To access the filesystem of your [installed Linux distribution](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-6---install-your-linux-distribution-of-choice) for WSL :  
+Run the command [`wsl`](https://docs.microsoft.com/en-us/windows/wsl/reference) from a `cmd.exe` or PowerShell terminal. It is also important to make sure your PATH in the Windows Subsystem for Linux environment includes the location of the Solana release you have installed, such as :`PATH="~/.local/share/solana/install/active_release/bin:$PATH"`.   
 More information on viewing and setting the PATH in Linux is [available here](https://opensource.com/article/17/6/set-path-linux).
-{% endhint %}
 
-{% hint style="danger" %}
 **macOS** **Users**: If you are using any of the [Apple M1](https://en.wikipedia.org/wiki/Apple_M1#Products_that_use_the_Apple_M1) products, you may need to build from source. Refer to this GitHub PR for more information : [https://github.com/solana-labs/solana/pull/16346/](https://github.com/solana-labs/solana/pull/16346/)
 {% endhint %}
 
 ## Install Rust and configure the Solana CLI
 
-* Install the latest Rust stable from [https://rustup.rs/](https://rustup.rs/)
-* Install Solana v1.6.6 or later from [https://docs.solana.com/cli/install-solana-cli-tools](https://docs.solana.com/cli/install-solana-cli-tools)
+* I[nstall the latest Rust stable](https://rustup.rs) : `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+* [Install Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools) \(v1.6.6 or later\) : `sh -c "$(curl -sSfL https://release.solana.com/1.7.3/install)"`
 
 Set the CLI config URL to the devnet cluster by running this command in your Terminal:
 
