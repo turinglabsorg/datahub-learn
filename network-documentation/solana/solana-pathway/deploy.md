@@ -264,6 +264,8 @@ mod test {
 }
 ```
 
+The term "Sanity test" or "[Sanity check](https://en.wikipedia.org/wiki/Sanity_check)" in relation to computing is a basic test to quickly evaluate whether a claim or the result of a calculation can possibly be true. It is a simple check to see if the produced material is rational \(that the material's creator was thinking rationally, applying [sanity](https://en.wikipedia.org/wiki/Sanity)\). The point of a sanity test is to rule out certain classes of obviously false results, not to catch every possible error.
+
 Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take several minutes, although future tests will occur much more rapidly since everything is compiled.   
   
 The output from a successful `cargo test` will look like this \(timestamps have been removed\) :
