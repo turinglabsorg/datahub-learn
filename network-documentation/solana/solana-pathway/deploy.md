@@ -53,13 +53,6 @@ use solana_program::{
     program_error::ProgramError,
     pubkey::Pubkey,
 };
-
-#[derive(BorshSerialize, BorshDeserialize, Debug)]
-pub struct GreetingAccount {
-    pub counter: u32,
-}
-
-entrypoint!(process_instruction);
 ```
 
 [`use` declarations](https://doc.rust-lang.org/reference/items/use-declarations.html) are convenient shortcuts to other code. In this case, the serialize and de-serialize functions from the [borsh](https://borsh.io/) crate. borsh stands for _**B**inary **O**bject **R**epresentation **S**erializer for **H**ashing_.
@@ -72,18 +65,37 @@ We also include portions of the `solana_program` crate;
 * `program_error::ProgramError` which allows on-chain programs to implement program-specific error types and see them returned by the Solana runtime. A program-specific error may be any type that is represented as or serialized to a u32 integer ;
 * The `pubkey::Pubkey` struct.
 
+Next we will use the `derive` macro to generate all the necessary boilerplate code to wrap our `GreetingAccount` struct. This happens behind the scenes during compile time [with any `#[derive()]` macros](https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros). Rust macros are a rather large topic to take in, but well worth the effort to understand. For now, just know that this is a shortcut for boilerplate code that is inserted at compile time.  
+  
+The struct declaration itself is simple, we are using the `pub` keyword to declare our struct publicly accessible, meaning other programs and functions can use it. The `struct` keyword is letting the compiler know that we are defining a struct named `GreetingAccount` , which has a single field : `counter` with a type of `u32` , an unsigned 32-bit integer. This means our counter cannot be larger than [`4,294,967,295`](https://en.wikipedia.org/wiki/4,294,967,295).
+
+```rust
+#[derive(BorshSerialize, BorshDeserialize, Debug)]
+pub struct GreetingAccount {
+    pub counter: u32,
+}
+```
+
 Next, we declare an entry point - the `process_instruction` function :
 
 ```rust
+entrypoint!(process_instruction);
+
 pub fn process_instruction(
     program_id: &Pubkey, 
     accounts: &[AccountInfo],
     _instruction_data: &[u8],
 ```
 
-The `program_id` will be the public key where the contract is stored and the `AccountInfo` is the account to say hello to.   
+With a quick detour out of the helloworld example and into the Solana CLI source, we can see the `ProcessInstruction` type being used behind the scenes :
+
+![From solana-program-1.6.6/src/entrypoint.rs](../../../.gitbook/assets/processinstruction.png)
+
+`&Pubkey` is a [borrowed reference](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html) to the public key where the contract is stored, this is our program's identifier or programId.
+
+`&[AccountInfo]` , another borrowed reference this time to an array of accounts, however in this example there is only a single account.  
   
-Taking a quick detour out of the program code to peek at the `AccountInfo` struct which is defined in the Solana CLI source, we see that `accounts.owner` is also going to be a public key :
+Taking another quick detour out of the program code to peek at the `AccountInfo` struct, we see that `accounts.owner` is also going to be a public key :
 
 ![From solana-program-1.6.6/src/account\_info.rs](../../../.gitbook/assets/accountinfo_struct.png)
 
@@ -96,10 +108,12 @@ Back to the helloworld code :
     let account = next_account_info(accounts_iter)?;
 ```
 
-The return value `ProgramResult` is where the magic happens.  
-We can print messages to the Program Log with the `msg!()` macro. By looping through the `accounts` using an [iterator](https://doc.rust-lang.org/book/ch13-02-iterators.html), `accounts_iter` is taking a mutable reference of each value in `accounts`.   
-`next_account_info()` is going to return the next `AccountInfo` or a `NotEnoughAccountKeys` error.  
-Notice the `?` at the end, this is a shortcut expression for [error propagation](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#propagating-errors).
+The return value of the `process_instruction` entrypoint will be a `ProgramResult` .  
+[`Result`](https://doc.rust-lang.org/std/result/enum.Result.html) comes from the `std` crate and is used to express the possibility of error.  
+  
+For [debugging](https://docs.solana.com/developing/on-chain-programs/debugging), we can print messages to the Program Log [with the `msg!()` macro](https://docs.rs/solana-program/1.7.3/solana_program/macro.msg.html), rather than use `println!()` which would be prohibitive in terms of computational cost for the cluster.  
+  
+By looping through the `accounts` using an [iterator](https://doc.rust-lang.org/book/ch13-02-iterators.html), `accounts_iter` is taking a mutable reference of each value in `accounts`. Then `next_account_info(accounts_iter)?`will return the next `AccountInfo` or a `NotEnoughAccountKeys` error. Notice the `?` at the end, this is a shortcut expression for [error propagation](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#propagating-errors).
 
 ```rust
 if account.owner != program_id {
@@ -108,7 +122,7 @@ if account.owner != program_id {
 }
 ```
 
-We will perform a security check to see if the account owner has permission. If the account owner does not equal the `program_id` we will return an error.
+We will perform a security check to see if the account owner has permission. If the `account.owner` public key does not equal the `program_id` we will return an error.
 
 ```rust
 let mut greeting_account = GreetingAccount::try_from_slice(&account.data.borrow())?;
@@ -302,7 +316,7 @@ The `.so` extension does not stand for Solana! It stands for "shared object". Th
 You can read more about Solana Programs [here](https://docs.solana.com/developing/on-chain-programs/overview).
 {% endhint %}
 
-## Potential issues deploying
+## Potential issues compiling
 
 An error ``no such subcommand: `build-bpf``` indicates that there was an issue with the installation of the Solana CLI or that it is installed, but not in the PATH. So if you see this error and exit code 101 :
 
@@ -350,6 +364,46 @@ solana-keygen new --force
 ```
 
 Then go through the tutorial steps again \(fund, build, deploy\).
+
+### solana deploy --help
+
+For quick reference, here are the flags, options and arguments for `solana deploy` :
+
+```text
+solana-deploy 
+Deploy a program
+
+USAGE:
+    solana deploy [FLAGS] [OPTIONS] <PROGRAM_FILEPATH> [PROGRAM_ADDRESS_SIGNER]
+
+FLAGS:
+        --allow-excessive-deploy-account-balance
+            Use the designated program id, even if the account already holds a large balance of SOL
+
+    -h, --help                                      Prints help information
+        --no-address-labels                         Do not use address labels in the output
+        --skip-seed-phrase-validation
+            Skip validation of seed phrases. Use this if your phrase does not use the BIP39 official English word list
+
+    -V, --version                                   Prints version information
+    -v, --verbose                                   Show additional information
+
+OPTIONS:
+        --commitment <COMMITMENT_LEVEL>    Return information at the selected commitment level [possible values:
+                                           processed, confirmed, finalized]
+    -C, --config <FILEPATH>                Configuration file to use [default:
+                                           /Users/rogan/.config/solana/cli/config.yml]
+    -u, --url <URL_OR_MONIKER>             URL for Solana's JSON RPC or moniker (or their first letter): [mainnet-beta,
+                                           testnet, devnet, localhost]
+    -k, --keypair <KEYPAIR>                Filepath or URL to a keypair
+        --output <FORMAT>                  Return information in specified output format [possible values: json, json-
+                                           compact]
+        --ws <URL>                         WebSocket URL for the solana cluster
+
+ARGS:
+    <PROGRAM_FILEPATH>          /path/to/program.o
+    <PROGRAM_ADDRESS_SIGNER>    The signer for the desired address of the program [default: new random address]
+```
 
 ## After successfully deploying the program
 
