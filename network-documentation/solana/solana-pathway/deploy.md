@@ -4,7 +4,7 @@ A _program_ is to Solana what a _smart contract_ is to other protocols. Once a p
 
 Solana programs can be written in C or in Rust. You can learn more about Solana's programs [here](https://docs.solana.com/developing/on-chain-programs/overview).
 
-So far we've been using Solana's JS API to interact with the blockchain. In this chapter we're going to deploy a Solana program using another Solana developer tool: their CLI. We'll install it and use it through our terminal.
+So far we've been using Solana's JS API to interact with the blockchain. In this chapter we're going to deploy a Solana program using another Solana developer tool: their CLI. We'll install it and use it through our Terminal.
 
 ## Install Rust and configure the Solana CLI
 
@@ -60,7 +60,7 @@ use solana_program::{
 
 [`use` declarations](https://doc.rust-lang.org/reference/items/use-declarations.html) are convenient shortcuts to other code. In this case, the serialize and de-serialize functions from the [borsh](https://borsh.io/) crate. borsh stands for _**B**inary **O**bject **R**epresentation **S**erializer for **H**ashing_.
 
-We also include portions of the `solana_program` crate :
+We also `use` portions of the `solana_program` crate :
 
 * A function to return the next `AccountInfo` as well as the  struct for `AccountInfo` ;
 *  The `entrypoint` macro and related `entrypoint::ProgramResult` ;
@@ -92,7 +92,7 @@ pub fn process_instruction(
 
 With a quick detour out of the helloworld example and into the Solana CLI source, we can see the `ProcessInstruction` type being used behind the scenes :
 
-![From solana-program-1.6.6/src/entrypoint.rs](../../../.gitbook/assets/processinstruction.png)
+![From solana-program-1.7.3/src/entrypoint.rs](../../../.gitbook/assets/processinstruction.png)
 
 `&Pubkey` is a [borrowed reference](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html) to the public key where the contract is stored, this is our program's identifier or programId.
 
@@ -100,7 +100,7 @@ With a quick detour out of the helloworld example and into the Solana CLI source
   
 Taking another quick detour out of the program code to peek at the `AccountInfo` struct, we see that `accounts.owner` is also going to be a public key :
 
-![From solana-program-1.6.6/src/account\_info.rs](../../../.gitbook/assets/accountinfo_struct.png)
+![From solana-program-1.7.3/src/account\_info.rs](../../../.gitbook/assets/accountinfo_struct.png)
 
 Back to the helloworld code :
 
