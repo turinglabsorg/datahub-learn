@@ -143,7 +143,7 @@ Finally we get to the good stuff where we "borrow" the existing account data, in
   
 The `GreetingAccount` struct has only one field - `counter`. To be able to modify it, we need to borrow the reference to `account.data` with the `&`borrow operator. The `borrow()` function comes from the Rust core library, and exists to immutably borrow the wrapped value. 
 
-Incrementing the value by `1` is simple, using the addition assignment operator `+= 1` .
+Incrementing the value by `1` is simple, using the addition assignment operator `+=` .
 
 We will serialize the changed value using the `serialize()` function from the borsh crate. This allows it to be sent back to Solana in the correct format. We can then show in the Program Log how many times the count has been incremented with the `msg!()` macro.
 
