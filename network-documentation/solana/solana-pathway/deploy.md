@@ -6,22 +6,23 @@ Solana programs can be written in C or in Rust. You can learn more about Solana'
 
 So far we've been using Solana's JS API to interact with the blockchain. In this chapter we're going to deploy a Solana program using another Solana developer tool: their CLI. We'll install it and use it through our Terminal.
 
-## Install Rust and configure the Solana CLI
-
-\*\*\*\*
-
 {% hint style="danger" %}
 **There are known compatibility issues with Microsoft Windows and also Apple M1 products!**
 
 Please STOP and read the following information carefully:
 
-**Windows Users**: The Rust BPF toolchain is not available for Windows.  
-Install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) - then install [Rust](https://rustup.rs/) and the [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools) inside of the WSL filesystem. To access the WSL filesystem, run the command `wsl` from a `cmd.exe` or PowerShell terminal. It is also important to make sure your PATH includes the location of the Solana release you have installed, such as :  
-`PATH="~/.local/share/solana/install/active_release/bin:$PATH"`  
-More information on viewing and setting the PATH is [available here](https://opensource.com/article/17/6/set-path-linux).
-
-**macOS** **Users**: If you are using an Apple M1 product, you may need to build from source. Refer to this GitHub PR for more information : [https://github.com/solana-labs/solana/pull/16346/](https://github.com/solana-labs/solana/pull/16346/)
+**Windows Users**: _The Rust BPF toolchain is not available for Windows._ This means the compilation step cannot be completed from a Windows commandline. You must install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) - then you will need to clone the `learn-solana-dapp` repository again and install [Rust](https://rustup.rs/) and the [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools), all inside of the WSL filesystem.  
+  
+To access the WSL filesystem, run the command `wsl` from a `cmd.exe` or PowerShell terminal. It is also important to make sure your PATH includes the location of the Solana release you have installed, such as :  
+`PATH="~/.local/share/solana/install/active_release/bin:$PATH".`   
+More information on viewing and setting the PATH in Linux is [available here](https://opensource.com/article/17/6/set-path-linux).
 {% endhint %}
+
+{% hint style="danger" %}
+**macOS** **Users**: If you are using any of the [Apple M1](https://en.wikipedia.org/wiki/Apple_M1#Products_that_use_the_Apple_M1) products, you may need to build from source. Refer to this GitHub PR for more information : [https://github.com/solana-labs/solana/pull/16346/](https://github.com/solana-labs/solana/pull/16346/)
+{% endhint %}
+
+## Install Rust and configure the Solana CLI
 
 * Install the latest Rust stable from [https://rustup.rs/](https://rustup.rs/)
 * Install Solana v1.6.6 or later from [https://docs.solana.com/cli/install-solana-cli-tools](https://docs.solana.com/cli/install-solana-cli-tools)
@@ -32,11 +33,13 @@ Set the CLI config URL to the devnet cluster by running this command in your Ter
 solana config set --url https://api.devnet.solana.com
 ```
 
-If this is your first time using the Solana CLI, you will need to generate a new keypair. It will be written to `~/.config/solana/id.json` and will be used every time you use the CLI. Run the following command in your Terminal:
+If this is your first time using the Solana CLI, you will need to generate a new keypair. Run the following command in your Terminal : 
 
 ```text
 solana-keygen new
 ```
+
+It will be written to `~/.config/solana/id.json` and will be used every time you use the CLI. 
 
 ## Understanding the hello-world program
 
@@ -102,7 +105,7 @@ Taking another quick detour out of the program code to peek at the `AccountInfo`
 
 ![From solana-program-1.7.3/src/account\_info.rs](../../../.gitbook/assets/accountinfo_struct.png)
 
-Back to the helloworld code :
+Back to the hello-world code :
 
 ```rust
 ) -> ProgramResult {
@@ -114,9 +117,9 @@ Back to the helloworld code :
 The return value of the `process_instruction` entrypoint will be a `ProgramResult` .  
 [`Result`](https://doc.rust-lang.org/std/result/enum.Result.html) comes from the `std` crate and is used to express the possibility of error.  
   
-For [debugging](https://docs.solana.com/developing/on-chain-programs/debugging), we can print messages to the Program Log [with the `msg!()` macro](https://docs.rs/solana-program/1.7.3/solana_program/macro.msg.html), rather than use `println!()` which would be prohibitive in terms of computational cost for the cluster.  
+For [debugging](https://docs.solana.com/developing/on-chain-programs/debugging), we can print messages to the Program Log [with the `msg!()` macro](https://docs.rs/solana-program/1.7.3/solana_program/macro.msg.html), rather than use `println!()` which would be prohibitive in terms of computational cost for the network.  
   
-By looping through the `accounts` using an [iterator](https://doc.rust-lang.org/book/ch13-02-iterators.html), `accounts_iter` is taking a mutable reference of each value in `accounts`. Then `next_account_info(accounts_iter)?`will return the next `AccountInfo` or a `NotEnoughAccountKeys` error. Notice the `?` at the end, this is a shortcut expression for [error propagation](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#propagating-errors).
+By looping through the `accounts` using an [iterator](https://doc.rust-lang.org/book/ch13-02-iterators.html), `accounts_iter` is taking a [mutable reference](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#mutable-references) of each value in `accounts`. Then `next_account_info(accounts_iter)?`will return the next `AccountInfo` or a `NotEnoughAccountKeys` error. Notice the `?` at the end, this is a shortcut expression for [error propagation](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#propagating-errors).
 
 ```rust
 if account.owner != program_id {
@@ -171,7 +174,7 @@ entrypoint!(process_instruction);
 
 // Program entrypoint's implementation
 pub fn process_instruction(
-    program_id: &Pubkey, // Public key of the account the hello world program was loaded into
+    program_id: &Pubkey, // Public key of the account the program was loaded into
     accounts: &[AccountInfo], // The account to say hello to
     _instruction_data: &[u8], // Ignored, all helloworld instructions are hellos
 ) -> ProgramResult {
