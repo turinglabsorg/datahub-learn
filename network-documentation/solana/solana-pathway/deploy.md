@@ -81,30 +81,11 @@ pub fn process_instruction(
     _instruction_data: &[u8],
 ```
 
-The `program_id` will be the public key where the contract is stored and the `AccountInfo` is the account to say hello to. Taking a quick detour out of the program code to peek at the `AccountInfo` struct which is defined in the Solana CLI source, we see that `accounts.owner` is also going to be a public key :
+The `program_id` will be the public key where the contract is stored and the `AccountInfo` is the account to say hello to.   
+  
+Taking a quick detour out of the program code to peek at the `AccountInfo` struct which is defined in the Solana CLI source, we see that `accounts.owner` is also going to be a public key :
 
-```rust
-/// Account information
-#[derive(Clone)]
-pub struct AccountInfo<'a> {
-    /// Public key of the account
-    pub key: &'a Pubkey,
-    /// Was the transaction signed by this account's public key?
-    pub is_signer: bool,
-    /// Is the account writable?
-    pub is_writable: bool,
-    /// The lamports in the account.  Modifiable by programs.
-    pub lamports: Rc<RefCell<&'a mut u64>>,
-    /// The data held in this account.  Modifiable by programs.
-    pub data: Rc<RefCell<&'a mut [u8]>>,
-    /// Program that owns this account
-    pub owner: &'a Pubkey,
-    /// This account's data contains a loaded program (and is now read-only)
-    pub executable: bool,
-    /// The epoch at which this account will next owe rent
-    pub rent_epoch: Epoch,
-}
-```
+![From solana-program-1.6.6/src/account\_info.rs](../../../.gitbook/assets/accountinfo_struct.png)
 
 Back to the helloworld code :
 
