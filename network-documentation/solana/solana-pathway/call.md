@@ -30,7 +30,7 @@ Still not sure how to do this? No problem! The solution is below so you don't ge
 ```jsx
 const greet = async () => {
   // Load the payer's Keypair from the Uint8Array PAYER_SECRET_KEY
-  // by using Keypair.fromsecretkey
+  // by using Keypair.fromSecretKey
   // https://solana-labs.github.io/solana-web3.js/classes/keypair.html#fromsecretkey
 
   // Create the TransactionInstruction by passing keys, programId and data
@@ -49,7 +49,7 @@ const greet = async () => {
 ```javascript
 const greet = async () => {
   // Load the payer's Keypair from the Uint8Array PAYER_SECRET_KEY
-  // by using Keypair.fromsecretkey
+  // by using Keypair.fromSecretKey
   // https://solana-labs.github.io/solana-web3.js/classes/keypair.html#fromsecretkey
   const payerSecretKey = new Uint8Array(PAYER_SECRET_KEY);
   const payerKeypair = Keypair.fromSecretKey(payerSecretKey);

@@ -57,7 +57,7 @@ use solana_program::{
 
 [`use` declarations](https://doc.rust-lang.org/reference/items/use-declarations.html) are convenient shortcuts to other code. In this case, the serialize and de-serialize functions from the [borsh](https://borsh.io/) crate. borsh stands for _**B**inary **O**bject **R**epresentation **S**erializer for **H**ashing_.
 
-We also include portions of the `solana_program` crate;
+We also include portions of the `solana_program` crate :
 
 * A function to return the next `AccountInfo` as well as the  struct for `AccountInfo` ;
 *  The `entrypoint` macro and related `entrypoint::ProgramResult` ;
