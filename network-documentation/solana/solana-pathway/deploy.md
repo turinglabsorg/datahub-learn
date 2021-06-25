@@ -261,7 +261,7 @@ mod test {
 }
 ```
 
-Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take a few minutes but future tests will occur much more rapidly once everything is compiled.   
+Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take several minutes, although future tests will occur much more rapidly since everything is compiled.   
   
 The output from a successful `cargo test` will look like this \(timestamps have been removed\) :
 
@@ -286,35 +286,42 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 ## Building the program
 
-The first thing we're going to do is compile the Rust program to prepare it for the CLI. To do this we're going to use a custom script that's in `package.json`:
+The first thing we're going to do is compile the Rust program to prepare it for the CLI. To do this we're going to use a custom script that's defined in `package.json`:
 
 {% code title="package.json" %}
 ```javascript
-scripts: {
-  ...
-  "build:program-rust": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=dist/program"
-  ...
-}
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:program-rust": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=dist/program"
+  },
 ```
 {% endcode %}
 
-* `cargo` is Rust’s build system and package manager \([docs](https://doc.rust-lang.org/book/ch01-03-hello-cargo.html)\), like what `npm` is to Javascript.
-* `build-bpf` is the cargo command we're going to run to build/compile the program. This is installed with the Solana CLI. We pass it a manifest file and the desired output directory.
+`start` , `build` , `test` , `eject` are all default and part of the `create-react-app` template.
 
-Let's build the program by running the following command in the terminal \(from the project root directory\):
+The custom build script uses :
+
+* `cargo` : Rust’s build system and package manager \([docs](https://doc.rust-lang.org/book/ch01-03-hello-cargo.html)\), like what `npm` is to Javascript.
+* `build-bpf` : the cargo command we're going to run to build/compile the program. This is installed along with the Solana CLI. We pass it a manifest file which is the `Cargo.toml` of our program and the desired output directory.
+
+Let's run the script and build the program by running the following command in the terminal \(from the project root directory\):
 
 ```text
 yarn run build:program-rust
 ```
 
 {% hint style="warning" %}
-This step can take 5 or 10 minutes!
+This step can take 5 or 10 minutes!   
+_Do not be alarmed_ if this causes your laptop fans to spin up, as Rust is multithreaded and will be taking full advantage of your processor cores during the compilation.
 {% endhint %}
 
-If it's successful you should see a new folder in your app which contains the compiled contract: `hello-world.so`.
+When it's successful you will see a new folder in your app which contains the compiled contract: `hello-world.so`.
 
 {% hint style="info" %}
-The `.so` extension does not stand for Solana! It stands for "shared object". The helloworld program we wrote is a Rust program compiled to Berkeley Packet Format \(BPF\) and stored as an Executable and Linkable Format \(ELF\) shared object.
+The `.so` extension does not stand for Solana! It stands for "shared object". The helloworld program we examined above is a Rust program compiled to Berkeley Packet Filter \(BPF\) _bytecode_ and stored as an Executable and Linkable Format \(ELF\) shared object.
 
 You can read more about Solana Programs [here](https://docs.solana.com/developing/on-chain-programs/overview).
 {% endhint %}
@@ -428,7 +435,9 @@ Notice that the field `Executable` is now set to `Yes` because the address we're
 
 ## Save the program and its author secret keys
 
-Before we move to the next step we need to save two important variables
+{% hint style="warning" %}
+Before we move to the next step we need to save two important variables!
+{% endhint %}
 
 1. In your terminal run `cat ~/.config/solana/id.json` and copy its output. In `src/components/Call.jsx` assign it to the constant `PAYER_SECRET_KEY`. This is the Keypair information of the author of the program \(you!\). We will need to pass it to transactions we make to the program  to authenticate ourselves as the owner of the program. 
 2. In the directory, find `dist/program/helloworld-keypair.json` and copy its contents. In `/src/components/Call.jsx` assign it to the constant `PROGRAM_SECRET_KEY`. This is the Keypair information of the program itself. We will need it to generate the program's public key that will be used to call the program.
