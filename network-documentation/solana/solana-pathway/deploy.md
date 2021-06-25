@@ -11,7 +11,7 @@ So far we've been using Solana's JS API to interact with the blockchain. In this
 {% hint style="danger" %}
 **There are compatibility issues with Microsoft Windows and also Apple M1 products!**
 
-Read the following information carefully:
+Please STOP and read the following information carefully:
 
 **Windows Users**: Install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) - then install [Rust](https://rustup.rs/) and the [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools) inside of the WSL filesystem. To access the WSL filesystem, run the command `wsl` from a `cmd.exe` or PowerShell terminal. It is also important to make sure your PATH includes the location of the Solana release you have installed, such as :  
 `PATH="~/.local/share/solana/install/active_release/bin:$PATH"`  
