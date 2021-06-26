@@ -93,7 +93,7 @@ pub fn process_instruction(
 
 With a quick detour out of the helloworld example and into the Solana CLI source, we can see the `ProcessInstruction` type being used behind the scenes :
 
-![From solana-program-1.7.3/src/entrypoint.rs](../../../.gitbook/assets/processinstruction.png)
+![From solana-program-1.6.6/src/entrypoint.rs](../../../.gitbook/assets/processinstruction.png)
 
 `&Pubkey` is a [borrowed reference](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html) to the public key where the contract is stored, this is our program's identifier or programId.
 
@@ -101,7 +101,7 @@ With a quick detour out of the helloworld example and into the Solana CLI source
   
 Taking another quick detour out of the program code to peek at the `AccountInfo` struct, we see that `accounts.owner` is also going to be a public key :
 
-![From solana-program-1.7.3/src/account\_info.rs](../../../.gitbook/assets/accountinfo_struct.png)
+![From solana-program-1.6.6/src/account\_info.rs](../../../.gitbook/assets/accountinfo_struct.png)
 
 Back to the hello-world code :
 
