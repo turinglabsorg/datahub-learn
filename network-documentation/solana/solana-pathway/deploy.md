@@ -115,9 +115,9 @@ Back to the hello-world code :
 The return value of the `process_instruction` entrypoint will be a `ProgramResult` .  
 [`Result`](https://doc.rust-lang.org/std/result/enum.Result.html) comes from the `std` crate and is used to express the possibility of error.  
   
-For [debugging](https://docs.solana.com/developing/on-chain-programs/debugging), we can print messages to the Program Log [with the `msg!()` macro](https://docs.rs/solana-program/1.7.3/solana_program/macro.msg.html), rather than use `println!()` which would be prohibitive in terms of computational cost for the network.  
+For [debugging](https://docs.solana.com/developing/on-chain-programs/debugging), we can print messages to the Program Log [with the `msg!()` macro](https://docs.rs/solana-program/1.7.3/solana_program/macro.msg.html), rather than use `println!()` which would be prohibitive in terms of computational cost for the network.   
   
-By looping through the `accounts` using an [iterator](https://doc.rust-lang.org/book/ch13-02-iterators.html), `accounts_iter` is taking a [mutable reference](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#mutable-references) of each value in `accounts`. Then `next_account_info(accounts_iter)?`will return the next `AccountInfo` or a `NotEnoughAccountKeys` error. Notice the `?` at the end, this is a shortcut expression for [error propagation](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#propagating-errors).
+The `let` keyword in Rust binds a value to a variable. By looping through the `accounts` using an [iterator](https://doc.rust-lang.org/book/ch13-02-iterators.html), `accounts_iter` is taking a [mutable reference](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#mutable-references) of each value in `accounts`. Then `next_account_info(accounts_iter)?`will return the next `AccountInfo` or a `NotEnoughAccountKeys` error. Notice the `?` at the end, this is a [shortcut expression](https://doc.rust-lang.org/std/result/#the-question-mark-operator-) in Rust for [error propagation](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#propagating-errors).
 
 ```rust
 if account.owner != program_id {
@@ -136,16 +136,23 @@ greeting_account.serialize(&mut &mut account.data.borrow_mut()[..])?;
 msg!("Greeted {} time(s)!", greeting_account.counter);
 
 Ok(())
-}
 ```
 
-Finally we get to the good stuff where we "borrow" the existing account data, increase the value of `counter` by one and write it back to storage.   
-  
-The `GreetingAccount` struct has only one field - `counter`. To be able to modify it, we need to borrow the reference to `account.data` with the `&`borrow operator. The `borrow()` function comes from the Rust core library, and exists to immutably borrow the wrapped value. 
+Finally we get to the good stuff where we "borrow" the existing account data, increase the value of `counter` by one and write it back to storage. 
 
-Incrementing the value by `1` is simple, using the addition assignment operator `+=` .
+* The `GreetingAccount` struct has only one field - `counter`. To be able to modify it, we need to borrow the reference to `account.data` with the `&`[borrow operator](https://doc.rust-lang.org/reference/expressions/operator-expr.html#borrow-operators). 
+* The `try_from_slice()` function from `BorshDeserialize`will mutably reference and deserialize the `account.data`. 
+* The `borrow()` function comes from the Rust core library, and exists to immutably borrow the wrapped value. 
 
-We will serialize the changed value using the `serialize()` function from the borsh crate. This allows it to be sent back to Solana in the correct format. We can then show in the Program Log how many times the count has been incremented with the `msg!()` macro.
+Taken together, this is saying that we will borrow the account data and pass it to a function that will deserialize it and return an error if one occurs. Recall that `?` is for error propagation.
+
+Next, incrementing the value of `counter` by `1` is simple, using the addition assignment operator : `+=` .
+
+With the `serialize()` function from `BorshSerialize`, the new `counter` value is sent back to Solana in the correct format. The mechanism by which this occurs is the [Write trait](https://doc.rust-lang.org/std/io/trait.Write.html) from the `std::io` crate.
+
+We can then show in the Program Log how many times the count has been incremented by using the `msg!()` macro.
+
+To finish the program we will call `Ok(())` - which is the Result `Ok()` containing a Rust primitive called a [unit](https://doc.rust-lang.org/std/primitive.unit.html). The unit `()` type has exactly one value :`()`, and is used when there is no other meaningful value that could be returned.
 
 ### Overview
 
@@ -349,7 +356,16 @@ Be sure to set your PATH according to your Solana release \(`active_release`is a
 Next we're going to deploy the program to the devnet cluster. The CLI provides a very simple interface for this :
 
 ```bash
-solana program deploy dist/program/helloworld.so
+solana program deploy -v dist/program/helloworld.so
+```
+
+The `-v` Verbose flag is optional, but it will show some related information like the RPC URL and path to the default signer keypair, as well as the expected [Commitment level](https://docs.solana.com/implemented-proposals/commitment). When the process completes, the Program Id will be displayed :
+
+```bash
+RPC URL: https://api.devnet.solana.com
+Default Signer Path: ~/.config/solana/id.json
+Commitment: confirmed
+Program Id: 2NsKheB6kXo9rA9eYzdMW978GvbPX6Z4KX4PB7p42Cc
 ```
 
 ## Potential issues deploying
