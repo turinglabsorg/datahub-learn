@@ -23,7 +23,7 @@ More information on viewing and setting the PATH in Linux is [available here](ht
 ## Install Rust and configure the Solana CLI
 
 * I[nstall the latest Rust stable](https://rustup.rs) : `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
-* [Install Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools) \(v1.6.6 or later\) : `sh -c "$(curl -sSfL https://release.solana.com/1.7.3/install)"`
+* [Install Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools) \(v1.6.6 or later\) : `sh -c "$(curl -sSfL https://release.solana.com/v1.7.3/install)"`
 
 Set the CLI config URL to the devnet cluster by running this command in your Terminal:
 
