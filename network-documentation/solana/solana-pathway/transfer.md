@@ -6,6 +6,8 @@ In order to transfer some value __to another account, we need to create and send
 
 When a transaction is submitted to the cluster, the Solana runtime will execute a program to process each of the instructions contained in the transaction, in order, and atomically. This means that if any of the instructions fail for any reason, the entire transaction will revert. 
 
+{% embed url="https://www.youtube.com/watch?v=f4hRNUKjy1A&list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX&index=6" caption="Transfer SOL Tokens between Solana Accounts" %}
+
 ## The challenge
 
 {% hint style="info" %}

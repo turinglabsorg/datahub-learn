@@ -6,15 +6,17 @@ Solana programs can be written in C or in Rust. You can learn more about Solana'
 
 So far we've been using Solana's JS API to interact with the blockchain. In this chapter we're going to deploy a Solana program using another Solana developer tool: their CLI. We'll install it and use it through our Terminal.
 
+{% embed url="https://www.youtube.com/watch?v=YqG8VkdA1nM&list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX&index=7" caption="Deploy a Program to the Solana Devenet" %}
+
 {% hint style="danger" %}
 **There are known compatibility issues with Microsoft Windows and also Apple M1 products!**
 
 Please STOP and read the following information carefully:
 
-**Windows Users**: _The Rust BPF toolchain is not available for Windows._ This means the compilation step cannot be completed from a Windows commandline. You must install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) - then you will need to clone the `learn-solana-dapp` repository again and install [Rust](https://rustup.rs/) and the [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools), all inside of the WSL filesystem.  
-  
+**Windows Users**: _The Rust BPF toolchain is not available for Windows._ This means the compilation step cannot be completed from a Windows commandline. You must install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) - then you will need to clone the `learn-solana-dapp` repository again and install [Rust](https://rustup.rs/) and the [Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools), all inside of the WSL filesystem.
+
 To access the filesystem of your [installed Linux distribution](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-6---install-your-linux-distribution-of-choice) for WSL :  
-Run the command [`wsl`](https://docs.microsoft.com/en-us/windows/wsl/reference) from a `cmd.exe` or PowerShell terminal. It is also important to make sure your PATH in the Windows Subsystem for Linux environment includes the location of the Solana release you have installed, such as :`PATH="~/.local/share/solana/install/active_release/bin:$PATH"`.   
+Run the command [`wsl`](https://docs.microsoft.com/en-us/windows/wsl/reference) from a `cmd.exe` or PowerShell terminal. It is also important to make sure your PATH in the Windows Subsystem for Linux environment includes the location of the Solana release you have installed, such as :`PATH="~/.local/share/solana/install/active_release/bin:$PATH"`.  
 More information on viewing and setting the PATH in Linux is [available here](https://opensource.com/article/17/6/set-path-linux).
 
 **macOS** **Users**: If you are using any of the [Apple M1](https://en.wikipedia.org/wiki/Apple_M1#Products_that_use_the_Apple_M1) products, you may need to build from source. Refer to this GitHub PR for more information : [https://github.com/solana-labs/solana/pull/16346/](https://github.com/solana-labs/solana/pull/16346/)
@@ -31,13 +33,13 @@ Set the CLI config URL to the devnet cluster by running this command in your Ter
 solana config set --url https://api.devnet.solana.com
 ```
 
-If this is your first time using the Solana CLI, you will need to generate a new keypair. Run the following command in your Terminal : 
+If this is your first time using the Solana CLI, you will need to generate a new keypair. Run the following command in your Terminal :
 
 ```text
 solana-keygen new
 ```
 
-It will be written to `~/.config/solana/id.json` and will be used every time you use the CLI. 
+It will be written to `~/.config/solana/id.json` and will be used every time you use the CLI.
 
 ## Understanding the hello-world program
 
@@ -64,13 +66,13 @@ use solana_program::{
 We also `use` portions of the `solana_program` crate :
 
 * A function to return the next `AccountInfo` as well as the  struct for `AccountInfo` ;
-*  The `entrypoint` macro and related `entrypoint::ProgramResult` ;
-*  The `msg` macro, for low-impact logging on the blockchain ;
+* The `entrypoint` macro and related `entrypoint::ProgramResult` ;
+* The `msg` macro, for low-impact logging on the blockchain ;
 * `program_error::ProgramError` which allows on-chain programs to implement program-specific error types and see them returned by the Solana runtime. A program-specific error may be any type that is represented as or serialized to a u32 integer ;
 * The `pubkey::Pubkey` struct.
 
-Next we will use the `derive` macro to generate all the necessary boilerplate code to wrap our `GreetingAccount` struct. This happens behind the scenes during compile time [with any `#[derive()]` macros](https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros). Rust macros are a rather large topic to take in, but well worth the effort to understand. For now, just know that this is a shortcut for boilerplate code that is inserted at compile time.  
-  
+Next we will use the `derive` macro to generate all the necessary boilerplate code to wrap our `GreetingAccount` struct. This happens behind the scenes during compile time [with any `#[derive()]` macros](https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros). Rust macros are a rather large topic to take in, but well worth the effort to understand. For now, just know that this is a shortcut for boilerplate code that is inserted at compile time.
+
 The struct declaration itself is simple, we are using the `pub` keyword to declare our struct publicly accessible, meaning other programs and functions can use it. The `struct` keyword is letting the compiler know that we are defining a struct named `GreetingAccount` , which has a single field : `counter` with a type of `u32` , an unsigned 32-bit integer. This means our counter cannot be larger than [`4,294,967,295`](https://en.wikipedia.org/wiki/4,294,967,295).
 
 ```rust
@@ -97,8 +99,8 @@ With a quick detour out of the helloworld example and into the Solana CLI source
 
 `&Pubkey` is a [borrowed reference](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html) to the public key where the contract is stored, this is our program's identifier or programId.
 
-`&[AccountInfo]` , another borrowed reference this time to an array of accounts, however in this example there is only a single account.  
-  
+`&[AccountInfo]` , another borrowed reference this time to an array of accounts, however in this example there is only a single account.
+
 Taking another quick detour out of the program code to peek at the `AccountInfo` struct, we see that `accounts.owner` is also going to be a public key :
 
 ![From solana-program-1.6.6/src/account\_info.rs](../../../.gitbook/assets/accountinfo_struct.png)
@@ -113,10 +115,10 @@ Back to the hello-world code :
 ```
 
 The return value of the `process_instruction` entrypoint will be a `ProgramResult` .  
-[`Result`](https://doc.rust-lang.org/std/result/enum.Result.html) comes from the `std` crate and is used to express the possibility of error.  
-  
-For [debugging](https://docs.solana.com/developing/on-chain-programs/debugging), we can print messages to the Program Log [with the `msg!()` macro](https://docs.rs/solana-program/1.7.3/solana_program/macro.msg.html), rather than use `println!()` which would be prohibitive in terms of computational cost for the network.   
-  
+[`Result`](https://doc.rust-lang.org/std/result/enum.Result.html) comes from the `std` crate and is used to express the possibility of error.
+
+For [debugging](https://docs.solana.com/developing/on-chain-programs/debugging), we can print messages to the Program Log [with the `msg!()` macro](https://docs.rs/solana-program/1.7.3/solana_program/macro.msg.html), rather than use `println!()` which would be prohibitive in terms of computational cost for the network.
+
 The `let` keyword in Rust binds a value to a variable. By looping through the `accounts` using an [iterator](https://doc.rust-lang.org/book/ch13-02-iterators.html), `accounts_iter` is taking a [mutable reference](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#mutable-references) of each value in `accounts`. Then `next_account_info(accounts_iter)?`will return the next `AccountInfo` or a `NotEnoughAccountKeys` error. Notice the `?` at the end, this is a [shortcut expression](https://doc.rust-lang.org/std/result/#the-question-mark-operator-) in Rust for [error propagation](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#propagating-errors).
 
 ```rust
@@ -138,7 +140,7 @@ msg!("Greeted {} time(s)!", greeting_account.counter);
 Ok(())
 ```
 
-Finally we get to the good stuff where we "borrow" the existing account data, increase the value of `counter` by one and write it back to storage. 
+Finally we get to the good stuff where we "borrow" the existing account data, increase the value of `counter` by one and write it back to storage.
 
 * The `GreetingAccount` struct has only one field - `counter`. To be able to modify it, we need to borrow the reference to `account.data` with the `&`[borrow operator](https://doc.rust-lang.org/reference/expressions/operator-expr.html#borrow-operators). 
 * The `try_from_slice()` function from `BorshDeserialize`will mutably reference and deserialize the `account.data`. 
@@ -271,8 +273,8 @@ mod test {
 
 The term "Sanity test" or "[Sanity check](https://en.wikipedia.org/wiki/Sanity_check)" in relation to computing is a basic test to quickly evaluate whether a claim or the result of a calculation can possibly be true. It is a simple check to see if the produced material is rational \(that the material's creator was thinking rationally, applying [sanity](https://en.wikipedia.org/wiki/Sanity)\). The point of a sanity test is to rule out certain classes of obviously false results, not to catch every possible error.
 
-Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take several minutes, although future tests will occur much more rapidly since everything is compiled.   
-  
+Simply run the command `cargo test` inside of the `learn-solana-dapp/program` subdirectory. The first time you do this, Cargo will need to compile a lot of related crates \(libc, borsh, the Solana crates, even the program we are testing\). This process can take several minutes, although future tests will occur much more rapidly since everything is compiled.
+
 The output from a successful `cargo test` will look like this \(timestamps have been removed\) :
 
 ```bash
@@ -324,7 +326,7 @@ yarn run build:program-rust
 ```
 
 {% hint style="warning" %}
-This step can take 5 or 10 minutes!   
+This step can take 5 or 10 minutes!  
 _Do not be alarmed_ if this causes your laptop fans to spin up, as Rust is multithreaded and will be taking full advantage of your processor cores during the compilation.
 {% endhint %}
 
@@ -338,7 +340,7 @@ You can read more about Solana Programs [here](https://docs.solana.com/developin
 
 ## Potential issues building
 
-An error ``no such subcommand: `build-bpf``` indicates that there was an issue with the installation of the Solana CLI or that it is installed, but not in the PATH. So if you see this error and exit code 101 :
+An error ```no such subcommand:``build-bpf\`\`\` indicates that there was an issue with the installation of the Solana CLI or that it is installed, but not in the PATH. So if you see this error and exit code 101 :
 
 ```text
 $ cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=dist/program

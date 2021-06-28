@@ -4,6 +4,8 @@
 
 We must check the account balance to make sure we have sufficient SOL to perform a transfer. The `getBalance()` function takes a publicKey as input and will return the balance associated with that publicKey, if there is any.
 
+{% embed url="https://www.youtube.com/watch?v=wcCbYbcc0AQ&list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX&index=5" caption="Check your Solana Account Balance" %}
+
 ## The challenge
 
 {% hint style="info" %}

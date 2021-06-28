@@ -8,6 +8,8 @@ Speaking of clusters, make sure you always know which one you're on. In your cod
 
 ![](../../../.gitbook/assets/screen-shot-2021-06-11-at-2.49.10-pm.png)
 
+{% embed url="https://www.youtube.com/watch?v=i8lnsTnj5Cs&list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX&index=4" caption="Fund your Solana Account with SOL" %}
+
 ## Airdropping
 
 To fund an account, we will do what is called an _airdrop:_ some tokens will magically fall from the sky onto our wallets! This will provide us with some SOL so that we can test making transfers as well as view the transaction details on a block explorer.

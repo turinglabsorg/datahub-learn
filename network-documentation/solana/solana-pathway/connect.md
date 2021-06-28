@@ -6,6 +6,8 @@ In the following tutorials, we're going to interact with the Solana blockchain \
 
 The first thing we need to do is connect to the Solana blockchain. The JS library exposes a class for this named... [Connection](https://solana-labs.github.io/solana-web3.js/classes/connection.html). It has a constructor that will return an `connection` instance, on which you can call a looong list of methods \(they're on the right sidebar of the previous link\).
 
+{% embed url="https://youtu.be/57A1BlLktcI?list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX" caption="Coonect to the Solana Devnet Cluster" %}
+
 ## The challenge
 
 {% hint style="info" %}
@@ -70,7 +72,7 @@ const getConnection = () => {
 
 Once you have the code above saved, the webpage should automatically reload \(React's hot reloading!\) and you should see:
 
-![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.47.58-pm%20%281%29.png)
+![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.47.58-pm%20%282%29%20%282%29.png)
 
 ## Next
 

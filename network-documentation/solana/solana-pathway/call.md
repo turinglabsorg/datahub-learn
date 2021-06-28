@@ -4,6 +4,8 @@ Now that we have deployed our program it's living on the blockchain \(at an addr
 
 [Read more about Solana transactions and their anatomy](https://docs.solana.com/developing/programming-model/transactions).
 
+{% embed url="https://www.youtube.com/watch?v=N1mj\_9A3Dew&list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX&index=8" caption="Call a Program on the Solana Devnet" %}
+
 ## The challenge
 
 {% hint style="info" %}

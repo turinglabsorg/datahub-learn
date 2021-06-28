@@ -6,12 +6,10 @@ description: Get Beginner to Advanced Level Resources for Rust Programming Langu
 
 ![](../../.gitbook/assets/rust-programming-language.png)
 
+[**Rust**](https://www.rust-lang.org/learn) is a multi-paradigm programming language designed for performance and safety, especially safe concurrency. Rust achieves memory safety without garbage collection, and reference counting is optional.  
+The concrete syntax of Rust is similar to C and C++, with blocks of code delimited by curly brackets, and control flow keywords such as `if`, `else`, `while`, and `for`, although the specific syntax for defining functions is more similar to Pascal. Not all C or C++ keywords are implemented, however, and some Rust functions \(such as the use of the keyword `match` for pattern matching\) will be less familiar to those versed in these languages.
 
-
-[**Rust**](https://www.rust-lang.org/learn) is a multi-paradigm programming language designed for performance and safety, especially safe concurrency. Rust achieves memory safety without garbage collection, and reference counting is optional.   
-The concrete syntax of Rust is similar to C and C++, with blocks of code delimited by curly brackets, and control flow keywords such as `if`, `else`, `while`, and `for`, although the specific syntax for defining functions is more similar to Pascal. Not all C or C++ keywords are implemented, however, and some Rust functions \(such as the use of the keyword `match` for pattern matching\) will be less familiar to those versed in these languages.  
-  
-Rust is intended to be a language for highly concurrent and highly safe systems, which makes it a natural choice for blockchain programming - both in terms of writing protocols and smart contracts. 
+Rust is intended to be a language for highly concurrent and highly safe systems, which makes it a natural choice for blockchain programming - both in terms of writing protocols and smart contracts.
 
 Following these resources will present you with ample opportunity to learn the language and put it into practice. There will be specific guides aimed at the Proof of Stake networks which utilize Rust added to this list soon.
 
@@ -54,7 +52,6 @@ The Rust Language Cheat Sheet has a good section of [Coding Guides](https://chea
 * [Good Practices](https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries/) for Writing Rust Libraries
 * So You Want to Build a Language VM - [Check Here](https://blog.subnetzero.io/post/building-language-vm-part-00/)
 
-
 ## Network Specific
 
 * Solana : [Developing with Rust](https://docs.solana.com/developing/on-chain-programs/developing-rust)
@@ -67,6 +64,4 @@ The Rust Language Cheat Sheet has a good section of [Coding Guides](https://chea
   * Check out the[ NEAR CLI](https://docs.near.org/docs/tools/near-cli)
   * Learn more about the [NEAR SDK](https://docs.near.org/docs/develop/contracts/rust/near-sdk-rs) \(see also: [docs.rs](https://docs.rs/near-sdk/3.1.0/near_sdk/)\)
   * Check out the Learn tutorial - [Write and deploy a smart contract in Rust](https://learn.figment.io/network-documentation/near/tutorials/write-and-deploy-a-smart-contract-on-near)
-
-
 

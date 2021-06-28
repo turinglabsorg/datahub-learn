@@ -4,7 +4,7 @@ description: Learn what makes Tezos unique and build your first Tezos smart cont
 
 # 🗺 Tezos Pathway
 
-## ![](../../.gitbook/assets/2011%20%282%29%20%281%29.png) Welcome to the Tezos Pathway
+## ![](../../.gitbook/assets/2011%20%282%29%20%283%29%20%281%29.png) Welcome to the Tezos Pathway
 
 Tezos is an open-source platform for assets and applications that can evolve by upgrading itself. Stakeholders govern upgrades to the core protocol, including upgrades to the amendment process itself. ****It benefits from three main characteristics: self-amendment, on-chain governance, and decentralized innovation. ****Learn what makes it unique and build your first project to **earn $20 in XTZ**!
 
@@ -22,7 +22,7 @@ Verify each tutorial as you complete them and make sure to click on "Submit to e
 
 \*\*\*\*[**Make sure to read our Terms of Use before starting**](https://learn.datahub.figment.io/terms-of-use)**.** 
 
-##  ![](../../.gitbook/assets/2011%20%282%29%20%281%29.png) **Tezos** Pathway Tutorials <a id="avalanche-pathway-tutorials"></a>
+##  ![](../../.gitbook/assets/2011%20%282%29%20%283%29%20%281%29.png) **Tezos** Pathway Tutorials <a id="avalanche-pathway-tutorials"></a>
 
 ### ​ ![](../../.gitbook/assets/vhhp1wl4_400x400-1-.jpg) [Get started by signing up to DataHub](https://datahub.figment.io/sign_up?service=tezos)! <a id="get-started-by-signing-up-to-datahub"></a>
 
