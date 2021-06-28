@@ -32,7 +32,7 @@ If the local development server has started, but a new browser window or tab has
 ![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.47.58-pm%20%282%29.png)
 
 {% hint style="info" %}
-[**Join us on Discord**](https://discord.gg/fszyM7K) _\*\*_if you encounter any issues with the tutorial or have any questions!
+[**Join us on Discord**](https://discord.gg/fszyM7K) if you encounter any issues with the tutorial or have any questions!
 {% endhint %}
 
 You can now move ahead to the next step by clicking on the "Next" button below on the right.

@@ -8,6 +8,8 @@ So far we've been using Solana's JS API to interact with the blockchain. In this
 
 {% embed url="https://www.youtube.com/watch?v=YqG8VkdA1nM&list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX&index=7" caption="Deploy a Program to the Solana Devenet" %}
 
+
+
 {% hint style="danger" %}
 **There are known compatibility issues with Microsoft Windows and also Apple M1 products!**
 
@@ -24,8 +26,12 @@ More information on viewing and setting the PATH in Linux is [available here](ht
 
 ## Install Rust and configure the Solana CLI
 
+For simplicity, perform both of these installations inside the project root \(`/learn-solana-dapp/`\) :
+
 * I[nstall the latest Rust stable](https://rustup.rs) : `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
-* [Install Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools) \(v1.6.6 or later\) : `sh -c "$(curl -sSfL https://release.solana.com/v1.7.3/install)"`
+* [Install Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools) v1.6.6 or later :
+
+  `sh -c "$(curl -sSfL https://release.solana.com/stable/install)"`
 
 Set the CLI config URL to the devnet cluster by running this command in your Terminal:
 
