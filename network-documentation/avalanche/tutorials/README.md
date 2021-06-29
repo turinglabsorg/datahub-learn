@@ -76,6 +76,10 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="create-nfts-with-the-avalanche-wallet.md" %}
 
+## Create a chat dApp on Avalanche using Solidity and ReactJS
+
+{% page-ref page="create-a-chat-application-using-solidity-and-react.md" %}
+
 ## Deploy Pangolin To Your Local Testnet And Create Token Pair
 
 {% page-ref page="deploy-pangolin-to-your-local-testnet-and-create-token-pair.md" %}
