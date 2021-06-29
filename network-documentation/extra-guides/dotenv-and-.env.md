@@ -1,7 +1,5 @@
 # Getting started with dotenv and .env
 
-{% embed url="https://youtu.be/pIHVJKCtpec" caption="How to use dotenv and .env" %}
-
 
 
 ## What are dotenv and .env?

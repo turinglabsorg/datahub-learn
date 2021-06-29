@@ -1,36 +1,23 @@
 # Setup the project
 
+{% embed url="https://www.youtube.com/watch?v=ndYmwoem6tI&list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX&index=1" caption="Setup the Solana Learn Pathway Project" %}
+
 ## Prerequisites
 
 The following software is required to set up and complete the Solana Pathway
 
 * Node.js v14 or higher installed : [https://nodejs.org/](https://nodejs.org/)
 * `yarn` installed : [https://yarnpkg.com/getting-started/install](https://yarnpkg.com/getting-started/install)
-* Rust installed : [https://rustup.rs/](https://rustup.rs/)
-* Solana Tool Suite installed : [https://docs.solana.com/cli/install-solana-cli-tools](https://docs.solana.com/cli/install-solana-cli-tools)
-
-{% hint style="warning" %}
-**There are known compatibility issues with Microsoft Windows and also Apple M1 products!  
-  
-Windows Users**: _The Rust BPF toolchain is not available for Windows._ This means the compilation step cannot be completed from a Windows commandline. It is still possible to complete the Pathway: You must install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) - then you will need to clone the `learn-solana-dapp` repository and install [Rust](https://rustup.rs/) and the [Solana Tool Suite](https://docs.solana.com/cli/install-solana-cli-tools), inside of the WSL filesystem.
-
-To access the filesystem of your [installed Linux distribution](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-6---install-your-linux-distribution-of-choice) for WSL :  
-Run the command [`wsl`](https://docs.microsoft.com/en-us/windows/wsl/reference) from a `cmd.exe` or PowerShell terminal.
-
-**macOS** **Users**: If you are using any of the [Apple M1](https://en.wikipedia.org/wiki/Apple_M1#Products_that_use_the_Apple_M1) products, you may need to build the Solana Tool Suite from source. Refer to this GitHub pull request for more information : [https://github.com/solana-labs/solana/pull/16346/](https://github.com/solana-labs/solana/pull/16346/)
-{% endhint %}
 
 
 
-Start by cloning the repository and install the npm dependencies
+Start by cloning the repository and install the npm dependencies :
 
 ```text
 git clone https://github.com/figment-networks/learn-solana-dapp.git
 cd learn-solana-dapp
 yarn
 ```
-
-{% embed url="https://www.youtube.com/watch?v=ndYmwoem6tI&list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX&index=1" caption="Setup the Solana Learn Pathway Project" %}
 
 Create an `.env.local` file at the root of the directory. Copy and paste the contents of the existing `.env.example` into the new file and save it to disk \(alternatively, you can rename `.env.example` \).
 
