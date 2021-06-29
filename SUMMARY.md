@@ -335,7 +335,7 @@
     * [5XX Retry Logic Best Practices - Go](network-documentation/extra-guides/5xx-retry-logic-best-practices/5xx-retry-logic-best-practices-go.md)
   * [Getting started with BrightID](network-documentation/extra-guides/getting-started-with-brightid.md)
   * [Setting up a fresh JavaScript Project with dotenv](network-documentation/extra-guides/setting-up-a-fresh-javascript-project.md)
-  * [dotenv and .env](network-documentation/extra-guides/dotenv-and-.env.md)
+  * [Getting started with dotenv and .env](network-documentation/extra-guides/dotenv-and-.env.md)
   * [Rust Learning Resources](network-documentation/extra-guides/rust-learning-resources.md)
 
 ## 🤔 Other
