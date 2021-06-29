@@ -7,7 +7,7 @@
 The following software is required to set up and complete the Solana Pathway
 
 * Node.js v14 or higher installed : [https://nodejs.org/](https://nodejs.org/)
-* `yarn` installed : [https://yarnpkg.com/getting-started/install](https://yarnpkg.com/getting-started/install)
+* yarn installed : [https://yarnpkg.com/getting-started/install](https://yarnpkg.com/getting-started/install)
 
 
 
