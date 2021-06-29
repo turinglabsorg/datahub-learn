@@ -1,13 +1,13 @@
 # Setup the project
 
-{% embed url="https://www.youtube.com/watch?v=ndYmwoem6tI&list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX&index=1" caption="Setup the Solana Learn Pathway Project" %}
-
 ## Prerequisites
 
 The following software is required to set up and complete the Solana Pathway
 
 * Node.js v14 or higher installed : [https://nodejs.org/](https://nodejs.org/)
 * yarn installed : [https://yarnpkg.com/getting-started/install](https://yarnpkg.com/getting-started/install)
+
+{% embed url="https://www.youtube.com/watch?v=ndYmwoem6tI&list=PLkgTdjgP1aUAiqqbvVi3b0sSdxByd5KSX&index=1" caption="Setup the Solana Learn Pathway Project" %}
 
 
 
