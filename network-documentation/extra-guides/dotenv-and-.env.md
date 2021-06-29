@@ -1,11 +1,15 @@
 # dotenv and .env
 
+{% embed url="https://youtu.be/pIHVJKCtpec" caption="How to use dotenv and .env" %}
+
+
+
 ## What are dotenv and .env?
 
 `.env` is a [dotfile](https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789) which developers can use to store [environment variables](https://medium.com/chingu/an-introduction-to-environment-variables-and-how-to-use-them-f602f66d15fa) for use in various code projects. It is beneficial to learn more about the specifics of and the format of a `.env` file, as environment variables are rather common in software development. The basic syntax for environment variables within a `.env` file is simply `KEY=value` .  
 Check the [parser rules](dotenv-and-.env.md#dotenv-parser-rules) below for a more detailed explanation.
 
-`dotenv` is an NPM package that simplifies usage of `.env` files. 
+`dotenv` is an npm package that simplifies usage of `.env` files. 
 
 ![Select the right tool for the job. Using Webpack? There&apos;s a package for that!](../../.gitbook/assets/npm.png)
 
