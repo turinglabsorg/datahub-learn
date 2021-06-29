@@ -6,7 +6,7 @@ description: >-
 
 # Setting up a fresh JavaScript Project with dotenv
 
-
+{% embed url="https://youtu.be/o8m5NYBZFe4" caption="So fresh and so clean!" %}
 
 ## Make sure Node.js is installed
 
