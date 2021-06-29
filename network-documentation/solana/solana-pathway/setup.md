@@ -1,5 +1,27 @@
 # Setup the project
 
+## Prerequisites
+
+The following software is required to set up and complete the Solana Pathway
+
+* Node.js v14 or higher installed : [https://nodejs.org/](https://nodejs.org/)
+* `yarn` installed : [https://yarnpkg.com/getting-started/install](https://yarnpkg.com/getting-started/install)
+* Rust installed : [https://rustup.rs/](https://rustup.rs/)
+* Solana Tool Suite installed : [https://docs.solana.com/cli/install-solana-cli-tools](https://docs.solana.com/cli/install-solana-cli-tools)
+
+{% hint style="warning" %}
+**There are known compatibility issues with Microsoft Windows and also Apple M1 products!  
+  
+Windows Users**: _The Rust BPF toolchain is not available for Windows._ This means the compilation step cannot be completed from a Windows commandline. It is still possible to complete the Pathway: You must install [Docker Desktop](https://learn.figment.io/network-documentation/extra-guides/docker-setup-for-windows) and [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10#manual-installation-steps) - then you will need to clone the `learn-solana-dapp` repository and install [Rust](https://rustup.rs/) and the [Solana Tool Suite](https://docs.solana.com/cli/install-solana-cli-tools), inside of the WSL filesystem.
+
+To access the filesystem of your [installed Linux distribution](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-6---install-your-linux-distribution-of-choice) for WSL :  
+Run the command [`wsl`](https://docs.microsoft.com/en-us/windows/wsl/reference) from a `cmd.exe` or PowerShell terminal.
+
+**macOS** **Users**: If you are using any of the [Apple M1](https://en.wikipedia.org/wiki/Apple_M1#Products_that_use_the_Apple_M1) products, you may need to build the Solana Tool Suite from source. Refer to this GitHub pull request for more information : [https://github.com/solana-labs/solana/pull/16346/](https://github.com/solana-labs/solana/pull/16346/)
+{% endhint %}
+
+
+
 Start by cloning the repository and install the npm dependencies
 
 ```text
@@ -29,7 +51,7 @@ If the local development server has started, but a new browser window or tab has
 "View step instructions" to see the challenge for step one, Connect to the Solana Devnet!
 {% endhint %}
 
-![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.47.58-pm%20%282%29.png)
+![](../../../.gitbook/assets/screen-shot-2021-06-14-at-10.47.58-pm%20%282%29%20%283%29.png)
 
 {% hint style="info" %}
 [**Join us on Discord**](https://discord.gg/fszyM7K) if you encounter any issues with the tutorial or have any questions!

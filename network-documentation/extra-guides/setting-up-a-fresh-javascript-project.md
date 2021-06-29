@@ -6,6 +6,8 @@ description: >-
 
 # Setting up a fresh JavaScript Project with dotenv
 
+
+
 ## Make sure Node.js is installed
 
 _If you are installing Node.js on WSL_, you can [follow this guide](https://docs.microsoft.com/en-ca/windows/dev-environment/javascript/nodejs-on-wsl). 

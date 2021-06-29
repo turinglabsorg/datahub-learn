@@ -100,5 +100,3 @@ Don't forget that you can try them out [**via Datahub**](https://datahub.figment
 
 {% page-ref page="using-hardhat-with-the-avalanche-c-chain.md" %}
 
-
-
