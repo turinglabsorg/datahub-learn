@@ -1,6 +1,6 @@
-# Getting started with dotenv and .env
+# Getting started with dotenv and .env files
 
-
+{% embed url="https://youtu.be/NKEUWE\_gMqg" caption="Getting started with dotenv and .env files" %}
 
 ## What are dotenv and .env?
 
