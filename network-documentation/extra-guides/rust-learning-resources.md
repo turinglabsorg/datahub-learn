@@ -15,20 +15,6 @@ Following these resources will present you with ample opportunity to learn the l
 
 The Rust Language Cheat Sheet has a good section of [Coding Guides](https://cheats.rs/#coding-guides) and overall is quite useful.
 
-### Tips to learn Rust - 
-
-* The language itself as well as most of the crates \(Rust libs\) have great documentation. Read it.
-* Take it easy. Rust is quite complex, especially compared to Go. Give yourself time to learn the concepts and new ways of doing things, one by one; there is no need to learn everything before starting to use the language.
-* Put stubbornness aside. Habits and expectations created from using other languages don't always apply to Rust. Keep the "what" in mind, but don't force the "how".
-* Don't get lost in following too many tutorials. After learning the basic concepts \(first few chapters of the book\) start using them for small learning projects and ask other people to review what you wrote. A few suggestions:
-  * a simple REST API that stores data in memory;
-  * a simple CLI tool, e.g.: `cat` clone; 
-* Although it may not seem like it, the compiler is your friend. The combination of the type system and ownership semantics make Rust a very strict language. Errors and warnings from the compiler are, most of the time, very explicit and helpful. Let them guide you. If you feel like taking it to the next level, use [clippy](https://github.com/rust-lang/rust-clippy) too.
-* Patience and perseverance are key. Learning Rust can sometimes feel daunting. Give yourself a break from time to time.
-* Finally, and probably the most important: **Ask questions!** No one is perfect, we are all constantly learning. Feel free to ask anything, no matter how simple it may seem. When docs stop making sense and the compiler starts spewing gibberish, the best resource is someone that has already been through the same thing. Ask and open your mind to finding the solution. If you don't get a fully satisfying answer, you may at least be pointed in the right direction. It's easier to go through this as a team and learn from each other's challenges.
-
-Rust learning tips penned by [**Robert**](https://github.com/roignpar) \(Engineer & Rust Developer\) 
-
 ## Beginner
 
 * [Ferrous Teaching Material](https://ferrous-systems.github.io/teaching-material/) - Covers Beginner to Advanced topics with slideshows
