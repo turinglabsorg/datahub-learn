@@ -2,13 +2,13 @@
 
 ## **Introduction**
 
-Polkadot allows blockchains and applications to come together and work with each other in parallel. To have a decentralized web, an internet of interoperable blockchains is key. **A sharded blockchain protocol.** Polkadot considers itself to be a next-generation blockchain, or better yet, a foundational network layer that will truly drive the "web 3.0 vision" to create a unified network of specialized, self-governed, optimal blockchains that work together via interoperability. Polkadot offers scalability through its shared model, where blockchains that used to operate in isolation can take advantage of the Polkadot architecture to have eliminate bottlenecks and network traffic.
+Polkadot allows blockchains and applications to come together and work with each other in parallel. To have a decentralized web, an internet of interoperable blockchains is key. **A sharded blockchain protocol.** Polkadot considers itself to be a next-generation blockchain, or better yet, a foundational network layer that will truly drive the "web 3.0 vision" to create a unified network of specialized, self-governed, optimal blockchains that work together via interoperability. Polkadot offers scalability through its shared model, where blockchains that used to operate in isolation can take advantage of the Polkadot architecture to eliminate bottlenecks and network traffic.
 
 ![](../../.gitbook/assets/polkadot-graphic.jpg)
 
-Bitcoin gave us the first real concept of a money protocol; a blockchain that is now great at being a store of value. Ethereum extended this idea to, well, almost anything - creating the next wave of new finance and allowing us to develop real-world applications on-chain through smart contracts. Polkadot aims to bring these blockchains together, along with many others, while supporting web 3.0 protocols and key blockchain features on-chain - acting as an infrastructure for infrastructures.
+Bitcoin gave us the first real concept of a money protocol; a blockchain that is now generally accepted at being a store of value. Ethereum extended this idea to, well, almost anything - creating the next wave of new finance and allowing us to develop real-world applications on-chain through smart contracts. Polkadot aims to bring these blockchains together, along with many others, while supporting web 3.0 protocols and other key blockchain features on-chain - acting as an infrastructure for infrastructures.
 
-This guide will outline key blockchain concepts through the eyes of Polkadot by creating distinctions and drawing conclusions for each concept. Namely, the focus will be on smart contracts, parachains, parathreads, and decentralized applications. The differences between common blockchain concepts within the Polkadot ecosystem can be best understood by appreciating Polkadot's vision to act as a foundational layer for web 3.0 protocols and allows for arbitrary data \(not just tokens\) to be transferred across blockchains.
+This guide will outline key blockchain concepts through the eyes of Polkadot by creating distinctions and drawing conclusions for each concept. Namely, the focus will be on smart contracts, parachains, parathreads, and decentralized applications. The differences between common blockchain concepts within the Polkadot ecosystem can be best understood by appreciating Polkadot's vision to act as a foundational layer for web 3.0 protocols, that allows for arbitrary data \(not just tokens\) to be transferred across blockchains.
 
 This is done through _true interoperability_, _pooled security_, _heterogeneous chains_ and _thought-through governance_.
 
@@ -24,21 +24,21 @@ This tutorial aims to be beginner-friendly. Nonetheless, it is recommended that 
 
 ### Polkadot and Smart Contracts
 
-A smart contract is a set of instructions \(in the form of code\) that are deployed on-chain. These instructions represent an agreement between parties that are presented as an executable computer program. The computer program is executed by a blockchain-based platform that enables the deployment of smart contracts. In other words, the smart contract allows for application-level source code to be deployed on-chain. The execution only takes place when predetermined conditions are met. External actors can call upon the smart contract only after it is executed on-chain. The smart contract that is created from the set of instructions will be associated with a specific chain address.
+A `smart contract` is a set of instructions \(in the form of code\) that are deployed on-chain. These instructions represent an agreement between parties that are presented as an executable computer program. The computer program is executed by a blockchain-based platform that enables the deployment of smart contracts. In other words, the smart contract allows for application-level source code to be deployed on-chain. The execution only takes place when predetermined conditions are met. External actors can call upon the smart contract only after it is executed on-chain. The smart contract that is created from the set of instructions will be associated with a specific chain address.
 
 Polkadot itself does not enable the deployment of smart contracts. The Polkadot mainnet will have other chains connected that act as smart contract platforms. External chains that are connected on Polkadot are generally referred to as **Parachains**, which is explained below.
 
 [Parity Technologies](https://www.parity.io/) is a core developer for the Polkadot network. Their main product, [Substrate](https://substrate.dev/en/) is a robust framework that can be used to develop blockchains seamlessly. Parachains are using Substrate to develop modern blockchains that will connect to the Polkadot network.
 
-> NOTE: There are different implementations of Polkadot. Parity Polkadot is the Rust client. Other implementations exist and are being worked on in C++, Go, and JavaScript. It is important to have multiple implementations of the Polkadot protocol to promote decentralization and progress the protocol in a meaningful way.
+> **NOTE: There are different implementations of Polkadot. Parity Polkadot is the Rust client. Other implementations exist and are being worked on in C++, Go, and JavaScript. It is important to have multiple implementations of the Polkadot protocol to promote decentralization and progress the protocol in a meaningful way.**
 
 If these external chains would like to offer support for smart contracts, they can do so using the [EVM Pallet](https://substrate.dev/docs/en/knowledgebase/smart-contracts/evm-pallet), which allows a parachain to implement the Ethereum Virtual Machine \([EVM](https://ethereum.org/en/developers/docs/evm/)\).
 
-In addition, Substrate also offers a built-in [contract pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html) that parachains can adapt to provide the necessary specs for the deployment and execution of _WebAssembly_ smart contracts.
+In addition, Substrate also offers a built-in [contract pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html) that parachains can adapt to. This provides the necessary specs for the deployment and execution of _WebAssembly_ smart contracts.
 
 #### Background
 
-As the name suggests, the Ethereum Virtual Machine is a virtual machine for Ethereum. The EVM abstracts necessary computational resources into a virtual stack and acts as a runtime environment for smart contracts. [Solidity](https://docs.soliditylang.org/en/v0.8.4/#) is the programming language used for developing smart contracts that run on the EVM.
+As the name suggests, the `Ethereum Virtual Machine` is a virtual machine for Ethereum. The EVM abstracts necessary computational resources into a virtual stack and acts as a runtime environment for smart contracts. [Solidity](https://docs.soliditylang.org/en/v0.8.4/#) is the programming language used for developing smart contracts that run on the EVM.
 
 [WebAssembly](https://webassembly.org/) is an instruction format that works across the web and runs on modern web browsers.
 
@@ -76,7 +76,7 @@ _**Scalability, Limitations, Dependencies**_
 
 The Polkadot network has a central chain called the [relay chain](https://wiki.polkadot.network/docs/en/learn-architecture#relay-chain). Polkadot's Nominated Proof of Stake \(NPoS\) model is used to select validators, allowing them to participate in the consensus protocol. These validators are staked on the Relay chain. Parachains are maintained by a network maintainer known as a [_collator_](https://wiki.polkadot.network/docs/en/learn-collator).
 
-External chains can connect to the Relay chain as Parachains. A parachain is an individual blockchain that runs in parallel on the Polkadot network. As such, parachains can also be considered "parallelizable chains" \[5\].
+External chains can connect to the Relay chain as `Parachains`. A parachain is an individual blockchain that runs in parallel on the Polkadot network. As such, parachains can also be considered "parallelizable chains" \[5\].
 
 ![](../../.gitbook/assets/one_parachain.png)
 
@@ -121,7 +121,7 @@ Parachain's participation on polkadot is auction-based and requires the parachai
 
 #### What about Parathreads?
 
-Parathreads are parachains that do not stay connected to the relay chain. Parathreads are essentially pay-as-you-go parachains and temporarily participate on the network on a per-block basis \[2\].
+`Parathreads` are parachains that do not stay connected to the relay chain. Parathreads are essentially pay-as-you-go parachains and temporarily participate on the network on a per-block basis \[2\].
 
 ![](../../.gitbook/assets/parathread-pool.png)
 
@@ -129,7 +129,7 @@ The main difference between parachains and parathreads is **economic**. A parach
 
 ### Polkadot and dApps
 
-dApp stands for decentralized application; no single entity has complete control. dApps run on peer-to-peer, distributed networks. Smart contracts are known as the core pillar for dApps, as application-level source code is within the logic of the contract itself. Since the apps are based on a decentralized blockchain, there is an incentivization system for the validators through some form of digital asset \(often a token\). A dApp requires a consensus mechanism to convey the proof of value in the system.
+`dApp` stands for decentralized application; no single entity has complete control. dApps run on peer-to-peer, distributed networks. Smart contracts are known as the core pillar for dApps, as application-level source code is within the logic of the contract itself. Since the apps are based on a decentralized blockchain, there is an incentivization system for the validators through some form of digital asset \(often a token\). A dApp requires a consensus mechanism to convey the proof of value in the system.
 
 **WASM vs EVM: Why Substrate encourages WebAssembly**
 
@@ -139,10 +139,10 @@ Every blockchain ecosystem essentially needs a virtual machine to process events
 * The EVM uses opcodes that are not optimized for different hardware platforms.
 * The support and reach for developing smart contracts are limited.
 
-Wasm, or WebAssembly, was developed by the World Wide Web Consortium \(W3C\); it is essentially a new type of code that can execute directly on the browser.
+`Wasm`, or WebAssembly, was developed by the World Wide Web Consortium \(W3C\); it is essentially a new type of code that can execute directly on the browser.
 
 * Wasm expands the supported languages that a developer can write a smart contract in, such as Rust, C/C++, C\#, and Typescript.
-* Wasm is high performance
+* Wasm is high performance.
 * Wasm is optimized for different hardware platforms.
 
 This [article](https://www.parity.io/wasm-smart-contract-development/#:~:text=While%20Wasm%20itself%20benefits%20from,and%20interact%20with%20the%20blockchain) offers a perspective from Parity Technologies about WebAssembly being an alternative to the EVM.
