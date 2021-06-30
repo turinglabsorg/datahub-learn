@@ -23,7 +23,6 @@ The Rust Language Cheat Sheet has a good section of [Coding Guides](https://chea
 * Don't get lost in following too many tutorials. After learning the basic concepts \(first few chapters of the book\) start using them for small learning projects and ask other people to review what you wrote. A few suggestions:
   * a simple REST API that stores data in memory;
   * a simple CLI tool, e.g.: `cat` clone; 
-  * the Figment dev interview coding assignment;
 * Although it may not seem like it, the compiler is your friend. The combination of the type system and ownership semantics make Rust a very strict language. Errors and warnings from the compiler are, most of the time, very explicit and helpful. Let them guide you. If you feel like taking it to the next level, use [clippy](https://github.com/rust-lang/rust-clippy) too.
 * Patience and perseverance are key. Learning Rust can sometimes feel daunting. Give yourself a break from time to time.
 * Finally, and probably the most important: **Ask questions!** No one is perfect, we are all constantly learning. Feel free to ask anything, no matter how simple it may seem. When docs stop making sense and the compiler starts spewing gibberish, the best resource is someone that has already been through the same thing. Ask and open your mind to finding the solution. If you don't get a fully satisfying answer, you may at least be pointed in the right direction. It's easier to go through this as a team and learn from each other's challenges.
