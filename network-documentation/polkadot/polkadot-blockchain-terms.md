@@ -50,11 +50,11 @@ As the name suggests, the `Ethereum Virtual Machine` is a virtual machine for Et
 
 _**Trustfulness, Transparency, Reliability, Accuracy & Automative**_
 
-* Smart contracts are Immutable: ensures that no one can tamper with or break the contract. The contract also 
+* Smart contracts are Immutable: ensures that no one can tamper with or break the contract. The contract also
 
-  holds integrity and credibility at the point in time it was executed. 
+  holds integrity and credibility at the point in time it was executed.
 
-* Smart contracts allow centralized use cases to be decentralized: some examples include decentralized finance 
+* Smart contracts allow centralized use cases to be decentralized: some examples include decentralized finance
 
   \(DeFi\), governance, and digital identity management.
 
@@ -108,7 +108,7 @@ Polkadot
 
 _**Security, Scability, Developer friendly, On-chain Governance, Crowdloan functionality**_
 
-* Substrate development is component-based and abstracts the nitty-gritty of blockchain development so the 
+* Substrate development is component-based and abstracts the nitty-gritty of blockchain development so the
 
   developer can focus on what matters.
 
@@ -181,9 +181,9 @@ This guide was created by Danny Salman. You can reach out to Danny on [Figment F
 
 ## **References**
 
-\[1\] [A brief summary of everything Substrate and Polkadot](https://www.parity.io/a-brief-summary-of-everything-substrate-polkadot/)   
-\[2\] [Parathreads: Pay-as-you-go Parachains](https://polkadot.network/parathreads-parathreads-pay-as-you-go-parachains/)   
-\[3\] [Polkadot: The Foundation of a New Internet](https://medium.com/polkadot-network/polkadot-the-foundation-of-a-new-internet-e8800ec81c7)   
-\[4\] [Polkadot, Substrate and Ethereum](https://medium.com/polkadot-network/polkadot-substrate-and-ethereum-f0bf1ccbfd13)   
+\[1\] [A brief summary of everything Substrate and Polkadot](https://www.parity.io/a-brief-summary-of-everything-substrate-polkadot/)  
+\[2\] [Parathreads: Pay-as-you-go Parachains](https://polkadot.network/parathreads-parathreads-pay-as-you-go-parachains/)  
+\[3\] [Polkadot: The Foundation of a New Internet](https://medium.com/polkadot-network/polkadot-the-foundation-of-a-new-internet-e8800ec81c7)  
+\[4\] [Polkadot, Substrate and Ethereum](https://medium.com/polkadot-network/polkadot-substrate-and-ethereum-f0bf1ccbfd13)  
 \[5\] [Research at Web3 Foundation](https://research.web3.foundation/en/latest/polkadot/overview/1-polkadot-introduction.html?highlight=parachains)
 
