@@ -39,7 +39,7 @@ Similar to Ethereum, Polygon \(Matic\) uses the Web3.js APIs for smart contract 
 
 ### **EVM compatibility**
 
-Polygon \(Matic\) Network uses an account-based Plasma sidechain and an EVM-compatible runtime known as the Polygon \(Matic\) VM. This makes it easy it will be for Ethereum based DApps to migrate to Polygon \(Matic\) Network, as well as using all developer tools, integration libraries, and frameworks built for Ethereum.
+Polygon \(Matic\) Network uses an account-based Plasma sidechain and an EVM-compatible runtime known as the Polygon \(Matic\) VM. This makes it easy for Ethereum based DApps to migrate to Polygon \(Matic\) Network, as well as using all developer tools, integration libraries, and frameworks built for Ethereum.
 
 ### **Role of the MATIC token**
 
