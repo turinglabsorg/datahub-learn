@@ -13,7 +13,7 @@ Share to Earn is a program that supports people who create content for the Web 3
 Authors are paid in the tokens of the protocol they write about, which allows us to align their incentives with the growth of the network's userbase. New tutorials are paid between $300 and $500 in token equivalent, while complex production-focused updates for existing tutorials are typically paid $100 in token equivalent. All payouts are at editorial discretion.
 
 * **Guides and documentation** \(eg. "Polkadot Blockchain Terms", "Solana Basic to Advanced Complete Guide"\): $100/$200
-* **Short tutorials** \(eg. “How to deploy a smart contract”\): $200/$300
+* **Short tutorials** \(eg. “How to write & deploy a smart contract”\): $200/$300
 * **Larger, original tutorials** \(eg. full-stack dApp with front-end\): $300/$500
 * **Pathway** \(eg. A combination of 4-5 interconnected tutorials\): Get in touch with us!
 
