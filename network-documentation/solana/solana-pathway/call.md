@@ -1,6 +1,6 @@
 # 7. Call a program
 
-Now that we have deployed our program it's living on the blockchain \(at an address on the devnet cluster\) and is available to interact with. We interact with a program by sending a [transaction](https://docs.solana.com/developing/programming-model/transactions) where its address is the recipient. Once a transaction is submitted to the cluster, the Solana runtime will execute a program to process each of the [instructions](https://docs.solana.com/terminology#instruction) contained in the transaction, in order, and atomically.
+Now that we have deployed our program it's living on the blockchain \(at an address on the devnet cluster\) and is available to interact with. We interact with a program by sending a transaction where its address is the recipient. Once a transaction is submitted to the cluster, the Solana runtime will execute a program to process each of the [instructions](https://docs.solana.com/terminology#instruction) contained in the transaction, in order, and atomically.
 
 [Read more about Solana transactions and their anatomy](https://docs.solana.com/developing/programming-model/transactions).
 
