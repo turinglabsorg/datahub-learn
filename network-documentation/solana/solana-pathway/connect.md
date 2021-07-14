@@ -15,7 +15,7 @@ In `src/components/Connect.jsx`, implement `getConnection` by creating a `Connec
 
 **Need some help?** Check out those two links
 
-**→** [**Creating a `Connection` instance**](https://solana-labs.github.io/solana-web3.js/classes/connection.html#constructor)  
+**→** [**Creating a `Connection` instance**](https://solana-labs.github.io/solana-web3.js/classes/Connection.html#constructor)  
 **→** [Getting the API's version](https://solana-labs.github.io/solana-web3.js/classes/Connection.html#getversion)
 {% endhint %}
 
