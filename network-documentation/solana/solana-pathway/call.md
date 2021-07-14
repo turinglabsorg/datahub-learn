@@ -13,9 +13,9 @@ In `src/components/Call.jsx,`finish implementing the `greet()` function.
 
 **Need some help?** Here are a few hints
 
-  →   [Read about extracting secret key from a bytes' array](https://solana-labs.github.io/solana-web3.js/classes/keypair.html#fromsecretkey)  
-  →   [Read about building transaction instruction](https://solana-labs.github.io/solana-web3.js/classes/transactioninstruction.html)  
-  →   [Read about sendAndConfirmTransaction](https://solana-labs.github.io/solana-web3.js/modules.html#sendandconfirmtransaction)
+  →   [Read about extracting secret key from a bytes' array](https://solana-labs.github.io/solana-web3.js/classes/Keypair.html#fromsecretkey)  
+  →   [Read about building transaction instruction](https://solana-labs.github.io/solana-web3.js/classes/TransactionInstruction.html)  
+  →   [Read about sendAndConfirmTransaction](https://solana-labs.github.io/solana-web3.js/modules.html#sendAndConfirmTransaction)
 {% endhint %}
 
 Take a few minutes to figure this out.
