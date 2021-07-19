@@ -11,7 +11,7 @@ Celo’s aim is to empower anyone with a smartphone anywhere in the world to hav
 To achieve this, Celo offers a complete stack of new blockchain software, core libraries that run on that blockchain, and end-user applications including a Wallet app that communicates with that logic. Learn what makes it unique and build your first project.
 
 {% hint style="info" %}
-There are currently no rewards for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn.
+$5 reward for completing the intro Pathway. Advanced Pathways will be released shortly and provide new opportunities to earn.
 {% endhint %}
 
 ## **🏁** Get started by signing up for DataHub <a id="get-started-by-signing-up-for-datahub"></a>
