@@ -378,7 +378,8 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
                port: 9545,
                network_id: '*',
            },
-           alfajores: { // Not yet supported by The Graph
+           // Change network to celo-alfajores in subgraph.yaml for testnet support
+           celo-alfajores: {
                provider: alfajoresProvider,
                network_id: '44787',
                skipDryRun: true,
@@ -473,9 +474,8 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
 
 ## 5. Caveats and considerations
 
-1. Alfajores and Baklava testnets are currently unsupported by The Graph. Use Ropsten or Rinkeby for test purposes.
-2. Deployed subgraphs can't be renamed or deleted, although they can be updated.
-3. Subgraphs only support reads/queries. You can't send transactions to update the blockchain state.
+1. Deployed subgraphs can't be renamed or deleted, although they can be updated.
+2. Subgraphs only support reads/queries. You can't send transactions to update the blockchain state.
 
 ## 6. Futher reading
 
@@ -485,4 +485,3 @@ We will create a subgraph for a gravatar contract deployed on the Celo mainnet. 
 ## 7. Conclusion
 
 We have learned how Graph Protocol is helpful, and how we can build and deploy our subgraphs.
-
