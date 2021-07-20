@@ -66,6 +66,7 @@
     * [Transfer AVAX tokens from the C-Chain to an ETH address](network-documentation/avalanche/tutorials/avax-c-chain-to-eth-address-transfer-tutorial.md)
     * [Transfer ERC-20 tokens from the C-chain of your AVAX wallet to an ETH address](network-documentation/avalanche/tutorials/erc20-token-transfer-to-eth-address.md)
     * [Create a chat dApp on Avalanche using Solidity and ReactJS](network-documentation/avalanche/tutorials/create-a-chat-application-using-solidity-and-react.md)
+  * [Avalanche Indexer API](network-documentation/avalanche/avalanche-indexer-api.md)
 * [💰 Celo](network-documentation/celo/README.md)
   * [✏ Celo 101](network-documentation/celo/celo-101.md)
   * [💼 CELO Wallet](network-documentation/celo/celo-wallet.md)
