@@ -314,7 +314,7 @@
   * [💡 Tutorials](network-documentation/terra/tutorials/README.md)
     * [Connecting to a Terra node with DataHub](network-documentation/terra/tutorials/interacting-with-terra-endpoints.md)
     * [Creating your first Terra account with the Terra SDK](network-documentation/terra/tutorials/submit-your-first-transaction.md)
-    * [Creating your first Terra account with the Terra SDK1](network-documentation/terra/tutorials/creating-your-first-terra-account-with-the-terra-sdk..md)
+    * [Creating your first Terra account with the Terra SDK1](network-documentation/terra/tutorials/creating-your-first-terra-account-with-the-terra-sdk1.md)
     * [Querying the Terra blockchain](network-documentation/terra/tutorials/setting-up-your-first-wallet.md)
     * [Submit your first transactions](network-documentation/terra/tutorials/write-your-first-smart-contract.md)
     * [Write your first Terra smart contract](network-documentation/terra/tutorials/write-your-first-terra-smart-contract.md)
