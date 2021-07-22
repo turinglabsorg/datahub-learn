@@ -2,7 +2,7 @@
 description: Learn how to create an account to start building on Terra
 ---
 
-# Creating your first Terra account with the Terra SDK1
+# Creating your first Terra account with the Terra SDK
 
 ## Introduction
 
