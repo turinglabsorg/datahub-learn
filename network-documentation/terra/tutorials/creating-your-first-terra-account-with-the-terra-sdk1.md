@@ -82,6 +82,18 @@ Now that you have an account, how about getting some tokens? Let’s get you set
 
 Copy your address to the clipboard and head to [Terra Faucet](https://faucet.terra.money/). Check “I’m not a robot”, paste in your address, select "Luna", and click `Send me tokens`.
 
+![](../../../.gitbook/assets/terra-2.png)
+
+After a few seconds you should see a message pop up on the top right corner of the screen:
+
+![](../../../.gitbook/assets/terra-3.png)
+
+That's it! Now head back to the Stake ID app, refresh the page and enjoy the view of 1000 LUNAs in your account.
+
+![](../../../.gitbook/assets/terra-4.png)
+
+Great work. You’ve earned it!
+
 ## **Conclusion**
 
 You now have an account on the Terra Tequila testnet and your secret information stored in the `.env` file. You also made sure that your account balance is loaded with testnet LUNAs.
