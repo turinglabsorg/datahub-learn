@@ -76,10 +76,11 @@ Congratulations! You’ve just created your Tequila account.
 
 You can go to this URL [https://tequila.stake.id/?\#/](https://tequila.stake.id/?#/) to check your address with the search bar. Once you enter your address, you should see something similar to:
 
-  
+![](../../../.gitbook/assets/terra-1.png)
 
+Now that you have an account, how about getting some tokens? Let’s get you set up! 
 
-
+Copy your address to the clipboard and head to [Terra Faucet](https://faucet.terra.money/). Check “I’m not a robot”, paste in your address, select "Luna", and click `Send me tokens`.
 
 ## **Conclusion**
 
