@@ -34,7 +34,7 @@ Cosmos provides tools that make it easy to build a new, custom-designed blockcha
 
 ## ![](../.gitbook/assets/matic_network.png) Polygon \(Matic\) Tutorials
 
-Polygon \(Matic\) Network is a sidechain scaling solution for public blockchains. It is based on an adapted implementation of the Plasma framework. Polygon \(Matic\) provides scalability while ensuring a superior user experience in a secured and decentralized manner.
+Polygon \(Matic\) Network is a sidechain scaling solution for public blockchains. It is based on an adapted implementation of the Plasma framework. Polygon provides scalability while ensuring a superior user experience in a secured and decentralized manner.
 
 {% page-ref page="../network-documentation/matic/tutorials/" %}
 
