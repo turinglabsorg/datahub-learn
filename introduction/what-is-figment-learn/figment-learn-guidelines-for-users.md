@@ -10,10 +10,5 @@ Figment Learn aims to reward developers who are eager to improve their Web 3 ski
 
 Figment Learn Pathways are designed to give you hands-on experience with blockchains & cover the fundamentals of Web 3 development. The programming languages most commonly in use regarding proof-of-stake blockchains are JavaScript/TypeScript, and Rust. There are many frameworks and tools that rely on JavaScript to communicate between the user and blockchain. Rust is quite powerful and offers an alternative learning path to JavaScript and Solidity.   
   
-1. Learn is a place for respectful discussion and passionate pursuit of knowledge. Ask questions! It is OK to disagree with other users, but do it respectfully.
-
-2. The community is here to support learning and the development of awesome dApps. Having technical trouble? We would love to help you, and we ask that you observe the following simple guidelines when asking for help in our support channel :
-
-* 
-
+Learn is a place for respectful discussion and passionate pursuit of knowledge. Ask questions! It is OK to disagree with other users, but do it respectfully. The community is here to support learning and the development of awesome dApps. Having technical trouble? We are here to help you! 
 
