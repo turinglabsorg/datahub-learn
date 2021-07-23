@@ -1,4 +1,10 @@
-# Create Vault Smart Contract1
+---
+description: >-
+  Learn how to create, deploy, and interact with Vault Smart Contract on the
+  Celo Ecosystem
+---
+
+# Create Vault Smart Contract
 
 ## Introduction
 
