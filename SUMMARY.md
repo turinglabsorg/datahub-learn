@@ -106,6 +106,8 @@
       * [1. Connect and configure Alfajores](network-documentation/celo/tutorial/celo-vault-dapp/1.connect.md)
       * [2. Deploy the Vault Smart Contract](network-documentation/celo/tutorial/celo-vault-dapp/2.vault-smart-contract.md)
       * [3. Create the React dapp](network-documentation/celo/tutorial/celo-vault-dapp/3.react-dapp.md)
+    * [Create Vault Smart Contract1](network-documentation/celo/tutorial/create-vault-smart-contract1.md)
+    * [Celo Crowd Funding Project](network-documentation/celo/tutorial/celo-crowd-funding-project.md)
     * [How to create subgraphs for Celo smart contracts](network-documentation/celo/tutorial/subgraphs-on-celo.md)
     * [Introduction to DappKit](network-documentation/celo/tutorial/introduction-to-dappkit.md)
     * [Testing Celo Smart Contracts with Truffle](network-documentation/celo/tutorial/celo-testing-truffle.md)
