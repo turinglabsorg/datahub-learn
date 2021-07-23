@@ -439,7 +439,11 @@ If there is already the `1_initial_migration.js` file in the folder, delete it.
 Next, create a new file named `1_celo_crowdfund.js` and write the following:
 
 ```text
-const CeloCrowdfund = artifacts.require("CeloCrowdfund");​module.exports = function (deployer) {  deployer.deploy(CeloCrowdfund);};
+const CeloCrowdfund = artifacts.require("CeloCrowdfund");
+
+module.exports = function (deployer) {
+  deployer.deploy(CeloCrowdfund);
+};
 ```
 
 Migrations in truffle are essentially deployment scripts. What we have written is a very simple deployment script which takes our contract \(`CeloCrowdfund`\) and deploy it.
@@ -482,8 +486,26 @@ Next, we’re going to need a Celo account to deploy from. We will need three th
 
 First things first, let's get an account and a private key. Create a file named **getAccount.js** in the project folder. In that file, write the following:
 
-```text
-const ContractKit = require('@celo/contractkit');​const Web3 = require('web3');​require('dotenv').config();​const main = async() =>  {  const web3 = new Web3(process.env.REST_URL);  const client = ContractKit.newKitFromWeb3(web3);​  const account = web3.eth.accounts.create();​  console.log('address: ', account.address);  console.log('privateKey: ', account.privateKey);};​main().catch((err)  =>  {  console.error(err);});
+```javascript
+const ContractKit = require('@celo/contractkit');
+
+const Web3 = require('web3');
+
+require('dotenv').config();
+
+const main = async() =>  {
+  const web3 = new Web3(process.env.REST_URL);
+  const client = ContractKit.newKitFromWeb3(web3);
+
+  const account = web3.eth.accounts.create();
+
+  console.log('address: ', account.address);
+  console.log('privateKey: ', account.privateKey);
+};
+
+main().catch((err)  =>  {
+  console.error(err);
+});
 ```
 
 Let's break this down.
@@ -526,8 +548,41 @@ The **truffle-config.js** is used in order to tell truffle how you want to deplo
 
 For our purposes, we will need to add the following code to the project truffle-config file:
 
-```text
-const ContractKit = require('@celo/contractkit');const Web3 = require('web3');​require('dotenv').config({path: '.env'});​// Create connection to DataHub Celo Network nodeconst web3 = new Web3(process.env.REST_URL);​const client = ContractKit.newKitFromWeb3(web3);​// Initialize account from our private keyconst account = web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);​// We need to add private key to ContractKit in order to sign transactionsclient.addAccount(account.privateKey);​module.exports = {  compilers: {    solc: {      version: "0.8.0",    // Fetch exact version from solc-bin (default: truffle's version)    }  },  networks: {    test: {      host: "127.0.0.1",      port: 7545,      network_id: "*"    },    alfajores: {      provider: client.connection.web3.currentProvider, // CeloProvider      network_id: 44787  // latest Alfajores network id    }  }};
+```javascript
+const ContractKit = require('@celo/contractkit');
+const Web3 = require('web3');
+
+require('dotenv').config({path: '.env'});
+
+// Create connection to DataHub Celo Network node
+const web3 = new Web3(process.env.REST_URL);
+
+const client = ContractKit.newKitFromWeb3(web3);
+
+// Initialize account from our private key
+const account = web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
+
+// We need to add private key to ContractKit in order to sign transactions
+client.addAccount(account.privateKey);
+
+module.exports = {
+  compilers: {
+    solc: {
+      version: "0.8.0",    // Fetch exact version from solc-bin (default: truffle's version)
+    }
+  },
+  networks: {
+    test: {
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "*"
+    },
+    alfajores: {
+      provider: client.connection.web3.currentProvider, // CeloProvider
+      network_id: 44787  // latest Alfajores network id
+    }
+  }
+};
 ```
 
 First, the config file imports `ContractKit`, `Web3`, and `dotenv` just like the `getAccounts.js` file.
@@ -548,8 +603,11 @@ And finally, in the `module.exports` function, we set the Solidity version we wa
 
 The following block of code is what tells truffle to deploy to Alfajores \(Celo's test network\):
 
-```text
-alfajores: {    provider: client.connection.web3.currentProvider, // CeloProvider    network_id: 44787  // latest Alfajores network id}
+```javascript
+alfajores: {
+    provider: client.connection.web3.currentProvider, // CeloProvider
+    network_id: 44787  // latest Alfajores network id
+}
 ```
 
 ### Deployment <a id="deployment"></a>
@@ -675,7 +733,7 @@ The above code imports your private key we set in the second tutorial from the `
 
 Next, let's create an async function where we will write our interactions with the smart contract:
 
-```text
+```javascript
 async function interact()  {
   // Check the Celo network ID
   const networkId = await web3.eth.net.getId();
@@ -705,7 +763,7 @@ Next, comment out the `console.log` of the `celoCrowdfundContract` variable sinc
 
 The next step is to create a new `Project`. Create a new function outside of `interact()` called `createProject()`:
 
-```text
+```javascript
 async function createProject(celoCrowdfundContract, stableToken)  {
   var projectGoal = BigNumber(1E18);
   await celoCrowdfundContract.methods.startProject(stableToken.address, 'Test project', 'We are testing the create project function', 'https://i.imgur.com/Flfo4hJ.png',  5, projectGoal).send({from: account.address, feeCurrency: stableToken.address});
@@ -719,7 +777,7 @@ We create a number that's of size 1,000,000,000,000,000,000 or 1E18 because cUSD
 
 Next, we call the `startProject()` method in our crowdfunding contract and pass in the parameters it requires. If we go back to the `CeloCrowdfund.sol` contract, we'll see the createProject\(\) method takes in the following:
 
-```text
+```javascript
 function startProject(
   IERC20 cUSDToken,
   string calldata title,
@@ -734,7 +792,7 @@ These are the parameters we supply when we call the function.
 
 Now that we have that, we'll create a stableToken variable which uses the `ContractKit` stabletoken wrapper in order to get a reference to the cUSD coin, and we will call the `createProject()` helper function inside `interact()`. We'll also return all the projects in our contract using the `returnProjects()` function in our `CeloCrowdfund` contract, to verify that it worked:
 
-```text
+```javascript
   // Print wallet address so we can check it on the block explorer
   console.log("Account address: ", account.address);
 
@@ -759,7 +817,7 @@ Just like how we created a variable called `celoCrowdfundContract` to access our
 
 To do this we can write the following:
 
-```text
+```javascript
 var projectInstanceContract = new web3.eth.Contract(
   Project.abi,
   deployedNetwork && result[0]
@@ -772,7 +830,7 @@ Now that we can access our project, we'll need to do two things in order to send
 
 To approve 5 cUSD to be sent, write the following:
 
-```text
+```javascript
   var projectGoal = BigNumber(5E18);
   var result = await stableToken.approve(projectInstanceContract._address, projectGoal).sendAndWaitForReceipt({from: account.address});
 ```
@@ -781,13 +839,13 @@ After the above `approve()`function runs, we will need to wait a couple of secon
 
 Create a helper function outside of the `interact()` function to cause a delay:
 
-```text
+```javascript
 const delay = ms => new Promise(res => setTimeout(res, ms));
 ```
 
 Next, use `delay()` to wait 5 seconds in our `interact()` function:
 
-```text
+```javascript
   var projectGoal = BigNumber(5E18);
   var result = await stableToken.approve(projectInstanceContract._address, projectGoal).sendAndWaitForReceipt({from: account.address});
 
@@ -800,7 +858,7 @@ Great! Now we have approved our contract to receive 5 cUSD. The next step is to 
 
 Outside of the `interact()` function, create a new function called `contribute()`:
 
-```text
+```javascript
 async function contribute(stableToken, projectInstanceContract)  {
   var sendAmount = BigNumber(2E18);
 
@@ -815,7 +873,7 @@ In the `contribute()` function, we create a variable called `sendAmount` which i
 
 Back in our `interact()` function, let's call the `contribute()` helper function we created:
 
-```text
+```javascript
   console.log("Waiting 5s...")
   await delay(5000);
   console.log("Done waiting\n");
@@ -829,7 +887,7 @@ There are now two cUSD balances we care about: the balance of our Celo wallet, a
 
 Outside the `interact()` function, create a helper function called `createBalances()` to print this all out:
 
-```text
+```javascript
 async function printBalances(stableToken, projectInstanceContract)  {
 
   var balanceOfUser = (await stableToken.balanceOf(account.address)).toString();
@@ -848,7 +906,7 @@ The `printBalances()` function uses the `stableToken` variable's `balanceOf()` f
 
 Next, inside the `interact()` function just call the `printBalances()` function after `contribute()`:
 
-```text
+```javascript
 await contribute(stableToken, projectInstanceContract);
 await printBalances(stableToken, projectInstanceContract);
 ```
@@ -859,7 +917,7 @@ So far we're able to create a Project, and fund it. The final step is paying out
 
 Outside the `interact()` function, create a helper function called `payOut()`:
 
-```text
+```javascript
 async function payOut(stableToken, projectInstanceContract)  {
   var payOut = await projectInstanceContract.methods.payOut().send({from: account.address, feeCurrency: stableToken.address});
   console.log("Paying out from project");
@@ -870,7 +928,7 @@ The `payOut()` function calls the `payOut()` function inside our `Project` smart
 
 Finally, let's call the `payOut()` helper function inside our `interact()` function:
 
-```text
+```javascript
   await contribute(stableToken, projectInstanceContract);
   await printBalances(stableToken, projectInstanceContract);
 
@@ -888,7 +946,7 @@ We'll want to wait 5 seconds before printing just to make sure the `payOut()` tr
 
 Now let's run the code! In your terminal, type:
 
-```text
+```javascript
 node interact.js
 ```
 
