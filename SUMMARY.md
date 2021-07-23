@@ -102,7 +102,7 @@
     * [How to mint your own fungible Celo Token](network-documentation/celo/tutorial/celo-erc20-token-on-remix.md)
     * [How to use Ubeswap DEX on Celo](network-documentation/celo/tutorial/celo-ubeswap-tutorial.md)
     * [How to use Moola’s money market](network-documentation/celo/tutorial/moola-market.md)
-    * [Create Vault Smart Contract](network-documentation/celo/tutorial/create-vault-smart-contract1.md)
+    * [Create Vault Smart Contract](network-documentation/celo/tutorial/create-vault-smart-contract.md)
     * [Celo Crowd Funding Project Tutorial](network-documentation/celo/tutorial/celo-crowd-funding-project.md)
     * [How to create subgraphs for Celo smart contracts](network-documentation/celo/tutorial/subgraphs-on-celo.md)
     * [Introduction to DappKit](network-documentation/celo/tutorial/introduction-to-dappkit.md)
