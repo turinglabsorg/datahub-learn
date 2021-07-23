@@ -2,7 +2,7 @@
 description: We will learn how to create a Smart Contract which facilitates crowdfunding.
 ---
 
-# Celo Crowd Funding Project
+# Celo Crowd Funding Project Tutorial
 
 This tutorial has three parts which are as follows -
 
