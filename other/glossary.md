@@ -61,6 +61,10 @@ A block is a collection of several operations. The operations are located in the
 
 A blockchain is a digital, public ledger that records online transactions. Blockchain is the core technology for [cryptocurrencies](https://www.bankrate.com/glossary/c/cryptocurrency/) like [bitcoin](https://www.bankrate.com/glossary/b/bitcoin/). A blockchain ensures the integrity of a cryptocurrency by encrypting, validating, and permanently recording transactions. A blockchain is similar to a bank’s ledger but open and accessible to everyone who utilizes the cryptocurrency it supports.
 
+**Block Height**
+
+Block height is the number of blocks in a blockchain between any given block and the very first block in the blockchain. It is commonly used to refer to the most recent block produced, but can refer to any given block.
+
 **BUIDL**
 
 Inspired or derived from HODL. A term referring to keeping your heads down and focusing on building your product.
