@@ -63,7 +63,8 @@ A blockchain is a digital, public ledger that records online transactions. Block
 
 **Block Height**
 
-Block height is the number of blocks in a blockchain between any given block and the very first block in the blockchain. It is commonly used to refer to the most recent block produced, but can refer to any given block.
+Block height is the number of blocks in a blockchain between any given block and the very first block in the blockchain. It is commonly used to refer to the most recent block produced, but can refer to any given block.  
+Often, the block height is queried directly from the blockchain but can easily be found on most block explorer sites as well.
 
 **BUIDL**
 
