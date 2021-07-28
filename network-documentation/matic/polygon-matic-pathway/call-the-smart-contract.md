@@ -13,7 +13,7 @@ As simple as it sounds, what's happening in the background is actually very powe
 ## The Challenge
 
 {% hint style="info" %}
-**Implement the `getValue` and `setValue` function**  
+**Implement the `getValue` and `setValue` functions:**  
   
 Need some help? Check out these two tips/links  
     **→**  [**Create a Contract using ethers**](https://docs.ethers.io/v5/api/contract/contract/#Contract--creating)  
@@ -99,11 +99,11 @@ const setValue = () => {
 
 What's happening in the code above?
 
-* We create Contract objects using 
-  * the contract json's address
-  * the contract json's abi
-  * the web3 provider
-* We then call the function `get()`  and `set()` on this Contract object because those are the names of the functions we defined in our Solidity smart contract. Those names have to match!
+* We create Contract objects using
+  * The contract json's address
+  * The contract json's abi
+  * A web3 provider
+* We then call the functions `get()`  and `set()` on this Contract object to operate our decentralized code. The names of the functions must match the ones we defined in our Solidity smart contract, otherwise how would we know which code to execute? 
 
 Once you've implemented those two functions, this is what the UI should look like!
 
