@@ -109,3 +109,7 @@ Once you've implemented those two functions, this is what the UI should look lik
 
 ![](../../../.gitbook/assets/screen-shot-2021-07-28-at-1.10.23-pm.png)
 
+## Conclusion
+
+\*\*\*\*[**Tell us what you think about this tutorial!**](https://docs.google.com/forms/d/e/1FAIpQLSc9taxobvDSdXprMEFhCXgfcwS_oA-lu-nbQdYEW6c57Ie6qg/viewform?usp=sf_link) ****It's a quick Google Form. We need your feedback to improve our educational resource.
+
