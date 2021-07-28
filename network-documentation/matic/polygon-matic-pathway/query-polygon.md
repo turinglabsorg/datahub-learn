@@ -67,6 +67,7 @@ Only click on the solution tab if you are completely stuck and want the answer.
 {% tab title="The solution" %}
 {% code title="pages/api/polygon/query.ts" %}
 ```typescript
+  const signer = provider.getSigner()
   const chainId = provider.network.chainId
   const blockHeight = await provider.getBlockNumber()
   const gasPriceAsGwei = await provider.getGasPrice().then(res => {
