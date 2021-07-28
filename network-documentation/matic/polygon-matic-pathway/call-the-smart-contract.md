@@ -6,7 +6,9 @@ description: Learn how to interact with deployed smart contracts
 
 At this point we have deployed a smart contract on the Polygon testnet and we have a client side application that's ready to interact with it. We just need to wire up that last part.
 
-We built a simple page on the last step to help you interact with the smart contract. Since it only has two methods \(set and get\) that's all the UI will do: set a number through the smart contract and get it. As simple as it sounds, what's happening in thebackground is actually very powerful: we're using the Polygon blockchain to store information \(here a number\) and we're using a smart contract as a interface to read and write on that piece of information. And all this is happening without having to spin up a database and an API... So let's go!
+We built a simple page on the last step to help you interact with the smart contract. Since the contract has only two methods \(`set` and `get`\) that's all the UI will do: set a number through the smart contract and fetch it.
+
+As simple as it sounds, what's happening in the background is actually very powerful: we're using the Polygon blockchain to store information \(here, a number\) and we're using a smart contract as a interface to read and write that piece of information. And what's crucial is that all this is happening without having to spin up a database and an API... So let's go!
 
 ## The Challenge
 
@@ -19,14 +21,6 @@ Need some help? Check out these two tips/links
     **→**  [**How to call a contract's methods on a ethers Contract object**](https://docs.ethers.io/v5/api/contract/contract/#Contract-functionsCall)  
 ****    →  To read from the blockchain you don't need to spend any tokens so you can just use a provider to create a Contract ****instance. But to write you will need to create and sign a transaction through Metamask. Use a `signer` to create the Contract object!
 {% endhint %}
-
-
-
-![](../../../.gitbook/assets/screen-shot-2021-07-28-at-1.09.18-pm.png)
-
-
-
-![](../../../.gitbook/assets/screen-shot-2021-07-28-at-1.10.23-pm.png)
 
 ## The solution
 
@@ -75,7 +69,6 @@ const setValue = () => {
 
 	contract.set(inputNumber)
 		.then((txRes: any) => {
-			console.log(JSON.stringify(txRes, null, 2))
 			setFetchingSet(false)
 			setInputNumber(0)
 			setConfirming(true)
@@ -102,5 +95,15 @@ const setValue = () => {
 
 What's happening in the code above?
 
+* We create Contract objects using 
+  * the contract json's address
+  * the contract json's abi
+  * the web3 provider
+* We then call the functiond `get()`  and `set()` on thise Contract object because those are the name of the function we defined in our Solidity smart contract. Those names have to match!
 
+
+
+
+
+![](../../../.gitbook/assets/screen-shot-2021-07-28-at-1.10.23-pm.png)
 
