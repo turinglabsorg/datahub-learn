@@ -22,6 +22,10 @@ Need some help? Check out these two tips/links
 ****    →  To read from the blockchain you don't need to spend any tokens so you can just use a provider to create a Contract ****instance. But to write you will need to create and sign a transaction through Metamask. Use a `signer` to create the Contract object!
 {% endhint %}
 
+{% hint style="warning" %}
+Still not sure how to do this? [**Join us on Discord**](https://discord.gg/fszyM7K) and someone will help!
+{% endhint %}
+
 ## The solution
 
 {% tabs %}
@@ -101,9 +105,7 @@ What's happening in the code above?
   * the web3 provider
 * We then call the functiond `get()`  and `set()` on thise Contract object because those are the name of the function we defined in our Solidity smart contract. Those names have to match!
 
-
-
-
+Once you've implemented those two functions, this is what the UI should look like!
 
 ![](../../../.gitbook/assets/screen-shot-2021-07-28-at-1.10.23-pm.png)
 
