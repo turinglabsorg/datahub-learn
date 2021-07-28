@@ -16,6 +16,10 @@ cd contracts/polygon/SimpleStorage
 yarn
 ```
 
+{% hint style="warning" %}
+Also be sure to rename the file **`contracts/polygon/SimpleStorage/.secret.example`** to **`.secret`** before continuing with the Pathway. This file is where we define various endpoint URLs and related data like API keys.
+{% endhint %}
+
 ## The SimpleStorage Solidity contract
 
 One of the most basic, non-trivial, types of smart contract is a **simple storage contract**.   

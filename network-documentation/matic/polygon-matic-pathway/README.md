@@ -81,6 +81,10 @@ Once the installation is complete, then start the local development server with:
 yarn dev
 ```
 
+{% hint style="warning" %}
+Also be sure to rename the file `.env.example` to `.env.local` before continuing with the Pathway. This file is where we define various endpoint URLs and related data like API keys.
+{% endhint %}
+
 ## The Pathway UI
 
 Now visit the URL [`http://localhost:3000`](http://localhost:3000) in your web browser to see the All Pathways page:
