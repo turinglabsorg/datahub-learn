@@ -103,7 +103,7 @@ What's happening in the code above?
   * the contract json's address
   * the contract json's abi
   * the web3 provider
-* We then call the functiond `get()`  and `set()` on thise Contract object because those are the name of the function we defined in our Solidity smart contract. Those names have to match!
+* We then call the function `get()`  and `set()` on this Contract object because those are the names of the functions we defined in our Solidity smart contract. Those names have to match!
 
 Once you've implemented those two functions, this is what the UI should look like!
 
@@ -111,5 +111,11 @@ Once you've implemented those two functions, this is what the UI should look lik
 
 ## Conclusion
 
-\*\*\*\*[**Tell us what you think about this tutorial!**](https://docs.google.com/forms/d/e/1FAIpQLSc9taxobvDSdXprMEFhCXgfcwS_oA-lu-nbQdYEW6c57Ie6qg/viewform?usp=sf_link) ****It's a quick Google Form. We need your feedback to improve our educational resource.
+Congratulations! We have gone from zero to Polygon, covering all the most fundamental concepts needed for developers to succeed in using Polygon. From connecting to the network to interacting with smart contracts, you have completed coding challenges and created a functional yet basic dApp.   
+  
+From here, there are many ways to increase your skills with web3 development. We recommend following some of the other Pathways on Learn, to learn about what makes the other netwrk protocols unique.
+
+If you are an experienced developer, you are welcome to contribute tutorials for Polygon \(Matic\) and earn some MATIC tokens! Check out our tutorial [contribution guidelines](../../../other/tutorial-guidelines/) to get started.
+
+\*\*\*\*[**Please tell us what you think about this tutorial!**](https://docs.google.com/forms/d/e/1FAIpQLSc9taxobvDSdXprMEFhCXgfcwS_oA-lu-nbQdYEW6c57Ie6qg/viewform?usp=sf_link) ****It's just a quick Google Form. We invite your feedback, which will help us to improve our educational resources.
 
