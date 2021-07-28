@@ -82,6 +82,26 @@ const checkConnection = async () => {
 Still not sure how to do this? [**Join us on Discord**](https://discord.gg/fszyM7K) and someone will help!
 {% endhint %}
 
+## The solution
+
+{% tabs %}
+{% tab title="SPOILER ALERT!" %}
+```text
+Only click on the solution tab if you are completely stuck and want the answer.
+```
+{% endtab %}
+
+{% tab title="The solution" %}
+{% code title="components/protocols/polygon/1\_Connect.tsx" %}
+```typescript
+const web3provider = new providers.Web3Provider(window.ethereum, “any”)
+const network = await web3provider.getNetwork()
+const address = window.ethereum.selectedAddress
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
+
 ## Addresses, Wallets, and Mnemonics
 
 Every account on Polygon or Ethereum has a private key, a public key, and a mnemonic associated with it \(referred to as a "[Secret Recovery Phrase](https://community.metamask.io/t/what-is-a-secret-recovery-phrase-and-how-to-keep-your-crypto-wallet-secure/3440)" by Metamask as of Q2 2021 - you will likely encounter a lot of documentation which still refers to "mnemonic seed phrase"\). 
