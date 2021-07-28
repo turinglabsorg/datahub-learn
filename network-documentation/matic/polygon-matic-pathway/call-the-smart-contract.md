@@ -33,7 +33,7 @@ Need some help? Check out these two tips/links
 {% tabs %}
 {% tab title="SPOILER ALERT" %}
 ```text
-
+Only click on the solution tab if you are completely stuck and want the answer.
 ```
 {% endtab %}
 
@@ -59,7 +59,7 @@ const getValue = () => {
 		.finally(() => {
 			setFetchingGet(false)
 		})
- }
+  }
 
 const setValue = () => {
 	setFetchingSet(true)
@@ -99,6 +99,8 @@ const setValue = () => {
 ```
 {% endtab %}
 {% endtabs %}
+
+What's happening in the code above?
 
 
 
