@@ -17,7 +17,7 @@ yarn
 ```
 
 {% hint style="warning" %}
-Also be sure to rename the file **`contracts/polygon/SimpleStorage/.secret.example`** to **`.secret`** before continuing with the Pathway. This file is where we define various endpoint URLs and related data like API keys.
+Also be sure to rename the file **`contracts/polygon/SimpleStorage/.secret.example`** to **`.secret`** before continuing. This file is where we will store the secret recovery phrase used later in this step to deploy the smart contract.
 {% endhint %}
 
 ## The SimpleStorage Solidity contract
