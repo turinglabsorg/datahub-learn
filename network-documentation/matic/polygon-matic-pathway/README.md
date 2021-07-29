@@ -61,7 +61,9 @@ The first piece of advice we will give you is to make _absolutely sure that you 
 
 ## Prerequisites
 
-* Readers are assumed to have a working knowledge of JavaScript/TypeScript
+* Readers are assumed to have a working knowledge of JavaScript/TypeScript.
+  * [Eloquent Javascript](https://eloquentjavascript.net) is a very good starting point to learn the JavaScript language.
+  * The [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) has a great [introduction](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) for new programmers as well.
 
 ## Project Setup
 

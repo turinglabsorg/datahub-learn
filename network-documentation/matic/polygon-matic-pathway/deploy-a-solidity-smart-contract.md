@@ -133,11 +133,11 @@ Compiling your contracts...
 
 ## Deploy the smart contract
 
-Before we deploy, we must do one last thing to prepare. We need to put a secret recovery phrase \(or mnemonic if you prefer\) of our MATIC funded Metamask account into the file `contracts/polygon/SimpleStorage/.secret.example` and rename the file to `.secret`.   
-  
-If you recall, at the beginning of the pathway we reminded users to keep their secret recovery phrase at hand and to generate a new Metamask wallet ONLY for the purposes of the tutorial. This is why. We would never ask anybody to put an actively used private key or secret recovery phrase into an unsecure location.
+{% hint style="info" %}
+Before we deploy, there is one last thing to prepare. Put the secret recovery phrase \(or mnemonic if you prefer\) of the MATIC funded Metamask account we used in the the "Fund a Polygon account" step into the file `contracts/polygon/SimpleStorage/.secret.example` and rename the file to `.secret`.  If you recall, at the beginning of the pathway we reminded users to keep their secret recovery phrase at hand and to generate a new Metamask wallet ONLY for the purposes of the tutorial. This is why. We would never ask anybody to put an actively used private key or secret recovery phrase into an unsecure location.
 
 Because we are operating on a testnet, it is _less_ of a concern but still very much a concern.
+{% endhint %}
 
 Compiling Solidity with Truffle is a straightforward process, just make sure that your preferred configuration is set in `truffle-config.js` \(paths, compilers, networks, etc.\) and then run the command:
 
@@ -152,6 +152,8 @@ truffle migrate --network matic
 ```
 
 The flag `--network matic` lets Truffle know which network we want to deploy our migrations to. The configuration for each network is set inside of `truffle-config.js`. 
+
+For this step to work, we will also need to make sure there is a valid secret recovery phrase inside of the `.secret` file, and that the account has some MATIC tokens. If you have followed the tutorial steps so far, these conditions should be satisfied. 
 
 ## Using the Application Binary Interface \(ABI\):
 
