@@ -8,7 +8,7 @@ Solidity is a high level language. It is partly designed after ECMAScript and th
 
 We can use [HardHat](https://hardhat.org) or [Truffle](https://trufflesuite.com) to ease development and deployment of our Solidity code. The [Remix IDE](https://remix.ethereum.org) is also a popular choice for contract development and deployment. There are several existing guides for other EVM compatible networks available on Figment Learn \(check out the tutorials for [Celo and Truffle](https://learn.figment.io/network-documentation/celo/tutorial/deploying-smart-contracts-on-celo-with-truffle), or [Celo and HardHat](https://learn.figment.io/network-documentation/celo/tutorial/celo-hardhat-deploy-and-nft-app) for example\). Both HardHat and Truffle are capable of running local development blockchains. We will focus on using Truffle in this tutorial.
 
-Run the following commands to get started
+Run the following commands to get started :
 
 ```text
 npm install -g truffle
@@ -136,21 +136,27 @@ Compiling your contracts...
   2 passing (6s)
 ```
 
-If you get the error :
+{% hint style="warning" %}
+If there is an error :
 
 ```text
 Error: Cannot find module '@truffle/hdwallet-provider'
 ```
 
-It is 
+You need to install the dependencies in this sub-module with `yarn` as mentioned at the beginning of the tutorial.
+{% endhint %}
 
 ## Deploy the smart contract
 
 {% hint style="info" %}
-Before we deploy, there is one last thing to prepare. Put the secret recovery phrase \(or mnemonic if you prefer\) of the MATIC funded Metamask account we used in the the "Fund a Polygon account" step into the file **`contracts/polygon/SimpleStorage/.secret`**.    
-If you recall, at the beginning of the pathway we reminded users to keep their secret recovery phrase at hand and to generate a new Metamask wallet ONLY for the purposes of the tutorial. 
+Before we deploy, there is one last thing to prepare. Put the secret recovery phrase \(also known as a mnemonic seed phrase\) of the active Metamask account into the file **`contracts/polygon/SimpleStorage/.secret`**.   
+It should look like this, with all 12 words on a single line, no quotation marks :
 
-Because we are operating on a testnet, it is _less_ of a concern but still very much a concern.
+{% code title="/contracts/polygon/SimpleStorage/.secret" %}
+```text
+airport battle cargo daughter educate focus green honey immune jelly kick language
+```
+{% endcode %}
 {% endhint %}
 
 Compiling Solidity with Truffle is a straightforward process, just make sure that your preferred configuration is set in `truffle-config.js` \(paths, compilers, networks, etc.\) and then run the command:
