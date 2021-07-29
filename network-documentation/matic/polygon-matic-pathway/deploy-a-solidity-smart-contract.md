@@ -22,6 +22,9 @@ Also be sure to rename the file **`contracts/polygon/SimpleStorage/.secret.examp
 Once again, it is **strongly recommended** that you do this with a dedicated testing wallet**. DO NOT** use the secret recovery phrase from a wallet which has cryptocurrency on either the Ethereum or Polygon mainnets.
 {% endhint %}
 
+`yarn` is a Package Manager which lets us easily fetch all of the open source code libraries and install them into the `node_modules` directory of our project. This makes all of the functionality of these 'dependencies' available for use in our project. The names and versions of these packaged code libraries are all available in the projects `package.json`.  
+The rationale for installing Truffle globally with the `-g` flag via `npm` is that it provides access to Truffle's tooling in any project, instead of installing it only as a dependency of a single project.
+
 ## The SimpleStorage Solidity contract
 
 One of the most basic, non-trivial, types of smart contract is a **simple storage contract**.   
@@ -50,7 +53,7 @@ contract SimpleStorage {
 ```
 {% endcode %}
 
-The first line of a Solidity file should contain a comment which describes the type of license governing the source code. The `SPDX-License-Identifier` will most commonly be the MIT licence, although a comprehensive list can be found at [https://spdx.org/licenses/](https://spdx.org/licenses/). The Solidity compiler will issue a warning if this line is not present at compilation time.
+The first line of a Solidity file should contain a comment which describes the type of license governing the source code. The `SPDX-License-Identifier` will most commonly be the MIT licence, although a comprehensive list can be found at [https://spdx.org/licenses/](https://spdx.org/licenses/). The Solidity compiler will issue a [warning](https://docs.soliditylang.org/en/v0.8.6/security-considerations.html#take-warnings-seriously) if this line is not present at compilation time.
 
 The next line specifies the version of the Solidity compiler to be used when compiling this contract. Using [semantic versioning](https://semver.org/), it is possible to prevent a Solidity file from being compiled by incompatible versions - most often in the case of breaking changes between major versions. We are using one of the newer versions of the compiler, but not the most recent \([`0.8.6`](https://docs.soliditylang.org/en/v0.8.6/installing-solidity.html) at the time of this writing\).
 
@@ -93,7 +96,7 @@ contract TestSimpleStorage {
 }
 ```
 
-The first test will be run against a frehly deployed version of the SimpleStorage code every time, which is why the initial test for `storedData` should always equal zero.
+The first test will be run against a freshly deployed version of the SimpleStorage code every time, which is why the initial test for `storedData` should always equal zero.
 
 The second test sets the value of `storedData` to `10000` and then queries it from the blockchain in the same manner as the first test, asserting that it will be equal to `10000`. 
 
