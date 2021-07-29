@@ -17,7 +17,9 @@ yarn
 ```
 
 {% hint style="warning" %}
-Also be sure to rename the file **`contracts/polygon/SimpleStorage/.secret.example`** to **`.secret`** before continuing. This file is where we will store the secret recovery phrase used later in this step to deploy the smart contract.
+Also be sure to rename the file **`contracts/polygon/SimpleStorage/.secret.example`** to **`.secret`** before continuing. This file is where we will store the secret recovery phrase used later in this step to deploy the smart contract. You will need to replace the text "your recovery phrase goes here" with your Metamask secret recovery phrase.
+
+Once again, it is **strongly recommended** that you do this with a dedicated testing wallet**. DO NOT** use the secret recovery phrase from a wallet which has cryptocurrency on either the Ethereum or Polygon mainnets.
 {% endhint %}
 
 ## The SimpleStorage Solidity contract
@@ -50,7 +52,7 @@ contract SimpleStorage {
 
 The first line of a Solidity file should contain a comment which describes the type of license governing the source code. The `SPDX-License-Identifier` will most commonly be the MIT licence, although a comprehensive list can be found at [https://spdx.org/licenses/](https://spdx.org/licenses/). The Solidity compiler will issue a warning if this line is not present at compilation time.
 
-The next line specifies the version of the Solidity compiler to be used when compiling this contract. Using [semantic versioning](https://semver.org/), it is possible to prevent a Solidity file from being compiled by incompatible versions - most often in the case of breaking changes between major versions.
+The next line specifies the version of the Solidity compiler to be used when compiling this contract. Using [semantic versioning](https://semver.org/), it is possible to prevent a Solidity file from being compiled by incompatible versions - most often in the case of breaking changes between major versions. We are using one of the newer versions of the compiler, but not the most recent \([`0.8.6`](https://docs.soliditylang.org/en/v0.8.6/installing-solidity.html) at the time of this writing\).
 
 Next we define our contract name, `SimpleStorage` - The contract name can be anything, but should be descriptive of the functionality. The naming convention for Solidity is that the filename should match the UpperCamelCase contract name, hence `SimpleStorage.sol`.
 
@@ -130,6 +132,14 @@ Compiling your contracts...
 
   2 passing (6s)
 ```
+
+If you get the error :
+
+```text
+Error: Cannot find module '@truffle/hdwallet-provider'
+```
+
+It is 
 
 ## Deploy the smart contract
 
