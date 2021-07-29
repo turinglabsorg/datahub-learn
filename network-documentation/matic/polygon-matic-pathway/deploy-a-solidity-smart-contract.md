@@ -147,7 +147,8 @@ It is
 ## Deploy the smart contract
 
 {% hint style="info" %}
-Before we deploy, there is one last thing to prepare. Put the secret recovery phrase \(or mnemonic if you prefer\) of the MATIC funded Metamask account we used in the the "Fund a Polygon account" step into the file `contracts/polygon/SimpleStorage/.secret.example` and rename the file to `.secret`.  If you recall, at the beginning of the pathway we reminded users to keep their secret recovery phrase at hand and to generate a new Metamask wallet ONLY for the purposes of the tutorial. This is why. We would never ask anybody to put an actively used private key or secret recovery phrase into an unsecure location.
+Before we deploy, there is one last thing to prepare. Put the secret recovery phrase \(or mnemonic if you prefer\) of the MATIC funded Metamask account we used in the the "Fund a Polygon account" step into the file **`contracts/polygon/SimpleStorage/.secret`**.    
+If you recall, at the beginning of the pathway we reminded users to keep their secret recovery phrase at hand and to generate a new Metamask wallet ONLY for the purposes of the tutorial. 
 
 Because we are operating on a testnet, it is _less_ of a concern but still very much a concern.
 {% endhint %}
