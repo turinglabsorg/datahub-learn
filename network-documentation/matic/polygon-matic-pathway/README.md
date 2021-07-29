@@ -10,7 +10,7 @@ description: Learn how to use Polygon (Matic)
 
 Polygon is designed to interoperate with and solve some of Ethereum's limitations: Scaling, the speed of transaction throughput - and poor user experience such as the high cost of transactions. Polygon's testnets can currently reach over 7000 transactions per second and the low cost of the MATIC token means cheap transaction fees!  
   
-Matic, the predecessor of Polygon, utilized a single scaling solution known as [Plasma](https://education.district0x.io/general-topics/understanding-ethereum/understanding-plasma/) which allows for 'child' blockchains to move transaction bloat off of the main Ethereum network. A Plasma chain can have different conditions to the main network, and can be specifically tuned to satisfy certain needs. Sidechains offer cheap and rapid transactions that are ultimately settled in batches on the main chain, so they benefit from the security of the main chain without compromising performance.
+Matic, the predecessor of Polygon, utilized a single scaling solution known as [Plasma](https://education.district0x.io/general-topics/understanding-ethereum/understanding-plasma/) which allows for 'child' blockchains to move transaction bloat off of the main Ethereum network. A Plasma chain can have different conditions to the main network, and can be specifically tuned to satisfy certain needs. Sidechains based on Plasma offer cheap and rapid transactions that are ultimately settled in batches on the main chain, so they benefit from the security of the main chain without compromising performance.
 
 Today, Polygon operates a Proof-of-Stake \(PoS\) sidechain. Polygon will grow to include other scaling solutions like [zero knowledge proofs](https://consensys.net/blog/blockchain-explained/zero-knowledge-proofs-starks-vs-snarks/) and [optimistic rollups](https://blog.polygon.technology/polygon-research-ethereum-scaling-with-rollups-8a2c221bf644) in the future, and allow developers to choose how best to scale their dApps. Currently, connecting to Polygon purely from a user perspective means using a compatible wallet such as Metamask, and being aware of the difference between Polygon and Ethereum.
 
@@ -70,6 +70,10 @@ The first piece of advice we will give you is to make _absolutely sure that you 
 The Polygon Pathway is in the form of a Next.js app which can be run on your local machine. We will be interacting with it through the web browser, and making changes to the code to make it a basic dApp, using Polygon!
 
 Run the following command in a terminal to clone the `learn-web3-dapp` code repository and install the dependencies with `yarn` :
+
+{% hint style="info" %}
+If you find yourself confused by any of the terminology used in the tutorials, or are new to software development in general, please refer to this Beginners Guide to Learn.
+{% endhint %}
 
 ```text
 git clone https://github.com/figment-networks/learn-web3-dapp.git
