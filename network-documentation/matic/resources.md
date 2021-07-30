@@ -16,4 +16,4 @@
 ## Advanced
 
 * [Video](https://youtu.be/QAO7YxF7hSk) - How to build a full stack decentralized app
-
+* [Github](https://github.com/polygon-italia/vue-polygon-starter) - How to start with a simple VueJS dApp
